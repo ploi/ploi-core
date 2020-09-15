@@ -1,0 +1,66 @@
+:root {
+    --font-sans-serif: 'Inter', sans-serif;
+
+    --color-white: #ffff;
+    --color-gray-1: #f7f7f7;
+    --color-gray-2: #e6e6e6;
+    --color-gray-3: #cacaca;
+    --color-gray-4: #888;
+    --color-gray-5: #666;
+    --color-gray-6: #2f2f2f;
+    --color-gray-7: #1b1a1a;
+    --color-gray-8: #101010;
+
+    --color-primary: #1b8ae8;
+    --color-success: #17b35d;
+    --color-warning: #f5a623;
+    --color-danger: #c90c4c;
+
+    --color-text-high-emphasis: var(--color-gray-8);
+    --color-text-medium-emphasis: var(--color-gray-5);
+    --color-text-low-emphasis: var(--color-gray-3);
+
+    --color-text-on-primary: var(--color-white);
+    --color-text-on-success: var(--color-gray-8);
+    --color-text-on-warning: var(--color-white);
+    --color-text-on-danger: var(--color-white);
+
+    --color-border-high-emphasis: var(--color-gray-4);
+    --color-border-medium-emphasis: var(--color-gray-3);
+    --color-border-low-emphasis: var(--color-gray-2);
+
+    --color-backdrop: rgba(0, 0, 0, 0.5);
+    --color-overlay: rgba(255, 255, 255, 0.8);
+    --color-surface-1: var(--color-white);
+    --color-surface-2: var(--color-gray-1);
+    --color-surface-3: var(--color-white);
+
+    --border-radius: 0.5rem;
+    --border-radius-avatar: 4rem;
+    --border-radius-circle: 100%;
+}
+
+.theme--dark {
+    --color-primary: #63a6f5;
+    --color-success: #50e3c2;
+    --color-warning: #f5a623;
+    --color-danger: #d4667c;
+
+    --color-text-high-emphasis: var(--color-white);
+    --color-text-medium-emphasis: var(--color-gray-3);
+    --color-text-low-emphasis: var(--color-gray-5);
+
+    --color-text-on-primary: var(--color-gray-7);
+    --color-text-on-success: var(--color-gray-7);
+    --color-text-on-warning: var(--color-gray-7);
+    --color-text-on-danger: var(--color-gray-7);
+
+    --color-border-high-emphasis: var(--color-gray-4);
+    --color-border-medium-emphasis: var(--color-gray-5);
+    --color-border-low-emphasis: var(--color-gray-6);
+
+    --color-surface-1: var(--color-gray-7);
+    --color-surface-2: var(--color-gray-6);
+    --color-surface-3: var(--color-gray-6);
+    --color-overlay: rgba(0, 0, 0, 0.8);
+}

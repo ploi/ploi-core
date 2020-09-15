@@ -1,0 +1,29 @@
+@import 'variables';
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@import 'nprogress';
+
+//$balloon-bg: var(--color-surface-1);
+@import "~balloon-css/src/balloon";
+
+.bf-blur {
+    backdrop-filter: saturate(200%) blur(24px);
+}
+
+.text-gradient {
+    background: -webkit-linear-gradient(
+            35deg,
+            var(--color-primary),
+            var(--color-success),
+            var(--color-warning),
+            var(--color-danger)
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Http\Controllers\Profile;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserProfileRequest;
+use App\Http\Resources\UserProfileResource;
+
+class ProfileController extends Controller
+{
+    public function index()
+    {
+        return inertia('Profile/Index', [
+            'profile' => new UserProfileResource(auth()->user()),
+            'languages' => languages()
+        ]);
+    }
+
+    public function update(UserProfileRequest $request)
+    {
+        $request->user()->update($request->validated());
+
+        return redirect()->route('profile.index')->with('success', __('Profile saved'));
+    }
+
+    public function toggleTheme(Request $request)
+    {
+        $mode = 'light';
+
+        if ($request->user()->theme === 'light') {
+            $mode = 'dark';
+        }
+
+        $request->user()->theme = $mode;
+        $request->user()->save();
+
+        return $mode;
+    }
+
+    public function requestFtpPassword(Request $request)
+    {
+        $this->validate($request, ['password' => 'required|string']);
+
+        if (!Hash::check($request->input('password'), $request->user()->password)) {
+            return response([
+                'message' => 'The given data was invalid',
+                'errors' => [
+                    'password' => [
+                        trans('auth.failed')
+                    ]
+                ]
+            ], 422);
+        }
+
+        return ['ftp_password' => decrypt($request->user()->ftp_password)];
+    }
+}

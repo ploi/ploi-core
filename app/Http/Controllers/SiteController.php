@@ -1,0 +1,89 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Server;
+use App\Jobs\Sites\CreateSite;
+use App\Jobs\Sites\DeleteSite;
+use App\Http\Requests\SiteRequest;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\SiteResource;
+
+class SiteController extends Controller
+{
+    public function index()
+    {
+        $sites = auth()->user()
+            ->sites()
+            ->when(request('server'), function ($query, $value) {
+                return $query->where('server_id', $value);
+            })
+            ->latest()
+            ->paginate(10);
+
+        $availableServers = auth()->user()->servers()->pluck('name', 'id');
+
+        return inertia('Sites/Index', [
+            'sites' => SiteResource::collection($sites),
+            'availableServers' => $availableServers
+        ]);
+    }
+
+    public function store(SiteRequest $request)
+    {
+        if ($serverId = $request->input('server_id')) {
+            $server = $request->user()->servers()->findOrFail($serverId);
+        } else {
+            $server = Server::query()
+                ->doesntHave('users')
+                ->withCount('sites')
+                ->having('sites_count', '<', DB::raw('maximum_sites'))
+                ->inRandomOrder()
+                ->first();
+        }
+
+        if (!$server) {
+            return redirect()->back()->withErrors([
+                'domain' => __('It seems there is no free server room for this site to take place. Please get in touch with support to resolve this.')
+            ]);
+        }
+
+        $site = $server->sites()->create($request->all());
+
+        $request->user()->sites()->save($site);
+
+        dispatch(new CreateSite($site));
+
+        $request->user()->systemLogs()->create([
+            'title' => 'New site :site created',
+            'description' => 'A new site has been created'
+        ])->model()->associate($site)->save();
+
+        return redirect()->route('sites.index')->with('success', __('Your website is being created'));
+    }
+
+    public function show($id)
+    {
+        $site = auth()->user()->sites()->findOrFail($id);
+
+        if (!$site->isActive()) {
+            return redirect()->route('sites.index')->with('info', __('This site does not seem to be active, please wait for the process to finish'));
+        }
+
+        return inertia('Sites/Show', [
+            'site' => $site,
+            'ip_address' => $site->server->ip
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $site = auth()->user()->sites()->findOrFail($id);
+
+        dispatch(new DeleteSite($site->server->ploi_id, $site->ploi_id));
+
+        $site->delete();
+
+        return redirect()->route('sites.index')->with('success', __('Your website is deleted'));
+    }
+}

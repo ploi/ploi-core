@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers\Profile;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
+class ProfileSettingController extends Controller
+{
+    public function index()
+    {
+        return inertia('Profile/Settings', [
+            'profile' => [
+                'theme' => auth()->user()->theme
+            ]
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'theme' => [
+                'required',
+                'string',
+                Rule::in(['light', 'dark', 'auto'])
+            ]
+        ]);
+
+        $request->user()->update(['theme' => $request->input('theme')]);
+
+        return redirect()->route('profile.settings.index')->with('success', __('Instellingen zijn aangepast'));
+    }
+}
