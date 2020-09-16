@@ -9,7 +9,8 @@
                         <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
                         <FormInput :label="__('Email')" type="email" :errors="$page.errors.email" v-model="form.email" />
                         <FormSelect :label="__('Language')" v-model="form.language">
-                            <option v-for="language in languages" :value="language" v-text="language"></option>
+                            <option value="en">English</option>
+                            <option value="nl">Dutch</option>
                         </FormSelect>
 
                         <FormActions>
@@ -79,7 +80,6 @@
 
         props: {
             profile: Object,
-            languages: Array
         },
 
         data() {

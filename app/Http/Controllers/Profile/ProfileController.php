@@ -13,8 +13,7 @@ class ProfileController extends Controller
     public function index()
     {
         return inertia('Profile/Index', [
-            'profile' => new UserProfileResource(auth()->user()),
-            'languages' => languages()
+            'profile' => new UserProfileResource(auth()->user())
         ]);
     }
 

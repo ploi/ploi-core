@@ -54,6 +54,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -105,8 +106,7 @@ __webpack_require__.r(__webpack_exports__);
     FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_20__["default"]
   },
   props: {
-    profile: Object,
-    languages: Array
+    profile: Object
   },
   data: function data() {
     return {
@@ -367,15 +367,15 @@ var render = function() {
                           expression: "form.language"
                         }
                       },
-                      _vm._l(_vm.languages, function(language) {
-                        return _c("option", {
-                          domProps: {
-                            value: language,
-                            textContent: _vm._s(language)
-                          }
-                        })
-                      }),
-                      0
+                      [
+                        _c("option", { attrs: { value: "en" } }, [
+                          _vm._v("English")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "nl" } }, [
+                          _vm._v("Dutch")
+                        ])
+                      ]
                     ),
                     _vm._v(" "),
                     _c(
