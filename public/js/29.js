@@ -55,6 +55,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -374,6 +375,10 @@ var render = function() {
                         _vm._v(" "),
                         _c("option", { attrs: { value: "nl" } }, [
                           _vm._v("Dutch")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "fr" } }, [
+                          _vm._v("French")
                         ])
                       ]
                     ),

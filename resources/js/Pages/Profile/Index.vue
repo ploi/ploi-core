@@ -11,6 +11,7 @@
                         <FormSelect :label="__('Language')" v-model="form.language">
                             <option value="en">English</option>
                             <option value="nl">Dutch</option>
+                            <option value="fr">French</option>
                         </FormSelect>
 
                         <FormActions>

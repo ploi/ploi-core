@@ -82,7 +82,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -411,14 +410,6 @@ var render = function() {
                                         )
                                       ]),
                                       _vm._v(" "),
-                                      _c("p", [
-                                        _vm._v(
-                                          _vm._s(_vm.__("Out of date")) +
-                                            ": " +
-                                            _vm._s(_vm.version.out_of_date)
-                                        )
-                                      ]),
-                                      _vm._v(" "),
                                       _vm.version.out_of_date && !_vm.updating
                                         ? _c(
                                             "Button",
@@ -494,6 +485,25 @@ var render = function() {
                                                 }
                                               },
                                               [_vm._v("Ploi Panel")]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("li", [
+                                            _c(
+                                              "a",
+                                              {
+                                                staticClass: "text-primary",
+                                                attrs: {
+                                                  target: "_blank",
+                                                  href:
+                                                    "https://github.com/ploi-deploy/ploi-core"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "Ploi Core Github Repository"
+                                                )
+                                              ]
                                             )
                                           ])
                                         ]
