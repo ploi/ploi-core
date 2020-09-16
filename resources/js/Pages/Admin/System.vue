@@ -26,7 +26,6 @@
                                 <template #content>
                                     <p>{{ __('Current version') }}: {{ version.current }}</p>
                                     <p>{{ __('Remote version') }}: {{ version.remote }}</p>
-                                    <p>{{ __('Out of date') }}: {{ version.out_of_date }}</p>
 
                                     <Button v-if="version.out_of_date && !updating" @click="update">Update</Button>
                                 </template>
@@ -40,8 +39,8 @@
                                         <li><a target="_blank" class="text-primary" href="https://docs.ploi-core.io">Ploi Core Docs</a></li>
                                         <li><a target="_blank" class="text-primary" href="https://ploi.io">Ploi Website</a></li>
                                         <li><a target="_blank" class="text-primary" href="https://ploi.io/panel">Ploi Panel</a></li>
+                                        <li><a target="_blank" class="text-primary" href="https://github.com/ploi-deploy/ploi-core">Ploi Core Github Repository</a></li>
                                     </ul>
-
                                 </template>
                             </SettingsSegment>
                         </template>
