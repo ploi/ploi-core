@@ -34,7 +34,8 @@ class UserProfileRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                'max:255'
+                'max:255',
+                Rule::unique('users')->ignore(auth()->user()->id)
             ],
             'language' => [
                 'required',
