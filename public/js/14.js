@@ -109,6 +109,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -166,6 +178,8 @@ __webpack_require__.r(__webpack_exports__);
         email: this.company_settings.email,
         support_emails: this.company_settings.support_emails,
         support: this.company_settings.support,
+        enable_api: this.company_settings.enable_api,
+        api_token: this.company_settings.api_token,
         documentation: this.company_settings.documentation,
         allow_registration: this.company_settings.allow_registration,
         default_package: this.company_settings.default_package
@@ -182,7 +196,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.sending = true;
-      this.$inertia.patch(this.route('admin.settings.update'), this.form).then(function () {
+      this.$inertia.patch(this.route('admin.settings.update'), this.form, {
+        preserveScroll: true
+      }).then(function () {
         _this.sending = false;
       });
     }
@@ -942,6 +958,126 @@ var render = function() {
                                             )
                                           ]),
                                           _vm._v(" "),
+                                          _c("div", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.form.enable_api,
+                                                  expression: "form.enable_api"
+                                                }
+                                              ],
+                                              staticClass: "form-checkbox",
+                                              attrs: {
+                                                id: "enable_api",
+                                                type: "checkbox"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.form.enable_api
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.form.enable_api,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.form.enable_api
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a = _vm.form.enable_api,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "enable_api",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "enable_api",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "enable_api",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "ml-2 text-sm",
+                                                attrs: { for: "enable_api" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.__("Enable API"))
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-small mt-1 text-medium-emphasis"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "This will allow you to interact with your system via the API."
+                                                      )
+                                                    ) +
+                                                    "\n                                        "
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm.form.enable_api
+                                            ? _c("FormInput", {
+                                                attrs: {
+                                                  "allow-random-string": "",
+                                                  label: _vm.__("API token"),
+                                                  errors:
+                                                    _vm.$page.errors.api_token
+                                                },
+                                                model: {
+                                                  value: _vm.form.api_token,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "api_token",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "form.api_token"
+                                                }
+                                              })
+                                            : _vm._e(),
+                                          _vm._v(" "),
                                           _c(
                                             "FormActions",
                                             [
@@ -1297,9 +1433,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "grid grid-cols-4 gap-16" }, [
-    _c("aside", { staticClass: "col-span-1" }, [_vm._t("nav")], 2),
+    _c(
+      "aside",
+      { staticClass: "col-span-4 md:col-span-1" },
+      [_vm._t("nav")],
+      2
+    ),
     _vm._v(" "),
-    _c("section", { staticClass: "col-span-3" }, [
+    _c("section", { staticClass: "col-span-4 md:col-span-3" }, [
       _c("div", { staticClass: "space-y-16" }, [_vm._t("segments")], 2)
     ])
   ])
