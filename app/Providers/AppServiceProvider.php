@@ -29,17 +29,11 @@ class AppServiceProvider extends ServiceProvider
                 }
             });
         });
-    }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->registerInertia();
-        $this->registerLengthAwarePaginator();
+        if (!$this->app->request->is('api*')) {
+            $this->registerInertia();
+            $this->registerLengthAwarePaginator();
+        }
     }
 
     public function registerInertia()

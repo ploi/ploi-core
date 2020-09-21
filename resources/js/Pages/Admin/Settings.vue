@@ -72,7 +72,7 @@
                                             </p>
                                         </div>
 
-                                        <FormInput v-if="form.enable_api" :label="__('API token')" :errors="$page.errors.api_token"
+                                        <FormInput v-if="form.enable_api" allow-random-string :label="__('API token')" :errors="$page.errors.api_token"
                                                    v-model="form.api_token"/>
 
                                         <FormActions>
@@ -172,7 +172,9 @@
             submit() {
                 this.sending = true
 
-                this.$inertia.patch(this.route('admin.settings.update'), this.form)
+                this.$inertia.patch(this.route('admin.settings.update'), this.form, {
+                    preserveScroll: true
+                })
                     .then(() => {
                         this.sending = false;
                     })

@@ -24,5 +24,14 @@ module.exports = {
 
             return splitted[0];
         },
+
+        randomString() {
+            let m = m || 20;
+            let s = '', r = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            for (let i = 0; i < m; i++) {
+                s += r.charAt(Math.floor(Math.random() * r.length));
+            }
+            return s;
+        },
     }
 };

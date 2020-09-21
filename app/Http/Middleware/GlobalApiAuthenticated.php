@@ -26,7 +26,10 @@ class GlobalApiAuthenticated
 
     protected function isAuthenticated(Request $request)
     {
-        return $request->bearerToken() &&
-            $request->bearerToken() === setting('api_token');
+        return
+            setting('enable_api') &&
+            setting('api_token') &&
+            $request->bearerToken() &&
+            $request->bearerToken() === decrypt(setting('api_token'));
     }
 }

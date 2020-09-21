@@ -317,9 +317,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "grid grid-cols-4 gap-16" }, [
-    _c("aside", { staticClass: "col-span-1" }, [_vm._t("nav")], 2),
+    _c(
+      "aside",
+      { staticClass: "col-span-4 md:col-span-1" },
+      [_vm._t("nav")],
+      2
+    ),
     _vm._v(" "),
-    _c("section", { staticClass: "col-span-3" }, [
+    _c("section", { staticClass: "col-span-4 md:col-span-3" }, [
       _c("div", { staticClass: "space-y-16" }, [_vm._t("segments")], 2)
     ])
   ])
