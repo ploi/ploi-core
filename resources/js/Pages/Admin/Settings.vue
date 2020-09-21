@@ -63,6 +63,18 @@
                                             </p>
                                         </div>
 
+                                        <div>
+                                            <input id="enable_api" class="form-checkbox" type="checkbox"
+                                                   v-model="form.enable_api">
+                                            <label for="enable_api" class="ml-2 text-sm">{{ __('Enable API') }}</label>
+                                            <p class="text-small mt-1 text-medium-emphasis">
+                                                {{ __('This will allow you to interact with your system via the API.') }}
+                                            </p>
+                                        </div>
+
+                                        <FormInput v-if="form.enable_api" :label="__('API token')" :errors="$page.errors.api_token"
+                                                   v-model="form.api_token"/>
+
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                         </FormActions>
@@ -140,6 +152,8 @@
                     email: this.company_settings.email,
                     support_emails: this.company_settings.support_emails,
                     support: this.company_settings.support,
+                    enable_api: this.company_settings.enable_api,
+                    api_token: this.company_settings.api_token,
                     documentation: this.company_settings.documentation,
                     allow_registration: this.company_settings.allow_registration,
                     default_package: this.company_settings.default_package,
