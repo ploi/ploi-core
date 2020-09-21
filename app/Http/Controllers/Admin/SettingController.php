@@ -18,6 +18,8 @@ class SettingController extends Controller
             'documentation' => setting('documentation'),
             'allow_registration' => setting('allow_registration'),
             'default_package' => setting('default_package'),
+            'enable_api' => setting('enable_api'),
+            'api_token' => setting('api_token') ? decrypt(setting('api_token')) : null,
         ];
 
         $packages = Package::pluck('name', 'id');
@@ -37,8 +39,14 @@ class SettingController extends Controller
             'support_emails',
             'allow_registration',
             'documentation',
-            'default_package'
+            'default_package',
+            'enable_api',
+            'api_token',
         ]) as $key => $value) {
+            if ($key === 'api_token') {
+                $value = encrypt($value);
+            }
+
             setting([$key => $value]);
         }
 

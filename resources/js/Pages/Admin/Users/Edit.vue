@@ -18,9 +18,6 @@
                         <template #segments>
                             <SettingsSegment>
                                 <template #title>{{ __('Edit') }}</template>
-                                <template #subtitle>
-                                    Form
-                                </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
