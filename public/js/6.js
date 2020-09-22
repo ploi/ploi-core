@@ -623,35 +623,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/***/ }),
-
-/***/ "./resources/js/hooks/confirm-delete.js":
-/*!**********************************************!*\
-  !*** ./resources/js/hooks/confirm-delete.js ***!
-  \**********************************************/
-/*! exports provided: useConfirmDelete */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useConfirmDelete", function() { return useConfirmDelete; });
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/store */ "./resources/js/store/index.js");
-
-function useConfirmDelete(_ref) {
-  var title = _ref.title,
-      message = _ref.message,
-      _onConfirm = _ref.onConfirm;
-  return _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('confirmDelete/open', {
-    title: title,
-    message: message,
-    onConfirm: function onConfirm() {
-      _onConfirm();
-
-      _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('confirmDelete/close');
-    }
-  });
-}
-
 /***/ })
 
 }]);

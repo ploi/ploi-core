@@ -29,6 +29,19 @@ class Server extends Resource
         return $this->getPloi()->makeAPICall($this->getEndpoint());
     }
 
+    public function delete(int $id = null)
+    {
+        if ($id) {
+            $this->setId($id);
+        }
+
+        if ($this->getId()) {
+            $this->setEndpoint($this->endpoint . '/' . $this->getId());
+        }
+
+        return $this->getPloi()->makeAPICall($this->getEndpoint(), 'delete');
+    }
+
     public function logs(int $id = null)
     {
         if ($id) {

@@ -74,8 +74,13 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
     // Server routes
     Route::group(['prefix' => 'servers', 'as' => 'servers.'], function () {
         Route::get('/', 'ServerController@index')->name('index');
-        Route::get('{show}', 'ServerController@show')->name('show');
+        Route::get('{server}', 'ServerController@show')->name('show');
+        Route::get('{server}/settings', 'ServerController@show')->name('show');
         Route::post('/', 'ServerController@store')->name('store');
+
+        Route::get('{server}/settings', 'ServerSettingController@show')->name('settings.show');
+
+        Route::delete('{server}', 'ServerController@destroy')->name('delete');
     });
 
     // Profile routes

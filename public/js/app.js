@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"0dcde053981f92959e59","1":"86db8ab9924d3be9307f","2":"e3b2b0aba5a1f9a18fe2","3":"7fdc1d14f65f44d0a5a3","4":"7fecf1f18f5ef974d222","5":"fbfbcf45610d060d921e","6":"31e7640678359fcaf0bd","7":"140acb8c38018bb7c822","8":"2d3a3827a4fce6452a33","9":"c031adc013e72d8ca02e","10":"c99079a545f555af1d52","11":"edfc1a590a1ef0920546","12":"b3fc82c5505d1cfa7ddc","13":"82586eff842dd81a3514","14":"565bfaff62d8837441ea","15":"1145f698c07761ab21b9","16":"a71a4de4db813926d9fa","17":"8715d645a6960909b0be","18":"d57099401b23b45edcc8","19":"b8f90e39a34bc8b6f186","20":"c987356baaaceb82c365","21":"805ff5beffc848caac4e","22":"f77c6d6e204f3cb79333","23":"22dba52fed989ff789db","24":"39ab3d78672bb9a4dbbf","25":"3c868424322f0c4f4122","26":"f916f092e6e60b8d9892","27":"e5ac13ee4b4b7b6bd182","28":"f5669cef6146d069dd10","29":"7d89c6ed3820cf473a89","30":"af0a027b779bdad9adc4","31":"389c470db645e09d77fa","32":"955c99fe365280bd58a8","33":"3b12573698121b34d094","34":"5e120af5778f25fcb316","35":"16ee8ec0d1f4ea1f3e3b","36":"9d942601049dde1e2a2d","37":"bfed5c07e7ee3fc0b707","38":"16bb218999b061d4519f","39":"f0e47e8cbc2e1453b93e","40":"bb8280e4cdbbe173641a","41":"493b953d076c2dde3310","42":"77fdc0015a464c763922","43":"d3d6e7efd194a410de28","44":"3748a9c7a1acdcdc84eb","45":"ca8e73f6cefc74ffc435","46":"f8120f39e3a9fafbb6ce","47":"6028984cf11b9d50f70a","48":"9e68e512975fc7f8f0a7","49":"544747018c91103423a5","50":"b12bf4f9649390b026c9","51":"bb4d59e722a5281e8c6e","52":"d0e6ab68104ca30c9423","53":"ff0ee56e45481251a9c6","54":"e40a3a5e0afa3f5158aa","55":"5f2a9b1c3259abfc7ca2","56":"69325289d0d69d279213","57":"477386c391d9de6d0dde","58":"b64c9574530aa2dd03cb","59":"2d35b1737ffbfb4a3514","60":"ca1a3cad0b4d08200376","61":"b986e48511b3ec7fcdd4","62":"2121d083b9dcfcae3eaf","63":"7c7b3c7029da8720f3db","64":"e39128b59cbf1b267fcb","65":"221f6a42591fe4181cce","66":"b725e73a48486aa0ce8d","67":"1857837474c94f24db23"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"0dcde053981f92959e59","1":"86db8ab9924d3be9307f","2":"e3b2b0aba5a1f9a18fe2","3":"7fdc1d14f65f44d0a5a3","4":"7fecf1f18f5ef974d222","5":"fbfbcf45610d060d921e","6":"ab69c8c404f9ccac65db","7":"140acb8c38018bb7c822","8":"2d3a3827a4fce6452a33","9":"c031adc013e72d8ca02e","10":"c99079a545f555af1d52","11":"edfc1a590a1ef0920546","12":"b3fc82c5505d1cfa7ddc","13":"82586eff842dd81a3514","14":"565bfaff62d8837441ea","15":"1145f698c07761ab21b9","16":"a71a4de4db813926d9fa","17":"8715d645a6960909b0be","18":"d57099401b23b45edcc8","19":"b8f90e39a34bc8b6f186","20":"c987356baaaceb82c365","21":"805ff5beffc848caac4e","22":"f77c6d6e204f3cb79333","23":"22dba52fed989ff789db","24":"39ab3d78672bb9a4dbbf","25":"3c868424322f0c4f4122","26":"f916f092e6e60b8d9892","27":"e5ac13ee4b4b7b6bd182","28":"f5669cef6146d069dd10","29":"7d89c6ed3820cf473a89","30":"af0a027b779bdad9adc4","31":"389c470db645e09d77fa","32":"955c99fe365280bd58a8","33":"3b12573698121b34d094","34":"5e120af5778f25fcb316","35":"16ee8ec0d1f4ea1f3e3b","36":"9d942601049dde1e2a2d","37":"bfed5c07e7ee3fc0b707","38":"16bb218999b061d4519f","39":"f0e47e8cbc2e1453b93e","40":"bb8280e4cdbbe173641a","41":"93362d4b9f97268710d3","42":"48e7726657cdf11826c4","43":"47dcbade590b0ea66800","44":"ef5fc07ba97aa3e5f709","45":"69b528c2ad010802b4be","46":"c999693fd1694c60295a","47":"affd17daf77561a07c7d","48":"e35f12fe5de48f8b0f28","49":"b502cb18b8d71e1baa5b","50":"9af9d482ea3ffa0c93b2","51":"07d6e2ad89db070a56a1","52":"e4e922eff257260d359c","53":"b30bfd568d33215522db","54":"3b2970d95700196e4ba7","55":"ab1a326cc947bf1bd794","56":"41cc9242493164547764","57":"e27a77c9376f068e9ed0","58":"352754e15a363a0d7a52","59":"e8ef223faaa64f938963","60":"1ee8c2d102b81a93f967","61":"23a0a707a4957c44012a","62":"73ef6e9e4624ea20ecf8","63":"79824fab0c635c0314d7","64":"6e8deaf9221575abd5c2","65":"b1ed2e2b326333a52ee5","66":"8adb116b3d8bcdcbb5aa","67":"a520d6a255c719de6184","68":"e997f3fa1d28a03c1a98","69":"c9af53d04391b191e7a0","70":"9f6377148a2b6a449eb1"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -20628,11 +20628,11 @@ var map = {
 	],
 	"./Admin/Documentation/Tabs": [
 		"./resources/js/Pages/Admin/Documentation/Tabs.vue",
-		47
+		49
 	],
 	"./Admin/Documentation/Tabs.vue": [
 		"./resources/js/Pages/Admin/Documentation/Tabs.vue",
-		47
+		49
 	],
 	"./Admin/Packages/Create": [
 		"./resources/js/Pages/Admin/Packages/Create.vue",
@@ -20678,11 +20678,11 @@ var map = {
 	],
 	"./Admin/Packages/Tabs": [
 		"./resources/js/Pages/Admin/Packages/Tabs.vue",
-		48
+		50
 	],
 	"./Admin/Packages/Tabs.vue": [
 		"./resources/js/Pages/Admin/Packages/Tabs.vue",
-		48
+		50
 	],
 	"./Admin/Services/Index": [
 		"./resources/js/Pages/Admin/Services/Index.vue",
@@ -20758,11 +20758,11 @@ var map = {
 	],
 	"./Admin/Services/Tabs": [
 		"./resources/js/Pages/Admin/Services/Tabs.vue",
-		49
+		51
 	],
 	"./Admin/Services/Tabs.vue": [
 		"./resources/js/Pages/Admin/Services/Tabs.vue",
-		49
+		51
 	],
 	"./Admin/Settings": [
 		"./resources/js/Pages/Admin/Settings.vue",
@@ -20824,11 +20824,11 @@ var map = {
 	],
 	"./Admin/Support/Tabs": [
 		"./resources/js/Pages/Admin/Support/Tabs.vue",
-		50
+		52
 	],
 	"./Admin/Support/Tabs.vue": [
 		"./resources/js/Pages/Admin/Support/Tabs.vue",
-		50
+		52
 	],
 	"./Admin/System": [
 		"./resources/js/Pages/Admin/System.vue",
@@ -20846,19 +20846,19 @@ var map = {
 	],
 	"./Admin/Tabs": [
 		"./resources/js/Pages/Admin/Tabs.vue",
-		51
+		53
 	],
 	"./Admin/Tabs.vue": [
 		"./resources/js/Pages/Admin/Tabs.vue",
-		51
+		53
 	],
 	"./Admin/TabsStatus": [
 		"./resources/js/Pages/Admin/TabsStatus.vue",
-		52
+		54
 	],
 	"./Admin/TabsStatus.vue": [
 		"./resources/js/Pages/Admin/TabsStatus.vue",
-		52
+		54
 	],
 	"./Admin/Users/Create": [
 		"./resources/js/Pages/Admin/Users/Create.vue",
@@ -20908,93 +20908,93 @@ var map = {
 	],
 	"./Admin/Users/Tabs": [
 		"./resources/js/Pages/Admin/Users/Tabs.vue",
-		53
+		55
 	],
 	"./Admin/Users/Tabs.vue": [
 		"./resources/js/Pages/Admin/Users/Tabs.vue",
-		53
+		55
 	],
 	"./Admin/components/TopBar": [
 		"./resources/js/Pages/Admin/components/TopBar.vue",
 		0,
-		54
+		56
 	],
 	"./Admin/components/TopBar.vue": [
 		"./resources/js/Pages/Admin/components/TopBar.vue",
 		0,
-		54
+		56
 	],
 	"./Auth/Email": [
 		"./resources/js/Pages/Auth/Email.vue",
 		2,
 		5,
-		55
+		57
 	],
 	"./Auth/Email.vue": [
 		"./resources/js/Pages/Auth/Email.vue",
 		2,
 		5,
-		55
+		57
 	],
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.vue",
 		2,
 		5,
-		66
+		69
 	],
 	"./Auth/Login.vue": [
 		"./resources/js/Pages/Auth/Login.vue",
 		2,
 		5,
-		66
+		69
 	],
 	"./Auth/PasswordCreation": [
 		"./resources/js/Pages/Auth/PasswordCreation.vue",
 		2,
 		5,
-		56
+		58
 	],
 	"./Auth/PasswordCreation.vue": [
 		"./resources/js/Pages/Auth/PasswordCreation.vue",
 		2,
 		5,
-		56
+		58
 	],
 	"./Auth/Register": [
 		"./resources/js/Pages/Auth/Register.vue",
 		2,
 		5,
-		57
+		59
 	],
 	"./Auth/Register.vue": [
 		"./resources/js/Pages/Auth/Register.vue",
 		2,
 		5,
-		57
+		59
 	],
 	"./Auth/Reset": [
 		"./resources/js/Pages/Auth/Reset.vue",
 		2,
 		5,
-		58
+		60
 	],
 	"./Auth/Reset.vue": [
 		"./resources/js/Pages/Auth/Reset.vue",
 		2,
 		5,
-		58
+		60
 	],
 	"./Core/InstallationIncomplete": [
 		"./resources/js/Pages/Core/InstallationIncomplete.vue",
 		2,
 		5,
-		67
+		70
 	],
 	"./Core/InstallationIncomplete.vue": [
 		"./resources/js/Pages/Core/InstallationIncomplete.vue",
 		2,
 		5,
-		67
+		70
 	],
 	"./Dashboard/Index": [
 		"./resources/js/Pages/Dashboard/Index.vue",
@@ -21011,12 +21011,12 @@ var map = {
 	"./Dashboard/components/TopBar": [
 		"./resources/js/Pages/Dashboard/components/TopBar.vue",
 		0,
-		59
+		61
 	],
 	"./Dashboard/components/TopBar.vue": [
 		"./resources/js/Pages/Dashboard/components/TopBar.vue",
 		0,
-		59
+		61
 	],
 	"./Documentation/Index": [
 		"./resources/js/Pages/Documentation/Index.vue",
@@ -21053,34 +21053,34 @@ var map = {
 	"./Documentation/components/TopBar": [
 		"./resources/js/Pages/Documentation/components/TopBar.vue",
 		0,
-		60
+		62
 	],
 	"./Documentation/components/TopBar.vue": [
 		"./resources/js/Pages/Documentation/components/TopBar.vue",
 		0,
-		60
+		62
 	],
 	"./Errors/403": [
 		"./resources/js/Pages/Errors/403.vue",
 		0,
 		1,
-		44
+		46
 	],
 	"./Errors/403.vue": [
 		"./resources/js/Pages/Errors/403.vue",
 		0,
 		1,
-		44
+		46
 	],
 	"./Errors/404": [
 		"./resources/js/Pages/Errors/404.vue",
 		1,
-		45
+		47
 	],
 	"./Errors/404.vue": [
 		"./resources/js/Pages/Errors/404.vue",
 		1,
-		45
+		47
 	],
 	"./Profile/Index": [
 		"./resources/js/Pages/Profile/Index.vue",
@@ -21133,12 +21133,12 @@ var map = {
 	"./Profile/components/TopBar": [
 		"./resources/js/Pages/Profile/components/TopBar.vue",
 		0,
-		61
+		63
 	],
 	"./Profile/components/TopBar.vue": [
 		"./resources/js/Pages/Profile/components/TopBar.vue",
 		0,
-		61
+		63
 	],
 	"./Servers/Index": [
 		"./resources/js/Pages/Servers/Index.vue",
@@ -21147,7 +21147,7 @@ var map = {
 		2,
 		4,
 		6,
-		46
+		48
 	],
 	"./Servers/Index.vue": [
 		"./resources/js/Pages/Servers/Index.vue",
@@ -21156,17 +21156,65 @@ var map = {
 		2,
 		4,
 		6,
-		46
+		48
+	],
+	"./Servers/Settings": [
+		"./resources/js/Pages/Servers/Settings.vue",
+		0,
+		1,
+		2,
+		3,
+		4,
+		6,
+		41
+	],
+	"./Servers/Settings.vue": [
+		"./resources/js/Pages/Servers/Settings.vue",
+		0,
+		1,
+		2,
+		3,
+		4,
+		6,
+		41
+	],
+	"./Servers/Show": [
+		"./resources/js/Pages/Servers/Show.vue",
+		0,
+		1,
+		2,
+		3,
+		4,
+		6,
+		42
+	],
+	"./Servers/Show.vue": [
+		"./resources/js/Pages/Servers/Show.vue",
+		0,
+		1,
+		2,
+		3,
+		4,
+		6,
+		42
+	],
+	"./Servers/Tabs": [
+		"./resources/js/Pages/Servers/Tabs.vue",
+		64
+	],
+	"./Servers/Tabs.vue": [
+		"./resources/js/Pages/Servers/Tabs.vue",
+		64
 	],
 	"./Servers/components/TopBar": [
 		"./resources/js/Pages/Servers/components/TopBar.vue",
 		0,
-		62
+		65
 	],
 	"./Servers/components/TopBar.vue": [
 		"./resources/js/Pages/Servers/components/TopBar.vue",
 		0,
-		62
+		65
 	],
 	"./Sites/Apps": [
 		"./resources/js/Pages/Sites/Apps.vue",
@@ -21255,7 +21303,7 @@ var map = {
 		2,
 		4,
 		6,
-		43
+		45
 	],
 	"./Sites/Index.vue": [
 		"./resources/js/Pages/Sites/Index.vue",
@@ -21264,7 +21312,7 @@ var map = {
 		2,
 		4,
 		6,
-		43
+		45
 	],
 	"./Sites/Redirects": [
 		"./resources/js/Pages/Sites/Redirects.vue",
@@ -21303,7 +21351,7 @@ var map = {
 		2,
 		3,
 		4,
-		41
+		43
 	],
 	"./Sites/Show.vue": [
 		"./resources/js/Pages/Sites/Show.vue",
@@ -21312,25 +21360,25 @@ var map = {
 		2,
 		3,
 		4,
-		41
+		43
 	],
 	"./Sites/Tabs": [
 		"./resources/js/Pages/Sites/Tabs.vue",
-		63
+		66
 	],
 	"./Sites/Tabs.vue": [
 		"./resources/js/Pages/Sites/Tabs.vue",
-		63
+		66
 	],
 	"./Sites/components/TopBar": [
 		"./resources/js/Pages/Sites/components/TopBar.vue",
 		0,
-		64
+		67
 	],
 	"./Sites/components/TopBar.vue": [
 		"./resources/js/Pages/Sites/components/TopBar.vue",
 		0,
-		64
+		67
 	],
 	"./Support/Closed": [
 		"./resources/js/Pages/Support/Closed.vue",
@@ -21338,7 +21386,7 @@ var map = {
 		1,
 		2,
 		4,
-		42
+		44
 	],
 	"./Support/Closed.vue": [
 		"./resources/js/Pages/Support/Closed.vue",
@@ -21346,7 +21394,7 @@ var map = {
 		1,
 		2,
 		4,
-		42
+		44
 	],
 	"./Support/Index": [
 		"./resources/js/Pages/Support/Index.vue",
@@ -21383,12 +21431,12 @@ var map = {
 	"./Support/components/TopBar": [
 		"./resources/js/Pages/Support/components/TopBar.vue",
 		0,
-		65
+		68
 	],
 	"./Support/components/TopBar.vue": [
 		"./resources/js/Pages/Support/components/TopBar.vue",
 		0,
-		65
+		68
 	]
 };
 function webpackAsyncContext(req) {
