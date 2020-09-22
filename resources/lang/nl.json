@@ -122,6 +122,7 @@
     "Your database will be deleted permanently, this action cannot be undone.": "Je database wordt volledig verwijderd, deze actie kan niet ongedaan gemaakt worden.",
     "Request a new Let's Encrypt certificate here. Make sure that the DNS has fully propagated.": "Vraag een nieuw Let's Encrypt SSL certificaat aan. Wees er zeker van dat de DNS omgezet en juist is.",
     "Your site will be deleted completely, this action is irreversible.": "Je site zal volledig verwijderd worden, dit kan niet ongedaan gemaakt worden.",
+    "Your server will be deleted completely, this action is irreversible.": "Je server zal volledig verwijderd worden, dit kan niet ongedaan gemaakt worden.",
     "We were unable to match all of the entered domains to your server, make sure you point your domain DNS to your server.": "We zijn niet in staat om je domein te matchen met het IP adres van de server. Zorg ervoor dat de DNS volledig omgezet is.",
     "This site does not seem to be active, please wait for the process to finish": "Deze site is niet actief, wacht tot het proces afgerond is",
 
