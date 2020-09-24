@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"0dcde053981f92959e59","1":"86db8ab9924d3be9307f","2":"e3b2b0aba5a1f9a18fe2","3":"7fdc1d14f65f44d0a5a3","4":"7fecf1f18f5ef974d222","5":"fbfbcf45610d060d921e","6":"ab69c8c404f9ccac65db","7":"140acb8c38018bb7c822","8":"2d3a3827a4fce6452a33","9":"c031adc013e72d8ca02e","10":"c99079a545f555af1d52","11":"edfc1a590a1ef0920546","12":"b3fc82c5505d1cfa7ddc","13":"82586eff842dd81a3514","14":"565bfaff62d8837441ea","15":"1145f698c07761ab21b9","16":"a71a4de4db813926d9fa","17":"8715d645a6960909b0be","18":"d57099401b23b45edcc8","19":"b8f90e39a34bc8b6f186","20":"c987356baaaceb82c365","21":"805ff5beffc848caac4e","22":"f77c6d6e204f3cb79333","23":"22dba52fed989ff789db","24":"39ab3d78672bb9a4dbbf","25":"3c868424322f0c4f4122","26":"f916f092e6e60b8d9892","27":"e5ac13ee4b4b7b6bd182","28":"f5669cef6146d069dd10","29":"7d89c6ed3820cf473a89","30":"af0a027b779bdad9adc4","31":"389c470db645e09d77fa","32":"955c99fe365280bd58a8","33":"3b12573698121b34d094","34":"5e120af5778f25fcb316","35":"16ee8ec0d1f4ea1f3e3b","36":"9d942601049dde1e2a2d","37":"bfed5c07e7ee3fc0b707","38":"16bb218999b061d4519f","39":"f0e47e8cbc2e1453b93e","40":"bb8280e4cdbbe173641a","41":"93362d4b9f97268710d3","42":"48e7726657cdf11826c4","43":"47dcbade590b0ea66800","44":"ef5fc07ba97aa3e5f709","45":"69b528c2ad010802b4be","46":"c999693fd1694c60295a","47":"affd17daf77561a07c7d","48":"e35f12fe5de48f8b0f28","49":"b502cb18b8d71e1baa5b","50":"9af9d482ea3ffa0c93b2","51":"07d6e2ad89db070a56a1","52":"e4e922eff257260d359c","53":"b30bfd568d33215522db","54":"3b2970d95700196e4ba7","55":"ab1a326cc947bf1bd794","56":"41cc9242493164547764","57":"e27a77c9376f068e9ed0","58":"352754e15a363a0d7a52","59":"e8ef223faaa64f938963","60":"1ee8c2d102b81a93f967","61":"23a0a707a4957c44012a","62":"73ef6e9e4624ea20ecf8","63":"79824fab0c635c0314d7","64":"6e8deaf9221575abd5c2","65":"b1ed2e2b326333a52ee5","66":"8adb116b3d8bcdcbb5aa","67":"a520d6a255c719de6184","68":"e997f3fa1d28a03c1a98","69":"c9af53d04391b191e7a0","70":"9f6377148a2b6a449eb1"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"0dcde053981f92959e59","1":"86db8ab9924d3be9307f","2":"e3b2b0aba5a1f9a18fe2","3":"7fdc1d14f65f44d0a5a3","4":"7fecf1f18f5ef974d222","5":"fbfbcf45610d060d921e","6":"ab69c8c404f9ccac65db","7":"140acb8c38018bb7c822","8":"2d3a3827a4fce6452a33","9":"c031adc013e72d8ca02e","10":"c99079a545f555af1d52","11":"9822093766328e344db8","12":"b3fc82c5505d1cfa7ddc","13":"82586eff842dd81a3514","14":"565bfaff62d8837441ea","15":"1145f698c07761ab21b9","16":"a71a4de4db813926d9fa","17":"8715d645a6960909b0be","18":"d57099401b23b45edcc8","19":"b8f90e39a34bc8b6f186","20":"c987356baaaceb82c365","21":"805ff5beffc848caac4e","22":"f77c6d6e204f3cb79333","23":"22dba52fed989ff789db","24":"39ab3d78672bb9a4dbbf","25":"3c868424322f0c4f4122","26":"f916f092e6e60b8d9892","27":"e5ac13ee4b4b7b6bd182","28":"f5669cef6146d069dd10","29":"7d89c6ed3820cf473a89","30":"af0a027b779bdad9adc4","31":"389c470db645e09d77fa","32":"955c99fe365280bd58a8","33":"3b12573698121b34d094","34":"5e120af5778f25fcb316","35":"16ee8ec0d1f4ea1f3e3b","36":"9d942601049dde1e2a2d","37":"bfed5c07e7ee3fc0b707","38":"16bb218999b061d4519f","39":"c589edfad2d14c661cb9","40":"445401b2a74ee2481c0c","41":"7eeb8744789f16540899","42":"48e7726657cdf11826c4","43":"47dcbade590b0ea66800","44":"ef5fc07ba97aa3e5f709","45":"69b528c2ad010802b4be","46":"c999693fd1694c60295a","47":"affd17daf77561a07c7d","48":"e35f12fe5de48f8b0f28","49":"b502cb18b8d71e1baa5b","50":"9af9d482ea3ffa0c93b2","51":"07d6e2ad89db070a56a1","52":"e4e922eff257260d359c","53":"b30bfd568d33215522db","54":"3b2970d95700196e4ba7","55":"ab1a326cc947bf1bd794","56":"41cc9242493164547764","57":"e27a77c9376f068e9ed0","58":"352754e15a363a0d7a52","59":"e8ef223faaa64f938963","60":"1ee8c2d102b81a93f967","61":"23a0a707a4957c44012a","62":"73ef6e9e4624ea20ecf8","63":"79824fab0c635c0314d7","64":"6e8deaf9221575abd5c2","65":"b1ed2e2b326333a52ee5","66":"8adb116b3d8bcdcbb5aa","67":"a520d6a255c719de6184","68":"e997f3fa1d28a03c1a98","69":"c9af53d04391b191e7a0","70":"9f6377148a2b6a449eb1"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -20895,7 +20895,7 @@ var map = {
 		1,
 		2,
 		3,
-		39
+		40
 	],
 	"./Admin/Users/Index.vue": [
 		"./resources/js/Pages/Admin/Users/Index.vue",
@@ -20904,7 +20904,7 @@ var map = {
 		1,
 		2,
 		3,
-		39
+		40
 	],
 	"./Admin/Users/Tabs": [
 		"./resources/js/Pages/Admin/Users/Tabs.vue",
@@ -21000,13 +21000,13 @@ var map = {
 		"./resources/js/Pages/Dashboard/Index.vue",
 		0,
 		1,
-		40
+		41
 	],
 	"./Dashboard/Index.vue": [
 		"./resources/js/Pages/Dashboard/Index.vue",
 		0,
 		1,
-		40
+		41
 	],
 	"./Dashboard/components/TopBar": [
 		"./resources/js/Pages/Dashboard/components/TopBar.vue",
@@ -21166,7 +21166,7 @@ var map = {
 		3,
 		4,
 		6,
-		41
+		39
 	],
 	"./Servers/Settings.vue": [
 		"./resources/js/Pages/Servers/Settings.vue",
@@ -21176,7 +21176,7 @@ var map = {
 		3,
 		4,
 		6,
-		41
+		39
 	],
 	"./Servers/Show": [
 		"./resources/js/Pages/Servers/Show.vue",

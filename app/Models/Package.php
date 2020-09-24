@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\PermissionCast;
 use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model
@@ -10,11 +11,13 @@ class Package extends Model
         'name',
         'maximum_sites',
         'maximum_servers',
-        'server_creation'
+        'site_permissions',
+        'server_permissions'
     ];
 
     public $casts = [
-        'server_creation' => 'boolean'
+        'site_permissions' => PermissionCast::class,
+        'server_permissions' => PermissionCast::class,
     ];
 
     public function users()

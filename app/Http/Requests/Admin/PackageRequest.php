@@ -34,9 +34,16 @@ class PackageRequest extends FormRequest
                 'numeric',
                 'min:0',
             ],
-            'server_creation' => [
+            'maximum_servers' => [
                 'required',
-                'boolean'
+                'numeric',
+                'min:0',
+            ],
+            'server_permissions' => [
+                'array'
+            ],
+            'site_permissions' => [
+                'array'
             ]
         ];
     }

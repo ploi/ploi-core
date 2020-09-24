@@ -79,6 +79,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -129,12 +179,16 @@ __webpack_require__.r(__webpack_exports__);
     Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_20__["default"]
   },
   data: function data() {
+    var _this$package$server_, _this$package$site_pe;
+
     return {
       sending: false,
       form: {
         name: this["package"].name,
         maximum_sites: this["package"].maximum_sites,
-        server_creation: this["package"].server_creation
+        maximum_servers: this["package"].maximum_servers,
+        server_permissions: (_this$package$server_ = this["package"].server_permissions) !== null && _this$package$server_ !== void 0 ? _this$package$server_ : [],
+        site_permissions: (_this$package$site_pe = this["package"].site_permissions) !== null && _this$package$site_pe !== void 0 ? _this$package$site_pe : []
       }
     };
   },
@@ -534,112 +588,815 @@ var render = function() {
                                             }
                                           }),
                                           _vm._v(" "),
-                                          _c("div", [
-                                            _c("input", {
-                                              directives: [
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Maximum servers"),
+                                              type: "number",
+                                              min: "0",
+                                              errors:
+                                                _vm.$page.errors.maximum_servers
+                                            },
+                                            model: {
+                                              value: _vm.form.maximum_servers,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "maximum_servers",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "form.maximum_servers"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "space-y-2" },
+                                            [
+                                              _c(
+                                                "h3",
                                                 {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value:
-                                                    _vm.form.server_creation,
-                                                  expression:
-                                                    "form.server_creation"
-                                                }
-                                              ],
-                                              staticClass: "form-checkbox",
-                                              attrs: {
-                                                id: "server_creation",
-                                                type: "checkbox"
-                                              },
-                                              domProps: {
-                                                checked: Array.isArray(
-                                                  _vm.form.server_creation
-                                                )
-                                                  ? _vm._i(
-                                                      _vm.form.server_creation,
-                                                      null
-                                                    ) > -1
-                                                  : _vm.form.server_creation
-                                              },
-                                              on: {
-                                                change: function($event) {
-                                                  var $$a =
-                                                      _vm.form.server_creation,
-                                                    $$el = $event.target,
-                                                    $$c = $$el.checked
-                                                      ? true
-                                                      : false
-                                                  if (Array.isArray($$a)) {
-                                                    var $$v = null,
-                                                      $$i = _vm._i($$a, $$v)
-                                                    if ($$el.checked) {
-                                                      $$i < 0 &&
-                                                        _vm.$set(
-                                                          _vm.form,
-                                                          "server_creation",
-                                                          $$a.concat([$$v])
-                                                        )
-                                                    } else {
-                                                      $$i > -1 &&
-                                                        _vm.$set(
-                                                          _vm.form,
-                                                          "server_creation",
-                                                          $$a
-                                                            .slice(0, $$i)
-                                                            .concat(
-                                                              $$a.slice($$i + 1)
-                                                            )
-                                                        )
+                                                  staticClass:
+                                                    "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
+                                                },
+                                                [_vm._v("Server permissions")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .server_permissions[
+                                                          "create"
+                                                        ],
+                                                      expression:
+                                                        "form.server_permissions['create']"
                                                     }
-                                                  } else {
-                                                    _vm.$set(
-                                                      _vm.form,
-                                                      "server_creation",
-                                                      $$c
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "server_create",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form
+                                                        .server_permissions[
+                                                        "create"
+                                                      ]
                                                     )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "create"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .server_permissions[
+                                                          "create"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "create"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "create",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "create",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .server_permissions,
+                                                          "create",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
                                                   }
-                                                }
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "label",
-                                              {
-                                                staticClass: "ml-2 text-sm",
-                                                attrs: {
-                                                  for: "server_creation"
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.__(
-                                                      "Allow server creation"
-                                                    )
-                                                  )
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "p",
-                                              {
-                                                staticClass:
-                                                  "text-small mt-1 text-medium-emphasis"
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                            " +
-                                                    _vm._s(
-                                                      _vm.__(
-                                                        "This will allow users to create servers"
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "server_create"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow server creation"
+                                                        )
                                                       )
-                                                    ) +
-                                                    "\n                                        "
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to create servers"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
                                                 )
-                                              ]
-                                            )
-                                          ]),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .server_permissions[
+                                                          "update"
+                                                        ],
+                                                      expression:
+                                                        "form.server_permissions['update']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "server_update",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form
+                                                        .server_permissions[
+                                                        "update"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "update"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .server_permissions[
+                                                          "update"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "update"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "update",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "update",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .server_permissions,
+                                                          "update",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "server_update"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow server updating"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to update servers"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .server_permissions[
+                                                          "delete"
+                                                        ],
+                                                      expression:
+                                                        "form.server_permissions['delete']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "server_delete",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form
+                                                        .server_permissions[
+                                                        "delete"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "delete"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .server_permissions[
+                                                          "delete"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "delete"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "delete",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "delete",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .server_permissions,
+                                                          "delete",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "server_delete"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow server deletion"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to delete servers"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "space-y-2" },
+                                            [
+                                              _c(
+                                                "h3",
+                                                {
+                                                  staticClass:
+                                                    "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
+                                                },
+                                                [_vm._v("Site permissions")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .site_permissions[
+                                                          "create"
+                                                        ],
+                                                      expression:
+                                                        "form.site_permissions['create']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "site_create",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form.site_permissions[
+                                                        "create"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "create"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .site_permissions[
+                                                          "create"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "create"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "create",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "create",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .site_permissions,
+                                                          "create",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "site_create"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow site creation"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to create servers"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .site_permissions[
+                                                          "update"
+                                                        ],
+                                                      expression:
+                                                        "form.site_permissions['update']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "site_update",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form.site_permissions[
+                                                        "update"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "update"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .site_permissions[
+                                                          "update"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "update"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "update",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "update",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .site_permissions,
+                                                          "update",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "site_update"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow site updating"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to update servers"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .site_permissions[
+                                                          "delete"
+                                                        ],
+                                                      expression:
+                                                        "form.site_permissions['delete']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "site_delete",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form.site_permissions[
+                                                        "delete"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "delete"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .site_permissions[
+                                                          "delete"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "delete"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "delete",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "delete",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .site_permissions,
+                                                          "delete",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "site_delete"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow site deletion"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to delete servers"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ]
+                                          ),
                                           _vm._v(" "),
                                           _c(
                                             "FormActions",
