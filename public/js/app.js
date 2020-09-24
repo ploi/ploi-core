@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"0dcde053981f92959e59","1":"86db8ab9924d3be9307f","2":"e3b2b0aba5a1f9a18fe2","3":"7fdc1d14f65f44d0a5a3","4":"7fecf1f18f5ef974d222","5":"fbfbcf45610d060d921e","6":"ab69c8c404f9ccac65db","7":"140acb8c38018bb7c822","8":"2d3a3827a4fce6452a33","9":"c031adc013e72d8ca02e","10":"c99079a545f555af1d52","11":"9822093766328e344db8","12":"1e8381032277b3fa5765","13":"82586eff842dd81a3514","14":"565bfaff62d8837441ea","15":"1145f698c07761ab21b9","16":"a71a4de4db813926d9fa","17":"d32c99bbb58853d57645","18":"244a4db3b3442c941082","19":"7988878c243c587316bc","20":"6f7e1cd9737dd719ffb8","21":"805ff5beffc848caac4e","22":"f77c6d6e204f3cb79333","23":"22dba52fed989ff789db","24":"443e79d02bbb0daecd8c","25":"3c868424322f0c4f4122","26":"f916f092e6e60b8d9892","27":"e5ac13ee4b4b7b6bd182","28":"f5669cef6146d069dd10","29":"7d89c6ed3820cf473a89","30":"af0a027b779bdad9adc4","31":"389c470db645e09d77fa","32":"955c99fe365280bd58a8","33":"04c7cdf42dc5a6e9af1b","34":"5e120af5778f25fcb316","35":"44dfcd0fba07ec8e5547","36":"9d942601049dde1e2a2d","37":"bfed5c07e7ee3fc0b707","38":"16bb218999b061d4519f","39":"c589edfad2d14c661cb9","40":"445401b2a74ee2481c0c","41":"7eeb8744789f16540899","42":"48e7726657cdf11826c4","43":"6e07f2b7dbd39ef3b48d","44":"ef5fc07ba97aa3e5f709","45":"6fe09e0d9013679f4116","46":"c999693fd1694c60295a","47":"affd17daf77561a07c7d","48":"e35f12fe5de48f8b0f28","49":"b502cb18b8d71e1baa5b","50":"9af9d482ea3ffa0c93b2","51":"07d6e2ad89db070a56a1","52":"e4e922eff257260d359c","53":"b30bfd568d33215522db","54":"3b2970d95700196e4ba7","55":"ab1a326cc947bf1bd794","56":"41cc9242493164547764","57":"e27a77c9376f068e9ed0","58":"352754e15a363a0d7a52","59":"e8ef223faaa64f938963","60":"1ee8c2d102b81a93f967","61":"23a0a707a4957c44012a","62":"73ef6e9e4624ea20ecf8","63":"79824fab0c635c0314d7","64":"6e8deaf9221575abd5c2","65":"b1ed2e2b326333a52ee5","66":"b2e44d0a4afa96722ef4","67":"a520d6a255c719de6184","68":"e997f3fa1d28a03c1a98","69":"c9af53d04391b191e7a0","70":"9f6377148a2b6a449eb1"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"0dcde053981f92959e59","1":"86db8ab9924d3be9307f","2":"e3b2b0aba5a1f9a18fe2","3":"7fdc1d14f65f44d0a5a3","4":"7fecf1f18f5ef974d222","5":"fbfbcf45610d060d921e","6":"ab69c8c404f9ccac65db","7":"140acb8c38018bb7c822","8":"c9a5125113132e006939","9":"c031adc013e72d8ca02e","10":"c99079a545f555af1d52","11":"9822093766328e344db8","12":"1e8381032277b3fa5765","13":"82586eff842dd81a3514","14":"00371dbe9bb5c68e9a6e","15":"1145f698c07761ab21b9","16":"a71a4de4db813926d9fa","17":"d32c99bbb58853d57645","18":"244a4db3b3442c941082","19":"7988878c243c587316bc","20":"6f7e1cd9737dd719ffb8","21":"805ff5beffc848caac4e","22":"892ce483c33b51441d44","23":"22dba52fed989ff789db","24":"443e79d02bbb0daecd8c","25":"3c868424322f0c4f4122","26":"f916f092e6e60b8d9892","27":"e5ac13ee4b4b7b6bd182","28":"f5669cef6146d069dd10","29":"7d89c6ed3820cf473a89","30":"af0a027b779bdad9adc4","31":"389c470db645e09d77fa","32":"955c99fe365280bd58a8","33":"04c7cdf42dc5a6e9af1b","34":"5e120af5778f25fcb316","35":"44dfcd0fba07ec8e5547","36":"9d942601049dde1e2a2d","37":"bfed5c07e7ee3fc0b707","38":"16bb218999b061d4519f","39":"c589edfad2d14c661cb9","40":"445401b2a74ee2481c0c","41":"7eeb8744789f16540899","42":"48e7726657cdf11826c4","43":"6e07f2b7dbd39ef3b48d","44":"ef5fc07ba97aa3e5f709","45":"6fe09e0d9013679f4116","46":"c999693fd1694c60295a","47":"affd17daf77561a07c7d","48":"e35f12fe5de48f8b0f28","49":"b502cb18b8d71e1baa5b","50":"9af9d482ea3ffa0c93b2","51":"07d6e2ad89db070a56a1","52":"e4e922eff257260d359c","53":"ac2ecde6faeca1af9dfa","54":"3b2970d95700196e4ba7","55":"ab1a326cc947bf1bd794","56":"41cc9242493164547764","57":"e27a77c9376f068e9ed0","58":"352754e15a363a0d7a52","59":"e8ef223faaa64f938963","60":"1ee8c2d102b81a93f967","61":"23a0a707a4957c44012a","62":"73ef6e9e4624ea20ecf8","63":"79824fab0c635c0314d7","64":"6e8deaf9221575abd5c2","65":"b1ed2e2b326333a52ee5","66":"b2e44d0a4afa96722ef4","67":"a520d6a255c719de6184","68":"e997f3fa1d28a03c1a98","69":"c9af53d04391b191e7a0","70":"9f6377148a2b6a449eb1","71":"603eaeb162daf60db8c7"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -20598,6 +20598,20 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./Admin/ApplicationLogs": [
+		"./resources/js/Pages/Admin/ApplicationLogs.vue",
+		0,
+		1,
+		2,
+		71
+	],
+	"./Admin/ApplicationLogs.vue": [
+		"./resources/js/Pages/Admin/ApplicationLogs.vue",
+		0,
+		1,
+		2,
+		71
+	],
 	"./Admin/Dashboard": [
 		"./resources/js/Pages/Admin/Dashboard.vue",
 		0,

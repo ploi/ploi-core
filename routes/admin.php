@@ -11,6 +11,8 @@ Route::get('system', 'SystemController@index')->name('system');
 Route::post('system/update', 'SystemController@update')->name('system.update');
 Route::get('status', 'StatusController@index')->name('status.index');
 
+Route::get('application-logs', 'ApplicationLogController@index')->name('application-logs');
+
 Route::group(['prefix' => 'support', 'as' => 'support.'], function () {
     Route::get('/', 'SupportController@index')->name('index');
     Route::get('{ticket}', 'SupportController@show')->name('show');
