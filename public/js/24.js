@@ -311,11 +311,11 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('DNS'),
         to: this.route('sites.dns.index', this.site.id),
         active: this.route().current('sites.dns.index')
-      } : null, {
+      } : null, this.can('sites', 'update') ? {
         title: this.__('Settings'),
         to: this.route('sites.settings.show', this.site.id),
         active: this.route().current('sites.settings.show')
-      }, {
+      } : null, {
         title: this.__('View site'),
         to: "http://".concat(this.site.domain),
         type: 'a'

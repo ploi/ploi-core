@@ -295,11 +295,11 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('DNS'),
         to: this.route('sites.dns.index', this.site.id),
         active: this.route().current('sites.dns.index')
-      } : null, {
+      } : null, this.can('sites', 'update') ? {
         title: this.__('Settings'),
         to: this.route('sites.settings.show', this.site.id),
         active: this.route().current('sites.settings.show')
-      }, {
+      } : null, {
         title: this.__('View site'),
         to: "http://".concat(this.site.domain),
         type: 'a'
@@ -629,35 +629,44 @@ var render = function() {
                               ])
                             }),
                             _vm._v(" "),
-                            _c("SettingsSegment", {
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "title",
-                                  fn: function() {
-                                    return [
-                                      _vm._v(_vm._s(_vm.__("Danger zone")))
-                                    ]
-                                  },
-                                  proxy: true
-                                },
-                                {
-                                  key: "content",
-                                  fn: function() {
-                                    return [
-                                      _c(
-                                        "Button",
-                                        {
-                                          attrs: { variant: "danger" },
-                                          on: { click: _vm.confirmDelete }
+                            _vm.can("sites", "delete")
+                              ? _c("SettingsSegment", {
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "title",
+                                        fn: function() {
+                                          return [
+                                            _vm._v(
+                                              _vm._s(_vm.__("Danger zone"))
+                                            )
+                                          ]
                                         },
-                                        [_vm._v(_vm._s(_vm.__("Delete")))]
-                                      )
-                                    ]
-                                  },
-                                  proxy: true
-                                }
-                              ])
-                            })
+                                        proxy: true
+                                      },
+                                      {
+                                        key: "content",
+                                        fn: function() {
+                                          return [
+                                            _c(
+                                              "Button",
+                                              {
+                                                attrs: { variant: "danger" },
+                                                on: { click: _vm.confirmDelete }
+                                              },
+                                              [_vm._v(_vm._s(_vm.__("Delete")))]
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    253833427
+                                  )
+                                })
+                              : _vm._e()
                           ]
                         },
                         proxy: true

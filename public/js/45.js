@@ -444,7 +444,7 @@ var render = function() {
   return _c(
     "Page",
     [
-      _vm.$page.auth.can.sites.create
+      _vm.can("sites", "create")
         ? _c(
             "Portal",
             { attrs: { to: "modals" } },
@@ -583,7 +583,7 @@ var render = function() {
                       },
                       proxy: true
                     },
-                    _vm.$page.auth.can.sites.create
+                    _vm.can("sites", "create")
                       ? {
                           key: "end",
                           fn: function() {

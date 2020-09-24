@@ -56,11 +56,11 @@
                         to: this.route('sites.dns.index', this.site.id),
                         active: this.route().current('sites.dns.index')
                     }:  null,
-                    {
+                    this.can('sites', 'update') ? {
                         title: this.__('Settings'),
                         to: this.route('sites.settings.show', this.site.id),
                         active: this.route().current('sites.settings.show')
-                    },
+                    } : null,
                     {
                         title: this.__('View site'),
                         to: `http://${this.site.domain}`,
