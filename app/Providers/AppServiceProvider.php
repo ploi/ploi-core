@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\UrlWindow;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +45,21 @@ class AppServiceProvider extends ServiceProvider
 
         inertia()->share([
             'auth' => function () {
+                $package = auth()->user()->package;
+
+                $can = $package ? [
+                    'servers' => [
+                        'create' => Arr::get($package->server_permissions, 'create', false),
+                        'update' => Arr::get($package->server_permissions, 'update', false),
+                        'delete' => Arr::get($package->server_permissions, 'delete', false),
+                    ],
+                    'sites' => [
+                        'create' => Arr::get($package->site_permissions, 'create', false),
+                        'update' => Arr::get($package->site_permissions, 'update', false),
+                        'delete' => Arr::get($package->site_permissions, 'delete', false),
+                    ]
+                ] : [];
+
                 return [
                     'user' => Auth::user() ? [
                         'id' => Auth::user()->id,
@@ -57,9 +73,7 @@ class AppServiceProvider extends ServiceProvider
                     'package' => auth()->user() && auth()->user()->package ? [
                         'maximum_sites' => auth()->user()->package->maximum_sites
                     ] : null,
-                    'can' => auth()->user() && auth()->user()->package ? [
-                        'server_creation' => auth()->user()->package->server_creation
-                    ] : [],
+                    'can' => $can
                 ];
             },
 

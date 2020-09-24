@@ -86,6 +86,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -411,6 +413,10 @@ var render = function() {
                                                   ]),
                                                   _vm._v(" "),
                                                   _c("TableHeader", [
+                                                    _vm._v("Max. servers")
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("TableHeader", [
                                                     _vm._v(
                                                       _vm._s(_vm.__("Users"))
                                                     )
@@ -446,6 +452,17 @@ var render = function() {
                                                           0
                                                           ? "Unlimited"
                                                           : webPackage.maximum_sites
+                                                      )
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("TableData", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        webPackage.maximum_servers ===
+                                                          0
+                                                          ? "Unlimited"
+                                                          : webPackage.maximum_servers
                                                       )
                                                     )
                                                   ]),

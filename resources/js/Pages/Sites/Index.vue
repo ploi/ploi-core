@@ -1,6 +1,6 @@
 <template>
     <Page>
-        <Portal to="modals">
+        <Portal to="modals" v-if="$page.auth.can.sites.create">
             <ModalContainer>
                 <Modal @close="closeModal" v-if="modalIsOpen" @submit="submit">
                     <template #title>{{ __('Create a site') }}</template>
@@ -29,7 +29,7 @@
                     <template #start>
                         <PageHeaderTitle>{{ __('Sites') }}</PageHeaderTitle>
                     </template>
-                    <template #end>
+                    <template v-if="$page.auth.can.sites.create" #end>
                         <Button @click="modalIsOpen = true">{{ __('Create site') }}</Button>
                     </template>
                 </PageHeader>

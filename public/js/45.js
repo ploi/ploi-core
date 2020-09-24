@@ -444,114 +444,122 @@ var render = function() {
   return _c(
     "Page",
     [
-      _c(
-        "Portal",
-        { attrs: { to: "modals" } },
-        [
-          _c(
-            "ModalContainer",
+      _vm.$page.auth.can.sites.create
+        ? _c(
+            "Portal",
+            { attrs: { to: "modals" } },
             [
-              _vm.modalIsOpen
-                ? _c("Modal", {
-                    on: { close: _vm.closeModal, submit: _vm.submit },
-                    scopedSlots: _vm._u(
-                      [
-                        {
-                          key: "title",
-                          fn: function() {
-                            return [_vm._v(_vm._s(_vm.__("Create a site")))]
-                          },
-                          proxy: true
-                        },
-                        {
-                          key: "form",
-                          fn: function() {
-                            return [
-                              _c("FormInput", {
-                                attrs: {
-                                  label: _vm.__("Domain"),
-                                  errors: _vm.$page.errors.domain
-                                },
-                                model: {
-                                  value: _vm.form.domain,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "domain", $$v)
-                                  },
-                                  expression: "form.domain"
-                                }
-                              }),
-                              _vm._v(" "),
-                              Object.keys(_vm.availableServers).length
-                                ? _c(
-                                    "FormSelect",
-                                    {
-                                      attrs: { label: _vm.__("Select server") },
-                                      model: {
-                                        value: _vm.form.server_id,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.form, "server_id", $$v)
-                                        },
-                                        expression: "form.server_id"
-                                      }
+              _c(
+                "ModalContainer",
+                [
+                  _vm.modalIsOpen
+                    ? _c("Modal", {
+                        on: { close: _vm.closeModal, submit: _vm.submit },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "title",
+                              fn: function() {
+                                return [_vm._v(_vm._s(_vm.__("Create a site")))]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "form",
+                              fn: function() {
+                                return [
+                                  _c("FormInput", {
+                                    attrs: {
+                                      label: _vm.__("Domain"),
+                                      errors: _vm.$page.errors.domain
                                     },
-                                    [
-                                      _c(
-                                        "option",
-                                        { domProps: { value: "" + null } },
-                                        [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm.__("Select random server")
-                                            )
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.availableServers, function(
-                                        name,
-                                        id
-                                      ) {
-                                        return _c("option", {
-                                          domProps: {
-                                            value: id,
-                                            textContent: _vm._s(name)
+                                    model: {
+                                      value: _vm.form.domain,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "domain", $$v)
+                                      },
+                                      expression: "form.domain"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  Object.keys(_vm.availableServers).length
+                                    ? _c(
+                                        "FormSelect",
+                                        {
+                                          attrs: {
+                                            label: _vm.__("Select server")
+                                          },
+                                          model: {
+                                            value: _vm.form.server_id,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.form,
+                                                "server_id",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "form.server_id"
                                           }
-                                        })
-                                      })
-                                    ],
-                                    2
-                                  )
-                                : _vm._e()
-                            ]
-                          },
-                          proxy: true
-                        },
-                        {
-                          key: "form-actions",
-                          fn: function() {
-                            return [
-                              _c("Button", {
-                                domProps: {
-                                  textContent: _vm._s(_vm.__("Create"))
-                                }
-                              })
-                            ]
-                          },
-                          proxy: true
-                        }
-                      ],
-                      null,
-                      false,
-                      2867371548
-                    )
-                  })
-                : _vm._e()
+                                        },
+                                        [
+                                          _c(
+                                            "option",
+                                            { domProps: { value: "" + null } },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.__("Select random server")
+                                                )
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _vm._l(_vm.availableServers, function(
+                                            name,
+                                            id
+                                          ) {
+                                            return _c("option", {
+                                              domProps: {
+                                                value: id,
+                                                textContent: _vm._s(name)
+                                              }
+                                            })
+                                          })
+                                        ],
+                                        2
+                                      )
+                                    : _vm._e()
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "form-actions",
+                              fn: function() {
+                                return [
+                                  _c("Button", {
+                                    domProps: {
+                                      textContent: _vm._s(_vm.__("Create"))
+                                    }
+                                  })
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ],
+                          null,
+                          false,
+                          2867371548
+                        )
+                      })
+                    : _vm._e()
+                ],
+                1
+              )
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
       _c("TopBar", { attrs: { breadcrumbs: _vm.breadcrumbs } }),
       _vm._v(" "),
@@ -562,36 +570,44 @@ var render = function() {
             "Container",
             [
               _c("PageHeader", {
-                scopedSlots: _vm._u([
-                  {
-                    key: "start",
-                    fn: function() {
-                      return [
-                        _c("PageHeaderTitle", [_vm._v(_vm._s(_vm.__("Sites")))])
-                      ]
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "start",
+                      fn: function() {
+                        return [
+                          _c("PageHeaderTitle", [
+                            _vm._v(_vm._s(_vm.__("Sites")))
+                          ])
+                        ]
+                      },
+                      proxy: true
                     },
-                    proxy: true
-                  },
-                  {
-                    key: "end",
-                    fn: function() {
-                      return [
-                        _c(
-                          "Button",
-                          {
-                            on: {
-                              click: function($event) {
-                                _vm.modalIsOpen = true
-                              }
-                            }
+                    _vm.$page.auth.can.sites.create
+                      ? {
+                          key: "end",
+                          fn: function() {
+                            return [
+                              _c(
+                                "Button",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      _vm.modalIsOpen = true
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm.__("Create site")))]
+                              )
+                            ]
                           },
-                          [_vm._v(_vm._s(_vm.__("Create site")))]
-                        )
-                      ]
-                    },
-                    proxy: true
-                  }
-                ])
+                          proxy: true
+                        }
+                      : null
+                  ],
+                  null,
+                  true
+                )
               }),
               _vm._v(" "),
               _c(

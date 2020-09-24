@@ -25,7 +25,7 @@ class PermissionCast implements CastsAttributes
             ];
         }
 
-        return json_decode($value);
+        return json_decode($value, true);
     }
 
     /**

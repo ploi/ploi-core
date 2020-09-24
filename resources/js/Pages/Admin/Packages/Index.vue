@@ -24,6 +24,7 @@
                                             <TableRow>
                                                 <TableHeader>{{ __('Name') }}</TableHeader>
                                                 <TableHeader>Max. sites</TableHeader>
+                                                <TableHeader>Max. servers</TableHeader>
                                                 <TableHeader>{{ __('Users') }}</TableHeader>
                                                 <TableHeader></TableHeader>
                                             </TableRow>
@@ -32,6 +33,7 @@
                                             <TableRow v-for="webPackage in packages" :key="webPackage.id">
                                                 <TableData>{{ webPackage.name }}</TableData>
                                                 <TableData>{{ webPackage.maximum_sites === 0 ? 'Unlimited' : webPackage.maximum_sites }}</TableData>
+                                                <TableData>{{ webPackage.maximum_servers === 0 ? 'Unlimited' : webPackage.maximum_servers }}</TableData>
                                                 <TableData>{{ webPackage.users_count }}</TableData>
                                                 <TableData>
                                                     <inertia-link :href="route('admin.packages.edit', webPackage.id)"
