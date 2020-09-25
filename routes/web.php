@@ -98,6 +98,12 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
             Route::patch('/', 'ProfileSettingController@update')->name('update');
         });
 
+        Route::group(['prefix' => 'billing', 'as' => 'billing.'], function () {
+            Route::get('/', 'ProfileBillingController@index')->name('index');
+
+            Route::post('start', 'ProfileBillingController@start')->name('start');
+        });
+
         Route::post('toggle-theme', 'ProfileController@toggleTheme')->name('toggle-theme');
 
         Route::post('request-ftp-password', 'ProfileController@requestFtpPassword')->name('request-ftp-password');

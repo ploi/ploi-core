@@ -39,6 +39,9 @@ class PackageRequest extends FormRequest
                 'numeric',
                 'min:0',
             ],
+            'plan_id' => [
+                'nullable',
+            ],
             'server_permissions' => [
                 'array'
             ],

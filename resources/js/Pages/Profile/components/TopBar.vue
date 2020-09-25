@@ -47,6 +47,11 @@ export default {
                     to: this.route('profile.settings.index'),
                     active: this.route().current('profile.settings.index')
                 },
+                {
+                    title: this.__('Billing'),
+                    to: this.route('profile.billing.index'),
+                    active: this.route().current('profile.billing.index')
+                },
             ],
         }
     },

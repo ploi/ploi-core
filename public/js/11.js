@@ -129,6 +129,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -185,6 +186,7 @@ __webpack_require__.r(__webpack_exports__);
       sending: false,
       form: {
         name: this["package"].name,
+        plan_id: this["package"].plan_id,
         maximum_sites: this["package"].maximum_sites,
         maximum_servers: this["package"].maximum_servers,
         server_permissions: (_this$package$server_ = this["package"].server_permissions) !== null && _this$package$server_ !== void 0 ? _this$package$server_ : [],
@@ -606,6 +608,24 @@ var render = function() {
                                                 )
                                               },
                                               expression: "form.maximum_servers"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Plan ID"),
+                                              errors: _vm.$page.errors.plan_id
+                                            },
+                                            model: {
+                                              value: _vm.form.plan_id,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "plan_id",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "form.plan_id"
                                             }
                                           }),
                                           _vm._v(" "),
