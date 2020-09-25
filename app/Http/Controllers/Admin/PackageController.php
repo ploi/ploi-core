@@ -24,14 +24,9 @@ class PackageController extends Controller
 
     public function store(PackageRequest $request)
     {
-        Package::create($request->all());
+        Package::create($request->validated());
 
         return redirect()->route('admin.packages.index')->with('success', 'Package has been created');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)

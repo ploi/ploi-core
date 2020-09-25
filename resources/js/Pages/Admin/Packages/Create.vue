@@ -25,14 +25,64 @@
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
                                         <FormInput :label="__('Maximum sites')" type="number" min="0" :errors="$page.errors.maximum_sites" v-model="form.maximum_sites" />
+                                        <FormInput :label="__('Maximum servers')" type="number" min="0" :errors="$page.errors.maximum_servers" v-model="form.maximum_servers" />
 
-                                        <div>
-                                            <input id="newsletter" class="form-checkbox" type="checkbox"
-                                                   v-model="form.server_creation">
-                                            <label for="newsletter" class="ml-2 text-sm">{{ __('Allow server creation') }}</label>
-                                            <p class="text-small mt-1 text-medium-emphasis">
-                                                {{ __('This will allow users to create servers') }}
-                                            </p>
+                                        <div class="space-y-2">
+                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">Server permissions</h3>
+
+                                            <div>
+                                                <input id="server_create" class="form-checkbox" type="checkbox"
+                                                       v-model="form.server_permissions['create']">
+                                                <label for="server_create" class="ml-2 text-sm">{{ __('Allow server creation') }}</label>
+                                                <p class="text-small mt-1 text-medium-emphasis">
+                                                    {{ __('This will allow users to create servers') }}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <input id="server_update" class="form-checkbox" type="checkbox"
+                                                       v-model="form.server_permissions['update']">
+                                                <label for="server_update" class="ml-2 text-sm">{{ __('Allow server updating') }}</label>
+                                                <p class="text-small mt-1 text-medium-emphasis">
+                                                    {{ __('This will allow users to update servers') }}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <input id="server_delete" class="form-checkbox" type="checkbox"
+                                                       v-model="form.server_permissions['delete']">
+                                                <label for="server_delete" class="ml-2 text-sm">{{ __('Allow server deletion') }}</label>
+                                                <p class="text-small mt-1 text-medium-emphasis">
+                                                    {{ __('This will allow users to delete servers') }}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">Site permissions</h3>
+
+                                            <div>
+                                                <input id="site_create" class="form-checkbox" type="checkbox"
+                                                       v-model="form.site_permissions['create']">
+                                                <label for="site_create" class="ml-2 text-sm">{{ __('Allow site creation') }}</label>
+                                                <p class="text-small mt-1 text-medium-emphasis">
+                                                    {{ __('This will allow users to create sites') }}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <input id="site_update" class="form-checkbox" type="checkbox"
+                                                       v-model="form.site_permissions['update']">
+                                                <label for="site_update" class="ml-2 text-sm">{{ __('Allow site updating') }}</label>
+                                                <p class="text-small mt-1 text-medium-emphasis">
+                                                    {{ __('This will allow users to update sites') }}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <input id="site_delete" class="form-checkbox" type="checkbox"
+                                                       v-model="form.site_permissions['delete']">
+                                                <label for="site_delete" class="ml-2 text-sm">{{ __('Allow site deletion') }}</label>
+                                                <p class="text-small mt-1 text-medium-emphasis">
+                                                    {{ __('This will allow users to delete sites') }}
+                                                </p>
+                                            </div>
                                         </div>
 
                                         <FormActions>
@@ -109,7 +159,17 @@
                 form: {
                     name: null,
                     maximum_sites: 10,
-                    server_creation: false,
+                    maximum_servers: 1,
+                    server_permissions: {
+                        create: false,
+                        update: false,
+                        delete: false,
+                    },
+                    site_permissions: {
+                        create: false,
+                        update: false,
+                        delete: false
+                    },
                 },
             }
         },
