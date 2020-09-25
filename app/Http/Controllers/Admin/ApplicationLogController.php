@@ -14,8 +14,12 @@ class ApplicationLogController extends Controller
 
     public function index(Request $request)
     {
+        $this->config['date'] = date('Y-m-d');
+
         if ($date = $request->input('date')) {
             $this->config['date'] = $date;
+        } else {
+            $request->merge(['date' => date('Y-m-d')]);
         }
 
         return inertia('Admin/ApplicationLogs', [

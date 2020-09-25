@@ -1135,7 +1135,7 @@ var render = function() {
                                                       "\n                                                " +
                                                         _vm._s(
                                                           _vm.__(
-                                                            "This will allow users to create servers"
+                                                            "This will allow users to create sites"
                                                           )
                                                         ) +
                                                         "\n                                            "
@@ -1261,7 +1261,7 @@ var render = function() {
                                                       "\n                                                " +
                                                         _vm._s(
                                                           _vm.__(
-                                                            "This will allow users to update servers"
+                                                            "This will allow users to update sites"
                                                           )
                                                         ) +
                                                         "\n                                            "
@@ -1387,7 +1387,7 @@ var render = function() {
                                                       "\n                                                " +
                                                         _vm._s(
                                                           _vm.__(
-                                                            "This will allow users to delete servers"
+                                                            "This will allow users to delete sites"
                                                           )
                                                         ) +
                                                         "\n                                            "

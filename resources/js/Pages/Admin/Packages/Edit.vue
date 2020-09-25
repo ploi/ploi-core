@@ -61,7 +61,7 @@
                                                        v-model="form.site_permissions['create']">
                                                 <label for="site_create" class="ml-2 text-sm">{{ __('Allow site creation') }}</label>
                                                 <p class="text-small mt-1 text-medium-emphasis">
-                                                    {{ __('This will allow users to create servers') }}
+                                                    {{ __('This will allow users to create sites') }}
                                                 </p>
                                             </div>
                                             <div>
@@ -69,7 +69,7 @@
                                                        v-model="form.site_permissions['update']">
                                                 <label for="site_update" class="ml-2 text-sm">{{ __('Allow site updating') }}</label>
                                                 <p class="text-small mt-1 text-medium-emphasis">
-                                                    {{ __('This will allow users to update servers') }}
+                                                    {{ __('This will allow users to update sites') }}
                                                 </p>
                                             </div>
                                             <div>
@@ -77,7 +77,7 @@
                                                        v-model="form.site_permissions['delete']">
                                                 <label for="site_delete" class="ml-2 text-sm">{{ __('Allow site deletion') }}</label>
                                                 <p class="text-small mt-1 text-medium-emphasis">
-                                                    {{ __('This will allow users to delete servers') }}
+                                                    {{ __('This will allow users to delete sites') }}
                                                 </p>
                                             </div>
                                         </div>
