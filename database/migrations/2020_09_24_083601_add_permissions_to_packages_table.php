@@ -16,6 +16,8 @@ class AddPermissionsToPackagesTable extends Migration
         Schema::table('packages', function (Blueprint $table) {
             $table->json('server_permissions')->nullable()->after('maximum_servers');
             $table->json('site_permissions')->nullable()->after('server_permissions');
+
+            $table->dropColumn('server_creation');
         });
     }
 

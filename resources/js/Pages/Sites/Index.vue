@@ -56,7 +56,7 @@
 
                                     <DropdownList :position="position" v-if="isOpen">
                                         <DropdownListItem :to="route('sites.show', site.id)">{{ __('View') }}</DropdownListItem>
-                                        <DropdownListItemButton class="text-danger" @click="confirmDelete(site)">{{ __('Delete') }}</DropdownListItemButton>
+                                        <DropdownListItemButton v-if="can('sites', 'delete')" class="text-danger" @click="confirmDelete(site)">{{ __('Delete') }}</DropdownListItemButton>
                                     </DropdownList>
                                 </Dropdown>
                             </template>

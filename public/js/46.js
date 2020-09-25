@@ -724,29 +724,33 @@ var render = function() {
                                                         ]
                                                       ),
                                                       _vm._v(" "),
-                                                      _c(
-                                                        "DropdownListItemButton",
-                                                        {
-                                                          staticClass:
-                                                            "text-danger",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              return _vm.confirmDelete(
-                                                                site
+                                                      _vm.can("sites", "delete")
+                                                        ? _c(
+                                                            "DropdownListItemButton",
+                                                            {
+                                                              staticClass:
+                                                                "text-danger",
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.confirmDelete(
+                                                                    site
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.__(
+                                                                    "Delete"
+                                                                  )
+                                                                )
                                                               )
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              _vm.__("Delete")
-                                                            )
+                                                            ]
                                                           )
-                                                        ]
-                                                      )
+                                                        : _vm._e()
                                                     ],
                                                     1
                                                   )
