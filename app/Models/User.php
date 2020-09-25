@@ -10,10 +10,11 @@ use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Translation\HasLocalePreference;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements HasLocalePreference
 {
-    use Notifiable;
+    use Billable, Notifiable;
 
     const ADMIN = 'admin';
     const RESELLER = 'reseller';
