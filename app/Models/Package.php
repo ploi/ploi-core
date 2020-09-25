@@ -9,6 +9,9 @@ class Package extends Model
 {
     public $fillable = [
         'name',
+        'plan_id', // This does not reflect a internal database relation, it reflects the plan ID from the PSP
+        'price_hourly',
+        'price_monthly',
         'maximum_sites',
         'maximum_servers',
         'site_permissions',

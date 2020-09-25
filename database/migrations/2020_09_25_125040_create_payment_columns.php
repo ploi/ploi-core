@@ -16,6 +16,7 @@ class CreatePaymentColumns extends Migration
         Schema::table('packages', function (Blueprint $table) {
             $table->decimal('price_hourly', 10, 4)->after('maximum_servers')->default(0);
             $table->decimal('price_monthly', 10, 4)->after('price_hourly')->default(0);
+            $table->string('plan_id')->nullable();
         });
     }
 
@@ -27,7 +28,7 @@ class CreatePaymentColumns extends Migration
     public function down()
     {
         Schema::table('packages', function (Blueprint $table) {
-            $table->dropColumn('price_hourly', 'price_monthly');
+            $table->dropColumn('price_hourly', 'price_monthly', 'plan_id');
         });
     }
 }
