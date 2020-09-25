@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"1":"d1ccc9a9599867b42b61","2":"bd146b93049b1531df9c","3":"924775cc3dcd005cbbdf","4":"7fecf1f18f5ef974d222","5":"fbfbcf45610d060d921e","6":"ab69c8c404f9ccac65db","7":"140acb8c38018bb7c822","8":"c9a5125113132e006939","9":"c031adc013e72d8ca02e","10":"c99079a545f555af1d52","11":"159642fa17c240faaabf","12":"3b8d053fd1e027d273c2","13":"87d06707e2b1c9340a8e","14":"00371dbe9bb5c68e9a6e","15":"8c8e9eed4d60118df97a","16":"ac834c91f1405b8635ec","17":"f5ca6a6c21488b61d858","18":"99764ef5dfffb8f7a01c","19":"883f0b7d1df4ee292d0c","20":"6f7e1cd9737dd719ffb8","21":"805ff5beffc848caac4e","22":"892ce483c33b51441d44","23":"22dba52fed989ff789db","24":"d739be582b8c955dd897","25":"3c868424322f0c4f4122","26":"f916f092e6e60b8d9892","27":"e5ac13ee4b4b7b6bd182","28":"f5669cef6146d069dd10","29":"dcba44e3c4b594663626","30":"26af9b045d029dd7a114","31":"1be641e6727d7fc3dd41","32":"955c99fe365280bd58a8","33":"7b90ba4329dc6a04fe82","34":"0da3503a1e4bbfc51959","35":"d3ab42070766114158fe","36":"96aaea54b926522c61c7","37":"7172453eb2799cd7d310","38":"56374821e903c07fb4ca","39":"2b5363b7ea009e79fe4a","40":"837bef7bc0e096e9f4db","41":"a8398fbcadd933d35fe9","42":"23f78b76f2f82c90b820","43":"2f7262866d660b27e392","44":"e122171d36914dddaaaa","45":"b47a16b9403b9453f4ab","46":"7c1ab2bc783067270fbc","47":"f292f7996e3b289373fd","48":"f61daf3a092b2b5602f4","49":"4b485b904a605544ebf3","50":"99fb360a30ec784852ea","51":"d9002af5f9f336f32515","52":"ba087d69778983158cf7","53":"abe4750b441db3a836e5","54":"2dc9ff9a2a45c9d7b710","55":"84db0b69eabb8cb63411","56":"61265e104faef7a2e0fc","57":"f088529c3881219acdfa","58":"ea9a795bbc7d2d79f341","59":"764f99951fcef3238b29","60":"fb3abbcf9ef2f1e39e42","61":"914513233875ab3733a2","62":"69e7c1857f56df79e4c7","63":"4db9212358cd55de854b","64":"c758cf433ce1304b5bbd","65":"2297c88caa805133aa17","66":"7659910f65a15ebc621b","67":"6ed821692c67e3f56205","68":"ed78680b7e775b42f91b","69":"5debb809818ea5ee1a9e","70":"0548e5e898313740f5d1","71":"cf965273d05ed00f1ac6","72":"0f11a7ba55b8d0f91625","73":"ffbec09d0d5ead5190ad"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"0dcde053981f92959e59","1":"1f54da123eda919cce74","2":"e3b2b0aba5a1f9a18fe2","3":"a0f4c2f49863abbfe7f1","4":"b45cf4f45862750fc0ec","5":"fbfbcf45610d060d921e","6":"73fc0264b5cc06f5bd55","7":"140acb8c38018bb7c822","8":"59e78c3d75a8476bd5c9","9":"0e2b6a5949f3c9112538","10":"f9ed085fc6cd1aba8502","11":"0f8981f56a35c2907e52","12":"850061072347e1a63a1b","13":"130e082812565df57bb9","14":"7786a4d7d85cd912d1bb","15":"fde17a1d596d6578fe61","16":"ec73f93b8d2c978c776b","17":"b96a20c3bc68da5a6db0","18":"eb279f54aaced41cea0d","19":"c1b469e05fd54ce167a5","20":"56c907d75bd74a171a1e","21":"293d9274645861582e83","22":"f86cd3fbd99cae6840a1","23":"69b50c09720c1e425846","24":"6528b4d30e41a6fa0079","25":"c087891e0174c14e6712","26":"2448e94386f76b71cbc5","27":"03195a8417db60929f60","28":"499193813923aa10e5d0","29":"e55b29dabbe4b5d967ec","30":"b07561cdf33321646d5c","31":"3a07c5c14e5931d31248","32":"effd92a8cb5b1bd3574a","33":"566298a4ffaaea292d1f","34":"3621f9666e2ab141b56e","35":"13384dcc57163b2c15fb","36":"09ec9d54b8c4acc2c226","37":"1ea697ec75189844ee8e","38":"fb5c0c3425e2fadee1ac","39":"2f7ee059f5ec1516acf8","41":"89c483c229c95879e07b","42":"f039f24bd275c5052811","43":"b2868a05fe0b7c5854e1","44":"9a7329aecab1a8dc5f0f","45":"bc9905a168fcf98972f8","46":"903d3f59efebc94f0127","47":"9ab7f36e89476ccdde61","48":"be35a432781c0dd50ffb","49":"a797068d36b41751d039","50":"3182cb7241b3b4928780","51":"044af61dc1b992e484da","52":"a38120293ec348f769ac","53":"67f8f3da1f9e683ed95a","54":"4990ac6ae184ca917408","55":"d4db22f438e60159302a","56":"63e95ff6894657529026","57":"9ed351e93f9380d778f9","58":"4fc15eab9b2584cbd39a","59":"b1b47409e6a708c545f9","60":"5c804a0bdbc1689f9e16","61":"f317e1cfb4fdc62653b6","62":"91b515a9efa16b62a482","63":"b80411b33eac32e92724","64":"a9a7a17de7d5db824f16","65":"2b56975945137e9bbb04","66":"df02292237985d2bbad4","67":"ec4c56fa7e2f86ba9542","68":"d76162b63ba6711f9832","69":"dd0116835bd413f8fb6e","70":"8cb98947cbde261be98d","71":"1e5583ee6f420e7b5266","72":"5d974639a248789c2acc","73":"e312dd4b7491ae37977c","74":"8afce2fa290e12dfcc70"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -20601,878 +20601,880 @@ var map = {
 	"./Admin/ApplicationLogs": [
 		"./resources/js/Pages/Admin/ApplicationLogs.vue",
 		7,
+		0,
 		1,
 		2,
 		3,
-		33,
-		72
+		21
 	],
 	"./Admin/ApplicationLogs.vue": [
 		"./resources/js/Pages/Admin/ApplicationLogs.vue",
 		7,
+		0,
 		1,
 		2,
 		3,
-		33,
-		72
+		21
 	],
 	"./Admin/Dashboard": [
 		"./resources/js/Pages/Admin/Dashboard.vue",
+		0,
 		1,
 		2,
-		3,
-		8
+		9
 	],
 	"./Admin/Dashboard.vue": [
 		"./resources/js/Pages/Admin/Dashboard.vue",
+		0,
 		1,
 		2,
-		3,
-		8
+		9
 	],
 	"./Admin/Documentation/Index": [
 		"./resources/js/Pages/Admin/Documentation/Index.vue",
+		0,
 		1,
-		2,
-		33,
-		35
+		3,
+		26
 	],
 	"./Admin/Documentation/Index.vue": [
 		"./resources/js/Pages/Admin/Documentation/Index.vue",
+		0,
 		1,
-		2,
-		33,
-		35
+		3,
+		26
 	],
 	"./Admin/Documentation/Tabs": [
 		"./resources/js/Pages/Admin/Documentation/Tabs.vue",
-		50
+		51
 	],
 	"./Admin/Documentation/Tabs.vue": [
 		"./resources/js/Pages/Admin/Documentation/Tabs.vue",
-		50
+		51
 	],
 	"./Admin/Packages/Create": [
 		"./resources/js/Pages/Admin/Packages/Create.vue",
+		0,
 		1,
 		2,
-		3,
-		13
+		19
 	],
 	"./Admin/Packages/Create.vue": [
 		"./resources/js/Pages/Admin/Packages/Create.vue",
+		0,
 		1,
 		2,
-		3,
-		13
+		19
 	],
 	"./Admin/Packages/Edit": [
 		"./resources/js/Pages/Admin/Packages/Edit.vue",
+		0,
 		1,
 		2,
-		3,
-		11
+		17
 	],
 	"./Admin/Packages/Edit.vue": [
 		"./resources/js/Pages/Admin/Packages/Edit.vue",
+		0,
+		1,
+		2,
+		17
+	],
+	"./Admin/Packages/Index": [
+		"./resources/js/Pages/Admin/Packages/Index.vue",
+		0,
+		1,
+		3,
+		27
+	],
+	"./Admin/Packages/Index.vue": [
+		"./resources/js/Pages/Admin/Packages/Index.vue",
+		0,
+		1,
+		3,
+		27
+	],
+	"./Admin/Packages/Tabs": [
+		"./resources/js/Pages/Admin/Packages/Tabs.vue",
+		52
+	],
+	"./Admin/Packages/Tabs.vue": [
+		"./resources/js/Pages/Admin/Packages/Tabs.vue",
+		52
+	],
+	"./Admin/Services/Index": [
+		"./resources/js/Pages/Admin/Services/Index.vue",
+		0,
+		1,
+		3,
+		28
+	],
+	"./Admin/Services/Index.vue": [
+		"./resources/js/Pages/Admin/Services/Index.vue",
+		0,
+		1,
+		3,
+		28
+	],
+	"./Admin/Services/Server/Edit": [
+		"./resources/js/Pages/Admin/Services/Server/Edit.vue",
+		0,
+		1,
+		2,
+		3,
+		10
+	],
+	"./Admin/Services/Server/Edit.vue": [
+		"./resources/js/Pages/Admin/Services/Server/Edit.vue",
+		0,
+		1,
+		2,
+		3,
+		10
+	],
+	"./Admin/Services/Servers": [
+		"./resources/js/Pages/Admin/Services/Servers.vue",
+		0,
+		1,
+		3,
+		29
+	],
+	"./Admin/Services/Servers.vue": [
+		"./resources/js/Pages/Admin/Services/Servers.vue",
+		0,
+		1,
+		3,
+		29
+	],
+	"./Admin/Services/Site/Edit": [
+		"./resources/js/Pages/Admin/Services/Site/Edit.vue",
+		0,
 		1,
 		2,
 		3,
 		11
 	],
-	"./Admin/Packages/Index": [
-		"./resources/js/Pages/Admin/Packages/Index.vue",
-		1,
-		2,
-		33,
-		36
-	],
-	"./Admin/Packages/Index.vue": [
-		"./resources/js/Pages/Admin/Packages/Index.vue",
-		1,
-		2,
-		33,
-		36
-	],
-	"./Admin/Packages/Tabs": [
-		"./resources/js/Pages/Admin/Packages/Tabs.vue",
-		51
-	],
-	"./Admin/Packages/Tabs.vue": [
-		"./resources/js/Pages/Admin/Packages/Tabs.vue",
-		51
-	],
-	"./Admin/Services/Index": [
-		"./resources/js/Pages/Admin/Services/Index.vue",
-		1,
-		2,
-		33,
-		37
-	],
-	"./Admin/Services/Index.vue": [
-		"./resources/js/Pages/Admin/Services/Index.vue",
-		1,
-		2,
-		33,
-		37
-	],
-	"./Admin/Services/Server/Edit": [
-		"./resources/js/Pages/Admin/Services/Server/Edit.vue",
-		1,
-		2,
-		3,
-		33,
-		15
-	],
-	"./Admin/Services/Server/Edit.vue": [
-		"./resources/js/Pages/Admin/Services/Server/Edit.vue",
-		1,
-		2,
-		3,
-		33,
-		15
-	],
-	"./Admin/Services/Servers": [
-		"./resources/js/Pages/Admin/Services/Servers.vue",
-		1,
-		2,
-		33,
-		38
-	],
-	"./Admin/Services/Servers.vue": [
-		"./resources/js/Pages/Admin/Services/Servers.vue",
-		1,
-		2,
-		33,
-		38
-	],
-	"./Admin/Services/Site/Edit": [
-		"./resources/js/Pages/Admin/Services/Site/Edit.vue",
-		1,
-		2,
-		3,
-		33,
-		16
-	],
 	"./Admin/Services/Site/Edit.vue": [
 		"./resources/js/Pages/Admin/Services/Site/Edit.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		16
+		11
 	],
 	"./Admin/Services/Sites": [
 		"./resources/js/Pages/Admin/Services/Sites.vue",
+		0,
 		1,
-		2,
-		23
+		30
 	],
 	"./Admin/Services/Sites.vue": [
 		"./resources/js/Pages/Admin/Services/Sites.vue",
+		0,
+		1,
+		30
+	],
+	"./Admin/Services/Tabs": [
+		"./resources/js/Pages/Admin/Services/Tabs.vue",
+		53
+	],
+	"./Admin/Services/Tabs.vue": [
+		"./resources/js/Pages/Admin/Services/Tabs.vue",
+		53
+	],
+	"./Admin/Settings": [
+		"./resources/js/Pages/Admin/Settings.vue",
+		0,
+		1,
+		2,
+		20
+	],
+	"./Admin/Settings.vue": [
+		"./resources/js/Pages/Admin/Settings.vue",
+		0,
+		1,
+		2,
+		20
+	],
+	"./Admin/Status": [
+		"./resources/js/Pages/Admin/Status.vue",
+		0,
 		1,
 		2,
 		23
 	],
-	"./Admin/Services/Tabs": [
-		"./resources/js/Pages/Admin/Services/Tabs.vue",
-		52
-	],
-	"./Admin/Services/Tabs.vue": [
-		"./resources/js/Pages/Admin/Services/Tabs.vue",
-		52
-	],
-	"./Admin/Settings": [
-		"./resources/js/Pages/Admin/Settings.vue",
-		1,
-		2,
-		3,
-		14
-	],
-	"./Admin/Settings.vue": [
-		"./resources/js/Pages/Admin/Settings.vue",
-		1,
-		2,
-		3,
-		14
-	],
-	"./Admin/Status": [
-		"./resources/js/Pages/Admin/Status.vue",
-		1,
-		2,
-		3,
-		21
-	],
 	"./Admin/Status.vue": [
 		"./resources/js/Pages/Admin/Status.vue",
+		0,
 		1,
 		2,
-		3,
-		21
+		23
 	],
 	"./Admin/Support/Index": [
 		"./resources/js/Pages/Admin/Support/Index.vue",
+		0,
 		1,
-		2,
-		33,
-		39
+		3,
+		31
 	],
 	"./Admin/Support/Index.vue": [
 		"./resources/js/Pages/Admin/Support/Index.vue",
+		0,
 		1,
-		2,
-		33,
-		39
+		3,
+		31
 	],
 	"./Admin/Support/Show": [
 		"./resources/js/Pages/Admin/Support/Show.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		27
+		38
 	],
 	"./Admin/Support/Show.vue": [
 		"./resources/js/Pages/Admin/Support/Show.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		27
+		38
 	],
 	"./Admin/Support/Tabs": [
 		"./resources/js/Pages/Admin/Support/Tabs.vue",
-		53
+		54
 	],
 	"./Admin/Support/Tabs.vue": [
 		"./resources/js/Pages/Admin/Support/Tabs.vue",
-		53
+		54
 	],
 	"./Admin/System": [
 		"./resources/js/Pages/Admin/System.vue",
+		0,
 		1,
 		2,
-		3,
-		22
+		24
 	],
 	"./Admin/System.vue": [
 		"./resources/js/Pages/Admin/System.vue",
+		0,
 		1,
 		2,
-		3,
-		22
+		24
 	],
 	"./Admin/Tabs": [
 		"./resources/js/Pages/Admin/Tabs.vue",
-		54
+		55
 	],
 	"./Admin/Tabs.vue": [
 		"./resources/js/Pages/Admin/Tabs.vue",
-		54
+		55
 	],
 	"./Admin/TabsStatus": [
 		"./resources/js/Pages/Admin/TabsStatus.vue",
-		55
+		56
 	],
 	"./Admin/TabsStatus.vue": [
 		"./resources/js/Pages/Admin/TabsStatus.vue",
-		55
+		56
 	],
 	"./Admin/Users/Create": [
 		"./resources/js/Pages/Admin/Users/Create.vue",
+		0,
 		1,
 		2,
-		3,
-		10
+		13
 	],
 	"./Admin/Users/Create.vue": [
 		"./resources/js/Pages/Admin/Users/Create.vue",
+		0,
 		1,
 		2,
-		3,
-		10
+		13
 	],
 	"./Admin/Users/Edit": [
 		"./resources/js/Pages/Admin/Users/Edit.vue",
+		0,
 		1,
 		2,
-		3,
-		9
+		12
 	],
 	"./Admin/Users/Edit.vue": [
 		"./resources/js/Pages/Admin/Users/Edit.vue",
+		0,
 		1,
 		2,
-		3,
-		9
+		12
 	],
 	"./Admin/Users/Index": [
 		"./resources/js/Pages/Admin/Users/Index.vue",
 		7,
+		0,
 		1,
 		2,
 		3,
-		33,
-		41
+		33
 	],
 	"./Admin/Users/Index.vue": [
 		"./resources/js/Pages/Admin/Users/Index.vue",
 		7,
+		0,
 		1,
 		2,
 		3,
-		33,
-		41
+		33
 	],
 	"./Admin/Users/Tabs": [
 		"./resources/js/Pages/Admin/Users/Tabs.vue",
-		56
+		57
 	],
 	"./Admin/Users/Tabs.vue": [
 		"./resources/js/Pages/Admin/Users/Tabs.vue",
-		56
+		57
 	],
 	"./Admin/components/TopBar": [
 		"./resources/js/Pages/Admin/components/TopBar.vue",
-		1,
-		57
+		0,
+		58
 	],
 	"./Admin/components/TopBar.vue": [
 		"./resources/js/Pages/Admin/components/TopBar.vue",
-		1,
-		57
+		0,
+		58
 	],
 	"./Auth/Email": [
 		"./resources/js/Pages/Auth/Email.vue",
-		3,
+		2,
 		5,
-		58
+		59
 	],
 	"./Auth/Email.vue": [
 		"./resources/js/Pages/Auth/Email.vue",
-		3,
+		2,
 		5,
-		58
+		59
 	],
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.vue",
-		3,
+		2,
 		5,
-		70
+		71
 	],
 	"./Auth/Login.vue": [
 		"./resources/js/Pages/Auth/Login.vue",
-		3,
+		2,
 		5,
-		70
+		71
 	],
 	"./Auth/PasswordCreation": [
 		"./resources/js/Pages/Auth/PasswordCreation.vue",
-		3,
+		2,
 		5,
-		59
+		60
 	],
 	"./Auth/PasswordCreation.vue": [
 		"./resources/js/Pages/Auth/PasswordCreation.vue",
-		3,
+		2,
 		5,
-		59
+		60
 	],
 	"./Auth/Register": [
 		"./resources/js/Pages/Auth/Register.vue",
-		3,
+		2,
 		5,
-		60
+		61
 	],
 	"./Auth/Register.vue": [
 		"./resources/js/Pages/Auth/Register.vue",
-		3,
+		2,
 		5,
-		60
+		61
 	],
 	"./Auth/Reset": [
 		"./resources/js/Pages/Auth/Reset.vue",
-		3,
+		2,
 		5,
-		61
+		62
 	],
 	"./Auth/Reset.vue": [
 		"./resources/js/Pages/Auth/Reset.vue",
-		3,
+		2,
 		5,
-		61
+		62
 	],
 	"./Core/InstallationIncomplete": [
 		"./resources/js/Pages/Core/InstallationIncomplete.vue",
-		3,
+		2,
 		5,
-		71
+		72
 	],
 	"./Core/InstallationIncomplete.vue": [
 		"./resources/js/Pages/Core/InstallationIncomplete.vue",
-		3,
+		2,
 		5,
-		71
+		72
 	],
 	"./Dashboard/Index": [
 		"./resources/js/Pages/Dashboard/Index.vue",
+		0,
 		1,
-		2,
-		42
+		45
 	],
 	"./Dashboard/Index.vue": [
 		"./resources/js/Pages/Dashboard/Index.vue",
+		0,
 		1,
-		2,
-		42
+		45
 	],
 	"./Dashboard/components/TopBar": [
 		"./resources/js/Pages/Dashboard/components/TopBar.vue",
-		1,
-		62
+		0,
+		63
 	],
 	"./Dashboard/components/TopBar.vue": [
 		"./resources/js/Pages/Dashboard/components/TopBar.vue",
-		1,
-		62
+		0,
+		63
 	],
 	"./Documentation/Index": [
 		"./resources/js/Pages/Documentation/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		25
+		36
 	],
 	"./Documentation/Index.vue": [
 		"./resources/js/Pages/Documentation/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		25
+		36
 	],
 	"./Documentation/Show": [
 		"./resources/js/Pages/Documentation/Show.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		28
+		39
 	],
 	"./Documentation/Show.vue": [
 		"./resources/js/Pages/Documentation/Show.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		28
+		39
 	],
 	"./Documentation/components/TopBar": [
 		"./resources/js/Pages/Documentation/components/TopBar.vue",
-		1,
-		63
+		0,
+		64
 	],
 	"./Documentation/components/TopBar.vue": [
 		"./resources/js/Pages/Documentation/components/TopBar.vue",
-		1,
-		63
+		0,
+		64
 	],
 	"./Errors/403": [
 		"./resources/js/Pages/Errors/403.vue",
+		0,
 		1,
-		2,
-		47
+		48
 	],
 	"./Errors/403.vue": [
 		"./resources/js/Pages/Errors/403.vue",
+		0,
 		1,
-		2,
-		47
+		48
 	],
 	"./Errors/404": [
 		"./resources/js/Pages/Errors/404.vue",
-		2,
-		48
+		1,
+		49
 	],
 	"./Errors/404.vue": [
 		"./resources/js/Pages/Errors/404.vue",
-		2,
-		48
+		1,
+		49
 	],
 	"./Profile/Billing": [
 		"./resources/js/Pages/Profile/Billing.vue",
+		74,
+		0,
 		1,
 		2,
 		3,
-		33,
 		4,
 		73
 	],
 	"./Profile/Billing.vue": [
 		"./resources/js/Pages/Profile/Billing.vue",
+		74,
+		0,
 		1,
 		2,
 		3,
-		33,
 		4,
 		73
 	],
 	"./Profile/Index": [
 		"./resources/js/Pages/Profile/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		29
+		41
 	],
 	"./Profile/Index.vue": [
 		"./resources/js/Pages/Profile/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		29
+		41
 	],
 	"./Profile/Security": [
 		"./resources/js/Pages/Profile/Security.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		30
+		42
 	],
 	"./Profile/Security.vue": [
 		"./resources/js/Pages/Profile/Security.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		30
+		42
 	],
 	"./Profile/Settings": [
 		"./resources/js/Pages/Profile/Settings.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		31
+		43
 	],
 	"./Profile/Settings.vue": [
 		"./resources/js/Pages/Profile/Settings.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		31
+		43
 	],
 	"./Profile/components/TopBar": [
 		"./resources/js/Pages/Profile/components/TopBar.vue",
-		1,
-		64
+		0,
+		65
 	],
 	"./Profile/components/TopBar.vue": [
 		"./resources/js/Pages/Profile/components/TopBar.vue",
-		1,
-		64
+		0,
+		65
 	],
 	"./Servers/Index": [
 		"./resources/js/Pages/Servers/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
 		6,
-		49
+		50
 	],
 	"./Servers/Index.vue": [
 		"./resources/js/Pages/Servers/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
 		6,
-		49
+		50
 	],
 	"./Servers/Settings": [
 		"./resources/js/Pages/Servers/Settings.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
 		4,
 		6,
-		40
+		32
 	],
 	"./Servers/Settings.vue": [
 		"./resources/js/Pages/Servers/Settings.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
 		4,
 		6,
-		40
+		32
 	],
 	"./Servers/Show": [
 		"./resources/js/Pages/Servers/Show.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
 		4,
 		6,
-		43
+		34
 	],
 	"./Servers/Show.vue": [
 		"./resources/js/Pages/Servers/Show.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
 		4,
 		6,
-		43
+		34
 	],
 	"./Servers/Tabs": [
 		"./resources/js/Pages/Servers/Tabs.vue",
-		65
+		66
 	],
 	"./Servers/Tabs.vue": [
 		"./resources/js/Pages/Servers/Tabs.vue",
-		65
+		66
 	],
 	"./Servers/components/TopBar": [
 		"./resources/js/Pages/Servers/components/TopBar.vue",
-		1,
-		66
+		0,
+		67
 	],
 	"./Servers/components/TopBar.vue": [
 		"./resources/js/Pages/Servers/components/TopBar.vue",
-		1,
-		66
+		0,
+		67
 	],
 	"./Sites/Apps": [
 		"./resources/js/Pages/Sites/Apps.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		34
+		25
 	],
 	"./Sites/Apps.vue": [
 		"./resources/js/Pages/Sites/Apps.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		34
+		25
 	],
 	"./Sites/Certificates": [
 		"./resources/js/Pages/Sites/Certificates.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		17
+		14
 	],
 	"./Sites/Certificates.vue": [
 		"./resources/js/Pages/Sites/Certificates.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		17
+		14
 	],
 	"./Sites/Cronjobs": [
 		"./resources/js/Pages/Sites/Cronjobs.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		18
+		15
 	],
 	"./Sites/Cronjobs.vue": [
 		"./resources/js/Pages/Sites/Cronjobs.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		18
+		15
 	],
 	"./Sites/Databases": [
 		"./resources/js/Pages/Sites/Databases.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		19
+		16
 	],
 	"./Sites/Databases.vue": [
 		"./resources/js/Pages/Sites/Databases.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		19
+		16
 	],
 	"./Sites/Dns": [
 		"./resources/js/Pages/Sites/Dns.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		24
+		18
 	],
 	"./Sites/Dns.vue": [
 		"./resources/js/Pages/Sites/Dns.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		24
+		18
 	],
 	"./Sites/Index": [
 		"./resources/js/Pages/Sites/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
 		6,
-		46
+		47
 	],
 	"./Sites/Index.vue": [
 		"./resources/js/Pages/Sites/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
 		6,
-		46
+		47
 	],
 	"./Sites/Redirects": [
 		"./resources/js/Pages/Sites/Redirects.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		12
+		8
 	],
 	"./Sites/Redirects.vue": [
 		"./resources/js/Pages/Sites/Redirects.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
-		12
+		8
 	],
 	"./Sites/Settings": [
 		"./resources/js/Pages/Sites/Settings.vue",
+		0,
 		1,
 		2,
-		3,
-		20
+		22
 	],
 	"./Sites/Settings.vue": [
 		"./resources/js/Pages/Sites/Settings.vue",
+		0,
 		1,
 		2,
-		3,
-		20
+		22
 	],
 	"./Sites/Show": [
 		"./resources/js/Pages/Sites/Show.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
 		4,
-		44
+		35
 	],
 	"./Sites/Show.vue": [
 		"./resources/js/Pages/Sites/Show.vue",
+		0,
 		1,
 		2,
 		3,
-		33,
 		4,
-		44
+		35
 	],
 	"./Sites/Tabs": [
 		"./resources/js/Pages/Sites/Tabs.vue",
-		67
+		68
 	],
 	"./Sites/Tabs.vue": [
 		"./resources/js/Pages/Sites/Tabs.vue",
-		67
+		68
 	],
 	"./Sites/components/TopBar": [
 		"./resources/js/Pages/Sites/components/TopBar.vue",
-		1,
-		68
+		0,
+		69
 	],
 	"./Sites/components/TopBar.vue": [
 		"./resources/js/Pages/Sites/components/TopBar.vue",
-		1,
-		68
+		0,
+		69
 	],
 	"./Support/Closed": [
 		"./resources/js/Pages/Support/Closed.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		45
+		46
 	],
 	"./Support/Closed.vue": [
 		"./resources/js/Pages/Support/Closed.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		45
+		46
 	],
 	"./Support/Index": [
 		"./resources/js/Pages/Support/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		26
+		37
 	],
 	"./Support/Index.vue": [
 		"./resources/js/Pages/Support/Index.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		26
+		37
 	],
 	"./Support/Show": [
 		"./resources/js/Pages/Support/Show.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		32
+		44
 	],
 	"./Support/Show.vue": [
 		"./resources/js/Pages/Support/Show.vue",
+		0,
 		1,
 		2,
-		3,
 		4,
-		32
+		44
 	],
 	"./Support/components/TopBar": [
 		"./resources/js/Pages/Support/components/TopBar.vue",
-		1,
-		69
+		0,
+		70
 	],
 	"./Support/components/TopBar.vue": [
 		"./resources/js/Pages/Support/components/TopBar.vue",
-		1,
-		69
+		0,
+		70
 	]
 };
 function webpackAsyncContext(req) {

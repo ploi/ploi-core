@@ -101,7 +101,8 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
         Route::group(['prefix' => 'billing', 'as' => 'billing.'], function () {
             Route::get('/', 'ProfileBillingController@index')->name('index');
 
-            Route::post('start', 'ProfileBillingController@start')->name('start');
+            Route::post('card/update', 'ProfileBillingController@updateCard')->name('update.card');
+            Route::post('plan/update', 'ProfileBillingController@updatePlan')->name('update.plan');
         });
 
         Route::post('toggle-theme', 'ProfileController@toggleTheme')->name('toggle-theme');

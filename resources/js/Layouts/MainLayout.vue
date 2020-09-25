@@ -26,7 +26,7 @@
                 <Notification v-for="(notification, index) in notifications" :key="index">
                     <template #prefix>
                         <IconDanger
-                            v-if="notification.variant === 'danger'"
+                            v-if="notification.variant === 'danger' || notification.variant === 'error'"
                             class="flex-shrink-0 w-6 h-6 text-danger"
                         />
                         <IconSuccess
