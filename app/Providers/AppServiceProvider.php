@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
 
         inertia()->share([
             'auth' => function () {
-                $package = auth()->user()->package;
+                $package = auth()->user()->package ?? [];
 
                 $can = $package ? [
                     'servers' => [

@@ -12,10 +12,15 @@ class ApplicationLogController extends Controller
         'date' => null
     ];
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($date = $request->input('date')) {
+            $this->config['date'] = $date;
+        }
+
         return inertia('Admin/ApplicationLogs', [
-            'logs' => $this->get()
+            'logData' => $this->get(),
+            'filters' => $request->all('date')
         ]);
     }
 
@@ -78,7 +83,7 @@ class ApplicationLogController extends Controller
         $date = $dtMatch[0];
 
         $data = [
-            'available_log_dates' => $availableDates,
+            'available_dates' => $availableDates,
             'date' => $date,
             'filename' => $fileName,
             'logs' => array_reverse($logs)
