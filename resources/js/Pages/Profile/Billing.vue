@@ -5,51 +5,58 @@
         <Content>
             <Container>
                 <PageBody>
-                    <form @submit.prevent="updateBilling">
-                        <h2 v-if="currentCardLastFour" class="border-b pb-4 mb-4">
-                            •••• •••• •••• {{ currentCardLastFour }} ({{ currentCardBrand }})
-                        </h2>
-                        <form-input v-model="cardHolderName"
-                                    :errors="$page.errors.card_holder_name"
-                                    id="card-holder-name"
-                                    label="Card Holder Name"/>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <h2 class="text-lg text-medium-emphasis">Card details</h2>
+                            <form @submit.prevent="updateBilling" class="space-y-4">
+                                <p v-if="currentCardLastFour">
+                                    •••• •••• •••• {{ currentCardLastFour }} ({{ currentCardBrand }})
+                                </p>
+                                <form-input v-model="cardHolderName"
+                                            :errors="$page.errors.card_holder_name"
+                                            id="card-holder-name"
+                                            label="Card Holder Name"/>
 
-                        <form-textarea v-model="billingDetails"
-                                        :errors="$page.errors.billing_details"
-                                        id="card-billing-details"
-                                        label="Billing details"/>
+                                <form-textarea v-model="billingDetails"
+                                               :errors="$page.errors.billing_details"
+                                               id="card-billing-details"
+                                               label="Billing details"/>
 
-                        <div class="pb-4 w-full">
-                            <label class="form-label" for="card-element">Card details</label>
-                            <div id="card-element" class="form-input" style="width: 100%"></div>
-                        </div>
+                                <div class="pb-4 w-full">
+                                    <label class="form-label" for="card-element">Card details</label>
+                                    <div id="card-element" class="form-input" style="width: 100%"></div>
+                                </div>
 
-                        <Button :data-secret="clientSecret" id="card-button" :loading="sending"
+                                <Button :data-secret="clientSecret" id="card-button" :loading="sending"
                                         class="btn-green" type="submit">
-                            Save
-                        </Button>
-                    </form>
-
-                    <Table caption="User list overview">
-                        <TableHead>
-                            <TableRow>
-                                <TableHeader>{{ __('Name') }}</TableHeader>
-                                <TableHeader></TableHeader>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            <TableRow v-for="webPackage in packages" :key="webPackage.id">
-                                <TableData>
-                                    {{ webPackage.name }}
-                                </TableData>
-                                <TableData>
-                                    <Button @click="updatePlan(webPackage.id)">
-                                        Subscribe
-                                    </Button>
-                                </TableData>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
+                                    Save
+                                </Button>
+                            </form>
+                        </div>
+                        <div class="space-y-4">
+                            <h2 class="text-lg text-medium-emphasis">Available packages</h2>
+                            <Table caption="User list overview">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableHeader>{{ __('Name') }}</TableHeader>
+                                        <TableHeader></TableHeader>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow v-for="webPackage in packages" :key="webPackage.id">
+                                        <TableData>
+                                            {{ webPackage.name }}
+                                        </TableData>
+                                        <TableData>
+                                            <Button size="sm" :disabled="sending || webPackage.plan_id === subscription.stripe_plan" @click="updatePlan(webPackage.id)">
+                                                Subscribe
+                                            </Button>
+                                        </TableData>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </div>
                 </PageBody>
             </Container>
         </Content>
@@ -129,8 +136,7 @@
             subscription: [Object, null],
             public_key: String,
             data_client_secret: String,
-            data_card_last_four: String,
-            data_card_brand: String,
+            card: Object,
         },
 
         data() {
@@ -143,8 +149,8 @@
                 cardElement: null,
                 cardHolderName: this.$page.auth.user.name,
                 billingDetails: this.$page.auth.user.billing_details,
-                currentCardLastFour: this.data_card_last_four,
-                currentCardBrand: this.data_card_brand,
+                currentCardLastFour: this.card.last_four,
+                currentCardBrand: this.card.brand,
                 coupon: '',
 
 

@@ -14,7 +14,7 @@ class ProfileBillingController extends Controller
         /* @var $user User */
         $user = auth()->user();
 
-        $packages = Package::get();
+        $packages = Package::whereNotNull('plan_id')->get();
 
         $intent = $user->createSetupIntent();
 
@@ -23,8 +23,10 @@ class ProfileBillingController extends Controller
             'subscription' => $user->subscription('default'),
             'public_key' => config('cashier.key'),
             'data_client_secret' => $intent->client_secret,
-            'data_card_last_four' => $user->card_last_four,
-            'data_card_brand' => $user->card_brand,
+            'card' => [
+                'last_four' => $user->card_last_four,
+                'brand' => $user->card_brand
+            ]
         ]);
     }
 
@@ -63,7 +65,7 @@ class ProfileBillingController extends Controller
             return redirect()->route('profile.billing.index')->with('error', 'You cannot change your plan without a valid creditcard, please update your billing details first');
         }
 
-        $plan = Package::findOrFail($request->input('plan'));
+        $plan = Package::query()->findOrFail($request->input('plan'));
 
         $planId = $plan->plan_id;
 

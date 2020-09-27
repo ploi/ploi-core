@@ -29,6 +29,7 @@
     "Support": "Ondersteuning",
     "General": "Algemeen",
     "Settings": "Instellingen",
+    "Billing": "Facturering",
     "Administration": "Administratie",
     "Overview": "Overzicht",
     "Visit": "Bezoek",
@@ -186,6 +187,9 @@
     "User has been detached": "Gebruiker is ontkoppeld",
     "Create package": "Pakket aanmaken",
     "Edit package": "Pakket bewerken",
+    "Package has been created": "Pakket is aangemaakt",
+    "Package has been updated": "Pakket is aangepast",
+    "Package has been removed": "Pakket is verwijderd",
 
     "Allow server creation": "Laat server aanmaken toe",
     "This will allow users to create servers": "Dit maakt het mogelijk voor klanten om een server aan te maken",
