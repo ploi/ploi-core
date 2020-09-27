@@ -9,7 +9,13 @@
                 </PageHeader>
 
                 <PageBody>
-                    We were unable to find this page.
+                    <div class="space-y-4">
+                        <p>We were unable to find this page.</p>
+
+                        <p>
+                            <a class="text-primary" href="/">Go home</a>
+                        </p>
+                    </div>
                 </PageBody>
             </Container>
         </Content>

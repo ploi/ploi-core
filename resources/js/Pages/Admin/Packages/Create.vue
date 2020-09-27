@@ -26,9 +26,11 @@
                                         <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
                                         <FormInput :label="__('Maximum sites')" type="number" min="0" :errors="$page.errors.maximum_sites" v-model="form.maximum_sites" />
                                         <FormInput :label="__('Maximum servers')" type="number" min="0" :errors="$page.errors.maximum_servers" v-model="form.maximum_servers" />
+                                        <FormInput :label="__('Plan ID')" :errors="$page.errors.plan_id" v-model="form.plan_id" />
+                                        <FormInput v-if="form.plan_id" :label="__('Monthly price')" :errors="$page.errors.price_monthly" v-model="form.price_monthly" />
 
                                         <div class="space-y-2">
-                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">Server permissions</h3>
+                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">{{ __('Server permissions') }}</h3>
 
                                             <div>
                                                 <input id="server_create" class="form-checkbox" type="checkbox"
@@ -57,7 +59,7 @@
                                         </div>
 
                                         <div class="space-y-2">
-                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">Site permissions</h3>
+                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">{{ __('Site permissions') }}</h3>
 
                                             <div>
                                                 <input id="site_create" class="form-checkbox" type="checkbox"
@@ -158,6 +160,7 @@
 
                 form: {
                     name: null,
+                    plan_id: null,
                     maximum_sites: 10,
                     maximum_servers: 1,
                     server_permissions: {
@@ -170,6 +173,7 @@
                         update: false,
                         delete: false
                     },
+                    price_monthly: null,
                 },
             }
         },

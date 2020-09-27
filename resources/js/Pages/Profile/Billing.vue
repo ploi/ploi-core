@@ -5,9 +5,9 @@
         <Content>
             <Container>
                 <PageBody>
-                    <div class="grid grid-cols-2 gap-8">
-                        <div class="space-y-4">
-                            <h2 class="text-lg text-medium-emphasis">Card details</h2>
+                    <div class="grid grid-cols-5 gap-8">
+                        <div class="col-span-2 space-y-4">
+                            <h2 class="text-lg text-medium-emphasis">{{ __('Card details') }}</h2>
                             <form @submit.prevent="updateBilling" class="space-y-4">
                                 <p v-if="currentCardLastFour">
                                     •••• •••• •••• {{ currentCardLastFour }} ({{ currentCardBrand }})
@@ -17,11 +17,6 @@
                                             id="card-holder-name"
                                             label="Card Holder Name"/>
 
-                                <form-textarea v-model="billingDetails"
-                                               :errors="$page.errors.billing_details"
-                                               id="card-billing-details"
-                                               label="Billing details"/>
-
                                 <div class="pb-4 w-full">
                                     <label class="form-label" for="card-element">Card details</label>
                                     <div id="card-element" class="form-input" style="width: 100%"></div>
@@ -29,27 +24,31 @@
 
                                 <Button :data-secret="clientSecret" id="card-button" :loading="sending"
                                         class="btn-green" type="submit">
-                                    Save
+                                    {{ __('Save') }}
                                 </Button>
                             </form>
                         </div>
-                        <div class="space-y-4">
-                            <h2 class="text-lg text-medium-emphasis">Available packages</h2>
+                        <div class="col-span-3 space-y-4">
+                            <h2 class="text-lg text-medium-emphasis">{{ __('Available packages') }}</h2>
                             <Table caption="User list overview">
                                 <TableHead>
                                     <TableRow>
                                         <TableHeader>{{ __('Name') }}</TableHeader>
+                                        <TableHeader>{{ __('Max sites') }}</TableHeader>
+                                        <TableHeader>{{ __('Max servers') }}</TableHeader>
+                                        <TableHeader>{{ __('Monthly price') }}</TableHeader>
                                         <TableHeader></TableHeader>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     <TableRow v-for="webPackage in packages" :key="webPackage.id">
-                                        <TableData>
-                                            {{ webPackage.name }}
-                                        </TableData>
-                                        <TableData>
+                                        <TableData>{{ webPackage.name }}</TableData>
+                                        <TableData>{{ webPackage.maximum_sites === 0 ? 'Unlimited' : webPackage.maximum_sites }}</TableData>
+                                        <TableData>{{ webPackage.maximum_servers === 0 ? 'Unlimited' : webPackage.maximum_servers }}</TableData>
+                                        <TableData>{{ webPackage.price_monthly }}</TableData>
+                                        <TableData class="text-right">
                                             <Button size="sm" :disabled="sending || webPackage.plan_id === subscription.stripe_plan" @click="updatePlan(webPackage.id)">
-                                                Subscribe
+                                                {{ __('Subscribe') }}
                                             </Button>
                                         </TableData>
                                     </TableRow>
@@ -143,16 +142,13 @@
             return {
                 sending: false,
 
-                // Payment method stuff
                 clientSecret: this.data_client_secret,
                 stripe: null,
                 cardElement: null,
                 cardHolderName: this.$page.auth.user.name,
-                billingDetails: this.$page.auth.user.billing_details,
                 currentCardLastFour: this.card.last_four,
                 currentCardBrand: this.card.brand,
                 coupon: '',
-
 
                 breadcrumbs: [
                     {

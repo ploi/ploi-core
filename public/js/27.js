@@ -88,6 +88,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -474,8 +480,26 @@ var render = function() {
                                                 [
                                                   _c("TableData", [
                                                     _vm._v(
-                                                      _vm._s(webPackage.name)
-                                                    )
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          webPackage.name
+                                                        ) +
+                                                        "\n\n                                                "
+                                                    ),
+                                                    webPackage.plan_id
+                                                      ? _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium leading-4 bg-primary text-on-primary"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                    Attached to Stripe\n                                                "
+                                                            )
+                                                          ]
+                                                        )
+                                                      : _vm._e()
                                                   ]),
                                                   _vm._v(" "),
                                                   _c("TableData", [

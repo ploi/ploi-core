@@ -130,6 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -190,7 +191,8 @@ __webpack_require__.r(__webpack_exports__);
         maximum_sites: this["package"].maximum_sites,
         maximum_servers: this["package"].maximum_servers,
         server_permissions: (_this$package$server_ = this["package"].server_permissions) !== null && _this$package$server_ !== void 0 ? _this$package$server_ : [],
-        site_permissions: (_this$package$site_pe = this["package"].site_permissions) !== null && _this$package$site_pe !== void 0 ? _this$package$site_pe : []
+        site_permissions: (_this$package$site_pe = this["package"].site_permissions) !== null && _this$package$site_pe !== void 0 ? _this$package$site_pe : [],
+        price_monthly: this["package"].price_monthly
       }
     };
   },
@@ -629,6 +631,31 @@ var render = function() {
                                             }
                                           }),
                                           _vm._v(" "),
+                                          _vm.form.plan_id
+                                            ? _c("FormInput", {
+                                                attrs: {
+                                                  label: _vm.__(
+                                                    "Monthly price"
+                                                  ),
+                                                  errors:
+                                                    _vm.$page.errors
+                                                      .price_monthly
+                                                },
+                                                model: {
+                                                  value: _vm.form.price_monthly,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "price_monthly",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "form.price_monthly"
+                                                }
+                                              })
+                                            : _vm._e(),
+                                          _vm._v(" "),
                                           _c(
                                             "div",
                                             { staticClass: "space-y-2" },
@@ -639,7 +666,15 @@ var render = function() {
                                                   staticClass:
                                                     "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
                                                 },
-                                                [_vm._v("Server permissions")]
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "Server permissions"
+                                                      )
+                                                    )
+                                                  )
+                                                ]
                                               ),
                                               _vm._v(" "),
                                               _c("div", [
@@ -1035,7 +1070,13 @@ var render = function() {
                                                   staticClass:
                                                     "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
                                                 },
-                                                [_vm._v("Site permissions")]
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__("Site permissions")
+                                                    )
+                                                  )
+                                                ]
                                               ),
                                               _vm._v(" "),
                                               _c("div", [

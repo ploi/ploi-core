@@ -39,6 +39,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -150,9 +156,17 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("PageBody", [
-                _vm._v(
-                  "\n                We were unable to find this page.\n            "
-                )
+                _c("div", { staticClass: "space-y-4" }, [
+                  _c("p", [_vm._v("We were unable to find this page.")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c(
+                      "a",
+                      { staticClass: "text-primary", attrs: { href: "/" } },
+                      [_vm._v("Go home")]
+                    )
+                  ])
+                ])
               ])
             ],
             1

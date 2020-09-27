@@ -130,6 +130,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -183,6 +185,7 @@ __webpack_require__.r(__webpack_exports__);
       sending: false,
       form: {
         name: null,
+        plan_id: null,
         maximum_sites: 10,
         maximum_servers: 1,
         server_permissions: {
@@ -194,7 +197,8 @@ __webpack_require__.r(__webpack_exports__);
           create: false,
           update: false,
           "delete": false
-        }
+        },
+        price_monthly: null
       }
     };
   },
@@ -610,6 +614,49 @@ var render = function() {
                                             }
                                           }),
                                           _vm._v(" "),
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Plan ID"),
+                                              errors: _vm.$page.errors.plan_id
+                                            },
+                                            model: {
+                                              value: _vm.form.plan_id,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "plan_id",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "form.plan_id"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _vm.form.plan_id
+                                            ? _c("FormInput", {
+                                                attrs: {
+                                                  label: _vm.__(
+                                                    "Monthly price"
+                                                  ),
+                                                  errors:
+                                                    _vm.$page.errors
+                                                      .price_monthly
+                                                },
+                                                model: {
+                                                  value: _vm.form.price_monthly,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "price_monthly",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "form.price_monthly"
+                                                }
+                                              })
+                                            : _vm._e(),
+                                          _vm._v(" "),
                                           _c(
                                             "div",
                                             { staticClass: "space-y-2" },
@@ -620,7 +667,15 @@ var render = function() {
                                                   staticClass:
                                                     "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
                                                 },
-                                                [_vm._v("Server permissions")]
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "Server permissions"
+                                                      )
+                                                    )
+                                                  )
+                                                ]
                                               ),
                                               _vm._v(" "),
                                               _c("div", [
@@ -1016,7 +1071,13 @@ var render = function() {
                                                   staticClass:
                                                     "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
                                                 },
-                                                [_vm._v("Site permissions")]
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__("Site permissions")
+                                                    )
+                                                  )
+                                                ]
                                               ),
                                               _vm._v(" "),
                                               _c("div", [

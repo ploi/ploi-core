@@ -30,6 +30,9 @@
     "General": "Algemeen",
     "Settings": "Instellingen",
     "Billing": "Facturering",
+    "Card details": "Kaart instellingen",
+    "Available packages": "Beschikbare pakketten",
+    "Subscribe": "Abbonneer",
     "Administration": "Administratie",
     "Overview": "Overzicht",
     "Visit": "Bezoek",
@@ -162,6 +165,7 @@
     "A new redirect has been created": "Er is een nieuwe omleiding aangemaakt",
 
     "Detach": "Ontkoppelen",
+    "Monthly price": "Prijs maandelijks",
     "Users": "Gebruikers",
     "User": "Gebruiker",
     "Edit user": "Bewerk gebruiker",
@@ -191,6 +195,7 @@
     "Package has been updated": "Pakket is aangepast",
     "Package has been removed": "Pakket is verwijderd",
 
+    "Server permissions": "Server permissies",
     "Allow server creation": "Laat server aanmaken toe",
     "This will allow users to create servers": "Dit maakt het mogelijk voor klanten om een server aan te maken",
     "Allow server updating": "Laat server updaten toe",
@@ -198,6 +203,7 @@
     "Allow server deletion": "Laat server verwijderen toe",
     "This will allow users to delete servers": "Dit maakt het mogelijk voor klante nom hun server te verwijderen",
 
+    "Site permissions": "Website permissies",
     "Allow site creation": "Laat website aanmaken toe",
     "This will allow users to create sites": "Dit maakt het mogelijk voor klanten om een server aan te maken",
     "Allow site updating": "Laat website updaten toe",

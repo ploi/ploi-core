@@ -109,7 +109,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -183,12 +182,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       sending: false,
-      // Payment method stuff
       clientSecret: this.data_client_secret,
       stripe: null,
       cardElement: null,
       cardHolderName: this.$page.auth.user.name,
-      billingDetails: this.$page.auth.user.billing_details,
       currentCardLastFour: this.card.last_four,
       currentCardBrand: this.card.brand,
       coupon: '',
@@ -338,11 +335,11 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('Settings'),
         to: this.route('profile.settings.index'),
         active: this.route().current('profile.settings.index')
-      }, {
+      }, this.$page.settings.billing ? {
         title: this.__('Billing'),
         to: this.route('profile.billing.index'),
         active: this.route().current('profile.billing.index')
-      }]
+      } : null]
     };
   }
 });
@@ -457,10 +454,10 @@ var render = function() {
             "Container",
             [
               _c("PageBody", [
-                _c("div", { staticClass: "grid grid-cols-2 gap-8" }, [
-                  _c("div", { staticClass: "space-y-4" }, [
+                _c("div", { staticClass: "grid grid-cols-5 gap-8" }, [
+                  _c("div", { staticClass: "col-span-2 space-y-4" }, [
                     _c("h2", { staticClass: "text-lg text-medium-emphasis" }, [
-                      _vm._v("Card details")
+                      _vm._v(_vm._s(_vm.__("Card details")))
                     ]),
                     _vm._v(" "),
                     _c(
@@ -502,21 +499,6 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _c("form-textarea", {
-                          attrs: {
-                            errors: _vm.$page.errors.billing_details,
-                            id: "card-billing-details",
-                            label: "Billing details"
-                          },
-                          model: {
-                            value: _vm.billingDetails,
-                            callback: function($$v) {
-                              _vm.billingDetails = $$v
-                            },
-                            expression: "billingDetails"
-                          }
-                        }),
-                        _vm._v(" "),
                         _c("div", { staticClass: "pb-4 w-full" }, [
                           _c(
                             "label",
@@ -547,7 +529,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                Save\n                            "
+                              "\n                                " +
+                                _vm._s(_vm.__("Save")) +
+                                "\n                            "
                             )
                           ]
                         )
@@ -558,12 +542,12 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "space-y-4" },
+                    { staticClass: "col-span-3 space-y-4" },
                     [
                       _c(
                         "h2",
                         { staticClass: "text-lg text-medium-emphasis" },
-                        [_vm._v("Available packages")]
+                        [_vm._v(_vm._s(_vm.__("Available packages")))]
                       ),
                       _vm._v(" "),
                       _c(
@@ -578,6 +562,18 @@ var render = function() {
                                 [
                                   _c("TableHeader", [
                                     _vm._v(_vm._s(_vm.__("Name")))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("TableHeader", [
+                                    _vm._v(_vm._s(_vm.__("Max sites")))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("TableHeader", [
+                                    _vm._v(_vm._s(_vm.__("Max servers")))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("TableHeader", [
+                                    _vm._v(_vm._s(_vm.__("Monthly price")))
                                   ]),
                                   _vm._v(" "),
                                   _c("TableHeader")
@@ -596,15 +592,36 @@ var render = function() {
                                 { key: webPackage.id },
                                 [
                                   _c("TableData", [
+                                    _vm._v(_vm._s(webPackage.name))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("TableData", [
                                     _vm._v(
-                                      "\n                                        " +
-                                        _vm._s(webPackage.name) +
-                                        "\n                                    "
+                                      _vm._s(
+                                        webPackage.maximum_sites === 0
+                                          ? "Unlimited"
+                                          : webPackage.maximum_sites
+                                      )
                                     )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("TableData", [
+                                    _vm._v(
+                                      _vm._s(
+                                        webPackage.maximum_servers === 0
+                                          ? "Unlimited"
+                                          : webPackage.maximum_servers
+                                      )
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("TableData", [
+                                    _vm._v(_vm._s(webPackage.price_monthly))
                                   ]),
                                   _vm._v(" "),
                                   _c(
                                     "TableData",
+                                    { staticClass: "text-right" },
                                     [
                                       _c(
                                         "Button",
@@ -626,7 +643,9 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                            Subscribe\n                                        "
+                                            "\n                                            " +
+                                              _vm._s(_vm.__("Subscribe")) +
+                                              "\n                                        "
                                           )
                                         ]
                                       )

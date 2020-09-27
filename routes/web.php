@@ -98,13 +98,15 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
             Route::patch('/', 'ProfileSettingController@update')->name('update');
         });
 
-        Route::group(['prefix' => 'billing', 'as' => 'billing.'], function () {
-            Route::get('/', 'ProfileBillingController@index')->name('index');
+        if (config('cashier.key') && config('cashier.secret')) {
+            Route::group(['prefix' => 'billing', 'as' => 'billing.'], function () {
+                Route::get('/', 'ProfileBillingController@index')->name('index');
 
-            Route::post('card/update', 'ProfileBillingController@updateCard')->name('update.card');
-            Route::post('plan/update', 'ProfileBillingController@updatePlan')->name('update.plan');
-        });
-
+                Route::post('card/update', 'ProfileBillingController@updateCard')->name('update.card');
+                Route::post('plan/update', 'ProfileBillingController@updatePlan')->name('update.plan');
+            });
+        }
+        
         Route::post('toggle-theme', 'ProfileController@toggleTheme')->name('toggle-theme');
 
         Route::post('request-ftp-password', 'ProfileController@requestFtpPassword')->name('request-ftp-password');

@@ -85,6 +85,7 @@ class AppServiceProvider extends ServiceProvider
                     'documentation' => setting('documentation', false),
                     'logo' => setting('logo'),
                     'allow_registration' => setting('allow_registration'),
+                    'billing' => config('cashier.key') && config('cashier.secret')
                 ];
             },
             'flash' => function () {

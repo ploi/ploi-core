@@ -42,6 +42,10 @@ class PackageRequest extends FormRequest
             'plan_id' => [
                 'nullable',
             ],
+            'price_monthly' => [
+                'nullable',
+                'numeric'
+            ],
             'server_permissions' => [
                 'array'
             ],
@@ -49,5 +53,15 @@ class PackageRequest extends FormRequest
                 'array'
             ]
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        // If we don't have the monthly price filled in, merge a default
+        if (!$this->price_monthly) {
+            $this->merge([
+                'price_monthly' => 0.000
+            ]);
+        }
     }
 }

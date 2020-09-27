@@ -31,7 +31,13 @@
                                         </TableHead>
                                         <TableBody>
                                             <TableRow v-for="webPackage in packages" :key="webPackage.id">
-                                                <TableData>{{ webPackage.name }}</TableData>
+                                                <TableData>
+                                                    {{ webPackage.name }}
+
+                                                    <span v-if="webPackage.plan_id" class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium leading-4 bg-primary text-on-primary">
+                                                        Attached to Stripe
+                                                    </span>
+                                                </TableData>
                                                 <TableData>{{ webPackage.maximum_sites === 0 ? 'Unlimited' : webPackage.maximum_sites }}</TableData>
                                                 <TableData>{{ webPackage.maximum_servers === 0 ? 'Unlimited' : webPackage.maximum_servers }}</TableData>
                                                 <TableData>{{ webPackage.users_count }}</TableData>
