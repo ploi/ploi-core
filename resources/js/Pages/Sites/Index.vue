@@ -1,6 +1,6 @@
 <template>
     <Page>
-        <Portal to="modals">
+        <Portal to="modals" v-if="can('sites', 'create')">
             <ModalContainer>
                 <Modal @close="closeModal" v-if="modalIsOpen" @submit="submit">
                     <template #title>{{ __('Create a site') }}</template>
@@ -29,7 +29,7 @@
                     <template #start>
                         <PageHeaderTitle>{{ __('Sites') }}</PageHeaderTitle>
                     </template>
-                    <template #end>
+                    <template v-if="can('sites', 'create')" #end>
                         <Button @click="modalIsOpen = true">{{ __('Create site') }}</Button>
                     </template>
                 </PageHeader>
@@ -56,7 +56,7 @@
 
                                     <DropdownList :position="position" v-if="isOpen">
                                         <DropdownListItem :to="route('sites.show', site.id)">{{ __('View') }}</DropdownListItem>
-                                        <DropdownListItemButton class="text-danger" @click="confirmDelete(site)">{{ __('Delete') }}</DropdownListItemButton>
+                                        <DropdownListItemButton v-if="can('sites', 'delete')" class="text-danger" @click="confirmDelete(site)">{{ __('Delete') }}</DropdownListItemButton>
                                     </DropdownList>
                                 </Dropdown>
                             </template>

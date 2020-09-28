@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Package;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PackageRequest extends FormRequest
 {
@@ -29,15 +31,53 @@ class PackageRequest extends FormRequest
                 'string',
                 'max:255'
             ],
+            'currency' => [
+                'nullable',
+                Rule::in([
+                    Package::CURRENCY_USD,
+                    Package::CURRENCY_EURO
+                ])
+            ],
             'maximum_sites' => [
                 'required',
                 'numeric',
                 'min:0',
             ],
-            'server_creation' => [
+            'maximum_servers' => [
                 'required',
-                'boolean'
+                'numeric',
+                'min:0',
+            ],
+            'plan_id' => [
+                'nullable',
+            ],
+            'price_monthly' => [
+                'nullable',
+                'numeric'
+            ],
+            'server_permissions' => [
+                'array'
+            ],
+            'site_permissions' => [
+                'array'
             ]
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $merge = [];
+
+        // If we don't have the monthly price filled in, merge a default
+        if (!$this->price_monthly) {
+            $merge['price_monthly'] = 0.000;
+        }
+
+        // If we don't have the currency filled in, merge a default
+        if (!$this->price_monthly) {
+            $merge['currency'] = Package::CURRENCY_USD;
+        }
+
+        $this->merge($merge);
     }
 }

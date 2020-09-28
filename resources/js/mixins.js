@@ -33,5 +33,9 @@ module.exports = {
             }
             return s;
         },
+
+        can(subject, permission) {
+            return this.$page.auth.can[subject][permission];
+        }
     }
 };

@@ -21,15 +21,9 @@ class Install extends Command
     protected $versionChecker;
     protected $installationFile = 'app/installation';
 
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->versionChecker = (new VersionChecker)->getVersions();
-    }
-
     public function handle()
     {
+        $this->init();
         $this->intro();
         $this->isInstalled();
         $this->checkApplicationKey();
@@ -43,6 +37,11 @@ class Install extends Command
 
         $this->info('Succes! Installation has finished.');
         $this->info('Visit your platform at ' . env('APP_URL'));
+    }
+
+    protected function init()
+    {
+        $this->versionChecker = (new VersionChecker)->getVersions();
     }
 
     protected function askAboutAdministrationAccount()

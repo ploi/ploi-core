@@ -68,7 +68,7 @@
                             <!--                                </template>-->
                             <!--                            </SettingsSegment>-->
 
-                            <SettingsSegment>
+                            <SettingsSegment v-if="can('sites', 'delete')">
                                 <template #title>{{ __('Danger zone') }}</template>
                                 <template #content>
                                     <Button @click="confirmDelete" variant="danger">{{ __('Delete') }}</Button>

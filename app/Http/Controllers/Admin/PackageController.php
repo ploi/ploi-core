@@ -24,14 +24,9 @@ class PackageController extends Controller
 
     public function store(PackageRequest $request)
     {
-        Package::create($request->all());
+        Package::create($request->validated());
 
-        return redirect()->route('admin.packages.index')->with('success', 'Package has been created');
-    }
-
-    public function show($id)
-    {
-        //
+        return redirect()->route('admin.packages.index')->with('success', __('Package has been created'));
     }
 
     public function edit($id)
@@ -47,7 +42,7 @@ class PackageController extends Controller
 
         $package->update($request->validated());
 
-        return redirect()->route('admin.packages.index')->with('success', 'Package has been updated');
+        return redirect()->route('admin.packages.index')->with('success', __('Package has been updated'));
     }
 
     public function destroy($id)
@@ -56,6 +51,6 @@ class PackageController extends Controller
 
         $package->delete();
 
-        return redirect()->route('admin.packages.index')->with('success', 'Package has been removed');
+        return redirect()->route('admin.packages.index')->with('success', __('Package has been removed'));
     }
 }

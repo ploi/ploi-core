@@ -11,9 +11,13 @@
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet"></link>
     <script src="{{ mix('/js/app.js') }}" defer></script>
 
+    @if(config('cashier.key') && config('cashier.secret'))
+        <script src="https://js.stripe.com/v3/"></script>
+    @endif
+
     @routes
 </head>
 <body>
-    @inertia
+@inertia
 </body>
 </html>

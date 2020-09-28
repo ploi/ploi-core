@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Site;
 use App\Rules\Hostname;
 use App\Rules\ValidateMaximumSites;
 use Illuminate\Foundation\Http\FormRequest;
@@ -15,7 +16,7 @@ class SiteRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check();
+        return $this->user()->can('create', Site::class);
     }
 
     /**

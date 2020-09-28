@@ -80,6 +80,8 @@ class SiteController extends Controller
     {
         $site = auth()->user()->sites()->findOrFail($id);
 
+        $this->authorize('delete', $site);
+
         dispatch(new DeleteSite($site->server->ploi_id, $site->ploi_id));
 
         $site->delete();

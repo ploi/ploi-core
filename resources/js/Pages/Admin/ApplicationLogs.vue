@@ -6,7 +6,7 @@
             <Container>
                 <PageHeader>
                     <template #start>
-                        <PageHeaderTitle>{{ __('Packages') }}</PageHeaderTitle>
+                        <PageHeaderTitle>{{ __('Application logs') }}</PageHeaderTitle>
                     </template>
                 </PageHeader>
 
@@ -16,42 +16,31 @@
                             <Tabs />
                         </template>
                         <template #segments>
-                            <SettingsSegment>
-                                <template #title>{{ __('Overview') }}</template>
-                                <template #content>
-                                    <Table caption="Package list overview">
+                            <div class="space-y-4">
+                                <FormSelect :label="__('Date')" v-model="searchFilters.date">
+                                    <option :value="availableDate" v-for="availableDate in logData.available_dates">{{ availableDate }}</option>
+                                </FormSelect>
+
+                                <div class="overflow-scroll">
+                                    <Table caption="User list overview">
                                         <TableHead>
                                             <TableRow>
-                                                <TableHeader>{{ __('Name') }}</TableHeader>
-                                                <TableHeader>Max. sites</TableHeader>
-                                                <TableHeader>Max. servers</TableHeader>
-                                                <TableHeader>{{ __('Users') }}</TableHeader>
-                                                <TableHeader></TableHeader>
+                                                <TableHeader>{{ __('Content') }}</TableHeader>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            <TableRow v-for="webPackage in packages" :key="webPackage.id">
+                                            <TableRow v-for="(log, index) in logData.logs" :key="index">
                                                 <TableData>
-                                                    {{ webPackage.name }}
+                                                    {{ log.message }}
 
-                                                    <span v-if="webPackage.plan_id" class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium leading-4 bg-primary text-on-primary">
-                                                        Attached to Stripe
-                                                    </span>
-                                                </TableData>
-                                                <TableData>{{ webPackage.maximum_sites === 0 ? 'Unlimited' : webPackage.maximum_sites }}</TableData>
-                                                <TableData>{{ webPackage.maximum_servers === 0 ? 'Unlimited' : webPackage.maximum_servers }}</TableData>
-                                                <TableData>{{ webPackage.users_count }}</TableData>
-                                                <TableData>
-                                                    <inertia-link :href="route('admin.packages.edit', webPackage.id)"
-                                                                  class="text-primary font-medium">
-                                                        {{ __('Edit') }}
-                                                    </inertia-link>
+                                                    <p class="text-medium-emphasis">{{ log.type }} at {{ log.timestamp }}</p>
                                                 </TableData>
                                             </TableRow>
                                         </TableBody>
                                     </Table>
-                                </template>
-                            </SettingsSegment>
+                                </div>
+
+                            </div>
                         </template>
                     </SettingsLayout>
                 </PageBody>
@@ -61,7 +50,7 @@
 </template>
 
 <script>
-    import TopBar from './../components/TopBar'
+    import TopBar from './components/TopBar'
     import Container from '@/components/Container'
     import Content from '@/components/Content'
     import Page from '@/components/Page'
@@ -76,19 +65,24 @@
     import MainLayout from '@/Layouts/MainLayout'
     import SettingsLayout from '@/components/layouts/SettingsLayout'
     import SettingsSegment from '@/components/SettingsSegment'
-    import Pagination from '@/components/Pagination'
-    import Tabs from './Tabs';
+    import FormInput from '@/components/forms/FormInput'
+    import FormSelect from '@/components/forms/FormSelect'
+    import Form from '@/components/Form'
+    import FormActions from '@/components/FormActions'
+    import Tabs from './Tabs'
     import Table from '@/components/Table'
     import TableHead from '@/components/TableHead'
     import TableHeader from '@/components/TableHeader'
     import TableRow from '@/components/TableRow'
     import TableBody from '@/components/TableBody'
     import TableData from '@/components/TableData'
+    import throttle from 'lodash/throttle'
+    import pickBy from 'lodash/pickBy'
 
     export default {
         metaInfo() {
             return {
-                title: `${this.__('Packages')}`,
+                title: `${this.__('Application logs')}`,
             }
         },
 
@@ -107,9 +101,12 @@
             ListItem,
             StatusBubble,
             NotificationBadge,
+            FormInput,
+            FormSelect,
             SettingsLayout,
             SettingsSegment,
-            Pagination,
+            Form,
+            FormActions,
             Tabs,
             Table,
             TableHead,
@@ -120,22 +117,26 @@
         },
 
         props: {
-            packages: Array
+            logData: Object,
+            filters: Object
         },
 
         data() {
             return {
-                items: [
-                    {
-                        title: 'Overview',
-                        to: this.route('admin.users.index'),
-                    },
-                    {
-                        title: 'Create',
-                        to: this.route('admin.users.create'),
-                    }
-                ],
+                searchFilters: {
+                    date: this.filters.date,
+                }
             }
+        },
+
+        watch: {
+            searchFilters: {
+                handler: throttle(function() {
+                    let query = pickBy(this.searchFilters)
+                    this.$inertia.replace(this.route('admin.application-logs', Object.keys(query).length ? query : { remember: 'forget' }))
+                }, 150),
+                deep: true,
+            },
         },
     }
 </script>

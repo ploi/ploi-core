@@ -11,6 +11,8 @@ class SiteSettingController extends Controller
     {
         $site = auth()->user()->sites()->findOrFail($id);
 
+        $this->authorize('update', $site);
+
         $availablePhpVersions = $site->server->available_php_versions;
 
         return inertia('Sites/Settings', [
@@ -23,6 +25,8 @@ class SiteSettingController extends Controller
     {
         $site = $request->user()->sites()->findOrFail($id);
 
+        $this->authorize('update', $site);
+
         $site->update($request->all());
 
         return redirect()->route('sites.settings.show', $id)->with('success', __('Site settings have been updated'));
@@ -31,6 +35,8 @@ class SiteSettingController extends Controller
     public function changePhpVersion(Request $request, $id)
     {
         $site = $request->user()->sites()->findOrFail($id);
+
+        $this->authorize('update', $site);
 
         dispatch(new ChangePhpVersion($site, $request->input('version')));
 

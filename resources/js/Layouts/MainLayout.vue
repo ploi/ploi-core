@@ -26,7 +26,7 @@
                 <Notification v-for="(notification, index) in notifications" :key="index">
                     <template #prefix>
                         <IconDanger
-                            v-if="notification.variant === 'danger'"
+                            v-if="notification.variant === 'danger' || notification.variant === 'error'"
                             class="flex-shrink-0 w-6 h-6 text-danger"
                         />
                         <IconSuccess
@@ -132,6 +132,17 @@
                     })
 
                     this.$page.flash.info = null;
+                }
+            },
+            '$page.flash.error': function () {
+                if (this.$page.flash.error) {
+                    useNotification({
+                        variant: 'danger',
+                        title: this.__(`Error`),
+                        message: this.$page.flash.error,
+                    })
+
+                    this.$page.flash.error = null;
                 }
             }
         },

@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Arr;
 
 class ServerPolicy
 {
@@ -17,6 +18,6 @@ class ServerPolicy
      */
     public function create(User $user)
     {
-        return $user->package->server_creation ?? false;
+        return Arr::get($user->package->server_permissions, 'create', false);
     }
 }

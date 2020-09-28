@@ -29,6 +29,11 @@
                         title: this.__('System'),
                         to: this.route('admin.system'),
                         active: this.route().current('admin.system')
+                    },
+                    {
+                        title: this.__('Application logs'),
+                        to: this.route('admin.application-logs'),
+                        active: this.route().current('admin.application-logs')
                     }
                 ],
             }
