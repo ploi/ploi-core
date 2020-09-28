@@ -133,6 +133,17 @@
 
                     this.$page.flash.info = null;
                 }
+            },
+            '$page.flash.error': function () {
+                if (this.$page.flash.error) {
+                    useNotification({
+                        variant: 'danger',
+                        title: this.__(`Error`),
+                        message: this.$page.flash.error,
+                    })
+
+                    this.$page.flash.error = null;
+                }
             }
         },
 

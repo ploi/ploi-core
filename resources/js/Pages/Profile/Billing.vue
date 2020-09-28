@@ -7,19 +7,19 @@
                 <PageBody>
                     <div class="grid grid-cols-5 gap-8">
                         <div class="col-span-2 space-y-4">
-                            <h2 class="text-lg text-medium-emphasis">{{ __('Card details') }}</h2>
+                            <h2 class="text-lg text-medium-emphasis">{{ __('Card information') }}</h2>
                             <form @submit.prevent="updateBilling" class="space-y-4">
                                 <p v-if="currentCardLastFour">
-                                    •••• •••• •••• {{ currentCardLastFour }} ({{ currentCardBrand }})
+                                    &centerdot;&centerdot;&centerdot;&centerdot;&nbsp;&centerdot;&centerdot;&centerdot;&centerdot;&nbsp;&centerdot;&centerdot;&centerdot;&centerdot;&nbsp; {{ currentCardLastFour }} ({{ currentCardBrand }})
                                 </p>
                                 <form-input v-model="cardHolderName"
                                             :errors="$page.errors.card_holder_name"
                                             :disabled="sending"
                                             id="card-holder-name"
-                                            label="Card Holder Name"/>
+                                            :label="__('Card holder name')"/>
 
                                 <div class="pb-4 w-full">
-                                    <label class="form-label" for="card-element">Card details</label>
+                                    <label class="form-label" for="card-element">{{ __('Card details') }}</label>
                                     <div id="card-element" class="form-input"></div>
                                 </div>
 
@@ -27,11 +27,17 @@
                                         class="btn-green" type="submit">
                                     {{ __('Save') }}
                                 </Button>
+
+                                <Button @click="cancel" :loading="sending"
+                                        v-if="subscription"
+                                        variant="danger" type="button">
+                                    {{ __('Cancel') }}
+                                </Button>
                             </form>
                         </div>
-                        <div class="col-span-3 space-y-4">
+                        <div class="col-span-3 space-y-8">
                             <h2 class="text-lg text-medium-emphasis">{{ __('Available packages') }}</h2>
-                            <Table caption="User list overview">
+                            <Table caption="Package list overview">
                                 <TableHead>
                                     <TableRow>
                                         <TableHeader>{{ __('Name') }}</TableHeader>
@@ -48,9 +54,33 @@
                                         <TableData>{{ webPackage.maximum_servers === 0 ? 'Unlimited' : webPackage.maximum_servers }}</TableData>
                                         <TableData>{{ webPackage.price_monthly }}</TableData>
                                         <TableData class="text-right">
-                                            <Button size="sm" :disabled="sending || webPackage.plan_id === subscription.stripe_plan" @click="updatePlan(webPackage.id)">
+                                            <Button size="sm" :disabled="sending || (subscription && webPackage.plan_id === subscription.stripe_plan)" @click="updatePlan(webPackage.id)">
                                                 {{ __('Subscribe') }}
                                             </Button>
+                                        </TableData>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+
+                            <h2 v-if="invoices.length" class="text-lg text-medium-emphasis">{{ __('Invoices') }}</h2>
+                            <Table v-if="invoices.length" caption="Invoice list overview">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableHeader>{{ __('Number') }}</TableHeader>
+                                        <TableHeader>{{ __('Status') }}</TableHeader>
+                                        <TableHeader>{{ __('Total') }}</TableHeader>
+                                        <TableHeader>{{ __('Date') }}</TableHeader>
+                                        <TableHeader></TableHeader>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow v-for="invoice in invoices" :key="invoice.id">
+                                        <TableData>{{ invoice.number }}</TableData>
+                                        <TableData>{{ invoice.status }}</TableData>
+                                        <TableData>{{ invoice.total }}</TableData>
+                                        <TableData>{{ invoice.created }}</TableData>
+                                        <TableData>
+                                            <a class="text-primary" :href="route('profile.billing.invoices.pdf', invoice.id)">Download</a>
                                         </TableData>
                                     </TableRow>
                                 </TableBody>
@@ -151,6 +181,8 @@
                 currentCardBrand: this.card.brand,
                 coupon: '',
 
+                invoices: [],
+
                 breadcrumbs: [
                     {
                         title: this.$page.settings.name,
@@ -174,6 +206,8 @@
             cardElement.mount('#card-element');
 
             this.cardElement = cardElement;
+
+            this.getInvoices();
         },
 
         watch: {
@@ -243,6 +277,20 @@
 
                 });
             },
+
+            cancel (){
+                this.sending = true;
+
+                this.$inertia.delete(this.route('profile.billing.cancel.plan')).then((response) => {
+                    this.sending = false;
+                }).catch((err) => {
+                    this.sending = false;
+                });
+            },
+
+            getInvoices() {
+                window.axios.get(this.route('profile.billing.invoices')).then(response => this.invoices = response.data);
+            }
         },
     }
 </script>

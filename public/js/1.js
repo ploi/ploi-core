@@ -145,6 +145,16 @@ __webpack_require__.r(__webpack_exports__);
         });
         this.$page.flash.info = null;
       }
+    },
+    '$page.flash.error': function $pageFlashError() {
+      if (this.$page.flash.error) {
+        Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_7__["useNotification"])({
+          variant: 'danger',
+          title: this.__("Error"),
+          message: this.$page.flash.error
+        });
+        this.$page.flash.error = null;
+      }
     }
   },
   methods: {

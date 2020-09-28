@@ -110,6 +110,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -190,6 +220,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       currentCardLastFour: this.card.last_four,
       currentCardBrand: this.card.brand,
       coupon: '',
+      invoices: [],
       breadcrumbs: [{
         title: this.$page.settings.name,
         to: '/'
@@ -206,6 +237,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var cardElement = elements.create('card');
     cardElement.mount('#card-element');
     this.cardElement = cardElement;
+    this.getInvoices();
   },
   watch: {
     sending: function sending(value) {
@@ -288,6 +320,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.sending = false;
       })["catch"](function (err) {
         _this2.sending = false;
+      });
+    },
+    cancel: function cancel() {
+      var _this3 = this;
+
+      this.sending = true;
+      this.$inertia["delete"](this.route('profile.billing.cancel.plan')).then(function (response) {
+        _this3.sending = false;
+      })["catch"](function (err) {
+        _this3.sending = false;
+      });
+    },
+    getInvoices: function getInvoices() {
+      var _this4 = this;
+
+      window.axios.get(this.route('profile.billing.invoices')).then(function (response) {
+        return _this4.invoices = response.data;
       });
     }
   }
@@ -471,7 +520,7 @@ var render = function() {
                 _c("div", { staticClass: "grid grid-cols-5 gap-8" }, [
                   _c("div", { staticClass: "col-span-2 space-y-4" }, [
                     _c("h2", { staticClass: "text-lg text-medium-emphasis" }, [
-                      _vm._v(_vm._s(_vm.__("Card details")))
+                      _vm._v(_vm._s(_vm.__("Card information")))
                     ]),
                     _vm._v(" "),
                     _c(
@@ -489,7 +538,7 @@ var render = function() {
                         _vm.currentCardLastFour
                           ? _c("p", [
                               _vm._v(
-                                "\n                                •••• •••• •••• " +
+                                "\n                                ···· ···· ····  " +
                                   _vm._s(_vm.currentCardLastFour) +
                                   " (" +
                                   _vm._s(_vm.currentCardBrand) +
@@ -503,7 +552,7 @@ var render = function() {
                             errors: _vm.$page.errors.card_holder_name,
                             disabled: _vm.sending,
                             id: "card-holder-name",
-                            label: "Card Holder Name"
+                            label: _vm.__("Card holder name")
                           },
                           model: {
                             value: _vm.cardHolderName,
@@ -521,7 +570,7 @@ var render = function() {
                               staticClass: "form-label",
                               attrs: { for: "card-element" }
                             },
-                            [_vm._v("Card details")]
+                            [_vm._v(_vm._s(_vm.__("Card details")))]
                           ),
                           _vm._v(" "),
                           _c("div", {
@@ -548,7 +597,28 @@ var render = function() {
                                 "\n                            "
                             )
                           ]
-                        )
+                        ),
+                        _vm._v(" "),
+                        _vm.subscription
+                          ? _c(
+                              "Button",
+                              {
+                                attrs: {
+                                  loading: _vm.sending,
+                                  variant: "danger",
+                                  type: "button"
+                                },
+                                on: { click: _vm.cancel }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(_vm.__("Cancel")) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          : _vm._e()
                       ],
                       1
                     )
@@ -556,7 +626,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "col-span-3 space-y-4" },
+                    { staticClass: "col-span-3 space-y-8" },
                     [
                       _c(
                         "h2",
@@ -566,7 +636,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "Table",
-                        { attrs: { caption: "User list overview" } },
+                        { attrs: { caption: "Package list overview" } },
                         [
                           _c(
                             "TableHead",
@@ -644,8 +714,9 @@ var render = function() {
                                             size: "sm",
                                             disabled:
                                               _vm.sending ||
-                                              webPackage.plan_id ===
-                                                _vm.subscription.stripe_plan
+                                              (_vm.subscription &&
+                                                webPackage.plan_id ===
+                                                  _vm.subscription.stripe_plan)
                                           },
                                           on: {
                                             click: function($event) {
@@ -674,7 +745,99 @@ var render = function() {
                           )
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.invoices.length
+                        ? _c(
+                            "h2",
+                            { staticClass: "text-lg text-medium-emphasis" },
+                            [_vm._v(_vm._s(_vm.__("Invoices")))]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.invoices.length
+                        ? _c(
+                            "Table",
+                            { attrs: { caption: "Invoice list overview" } },
+                            [
+                              _c(
+                                "TableHead",
+                                [
+                                  _c(
+                                    "TableRow",
+                                    [
+                                      _c("TableHeader", [
+                                        _vm._v(_vm._s(_vm.__("Number")))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("TableHeader", [
+                                        _vm._v(_vm._s(_vm.__("Status")))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("TableHeader", [
+                                        _vm._v(_vm._s(_vm.__("Total")))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("TableHeader", [
+                                        _vm._v(_vm._s(_vm.__("Date")))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("TableHeader")
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "TableBody",
+                                _vm._l(_vm.invoices, function(invoice) {
+                                  return _c(
+                                    "TableRow",
+                                    { key: invoice.id },
+                                    [
+                                      _c("TableData", [
+                                        _vm._v(_vm._s(invoice.number))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("TableData", [
+                                        _vm._v(_vm._s(invoice.status))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("TableData", [
+                                        _vm._v(_vm._s(invoice.total))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("TableData", [
+                                        _vm._v(_vm._s(invoice.created))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("TableData", [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "text-primary",
+                                            attrs: {
+                                              href: _vm.route(
+                                                "profile.billing.invoices.pdf",
+                                                invoice.id
+                                              )
+                                            }
+                                          },
+                                          [_vm._v("Download")]
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                }),
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e()
                     ],
                     1
                   )

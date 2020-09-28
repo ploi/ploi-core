@@ -104,9 +104,12 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
 
                 Route::post('card/update', 'ProfileBillingController@updateCard')->name('update.card');
                 Route::post('plan/update', 'ProfileBillingController@updatePlan')->name('update.plan');
+                Route::delete('plan/cancel', 'ProfileBillingController@cancel')->name('cancel.plan');
+                Route::get('invoices', 'ProfileBillingController@invoices')->name('invoices');
+                Route::get('invoices/{id}/pdf', 'ProfileBillingController@pdf')->name('invoices.pdf');
             });
         }
-        
+
         Route::post('toggle-theme', 'ProfileController@toggleTheme')->name('toggle-theme');
 
         Route::post('request-ftp-password', 'ProfileController@requestFtpPassword')->name('request-ftp-password');

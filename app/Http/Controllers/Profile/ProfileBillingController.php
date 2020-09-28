@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProfileBillingController extends Controller
@@ -43,11 +44,6 @@ class ProfileBillingController extends Controller
         ]);
     }
 
-    public function start(Request $request)
-    {
-
-    }
-
     public function updateCard(Request $request)
     {
         /** @var User $user */
@@ -62,7 +58,7 @@ class ProfileBillingController extends Controller
             $paymentMethod->delete();
         }
 
-        $method = $user->addPaymentMethod($request->get('payment_method'));
+        $user->addPaymentMethod($request->get('payment_method'));
         $user->updateDefaultPaymentMethod($request->get('payment_method'));
         $user->updateDefaultPaymentMethodFromStripe();
 
@@ -100,6 +96,40 @@ class ProfileBillingController extends Controller
             }
         }
 
-        return redirect()->route('profile.billing.index')->with('success', sprintf("Your plan has been updated to %s", $request->input('plan')));
+        return redirect()->route('profile.billing.index')->with('success', sprintf("Your plan has been updated to %s", $plan->name));
+    }
+
+    public function cancel(Request $request)
+    {
+        /* @var $user \App\Models\User */
+        $user = $request->user();
+
+        $subscription = $user->subscription('default')->cancel();
+
+        return redirect()->route('profile.billing.index')->with('success', __('Your subscription has been cancelled, your end date is ' . $subscription->ends_at));
+    }
+
+    public function invoices(Request $request)
+    {
+        return $request->user()->invoices()->map(function ($invoice) {
+            $symbol = $invoice->currency === Package::CURRENCY_EURO ? '€' : '$';
+
+            return [
+                'id' => $invoice->id,
+                'created' => Carbon::createFromTimestamp($invoice->created)->format('Y-m-d H:i:s'),
+                'number' => $invoice->number,
+                'status' => $invoice->status,
+                'total' => $symbol . number_format($invoice->total / 100, 2, ',', '.'),
+                'currency' => $invoice->currency,
+            ];
+        });
+    }
+
+    public function pdf(Request $request, $id)
+    {
+        return $request->user()->downloadInvoice($id, [
+            'vendor' => setting('name'),
+            'product' => 'Webhosting'
+        ]);
     }
 }
