@@ -39,6 +39,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_TableBody__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @/components/TableBody */ "./resources/js/components/TableBody.vue");
 /* harmony import */ var _components_TableData__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @/components/TableData */ "./resources/js/components/TableData.vue");
 /* harmony import */ var _hooks_notification__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @/hooks/notification */ "./resources/js/hooks/notification.js");
+/* harmony import */ var _hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @/hooks/confirm-delete */ "./resources/js/hooks/confirm-delete.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -168,6 +169,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: function metaInfo() {
     return {
@@ -254,6 +256,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_28__["useNotification"],
+    useConfirmDelete: _hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_29__["useConfirmDelete"],
     updateBilling: function updateBilling() {
       var _this = this;
 
@@ -322,21 +325,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.sending = false;
       });
     },
-    cancel: function cancel() {
+    confirmCancel: function confirmCancel() {
       var _this3 = this;
+
+      Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_29__["useConfirmDelete"])({
+        title: this.__('Are you sure?'),
+        message: this.__('Your subscription will be put to an end. An expire date will be send to you when your plan expires.'),
+        onConfirm: function onConfirm() {
+          return _this3.cancel();
+        }
+      });
+    },
+    cancel: function cancel() {
+      var _this4 = this;
 
       this.sending = true;
       this.$inertia["delete"](this.route('profile.billing.cancel.plan')).then(function (response) {
-        _this3.sending = false;
+        _this4.sending = false;
       })["catch"](function (err) {
-        _this3.sending = false;
+        _this4.sending = false;
       });
     },
     getInvoices: function getInvoices() {
-      var _this4 = this;
+      var _this5 = this;
 
       window.axios.get(this.route('profile.billing.invoices')).then(function (response) {
-        return _this4.invoices = response.data;
+        return _this5.invoices = response.data;
       });
     }
   }
@@ -608,7 +622,7 @@ var render = function() {
                                   variant: "danger",
                                   type: "button"
                                 },
-                                on: { click: _vm.cancel }
+                                on: { click: _vm.confirmCancel }
                               },
                               [
                                 _vm._v(
@@ -1467,6 +1481,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IconStorage_vue_vue_type_template_id_742d72f2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/hooks/confirm-delete.js":
+/*!**********************************************!*\
+  !*** ./resources/js/hooks/confirm-delete.js ***!
+  \**********************************************/
+/*! exports provided: useConfirmDelete */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useConfirmDelete", function() { return useConfirmDelete; });
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/store */ "./resources/js/store/index.js");
+
+function useConfirmDelete(_ref) {
+  var title = _ref.title,
+      message = _ref.message,
+      _onConfirm = _ref.onConfirm;
+  return _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('confirmDelete/open', {
+    title: title,
+    message: message,
+    onConfirm: function onConfirm() {
+      _onConfirm();
+
+      _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('confirmDelete/close');
+    }
+  });
+}
 
 /***/ })
 

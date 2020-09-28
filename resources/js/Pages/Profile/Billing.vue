@@ -28,7 +28,7 @@
                                     {{ __('Save') }}
                                 </Button>
 
-                                <Button @click="cancel" :loading="sending"
+                                <Button @click="confirmCancel" :loading="sending"
                                         v-if="subscription"
                                         variant="danger" type="button">
                                     {{ __('Cancel') }}
@@ -122,6 +122,7 @@
     import TableBody from '@/components/TableBody'
     import TableData from '@/components/TableData'
     import {useNotification} from '@/hooks/notification'
+    import {useConfirmDelete} from '@/hooks/confirm-delete'
 
     export default {
         metaInfo() {
@@ -226,6 +227,7 @@
 
         methods: {
             useNotification,
+            useConfirmDelete,
 
             async updateBilling() {
                 this.sending = true;
@@ -278,6 +280,14 @@
                 });
             },
 
+            confirmCancel() {
+                useConfirmDelete({
+                    title: this.__('Are you sure?'),
+                    message: this.__('Your subscription will be put to an end. An expire date will be send to you when your plan expires.'),
+                    onConfirm: () => this.cancel(),
+                })
+            },
+
             cancel (){
                 this.sending = true;
 
@@ -290,7 +300,7 @@
 
             getInvoices() {
                 window.axios.get(this.route('profile.billing.invoices')).then(response => this.invoices = response.data);
-            }
+            },
         },
     }
 </script>
