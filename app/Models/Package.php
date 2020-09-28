@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model
 {
+    const CURRENCY_EURO = 'eur';
+    const CURRENCY_USD = 'usd';
+
     public $fillable = [
         'name',
         'plan_id', // This does not reflect a internal database relation, it reflects the plan ID from the PSP
+        'currency',
         'price_hourly',
         'price_monthly',
         'maximum_sites',

@@ -25,6 +25,10 @@
                                         <FormInput :label="__('Maximum servers')" type="number" min="0" :errors="$page.errors.maximum_servers" v-model="form.maximum_servers" />
                                         <FormInput :label="__('Plan ID')" :errors="$page.errors.plan_id" v-model="form.plan_id" />
                                         <FormInput v-if="form.plan_id" :label="__('Monthly price')" :errors="$page.errors.price_monthly" v-model="form.price_monthly" />
+                                        <FormSelect v-if="form.plan_id" :label="__('Currency')" v-model="form.currency">
+                                            <option value="usd">{{ __('USD $') }}</option>
+                                            <option value="eur">{{ __('Euro €') }}</option>
+                                        </FormSelect>
 
                                         <div class="space-y-2">
                                             <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">{{ __('Server permissions') }}</h3>
@@ -159,6 +163,7 @@
 
                 form: {
                     name: this.package.name,
+                    currency: this.package.currency,
                     plan_id: this.package.plan_id,
                     maximum_sites: this.package.maximum_sites,
                     maximum_servers: this.package.maximum_servers,

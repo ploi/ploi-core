@@ -132,6 +132,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -186,6 +190,7 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         name: null,
         plan_id: null,
+        currency: 'usd',
         maximum_sites: 10,
         maximum_servers: 1,
         server_permissions: {
@@ -655,6 +660,49 @@ var render = function() {
                                                     "form.price_monthly"
                                                 }
                                               })
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.form.plan_id
+                                            ? _c(
+                                                "FormSelect",
+                                                {
+                                                  attrs: {
+                                                    label: _vm.__("Currency")
+                                                  },
+                                                  model: {
+                                                    value: _vm.form.currency,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "currency",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "form.currency"
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "usd" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(_vm.__("USD $"))
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "eur" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(_vm.__("Euro €"))
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
                                             : _vm._e(),
                                           _vm._v(" "),
                                           _c(
