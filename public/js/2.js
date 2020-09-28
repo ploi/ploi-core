@@ -71,6 +71,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -122,6 +127,16 @@ var defaultClasses = 'w-full border-medium-emphasis text-body h-10 px-2 border r
       required: false,
       "default": false,
       type: Boolean
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      "default": false
     }
   },
   components: {
@@ -343,11 +358,16 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c("input", {
-        class: [_vm.defaultClasses],
+        class: [
+          _vm.defaultClasses,
+          _vm.disabled || _vm.loading ? "opacity-50" : "",
+          _vm.loading ? "cursor-wait" : ""
+        ],
         attrs: {
           id: _vm.id,
           type: _vm.type,
           required: _vm.required,
+          disabled: _vm.loading || _vm.disabled,
           placeholder: _vm.placeholder
         },
         domProps: { value: _vm.value },

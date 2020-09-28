@@ -14,7 +14,20 @@ class ProfileBillingController extends Controller
         /* @var $user User */
         $user = auth()->user();
 
-        $packages = Package::whereNotNull('plan_id')->get();
+        $packages = Package::query()
+            ->where(function ($query) {
+                return $query
+                    ->where('price_monthly', '>', 0)
+                    ->whereNotNull('plan_id');
+            })
+            ->get()
+            ->transform(function (Package $package) {
+                $symbol = $package->currency === Package::CURRENCY_EURO ? '€' : '$';
+
+                $package->price_monthly = $symbol . number_format($package->price_monthly, 2, ',', '.');
+
+                return $package;
+            });
 
         $intent = $user->createSetupIntent();
 

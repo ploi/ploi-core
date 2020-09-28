@@ -14,12 +14,13 @@
                                 </p>
                                 <form-input v-model="cardHolderName"
                                             :errors="$page.errors.card_holder_name"
+                                            :disabled="sending"
                                             id="card-holder-name"
                                             label="Card Holder Name"/>
 
                                 <div class="pb-4 w-full">
                                     <label class="form-label" for="card-element">Card details</label>
-                                    <div id="card-element" class="form-input" style="width: 100%"></div>
+                                    <div id="card-element" class="form-input"></div>
                                 </div>
 
                                 <Button :data-secret="clientSecret" id="card-button" :loading="sending"
@@ -173,6 +174,20 @@
             cardElement.mount('#card-element');
 
             this.cardElement = cardElement;
+        },
+
+        watch: {
+            sending: function(value){
+                if(value){
+                    this.cardElement.update({
+                        disabled: true
+                    });
+                }else {
+                    this.cardElement.update({
+                        disabled: false
+                    });
+                }
+            }
         },
 
         methods: {

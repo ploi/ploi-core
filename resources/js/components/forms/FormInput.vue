@@ -13,11 +13,16 @@
         </button>
 
         <input :id="id"
-               :class="[defaultClasses]"
+               :class="[
+                   defaultClasses,
+                   disabled || loading ? 'opacity-50' : '',
+                   loading ? 'cursor-wait' : '',
+                   ]"
                :type="type"
                :required="required"
                :value="value"
                @input="updateValue($event.target.value)"
+               :disabled="loading || disabled"
                :placeholder="placeholder" />
         <ErrorText v-if="errors">{{ errors[0] }}</ErrorText>
         <HelperText v-if="helperText && !errors">{{ helperText }}</HelperText>
@@ -76,7 +81,17 @@ export default {
             required: false,
             default: false,
             type: Boolean
-        }
+        },
+        loading: {
+            type: Boolean,
+            required: false,
+            default: false,
+        },
+        disabled: {
+            type: Boolean,
+            required: false,
+            default: false,
+        },
     },
 
     components: {

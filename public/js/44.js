@@ -109,6 +109,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -205,6 +206,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var cardElement = elements.create('card');
     cardElement.mount('#card-element');
     this.cardElement = cardElement;
+  },
+  watch: {
+    sending: function sending(value) {
+      if (value) {
+        this.cardElement.update({
+          disabled: true
+        });
+      } else {
+        this.cardElement.update({
+          disabled: false
+        });
+      }
+    }
   },
   methods: {
     useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_28__["useNotification"],
@@ -487,6 +501,7 @@ var render = function() {
                         _c("form-input", {
                           attrs: {
                             errors: _vm.$page.errors.card_holder_name,
+                            disabled: _vm.sending,
                             id: "card-holder-name",
                             label: "Card Holder Name"
                           },
@@ -511,7 +526,6 @@ var render = function() {
                           _vm._v(" "),
                           _c("div", {
                             staticClass: "form-input",
-                            staticStyle: { width: "100%" },
                             attrs: { id: "card-element" }
                           })
                         ]),
