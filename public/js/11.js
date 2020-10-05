@@ -281,6 +281,10 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('Synchronize servers'),
         to: this.route('admin.services.servers.index'),
         active: this.route().current('admin.services.servers.index')
+      }, {
+        title: this.__('Synchronize providers'),
+        to: this.route('admin.services.providers.index'),
+        active: this.route().current('admin.services.providers.index')
       }]
     };
   }

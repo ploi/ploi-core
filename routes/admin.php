@@ -27,6 +27,7 @@ Route::group(['prefix' => 'documentation', 'as' => 'documentation.'], function (
 Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::get('/', 'ServiceController@index')->name('index');
 
+    // Server syncing
     Route::group(['prefix' => 'servers', 'as' => 'servers.'], function () {
         Route::get('/', 'SynchronizeServerController@index')->name('index');
         Route::post('/', 'SynchronizeServerController@synchronizeServer')->name('sync');
@@ -38,6 +39,13 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
         Route::delete('{server}/detach/{user}', 'ServerController@detach')->name('detach');
     });
 
+    // Provider syncing
+    Route::group(['prefix' => 'providers', 'as' => 'providers.'], function () {
+        Route::get('/', 'SynchronizeProviderController@index')->name('index');
+        Route::post('/', 'SynchronizeProviderController@synchronizeServer')->name('sync');
+    });
+
+    // Site syncing
     Route::group(['prefix' => 'sites', 'as' => 'sites.'], function () {
         Route::get('/', 'SynchronizeSiteController@index')->name('index');
 
