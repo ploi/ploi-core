@@ -71,8 +71,11 @@ class AppServiceProvider extends ServiceProvider
                         'theme' => Auth::user()->theme,
                     ] : null,
                     'package' => auth()->user() && auth()->user()->package ? [
+                        'name' => auth()->user()->package->name,
                         'maximum_sites' => auth()->user()->package->maximum_sites
-                    ] : null,
+                    ] : [
+                        'name' => __('None')
+                    ],
                     'can' => $can
                 ];
             },

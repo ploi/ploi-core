@@ -29,6 +29,7 @@
                                         </FormSelect>
 
                                         <FormSelect :label="__('Package')" v-model="form.package">
+                                            <option value="" v-text="__('None')"></option>
                                             <option v-for="(name, id) in packages" :value="id" v-text="name"></option>
                                         </FormSelect>
 

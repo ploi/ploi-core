@@ -83,6 +83,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -673,18 +674,29 @@ var render = function() {
                                                 expression: "form.package"
                                               }
                                             },
-                                            _vm._l(_vm.packages, function(
-                                              name,
-                                              id
-                                            ) {
-                                              return _c("option", {
+                                            [
+                                              _c("option", {
+                                                attrs: { value: "" },
                                                 domProps: {
-                                                  value: id,
-                                                  textContent: _vm._s(name)
+                                                  textContent: _vm._s(
+                                                    _vm.__("None")
+                                                  )
                                                 }
+                                              }),
+                                              _vm._v(" "),
+                                              _vm._l(_vm.packages, function(
+                                                name,
+                                                id
+                                              ) {
+                                                return _c("option", {
+                                                  domProps: {
+                                                    value: id,
+                                                    textContent: _vm._s(name)
+                                                  }
+                                                })
                                               })
-                                            }),
-                                            0
+                                            ],
+                                            2
                                           ),
                                           _vm._v(" "),
                                           _c(

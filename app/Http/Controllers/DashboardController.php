@@ -8,8 +8,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $package = auth()->user()->package;
-
         $logs = auth()->user()->systemLogs()
             ->with('model')
             ->latest()
@@ -31,9 +29,6 @@ class DashboardController extends Controller
         return inertia('Dashboard/Index', [
             'sites' => auth()->user()->sites()->count(),
             'servers' => auth()->user()->servers()->count(),
-            'package' => [
-                'name' => $package->name ?? 'None'
-            ],
             'logs' => $logs,
         ]);
     }

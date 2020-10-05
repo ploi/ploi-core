@@ -35,7 +35,7 @@ module.exports = {
         },
 
         can(subject, permission) {
-            return this.$page.auth.can[subject][permission];
+            return this.$page.auth.can[subject] ? this.$page.auth.can[subject][permission] : false;
         }
     }
 };

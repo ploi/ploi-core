@@ -347,7 +347,7 @@ var render = function() {
                               _c(
                                 "h3",
                                 { staticClass: "font-semibold text-body" },
-                                [_vm._v(_vm._s(_vm.package.name))]
+                                [_vm._v(_vm._s(_vm.$page.auth.package.name))]
                               ),
                               _vm._v(" "),
                               _c(
