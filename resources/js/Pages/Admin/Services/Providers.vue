@@ -24,12 +24,14 @@
                                         <TableHead>
                                             <TableRow>
                                                 <TableHeader>{{ __('Name') }}</TableHeader>
+                                                <TableHeader>{{ __('Label') }}</TableHeader>
                                                 <TableHeader></TableHeader>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
                                             <TableRow v-for="availableProvider in availableProviders" :key="availableProvider.id">
                                                 <TableData>{{ availableProvider.name }}</TableData>
+                                                <TableData>{{ availableProvider.label }}</TableData>
                                                 <TableData class="text-right">
                                                     <Button size="sm" v-on:click="syncProvider(availableProvider)">
                                                         {{ __('Synchronize') }}
