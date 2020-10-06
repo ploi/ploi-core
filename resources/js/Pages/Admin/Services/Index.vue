@@ -87,6 +87,30 @@
                                     <pagination :links="sites"/>
                                 </template>
                             </SettingsSegment>
+
+                            <SettingsSegment>
+                                <template #title>{{ __('Providers') }}</template>
+                                <template #content>
+                                    <div>
+                                        <Table caption="Provider list overview">
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableHeader>{{ __('Name') }}</TableHeader>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                <TableRow v-for="provider in providers.data" :key="provider.id">
+                                                    <TableData>
+                                                        {{ provider.name }}
+                                                    </TableData>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                    </div>
+
+                                    <pagination :links="sites"/>
+                                </template>
+                            </SettingsSegment>
                         </template>
                     </SettingsLayout>
                 </PageBody>
@@ -158,6 +182,7 @@
         props: {
             servers: Object,
             sites: Object,
+            providers: Object,
         },
 
         mounted() {

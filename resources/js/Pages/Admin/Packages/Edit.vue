@@ -88,6 +88,15 @@
                                             </div>
                                         </div>
 
+                                        <div class="space-y-2">
+                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">{{ __('Available server providers') }}</h3>
+
+                                            <div v-for="(name, id) in providers">
+                                                <input :id="`provider-${id}`" :value="id" v-model="form.providers" class="form-checkbox" type="checkbox">
+                                                <label :for="`provider-${id}`" class="ml-2 text-sm">{{ name }}</label>
+                                            </div>
+                                        </div>
+
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                             <Button variant="danger" type="button" @click="confirmDelete">{{ __('Delete') }}</Button>
@@ -170,12 +179,15 @@
                     server_permissions: this.package.server_permissions ?? [],
                     site_permissions: this.package.site_permissions ?? [],
                     price_monthly: this.package.price_monthly,
+                    providers: this.syncedProviders ?? []
                 },
             }
         },
 
         props: {
             package: Object,
+            providers: Object,
+            syncedProviders: Array,
         },
 
         methods: {

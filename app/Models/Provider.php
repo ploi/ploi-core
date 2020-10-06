@@ -8,6 +8,17 @@ class Provider extends Model
 {
     protected $guarded = [];
 
+    public function getNameWithLabelAttribute()
+    {
+        $string = $this->name;
+
+        if ($this->label) {
+            $string .= ' (' . $this->label . ')';
+        }
+
+        return $string;
+    }
+
     public function plans()
     {
         return $this->hasMany(ProviderPlan::class);
@@ -16,5 +27,10 @@ class Provider extends Model
     public function regions()
     {
         return $this->hasMany(ProviderRegion::class);
+    }
+
+    public function packages()
+    {
+        return $this->belongsToMany(Package::class);
     }
 }

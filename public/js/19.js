@@ -136,6 +136,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -184,6 +193,9 @@ __webpack_require__.r(__webpack_exports__);
     FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_18__["default"],
     Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_19__["default"]
   },
+  props: {
+    providers: Object
+  },
   data: function data() {
     return {
       sending: false,
@@ -203,7 +215,8 @@ __webpack_require__.r(__webpack_exports__);
           update: false,
           "delete": false
         },
-        price_monthly: null
+        price_monthly: null,
+        providers: []
       }
     };
   },
@@ -1506,6 +1519,127 @@ var render = function() {
                                                 )
                                               ])
                                             ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "space-y-2" },
+                                            [
+                                              _c(
+                                                "h3",
+                                                {
+                                                  staticClass:
+                                                    "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "Available server providers"
+                                                      )
+                                                    )
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm._l(_vm.providers, function(
+                                                name,
+                                                id
+                                              ) {
+                                                return _c("div", [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm.form.providers,
+                                                        expression:
+                                                          "form.providers"
+                                                      }
+                                                    ],
+                                                    staticClass:
+                                                      "form-checkbox",
+                                                    attrs: {
+                                                      id: "provider-" + id,
+                                                      type: "checkbox"
+                                                    },
+                                                    domProps: {
+                                                      value: id,
+                                                      checked: Array.isArray(
+                                                        _vm.form.providers
+                                                      )
+                                                        ? _vm._i(
+                                                            _vm.form.providers,
+                                                            id
+                                                          ) > -1
+                                                        : _vm.form.providers
+                                                    },
+                                                    on: {
+                                                      change: function($event) {
+                                                        var $$a =
+                                                            _vm.form.providers,
+                                                          $$el = $event.target,
+                                                          $$c = $$el.checked
+                                                            ? true
+                                                            : false
+                                                        if (
+                                                          Array.isArray($$a)
+                                                        ) {
+                                                          var $$v = id,
+                                                            $$i = _vm._i(
+                                                              $$a,
+                                                              $$v
+                                                            )
+                                                          if ($$el.checked) {
+                                                            $$i < 0 &&
+                                                              _vm.$set(
+                                                                _vm.form,
+                                                                "providers",
+                                                                $$a.concat([
+                                                                  $$v
+                                                                ])
+                                                              )
+                                                          } else {
+                                                            $$i > -1 &&
+                                                              _vm.$set(
+                                                                _vm.form,
+                                                                "providers",
+                                                                $$a
+                                                                  .slice(0, $$i)
+                                                                  .concat(
+                                                                    $$a.slice(
+                                                                      $$i + 1
+                                                                    )
+                                                                  )
+                                                              )
+                                                          }
+                                                        } else {
+                                                          _vm.$set(
+                                                            _vm.form,
+                                                            "providers",
+                                                            $$c
+                                                          )
+                                                        }
+                                                      }
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass:
+                                                        "ml-2 text-sm",
+                                                      attrs: {
+                                                        for: "provider-" + id
+                                                      }
+                                                    },
+                                                    [_vm._v(_vm._s(name))]
+                                                  )
+                                                ])
+                                              })
+                                            ],
+                                            2
                                           ),
                                           _vm._v(" "),
                                           _c(

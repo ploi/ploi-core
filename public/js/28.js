@@ -130,6 +130,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -187,7 +211,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     servers: Object,
-    sites: Object
+    sites: Object,
+    providers: Object
   },
   mounted: function mounted() {},
   methods: {
@@ -750,6 +775,91 @@ var render = function() {
                                                     1
                                                   )
                                                 }),
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("pagination", {
+                                        attrs: { links: _vm.sites }
+                                      })
+                                    ]
+                                  },
+                                  proxy: true
+                                }
+                              ])
+                            }),
+                            _vm._v(" "),
+                            _c("SettingsSegment", {
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "title",
+                                  fn: function() {
+                                    return [_vm._v(_vm._s(_vm.__("Providers")))]
+                                  },
+                                  proxy: true
+                                },
+                                {
+                                  key: "content",
+                                  fn: function() {
+                                    return [
+                                      _c(
+                                        "div",
+                                        [
+                                          _c(
+                                            "Table",
+                                            {
+                                              attrs: {
+                                                caption:
+                                                  "Provider list overview"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "TableHead",
+                                                [
+                                                  _c(
+                                                    "TableRow",
+                                                    [
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(_vm.__("Name"))
+                                                        )
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "TableBody",
+                                                _vm._l(
+                                                  _vm.providers.data,
+                                                  function(provider) {
+                                                    return _c(
+                                                      "TableRow",
+                                                      { key: provider.id },
+                                                      [
+                                                        _c("TableData", [
+                                                          _vm._v(
+                                                            "\n                                                    " +
+                                                              _vm._s(
+                                                                provider.name
+                                                              ) +
+                                                              "\n                                                "
+                                                          )
+                                                        ])
+                                                      ],
+                                                      1
+                                                    )
+                                                  }
+                                                ),
                                                 1
                                               )
                                             ],
