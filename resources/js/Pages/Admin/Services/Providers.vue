@@ -118,12 +118,12 @@
             useNotification,
 
             syncProvider (provider){
-                window.axios.post(this.route('admin.services.providers.sync').url(), provider)
+                window.axios.post(this.route('admin.services.providers.sync', provider.id).url())
                 .then(() => {
                     useNotification({
                         variant: 'success',
-                        title: `Servers`,
-                        message: `Server ${provider.name} has been synchronized to this system`
+                        title: `Providers`,
+                        message: `Provider has been synchronized to this system`
                     })
                 });
             }

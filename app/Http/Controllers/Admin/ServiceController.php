@@ -14,7 +14,7 @@ class ServiceController extends Controller
         return inertia('Admin/Services/Index', [
             'servers' => Server::withCount('sites')->latest()->paginate(5, ['*'], 'servers_per_page'),
             'sites' => Site::with('server:id,name')->latest()->paginate(5, ['*'], 'sites_per_page'),
-            'providers' => Provider::latest()->paginate(5, ['*'], 'providers_per_page'),
+            'providers' => Provider::query()->withCount('regions', 'plans')->latest()->paginate(5, ['*'], 'providers_per_page'),
         ]);
     }
 }

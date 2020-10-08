@@ -96,13 +96,15 @@
                                             <TableHead>
                                                 <TableRow>
                                                     <TableHeader>{{ __('Name') }}</TableHeader>
+                                                    <TableHeader>{{ __('Regions') }}</TableHeader>
+                                                    <TableHeader>{{ __('Plans') }}</TableHeader>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
                                                 <TableRow v-for="provider in providers.data" :key="provider.id">
-                                                    <TableData>
-                                                        {{ provider.name }}
-                                                    </TableData>
+                                                    <TableData>{{ provider.name }}</TableData>
+                                                    <TableData>{{ provider.regions_count }}</TableData>
+                                                    <TableData>{{ provider.plans_count }}</TableData>
                                                 </TableRow>
                                             </TableBody>
                                         </Table>
