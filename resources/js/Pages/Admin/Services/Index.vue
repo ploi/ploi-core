@@ -98,6 +98,7 @@
                                                     <TableHeader>{{ __('Name') }}</TableHeader>
                                                     <TableHeader>{{ __('Regions') }}</TableHeader>
                                                     <TableHeader>{{ __('Plans') }}</TableHeader>
+                                                    <TableHeader></TableHeader>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
@@ -105,6 +106,11 @@
                                                     <TableData>{{ provider.name }}</TableData>
                                                     <TableData>{{ provider.regions_count }}</TableData>
                                                     <TableData>{{ provider.plans_count }}</TableData>
+                                                    <TableData>
+                                                        <inertia-link :href="route('admin.services.providers.edit', provider.id)" class="text-primary font-medium">
+                                                            {{ __('Edit') }}
+                                                        </inertia-link>
+                                                    </TableData>
                                                 </TableRow>
                                             </TableBody>
                                         </Table>

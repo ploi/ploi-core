@@ -156,6 +156,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -847,7 +853,9 @@ var render = function() {
                                                             _vm.__("Plans")
                                                           )
                                                         )
-                                                      ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableHeader")
                                                     ],
                                                     1
                                                   )
@@ -886,7 +894,38 @@ var render = function() {
                                                               provider.plans_count
                                                             )
                                                           )
-                                                        ])
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "TableData",
+                                                          [
+                                                            _c(
+                                                              "inertia-link",
+                                                              {
+                                                                staticClass:
+                                                                  "text-primary font-medium",
+                                                                attrs: {
+                                                                  href: _vm.route(
+                                                                    "admin.services.providers.edit",
+                                                                    provider.id
+                                                                  )
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\n                                                        " +
+                                                                    _vm._s(
+                                                                      _vm.__(
+                                                                        "Edit"
+                                                                      )
+                                                                    ) +
+                                                                    "\n                                                    "
+                                                                )
+                                                              ]
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
                                                       ],
                                                       1
                                                     )

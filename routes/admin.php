@@ -43,6 +43,9 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::group(['prefix' => 'providers', 'as' => 'providers.'], function () {
         Route::get('/', 'SynchronizeProviderController@index')->name('index');
         Route::post('{provider}', 'SynchronizeProviderController@synchronize')->name('sync');
+
+        Route::get('{provider}/edit', 'ProviderController@edit')->name('edit');
+        Route::patch('{provider}', 'ProviderController@update')->name('update');
     });
 
     // Site syncing
