@@ -109,6 +109,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -175,7 +180,8 @@ __webpack_require__.r(__webpack_exports__);
     DropdownListItemButton: _components_DropdownListItemButton__WEBPACK_IMPORTED_MODULE_27__["default"]
   },
   props: {
-    servers: Object
+    servers: Object,
+    dataProviders: Object
   },
   computed: {
     shouldBePolling: function shouldBePolling() {
@@ -199,6 +205,13 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.pollingInterval) {
         this.startPollingInterval();
       }
+    },
+    'form.provider': function formProvider(value) {
+      var _this = this;
+
+      window.axios.get(this.route('servers.regions', value)).then(function (response) {
+        _this.regions = response.data;
+      });
     }
   },
   data: function data() {
@@ -208,6 +221,8 @@ __webpack_require__.r(__webpack_exports__);
         provider: null,
         region: null
       },
+      providers: this.dataProviders,
+      regions: [],
       pollingInterval: null,
       modalIsOpen: false,
       breadcrumbs: [{
@@ -238,25 +253,26 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     submit: function submit() {
-      var _this = this;
+      var _this2 = this;
 
       this.$inertia.post(this.route('servers.store'), this.form, {
-        only: ['errors', 'flash', 'servers']
-      }).then(function (response) {
-        if (!Object.keys(_this.$page.errors).length) {
-          _this.form.domain = null;
-          _this.modalIsOpen = false;
+        only: ['errors', 'flash', 'servers'],
+        onFinish: function onFinish() {
+          if (!Object.keys(_this2.$page.errors).length) {
+            _this2.form.domain = null;
+            _this2.modalIsOpen = false;
+          }
         }
       });
     },
     confirmDelete: function confirmDelete(server) {
-      var _this2 = this;
+      var _this3 = this;
 
       Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_28__["useConfirmDelete"])({
         title: this.__('Are you sure?'),
         message: "Your server will be deleted completely, this action is irreversible.",
         onConfirm: function onConfirm() {
-          return _this2["delete"](server);
+          return _this3["delete"](server);
         }
       });
     },
@@ -487,7 +503,15 @@ var render = function() {
                                     "FormSelect",
                                     {
                                       attrs: {
+                                        errors: _vm.$page.errors.provider,
                                         label: _vm.__("Select provider")
+                                      },
+                                      model: {
+                                        value: _vm.form.provider,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "provider", $$v)
+                                        },
+                                        expression: "form.provider"
                                       }
                                     },
                                     [
@@ -501,14 +525,33 @@ var render = function() {
                                             )
                                           )
                                         ]
-                                      )
-                                    ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.providers, function(name, id) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: id } },
+                                          [_vm._v(_vm._s(name))]
+                                        )
+                                      })
+                                    ],
+                                    2
                                   ),
                                   _vm._v(" "),
                                   _c(
                                     "FormSelect",
                                     {
-                                      attrs: { label: _vm.__("Select region") }
+                                      attrs: {
+                                        errors: _vm.$page.errors.region,
+                                        label: _vm.__("Select region")
+                                      },
+                                      model: {
+                                        value: _vm.form.region,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "region", $$v)
+                                        },
+                                        expression: "form.region"
+                                      }
                                     },
                                     [
                                       _c(
@@ -521,8 +564,17 @@ var render = function() {
                                             )
                                           )
                                         ]
-                                      )
-                                    ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.regions, function(name, id) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: id } },
+                                          [_vm._v(_vm._s(name))]
+                                        )
+                                      })
+                                    ],
+                                    2
                                   )
                                 ]
                               },
@@ -544,7 +596,7 @@ var render = function() {
                           ],
                           null,
                           false,
-                          1527714898
+                          3699054859
                         )
                       })
                     : _vm._e()
@@ -722,7 +774,11 @@ var render = function() {
                                                             }
                                                           }
                                                         },
-                                                        [_vm._v("Delete")]
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                        Delete\n                                    "
+                                                          )
+                                                        ]
                                                       )
                                                     ],
                                                     1

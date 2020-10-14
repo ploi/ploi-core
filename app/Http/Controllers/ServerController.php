@@ -14,8 +14,11 @@ class ServerController extends Controller
     {
         $servers = auth()->user()->servers()->latest()->paginate();
 
+        $providers = auth()->user()->package->providers()->pluck('label', 'id');
+
         return inertia('Servers/Index', [
-            'servers' => ServerResource::collection($servers)
+            'servers' => ServerResource::collection($servers),
+            'dataProviders' => $providers
         ]);
     }
 
@@ -50,5 +53,12 @@ class ServerController extends Controller
         $server->delete();
 
         return redirect()->route('servers.index')->with('success', __('Your server is deleted'));
+    }
+
+    public function regions(Request $request, $providerId)
+    {
+        $provider = $request->user()->package->providers()->findOrFail($providerId);
+
+        return $provider->regions()->pluck('label', 'id');
     }
 }

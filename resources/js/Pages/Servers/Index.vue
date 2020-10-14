@@ -8,12 +8,15 @@
                     <template #form>
                         <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name"/>
 
-                        <FormSelect :label="__('Select provider')">
+                        <FormSelect :errors="$page.errors.provider" :label="__('Select provider')"
+                                    v-model="form.provider">
                             <option :value="`${null}`">{{ __('Select random provider') }}</option>
+                            <option v-for="(name, id) in providers" :value="id">{{ name }}</option>
                         </FormSelect>
 
-                        <FormSelect :label="__('Select region')">
+                        <FormSelect :errors="$page.errors.region" :label="__('Select region')" v-model="form.region">
                             <option :value="`${null}`">{{ __('Select random region') }}</option>
+                            <option v-for="(name, id) in regions" :value="id">{{ name }}</option>
                         </FormSelect>
                     </template>
 
@@ -38,7 +41,7 @@
                 </PageHeader>
 
                 <PageBody>
-                    <EmptyImage v-if="!servers.meta.total" />
+                    <EmptyImage v-if="!servers.meta.total"/>
                     <List>
                         <ListItem v-for="server in servers.data" :key="server.id">
                             <template #prefix>
@@ -52,12 +55,14 @@
                             <template #suffix>
                                 <Dropdown v-slot="{ isOpen, toggle, position }">
                                     <IconButton @click="toggle">
-                                        <IconMore class="w-5 h-5" />
+                                        <IconMore class="w-5 h-5"/>
                                     </IconButton>
 
                                     <DropdownList :position="position" v-if="isOpen">
                                         <DropdownListItem :to="route('servers.show', server.id)">View</DropdownListItem>
-                                        <DropdownListItemButton class="text-danger" @click="confirmDelete(server)">Delete</DropdownListItemButton>
+                                        <DropdownListItemButton class="text-danger" @click="confirmDelete(server)">
+                                            Delete
+                                        </DropdownListItemButton>
                                     </DropdownList>
                                 </Dropdown>
                             </template>
@@ -141,6 +146,7 @@ export default {
 
     props: {
         servers: Object,
+        dataProviders: Object,
     },
 
     computed: {
@@ -151,8 +157,8 @@ export default {
         }
     },
 
-    mounted(){
-        if(this.shouldBePolling){
+    mounted() {
+        if (this.shouldBePolling) {
             this.startPollingInterval();
         }
     },
@@ -165,9 +171,16 @@ export default {
                 return;
             }
 
-            if(!this.pollingInterval){
+            if (!this.pollingInterval) {
                 this.startPollingInterval();
             }
+        },
+
+        'form.provider': function(value) {
+            window.axios.get(this.route('servers.regions', value))
+                .then(response => {
+                    this.regions = response.data;
+                })
         }
     },
 
@@ -178,6 +191,9 @@ export default {
                 provider: null,
                 region: null,
             },
+
+            providers: this.dataProviders,
+            regions: [],
 
             pollingInterval: null,
 
@@ -196,13 +212,13 @@ export default {
     },
 
     methods: {
-        startPollingInterval(){
+        startPollingInterval() {
             this.pollingInterval = setInterval(function () {
                 this.poll();
             }.bind(this), 3000);
         },
 
-        clearPollingInterval(){
+        clearPollingInterval() {
             clearTimeout(this.pollingInterval);
             this.pollingInterval = null;
         },
@@ -216,14 +232,14 @@ export default {
 
         submit() {
             this.$inertia.post(this.route('servers.store'), this.form, {
-                only: ['errors', 'flash', 'servers']
-            })
-                .then((response) => {
+                only: ['errors', 'flash', 'servers'],
+                onFinish: () => {
                     if (!Object.keys(this.$page.errors).length) {
                         this.form.domain = null;
                         this.modalIsOpen = false;
                     }
-                });
+                }
+            });
         },
 
         confirmDelete(server) {
@@ -239,7 +255,7 @@ export default {
         }
     },
 
-    beforeDestroy(){
+    beforeDestroy() {
         this.clearPollingInterval();
     }
 }
