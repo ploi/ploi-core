@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServerRequest;
 use App\Jobs\Servers\DeleteServer;
 use App\Models\Server;
 use Illuminate\Http\Request;
@@ -18,11 +19,11 @@ class ServerController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ServerRequest $request)
     {
         abort_if(!$request->user()->can('create', Server::class), 403);
 
-        // TODO
+        dd('came through');
     }
 
     public function show($id)

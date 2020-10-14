@@ -1,12 +1,20 @@
 <template>
     <Page>
-        <Portal to="modals" v-if="$page.auth.can.server_creation">
+        <Portal to="modals" v-if="can('servers', 'create')">
             <ModalContainer>
                 <Modal @close="modalIsOpen = false" v-if="modalIsOpen" @submit="submit">
                     <template #title>{{ __('Create a server') }}</template>
 
                     <template #form>
                         <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name"/>
+
+                        <FormSelect :label="__('Select provider')">
+                            <option :value="`${null}`">{{ __('Select random provider') }}</option>
+                        </FormSelect>
+
+                        <FormSelect :label="__('Select region')">
+                            <option :value="`${null}`">{{ __('Select random region') }}</option>
+                        </FormSelect>
                     </template>
 
                     <template #form-actions>
@@ -24,7 +32,7 @@
                     <template #start>
                         <PageHeaderTitle>{{ __('Servers') }}</PageHeaderTitle>
                     </template>
-                    <template #end v-if="$page.auth.can.server_creation">
+                    <template #end v-if="can('servers', 'create')">
                         <Button @click="modalIsOpen = true">{{ __('Create server') }}</Button>
                     </template>
                 </PageHeader>
@@ -84,6 +92,7 @@ import EmptyImage from '@/components/EmptyImage'
 import Modal from '@/components/Modal'
 import ModalContainer from '@/components/ModalContainer'
 import FormInput from '@/components/forms/FormInput'
+import FormSelect from '@/components/forms/FormSelect'
 import FormActions from '@/components/FormActions'
 import Dropdown from '@/components/Dropdown'
 import DropdownList from '@/components/DropdownList'
@@ -123,6 +132,7 @@ export default {
         ModalContainer,
         FormInput,
         FormActions,
+        FormSelect,
         Dropdown,
         DropdownList,
         DropdownListItem,
@@ -164,7 +174,9 @@ export default {
     data() {
         return {
             form: {
-                name: null
+                name: null,
+                provider: null,
+                region: null,
             },
 
             pollingInterval: null,
