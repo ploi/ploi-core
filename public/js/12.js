@@ -426,6 +426,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -465,6 +469,16 @@ var defaultClasses = 'w-full border-medium-emphasis text-body h-10 max-w-lg px-2
     value: {
       required: false,
       "default": ''
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      "default": false
     }
   },
   components: {
@@ -1198,8 +1212,13 @@ var render = function() {
               expression: "value"
             }
           ],
-          class: _vm.defaultClasses,
+          class: [
+            _vm.defaultClasses,
+            _vm.disabled || _vm.loading ? "opacity-50" : "",
+            _vm.loading ? "cursor-wait" : ""
+          ],
           attrs: {
+            disabled: _vm.loading || _vm.disabled,
             id: _vm.id,
             required: _vm.required,
             placeholder: _vm.placeholder

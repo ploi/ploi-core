@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ServerRequest;
+use App\Jobs\Servers\CreateServer;
 use App\Jobs\Servers\DeleteServer;
 use App\Models\Server;
 use Illuminate\Http\Request;
@@ -26,7 +27,23 @@ class ServerController extends Controller
     {
         abort_if(!$request->user()->can('create', Server::class), 403);
 
-        dd('came through');
+        $provider = $request->user()->package->providers()->findOrFail($request->input('provider'));
+        $region = $provider->regions()->findOrFail($request->input('region'));
+        $plan = $provider->plans()->findOrFail($request->input('plan'));
+
+        /* @var $server \App\Models\Server */
+        $server = $request->user()->servers()->create([
+            'name' => $request->input('name')
+        ]);
+
+        $server->provider()->associate($provider);
+        $server->providerRegion()->associate($region);
+        $server->providerPlan()->associate($plan);
+        $server->save();
+
+        dispatch(new CreateServer($server));
+
+        return redirect()->route('servers.index');
     }
 
     public function show($id)
@@ -55,10 +72,13 @@ class ServerController extends Controller
         return redirect()->route('servers.index')->with('success', __('Your server is deleted'));
     }
 
-    public function regions(Request $request, $providerId)
+    public function plansAndRegions(Request $request, $providerId)
     {
         $provider = $request->user()->package->providers()->findOrFail($providerId);
 
-        return $provider->regions()->pluck('label', 'id');
+        return [
+            'regions' => $provider->regions()->pluck('label', 'id'),
+            'plans' => $provider->plans()->pluck('label', 'id'),
+        ];
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Services\Ploi\Resources;
 
+use App\Services\Ploi\Exceptions\Http\NotValid;
 use App\Services\Ploi\Ploi;
 use Services\Ploi\Exceptions\Resource\RequiresId;
+use stdClass;
 
 class Server extends Resource
 {
@@ -55,6 +57,48 @@ class Server extends Resource
         $this->setEndpoint($this->endpoint . '/' . $this->getId() . '/logs');
 
         return $this->getPloi()->makeAPICall($this->getEndpoint());
+    }
+
+    public function create(
+        string $name,
+        int $provider,
+        int $region,
+        int $plan
+    ): stdClass {
+
+        // Remove the id
+        $this->setId(null);
+
+        // Set the options
+        $options = [
+            'body' => json_encode([
+                'name' => $name,
+                'plan' => $plan,
+                'region' => $region,
+                'credential' => $provider,
+                'type' => 'server',
+                'database_type' => 'mysql',
+                'webserver_type' => 'nginx',
+                'php_version' => '7.4'
+            ]),
+        ];
+
+        // Make the request
+        try {
+            $response = $this->getPloi()->makeAPICall($this->getEndpoint(), 'post', $options);
+        } catch (NotValid $exception) {
+            $errors = json_decode($exception->getMessage())->errors;
+
+            dd($errors);
+
+            throw $exception;
+        }
+
+        // Set the id of the site
+        $this->setId($response->getJson()->data->id);
+
+        // Return the data
+        return $response->getData();
     }
 
     public function sites($id = null): Site

@@ -41,6 +41,21 @@ class Server extends Model
         return $this->morphMany(SystemLog::class, 'model');
     }
 
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
+    }
+
+    public function providerRegion()
+    {
+        return $this->belongsTo(ProviderRegion::class);
+    }
+
+    public function providerPlan()
+    {
+        return $this->belongsTo(ProviderPlan::class);
+    }
+
     public static function booted()
     {
         static::deleting(function (self $server) {

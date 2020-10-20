@@ -40,6 +40,11 @@ class ServerRequest extends FormRequest
                 'required',
                 'not_in:0',
                 'exists:provider_regions,id'
+            ],
+            'plan' => [
+                'required',
+                'not_in:0',
+                'exists:provider_plans,id'
             ]
         ];
     }

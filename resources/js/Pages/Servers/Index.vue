@@ -6,17 +6,22 @@
                     <template #title>{{ __('Create a server') }}</template>
 
                     <template #form>
-                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name"/>
+                        <FormInput :loading="loading" :label="__('Name')" placeholder="webserver-01" :errors="$page.errors.name" v-model="form.name"/>
 
-                        <FormSelect :errors="$page.errors.provider" :label="__('Select provider')"
+                        <FormSelect :loading="loading" :errors="$page.errors.provider" :label="__('Select provider')"
                                     v-model="form.provider">
                             <option :value="`${null}`">{{ __('Select random provider') }}</option>
                             <option v-for="(name, id) in providers" :value="id">{{ name }}</option>
                         </FormSelect>
 
-                        <FormSelect :errors="$page.errors.region" :label="__('Select region')" v-model="form.region">
+                        <FormSelect :loading="loading" :errors="$page.errors.region" :label="__('Select region')" v-model="form.region">
                             <option :value="`${null}`">{{ __('Select random region') }}</option>
                             <option v-for="(name, id) in regions" :value="id">{{ name }}</option>
+                        </FormSelect>
+
+                        <FormSelect :loading="loading" :errors="$page.errors.plan" :label="__('Select plan')" v-model="form.plan">
+                            <option :value="`${null}`">{{ __('Select random plan') }}</option>
+                            <option v-for="(name, id) in plans" :value="id">{{ name }}</option>
                         </FormSelect>
                     </template>
 
@@ -177,23 +182,34 @@ export default {
         },
 
         'form.provider': function(value) {
-            window.axios.get(this.route('servers.regions', value))
+            this.loading = true;
+
+            window.axios.get(this.route('servers.plans-and-regions', value))
                 .then(response => {
-                    this.regions = response.data;
+                    this.loading = false;
+                    this.regions = response.data.regions;
+                    this.plans = response.data.plans;
+                })
+                .catch(error => {
+                    this.loading = false;
                 })
         }
     },
 
     data() {
         return {
+            loading: false,
+
             form: {
                 name: null,
                 provider: null,
                 region: null,
+                plan: null,
             },
 
             providers: this.dataProviders,
             regions: [],
+            plans: [],
 
             pollingInterval: null,
 
@@ -215,7 +231,7 @@ export default {
         startPollingInterval() {
             this.pollingInterval = setInterval(function () {
                 this.poll();
-            }.bind(this), 3000);
+            }.bind(this), 120000);
         },
 
         clearPollingInterval() {
@@ -233,7 +249,10 @@ export default {
         submit() {
             this.$inertia.post(this.route('servers.store'), this.form, {
                 only: ['errors', 'flash', 'servers'],
+                onStart: () => this.loading = true,
                 onFinish: () => {
+                    this.loading = false;
+
                     if (!Object.keys(this.$page.errors).length) {
                         this.form.domain = null;
                         this.modalIsOpen = false;
