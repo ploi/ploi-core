@@ -4,7 +4,7 @@
             <form class="space-y-4" @submit.prevent="submit">
                 <h1 class="font-semibold text-center text-title">{{ __('Reset password') }}</h1>
 
-                <FormInput :label="__('Email')" :errors="$page.errors.email" v-model="form.email" id="email" type="email" required />
+                <FormInput :label="__('Email')" :errors="$page.props.errors.email" v-model="form.email" id="email" type="email" required />
 
                 <Button variant="primary" :disabled="sending" block>{{ __('Reset') }}</Button>
 
@@ -62,13 +62,13 @@
                 }).then(() => {
                     this.sending = false
 
-                    if (!Object.keys(this.$page.errors).length) {
+                    if (!Object.keys(this.$page.props.errors).length) {
                         this.form.email = null;
 
                         useNotification({
                             variant: 'success',
                             title: this.__('Reset password'),
-                            message: this.$page.flash.success,
+                            message: this.$page.props.flash.success,
                         })
                     }
                 })

@@ -120,6 +120,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -215,6 +221,13 @@ __webpack_require__.r(__webpack_exports__);
     'form.provider': function formProvider(value) {
       var _this = this;
 
+      // Reset values if null
+      if (!value) {
+        this.regions = [];
+        this.plans = [];
+        return;
+      }
+
       this.loading = true;
       window.axios.get(this.route('servers.plans-and-regions', value)).then(function (response) {
         _this.loading = false;
@@ -240,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
       pollingInterval: null,
       modalIsOpen: false,
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Servers'),
@@ -259,9 +272,7 @@ __webpack_require__.r(__webpack_exports__);
       this.pollingInterval = null;
     },
     poll: function poll() {
-      this.$inertia.replace(this.route('servers.index', {
-        'polling': true
-      }), {
+      this.$inertia.replace(this.route('servers.index'), {
         only: ['servers'],
         preserveScroll: true
       });
@@ -274,13 +285,20 @@ __webpack_require__.r(__webpack_exports__);
         onStart: function onStart() {
           return _this2.loading = true;
         },
-        onFinish: function onFinish() {
-          _this2.loading = false;
-
-          if (!Object.keys(_this2.$page.errors).length) {
+        onSuccess: function onSuccess() {
+          if (!Object.keys(_this2.$page.props.errors).length) {
             _this2.form.domain = null;
             _this2.modalIsOpen = false;
+            _this2.form = {
+              name: null,
+              provider: null,
+              region: null,
+              plan: null
+            };
           }
+        },
+        onFinish: function onFinish() {
+          return _this2.loading = false;
         }
       });
     },
@@ -523,7 +541,7 @@ var render = function() {
                                       loading: _vm.loading,
                                       label: _vm.__("Name"),
                                       placeholder: "webserver-01",
-                                      errors: _vm.$page.errors.name
+                                      errors: _vm.$page.props.errors.name
                                     },
                                     model: {
                                       value: _vm.form.name,
@@ -539,7 +557,7 @@ var render = function() {
                                     {
                                       attrs: {
                                         loading: _vm.loading,
-                                        errors: _vm.$page.errors.provider,
+                                        errors: _vm.$page.props.errors.provider,
                                         label: _vm.__("Select provider")
                                       },
                                       model: {
@@ -579,7 +597,7 @@ var render = function() {
                                     {
                                       attrs: {
                                         loading: _vm.loading,
-                                        errors: _vm.$page.errors.region,
+                                        errors: _vm.$page.props.errors.region,
                                         label: _vm.__("Select region")
                                       },
                                       model: {
@@ -619,7 +637,7 @@ var render = function() {
                                     {
                                       attrs: {
                                         loading: _vm.loading,
-                                        errors: _vm.$page.errors.plan,
+                                        errors: _vm.$page.props.errors.plan,
                                         label: _vm.__("Select plan")
                                       },
                                       model: {
@@ -671,7 +689,7 @@ var render = function() {
                           ],
                           null,
                           false,
-                          472514821
+                          2259390341
                         )
                       })
                     : _vm._e()
@@ -796,7 +814,7 @@ var render = function() {
                                     ? _c("span", [_vm._v("·")])
                                     : _vm._e(),
                                   _vm._v(
-                                    " " +
+                                    "\n                            " +
                                       _vm._s(server.sites_count) +
                                       " " +
                                       _vm._s(
@@ -804,7 +822,8 @@ var render = function() {
                                           "site|sites",
                                           server.sites_count
                                         )
-                                      )
+                                      ) +
+                                      "\n                        "
                                   )
                                 ]
                               },

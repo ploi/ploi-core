@@ -23,9 +23,9 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name"/>
-                                        <FormInput :label="__('User')" :errors="$page.errors.user_name" v-model="form.user_name"/>
-                                        <FormInput :label="__('Password')" :errors="$page.errors.password" v-model="form.password"/>
+                                        <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name"/>
+                                        <FormInput :label="__('User')" :errors="$page.props.errors.user_name" v-model="form.user_name"/>
+                                        <FormInput :label="__('Password')" :errors="$page.props.errors.password" v-model="form.password"/>
 
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
@@ -154,7 +154,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -232,7 +232,7 @@
                     .then(() => {
                         this.sending = false
 
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.form.name = null;
                             this.form.user_name = null;
                             this.form.password = null;

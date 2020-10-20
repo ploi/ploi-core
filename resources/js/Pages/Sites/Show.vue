@@ -8,7 +8,7 @@
                     <template #form>
                         <FormInput type="password" :label="__('Enter your account password to reveal FTP password')"
                                    v-model="form.password"
-                                   :errors="$page.errors.password"/>
+                                   :errors="$page.props.errors.password"/>
                     </template>
 
                     <template #form-actions>
@@ -44,7 +44,7 @@
                                                 <TableRow>
                                                     <TableHeader>{{ __('Website path') }}</TableHeader>
                                                     <TableData :border="false">
-                                                        /home/{{ $page.auth.user.user_name }}/{{ site.domain }}
+                                                        /home/{{ $page.props.auth.user.user_name }}/{{ site.domain }}
                                                     </TableData>
                                                 </TableRow>
                                                 <TableRow>
@@ -56,7 +56,7 @@
                                                 <TableRow>
                                                     <TableHeader>{{ __('FTP user') }}</TableHeader>
                                                     <TableData :border="false">
-                                                        <copy :label="`${$page.auth.user.user_name}`" :value="$page.auth.user.user_name" />
+                                                        <copy :label="`${$page.props.auth.user.user_name}`" :value="$page.props.auth.user.user_name" />
                                                     </TableData>
                                                 </TableRow>
                                                 <TableRow>
@@ -91,20 +91,20 @@
                                     <form class="space-y-4">
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-2 md:col-span-1">
-                                                <FormInput label="A" :errors="$page.errors.domain"
+                                                <FormInput label="A" :errors="$page.props.errors.domain"
                                                            :value="site.domain"/>
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
-                                                <FormInput label="IP" allow-copy :errors="$page.errors.domain"
+                                                <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
                                                            :value="ip_address"/>
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-2 md:col-span-1">
-                                                <FormInput label="A" :errors="$page.errors.domain" :value="`www`"/>
+                                                <FormInput label="A" :errors="$page.props.errors.domain" :value="`www`"/>
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
-                                                <FormInput label="IP" allow-copy :errors="$page.errors.domain"
+                                                <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
                                                            :value="ip_address"/>
                                             </div>
                                         </div>
@@ -203,7 +203,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -235,11 +235,11 @@
             closeModal() {
                 this.form.password = null;
                 this.modalIsOpen = false;
-                this.$page.errors = [];
+                this.$page.props.errors = [];
             },
 
             requestFtpPassword() {
-                this.$page.errors = [];
+                this.$page.props.errors = [];
 
                 window.axios.post(this.route('profile.request-ftp-password').url(), this.form)
                     .then(response => {
@@ -259,7 +259,7 @@
                         this.ftp_password = response.data.ftp_password;
                     })
                 .catch(errors => {
-                    this.$page.errors = errors.response.data.errors;
+                    this.$page.props.errors = errors.response.data.errors;
                 })
             }
         }

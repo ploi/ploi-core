@@ -205,11 +205,14 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      this.sending = true;
       this.$inertia.patch(this.route('admin.settings.update'), this.form, {
-        preserveScroll: true
-      }).then(function () {
-        _this.sending = false;
+        preserveScroll: true,
+        onStart: function onStart() {
+          return _this.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this.sending = false;
+        }
       });
     }
   }
@@ -315,11 +318,11 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('Packages'),
         to: this.route('admin.packages.index'),
         active: this.route().current('admin.packages.*')
-      }, this.$page.settings.support ? {
-        title: "".concat(this.__('Support'), " (").concat(this.$page.openTickets, ")"),
+      }, this.$page.props.settings.support ? {
+        title: "".concat(this.__('Support'), " (").concat(this.$page.props.openTickets, ")"),
         to: this.route('admin.support.index'),
         active: this.route().current('admin.support.*')
-      } : null, this.$page.settings.documentation ? {
+      } : null, this.$page.props.settings.documentation ? {
         title: this.__('Documentation'),
         to: this.route('admin.documentation.index'),
         active: this.route().current('admin.documentation.*')
@@ -334,7 +337,7 @@ __webpack_require__.r(__webpack_exports__);
       // }
       ],
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Administration'),
@@ -610,7 +613,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("Company name"),
-                                              errors: _vm.$page.errors.name
+                                              errors:
+                                                _vm.$page.props.errors.name
                                             },
                                             model: {
                                               value: _vm.form.name,
@@ -624,7 +628,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("E-mail address"),
-                                              errors: _vm.$page.errors.email
+                                              errors:
+                                                _vm.$page.props.errors.email
                                             },
                                             model: {
                                               value: _vm.form.email,
@@ -644,7 +649,8 @@ var render = function() {
                                                 "Support email addresses"
                                               ),
                                               errors:
-                                                _vm.$page.errors.support_emails
+                                                _vm.$page.props.errors
+                                                  .support_emails
                                             },
                                             model: {
                                               value: _vm.form.support_emails,
@@ -1230,7 +1236,8 @@ var render = function() {
                                                   "allow-random-string": "",
                                                   label: _vm.__("API token"),
                                                   errors:
-                                                    _vm.$page.errors.api_token
+                                                    _vm.$page.props.errors
+                                                      .api_token
                                                 },
                                                 model: {
                                                   value: _vm.form.api_token,

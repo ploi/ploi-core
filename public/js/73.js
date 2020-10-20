@@ -115,13 +115,13 @@ var render = function() {
           },
           [
             _c("h1", { staticClass: "font-semibold text-center text-title" }, [
-              _vm._v("Login to " + _vm._s(_vm.$page.settings.name))
+              _vm._v("Login to " + _vm._s(_vm.$page.props.settings.name))
             ]),
             _vm._v(" "),
             _c("FormInput", {
               attrs: {
                 label: _vm.__("Email"),
-                errors: _vm.$page.errors.email,
+                errors: _vm.$page.props.errors.email,
                 id: "email",
                 type: "email",
                 required: ""
@@ -173,7 +173,7 @@ var render = function() {
               [_vm._v(_vm._s(_vm.__("Reset password")))]
             ),
             _vm._v(" "),
-            _vm.$page.settings.allow_registration
+            _vm.$page.props.settings.allow_registration
               ? _c("TextDivider", [_vm._v(_vm._s(_vm.__("Or")))])
               : _vm._e(),
             _vm._v(" "),
@@ -181,7 +181,7 @@ var render = function() {
               "div",
               { staticClass: "space-y-3" },
               [
-                _vm.$page.settings.allow_registration
+                _vm.$page.props.settings.allow_registration
                   ? _c(
                       "Button",
                       {

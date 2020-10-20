@@ -23,11 +23,11 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
-                                        <FormInput :label="__('Maximum sites')" type="number" min="0" :errors="$page.errors.maximum_sites" v-model="form.maximum_sites" />
-                                        <FormInput :label="__('Maximum servers')" type="number" min="0" :errors="$page.errors.maximum_servers" v-model="form.maximum_servers" />
-                                        <FormInput :label="__('Plan ID')" :errors="$page.errors.plan_id" v-model="form.plan_id" />
-                                        <FormInput v-if="form.plan_id" :label="__('Monthly price')" :errors="$page.errors.price_monthly" v-model="form.price_monthly" />
+                                        <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
+                                        <FormInput :label="__('Maximum sites')" type="number" min="0" :errors="$page.props.errors.maximum_sites" v-model="form.maximum_sites" />
+                                        <FormInput :label="__('Maximum servers')" type="number" min="0" :errors="$page.props.errors.maximum_servers" v-model="form.maximum_servers" />
+                                        <FormInput :label="__('Plan ID')" :errors="$page.props.errors.plan_id" v-model="form.plan_id" />
+                                        <FormInput v-if="form.plan_id" :label="__('Monthly price')" :errors="$page.props.errors.price_monthly" v-model="form.price_monthly" />
                                         <FormSelect v-if="form.plan_id" :label="__('Currency')" v-model="form.currency">
                                             <option value="usd">{{ __('USD $') }}</option>
                                             <option value="eur">{{ __('Euro €') }}</option>

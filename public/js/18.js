@@ -364,11 +364,11 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('Packages'),
         to: this.route('admin.packages.index'),
         active: this.route().current('admin.packages.*')
-      }, this.$page.settings.support ? {
-        title: "".concat(this.__('Support'), " (").concat(this.$page.openTickets, ")"),
+      }, this.$page.props.settings.support ? {
+        title: "".concat(this.__('Support'), " (").concat(this.$page.props.openTickets, ")"),
         to: this.route('admin.support.index'),
         active: this.route().current('admin.support.*')
-      } : null, this.$page.settings.documentation ? {
+      } : null, this.$page.props.settings.documentation ? {
         title: this.__('Documentation'),
         to: this.route('admin.documentation.index'),
         active: this.route().current('admin.documentation.*')
@@ -383,7 +383,7 @@ __webpack_require__.r(__webpack_exports__);
       // }
       ],
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Administration'),
@@ -642,7 +642,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("Name"),
-                                              errors: _vm.$page.errors.name
+                                              errors:
+                                                _vm.$page.props.errors.name
                                             },
                                             model: {
                                               value: _vm.form.name,
@@ -659,7 +660,8 @@ var render = function() {
                                               type: "number",
                                               min: "0",
                                               errors:
-                                                _vm.$page.errors.maximum_sites
+                                                _vm.$page.props.errors
+                                                  .maximum_sites
                                             },
                                             model: {
                                               value: _vm.form.maximum_sites,
@@ -680,7 +682,8 @@ var render = function() {
                                               type: "number",
                                               min: "0",
                                               errors:
-                                                _vm.$page.errors.maximum_servers
+                                                _vm.$page.props.errors
+                                                  .maximum_servers
                                             },
                                             model: {
                                               value: _vm.form.maximum_servers,
@@ -698,7 +701,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("Plan ID"),
-                                              errors: _vm.$page.errors.plan_id
+                                              errors:
+                                                _vm.$page.props.errors.plan_id
                                             },
                                             model: {
                                               value: _vm.form.plan_id,
@@ -720,7 +724,7 @@ var render = function() {
                                                     "Monthly price"
                                                   ),
                                                   errors:
-                                                    _vm.$page.errors
+                                                    _vm.$page.props.errors
                                                       .price_monthly
                                                 },
                                                 model: {

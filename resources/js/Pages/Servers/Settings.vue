@@ -20,7 +20,7 @@
                                 <template #title>{{ __('Overview') }}</template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Name')" :errors="$page.errors.name"
+                                        <FormInput :label="__('Name')" :errors="$page.props.errors.name"
                                                    v-model="form.name"/>
 
                                         <FormActions>
@@ -144,7 +144,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {

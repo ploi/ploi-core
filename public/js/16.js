@@ -228,12 +228,12 @@ __webpack_require__.r(__webpack_exports__);
     return {
       sending: false,
       form: {
-        command: "php /home/".concat(this.$page.auth.user.user_name, "/").concat(this.site.domain, "/script.php"),
+        command: "php /home/".concat(this.$page.props.auth.user.user_name, "/").concat(this.site.domain, "/script.php"),
         interval: 'minutely',
         frequency: '* * * * *'
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Sites'),
@@ -314,9 +314,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post(this.route('sites.cronjobs.store', this.site.id), this.form).then(function () {
         _this.sending = false;
 
-        if (!Object.keys(_this.$page.errors).length) {
+        if (!Object.keys(_this.$page.props.errors).length) {
           _this.form = {
-            command: "php /home/".concat(_this.$page.auth.user.user_name, "/domain.com/script.php"),
+            command: "php /home/".concat(_this.$page.props.auth.user.user_name, "/domain.com/script.php"),
             interval: 'minutely',
             frequency: '* * * * *'
           };
@@ -673,7 +673,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("Command"),
-                                              errors: _vm.$page.errors.command
+                                              errors:
+                                                _vm.$page.props.errors.command
                                             },
                                             model: {
                                               value: _vm.form.command,
@@ -1041,7 +1042,8 @@ var render = function() {
                                                   "helper-text":
                                                     "min | hour | day/month | month | day/week",
                                                   errors:
-                                                    _vm.$page.errors.frequency,
+                                                    _vm.$page.props.errors
+                                                      .frequency,
                                                   label: _vm.__(
                                                     "Custom frequency"
                                                   )

@@ -3,12 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Setting;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\UrlWindow;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -32,83 +29,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         if (!$this->app->request->is('api*')) {
-            $this->registerInertia();
             $this->registerLengthAwarePaginator();
         }
-    }
-
-    public function registerInertia()
-    {
-        inertia()->version(function () {
-            return md5_file(public_path('mix-manifest.json'));
-        });
-
-        inertia()->share([
-            'auth' => function () {
-                $package = auth()->user()->package ?? [];
-
-                $can = $package ? [
-                    'servers' => [
-                        'create' => Arr::get($package->server_permissions, 'create', false),
-                        'update' => Arr::get($package->server_permissions, 'update', false),
-                        'delete' => Arr::get($package->server_permissions, 'delete', false),
-                    ],
-                    'sites' => [
-                        'create' => Arr::get($package->site_permissions, 'create', false),
-                        'update' => Arr::get($package->site_permissions, 'update', false),
-                        'delete' => Arr::get($package->site_permissions, 'delete', false),
-                    ]
-                ] : [];
-
-                return [
-                    'user' => Auth::user() ? [
-                        'id' => Auth::user()->id,
-                        'name' => Auth::user()->name,
-                        'email' => Auth::user()->email,
-                        'role' => Auth::user()->role,
-                        'user_name' => Auth::user()->user_name,
-                        'avatar' => Auth::user()->getGravatar(),
-                        'theme' => Auth::user()->theme,
-                    ] : null,
-                    'package' => auth()->user() && auth()->user()->package ? [
-                        'name' => auth()->user()->package->name,
-                        'maximum_sites' => auth()->user()->package->maximum_sites
-                    ] : [
-                        'name' => __('None')
-                    ],
-                    'can' => $can
-                ];
-            },
-
-            'settings' => function () {
-                return [
-                    'demo' => config('app.demo'),
-                    'name' => setting('name', 'Company'),
-                    'support' => setting('support', false),
-                    'documentation' => setting('documentation', false),
-                    'logo' => setting('logo'),
-                    'allow_registration' => setting('allow_registration'),
-                    'billing' => config('cashier.key') && config('cashier.secret')
-                ];
-            },
-            'flash' => function () {
-                return [
-                    'success' => Session::get('success'),
-                    'error' => Session::get('error'),
-                    'info' => Session::get('info'),
-                ];
-            },
-            'errors' => function () {
-                return Session::get('errors')
-                    ? Session::get('errors')->getBag('default')->getMessages()
-                    : (object)[];
-            },
-            'errors_count' => function () {
-                return Session::get('errors')
-                    ? count(Session::get('errors')->getBag('default')->getMessages())
-                    : 0;
-            },
-        ]);
     }
 
     protected function registerLengthAwarePaginator()

@@ -20,9 +20,9 @@
                                 <template #title>{{ __('Edit') }}</template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
-                                        <FormInput :label="__('IP address')" :errors="$page.errors.ip" v-model="form.ip" />
-                                        <FormInput :label="__('Maximum sites')" :errors="$page.errors.maximum_sites" v-model="form.maximum_sites" />
+                                        <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
+                                        <FormInput :label="__('IP address')" :errors="$page.props.errors.ip" v-model="form.ip" />
+                                        <FormInput :label="__('Maximum sites')" :errors="$page.props.errors.maximum_sites" v-model="form.maximum_sites" />
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                             <Button variant="danger" type="button" @click="confirmDelete">{{ __('Delete') }}</Button>
@@ -35,7 +35,7 @@
                                 <template #title>{{ __('Attached users') }}</template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="attach">
-                                        <FormInput :label="__('Email')" :errors="$page.errors.email" v-model="formAttach.email"/>
+                                        <FormInput :label="__('Email')" :errors="$page.props.errors.email" v-model="formAttach.email"/>
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                         </FormActions>
@@ -188,7 +188,7 @@
                     .then(() => {
                         this.sending = false
 
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.formAttach.email = null;
                         }
                     })

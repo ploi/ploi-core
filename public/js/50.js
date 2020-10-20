@@ -220,7 +220,7 @@ __webpack_require__.r(__webpack_exports__);
       pollingInterval: null,
       modalIsOpen: false,
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Sites'),
@@ -247,7 +247,7 @@ __webpack_require__.r(__webpack_exports__);
     closeModal: function closeModal() {
       this.modalIsOpen = false;
       this.form.domain = null;
-      this.$page.errors = [];
+      this.$page.props.errors = [];
     },
     submit: function submit() {
       var _this = this;
@@ -255,7 +255,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post(this.route('sites.store'), this.form, {
         only: ['errors', 'flash', 'sites']
       }).then(function (response) {
-        if (!Object.keys(_this.$page.errors).length) {
+        if (!Object.keys(_this.$page.props.errors).length) {
           _this.form.domain = null;
           _this.modalIsOpen = false;
         }
@@ -490,7 +490,7 @@ var render = function() {
                                   _c("FormInput", {
                                     attrs: {
                                       label: _vm.__("Domain"),
-                                      errors: _vm.$page.errors.domain
+                                      errors: _vm.$page.props.errors.domain
                                     },
                                     model: {
                                       value: _vm.form.domain,
@@ -568,7 +568,7 @@ var render = function() {
                           ],
                           null,
                           false,
-                          2867371548
+                          3563348956
                         )
                       })
                     : _vm._e()

@@ -117,7 +117,7 @@ __webpack_require__.r(__webpack_exports__);
         language: this.profile.language
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Profile'),
@@ -193,7 +193,7 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('Settings'),
         to: this.route('profile.settings.index'),
         active: this.route().current('profile.settings.index')
-      }, this.$page.settings.billing ? {
+      }, this.$page.props.settings.billing ? {
         title: this.__('Billing'),
         to: this.route('profile.billing.index'),
         active: this.route().current('profile.billing.index')
@@ -348,7 +348,7 @@ var render = function() {
                     _c("FormInput", {
                       attrs: {
                         label: _vm.__("Name"),
-                        errors: _vm.$page.errors.name
+                        errors: _vm.$page.props.errors.name
                       },
                       model: {
                         value: _vm.form.name,
@@ -363,7 +363,7 @@ var render = function() {
                       attrs: {
                         label: _vm.__("Email"),
                         type: "email",
-                        errors: _vm.$page.errors.email
+                        errors: _vm.$page.props.errors.email
                       },
                       model: {
                         value: _vm.form.email,

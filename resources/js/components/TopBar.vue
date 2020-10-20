@@ -22,21 +22,21 @@
                         <li>
                             <Dropdown v-slot="{ toggle, isOpen }">
                                 <button class="flex h-auto m-0 appearance-none items-center" @click="toggle">
-                                    <span>{{ $page.auth.user.name }}</span>
+                                    <span>{{ $page.props.auth.user.name }}</span>
                                     <img
                                         class="ml-2 inline w-8 h-8 rounded-avatar bg-surface-2"
-                                        :src="$page.auth.user.avatar"
-                                        :alt="$page.auth.user.name"
+                                        :src="$page.props.auth.user.avatar"
+                                        :alt="$page.props.auth.user.name"
                                     />
                                 </button>
 
                                 <DropdownList v-if="isOpen">
-                                    <DropdownListItem v-if="$page.settings.support" to="/support">{{ __('Support') }}
+                                    <DropdownListItem v-if="$page.props.settings.support" to="/support">{{ __('Support') }}
                                     </DropdownListItem>
-                                    <DropdownListItem v-if="$page.settings.documentation" to="/documentation">{{ __('Documentation') }}</DropdownListItem>
+                                    <DropdownListItem v-if="$page.props.settings.documentation" to="/documentation">{{ __('Documentation') }}</DropdownListItem>
                                     <DropdownListItem :to="route('profile.index')">{{ __('Profile') }}
                                     </DropdownListItem>
-                                    <DropdownListItem class="text-danger" v-if="$page.auth.user.role === 'admin'"
+                                    <DropdownListItem class="text-danger" v-if="$page.props.auth.user.role === 'admin'"
                                                       :to="route('admin.dashboard')">{{ __('Administration') }}
                                     </DropdownListItem>
                                     <DropdownListItem :to="route('logout')" method="post">{{ __('Sign out') }}
@@ -77,7 +77,7 @@ export default {
 
     data() {
         return {
-            themeMode: this.$page.auth.user.theme,
+            themeMode: this.$page.props.auth.user.theme,
         }
     },
 

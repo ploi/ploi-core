@@ -144,7 +144,7 @@ __webpack_require__.r(__webpack_exports__);
         content: null
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Support'),
@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.loading = true;
       this.$inertia.post(this.route('support.store'), this.form).then(function (response) {
-        if (!Object.keys(_this.$page.errors).length) {
+        if (!Object.keys(_this.$page.props.errors).length) {
           _this.form.title = null;
           _this.form.content = null;
           _this.loading = false;
@@ -360,7 +360,7 @@ var render = function() {
                               _c("FormInput", {
                                 attrs: {
                                   label: _vm.__("Title"),
-                                  errors: _vm.$page.errors.title
+                                  errors: _vm.$page.props.errors.title
                                 },
                                 model: {
                                   value: _vm.form.title,
@@ -374,7 +374,7 @@ var render = function() {
                               _c("FormTextarea", {
                                 attrs: {
                                   label: _vm.__("Content"),
-                                  errors: _vm.$page.errors.content
+                                  errors: _vm.$page.props.errors.content
                                 },
                                 model: {
                                   value: _vm.form.content,
@@ -404,7 +404,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      4082627589
+                      2411661189
                     )
                   })
                 : _vm._e()

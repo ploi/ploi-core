@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Admin\Server\AdminServerCreatedEmail;
 use App\Models\Server;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Jobs\Servers\CreateServer;
 use App\Jobs\Servers\DeleteServer;
@@ -21,7 +23,7 @@ class ServerController extends Controller
             ->latest()
             ->paginate();
 
-        $providers = auth()->user()->package->providers()->pluck('name', 'id');
+        $providers = auth()->user()->package ? auth()->user()->package->providers()->pluck('name', 'id') : [];
 
         return inertia('Servers/Index', [
             'servers' => ServerResource::collection($servers),
@@ -31,8 +33,6 @@ class ServerController extends Controller
 
     public function store(ServerRequest $request)
     {
-        abort_if(!$request->user()->can('create', Server::class), 403);
-
         $provider = $request->user()->package->providers()->findOrFail($request->input('provider'));
         $region = $provider->regions()->findOrFail($request->input('region'));
         $plan = $provider->plans()->findOrFail($request->input('plan'));
@@ -50,6 +50,14 @@ class ServerController extends Controller
         dispatch(new CreateServer($server));
 
         Mail::to($request->user())->send(new ServerCreatedEmail($request->user(), $server));
+
+        if (setting('receive_email_on_server_creation')) {
+            $admins = User::query()->where('role', User::ADMIN)->get();
+
+            foreach($admins as $admin){
+                Mail::to($admin)->send(new AdminServerCreatedEmail($request->user(), $server));
+            }
+        }
 
         return redirect()->route('servers.index');
     }

@@ -417,7 +417,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      themeMode: this.$page.auth.user.theme
+      themeMode: this.$page.props.auth.user.theme
     };
   },
   mounted: function mounted() {
@@ -901,15 +901,17 @@ var render = function() {
                                   },
                                   [
                                     _c("span", [
-                                      _vm._v(_vm._s(_vm.$page.auth.user.name))
+                                      _vm._v(
+                                        _vm._s(_vm.$page.props.auth.user.name)
+                                      )
                                     ]),
                                     _vm._v(" "),
                                     _c("img", {
                                       staticClass:
                                         "ml-2 inline w-8 h-8 rounded-avatar bg-surface-2",
                                       attrs: {
-                                        src: _vm.$page.auth.user.avatar,
-                                        alt: _vm.$page.auth.user.name
+                                        src: _vm.$page.props.auth.user.avatar,
+                                        alt: _vm.$page.props.auth.user.name
                                       }
                                     })
                                   ]
@@ -919,7 +921,7 @@ var render = function() {
                                   ? _c(
                                       "DropdownList",
                                       [
-                                        _vm.$page.settings.support
+                                        _vm.$page.props.settings.support
                                           ? _c(
                                               "DropdownListItem",
                                               { attrs: { to: "/support" } },
@@ -932,7 +934,7 @@ var render = function() {
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
-                                        _vm.$page.settings.documentation
+                                        _vm.$page.props.settings.documentation
                                           ? _c(
                                               "DropdownListItem",
                                               {
@@ -963,7 +965,8 @@ var render = function() {
                                           ]
                                         ),
                                         _vm._v(" "),
-                                        _vm.$page.auth.user.role === "admin"
+                                        _vm.$page.props.auth.user.role ===
+                                        "admin"
                                           ? _c(
                                               "DropdownListItem",
                                               {

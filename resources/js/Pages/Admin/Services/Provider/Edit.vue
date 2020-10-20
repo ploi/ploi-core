@@ -20,7 +20,7 @@
                                 <template #title>{{ __('Edit') }}</template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
+                                        <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                             <Button variant="danger" type="button" @click="confirmDelete">{{ __('Delete') }}</Button>
@@ -148,7 +148,7 @@
                     .then(() => {
                         this.sending = false
 
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.formAttach.email = null;
                         }
                     })

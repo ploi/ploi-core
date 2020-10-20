@@ -112,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Documentation'),

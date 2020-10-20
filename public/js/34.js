@@ -185,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
         name: this.server.name
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.server.name,
@@ -491,7 +491,8 @@ var render = function() {
                                                   attrs: {
                                                     label: _vm.__("Name"),
                                                     errors:
-                                                      _vm.$page.errors.name
+                                                      _vm.$page.props.errors
+                                                        .name
                                                   },
                                                   model: {
                                                     value: _vm.form.name,
@@ -529,7 +530,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    2692692559
+                                    2273006479
                                   )
                                 })
                               : _vm._e(),

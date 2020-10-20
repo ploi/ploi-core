@@ -233,7 +233,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Sites'),
@@ -257,12 +257,12 @@ __webpack_require__.r(__webpack_exports__);
     closeModal: function closeModal() {
       this.form.password = null;
       this.modalIsOpen = false;
-      this.$page.errors = [];
+      this.$page.props.errors = [];
     },
     requestFtpPassword: function requestFtpPassword() {
       var _this = this;
 
-      this.$page.errors = [];
+      this.$page.props.errors = [];
       window.axios.post(this.route('profile.request-ftp-password').url(), this.form).then(function (response) {
         if (!response.data.ftp_password) {
           _this.useNotification({
@@ -278,7 +278,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.modalIsOpen = false;
         _this.ftp_password = response.data.ftp_password;
       })["catch"](function (errors) {
-        _this.$page.errors = errors.response.data.errors;
+        _this.$page.props.errors = errors.response.data.errors;
       });
     }
   }
@@ -558,7 +558,7 @@ var render = function() {
                                   label: _vm.__(
                                     "Enter your account password to reveal FTP password"
                                   ),
-                                  errors: _vm.$page.errors.password
+                                  errors: _vm.$page.props.errors.password
                                 },
                                 model: {
                                   value: _vm.form.password,
@@ -588,7 +588,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      32140597
+                      1402468597
                     )
                   })
                 : _vm._e()
@@ -689,8 +689,8 @@ var render = function() {
                                                           _vm._v(
                                                             "\n                                                    /home/" +
                                                               _vm._s(
-                                                                _vm.$page.auth
-                                                                  .user
+                                                                _vm.$page.props
+                                                                  .auth.user
                                                                   .user_name
                                                               ) +
                                                               "/" +
@@ -763,12 +763,12 @@ var render = function() {
                                                             attrs: {
                                                               label:
                                                                 "" +
-                                                                _vm.$page.auth
-                                                                  .user
+                                                                _vm.$page.props
+                                                                  .auth.user
                                                                   .user_name,
                                                               value:
-                                                                _vm.$page.auth
-                                                                  .user
+                                                                _vm.$page.props
+                                                                  .auth.user
                                                                   .user_name
                                                             }
                                                           })
@@ -954,7 +954,8 @@ var render = function() {
                                                   attrs: {
                                                     label: "A",
                                                     errors:
-                                                      _vm.$page.errors.domain,
+                                                      _vm.$page.props.errors
+                                                        .domain,
                                                     value: _vm.site.domain
                                                   }
                                                 })
@@ -974,7 +975,8 @@ var render = function() {
                                                     label: "IP",
                                                     "allow-copy": "",
                                                     errors:
-                                                      _vm.$page.errors.domain,
+                                                      _vm.$page.props.errors
+                                                        .domain,
                                                     value: _vm.ip_address
                                                   }
                                                 })
@@ -1002,7 +1004,8 @@ var render = function() {
                                                   attrs: {
                                                     label: "A",
                                                     errors:
-                                                      _vm.$page.errors.domain,
+                                                      _vm.$page.props.errors
+                                                        .domain,
                                                     value: "www"
                                                   }
                                                 })
@@ -1022,7 +1025,8 @@ var render = function() {
                                                     label: "IP",
                                                     "allow-copy": "",
                                                     errors:
-                                                      _vm.$page.errors.domain,
+                                                      _vm.$page.props.errors
+                                                        .domain,
                                                     value: _vm.ip_address
                                                   }
                                                 })

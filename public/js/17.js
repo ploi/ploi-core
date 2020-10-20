@@ -185,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Sites'),
@@ -250,7 +250,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post(this.route('sites.databases.store', this.site.id), this.form).then(function () {
         _this.sending = false;
 
-        if (!Object.keys(_this.$page.errors).length) {
+        if (!Object.keys(_this.$page.props.errors).length) {
           _this.form.name = null;
           _this.form.user_name = null;
           _this.form.password = null;
@@ -607,7 +607,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("Name"),
-                                              errors: _vm.$page.errors.name
+                                              errors:
+                                                _vm.$page.props.errors.name
                                             },
                                             model: {
                                               value: _vm.form.name,
@@ -621,7 +622,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("User"),
-                                              errors: _vm.$page.errors.user_name
+                                              errors:
+                                                _vm.$page.props.errors.user_name
                                             },
                                             model: {
                                               value: _vm.form.user_name,
@@ -639,7 +641,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("Password"),
-                                              errors: _vm.$page.errors.password
+                                              errors:
+                                                _vm.$page.props.errors.password
                                             },
                                             model: {
                                               value: _vm.form.password,

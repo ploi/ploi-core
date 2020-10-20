@@ -149,7 +149,7 @@ __webpack_require__.r(__webpack_exports__);
         a: null
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Sites'),
@@ -164,11 +164,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    if (this.$page.flash.success) {
+    if (this.$page.props.flash.success) {
       Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_19__["useNotification"])({
         variant: 'success',
         title: "Databases",
-        message: this.$page.flash.success
+        message: this.$page.props.flash.success
       });
     }
 
@@ -223,7 +223,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post(this.route('sites.databases.store', this.site.id), this.form).then(function () {
         _this.sending = false;
 
-        if (!Object.keys(_this.$page.errors).length) {
+        if (!Object.keys(_this.$page.props.errors).length) {
           _this.form.name = null;
           _this.form.user_name = null;
           _this.form.password = null;
@@ -576,7 +576,7 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("A"),
-                                              errors: _vm.$page.errors.a
+                                              errors: _vm.$page.props.errors.a
                                             },
                                             model: {
                                               value: _vm.form.a,

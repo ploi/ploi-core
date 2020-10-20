@@ -20,9 +20,9 @@
                                 <template #title>{{ __('Edit') }}</template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
-                                        <FormInput :label="__('Email')" :errors="$page.errors.email" type="email" v-model="form.email" />
-                                        <FormTextarea :label="__('Notes')" :errors="$page.errors.notes" v-model="form.notes" />
+                                        <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
+                                        <FormInput :label="__('Email')" :errors="$page.props.errors.email" type="email" v-model="form.email" />
+                                        <FormTextarea :label="__('Notes')" :errors="$page.props.errors.notes" v-model="form.notes" />
                                         <FormSelect :label="__('Role')" v-model="form.role">
                                             <option value="user">User</option>
                                             <option value="admin">Administrator</option>
@@ -34,7 +34,7 @@
                                         <FormSelect :label="__('Language')" v-model="form.language">
                                             <option v-for="language in languages" :value="language" v-text="language"></option>
                                         </FormSelect>
-                                        <FormTextarea :label="__('Blocked')" :errors="$page.errors.blocked" rows="2" v-model="form.blocked" />
+                                        <FormTextarea :label="__('Blocked')" :errors="$page.props.errors.blocked" rows="2" v-model="form.blocked" />
 
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>

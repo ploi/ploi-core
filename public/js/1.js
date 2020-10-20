@@ -126,34 +126,34 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {
-    '$page.flash.success': function $pageFlashSuccess() {
-      if (this.$page.flash.success) {
+    '$page.props.flash.success': function $pagePropsFlashSuccess() {
+      if (this.$page.props.flash.success) {
         Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_7__["useNotification"])({
           variant: 'success',
           title: this.__("Success"),
-          message: this.$page.flash.success
+          message: this.$page.props.flash.success
         });
-        this.$page.flash.success = null;
+        this.$page.props.flash.success = null;
       }
     },
-    '$page.flash.info': function $pageFlashInfo() {
-      if (this.$page.flash.info) {
+    '$page.props.flash.info': function $pagePropsFlashInfo() {
+      if (this.$page.props.flash.info) {
         Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_7__["useNotification"])({
           variant: 'info',
           title: this.__("Info"),
-          message: this.$page.flash.info
+          message: this.$page.props.flash.info
         });
-        this.$page.flash.info = null;
+        this.$page.props.flash.info = null;
       }
     },
-    '$page.flash.error': function $pageFlashError() {
-      if (this.$page.flash.error) {
+    '$page.props.flash.error': function $pagePropsFlashError() {
+      if (this.$page.props.flash.error) {
         Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_7__["useNotification"])({
           variant: 'danger',
           title: this.__("Error"),
-          message: this.$page.flash.error
+          message: this.$page.props.flash.error
         });
-        this.$page.flash.error = null;
+        this.$page.props.flash.error = null;
       }
     }
   },
@@ -603,7 +603,7 @@ var render = function() {
       staticClass: "antialiased font-sans-serif text-high-emphasis bg-surface"
     },
     [
-      _vm.$page.settings.demo
+      _vm.$page.props.settings.demo
         ? _c("div", { staticClass: "relative bg-primary text-white" }, [
             _vm._m(0)
           ])

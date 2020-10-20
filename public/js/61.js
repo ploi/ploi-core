@@ -73,12 +73,12 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function () {
         _this.sending = false;
 
-        if (!Object.keys(_this.$page.errors).length) {
+        if (!Object.keys(_this.$page.props.errors).length) {
           _this.form.email = null;
           Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_4__["useNotification"])({
             variant: 'success',
             title: _this.__('Reset password'),
-            message: _this.$page.flash.success
+            message: _this.$page.props.flash.success
           });
         }
       });
@@ -127,7 +127,7 @@ var render = function() {
             _c("FormInput", {
               attrs: {
                 label: _vm.__("Email"),
-                errors: _vm.$page.errors.email,
+                errors: _vm.$page.props.errors.email,
                 id: "email",
                 type: "email",
                 required: ""

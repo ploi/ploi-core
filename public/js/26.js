@@ -192,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
         create_database: false
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Sites'),

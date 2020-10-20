@@ -23,13 +23,13 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Company name')" :errors="$page.errors.name"
+                                        <FormInput :label="__('Company name')" :errors="$page.props.errors.name"
                                                    v-model="form.name"/>
 
-                                        <FormInput :label="__('E-mail address')" :errors="$page.errors.email"
+                                        <FormInput :label="__('E-mail address')" :errors="$page.props.errors.email"
                                                    v-model="form.email"/>
 
-                                        <FormInput :helper-text="__('Separate by comma to allow more email addresses')" :label="__('Support email addresses')" :errors="$page.errors.support_emails"
+                                        <FormInput :helper-text="__('Separate by comma to allow more email addresses')" :label="__('Support email addresses')" :errors="$page.props.errors.support_emails"
                                                    v-model="form.support_emails"/>
 
                                         <FormSelect :helper-text="__('Select the default package a user should get when you create or they register')" :label="__('Select default package')" v-model="form.default_package">
@@ -81,7 +81,7 @@
                                             </p>
                                         </div>
 
-                                        <FormInput v-if="form.enable_api" allow-random-string :label="__('API token')" :errors="$page.errors.api_token"
+                                        <FormInput v-if="form.enable_api" allow-random-string :label="__('API token')" :errors="$page.props.errors.api_token"
                                                    v-model="form.api_token"/>
 
                                         <FormActions>
@@ -180,14 +180,11 @@
             useNotification,
 
             submit() {
-                this.sending = true
-
                 this.$inertia.patch(this.route('admin.settings.update'), this.form, {
-                    preserveScroll: true
+                    preserveScroll: true,
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false,
                 })
-                    .then(() => {
-                        this.sending = false;
-                    })
             },
         }
     }

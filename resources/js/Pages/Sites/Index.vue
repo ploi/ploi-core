@@ -6,7 +6,7 @@
                     <template #title>{{ __('Create a site') }}</template>
 
                     <template #form>
-                        <FormInput :label="__('Domain')" :errors="$page.errors.domain" v-model="form.domain"/>
+                        <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
 
                         <FormSelect v-if="Object.keys(availableServers).length" :label="__('Select server')" v-model="form.server_id">
                             <option :value="`${null}`">{{ __('Select random server') }}</option>
@@ -193,7 +193,7 @@
                 modalIsOpen: false,
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -226,7 +226,7 @@
             closeModal() {
                 this.modalIsOpen = false;
                 this.form.domain = null;
-                this.$page.errors = [];
+                this.$page.props.errors = [];
             },
 
             submit() {
@@ -234,7 +234,7 @@
                     only: ['errors', 'flash', 'sites']
                 })
                     .then((response) => {
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.form.domain = null;
                             this.modalIsOpen = false;
                         }

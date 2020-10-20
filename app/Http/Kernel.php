@@ -45,6 +45,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\SetLocale::class,
             \App\Http\Middleware\Demo::class,
             \App\Http\Middleware\InstallationComplete::class,
+            \App\Http\Middleware\HandleInertiaRequests::class,
         ],
 
         'api' => [

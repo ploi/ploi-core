@@ -194,7 +194,7 @@ __webpack_require__.r(__webpack_exports__);
         type: 'redirect'
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Sites'),
@@ -259,7 +259,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post(this.route('sites.redirects.store', this.site.id), this.form).then(function () {
         _this.sending = false;
 
-        if (!Object.keys(_this.$page.errors).length) {
+        if (!Object.keys(_this.$page.props.errors).length) {
           _this.form.redirect_from = null;
           _this.form.redirect_to = null;
           _this.form.type = 'redirect';
@@ -723,7 +723,8 @@ var render = function() {
                                             attrs: {
                                               label: _vm.__("From"),
                                               errors:
-                                                _vm.$page.errors.redirect_from
+                                                _vm.$page.props.errors
+                                                  .redirect_from
                                             },
                                             model: {
                                               value: _vm.form.redirect_from,
@@ -742,7 +743,8 @@ var render = function() {
                                             attrs: {
                                               label: _vm.__("To"),
                                               errors:
-                                                _vm.$page.errors.redirect_to
+                                                _vm.$page.props.errors
+                                                  .redirect_to
                                             },
                                             model: {
                                               value: _vm.form.redirect_to,

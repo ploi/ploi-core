@@ -169,7 +169,7 @@ __webpack_require__.r(__webpack_exports__);
         dns_id: null
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Sites'),
@@ -515,7 +515,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("Domain"),
-                                              errors: _vm.$page.errors.domain
+                                              errors:
+                                                _vm.$page.props.errors.domain
                                             },
                                             model: {
                                               value: _vm.form.domain,

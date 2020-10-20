@@ -23,7 +23,7 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Command')" :errors="$page.errors.command" v-model="form.command"/>
+                                        <FormInput :label="__('Command')" :errors="$page.props.errors.command" v-model="form.command"/>
                                         <div>
                                             <label class="inline-block text-small font-medium">
                                                 Frequency ({{ convertedFrequency }})
@@ -68,7 +68,7 @@
                                                 </label>
                                             </div>
 
-                                            <FormInput helper-text="min | hour | day/month | month | day/week" v-show="form.interval === 'custom'" v-model="form.frequency" :errors="$page.errors.frequency" :label="__('Custom frequency')"></FormInput>
+                                            <FormInput helper-text="min | hour | day/month | month | day/week" v-show="form.interval === 'custom'" v-model="form.frequency" :errors="$page.props.errors.frequency" :label="__('Custom frequency')"></FormInput>
                                         </div>
 
                                         <FormActions>
@@ -194,14 +194,14 @@
                 sending: false,
 
                 form: {
-                    command: `php /home/${this.$page.auth.user.user_name}/${this.site.domain}/script.php`,
+                    command: `php /home/${this.$page.props.auth.user.user_name}/${this.site.domain}/script.php`,
                     interval: 'minutely',
                     frequency: '* * * * *',
                 },
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -296,9 +296,9 @@
                     .then(() => {
                         this.sending = false
 
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.form = {
-                                command: `php /home/${this.$page.auth.user.user_name}/domain.com/script.php`,
+                                command: `php /home/${this.$page.props.auth.user.user_name}/domain.com/script.php`,
                                 interval: 'minutely',
                                 frequency: '* * * * *',
                             }

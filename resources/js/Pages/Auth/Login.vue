@@ -2,9 +2,9 @@
     <div class="flex items-center justify-center w-full min-h-screen">
         <Container size="small">
             <form class="space-y-4" @submit.prevent="submit">
-                <h1 class="font-semibold text-center text-title">Login to {{ $page.settings.name }}</h1>
+                <h1 class="font-semibold text-center text-title">Login to {{ $page.props.settings.name }}</h1>
 
-                <FormInput :label="__('Email')" :errors="$page.errors.email" v-model="form.email" id="email" type="email" required />
+                <FormInput :label="__('Email')" :errors="$page.props.errors.email" v-model="form.email" id="email" type="email" required />
 
                 <FormInput :label="__('Password')" v-model="form.password" id="password" type="password" required />
 
@@ -12,10 +12,10 @@
 
                 <Button as="inertia-link" :disabled="sending" :href="route('password.request')" variant="secondary" block>{{ __('Reset password') }}</Button>
 
-                <TextDivider v-if="$page.settings.allow_registration">{{ __('Or') }}</TextDivider>
+                <TextDivider v-if="$page.props.settings.allow_registration">{{ __('Or') }}</TextDivider>
 
                 <div class="space-y-3">
-                    <Button as="inertia-link" :href="route('register')" variant="secondary" :disabled="sending" v-if="$page.settings.allow_registration" block>Register</Button>
+                    <Button as="inertia-link" :href="route('register')" variant="secondary" :disabled="sending" v-if="$page.props.settings.allow_registration" block>Register</Button>
                 </div>
             </form>
         </Container>

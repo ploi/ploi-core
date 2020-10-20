@@ -218,13 +218,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       clientSecret: this.data_client_secret,
       stripe: null,
       cardElement: null,
-      cardHolderName: this.$page.auth.user.name,
+      cardHolderName: this.$page.props.auth.user.name,
       currentCardLastFour: this.card.last_four,
       currentCardBrand: this.card.brand,
       coupon: '',
       invoices: [],
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Billing'),
@@ -412,7 +412,7 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('Settings'),
         to: this.route('profile.settings.index'),
         active: this.route().current('profile.settings.index')
-      }, this.$page.settings.billing ? {
+      }, this.$page.props.settings.billing ? {
         title: this.__('Billing'),
         to: this.route('profile.billing.index'),
         active: this.route().current('profile.billing.index')
@@ -563,7 +563,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("form-input", {
                           attrs: {
-                            errors: _vm.$page.errors.card_holder_name,
+                            errors: _vm.$page.props.errors.card_holder_name,
                             disabled: _vm.sending,
                             id: "card-holder-name",
                             label: _vm.__("Card holder name")

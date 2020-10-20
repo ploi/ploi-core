@@ -4,7 +4,7 @@ module.exports = {
          * Translate the given key.
          */
         __(key, replace) {
-            let translation = this.$page.translations[key] ? this.$page.translations[key] : key;
+            let translation = this.$page.props.translations[key] ? this.$page.props.translations[key] : key;
 
             _forEach(replace, (value, key) => {
                 translation = translation.replace(':' + key, value);
@@ -14,7 +14,7 @@ module.exports = {
         },
 
         __choice(key, total) {
-            let translation = this.$page.translations[key] ? this.$page.translations[key] : key;
+            let translation = this.$page.props.translations[key] ? this.$page.props.translations[key] : key;
 
             let splitted = translation.split('|');
 
@@ -35,7 +35,7 @@ module.exports = {
         },
 
         can(subject, permission) {
-            return this.$page.auth.can[subject] ? this.$page.auth.can[subject][permission] : false;
+            return this.$page.props.auth.can[subject] ? this.$page.props.auth.can[subject][permission] : false;
         }
     }
 };

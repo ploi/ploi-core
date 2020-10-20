@@ -145,7 +145,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: 'Dashboard',
@@ -154,11 +154,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    if (this.$page.flash.info) {
+    if (this.$page.props.flash.info) {
       Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_16__["useNotification"])({
         variant: 'info',
         title: "Information",
-        message: this.$page.flash.info
+        message: this.$page.props.flash.info
       });
     }
   }
@@ -347,7 +347,11 @@ var render = function() {
                               _c(
                                 "h3",
                                 { staticClass: "font-semibold text-body" },
-                                [_vm._v(_vm._s(_vm.$page.auth.package.name))]
+                                [
+                                  _vm._v(
+                                    _vm._s(_vm.$page.props.auth.package.name)
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(

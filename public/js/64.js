@@ -126,7 +126,7 @@ var render = function() {
             _c("FormInput", {
               attrs: {
                 label: _vm.__("Email"),
-                errors: _vm.$page.errors.email,
+                errors: _vm.$page.props.errors.email,
                 id: "email",
                 type: "email",
                 required: ""
@@ -143,7 +143,7 @@ var render = function() {
             _c("FormInput", {
               attrs: {
                 label: _vm.__("Password"),
-                errors: _vm.$page.errors.password,
+                errors: _vm.$page.props.errors.password,
                 id: "password",
                 type: "password",
                 required: ""
@@ -160,7 +160,7 @@ var render = function() {
             _c("FormInput", {
               attrs: {
                 label: _vm.__("Confirm password"),
-                errors: _vm.$page.errors.password_confirmation,
+                errors: _vm.$page.props.errors.password_confirmation,
                 id: "password_confirmation",
                 type: "password",
                 required: ""

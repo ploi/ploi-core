@@ -23,7 +23,7 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('A')" :errors="$page.errors.a" v-model="form.a"/>
+                                        <FormInput :label="__('A')" :errors="$page.props.errors.a" v-model="form.a"/>
 
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
@@ -118,7 +118,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -138,11 +138,11 @@
         },
 
         mounted() {
-            if (this.$page.flash.success) {
+            if (this.$page.props.flash.success) {
                 useNotification({
                     variant: 'success',
                     title: `Databases`,
-                    message: this.$page.flash.success,
+                    message: this.$page.props.flash.success,
                 })
             }
 
@@ -206,7 +206,7 @@
                     .then(() => {
                         this.sending = false
 
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.form.name = null;
                             this.form.user_name = null;
                             this.form.password = null;

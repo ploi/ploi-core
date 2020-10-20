@@ -188,7 +188,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post(this.route('admin.services.servers.attach', this.server.id), this.formAttach).then(function () {
         _this4.sending = false;
 
-        if (!Object.keys(_this4.$page.errors).length) {
+        if (!Object.keys(_this4.$page.props.errors).length) {
           _this4.formAttach.email = null;
         }
       });
@@ -311,11 +311,11 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('Packages'),
         to: this.route('admin.packages.index'),
         active: this.route().current('admin.packages.*')
-      }, this.$page.settings.support ? {
-        title: "".concat(this.__('Support'), " (").concat(this.$page.openTickets, ")"),
+      }, this.$page.props.settings.support ? {
+        title: "".concat(this.__('Support'), " (").concat(this.$page.props.openTickets, ")"),
         to: this.route('admin.support.index'),
         active: this.route().current('admin.support.*')
-      } : null, this.$page.settings.documentation ? {
+      } : null, this.$page.props.settings.documentation ? {
         title: this.__('Documentation'),
         to: this.route('admin.documentation.index'),
         active: this.route().current('admin.documentation.*')
@@ -330,7 +330,7 @@ __webpack_require__.r(__webpack_exports__);
       // }
       ],
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Administration'),
@@ -670,7 +670,8 @@ var render = function() {
                                           _c("FormInput", {
                                             attrs: {
                                               label: _vm.__("Name"),
-                                              errors: _vm.$page.errors.name
+                                              errors:
+                                                _vm.$page.props.errors.name
                                             },
                                             model: {
                                               value: _vm.form.name,

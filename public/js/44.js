@@ -113,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
         password_confirmation: null
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Profile'),
@@ -132,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.patch(this.route('profile.security.update'), this.form).then(function (response) {
         _this.sending = true;
 
-        if (!Object.keys(_this.$page.errors).length) {
+        if (!Object.keys(_this.$page.props.errors).length) {
           _this.form = {
             current_password: null,
             password: null,
@@ -200,7 +200,7 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('Settings'),
         to: this.route('profile.settings.index'),
         active: this.route().current('profile.settings.index')
-      }, this.$page.settings.billing ? {
+      }, this.$page.props.settings.billing ? {
         title: this.__('Billing'),
         to: this.route('profile.billing.index'),
         active: this.route().current('profile.billing.index')
@@ -356,7 +356,7 @@ var render = function() {
                       attrs: {
                         label: _vm.__("Current password"),
                         type: "password",
-                        errors: _vm.$page.errors.current_password
+                        errors: _vm.$page.props.errors.current_password
                       },
                       model: {
                         value: _vm.form.current_password,
@@ -371,7 +371,7 @@ var render = function() {
                       attrs: {
                         label: _vm.__("New password"),
                         type: "password",
-                        errors: _vm.$page.errors.password
+                        errors: _vm.$page.props.errors.password
                       },
                       model: {
                         value: _vm.form.password,
@@ -386,7 +386,7 @@ var render = function() {
                       attrs: {
                         label: _vm.__("Confirm new password"),
                         type: "password",
-                        errors: _vm.$page.errors.password_confirmation
+                        errors: _vm.$page.props.errors.password_confirmation
                       },
                       model: {
                         value: _vm.form.password_confirmation,

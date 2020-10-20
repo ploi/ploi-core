@@ -113,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
         theme: this.profile.theme
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Profile'),
@@ -192,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
         title: this.__('Settings'),
         to: this.route('profile.settings.index'),
         active: this.route().current('profile.settings.index')
-      }, this.$page.settings.billing ? {
+      }, this.$page.props.settings.billing ? {
         title: this.__('Billing'),
         to: this.route('profile.billing.index'),
         active: this.route().current('profile.billing.index')
@@ -349,7 +349,7 @@ var render = function() {
                       {
                         attrs: {
                           label: _vm.__("Theme"),
-                          errors: _vm.$page.errors.theme
+                          errors: _vm.$page.props.errors.theme
                         },
                         model: {
                           value: _vm.form.theme,

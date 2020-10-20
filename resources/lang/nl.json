@@ -172,6 +172,12 @@
     "New redirect :redirect created": "Nieuwe omleiding :redirect aangemaakt",
     "A new redirect has been created": "Er is een nieuwe omleiding aangemaakt",
 
+    "Create server": "Server aanmaken",
+    "Create a server": "Server aanmaken",
+    "Select provider": "Selecteer provider",
+    "Select region": "Selecteer regio",
+    "Select plan": "Selecteer plan",
+
     "Detach": "Ontkoppelen",
     "Monthly price": "Prijs maandelijks",
     "Users": "Gebruikers",
@@ -242,5 +248,8 @@
     "Are you sure you want to delete this server? Everything associated with this server will be detached.": "Weet je zeker dat je deze server wilt verwijderen? Alles geassocieerd aan deze server wordt ook verwijderd.",
     "You can synchronize your servers here. It is safe to synchronize already existing servers. If you have installed a extra PHP version for example, you can synchronize to update the versions here.": "Je kunt hier je servers synchroniseren naar je systeem. Het is veilig om bestaande servers wederom te synchroniseren. Dit kan handig zijn mocht je extra PHP versies geïnstalleerd hebben via ploi.io.",
     "Create a new package here to attach to your users. You can create as many packages as you want, the advantage is that you are able to provide custom packages for your users.": "Je kunt hier een nieuw pakket aanmaken voor je gebruikers. Je kunt zoveel pakketten aanmaken als je wilt, het voordeel hiervan is dat je custom packages kan aanbieden aan je klanten.",
-    "System update has been dispatched, this could take around 2/3 minutes for it to complete": "Systeem update is gestart, het kan 2 tot 3 minuten duren voordat de update klaar is"
+    "System update has been dispatched, this could take around 2/3 minutes for it to complete": "Systeem update is gestart, het kan 2 tot 3 minuten duren voordat de update klaar is",
+    "A user has created a new server": "Een gebruiker heeft een nieuwe server aangemaakt",
+    "A new server with the name :server has been created by the user :user": "Er is een nieuwe server :server aangemaakt door gebruiker :user",
+    "View user": "Bekijk gebruiker"
 }

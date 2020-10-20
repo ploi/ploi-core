@@ -6,20 +6,23 @@
                     <template #title>{{ __('Create a server') }}</template>
 
                     <template #form>
-                        <FormInput :loading="loading" :label="__('Name')" placeholder="webserver-01" :errors="$page.errors.name" v-model="form.name"/>
+                        <FormInput :loading="loading" :label="__('Name')" placeholder="webserver-01"
+                                   :errors="$page.props.errors.name" v-model="form.name"/>
 
-                        <FormSelect :loading="loading" :errors="$page.errors.provider" :label="__('Select provider')"
+                        <FormSelect :loading="loading" :errors="$page.props.errors.provider" :label="__('Select provider')"
                                     v-model="form.provider">
                             <option :value="`${null}`">{{ __('Select random provider') }}</option>
                             <option v-for="(name, id) in providers" :value="id">{{ name }}</option>
                         </FormSelect>
 
-                        <FormSelect :loading="loading" :errors="$page.errors.region" :label="__('Select region')" v-model="form.region">
+                        <FormSelect :loading="loading" :errors="$page.props.errors.region" :label="__('Select region')"
+                                    v-model="form.region">
                             <option :value="`${null}`">{{ __('Select random region') }}</option>
                             <option v-for="(name, id) in regions" :value="id">{{ name }}</option>
                         </FormSelect>
 
-                        <FormSelect :loading="loading" :errors="$page.errors.plan" :label="__('Select plan')" v-model="form.plan">
+                        <FormSelect :loading="loading" :errors="$page.props.errors.plan" :label="__('Select plan')"
+                                    v-model="form.plan">
                             <option :value="`${null}`">{{ __('Select random plan') }}</option>
                             <option v-for="(name, id) in plans" :value="id">{{ name }}</option>
                         </FormSelect>
@@ -57,7 +60,9 @@
                                     {{ server.name }}
                                 </inertia-link>
                             </template>
-                            <template #subtitle>{{ server.ip }} <span v-if="server.ip">&centerdot;</span> {{ server.sites_count }} {{ __choice('site|sites', server.sites_count) }}</template>
+                            <template #subtitle>{{ server.ip }} <span v-if="server.ip">&centerdot;</span>
+                                {{ server.sites_count }} {{ __choice('site|sites', server.sites_count) }}
+                            </template>
                             <template #suffix>
                                 <Dropdown v-slot="{ isOpen, toggle, position }">
                                     <IconButton @click="toggle">
@@ -66,7 +71,8 @@
 
                                     <DropdownList :position="position" v-if="isOpen">
                                         <DropdownListItem :to="route('servers.show', server.id)">View</DropdownListItem>
-                                        <DropdownListItemButton v-if="can('servers', 'delete')" class="text-danger" @click="confirmDelete(server)">
+                                        <DropdownListItemButton v-if="can('servers', 'delete')" class="text-danger"
+                                                                @click="confirmDelete(server)">
                                             Delete
                                         </DropdownListItemButton>
                                     </DropdownList>
@@ -182,7 +188,14 @@ export default {
             }
         },
 
-        'form.provider': function(value) {
+        'form.provider': function (value) {
+            // Reset values if null
+            if (!value) {
+                this.regions = [];
+                this.plans = [];
+                return;
+            }
+
             this.loading = true;
 
             window.axios.get(this.route('servers.plans-and-regions', value))
@@ -217,7 +230,7 @@ export default {
             modalIsOpen: false,
             breadcrumbs: [
                 {
-                    title: this.$page.settings.name,
+                    title: this.$page.props.settings.name,
                     to: '/',
                 },
                 {
@@ -241,7 +254,7 @@ export default {
         },
 
         poll() {
-            this.$inertia.replace(this.route('servers.index', {'polling': true}), {
+            this.$inertia.replace(this.route('servers.index'), {
                 only: ['servers'],
                 preserveScroll: true,
             })
@@ -251,14 +264,20 @@ export default {
             this.$inertia.post(this.route('servers.store'), this.form, {
                 only: ['errors', 'flash', 'servers'],
                 onStart: () => this.loading = true,
-                onFinish: () => {
-                    this.loading = false;
-
-                    if (!Object.keys(this.$page.errors).length) {
+                onSuccess: () => {
+                    if (!Object.keys(this.$page.props.errors).length) {
                         this.form.domain = null;
                         this.modalIsOpen = false;
+
+                        this.form = {
+                            name: null,
+                            provider: null,
+                            region: null,
+                            plan: null,
+                        }
                     }
-                }
+                },
+                onFinish: () => this.loading = false
             });
         },
 

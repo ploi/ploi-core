@@ -147,7 +147,7 @@ __webpack_require__.r(__webpack_exports__);
         content: null
       },
       breadcrumbs: [{
-        title: this.$page.settings.name,
+        title: this.$page.props.settings.name,
         to: '/'
       }, {
         title: this.__('Support'),
@@ -166,7 +166,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post(this.route('support.reply', this.ticket.id), this.form).then(function (response) {
         _this.loading = false;
 
-        if (!Object.keys(_this.$page.errors).length) {
+        if (!Object.keys(_this.$page.props.errors).length) {
           _this.form.content = null;
         }
       });
@@ -439,7 +439,7 @@ var render = function() {
                       _c("FormTextarea", {
                         attrs: {
                           label: _vm.__("Reply"),
-                          errors: _vm.$page.errors.reply
+                          errors: _vm.$page.props.errors.reply
                         },
                         model: {
                           value: _vm.form.content,

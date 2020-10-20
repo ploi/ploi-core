@@ -11,8 +11,8 @@
     },
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-        "@inertiajs/inertia": "^0.3.4",
-        "@inertiajs/inertia-vue": "^0.2.1",
+        "@inertiajs/inertia": "^0.4.3",
+        "@inertiajs/inertia-vue": "^0.3.2",
         "@inertiajs/progress": "^0.1.2",
         "@tailwindcss/ui": "^0.3.0",
         "axios": "^0.19",

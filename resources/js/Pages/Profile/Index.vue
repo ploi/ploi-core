@@ -6,8 +6,8 @@
             <Container>
                 <PageBody>
                     <form class="space-y-4" @submit.prevent="submit">
-                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
-                        <FormInput :label="__('Email')" type="email" :errors="$page.errors.email" v-model="form.email" />
+                        <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
+                        <FormInput :label="__('Email')" type="email" :errors="$page.props.errors.email" v-model="form.email" />
                         <FormSelect :label="__('Language')" v-model="form.language">
                             <option value="en">English</option>
                             <option value="nl">Dutch</option>
@@ -93,7 +93,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
