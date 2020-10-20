@@ -458,95 +458,120 @@ var render = function() {
                         key: "segments",
                         fn: function() {
                           return [
-                            _c("SettingsSegment", {
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "title",
-                                  fn: function() {
-                                    return [_vm._v(_vm._s(_vm.__("Overview")))]
-                                  },
-                                  proxy: true
-                                },
-                                {
-                                  key: "form",
-                                  fn: function() {
-                                    return [
-                                      _c(
-                                        "form",
-                                        {
-                                          staticClass: "space-y-4",
-                                          on: {
-                                            submit: function($event) {
-                                              $event.preventDefault()
-                                              return _vm.submit($event)
-                                            }
-                                          }
+                            _vm.can("servers", "update")
+                              ? _c("SettingsSegment", {
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "title",
+                                        fn: function() {
+                                          return [
+                                            _vm._v(_vm._s(_vm.__("Overview")))
+                                          ]
                                         },
-                                        [
-                                          _c("FormInput", {
-                                            attrs: {
-                                              label: _vm.__("Name"),
-                                              errors: _vm.$page.errors.name
-                                            },
-                                            model: {
-                                              value: _vm.form.name,
-                                              callback: function($$v) {
-                                                _vm.$set(_vm.form, "name", $$v)
+                                        proxy: true
+                                      },
+                                      {
+                                        key: "form",
+                                        fn: function() {
+                                          return [
+                                            _c(
+                                              "form",
+                                              {
+                                                staticClass: "space-y-4",
+                                                on: {
+                                                  submit: function($event) {
+                                                    $event.preventDefault()
+                                                    return _vm.submit($event)
+                                                  }
+                                                }
                                               },
-                                              expression: "form.name"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "FormActions",
-                                            [
-                                              _c("Button", [
-                                                _vm._v(
-                                                  _vm._s(_vm.__("Save changes"))
+                                              [
+                                                _c("FormInput", {
+                                                  attrs: {
+                                                    label: _vm.__("Name"),
+                                                    errors:
+                                                      _vm.$page.errors.name
+                                                  },
+                                                  model: {
+                                                    value: _vm.form.name,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "name",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "form.name"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "FormActions",
+                                                  [
+                                                    _c("Button", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.__("Save changes")
+                                                        )
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
                                                 )
-                                              ])
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  },
-                                  proxy: true
-                                }
-                              ])
-                            }),
-                            _vm._v(" "),
-                            _c("SettingsSegment", {
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "title",
-                                  fn: function() {
-                                    return [
-                                      _vm._v(_vm._s(_vm.__("Danger zone")))
-                                    ]
-                                  },
-                                  proxy: true
-                                },
-                                {
-                                  key: "content",
-                                  fn: function() {
-                                    return [
-                                      _c(
-                                        "Button",
-                                        {
-                                          attrs: { variant: "danger" },
-                                          on: { click: _vm.confirmDelete }
+                                              ],
+                                              1
+                                            )
+                                          ]
                                         },
-                                        [_vm._v(_vm._s(_vm.__("Delete")))]
-                                      )
-                                    ]
-                                  },
-                                  proxy: true
-                                }
-                              ])
-                            })
+                                        proxy: true
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    2692692559
+                                  )
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.can("servers", "delete")
+                              ? _c("SettingsSegment", {
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "title",
+                                        fn: function() {
+                                          return [
+                                            _vm._v(
+                                              _vm._s(_vm.__("Danger zone"))
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      },
+                                      {
+                                        key: "content",
+                                        fn: function() {
+                                          return [
+                                            _c(
+                                              "Button",
+                                              {
+                                                attrs: { variant: "danger" },
+                                                on: { click: _vm.confirmDelete }
+                                              },
+                                              [_vm._v(_vm._s(_vm.__("Delete")))]
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    253833427
+                                  )
+                                })
+                              : _vm._e()
                           ]
                         },
                         proxy: true

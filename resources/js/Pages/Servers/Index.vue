@@ -66,7 +66,7 @@
 
                                     <DropdownList :position="position" v-if="isOpen">
                                         <DropdownListItem :to="route('servers.show', server.id)">View</DropdownListItem>
-                                        <DropdownListItemButton class="text-danger" @click="confirmDelete(server)">
+                                        <DropdownListItemButton v-if="can('servers', 'delete')" class="text-danger" @click="confirmDelete(server)">
                                             Delete
                                         </DropdownListItemButton>
                                     </DropdownList>

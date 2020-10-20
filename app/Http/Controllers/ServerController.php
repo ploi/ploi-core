@@ -72,6 +72,8 @@ class ServerController extends Controller
     {
         $server = $request->user()->servers()->findOrFail($id);
 
+        $this->authorize('delete', $server);
+
         dispatch(new DeleteServer($server->ploi_id));
 
         $request->user()->systemLogs()->create([

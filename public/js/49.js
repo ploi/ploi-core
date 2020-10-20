@@ -841,27 +841,32 @@ var render = function() {
                                                         [_vm._v("View")]
                                                       ),
                                                       _vm._v(" "),
-                                                      _c(
-                                                        "DropdownListItemButton",
-                                                        {
-                                                          staticClass:
-                                                            "text-danger",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              return _vm.confirmDelete(
-                                                                server
-                                                              )
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                        Delete\n                                    "
-                                                          )
-                                                        ]
+                                                      _vm.can(
+                                                        "servers",
+                                                        "delete"
                                                       )
+                                                        ? _c(
+                                                            "DropdownListItemButton",
+                                                            {
+                                                              staticClass:
+                                                                "text-danger",
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.confirmDelete(
+                                                                    server
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                        Delete\n                                    "
+                                                              )
+                                                            ]
+                                                          )
+                                                        : _vm._e()
                                                     ],
                                                     1
                                                   )

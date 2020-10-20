@@ -6,6 +6,7 @@ use App\Models\Server;
 use App\Jobs\Sites\CreateSite;
 use App\Jobs\Sites\DeleteSite;
 use App\Http\Requests\SiteRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\SiteResource;
 
@@ -76,9 +77,9 @@ class SiteController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $site = auth()->user()->sites()->findOrFail($id);
+        $site = $request->user()->sites()->findOrFail($id);
 
         $this->authorize('delete', $site);
 

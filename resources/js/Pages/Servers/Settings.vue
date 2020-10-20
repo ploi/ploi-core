@@ -16,7 +16,7 @@
                             <Tabs :server="server"/>
                         </template>
                         <template #segments>
-                            <SettingsSegment>
+                            <SettingsSegment v-if="can('servers', 'update')">
                                 <template #title>{{ __('Overview') }}</template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
@@ -30,7 +30,7 @@
                                 </template>
                             </SettingsSegment>
 
-                            <SettingsSegment>
+                            <SettingsSegment v-if="can('servers', 'delete')">
                                 <template #title>{{ __('Danger zone') }}</template>
                                 <template #content>
                                     <Button @click="confirmDelete" variant="danger">{{ __('Delete') }}</Button>
