@@ -57,7 +57,7 @@
                                     {{ server.name }}
                                 </inertia-link>
                             </template>
-                            <template #subtitle>{{ server.ip }} &centerdot; {{ server.sites_count }} {{ __choice('site|sites', server.sites_count) }}</template>
+                            <template #subtitle>{{ server.ip }} <span v-if="server.ip">&centerdot;</span> {{ server.sites_count }} {{ __choice('site|sites', server.sites_count) }}</template>
                             <template #suffix>
                                 <Dropdown v-slot="{ isOpen, toggle, position }">
                                     <IconButton @click="toggle">

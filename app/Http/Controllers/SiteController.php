@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Server;
+use Illuminate\Http\Request;
 use App\Jobs\Sites\CreateSite;
 use App\Jobs\Sites\DeleteSite;
 use App\Http\Requests\SiteRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\SiteResource;
 

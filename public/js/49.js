@@ -791,9 +791,12 @@ var render = function() {
                               key: "subtitle",
                               fn: function() {
                                 return [
+                                  _vm._v(_vm._s(server.ip) + " "),
+                                  server.ip
+                                    ? _c("span", [_vm._v("·")])
+                                    : _vm._e(),
                                   _vm._v(
-                                    _vm._s(server.ip) +
-                                      " · " +
+                                    " " +
                                       _vm._s(server.sites_count) +
                                       " " +
                                       _vm._s(

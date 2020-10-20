@@ -160,6 +160,8 @@
     "View ticket": "Bekijk aanvraag",
     "Password creation": "Wachtwoord aangemaakt",
     "You have set a password for your account": "Je hebt een wachtwoord aangemaakt voor je account",
+    "Your new server is being created": "Je nieuwe server wordt aangemaakt",
+    "You have created a new server :server, installation usually takes around 15 to 20 minutes. You will receive a email upon completion.": "Je hebt een nieuwe server :server aangemaakt, installatie duurt normaal tussen de 15 en 20 minuten. Je ontvangt een email zodra de installatie afgerond is.",
 
     "New site :site created": "Nieuwe website :site aangemaakt",
     "Site PHP version has changed": "Website PHP versie aangepast",

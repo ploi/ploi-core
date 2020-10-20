@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Jobs\Servers\CreateServer;
 use App\Jobs\Servers\DeleteServer;
 use App\Http\Requests\ServerRequest;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\ServerResource;
+use App\Mail\Server\ServerCreatedEmail;
 use App\Http\Requests\ServerUpdateRequest;
 
 class ServerController extends Controller
@@ -46,6 +48,8 @@ class ServerController extends Controller
         $server->save();
 
         dispatch(new CreateServer($server));
+
+        Mail::to($request->user())->send(new ServerCreatedEmail($request->user(), $server));
 
         return redirect()->route('servers.index');
     }
