@@ -46,8 +46,8 @@ class CreateServer implements ShouldQueue
         $this->server->ploi_id = $ploiServer->id;
         $this->server->save();
 
-        // Lets fetch the status after 2 minutes
-        dispatch(new FetchServerStatus($this->server))->delay(now()->addMinutes(2));
+        // Lets fetch the status after 5 minutes
+        dispatch(new FetchServerStatus($this->server))->delay(now()->addMinutes(5));
     }
 
     public function failed(\Exception $exception)
