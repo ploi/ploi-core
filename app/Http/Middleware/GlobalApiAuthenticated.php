@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\Ploi\Exceptions\Http\Unauthenticated;
 use Closure;
 use Illuminate\Http\Request;
+use App\Services\Ploi\Exceptions\Http\Unauthenticated;
 
 class GlobalApiAuthenticated
 {

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\ServerAttachRequest;
-use App\Models\Server;
 use App\Models\User;
+use App\Models\Server;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ServerAttachRequest;
 
 class ServerController extends Controller
 {
@@ -14,7 +14,7 @@ class ServerController extends Controller
     {
         $server = Server::findOrFail($id);
 
-        $users = $server->users()->select('id', 'name', 'email')->get()->map(function($user){
+        $users = $server->users()->select('id', 'name', 'email')->get()->map(function ($user) {
             return [
                 'id' => $user->id,
                 'name' => $user->name,

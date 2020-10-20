@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServerRequest;
-use App\Http\Requests\ServerUpdateRequest;
-use App\Jobs\Servers\CreateServer;
-use App\Jobs\Servers\DeleteServer;
 use App\Models\Server;
 use Illuminate\Http\Request;
+use App\Jobs\Servers\CreateServer;
+use App\Jobs\Servers\DeleteServer;
+use App\Http\Requests\ServerRequest;
 use App\Http\Resources\ServerResource;
+use App\Http\Requests\ServerUpdateRequest;
 
 class ServerController extends Controller
 {

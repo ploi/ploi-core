@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Package;
+use App\Models\Provider;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PackageRequest;
-use App\Models\Provider;
 
 class PackageController extends Controller
 {

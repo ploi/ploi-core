@@ -2,10 +2,10 @@
 
 namespace App\Services\Ploi\Resources;
 
-use App\Services\Ploi\Exceptions\Http\NotValid;
-use App\Services\Ploi\Ploi;
-use Services\Ploi\Exceptions\Resource\RequiresId;
 use stdClass;
+use App\Services\Ploi\Ploi;
+use App\Services\Ploi\Exceptions\Http\NotValid;
+use Services\Ploi\Exceptions\Resource\RequiresId;
 
 class Server extends Resource
 {

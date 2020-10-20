@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use App\Jobs\Core\UpdateSystem;
 use App\Services\VersionChecker;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class SystemController extends Controller
 {

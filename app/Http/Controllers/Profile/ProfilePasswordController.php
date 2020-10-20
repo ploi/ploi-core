@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Profile;
 
-use App\Http\Controllers\Controller;
-use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
+use App\Rules\MatchOldPassword;
+use App\Http\Controllers\Controller;
 
 class ProfilePasswordController extends Controller
 {

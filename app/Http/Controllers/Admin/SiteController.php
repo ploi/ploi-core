@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\ServerAttachRequest;
-use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ServerAttachRequest;
 
 class SiteController extends Controller
 {
@@ -15,7 +14,7 @@ class SiteController extends Controller
     {
         $site = Site::findOrFail($id);
 
-        $users = $site->users()->select('id', 'name', 'email')->get()->map(function($user){
+        $users = $site->users()->select('id', 'name', 'email')->get()->map(function ($user) {
             return [
                 'id' => $user->id,
                 'name' => $user->name,

@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Casts\Encrypted;
-use App\Mail\User\WelcomeEmail;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Laravel\Cashier\Billable;
+use App\Mail\User\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Translation\HasLocalePreference;
-use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements HasLocalePreference
 {
@@ -126,7 +126,7 @@ class User extends Authenticatable implements HasLocalePreference
             Mail::to($user)->send(new WelcomeEmail($user));
         });
 
-        static::deleting(function(self $user){
+        static::deleting(function (self $user) {
             $user->systemLogs()->delete();
             $user->servers()->detach();
             $user->sites()->detach();
