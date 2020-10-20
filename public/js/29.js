@@ -162,6 +162,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -855,6 +857,16 @@ var render = function() {
                                                         )
                                                       ]),
                                                       _vm._v(" "),
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.__(
+                                                              "Attached servers"
+                                                            )
+                                                          )
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
                                                       _c("TableHeader")
                                                     ],
                                                     1
@@ -892,6 +904,14 @@ var render = function() {
                                                           _vm._v(
                                                             _vm._s(
                                                               provider.plans_count
+                                                            )
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("TableData", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              provider.servers_count
                                                             )
                                                           )
                                                         ]),

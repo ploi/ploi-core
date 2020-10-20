@@ -57,6 +57,7 @@
                                     {{ server.name }}
                                 </inertia-link>
                             </template>
+                            <template #subtitle>{{ server.ip }}</template>
                             <template #suffix>
                                 <Dropdown v-slot="{ isOpen, toggle, position }">
                                     <IconButton @click="toggle">

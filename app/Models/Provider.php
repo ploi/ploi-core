@@ -33,4 +33,9 @@ class Provider extends Model
     {
         return $this->belongsToMany(Package::class);
     }
+
+    public function servers()
+    {
+        return $this->hasMany(Server::class);
+    }
 }

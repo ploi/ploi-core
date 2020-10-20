@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ServerRequest;
+use App\Http\Requests\ServerUpdateRequest;
 use App\Jobs\Servers\CreateServer;
 use App\Jobs\Servers\DeleteServer;
 use App\Models\Server;
@@ -54,6 +55,17 @@ class ServerController extends Controller
             'server' => $server,
             'sites' => $server->sites()->latest()->paginate(5, ['*'], 'sites_per_page'),
         ]);
+    }
+
+    public function update(ServerUpdateRequest $request, $id)
+    {
+        $server = $request->user()->servers()->findOrFail($id);
+
+        $server->update([
+            'name' => $request->input('name')
+        ]);
+
+        return redirect()->route('servers.settings.show', $id)->with('success', __('Server information has been updated'));
     }
 
     public function destroy(Request $request, $id)

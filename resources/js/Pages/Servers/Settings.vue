@@ -17,6 +17,20 @@
                         </template>
                         <template #segments>
                             <SettingsSegment>
+                                <template #title>{{ __('Overview') }}</template>
+                                <template #form>
+                                    <form class="space-y-4" @submit.prevent="submit">
+                                        <FormInput :label="__('Name')" :errors="$page.errors.name"
+                                                   v-model="form.name"/>
+
+                                        <FormActions>
+                                            <Button>{{ __('Save changes') }}</Button>
+                                        </FormActions>
+                                    </form>
+                                </template>
+                            </SettingsSegment>
+
+                            <SettingsSegment>
                                 <template #title>{{ __('Danger zone') }}</template>
                                 <template #content>
                                     <Button @click="confirmDelete" variant="danger">{{ __('Delete') }}</Button>
@@ -124,6 +138,10 @@
 
         data() {
             return {
+                form: {
+                    name: this.server.name
+                },
+
                 breadcrumbs: [
                     {
                         title: this.$page.settings.name,
@@ -139,6 +157,13 @@
 
         methods: {
             useConfirmDelete,
+
+            submit() {
+                this.$inertia.patch(this.route('servers.settings.update', this.server.id), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false
+                })
+            },
 
             confirmDelete() {
                 useConfirmDelete({

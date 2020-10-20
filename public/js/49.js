@@ -119,6 +119,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -783,6 +784,13 @@ var render = function() {
                                     ]
                                   )
                                 ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "subtitle",
+                              fn: function() {
+                                return [_vm._v(_vm._s(server.ip))]
                               },
                               proxy: true
                             },

@@ -79,6 +79,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -167,6 +181,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      form: {
+        name: this.server.name
+      },
       breadcrumbs: [{
         title: this.$page.settings.name,
         to: '/'
@@ -178,14 +195,26 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     useConfirmDelete: _hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_37__["useConfirmDelete"],
-    confirmDelete: function confirmDelete() {
+    submit: function submit() {
       var _this = this;
+
+      this.$inertia.patch(this.route('servers.settings.update', this.server.id), this.form, {
+        onStart: function onStart() {
+          return _this.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this.sending = false;
+        }
+      });
+    },
+    confirmDelete: function confirmDelete() {
+      var _this2 = this;
 
       Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_37__["useConfirmDelete"])({
         title: this.__('Are you sure?'),
         message: this.__('Your server will be deleted completely, this action is irreversible.'),
         onConfirm: function onConfirm() {
-          return _this["delete"]();
+          return _this2["delete"]();
         }
       });
     },
@@ -429,6 +458,66 @@ var render = function() {
                         key: "segments",
                         fn: function() {
                           return [
+                            _c("SettingsSegment", {
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "title",
+                                  fn: function() {
+                                    return [_vm._v(_vm._s(_vm.__("Overview")))]
+                                  },
+                                  proxy: true
+                                },
+                                {
+                                  key: "form",
+                                  fn: function() {
+                                    return [
+                                      _c(
+                                        "form",
+                                        {
+                                          staticClass: "space-y-4",
+                                          on: {
+                                            submit: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.submit($event)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Name"),
+                                              errors: _vm.$page.errors.name
+                                            },
+                                            model: {
+                                              value: _vm.form.name,
+                                              callback: function($$v) {
+                                                _vm.$set(_vm.form, "name", $$v)
+                                              },
+                                              expression: "form.name"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "FormActions",
+                                            [
+                                              _c("Button", [
+                                                _vm._v(
+                                                  _vm._s(_vm.__("Save changes"))
+                                                )
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  },
+                                  proxy: true
+                                }
+                              ])
+                            }),
+                            _vm._v(" "),
                             _c("SettingsSegment", {
                               scopedSlots: _vm._u([
                                 {
