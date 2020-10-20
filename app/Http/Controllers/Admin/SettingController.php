@@ -18,6 +18,7 @@ class SettingController extends Controller
             'documentation' => setting('documentation'),
             'allow_registration' => setting('allow_registration'),
             'default_package' => setting('default_package'),
+            'receive_email_on_server_creation' => setting('receive_email_on_server_creation'),
             'enable_api' => setting('enable_api'),
             'api_token' => setting('api_token') ? decrypt(setting('api_token')) : null,
         ];
@@ -40,6 +41,7 @@ class SettingController extends Controller
             'allow_registration',
             'documentation',
             'default_package',
+            'receive_email_on_server_creation',
             'enable_api',
             'api_token',
         ]) as $key => $value) {

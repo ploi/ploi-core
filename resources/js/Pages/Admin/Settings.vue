@@ -64,6 +64,15 @@
                                         </div>
 
                                         <div>
+                                            <input id="receive_email_on_server_creation" class="form-checkbox" type="checkbox"
+                                                   v-model="form.receive_email_on_server_creation">
+                                            <label for="receive_email_on_server_creation" class="ml-2 text-sm">{{ __('Receive email when customers create server') }}</label>
+                                            <p class="text-small mt-1 text-medium-emphasis">
+                                                {{ __('This will send an email to all admins notifying them about a new server installation.') }}
+                                            </p>
+                                        </div>
+
+                                        <div>
                                             <input id="enable_api" class="form-checkbox" type="checkbox"
                                                    v-model="form.enable_api">
                                             <label for="enable_api" class="ml-2 text-sm">{{ __('Enable API') }}</label>
@@ -156,6 +165,7 @@
                     api_token: this.company_settings.api_token,
                     documentation: this.company_settings.documentation,
                     allow_registration: this.company_settings.allow_registration,
+                    receive_email_on_server_creation: this.company_settings.receive_email_on_server_creation,
                     default_package: this.company_settings.default_package,
                 },
             }

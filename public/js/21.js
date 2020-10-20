@@ -121,6 +121,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -182,6 +191,7 @@ __webpack_require__.r(__webpack_exports__);
         api_token: this.company_settings.api_token,
         documentation: this.company_settings.documentation,
         allow_registration: this.company_settings.allow_registration,
+        receive_email_on_server_creation: this.company_settings.receive_email_on_server_creation,
         default_package: this.company_settings.default_package
       }
     };
@@ -994,6 +1004,120 @@ var render = function() {
                                                     _vm._s(
                                                       _vm.__(
                                                         "This will allow public users to register on your platform."
+                                                      )
+                                                    ) +
+                                                    "\n                                        "
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.form
+                                                      .receive_email_on_server_creation,
+                                                  expression:
+                                                    "form.receive_email_on_server_creation"
+                                                }
+                                              ],
+                                              staticClass: "form-checkbox",
+                                              attrs: {
+                                                id:
+                                                  "receive_email_on_server_creation",
+                                                type: "checkbox"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.form
+                                                    .receive_email_on_server_creation
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.form
+                                                        .receive_email_on_server_creation,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.form
+                                                      .receive_email_on_server_creation
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.form
+                                                        .receive_email_on_server_creation,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "receive_email_on_server_creation",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "receive_email_on_server_creation",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "receive_email_on_server_creation",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "ml-2 text-sm",
+                                                attrs: {
+                                                  for:
+                                                    "receive_email_on_server_creation"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.__(
+                                                      "Receive email when customers create server"
+                                                    )
+                                                  )
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-small mt-1 text-medium-emphasis"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "This will send an email to all admins notifying them about a new server installation."
                                                       )
                                                     ) +
                                                     "\n                                        "
