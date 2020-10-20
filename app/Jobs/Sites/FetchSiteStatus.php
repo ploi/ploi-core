@@ -43,7 +43,7 @@ class FetchSiteStatus implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
+        $ploi = new Ploi;
 
         $ploiSite = $ploi->server($this->site->server->ploi_id)->sites()->get($this->site->ploi_id)->getData();
 

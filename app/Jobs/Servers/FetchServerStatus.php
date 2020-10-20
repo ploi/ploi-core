@@ -3,6 +3,7 @@
 namespace App\Jobs\Servers;
 
 use App\Models\Server;
+use App\Services\Ploi\Ploi;
 use App\Traits\JobHasThresholds;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,6 +36,33 @@ class FetchServerStatus implements ShouldQueue
      */
     public function handle()
     {
-        //
+        // If we tried over 10 times, game over, delete the site
+        if ($this->hasReachedThresholdLimit(10)) {
+            $this->server->delete();
+
+            return;
+        }
+
+        $ploi = new Ploi;
+
+        $ploiServer = $ploi->server($this->server->ploi_id)->get()->getData();
+
+        if ($ploiServer->status !== Server::STATUS_ACTIVE) {
+            $this->incrementThreshold();
+
+            dispatch(new self($this->server, $this->threshold))->delay(now()->addMinutes(2));
+
+            // Check if an IP address is present already
+            if ($ploiServer->ip_address && !$this->server->ip) {
+                $this->server->ip = $ploiServer->ip_address;
+                $this->server->save();
+            }
+
+            return;
+        }
+
+        $this->server->status = $ploiServer->status;
+        $this->server->ip = $ploiServer->ip_address;
+        $this->server->save();
     }
 }

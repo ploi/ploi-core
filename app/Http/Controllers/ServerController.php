@@ -15,7 +15,7 @@ class ServerController extends Controller
     {
         $servers = auth()->user()->servers()->latest()->paginate();
 
-        $providers = auth()->user()->package->providers()->pluck('label', 'id');
+        $providers = auth()->user()->package->providers()->pluck('name', 'id');
 
         return inertia('Servers/Index', [
             'servers' => ServerResource::collection($servers),
