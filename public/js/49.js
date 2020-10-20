@@ -790,7 +790,20 @@ var render = function() {
                             {
                               key: "subtitle",
                               fn: function() {
-                                return [_vm._v(_vm._s(server.ip))]
+                                return [
+                                  _vm._v(
+                                    _vm._s(server.ip) +
+                                      " · " +
+                                      _vm._s(server.sites_count) +
+                                      " " +
+                                      _vm._s(
+                                        _vm.__choice(
+                                          "site|sites",
+                                          server.sites_count
+                                        )
+                                      )
+                                  )
+                                ]
                               },
                               proxy: true
                             },

@@ -14,7 +14,10 @@ class ServerController extends Controller
 {
     public function index()
     {
-        $servers = auth()->user()->servers()->latest()->paginate();
+        $servers = auth()->user()->servers()
+            ->withCount('sites')
+            ->latest()
+            ->paginate();
 
         $providers = auth()->user()->package->providers()->pluck('name', 'id');
 

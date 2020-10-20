@@ -63,6 +63,8 @@ class FetchServerStatus implements ShouldQueue
 
         $this->server->status = $ploiServer->status;
         $this->server->ip = $ploiServer->ip_address;
+        $this->server->internal_ip = $ploiServer->internal_ip;
+        $this->server->available_php_versions = $ploiServer->installed_php_versions;
         $this->server->save();
     }
 }

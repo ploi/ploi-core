@@ -8,6 +8,10 @@
                     <template #start>
                         <PageHeaderTitle>{{ server.name }}</PageHeaderTitle>
                     </template>
+
+                    <template v-if="can('sites', 'create')" #end>
+                        <Button as="inertia-link" :href="route('sites.index', {create: true, server: server.id})">{{ __('Create site') }}</Button>
+                    </template>
                 </PageHeader>
 
                 <PageBody>

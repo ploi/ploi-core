@@ -193,6 +193,11 @@ __webpack_require__.r(__webpack_exports__);
     if (window.location.search.includes('create=true')) {
       this.modalIsOpen = true;
     }
+
+    if (window.location.search.includes('server=')) {
+      var urlParams = new URLSearchParams(window.location.search);
+      this.form.server_id = urlParams.get('server');
+    }
   },
   watch: {
     shouldBePolling: function shouldBePolling(value) {

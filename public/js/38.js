@@ -102,6 +102,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -405,17 +409,46 @@ var render = function() {
             "Container",
             [
               _c("PageHeader", {
-                scopedSlots: _vm._u([
-                  {
-                    key: "start",
-                    fn: function() {
-                      return [
-                        _c("PageHeaderTitle", [_vm._v(_vm._s(_vm.server.name))])
-                      ]
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "start",
+                      fn: function() {
+                        return [
+                          _c("PageHeaderTitle", [
+                            _vm._v(_vm._s(_vm.server.name))
+                          ])
+                        ]
+                      },
+                      proxy: true
                     },
-                    proxy: true
-                  }
-                ])
+                    _vm.can("sites", "create")
+                      ? {
+                          key: "end",
+                          fn: function() {
+                            return [
+                              _c(
+                                "Button",
+                                {
+                                  attrs: {
+                                    as: "inertia-link",
+                                    href: _vm.route("sites.index", {
+                                      create: true,
+                                      server: _vm.server.id
+                                    })
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm.__("Create site")))]
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      : null
+                  ],
+                  null,
+                  true
+                )
               }),
               _vm._v(" "),
               _c(
