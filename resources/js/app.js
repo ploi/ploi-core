@@ -1,4 +1,4 @@
-import { InertiaApp } from '@inertiajs/inertia-vue'
+import { InertiaApp, plugin } from '@inertiajs/inertia-vue'
 import Vue from 'vue';
 import VueMeta from 'vue-meta'
 import store from '@/store'
@@ -9,11 +9,19 @@ window._forEach = require('lodash/forEach');
 
 Vue.use(vClickOutside)
 Vue.use(PortalVue)
-Vue.use(InertiaApp)
+Vue.use(plugin)
 Vue.use(VueMeta)
 Vue.use(VueClipboard)
 Vue.mixin({ methods: { route: window.route } })
 Vue.mixin(require('./mixins'));
+import { InertiaProgress } from '@inertiajs/progress'
+
+InertiaProgress.init({
+    delay: 250,
+    color: '#1b8ae8',
+    includeCSS: true,
+    showSpinner: false,
+})
 
 window.eventBus = new Vue();
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Package;
+use App\Models\Provider;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PackageRequest;
 
@@ -19,20 +20,32 @@ class PackageController extends Controller
 
     public function create()
     {
-        return inertia('Admin/Packages/Create');
+        $providers = Provider::get(['name', 'label', 'id'])->pluck('nameWithLabel', 'id');
+
+        return inertia('Admin/Packages/Create', [
+            'providers' => $providers
+        ]);
     }
 
     public function store(PackageRequest $request)
     {
-        Package::create($request->validated());
+        $package = Package::create($request->validated());
+
+        $package->providers()->sync($request->input('providers'));
 
         return redirect()->route('admin.packages.index')->with('success', __('Package has been created'));
     }
 
     public function edit($id)
     {
+        $package = Package::with('providers:id')->findOrFail($id);
+
+        $providers = Provider::get(['name', 'label', 'id'])->pluck('nameWithLabel', 'id');
+
         return inertia('Admin/Packages/Edit', [
-            'package' => Package::findOrFail($id)
+            'package' => $package,
+            'providers' => $providers,
+            'syncedProviders' => $package->providers->pluck('id')
         ]);
     }
 
@@ -41,6 +54,8 @@ class PackageController extends Controller
         $package = Package::findOrFail($id);
 
         $package->update($request->validated());
+
+        $package->providers()->sync($request->input('providers'));
 
         return redirect()->route('admin.packages.index')->with('success', __('Package has been updated'));
     }

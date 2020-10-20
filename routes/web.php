@@ -74,8 +74,10 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
     // Server routes
     Route::group(['prefix' => 'servers', 'as' => 'servers.'], function () {
         Route::get('/', 'ServerController@index')->name('index');
+        Route::get('{provider}/plans-and-regions', 'ServerController@plansAndRegions')->name('plans-and-regions');
         Route::get('{server}', 'ServerController@show')->name('show');
-        Route::get('{server}/settings', 'ServerController@show')->name('show');
+        Route::get('{server}/settings', 'ServerController@show')->name('settings.show');
+        Route::patch('{server}/settings', 'ServerController@update')->name('settings.update');
         Route::post('/', 'ServerController@store')->name('store');
 
         Route::get('{server}/settings', 'ServerSettingController@show')->name('settings.show');

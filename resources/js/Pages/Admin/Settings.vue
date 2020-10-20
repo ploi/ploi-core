@@ -23,13 +23,13 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Company name')" :errors="$page.errors.name"
+                                        <FormInput :label="__('Company name')" :errors="$page.props.errors.name"
                                                    v-model="form.name"/>
 
-                                        <FormInput :label="__('E-mail address')" :errors="$page.errors.email"
+                                        <FormInput :label="__('E-mail address')" :errors="$page.props.errors.email"
                                                    v-model="form.email"/>
 
-                                        <FormInput :helper-text="__('Separate by comma to allow more email addresses')" :label="__('Support email addresses')" :errors="$page.errors.support_emails"
+                                        <FormInput :helper-text="__('Separate by comma to allow more email addresses')" :label="__('Support email addresses')" :errors="$page.props.errors.support_emails"
                                                    v-model="form.support_emails"/>
 
                                         <FormSelect :helper-text="__('Select the default package a user should get when you create or they register')" :label="__('Select default package')" v-model="form.default_package">
@@ -64,6 +64,15 @@
                                         </div>
 
                                         <div>
+                                            <input id="receive_email_on_server_creation" class="form-checkbox" type="checkbox"
+                                                   v-model="form.receive_email_on_server_creation">
+                                            <label for="receive_email_on_server_creation" class="ml-2 text-sm">{{ __('Receive email when customers create server') }}</label>
+                                            <p class="text-small mt-1 text-medium-emphasis">
+                                                {{ __('This will send an email to all admins notifying them about a new server installation.') }}
+                                            </p>
+                                        </div>
+
+                                        <div>
                                             <input id="enable_api" class="form-checkbox" type="checkbox"
                                                    v-model="form.enable_api">
                                             <label for="enable_api" class="ml-2 text-sm">{{ __('Enable API') }}</label>
@@ -72,7 +81,7 @@
                                             </p>
                                         </div>
 
-                                        <FormInput v-if="form.enable_api" allow-random-string :label="__('API token')" :errors="$page.errors.api_token"
+                                        <FormInput v-if="form.enable_api" allow-random-string :label="__('API token')" :errors="$page.props.errors.api_token"
                                                    v-model="form.api_token"/>
 
                                         <FormActions>
@@ -156,6 +165,7 @@
                     api_token: this.company_settings.api_token,
                     documentation: this.company_settings.documentation,
                     allow_registration: this.company_settings.allow_registration,
+                    receive_email_on_server_creation: this.company_settings.receive_email_on_server_creation,
                     default_package: this.company_settings.default_package,
                 },
             }
@@ -170,14 +180,11 @@
             useNotification,
 
             submit() {
-                this.sending = true
-
                 this.$inertia.patch(this.route('admin.settings.update'), this.form, {
-                    preserveScroll: true
+                    preserveScroll: true,
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false,
                 })
-                    .then(() => {
-                        this.sending = false;
-                    })
             },
         }
     }

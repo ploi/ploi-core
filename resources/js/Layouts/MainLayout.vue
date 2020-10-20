@@ -1,6 +1,6 @@
 <template>
     <div class="antialiased font-sans-serif text-high-emphasis bg-surface">
-        <div class="relative bg-primary text-white" v-if="$page.settings.demo">
+        <div class="relative bg-primary text-white" v-if="$page.props.settings.demo">
             <div class="max-w-screen-xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
                 <div class="pr-16 sm:text-center sm:px-16">
                     <p class="font-medium text-on-primary">
@@ -112,37 +112,37 @@
         },
 
         watch: {
-            '$page.flash.success': function () {
-                if (this.$page.flash.success) {
+            '$page.props.flash.success': function () {
+                if (this.$page.props.flash.success) {
                     useNotification({
                         variant: 'success',
                         title: this.__(`Success`),
-                        message: this.$page.flash.success,
+                        message: this.$page.props.flash.success,
                     })
 
-                    this.$page.flash.success = null;
+                    this.$page.props.flash.success = null;
                 }
             },
-            '$page.flash.info': function () {
-                if (this.$page.flash.info) {
+            '$page.props.flash.info': function () {
+                if (this.$page.props.flash.info) {
                     useNotification({
                         variant: 'info',
                         title: this.__(`Info`),
-                        message: this.$page.flash.info,
+                        message: this.$page.props.flash.info,
                     })
 
-                    this.$page.flash.info = null;
+                    this.$page.props.flash.info = null;
                 }
             },
-            '$page.flash.error': function () {
-                if (this.$page.flash.error) {
+            '$page.props.flash.error': function () {
+                if (this.$page.props.flash.error) {
                     useNotification({
                         variant: 'danger',
                         title: this.__(`Error`),
-                        message: this.$page.flash.error,
+                        message: this.$page.props.flash.error,
                     })
 
-                    this.$page.flash.error = null;
+                    this.$page.props.flash.error = null;
                 }
             }
         },

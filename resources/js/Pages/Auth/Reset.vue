@@ -4,9 +4,9 @@
             <form class="space-y-4" @submit.prevent="submit">
                 <h1 class="font-semibold text-center text-title">{{ __('Reset password') }}</h1>
 
-                <FormInput :label="__('Email')" :errors="$page.errors.email" v-model="form.email" id="email" type="email" required/>
-                <FormInput :label="__('Password')" :errors="$page.errors.password" v-model="form.password" id="password" type="password" required/>
-                <FormInput :label="__('Confirm password')" :errors="$page.errors.password_confirmation" v-model="form.password_confirmation" id="password_confirmation" type="password" required/>
+                <FormInput :label="__('Email')" :errors="$page.props.errors.email" v-model="form.email" id="email" type="email" required/>
+                <FormInput :label="__('Password')" :errors="$page.props.errors.password" v-model="form.password" id="password" type="password" required/>
+                <FormInput :label="__('Confirm password')" :errors="$page.props.errors.password_confirmation" v-model="form.password_confirmation" id="password_confirmation" type="password" required/>
 
                 <Button variant="primary" :disabled="sending" block>{{ __('Reset') }}</Button>
 

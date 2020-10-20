@@ -20,22 +20,23 @@
                                 <template #title>{{ __('Create') }}</template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
-                                        <FormInput label="Email address" :errors="$page.errors.email" type="email" v-model="form.email" />
-                                        <FormTextarea label="Notes" :errors="$page.errors.notes" v-model="form.notes" />
+                                        <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
+                                        <FormInput label="Email address" :errors="$page.props.errors.email" type="email" v-model="form.email" />
+                                        <FormTextarea label="Notes" :errors="$page.props.errors.notes" v-model="form.notes" />
                                         <FormSelect :label="__('Role')" v-model="form.role">
                                             <option value="user">{{ __('User') }}</option>
                                             <option value="admin">{{ __('Administrator') }}</option>
                                         </FormSelect>
 
                                         <FormSelect :label="__('Package')" v-model="form.package">
+                                            <option value="" v-text="__('None')"></option>
                                             <option v-for="(name, id) in packages" :value="id" v-text="name"></option>
                                         </FormSelect>
 
                                         <FormSelect :label="__('Language')" v-model="form.language">
                                             <option v-for="language in languages" :value="language" v-text="language"></option>
                                         </FormSelect>
-                                        <FormTextarea :label="__('Blocked')" :errors="$page.errors.blocked" rows="2" v-model="form.blocked" />
+                                        <FormTextarea :label="__('Blocked')" :errors="$page.props.errors.blocked" rows="2" v-model="form.blocked" />
 
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>

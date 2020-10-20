@@ -87,6 +87,40 @@
                                     <pagination :links="sites"/>
                                 </template>
                             </SettingsSegment>
+
+                            <SettingsSegment>
+                                <template #title>{{ __('Providers') }}</template>
+                                <template #content>
+                                    <div>
+                                        <Table caption="Provider list overview">
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableHeader>{{ __('Name') }}</TableHeader>
+                                                    <TableHeader>{{ __('Regions') }}</TableHeader>
+                                                    <TableHeader>{{ __('Plans') }}</TableHeader>
+                                                    <TableHeader>{{ __('Attached servers') }}</TableHeader>
+                                                    <TableHeader></TableHeader>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                <TableRow v-for="provider in providers.data" :key="provider.id">
+                                                    <TableData>{{ provider.name }}</TableData>
+                                                    <TableData>{{ provider.regions_count }}</TableData>
+                                                    <TableData>{{ provider.plans_count }}</TableData>
+                                                    <TableData>{{ provider.servers_count }}</TableData>
+                                                    <TableData>
+                                                        <inertia-link :href="route('admin.services.providers.edit', provider.id)" class="text-primary font-medium">
+                                                            {{ __('Edit') }}
+                                                        </inertia-link>
+                                                    </TableData>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                    </div>
+
+                                    <pagination :links="sites"/>
+                                </template>
+                            </SettingsSegment>
                         </template>
                     </SettingsLayout>
                 </PageBody>
@@ -158,6 +192,7 @@
         props: {
             servers: Object,
             sites: Object,
+            providers: Object,
         },
 
         mounted() {

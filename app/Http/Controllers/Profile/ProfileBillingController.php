@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Profile;
 
-use App\Http\Controllers\Controller;
-use App\Models\Package;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Package;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProfileBillingController extends Controller
 {

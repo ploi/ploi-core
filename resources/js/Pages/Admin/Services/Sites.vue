@@ -73,11 +73,11 @@
         },
 
         mounted() {
-            if (this.$page.flash.success) {
+            if (this.$page.props.flash.success) {
                 useNotification({
                     variant: 'success',
                     title: `Users`,
-                    message: this.$page.flash.success,
+                    message: this.$page.props.flash.success,
                 })
             }
         },

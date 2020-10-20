@@ -6,8 +6,8 @@
                     <template #title>{{ __('Create support request') }}</template>
 
                     <template #form>
-                        <FormInput :label="__('Title')" :errors="$page.errors.title" v-model="form.title"/>
-                        <FormTextarea :label="__('Content')" :errors="$page.errors.content" v-model="form.content"/>
+                        <FormInput :label="__('Title')" :errors="$page.props.errors.title" v-model="form.title"/>
+                        <FormTextarea :label="__('Content')" :errors="$page.props.errors.content" v-model="form.content"/>
                     </template>
 
                     <template #form-actions>
@@ -120,7 +120,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -137,7 +137,7 @@
 
                 this.$inertia.post(this.route('support.store'), this.form)
                     .then(response => {
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.form.title = null;
                             this.form.content = null;
                             this.loading = false;

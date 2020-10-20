@@ -16,7 +16,21 @@
                             <Tabs :server="server"/>
                         </template>
                         <template #segments>
-                            <SettingsSegment>
+                            <SettingsSegment v-if="can('servers', 'update')">
+                                <template #title>{{ __('Overview') }}</template>
+                                <template #form>
+                                    <form class="space-y-4" @submit.prevent="submit">
+                                        <FormInput :label="__('Name')" :errors="$page.props.errors.name"
+                                                   v-model="form.name"/>
+
+                                        <FormActions>
+                                            <Button>{{ __('Save changes') }}</Button>
+                                        </FormActions>
+                                    </form>
+                                </template>
+                            </SettingsSegment>
+
+                            <SettingsSegment v-if="can('servers', 'delete')">
                                 <template #title>{{ __('Danger zone') }}</template>
                                 <template #content>
                                     <Button @click="confirmDelete" variant="danger">{{ __('Delete') }}</Button>
@@ -124,9 +138,13 @@
 
         data() {
             return {
+                form: {
+                    name: this.server.name
+                },
+
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -139,6 +157,13 @@
 
         methods: {
             useConfirmDelete,
+
+            submit() {
+                this.$inertia.patch(this.route('servers.settings.update', this.server.id), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false
+                })
+            },
 
             confirmDelete() {
                 useConfirmDelete({

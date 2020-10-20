@@ -6,9 +6,9 @@
             <Container>
                 <PageBody>
                     <form class="space-y-4" @submit.prevent="submit">
-                        <FormInput :label="__('Current password')" type="password" :errors="$page.errors.current_password" v-model="form.current_password"/>
-                        <FormInput :label="__('New password')" type="password" :errors="$page.errors.password" v-model="form.password"/>
-                        <FormInput :label="__('Confirm new password')" type="password" :errors="$page.errors.password_confirmation" v-model="form.password_confirmation"/>
+                        <FormInput :label="__('Current password')" type="password" :errors="$page.props.errors.current_password" v-model="form.current_password"/>
+                        <FormInput :label="__('New password')" type="password" :errors="$page.props.errors.password" v-model="form.password"/>
+                        <FormInput :label="__('Confirm new password')" type="password" :errors="$page.props.errors.password_confirmation" v-model="form.password_confirmation"/>
                         <FormActions>
                             <Button>{{ __('Save changes') }}</Button>
                         </FormActions>
@@ -89,7 +89,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -112,7 +112,7 @@
                     .then(response => {
                         this.sending = true;
 
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.form = {
                                 current_password: null,
                                 password: null,

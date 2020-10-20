@@ -19,7 +19,7 @@
                                         <IconGlobe class="w-6 h-6"/>
                                     </div>
                                     <div>
-                                        <h3 class="font-semibold text-body">{{ sites}}</h3>
+                                        <h3 class="font-semibold text-body">{{ sites }}</h3>
                                         <p class="text-medium-emphasis text-small">{{ __('Sites') }}</p>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                         <IconBox class="w-6 h-6"/>
                                     </div>
                                     <div>
-                                        <h3 class="font-semibold text-body">{{ package.name }}</h3>
+                                        <h3 class="font-semibold text-body">{{ $page.props.auth.package.name }}</h3>
                                         <p class="text-medium-emphasis text-small">{{ __('Package') }}</p>
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@
             return{
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -138,11 +138,11 @@
         },
 
         mounted() {
-            if (this.$page.flash.info) {
+            if (this.$page.props.flash.info) {
                 useNotification({
                     variant: 'info',
                     title: `Information`,
-                    message: this.$page.flash.info,
+                    message: this.$page.props.flash.info,
                 })
             }
         },

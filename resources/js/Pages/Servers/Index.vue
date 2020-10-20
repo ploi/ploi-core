@@ -1,12 +1,31 @@
 <template>
     <Page>
-        <Portal to="modals" v-if="$page.auth.can.server_creation">
+        <Portal to="modals" v-if="can('servers', 'create')">
             <ModalContainer>
                 <Modal @close="modalIsOpen = false" v-if="modalIsOpen" @submit="submit">
                     <template #title>{{ __('Create a server') }}</template>
 
                     <template #form>
-                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name"/>
+                        <FormInput :loading="loading" :label="__('Name')" placeholder="webserver-01"
+                                   :errors="$page.props.errors.name" v-model="form.name"/>
+
+                        <FormSelect :loading="loading" :errors="$page.props.errors.provider" :label="__('Select provider')"
+                                    v-model="form.provider">
+                            <option :value="`${null}`">{{ __('Select random provider') }}</option>
+                            <option v-for="(name, id) in providers" :value="id">{{ name }}</option>
+                        </FormSelect>
+
+                        <FormSelect :loading="loading" :errors="$page.props.errors.region" :label="__('Select region')"
+                                    v-model="form.region">
+                            <option :value="`${null}`">{{ __('Select random region') }}</option>
+                            <option v-for="(name, id) in regions" :value="id">{{ name }}</option>
+                        </FormSelect>
+
+                        <FormSelect :loading="loading" :errors="$page.props.errors.plan" :label="__('Select plan')"
+                                    v-model="form.plan">
+                            <option :value="`${null}`">{{ __('Select random plan') }}</option>
+                            <option v-for="(name, id) in plans" :value="id">{{ name }}</option>
+                        </FormSelect>
                     </template>
 
                     <template #form-actions>
@@ -24,13 +43,13 @@
                     <template #start>
                         <PageHeaderTitle>{{ __('Servers') }}</PageHeaderTitle>
                     </template>
-                    <template #end v-if="$page.auth.can.server_creation">
+                    <template #end v-if="can('servers', 'create')">
                         <Button @click="modalIsOpen = true">{{ __('Create server') }}</Button>
                     </template>
                 </PageHeader>
 
                 <PageBody>
-                    <EmptyImage v-if="!servers.meta.total" />
+                    <EmptyImage v-if="!servers.meta.total"/>
                     <List>
                         <ListItem v-for="server in servers.data" :key="server.id">
                             <template #prefix>
@@ -41,15 +60,21 @@
                                     {{ server.name }}
                                 </inertia-link>
                             </template>
+                            <template #subtitle>{{ server.ip }} <span v-if="server.ip">&centerdot;</span>
+                                {{ server.sites_count }} {{ __choice('site|sites', server.sites_count) }}
+                            </template>
                             <template #suffix>
                                 <Dropdown v-slot="{ isOpen, toggle, position }">
                                     <IconButton @click="toggle">
-                                        <IconMore class="w-5 h-5" />
+                                        <IconMore class="w-5 h-5"/>
                                     </IconButton>
 
                                     <DropdownList :position="position" v-if="isOpen">
                                         <DropdownListItem :to="route('servers.show', server.id)">View</DropdownListItem>
-                                        <DropdownListItemButton class="text-danger" @click="confirmDelete(server)">Delete</DropdownListItemButton>
+                                        <DropdownListItemButton v-if="can('servers', 'delete')" class="text-danger"
+                                                                @click="confirmDelete(server)">
+                                            Delete
+                                        </DropdownListItemButton>
                                     </DropdownList>
                                 </Dropdown>
                             </template>
@@ -84,6 +109,7 @@ import EmptyImage from '@/components/EmptyImage'
 import Modal from '@/components/Modal'
 import ModalContainer from '@/components/ModalContainer'
 import FormInput from '@/components/forms/FormInput'
+import FormSelect from '@/components/forms/FormSelect'
 import FormActions from '@/components/FormActions'
 import Dropdown from '@/components/Dropdown'
 import DropdownList from '@/components/DropdownList'
@@ -123,6 +149,7 @@ export default {
         ModalContainer,
         FormInput,
         FormActions,
+        FormSelect,
         Dropdown,
         DropdownList,
         DropdownListItem,
@@ -131,6 +158,7 @@ export default {
 
     props: {
         servers: Object,
+        dataProviders: Object,
     },
 
     computed: {
@@ -141,8 +169,8 @@ export default {
         }
     },
 
-    mounted(){
-        if(this.shouldBePolling){
+    mounted() {
+        if (this.shouldBePolling) {
             this.startPollingInterval();
         }
     },
@@ -155,24 +183,54 @@ export default {
                 return;
             }
 
-            if(!this.pollingInterval){
+            if (!this.pollingInterval) {
                 this.startPollingInterval();
             }
+        },
+
+        'form.provider': function (value) {
+            // Reset values if null
+            if (!value) {
+                this.regions = [];
+                this.plans = [];
+                return;
+            }
+
+            this.loading = true;
+
+            window.axios.get(this.route('servers.plans-and-regions', value))
+                .then(response => {
+                    this.loading = false;
+                    this.regions = response.data.regions;
+                    this.plans = response.data.plans;
+                })
+                .catch(error => {
+                    this.loading = false;
+                })
         }
     },
 
     data() {
         return {
+            loading: false,
+
             form: {
-                name: null
+                name: null,
+                provider: null,
+                region: null,
+                plan: null,
             },
+
+            providers: this.dataProviders,
+            regions: [],
+            plans: [],
 
             pollingInterval: null,
 
             modalIsOpen: false,
             breadcrumbs: [
                 {
-                    title: this.$page.settings.name,
+                    title: this.$page.props.settings.name,
                     to: '/',
                 },
                 {
@@ -184,19 +242,19 @@ export default {
     },
 
     methods: {
-        startPollingInterval(){
+        startPollingInterval() {
             this.pollingInterval = setInterval(function () {
                 this.poll();
-            }.bind(this), 3000);
+            }.bind(this), 120000);
         },
 
-        clearPollingInterval(){
+        clearPollingInterval() {
             clearTimeout(this.pollingInterval);
             this.pollingInterval = null;
         },
 
         poll() {
-            this.$inertia.replace(this.route('servers.index', {'polling': true}), {
+            this.$inertia.replace(this.route('servers.index'), {
                 only: ['servers'],
                 preserveScroll: true,
             })
@@ -204,14 +262,23 @@ export default {
 
         submit() {
             this.$inertia.post(this.route('servers.store'), this.form, {
-                only: ['errors', 'flash', 'servers']
-            })
-                .then((response) => {
-                    if (!Object.keys(this.$page.errors).length) {
+                only: ['errors', 'flash', 'servers'],
+                onStart: () => this.loading = true,
+                onSuccess: () => {
+                    if (!Object.keys(this.$page.props.errors).length) {
                         this.form.domain = null;
                         this.modalIsOpen = false;
+
+                        this.form = {
+                            name: null,
+                            provider: null,
+                            region: null,
+                            plan: null,
+                        }
                     }
-                });
+                },
+                onFinish: () => this.loading = false
+            });
         },
 
         confirmDelete(server) {
@@ -227,7 +294,7 @@ export default {
         }
     },
 
-    beforeDestroy(){
+    beforeDestroy() {
         this.clearPollingInterval();
     }
 }

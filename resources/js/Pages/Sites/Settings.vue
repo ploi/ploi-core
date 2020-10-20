@@ -20,7 +20,7 @@
                                 <template #title>{{ __('Overview') }}</template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Domain')" :errors="$page.errors.domain"
+                                        <FormInput :label="__('Domain')" :errors="$page.props.errors.domain"
                                                    v-model="form.domain"/>
 
                                         <FormActions>
@@ -58,7 +58,7 @@
                             <!--                                <template #title>{{ __('DNS settings') }}</template>-->
                             <!--                                <template #form>-->
                             <!--                                    <form class="space-y-4" @submit.prevent="submit">-->
-                            <!--                                        <FormInput label="Cloudflare zone ID" :errors="$page.errors.dns_id"-->
+                            <!--                                        <FormInput label="Cloudflare zone ID" :errors="$page.props.errors.dns_id"-->
                             <!--                                                   v-model="form.dns_id"/>-->
 
                             <!--                                        <FormActions>-->
@@ -146,7 +146,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {

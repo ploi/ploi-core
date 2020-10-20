@@ -23,8 +23,8 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('From')" :errors="$page.errors.redirect_from" v-model="form.redirect_from"/>
-                                        <FormInput :label="__('To')" :errors="$page.errors.redirect_to" v-model="form.redirect_to"/>
+                                        <FormInput :label="__('From')" :errors="$page.props.errors.redirect_from" v-model="form.redirect_from"/>
+                                        <FormInput :label="__('To')" :errors="$page.props.errors.redirect_to" v-model="form.redirect_to"/>
                                         <FormSelect label="Type" v-model="form.type">
                                             <option value="redirect">{{ __('Temporary') }} (302)</option>
                                             <option value="permanent">{{ __('Permanent') }} (301)</option>
@@ -162,7 +162,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -240,7 +240,7 @@
                     .then(() => {
                         this.sending = false
 
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.form.redirect_from = null;
                             this.form.redirect_to = null;
                             this.form.type = 'redirect';

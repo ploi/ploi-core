@@ -13,7 +13,7 @@
                                     &centerdot;&centerdot;&centerdot;&centerdot;&nbsp;&centerdot;&centerdot;&centerdot;&centerdot;&nbsp;&centerdot;&centerdot;&centerdot;&centerdot;&nbsp; {{ currentCardLastFour }} ({{ currentCardBrand }})
                                 </p>
                                 <form-input v-model="cardHolderName"
-                                            :errors="$page.errors.card_holder_name"
+                                            :errors="$page.props.errors.card_holder_name"
                                             :disabled="sending"
                                             id="card-holder-name"
                                             :label="__('Card holder name')"/>
@@ -177,7 +177,7 @@
                 clientSecret: this.data_client_secret,
                 stripe: null,
                 cardElement: null,
-                cardHolderName: this.$page.auth.user.name,
+                cardHolderName: this.$page.props.auth.user.name,
                 currentCardLastFour: this.card.last_four,
                 currentCardBrand: this.card.brand,
                 coupon: '',
@@ -186,7 +186,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {

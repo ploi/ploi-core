@@ -23,11 +23,11 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Name')" :errors="$page.errors.name" v-model="form.name" />
-                                        <FormInput :label="__('Maximum sites')" type="number" min="0" :errors="$page.errors.maximum_sites" v-model="form.maximum_sites" />
-                                        <FormInput :label="__('Maximum servers')" type="number" min="0" :errors="$page.errors.maximum_servers" v-model="form.maximum_servers" />
-                                        <FormInput :label="__('Plan ID')" :errors="$page.errors.plan_id" v-model="form.plan_id" />
-                                        <FormInput v-if="form.plan_id" :label="__('Monthly price')" :errors="$page.errors.price_monthly" v-model="form.price_monthly" />
+                                        <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
+                                        <FormInput :label="__('Maximum sites')" type="number" min="0" :errors="$page.props.errors.maximum_sites" v-model="form.maximum_sites" />
+                                        <FormInput :label="__('Maximum servers')" type="number" min="0" :errors="$page.props.errors.maximum_servers" v-model="form.maximum_servers" />
+                                        <FormInput :label="__('Plan ID')" :errors="$page.props.errors.plan_id" v-model="form.plan_id" />
+                                        <FormInput v-if="form.plan_id" :label="__('Monthly price')" :errors="$page.props.errors.price_monthly" v-model="form.price_monthly" />
                                         <FormSelect v-if="form.plan_id" :label="__('Currency')" v-model="form.currency">
                                             <option value="usd">{{ __('USD $') }}</option>
                                             <option value="eur">{{ __('Euro €') }}</option>
@@ -88,6 +88,15 @@
                                                 <p class="text-small mt-1 text-medium-emphasis">
                                                     {{ __('This will allow users to delete sites') }}
                                                 </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">{{ __('Available server providers') }}</h3>
+
+                                            <div v-for="(name, id) in providers">
+                                                <input :id="`provider-${id}`" :value="id" v-model="form.providers" class="form-checkbox" type="checkbox">
+                                                <label :for="`provider-${id}`" class="ml-2 text-sm">{{ name }}</label>
                                             </div>
                                         </div>
 
@@ -158,6 +167,10 @@
             Tabs,
         },
 
+        props: {
+            providers: Object
+        },
+
         data() {
             return {
                 sending: false,
@@ -179,6 +192,7 @@
                         delete: false
                     },
                     price_monthly: null,
+                    providers: []
                 },
             }
         },

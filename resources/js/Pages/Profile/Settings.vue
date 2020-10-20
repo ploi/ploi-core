@@ -6,7 +6,7 @@
             <Container>
                 <PageBody>
                     <form class="space-y-4" @submit.prevent="submit">
-                        <FormSelect :label="__('Theme')" :errors="$page.errors.theme" v-model="form.theme">
+                        <FormSelect :label="__('Theme')" :errors="$page.props.errors.theme" v-model="form.theme">
                             <option value="light">{{ __('Light') }}</option>
                             <option value="dark">{{ __('Dark') }}</option>
                             <option value="auto">{{ __('Auto') }}</option>
@@ -89,7 +89,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {

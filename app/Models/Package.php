@@ -32,6 +32,11 @@ class Package extends Model
         return $this->hasMany(User::class);
     }
 
+    public function providers()
+    {
+        return $this->belongsToMany(Provider::class);
+    }
+
     protected static function booted()
     {
         static::deleting(function ($package) {

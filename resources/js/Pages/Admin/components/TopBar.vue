@@ -46,12 +46,12 @@ export default {
                     to: this.route('admin.packages.index'),
                     active: this.route().current('admin.packages.*')
                 },
-                this.$page.settings.support ? {
-                    title: `${this.__('Support')} (${this.$page.openTickets})`,
+                this.$page.props.settings.support ? {
+                    title: `${this.__('Support')} (${this.$page.props.openTickets})`,
                     to: this.route('admin.support.index'),
                     active: this.route().current('admin.support.*')
                 } : null,
-                this.$page.settings.documentation ? {
+                this.$page.props.settings.documentation ? {
                     title: this.__('Documentation'),
                     to: this.route('admin.documentation.index'),
                     active: this.route().current('admin.documentation.*')
@@ -69,7 +69,7 @@ export default {
             ],
             breadcrumbs: [
                 {
-                    title: this.$page.settings.name,
+                    title: this.$page.props.settings.name,
                     to: '/',
                 },
                 {

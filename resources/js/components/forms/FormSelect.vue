@@ -1,7 +1,11 @@
 <template>
     <FormGroup>
         <Label :errors="errors" :forId="id">{{ label }}</Label>
-        <select :class="defaultClasses" :id="id" :required="required" :placeholder="placeholder"
+        <select :disabled="loading || disabled" :class="[
+            defaultClasses,
+            disabled || loading ? 'opacity-50' : '',
+            loading ? 'cursor-wait' : '',
+            ]" :id="id" :required="required" :placeholder="placeholder"
                 @input="updateValue($event.target.value)"
                 v-model="value">
             <slot></slot>
@@ -50,6 +54,16 @@ export default {
         value: {
             required: false,
             default: '',
+        },
+        loading: {
+            type: Boolean,
+            required: false,
+            default: false,
+        },
+        disabled: {
+            type: Boolean,
+            required: false,
+            default: false,
         },
     },
 

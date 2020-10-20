@@ -20,8 +20,14 @@ class User extends Resource
         return $this->getPloi()->makeAPICall($this->getEndpoint());
     }
 
-    public function serverProviders()
+    public function serverProviders($id = null)
     {
-        return $this->getPloi()->makeAPICall($this->getEndpoint() . '/server-providers');
+        $url = $this->getEndpoint() . '/server-providers';
+
+        if ($id) {
+            $url .= '/' . $id;
+        }
+
+        return $this->getPloi()->makeAPICall($url);
     }
 }

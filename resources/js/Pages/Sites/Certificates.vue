@@ -23,7 +23,7 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Domain')" :errors="$page.errors.domain" v-model="form.domain"/>
+                                        <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
 
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
@@ -149,7 +149,7 @@
 
                 breadcrumbs: [
                     {
-                        title: this.$page.settings.name,
+                        title: this.$page.props.settings.name,
                         to: '/',
                     },
                     {
@@ -229,7 +229,7 @@
                     .then(() => {
                         this.sending = false
 
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.setDomainData();
                         }
                     })

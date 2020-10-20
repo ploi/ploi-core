@@ -40,7 +40,7 @@
                         </ul>
 
                         <form class="space-y-4" @submit.prevent="reply">
-                            <FormTextarea :label="__('Reply')" :errors="$page.errors.reply" v-model="form.content"/>
+                            <FormTextarea :label="__('Reply')" :errors="$page.props.errors.reply" v-model="form.content"/>
 
                             <FormActions>
                                 <Button>{{ __('Save') }}</Button>
@@ -131,7 +131,7 @@
                     .then(response => {
                         this.loading = false;
 
-                        if (!Object.keys(this.$page.errors).length) {
+                        if (!Object.keys(this.$page.props.errors).length) {
                             this.form.content = null;
                         }
                     })
