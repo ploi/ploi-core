@@ -231,14 +231,15 @@
 
             submit() {
                 this.$inertia.post(this.route('sites.store'), this.form, {
-                    only: ['errors', 'flash', 'sites']
-                })
-                    .then((response) => {
+                    only: ['errors', 'flash', 'sites'],
+                    onFinish: () => {
                         if (!Object.keys(this.$page.props.errors).length) {
                             this.form.domain = null;
+                            this.form.server_id = null;
                             this.modalIsOpen = false;
                         }
-                    });
+                    }
+                });
             },
 
             confirmDelete(site) {
