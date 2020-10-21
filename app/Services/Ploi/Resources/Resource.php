@@ -83,7 +83,7 @@ class Resource
         return $this->server;
     }
 
-    public function setServer(Server $server): self
+    public function setServer(Server $server)
     {
         $this->server = $server;
 
