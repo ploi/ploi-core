@@ -38,9 +38,12 @@ class SiteController extends Controller
             $server = Server::query()
                 ->doesntHave('users')
                 ->withCount('sites')
-                ->having('sites_count', '<', DB::raw('maximum_sites'))
                 ->inRandomOrder()
                 ->first();
+
+            if ($server && $server->sites_count >= $server->maximum_sites) {
+                $server = null;
+            }
         }
 
         if (!$server) {
