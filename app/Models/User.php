@@ -31,7 +31,8 @@ class User extends Authenticatable implements HasLocalePreference
         'notes',
         'language',
         'blocked',
-        'theme'
+        'theme',
+        'keyboard_shortcuts'
     ];
 
     protected $hidden = [
@@ -43,6 +44,7 @@ class User extends Authenticatable implements HasLocalePreference
     protected $casts = [
         'email_verified_at' => 'datetime',
         'ftp_password' => Encrypted::class,
+        'keyboard_shortcuts' => 'boolean'
     ];
 
     protected $appends = [

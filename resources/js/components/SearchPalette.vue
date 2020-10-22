@@ -51,92 +51,93 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                searchOpen: false,
-                search: '',
-                results: [],
-                timeout: null,
+export default {
+    data() {
+        return {
+            searchOpen: false,
+            search: '',
+            results: [],
+            timeout: null,
+        }
+    },
+    computed: {
+        isSearching() {
+            return this.search.trim() !== ''
+        },
+    },
+
+    watch: {
+        search: function (value) {
+            this.results = null;
+            this.loading = true;
+
+            this.getResults();
+
+            this.arrowNavigation = {
+                identifier: null,
+                index: -1
             }
         },
-        computed: {
-            isSearching() {
-                return this.search.trim() !== ''
-            },
-        },
+    },
 
-        watch: {
-            search: function (value) {
-                this.results = null;
-                this.loading = true;
+    mounted() {
+        document.addEventListener('keydown', this.handleKeydown);
 
-                this.getResults();
+        window.eventBus.$on('openSearch', () => {
+            this.openSearch();
+        });
+    },
 
-                this.arrowNavigation = {
-                    identifier: null,
-                    index: -1
-                }
-            },
-        },
+    destroyed() {
+        if (this.timeout) clearTimeout(this.timeout);
+    },
 
-        mounted() {
-            document.addEventListener('keydown', this.handleKeydown);
-
-            window.eventBus.$on('openSearch', () => {
-                this.openSearch();
-            });
-        },
-
-        destroyed() {
+    methods: {
+        getResults() {
             if (this.timeout) clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                if (!this.search) {
+                    this.loading = false;
+                    return;
+                }
+
+                this.results = null;
+
+                window.axios.get(this.route('search', {query: this.search}).url())
+                    .then((response) => {
+                        this.loading = false;
+                        this.totalResults = response.data.total;
+
+                        if (!response.data.total) {
+                            this.results = null;
+                        } else {
+                            this.results = response.data.results;
+                        }
+                    })
+            }, 300);
         },
 
-        methods: {
-            getResults() {
-                if (this.timeout) clearTimeout(this.timeout);
-                this.timeout = setTimeout(() => {
-                    if (!this.search) {
-                        this.loading = false;
-                        return;
-                    }
+        handleKeydown(event) {
+            if (this.isNotInputElement(event) && event.keyCode === 191) {
+                event.preventDefault()
+                event.stopPropagation()
 
-                    this.results = null;
+                this.openSearch();
+            }
 
-                    window.axios.get(this.route('search', {query: this.search}).url())
-                        .then((response) => {
-                            this.loading = false;
-                            this.totalResults = response.data.total;
+            if (event.keyCode === 27) {
+                this.closeSearch();
+            }
 
-                            if (!response.data.total) {
-                                this.results = null;
-                            } else {
-                                this.results = response.data.results;
-                            }
-                        })
-                }, 300);
-            },
+            if (!this.isNotInputElement(event)) {
+                return;
+            }
 
-            handleKeydown(event) {
-                if (this.isNotInputElement(event) && event.keyCode === 191) {
-                    event.preventDefault()
-                    event.stopPropagation()
+            if (event.ctrlKey || event.metaKey) {
+                return;
+            }
 
-                    this.openSearch();
-                }
-
-                if (event.keyCode === 27) {
-                    this.closeSearch();
-                }
-
-                if (!this.isNotInputElement(event)) {
-                    return;
-                }
-
-                if (event.ctrlKey || event.metaKey) {
-                    return;
-                }
-
+            if (this.$page.props.auth.user.keyboard_shortcuts) {
                 if (event.key === 'c') {
                     this.$inertia.visit(this.route('sites.index', {create: true}));
                 }
@@ -144,38 +145,39 @@
                 if (event.key === 'p') {
                     this.$inertia.visit(this.route('profile.index'));
                 }
-            },
+            }
+        },
 
-            openSearch() {
-                // Enable search focus
-                this.searchOpen = true;
-                this.$nextTick(() => {
-                    if (this.$refs.search) {
-                        this.$refs.search.focus();
-                    }
-                });
-            },
-
-            closeSearch() {
-                this.search = '';
-                this.searchOpen = false;
-
-                // Remove search focus
+        openSearch() {
+            // Enable search focus
+            this.searchOpen = true;
+            this.$nextTick(() => {
                 if (this.$refs.search) {
-                    this.$refs.search.blur();
+                    this.$refs.search.focus();
                 }
-            },
+            });
+        },
 
-            isNotInputElement(event) {
-                const tagName = event.target.tagName
+        closeSearch() {
+            this.search = '';
+            this.searchOpen = false;
 
-                return Boolean(
-                    tagName !== 'INPUT' &&
-                    tagName !== 'TEXTAREA' &&
-                    event.target.id !== 'code-editor' &&
-                    !event.target.classList.contains('form-textarea')
-                )
-            },
-        }
+            // Remove search focus
+            if (this.$refs.search) {
+                this.$refs.search.blur();
+            }
+        },
+
+        isNotInputElement(event) {
+            const tagName = event.target.tagName
+
+            return Boolean(
+                tagName !== 'INPUT' &&
+                tagName !== 'TEXTAREA' &&
+                event.target.id !== 'code-editor' &&
+                !event.target.classList.contains('form-textarea')
+            )
+        },
     }
+}
 </script>

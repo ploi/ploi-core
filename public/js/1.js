@@ -484,14 +484,16 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      if (event.key === 'c') {
-        this.$inertia.visit(this.route('sites.index', {
-          create: true
-        }));
-      }
+      if (this.$page.props.auth.user.keyboard_shortcuts) {
+        if (event.key === 'c') {
+          this.$inertia.visit(this.route('sites.index', {
+            create: true
+          }));
+        }
 
-      if (event.key === 'p') {
-        this.$inertia.visit(this.route('profile.index'));
+        if (event.key === 'p') {
+          this.$inertia.visit(this.route('profile.index'));
+        }
       }
     },
     openSearch: function openSearch() {

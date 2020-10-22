@@ -12,7 +12,8 @@ class ProfileSettingController extends Controller
     {
         return inertia('Profile/Settings', [
             'profile' => [
-                'theme' => auth()->user()->theme
+                'theme' => auth()->user()->theme,
+                'keyboard_shortcuts' => auth()->user()->keyboard_shortcuts,
             ]
         ]);
     }
@@ -27,7 +28,10 @@ class ProfileSettingController extends Controller
             ]
         ]);
 
-        $request->user()->update(['theme' => $request->input('theme')]);
+        $request->user()->update([
+            'theme' => $request->input('theme'),
+            'keyboard_shortcuts' => $request->input('keyboard_shortcuts', true),
+        ]);
 
         return redirect()->route('profile.settings.index')->with('success', __('Instellingen zijn aangepast'));
     }

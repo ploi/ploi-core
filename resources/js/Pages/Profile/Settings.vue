@@ -12,6 +12,15 @@
                             <option value="auto">{{ __('Auto') }}</option>
                         </FormSelect>
 
+                        <div>
+                            <input id="keyboard_shortcuts" class="form-checkbox" type="checkbox"
+                                   v-model="form.keyboard_shortcuts">
+                            <label for="keyboard_shortcuts" class="ml-2 text-sm">{{ __('Enable keyboard shortcuts') }}</label>
+                            <p class="text-small mt-1 text-medium-emphasis">
+                                {{ __('This will allow you to do keyboard shortcuts for navigation, which is visible when you press "/"') }}
+                            </p>
+                        </div>
+
                         <FormActions>
                             <Button>{{ __('Save changes') }}</Button>
                         </FormActions>
@@ -85,6 +94,7 @@
             return {
                 form: {
                     theme: this.profile.theme,
+                    keyboard_shortcuts: this.profile.keyboard_shortcuts
                 },
 
                 breadcrumbs: [

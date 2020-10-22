@@ -57,6 +57,7 @@ class HandleInertiaRequests extends Middleware
                         'user_name' => Auth::user()->user_name,
                         'avatar' => Auth::user()->getGravatar(),
                         'theme' => Auth::user()->theme,
+                        'keyboard_shortcuts' => Auth::user()->keyboard_shortcuts,
                     ] : null,
                     'package' => auth()->user() && auth()->user()->package ? [
                         'name' => auth()->user()->package->name,

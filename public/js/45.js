@@ -54,6 +54,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -110,7 +119,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        theme: this.profile.theme
+        theme: this.profile.theme,
+        keyboard_shortcuts: this.profile.keyboard_shortcuts
       },
       breadcrumbs: [{
         title: this.$page.props.settings.name,
@@ -373,6 +383,79 @@ var render = function() {
                         ])
                       ]
                     ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.keyboard_shortcuts,
+                            expression: "form.keyboard_shortcuts"
+                          }
+                        ],
+                        staticClass: "form-checkbox",
+                        attrs: { id: "keyboard_shortcuts", type: "checkbox" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.keyboard_shortcuts)
+                            ? _vm._i(_vm.form.keyboard_shortcuts, null) > -1
+                            : _vm.form.keyboard_shortcuts
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.keyboard_shortcuts,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "keyboard_shortcuts",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "keyboard_shortcuts",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "keyboard_shortcuts", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "ml-2 text-sm",
+                          attrs: { for: "keyboard_shortcuts" }
+                        },
+                        [_vm._v(_vm._s(_vm.__("Enable keyboard shortcuts")))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        { staticClass: "text-small mt-1 text-medium-emphasis" },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(
+                                _vm.__(
+                                  'This will allow you to do keyboard shortcuts for navigation, which is visible when you press "/"'
+                                )
+                              ) +
+                              "\n                        "
+                          )
+                        ]
+                      )
+                    ]),
                     _vm._v(" "),
                     _c(
                       "FormActions",
