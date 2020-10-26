@@ -13,6 +13,7 @@
                             <option value="nl">Dutch</option>
                             <option value="fr">French</option>
                             <option value="da">Danish</option>
+                            <option value="nn">Norwegian</option>
                         </FormSelect>
 
                         <FormActions>

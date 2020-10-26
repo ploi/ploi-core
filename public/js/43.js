@@ -57,6 +57,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -402,6 +403,10 @@ var render = function() {
                         _vm._v(" "),
                         _c("option", { attrs: { value: "da" } }, [
                           _vm._v("Danish")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "nn" } }, [
+                          _vm._v("Norwegian")
                         ])
                       ]
                     ),
