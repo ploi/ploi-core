@@ -145,6 +145,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -724,6 +727,9 @@ var render = function() {
                                                 "FormSelect",
                                                 {
                                                   attrs: {
+                                                    errors:
+                                                      _vm.$page.props.errors
+                                                        .currency,
                                                     label: _vm.__("Currency")
                                                   },
                                                   model: {
@@ -757,6 +763,48 @@ var render = function() {
                                                         _vm._s(_vm.__("Euro €"))
                                                       )
                                                     ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "nok" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "NOK (Norwegian Krone)"
+                                                          )
+                                                        )
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "aud" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "AUD (Australian dollar)"
+                                                          )
+                                                        )
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "cad" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "CAD (Canadian dollar)"
+                                                          )
+                                                        )
+                                                      )
+                                                    ]
                                                   )
                                                 ]
                                               )
@@ -764,7 +812,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "div",
-                                            { staticClass: "space-y-2" },
+                                            { staticClass: "space-y-4" },
                                             [
                                               _c(
                                                 "h3",

@@ -35,7 +35,10 @@ class PackageRequest extends FormRequest
                 'nullable',
                 Rule::in([
                     Package::CURRENCY_USD,
-                    Package::CURRENCY_EURO
+                    Package::CURRENCY_EURO,
+                    Package::CURRENCY_NOK,
+                    Package::CURRENCY_AUD,
+                    Package::CURRENCY_CAD,
                 ])
             ],
             'maximum_sites' => [

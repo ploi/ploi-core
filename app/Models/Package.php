@@ -9,6 +9,9 @@ class Package extends Model
 {
     const CURRENCY_EURO = 'eur';
     const CURRENCY_USD = 'usd';
+    const CURRENCY_NOK = 'nok';
+    const CURRENCY_AUD = 'aud';
+    const CURRENCY_CAD = 'cad';
 
     public $fillable = [
         'name',

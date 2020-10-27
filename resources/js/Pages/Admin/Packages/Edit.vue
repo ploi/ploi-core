@@ -30,12 +30,15 @@
                                                    v-model="form.plan_id"/>
                                         <FormInput v-if="form.plan_id" :label="__('Monthly price')"
                                                    :errors="$page.props.errors.price_monthly" v-model="form.price_monthly"/>
-                                        <FormSelect v-if="form.plan_id" :label="__('Currency')" v-model="form.currency">
+                                        <FormSelect :errors="$page.props.errors.currency" v-if="form.plan_id" :label="__('Currency')" v-model="form.currency">
                                             <option value="usd">{{ __('USD $') }}</option>
                                             <option value="eur">{{ __('Euro €') }}</option>
+                                            <option value="nok">{{ __('NOK (Norwegian Krone)') }}</option>
+                                            <option value="aud">{{ __('AUD (Australian dollar)') }}</option>
+                                            <option value="cad">{{ __('CAD (Canadian dollar)') }}</option>
                                         </FormSelect>
 
-                                        <div class="space-y-2">
+                                        <div class="space-y-4">
                                             <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">
                                                 {{ __('Server permissions') }}</h3>
 
