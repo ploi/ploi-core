@@ -21,13 +21,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       items: [{
-        title: this.__('Overview'),
-        to: this.route('admin.support.index'),
-        active: this.route().current('admin.support.index')
+        title: this.__('Categories'),
+        to: this.route('admin.documentation.index'),
+        active: this.route().current('admin.documentation.index')
+      }, {
+        title: this.__('Create category'),
+        to: this.route('admin.documentation.create'),
+        active: this.route().current('admin.documentation.create')
+      }, {
+        title: this.__('Articles'),
+        to: this.route('admin.documentation.articles.index'),
+        active: this.route().current('admin.documentation.articles.index')
+      }, {
+        title: this.__('Create article'),
+        to: this.route('admin.documentation.articles.create'),
+        active: this.route().current('admin.documentation.articles.create')
       }]
     };
   }
@@ -67,7 +80,11 @@ var render = function() {
               },
               attrs: { href: item.to }
             },
-            [_vm._v(_vm._s(item.title) + " " + _vm._s(item.route))]
+            [
+              _vm._v(
+                _vm._s(item.title) + " " + _vm._s(item.route) + "\n        "
+              )
+            ]
           )
         ],
         1

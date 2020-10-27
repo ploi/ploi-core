@@ -22,6 +22,18 @@ Route::group(['prefix' => 'support', 'as' => 'support.'], function () {
 
 Route::group(['prefix' => 'documentation', 'as' => 'documentation.'], function () {
     Route::get('/', 'DocumentationController@index')->name('index');
+    Route::get('create', 'DocumentationController@create')->name('create');
+    Route::post('/', 'DocumentationController@store')->name('store');
+    Route::get('{category}/edit', 'DocumentationController@edit')->name('edit');
+    Route::patch('{category}', 'DocumentationController@update')->name('update');
+
+    Route::group(['prefix' => 'articles', 'as' => 'articles.'], function(){
+        Route::get('/', 'DocumentationArticleController@index')->name('index');
+        Route::get('create', 'DocumentationArticleController@create')->name('create');
+        Route::post('/', 'DocumentationArticleController@store')->name('store');
+        Route::get('{article}/edit', 'DocumentationArticleController@edit')->name('edit');
+        Route::patch('{article}', 'DocumentationArticleController@update')->name('update');
+    });
 });
 
 Route::group(['prefix' => 'services', 'as' => 'services.'], function () {

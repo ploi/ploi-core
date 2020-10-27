@@ -12,7 +12,37 @@
 
                 <PageBody>
                     <SettingsLayout>
-                        TODO
+                        <template #nav>
+                            <Tabs />
+                        </template>
+                        <template #segments>
+                            <SettingsSegment>
+                                <template #title>{{ __('Overview') }}</template>
+                                <template #content>
+                                    <Table caption="Documentation category list overview">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableHeader>{{ __('Title') }}</TableHeader>
+                                                <TableHeader></TableHeader>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            <TableRow v-for="category in categories.data" :key="category.id">
+                                                <TableData>
+                                                    {{ category.title }}
+                                                </TableData>
+                                                <TableData>
+                                                    <inertia-link :href="route('admin.documentation.edit', category.id)"
+                                                                  class="text-primary font-medium">
+                                                        {{ __('Edit') }}
+                                                    </inertia-link>
+                                                </TableData>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </template>
+                            </SettingsSegment>
+                        </template>
                     </SettingsLayout>
                 </PageBody>
             </Container>
@@ -81,7 +111,7 @@
         },
 
         props: {
-
+            categories: Object
         },
 
         data() {
