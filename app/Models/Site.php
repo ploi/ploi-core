@@ -85,7 +85,7 @@ class Site extends Model
         if (setting('isolate_per_site_per_user') && $this->systemUsers()->first()) {
             $user = $this->systemUsers()->first();
         } else {
-            $user = $this->site->users()->first();
+            $user = $this->users()->first();
         }
 
         return [
