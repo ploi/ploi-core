@@ -37,22 +37,4 @@ class ProfileController extends Controller
 
         return $mode;
     }
-
-    public function requestFtpPassword(Request $request)
-    {
-        $this->validate($request, ['password' => 'required|string']);
-
-        if (!Hash::check($request->input('password'), $request->user()->password)) {
-            return response([
-                'message' => 'The given data was invalid',
-                'errors' => [
-                    'password' => [
-                        trans('auth.failed')
-                    ]
-                ]
-            ], 422);
-        }
-
-        return ['ftp_password' => decrypt($request->user()->ftp_password)];
-    }
 }

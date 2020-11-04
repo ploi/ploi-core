@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[24],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Status.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Status.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Packages/Create.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Packages/Create.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_TopBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/TopBar */ "./resources/js/Pages/Admin/components/TopBar.vue");
+/* harmony import */ var _components_TopBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/TopBar */ "./resources/js/Pages/Admin/components/TopBar.vue");
 /* harmony import */ var _components_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/Container */ "./resources/js/components/Container.vue");
 /* harmony import */ var _components_Content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Content */ "./resources/js/components/Content.vue");
 /* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/Page */ "./resources/js/components/Page.vue");
@@ -25,10 +25,102 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_layouts_SettingsLayout__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/components/layouts/SettingsLayout */ "./resources/js/components/layouts/SettingsLayout.vue");
 /* harmony import */ var _components_SettingsSegment__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/components/SettingsSegment */ "./resources/js/components/SettingsSegment.vue");
 /* harmony import */ var _components_forms_FormInput__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/components/forms/FormInput */ "./resources/js/components/forms/FormInput.vue");
-/* harmony import */ var _components_Form__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/components/Form */ "./resources/js/components/Form.vue");
-/* harmony import */ var _components_FormActions__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/FormActions */ "./resources/js/components/FormActions.vue");
-/* harmony import */ var _hooks_notification__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/hooks/notification */ "./resources/js/hooks/notification.js");
-/* harmony import */ var _TabsStatus__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./TabsStatus */ "./resources/js/Pages/Admin/TabsStatus.vue");
+/* harmony import */ var _components_forms_FormSelect__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/components/forms/FormSelect */ "./resources/js/components/forms/FormSelect.vue");
+/* harmony import */ var _components_Form__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/Form */ "./resources/js/components/Form.vue");
+/* harmony import */ var _components_FormActions__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/FormActions */ "./resources/js/components/FormActions.vue");
+/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Tabs */ "./resources/js/Pages/Admin/Packages/Tabs.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -79,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: function metaInfo() {
     return {
-      title: "".concat(this.__('Status'))
+      title: "".concat(this.__('Create package'))
     };
   },
   layout: _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_12__["default"],
@@ -97,24 +189,58 @@ __webpack_require__.r(__webpack_exports__);
     StatusBubble: _components_StatusBubble__WEBPACK_IMPORTED_MODULE_10__["default"],
     NotificationBadge: _components_NotificationBadge__WEBPACK_IMPORTED_MODULE_11__["default"],
     FormInput: _components_forms_FormInput__WEBPACK_IMPORTED_MODULE_15__["default"],
+    FormSelect: _components_forms_FormSelect__WEBPACK_IMPORTED_MODULE_16__["default"],
     SettingsLayout: _components_layouts_SettingsLayout__WEBPACK_IMPORTED_MODULE_13__["default"],
     SettingsSegment: _components_SettingsSegment__WEBPACK_IMPORTED_MODULE_14__["default"],
-    Form: _components_Form__WEBPACK_IMPORTED_MODULE_16__["default"],
-    FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_17__["default"],
-    Tabs: _TabsStatus__WEBPACK_IMPORTED_MODULE_19__["default"]
+    Form: _components_Form__WEBPACK_IMPORTED_MODULE_17__["default"],
+    FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_18__["default"],
+    Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_19__["default"]
   },
-  props: {},
+  props: {
+    providers: Object
+  },
+  data: function data() {
+    return {
+      sending: false,
+      form: {
+        name: null,
+        plan_id: null,
+        currency: 'usd',
+        maximum_sites: 10,
+        maximum_servers: 1,
+        server_permissions: {
+          create: false,
+          update: false,
+          "delete": false
+        },
+        site_permissions: {
+          create: false,
+          update: false,
+          "delete": false
+        },
+        price_monthly: null,
+        providers: []
+      }
+    };
+  },
   methods: {
-    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_18__["useNotification"]
+    submit: function submit() {
+      var _this = this;
+
+      this.sending = true;
+      this.$inertia.post(this.route('admin.packages.store'), this.form).then(function () {
+        return _this.sending = false;
+      });
+    }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/TabsStatus.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/TabsStatus.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -137,8 +263,12 @@ __webpack_require__.r(__webpack_exports__);
     return {
       items: [{
         title: this.__('Overview'),
-        to: this.route('admin.status.index'),
-        active: this.route().current('admin.status.index')
+        to: this.route('admin.packages.index'),
+        active: this.route().current('admin.packages.index')
+      }, {
+        title: this.__('Create'),
+        to: this.route('admin.packages.create'),
+        active: this.route().current('admin.packages.create')
       }]
     };
   }
@@ -254,6 +384,108 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_FormGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/FormGroup */ "./resources/js/components/FormGroup.vue");
+/* harmony import */ var _components_Label__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/Label */ "./resources/js/components/Label.vue");
+/* harmony import */ var _components_ErrorText__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ErrorText */ "./resources/js/components/ErrorText.vue");
+/* harmony import */ var _components_HelperText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/HelperText */ "./resources/js/components/HelperText.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+var defaultClasses = 'w-full border-medium-emphasis text-body h-10 max-w-lg px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary';
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    id: {
+      type: String,
+      required: false
+    },
+    label: {
+      type: String,
+      required: true
+    },
+    type: {
+      type: String,
+      "default": function _default() {
+        return 'text';
+      }
+    },
+    required: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    helperText: {
+      type: String
+    },
+    errors: {
+      type: Array
+    },
+    placeholder: {
+      type: String
+    },
+    value: {
+      required: false,
+      "default": ''
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      "default": false
+    }
+  },
+  components: {
+    FormGroup: _components_FormGroup__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Label: _components_Label__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ErrorText: _components_ErrorText__WEBPACK_IMPORTED_MODULE_2__["default"],
+    HelperText: _components_HelperText__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  data: function data() {
+    return {
+      defaultClasses: defaultClasses,
+      selected: this.value
+    };
+  },
+  methods: {
+    updateValue: function updateValue(value) {
+      this.$emit('input', value);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/SettingsLayout.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/SettingsLayout.vue?vue&type=script&lang=js& ***!
@@ -287,10 +519,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Status.vue?vue&type=template&id=799ea00a&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Status.vue?vue&type=template&id=799ea00a& ***!
-  \**********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Packages/Create.vue?vue&type=template&id=7ae8a0c5&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Packages/Create.vue?vue&type=template&id=7ae8a0c5& ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -320,7 +552,7 @@ var render = function() {
                     fn: function() {
                       return [
                         _c("PageHeaderTitle", [
-                          _vm._v(_vm._s(_vm.__("Status")))
+                          _vm._v(_vm._s(_vm.__("Create package")))
                         ])
                       ]
                     },
@@ -344,7 +576,1185 @@ var render = function() {
                       {
                         key: "segments",
                         fn: function() {
-                          return undefined
+                          return [
+                            _c("SettingsSegment", {
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "title",
+                                  fn: function() {
+                                    return [_vm._v(_vm._s(_vm.__("Create")))]
+                                  },
+                                  proxy: true
+                                },
+                                {
+                                  key: "subtitle",
+                                  fn: function() {
+                                    return [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(
+                                            _vm.__(
+                                              "Create a new package here to attach to your users. You can create as many packages as you want, the advantage is that you are able to provide custom packages for your users."
+                                            )
+                                          ) +
+                                          "\n                            "
+                                      )
+                                    ]
+                                  },
+                                  proxy: true
+                                },
+                                {
+                                  key: "form",
+                                  fn: function() {
+                                    return [
+                                      _c(
+                                        "form",
+                                        {
+                                          staticClass: "space-y-4",
+                                          on: {
+                                            submit: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.submit($event)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Name"),
+                                              errors:
+                                                _vm.$page.props.errors.name
+                                            },
+                                            model: {
+                                              value: _vm.form.name,
+                                              callback: function($$v) {
+                                                _vm.$set(_vm.form, "name", $$v)
+                                              },
+                                              expression: "form.name"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Maximum sites"),
+                                              type: "number",
+                                              min: "0",
+                                              errors:
+                                                _vm.$page.props.errors
+                                                  .maximum_sites
+                                            },
+                                            model: {
+                                              value: _vm.form.maximum_sites,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "maximum_sites",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "form.maximum_sites"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Maximum servers"),
+                                              type: "number",
+                                              min: "0",
+                                              errors:
+                                                _vm.$page.props.errors
+                                                  .maximum_servers
+                                            },
+                                            model: {
+                                              value: _vm.form.maximum_servers,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "maximum_servers",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "form.maximum_servers"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Plan ID"),
+                                              errors:
+                                                _vm.$page.props.errors.plan_id
+                                            },
+                                            model: {
+                                              value: _vm.form.plan_id,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "plan_id",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "form.plan_id"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _vm.form.plan_id
+                                            ? _c("FormInput", {
+                                                attrs: {
+                                                  label: _vm.__(
+                                                    "Monthly price"
+                                                  ),
+                                                  errors:
+                                                    _vm.$page.props.errors
+                                                      .price_monthly
+                                                },
+                                                model: {
+                                                  value: _vm.form.price_monthly,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "price_monthly",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "form.price_monthly"
+                                                }
+                                              })
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.form.plan_id
+                                            ? _c(
+                                                "FormSelect",
+                                                {
+                                                  attrs: {
+                                                    errors:
+                                                      _vm.$page.props.errors
+                                                        .currency,
+                                                    label: _vm.__("Currency")
+                                                  },
+                                                  model: {
+                                                    value: _vm.form.currency,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "currency",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "form.currency"
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "usd" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(_vm.__("USD $"))
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "eur" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(_vm.__("Euro €"))
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "nok" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "NOK (Norwegian Krone)"
+                                                          )
+                                                        )
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "aud" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "AUD (Australian dollar)"
+                                                          )
+                                                        )
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "cad" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "CAD (Canadian dollar)"
+                                                          )
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "space-y-4" },
+                                            [
+                                              _c(
+                                                "h3",
+                                                {
+                                                  staticClass:
+                                                    "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "Server permissions"
+                                                      )
+                                                    )
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .server_permissions[
+                                                          "create"
+                                                        ],
+                                                      expression:
+                                                        "form.server_permissions['create']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "server_create",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form
+                                                        .server_permissions[
+                                                        "create"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "create"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .server_permissions[
+                                                          "create"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "create"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "create",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "create",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .server_permissions,
+                                                          "create",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "server_create"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow server creation"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to create servers"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .server_permissions[
+                                                          "update"
+                                                        ],
+                                                      expression:
+                                                        "form.server_permissions['update']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "server_update",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form
+                                                        .server_permissions[
+                                                        "update"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "update"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .server_permissions[
+                                                          "update"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "update"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "update",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "update",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .server_permissions,
+                                                          "update",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "server_update"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow server updating"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to update servers"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .server_permissions[
+                                                          "delete"
+                                                        ],
+                                                      expression:
+                                                        "form.server_permissions['delete']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "server_delete",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form
+                                                        .server_permissions[
+                                                        "delete"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "delete"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .server_permissions[
+                                                          "delete"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .server_permissions[
+                                                            "delete"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "delete",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .server_permissions,
+                                                              "delete",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .server_permissions,
+                                                          "delete",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "server_delete"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow server deletion"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to delete servers"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "space-y-2" },
+                                            [
+                                              _c(
+                                                "h3",
+                                                {
+                                                  staticClass:
+                                                    "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__("Site permissions")
+                                                    )
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .site_permissions[
+                                                          "create"
+                                                        ],
+                                                      expression:
+                                                        "form.site_permissions['create']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "site_create",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form.site_permissions[
+                                                        "create"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "create"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .site_permissions[
+                                                          "create"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "create"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "create",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "create",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .site_permissions,
+                                                          "create",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "site_create"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow site creation"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to create sites"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .site_permissions[
+                                                          "update"
+                                                        ],
+                                                      expression:
+                                                        "form.site_permissions['update']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "site_update",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form.site_permissions[
+                                                        "update"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "update"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .site_permissions[
+                                                          "update"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "update"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "update",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "update",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .site_permissions,
+                                                          "update",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "site_update"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow site updating"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to update sites"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.form
+                                                          .site_permissions[
+                                                          "delete"
+                                                        ],
+                                                      expression:
+                                                        "form.site_permissions['delete']"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-checkbox",
+                                                  attrs: {
+                                                    id: "site_delete",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      _vm.form.site_permissions[
+                                                        "delete"
+                                                      ]
+                                                    )
+                                                      ? _vm._i(
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "delete"
+                                                          ],
+                                                          null
+                                                        ) > -1
+                                                      : _vm.form
+                                                          .site_permissions[
+                                                          "delete"
+                                                        ]
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a =
+                                                          _vm.form
+                                                            .site_permissions[
+                                                            "delete"
+                                                          ],
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "delete",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .site_permissions,
+                                                              "delete",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          _vm.form
+                                                            .site_permissions,
+                                                          "delete",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass: "ml-2 text-sm",
+                                                    attrs: {
+                                                      for: "site_delete"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "Allow site deletion"
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-small mt-1 text-medium-emphasis"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.__(
+                                                            "This will allow users to delete sites"
+                                                          )
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "space-y-2" },
+                                            [
+                                              _c(
+                                                "h3",
+                                                {
+                                                  staticClass:
+                                                    "text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "Available server providers"
+                                                      )
+                                                    )
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm._l(_vm.providers, function(
+                                                name,
+                                                id
+                                              ) {
+                                                return _c("div", [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm.form.providers,
+                                                        expression:
+                                                          "form.providers"
+                                                      }
+                                                    ],
+                                                    staticClass:
+                                                      "form-checkbox",
+                                                    attrs: {
+                                                      id: "provider-" + id,
+                                                      type: "checkbox"
+                                                    },
+                                                    domProps: {
+                                                      value: id,
+                                                      checked: Array.isArray(
+                                                        _vm.form.providers
+                                                      )
+                                                        ? _vm._i(
+                                                            _vm.form.providers,
+                                                            id
+                                                          ) > -1
+                                                        : _vm.form.providers
+                                                    },
+                                                    on: {
+                                                      change: function($event) {
+                                                        var $$a =
+                                                            _vm.form.providers,
+                                                          $$el = $event.target,
+                                                          $$c = $$el.checked
+                                                            ? true
+                                                            : false
+                                                        if (
+                                                          Array.isArray($$a)
+                                                        ) {
+                                                          var $$v = id,
+                                                            $$i = _vm._i(
+                                                              $$a,
+                                                              $$v
+                                                            )
+                                                          if ($$el.checked) {
+                                                            $$i < 0 &&
+                                                              _vm.$set(
+                                                                _vm.form,
+                                                                "providers",
+                                                                $$a.concat([
+                                                                  $$v
+                                                                ])
+                                                              )
+                                                          } else {
+                                                            $$i > -1 &&
+                                                              _vm.$set(
+                                                                _vm.form,
+                                                                "providers",
+                                                                $$a
+                                                                  .slice(0, $$i)
+                                                                  .concat(
+                                                                    $$a.slice(
+                                                                      $$i + 1
+                                                                    )
+                                                                  )
+                                                              )
+                                                          }
+                                                        } else {
+                                                          _vm.$set(
+                                                            _vm.form,
+                                                            "providers",
+                                                            $$c
+                                                          )
+                                                        }
+                                                      }
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass:
+                                                        "ml-2 text-sm",
+                                                      attrs: {
+                                                        for: "provider-" + id
+                                                      }
+                                                    },
+                                                    [_vm._v(_vm._s(name))]
+                                                  )
+                                                ])
+                                              })
+                                            ],
+                                            2
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "FormActions",
+                                            [
+                                              _c("Button", [
+                                                _vm._v(
+                                                  _vm._s(_vm.__("Save changes"))
+                                                )
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  },
+                                  proxy: true
+                                }
+                              ])
+                            })
+                          ]
                         },
                         proxy: true
                       }
@@ -370,10 +1780,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/TabsStatus.vue?vue&type=template&id=67725999&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/TabsStatus.vue?vue&type=template&id=67725999& ***!
-  \**************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=template&id=e9698af2&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=template&id=e9698af2& ***!
+  \*****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -585,6 +1995,89 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "FormGroup",
+    [
+      _c("Label", { attrs: { errors: _vm.errors, forId: _vm.id } }, [
+        _vm._v(_vm._s(_vm.label))
+      ]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.value,
+              expression: "value"
+            }
+          ],
+          class: [
+            _vm.defaultClasses,
+            _vm.disabled || _vm.loading ? "opacity-50" : "",
+            _vm.loading ? "cursor-wait" : ""
+          ],
+          attrs: {
+            disabled: _vm.loading || _vm.disabled,
+            id: _vm.id,
+            required: _vm.required,
+            placeholder: _vm.placeholder
+          },
+          on: {
+            input: function($event) {
+              return _vm.updateValue($event.target.value)
+            },
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.value = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [_vm._t("default")],
+        2
+      ),
+      _vm._v(" "),
+      _vm.errors ? _c("ErrorText", [_vm._v(_vm._s(_vm.errors[0]))]) : _vm._e(),
+      _vm._v(" "),
+      _vm.helperText && !_vm.errors
+        ? _c("HelperText", [_vm._v(_vm._s(_vm.helperText))])
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/SettingsLayout.vue?vue&type=template&id=85feafc4&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/SettingsLayout.vue?vue&type=template&id=85feafc4& ***!
@@ -732,18 +2225,18 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Status.vue":
-/*!*********************************************!*\
-  !*** ./resources/js/Pages/Admin/Status.vue ***!
-  \*********************************************/
+/***/ "./resources/js/Pages/Admin/Packages/Create.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/Pages/Admin/Packages/Create.vue ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Status_vue_vue_type_template_id_799ea00a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Status.vue?vue&type=template&id=799ea00a& */ "./resources/js/Pages/Admin/Status.vue?vue&type=template&id=799ea00a&");
-/* harmony import */ var _Status_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Status.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Status.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Create_vue_vue_type_template_id_7ae8a0c5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=7ae8a0c5& */ "./resources/js/Pages/Admin/Packages/Create.vue?vue&type=template&id=7ae8a0c5&");
+/* harmony import */ var _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Packages/Create.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -752,9 +2245,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Status_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Status_vue_vue_type_template_id_799ea00a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Status_vue_vue_type_template_id_799ea00a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Create_vue_vue_type_template_id_7ae8a0c5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Create_vue_vue_type_template_id_7ae8a0c5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -764,55 +2257,55 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Admin/Status.vue"
+component.options.__file = "resources/js/Pages/Admin/Packages/Create.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Status.vue?vue&type=script&lang=js&":
-/*!**********************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Status.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************/
+/***/ "./resources/js/Pages/Admin/Packages/Create.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Packages/Create.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Status_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Status.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Status.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Status_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Packages/Create.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Status.vue?vue&type=template&id=799ea00a&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Status.vue?vue&type=template&id=799ea00a& ***!
-  \****************************************************************************/
+/***/ "./resources/js/Pages/Admin/Packages/Create.vue?vue&type=template&id=7ae8a0c5&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Packages/Create.vue?vue&type=template&id=7ae8a0c5& ***!
+  \*************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Status_vue_vue_type_template_id_799ea00a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Status.vue?vue&type=template&id=799ea00a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Status.vue?vue&type=template&id=799ea00a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Status_vue_vue_type_template_id_799ea00a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_7ae8a0c5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=template&id=7ae8a0c5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Packages/Create.vue?vue&type=template&id=7ae8a0c5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_7ae8a0c5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Status_vue_vue_type_template_id_799ea00a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_7ae8a0c5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/TabsStatus.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/Pages/Admin/TabsStatus.vue ***!
-  \*************************************************/
+/***/ "./resources/js/Pages/Admin/Packages/Tabs.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Admin/Packages/Tabs.vue ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TabsStatus_vue_vue_type_template_id_67725999___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TabsStatus.vue?vue&type=template&id=67725999& */ "./resources/js/Pages/Admin/TabsStatus.vue?vue&type=template&id=67725999&");
-/* harmony import */ var _TabsStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TabsStatus.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/TabsStatus.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Tabs_vue_vue_type_template_id_e9698af2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Tabs.vue?vue&type=template&id=e9698af2& */ "./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=template&id=e9698af2&");
+/* harmony import */ var _Tabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tabs.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -821,9 +2314,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _TabsStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _TabsStatus_vue_vue_type_template_id_67725999___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _TabsStatus_vue_vue_type_template_id_67725999___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Tabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Tabs_vue_vue_type_template_id_e9698af2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Tabs_vue_vue_type_template_id_e9698af2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -833,38 +2326,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Admin/TabsStatus.vue"
+component.options.__file = "resources/js/Pages/Admin/Packages/Tabs.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/TabsStatus.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/TabsStatus.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
+/***/ "./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TabsStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./TabsStatus.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/TabsStatus.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TabsStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Tabs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/TabsStatus.vue?vue&type=template&id=67725999&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/TabsStatus.vue?vue&type=template&id=67725999& ***!
-  \********************************************************************************/
+/***/ "./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=template&id=e9698af2&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=template&id=e9698af2& ***!
+  \***********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabsStatus_vue_vue_type_template_id_67725999___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TabsStatus.vue?vue&type=template&id=67725999& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/TabsStatus.vue?vue&type=template&id=67725999&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabsStatus_vue_vue_type_template_id_67725999___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tabs_vue_vue_type_template_id_e9698af2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Tabs.vue?vue&type=template&id=e9698af2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Packages/Tabs.vue?vue&type=template&id=e9698af2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tabs_vue_vue_type_template_id_e9698af2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TabsStatus_vue_vue_type_template_id_67725999___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tabs_vue_vue_type_template_id_e9698af2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -1109,6 +2602,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SettingsSegment_vue_vue_type_template_id_3bea3c16___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SettingsSegment_vue_vue_type_template_id_3bea3c16___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/FormSelect.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/forms/FormSelect.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSelect.vue?vue&type=template&id=75d3772b& */ "./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b&");
+/* harmony import */ var _FormSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSelect.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FormSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/forms/FormSelect.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSelect.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSelect.vue?vue&type=template&id=75d3772b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

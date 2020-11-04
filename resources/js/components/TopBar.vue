@@ -36,6 +36,8 @@
                                     <DropdownListItem v-if="$page.props.settings.documentation" to="/documentation">{{ __('Documentation') }}</DropdownListItem>
                                     <DropdownListItem :to="route('profile.index')">{{ __('Profile') }}
                                     </DropdownListItem>
+                                    <DropdownListItem v-if="$page.props.settings.billing" :to="route('profile.billing.index')">{{ __('Billing') }}
+                                    </DropdownListItem>
                                     <DropdownListItem class="text-danger" v-if="$page.props.auth.user.role === 'admin'"
                                                       :to="route('admin.dashboard')">{{ __('Administration') }}
                                     </DropdownListItem>

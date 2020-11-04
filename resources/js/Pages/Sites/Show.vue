@@ -44,7 +44,7 @@
                                                 <TableRow>
                                                     <TableHeader>{{ __('Website path') }}</TableHeader>
                                                     <TableData :border="false">
-                                                        /home/{{ $page.props.auth.user.user_name }}/{{ site.domain }}
+                                                        /home/{{ system_user.user_name }}/{{ site.domain }}
                                                     </TableData>
                                                 </TableRow>
                                                 <TableRow>
@@ -56,7 +56,7 @@
                                                 <TableRow>
                                                     <TableHeader>{{ __('FTP user') }}</TableHeader>
                                                     <TableData :border="false">
-                                                        <copy :label="`${$page.props.auth.user.user_name}`" :value="$page.props.auth.user.user_name" />
+                                                        <copy :label="`${system_user.user_name}`" :value="system_user.user_name" />
                                                     </TableData>
                                                 </TableRow>
                                                 <TableRow>
@@ -220,7 +220,8 @@
 
         props: {
             site: Object,
-            ip_address: String
+            ip_address: String,
+            system_user: Object,
         },
 
         methods: {
@@ -241,7 +242,7 @@
             requestFtpPassword() {
                 this.$page.props.errors = [];
 
-                window.axios.post(this.route('profile.request-ftp-password').url(), this.form)
+                window.axios.post(this.route('sites.request-ftp-password', this.site.id).url(), this.form)
                     .then(response => {
                         if (!response.data.ftp_password) {
                             this.useNotification({

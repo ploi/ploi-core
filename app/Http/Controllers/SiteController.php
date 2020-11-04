@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Jobs\Sites\CreateSite;
 use App\Jobs\Sites\DeleteSite;
 use App\Http\Requests\SiteRequest;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\SiteResource;
+use Illuminate\Support\Facades\Hash;
 
 class SiteController extends Controller
 {
@@ -76,6 +78,7 @@ class SiteController extends Controller
 
         return inertia('Sites/Show', [
             'site' => $site,
+            'system_user' => $site->getSystemUser(false),
             'ip_address' => $site->server->ip
         ]);
     }
@@ -91,5 +94,27 @@ class SiteController extends Controller
         $site->delete();
 
         return redirect()->route('sites.index')->with('success', __('Your website is deleted'));
+    }
+
+    public function requestFtpPassword(Request $request, $id)
+    {
+        $this->validate($request, ['password' => 'required|string']);
+
+        if (!Hash::check($request->input('password'), $request->user()->password)) {
+            return response([
+                'message' => 'The given data was invalid',
+                'errors' => [
+                    'password' => [
+                        trans('auth.failed')
+                    ]
+                ]
+            ], 422);
+        }
+
+        $site = $request->user()->sites()->findOrFail($id);
+
+        $systemUser = $site->getSystemUser();
+
+        return ['ftp_password' => decrypt(Arr::get($systemUser, 'ftp_password'))];
     }
 }

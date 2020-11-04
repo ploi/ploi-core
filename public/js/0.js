@@ -396,6 +396,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -964,6 +966,25 @@ var render = function() {
                                             )
                                           ]
                                         ),
+                                        _vm._v(" "),
+                                        _vm.$page.props.settings.billing
+                                          ? _c(
+                                              "DropdownListItem",
+                                              {
+                                                attrs: {
+                                                  to: _vm.route(
+                                                    "profile.billing.index"
+                                                  )
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.__("Billing")) +
+                                                    "\n                                "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
                                         _vm._v(" "),
                                         _vm.$page.props.auth.user.role ===
                                         "admin"

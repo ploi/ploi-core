@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[25],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/System.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/System.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Settings.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Settings.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -25,10 +25,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_layouts_SettingsLayout__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/components/layouts/SettingsLayout */ "./resources/js/components/layouts/SettingsLayout.vue");
 /* harmony import */ var _components_SettingsSegment__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/components/SettingsSegment */ "./resources/js/components/SettingsSegment.vue");
 /* harmony import */ var _components_forms_FormInput__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/components/forms/FormInput */ "./resources/js/components/forms/FormInput.vue");
-/* harmony import */ var _components_Form__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/components/Form */ "./resources/js/components/Form.vue");
-/* harmony import */ var _components_FormActions__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/FormActions */ "./resources/js/components/FormActions.vue");
-/* harmony import */ var _hooks_notification__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/hooks/notification */ "./resources/js/hooks/notification.js");
-/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Tabs */ "./resources/js/Pages/Admin/Tabs.vue");
+/* harmony import */ var _components_forms_FormSelect__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/components/forms/FormSelect */ "./resources/js/components/forms/FormSelect.vue");
+/* harmony import */ var _components_Form__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/Form */ "./resources/js/components/Form.vue");
+/* harmony import */ var _components_FormActions__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/FormActions */ "./resources/js/components/FormActions.vue");
+/* harmony import */ var _hooks_notification__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/hooks/notification */ "./resources/js/hooks/notification.js");
+/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Tabs */ "./resources/js/Pages/Admin/Tabs.vue");
 //
 //
 //
@@ -82,6 +83,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -105,7 +163,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: function metaInfo() {
     return {
-      title: "".concat(this.__('System'))
+      title: "".concat(this.__('Settings'))
     };
   },
   layout: _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_12__["default"],
@@ -123,30 +181,48 @@ __webpack_require__.r(__webpack_exports__);
     StatusBubble: _components_StatusBubble__WEBPACK_IMPORTED_MODULE_10__["default"],
     NotificationBadge: _components_NotificationBadge__WEBPACK_IMPORTED_MODULE_11__["default"],
     FormInput: _components_forms_FormInput__WEBPACK_IMPORTED_MODULE_15__["default"],
+    FormSelect: _components_forms_FormSelect__WEBPACK_IMPORTED_MODULE_16__["default"],
     SettingsLayout: _components_layouts_SettingsLayout__WEBPACK_IMPORTED_MODULE_13__["default"],
     SettingsSegment: _components_SettingsSegment__WEBPACK_IMPORTED_MODULE_14__["default"],
-    Form: _components_Form__WEBPACK_IMPORTED_MODULE_16__["default"],
-    FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_17__["default"],
-    Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_19__["default"]
-  },
-  props: {
-    version: Object
+    Form: _components_Form__WEBPACK_IMPORTED_MODULE_17__["default"],
+    FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_18__["default"],
+    Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_20__["default"]
   },
   data: function data() {
     return {
       sending: false,
-      updating: false
+      form: {
+        name: this.company_settings.name,
+        email: this.company_settings.email,
+        support_emails: this.company_settings.support_emails,
+        support: this.company_settings.support,
+        enable_api: this.company_settings.enable_api,
+        api_token: this.company_settings.api_token,
+        documentation: this.company_settings.documentation,
+        allow_registration: this.company_settings.allow_registration,
+        receive_email_on_server_creation: this.company_settings.receive_email_on_server_creation,
+        default_package: this.company_settings.default_package,
+        isolate_per_site_per_user: this.company_settings.isolate_per_site_per_user
+      }
     };
   },
+  props: {
+    company_settings: Object,
+    packages: {}
+  },
   methods: {
-    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_18__["useNotification"],
-    update: function update() {
+    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_19__["useNotification"],
+    submit: function submit() {
       var _this = this;
 
-      this.sending = true;
-      this.updating = true;
-      this.$inertia.post(this.route('admin.system.update')).then(function (response) {
-        _this.sending = false;
+      this.$inertia.patch(this.route('admin.settings.update'), this.form, {
+        preserveScroll: true,
+        onStart: function onStart() {
+          return _this.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this.sending = false;
+        }
       });
     }
   }
@@ -309,6 +385,108 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_FormGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/FormGroup */ "./resources/js/components/FormGroup.vue");
+/* harmony import */ var _components_Label__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/Label */ "./resources/js/components/Label.vue");
+/* harmony import */ var _components_ErrorText__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ErrorText */ "./resources/js/components/ErrorText.vue");
+/* harmony import */ var _components_HelperText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/HelperText */ "./resources/js/components/HelperText.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+var defaultClasses = 'w-full border-medium-emphasis text-body h-10 max-w-lg px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary';
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    id: {
+      type: String,
+      required: false
+    },
+    label: {
+      type: String,
+      required: true
+    },
+    type: {
+      type: String,
+      "default": function _default() {
+        return 'text';
+      }
+    },
+    required: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    helperText: {
+      type: String
+    },
+    errors: {
+      type: Array
+    },
+    placeholder: {
+      type: String
+    },
+    value: {
+      required: false,
+      "default": ''
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      "default": false
+    }
+  },
+  components: {
+    FormGroup: _components_FormGroup__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Label: _components_Label__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ErrorText: _components_ErrorText__WEBPACK_IMPORTED_MODULE_2__["default"],
+    HelperText: _components_HelperText__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  data: function data() {
+    return {
+      defaultClasses: defaultClasses,
+      selected: this.value
+    };
+  },
+  methods: {
+    updateValue: function updateValue(value) {
+      this.$emit('input', value);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/SettingsLayout.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/SettingsLayout.vue?vue&type=script&lang=js& ***!
@@ -342,10 +520,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/System.vue?vue&type=template&id=4a8c2890&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/System.vue?vue&type=template&id=4a8c2890& ***!
-  \**********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Settings.vue?vue&type=template&id=c8837928&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Settings.vue?vue&type=template&id=c8837928& ***!
+  \************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -375,7 +553,7 @@ var render = function() {
                     fn: function() {
                       return [
                         _c("PageHeaderTitle", [
-                          _vm._v(_vm._s(_vm.__("System")))
+                          _vm._v(_vm._s(_vm.__("Settings")))
                         ])
                       ]
                     },
@@ -414,129 +592,803 @@ var render = function() {
                                   fn: function() {
                                     return [
                                       _vm._v(
-                                        "\n                                Check your system's version here. If there's an update available you'll be able to\n                                press the update button to update your system.\n                            "
+                                        "\n                                " +
+                                          _vm._s(
+                                            _vm.__(
+                                              "Change all the system settings here. All changes are in effect immediately."
+                                            )
+                                          ) +
+                                          "\n                            "
                                       )
                                     ]
                                   },
                                   proxy: true
                                 },
                                 {
-                                  key: "content",
-                                  fn: function() {
-                                    return [
-                                      _c("p", [
-                                        _vm._v(
-                                          _vm._s(_vm.__("Current version")) +
-                                            ": " +
-                                            _vm._s(_vm.version.current)
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("p", [
-                                        _vm._v(
-                                          _vm._s(_vm.__("Remote version")) +
-                                            ": " +
-                                            _vm._s(_vm.version.remote)
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _vm.version.out_of_date && !_vm.updating
-                                        ? _c(
-                                            "Button",
-                                            { on: { click: _vm.update } },
-                                            [_vm._v("Update")]
-                                          )
-                                        : _vm._e()
-                                    ]
-                                  },
-                                  proxy: true
-                                }
-                              ])
-                            }),
-                            _vm._v(" "),
-                            _c("SettingsSegment", {
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "title",
-                                  fn: function() {
-                                    return [
-                                      _vm._v(_vm._s(_vm.__("Information")))
-                                    ]
-                                  },
-                                  proxy: true
-                                },
-                                {
-                                  key: "content",
+                                  key: "form",
                                   fn: function() {
                                     return [
                                       _c(
-                                        "ul",
+                                        "form",
                                         {
-                                          staticClass: "list-disc list-inside"
+                                          staticClass: "space-y-4",
+                                          on: {
+                                            submit: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.submit($event)
+                                            }
+                                          }
                                         },
                                         [
-                                          _c("li", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "text-primary",
-                                                attrs: {
-                                                  target: "_blank",
-                                                  href:
-                                                    "https://docs.ploi-core.io"
-                                                }
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Company name"),
+                                              errors:
+                                                _vm.$page.props.errors.name
+                                            },
+                                            model: {
+                                              value: _vm.form.name,
+                                              callback: function($$v) {
+                                                _vm.$set(_vm.form, "name", $$v)
                                               },
-                                              [_vm._v("Ploi Core Docs")]
+                                              expression: "form.name"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("E-mail address"),
+                                              errors:
+                                                _vm.$page.props.errors.email
+                                            },
+                                            model: {
+                                              value: _vm.form.email,
+                                              callback: function($$v) {
+                                                _vm.$set(_vm.form, "email", $$v)
+                                              },
+                                              expression: "form.email"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("FormInput", {
+                                            attrs: {
+                                              "helper-text": _vm.__(
+                                                "Separate by comma to allow more email addresses"
+                                              ),
+                                              label: _vm.__(
+                                                "Support email addresses"
+                                              ),
+                                              errors:
+                                                _vm.$page.props.errors
+                                                  .support_emails
+                                            },
+                                            model: {
+                                              value: _vm.form.support_emails,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "support_emails",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "form.support_emails"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "FormSelect",
+                                            {
+                                              attrs: {
+                                                "helper-text": _vm.__(
+                                                  "Select the default package a user should get when you create or they register"
+                                                ),
+                                                label: _vm.__(
+                                                  "Select default package"
+                                                )
+                                              },
+                                              model: {
+                                                value: _vm.form.default_package,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "default_package",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "form.default_package"
+                                              }
+                                            },
+                                            _vm._l(_vm.packages, function(
+                                              name,
+                                              id
+                                            ) {
+                                              return _c("option", {
+                                                domProps: {
+                                                  value: id,
+                                                  textContent: _vm._s(name)
+                                                }
+                                              })
+                                            }),
+                                            0
+                                          ),
+                                          _vm._v(" "),
+                                          _c("div", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.form.support,
+                                                  expression: "form.support"
+                                                }
+                                              ],
+                                              staticClass: "form-checkbox",
+                                              attrs: {
+                                                id: "support",
+                                                type: "checkbox"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.form.support
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.form.support,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.form.support
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a = _vm.form.support,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "support",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "support",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "support",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "ml-2 text-sm",
+                                                attrs: { for: "support" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.__(
+                                                      "Enable support platform"
+                                                    )
+                                                  )
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-small mt-1 text-medium-emphasis"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "This will allow your customers to make support requests to you."
+                                                      )
+                                                    ) +
+                                                    "\n                                        "
+                                                )
+                                              ]
                                             )
                                           ]),
                                           _vm._v(" "),
-                                          _c("li", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "text-primary",
-                                                attrs: {
-                                                  target: "_blank",
-                                                  href: "https://ploi.io"
+                                          _c("div", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.form.documentation,
+                                                  expression:
+                                                    "form.documentation"
                                                 }
+                                              ],
+                                              staticClass: "form-checkbox",
+                                              attrs: {
+                                                id: "documentation",
+                                                type: "checkbox"
                                               },
-                                              [_vm._v("Ploi Website")]
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.form.documentation
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.form.documentation,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.form.documentation
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.form.documentation,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "documentation",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "documentation",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "documentation",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "ml-2 text-sm",
+                                                attrs: { for: "documentation" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.__(
+                                                      "Enable documentation platform"
+                                                    )
+                                                  )
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-small mt-1 text-medium-emphasis"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "This will allow you to create articles for your users to look at."
+                                                      )
+                                                    ) +
+                                                    "\n                                        "
+                                                )
+                                              ]
                                             )
                                           ]),
                                           _vm._v(" "),
-                                          _c("li", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "text-primary",
-                                                attrs: {
-                                                  target: "_blank",
-                                                  href: "https://ploi.io/panel"
+                                          _c("div", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.form.allow_registration,
+                                                  expression:
+                                                    "form.allow_registration"
                                                 }
+                                              ],
+                                              staticClass: "form-checkbox",
+                                              attrs: {
+                                                id: "allow_registration",
+                                                type: "checkbox"
                                               },
-                                              [_vm._v("Ploi Panel")]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("li", [
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.form.allow_registration
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.form
+                                                        .allow_registration,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.form.allow_registration
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.form
+                                                        .allow_registration,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "allow_registration",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "allow_registration",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "allow_registration",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
                                             _c(
-                                              "a",
+                                              "label",
                                               {
-                                                staticClass: "text-primary",
+                                                staticClass: "ml-2 text-sm",
                                                 attrs: {
-                                                  target: "_blank",
-                                                  href:
-                                                    "https://github.com/ploi-deploy/ploi-core"
+                                                  for: "allow_registration"
                                                 }
                                               },
                                               [
                                                 _vm._v(
-                                                  "Ploi Core Github Repository"
+                                                  _vm._s(
+                                                    _vm.__(
+                                                      "Allow customer registration"
+                                                    )
+                                                  )
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-small mt-1 text-medium-emphasis"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "This will allow public users to register on your platform."
+                                                      )
+                                                    ) +
+                                                    "\n                                        "
                                                 )
                                               ]
                                             )
-                                          ])
-                                        ]
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.form
+                                                      .receive_email_on_server_creation,
+                                                  expression:
+                                                    "form.receive_email_on_server_creation"
+                                                }
+                                              ],
+                                              staticClass: "form-checkbox",
+                                              attrs: {
+                                                id:
+                                                  "receive_email_on_server_creation",
+                                                type: "checkbox"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.form
+                                                    .receive_email_on_server_creation
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.form
+                                                        .receive_email_on_server_creation,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.form
+                                                      .receive_email_on_server_creation
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.form
+                                                        .receive_email_on_server_creation,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "receive_email_on_server_creation",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "receive_email_on_server_creation",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "receive_email_on_server_creation",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "ml-2 text-sm",
+                                                attrs: {
+                                                  for:
+                                                    "receive_email_on_server_creation"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.__(
+                                                      "Receive email when customers create server"
+                                                    )
+                                                  )
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-small mt-1 text-medium-emphasis"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "This will send an email to all admins notifying them about a new server installation."
+                                                      )
+                                                    ) +
+                                                    "\n                                        "
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.form.enable_api,
+                                                  expression: "form.enable_api"
+                                                }
+                                              ],
+                                              staticClass: "form-checkbox",
+                                              attrs: {
+                                                id: "enable_api",
+                                                type: "checkbox"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.form.enable_api
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.form.enable_api,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.form.enable_api
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a = _vm.form.enable_api,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "enable_api",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "enable_api",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "enable_api",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "ml-2 text-sm",
+                                                attrs: { for: "enable_api" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.__("Enable API"))
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-small mt-1 text-medium-emphasis"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "This will allow you to interact with your system via the API."
+                                                      )
+                                                    ) +
+                                                    "\n                                        "
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.form
+                                                      .isolate_per_site_per_user,
+                                                  expression:
+                                                    "form.isolate_per_site_per_user"
+                                                }
+                                              ],
+                                              staticClass: "form-checkbox",
+                                              attrs: {
+                                                id: "isolate_per_site_per_user",
+                                                type: "checkbox"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.form
+                                                    .isolate_per_site_per_user
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.form
+                                                        .isolate_per_site_per_user,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.form
+                                                      .isolate_per_site_per_user
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.form
+                                                        .isolate_per_site_per_user,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "isolate_per_site_per_user",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "isolate_per_site_per_user",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "isolate_per_site_per_user",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "ml-2 text-sm",
+                                                attrs: {
+                                                  for:
+                                                    "isolate_per_site_per_user"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.__(
+                                                      "Enable site isolation per site & user"
+                                                    )
+                                                  )
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-small mt-1 text-medium-emphasis"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "This will make sure each site created by 1 user is always isolated from another."
+                                                      )
+                                                    ) +
+                                                    "\n                                        "
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm.form.enable_api
+                                            ? _c("FormInput", {
+                                                attrs: {
+                                                  "allow-random-string": "",
+                                                  label: _vm.__("API token"),
+                                                  errors:
+                                                    _vm.$page.props.errors
+                                                      .api_token
+                                                },
+                                                model: {
+                                                  value: _vm.form.api_token,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "api_token",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "form.api_token"
+                                                }
+                                              })
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _c(
+                                            "FormActions",
+                                            [
+                                              _c("Button", [
+                                                _vm._v(
+                                                  _vm._s(_vm.__("Save changes"))
+                                                )
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
                                       )
                                     ]
                                   },
@@ -785,6 +1637,89 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "FormGroup",
+    [
+      _c("Label", { attrs: { errors: _vm.errors, forId: _vm.id } }, [
+        _vm._v(_vm._s(_vm.label))
+      ]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.value,
+              expression: "value"
+            }
+          ],
+          class: [
+            _vm.defaultClasses,
+            _vm.disabled || _vm.loading ? "opacity-50" : "",
+            _vm.loading ? "cursor-wait" : ""
+          ],
+          attrs: {
+            disabled: _vm.loading || _vm.disabled,
+            id: _vm.id,
+            required: _vm.required,
+            placeholder: _vm.placeholder
+          },
+          on: {
+            input: function($event) {
+              return _vm.updateValue($event.target.value)
+            },
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.value = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [_vm._t("default")],
+        2
+      ),
+      _vm._v(" "),
+      _vm.errors ? _c("ErrorText", [_vm._v(_vm._s(_vm.errors[0]))]) : _vm._e(),
+      _vm._v(" "),
+      _vm.helperText && !_vm.errors
+        ? _c("HelperText", [_vm._v(_vm._s(_vm.helperText))])
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/SettingsLayout.vue?vue&type=template&id=85feafc4&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/SettingsLayout.vue?vue&type=template&id=85feafc4& ***!
@@ -932,17 +1867,17 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/System.vue":
-/*!*********************************************!*\
-  !*** ./resources/js/Pages/Admin/System.vue ***!
-  \*********************************************/
+/***/ "./resources/js/Pages/Admin/Settings.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Admin/Settings.vue ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _System_vue_vue_type_template_id_4a8c2890___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./System.vue?vue&type=template&id=4a8c2890& */ "./resources/js/Pages/Admin/System.vue?vue&type=template&id=4a8c2890&");
-/* harmony import */ var _System_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./System.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/System.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Settings_vue_vue_type_template_id_c8837928___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Settings.vue?vue&type=template&id=c8837928& */ "./resources/js/Pages/Admin/Settings.vue?vue&type=template&id=c8837928&");
+/* harmony import */ var _Settings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Settings.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Settings.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -952,9 +1887,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _System_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _System_vue_vue_type_template_id_4a8c2890___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _System_vue_vue_type_template_id_4a8c2890___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Settings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Settings_vue_vue_type_template_id_c8837928___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Settings_vue_vue_type_template_id_c8837928___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -964,38 +1899,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Admin/System.vue"
+component.options.__file = "resources/js/Pages/Admin/Settings.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/System.vue?vue&type=script&lang=js&":
-/*!**********************************************************************!*\
-  !*** ./resources/js/Pages/Admin/System.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************/
+/***/ "./resources/js/Pages/Admin/Settings.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Settings.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_System_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./System.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/System.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_System_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Settings.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Settings.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/System.vue?vue&type=template&id=4a8c2890&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/System.vue?vue&type=template&id=4a8c2890& ***!
-  \****************************************************************************/
+/***/ "./resources/js/Pages/Admin/Settings.vue?vue&type=template&id=c8837928&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Settings.vue?vue&type=template&id=c8837928& ***!
+  \******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_System_vue_vue_type_template_id_4a8c2890___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./System.vue?vue&type=template&id=4a8c2890& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/System.vue?vue&type=template&id=4a8c2890&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_System_vue_vue_type_template_id_4a8c2890___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_template_id_c8837928___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Settings.vue?vue&type=template&id=c8837928& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Settings.vue?vue&type=template&id=c8837928&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_template_id_c8837928___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_System_vue_vue_type_template_id_4a8c2890___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Settings_vue_vue_type_template_id_c8837928___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -1309,6 +2244,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SettingsSegment_vue_vue_type_template_id_3bea3c16___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SettingsSegment_vue_vue_type_template_id_3bea3c16___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/FormSelect.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/forms/FormSelect.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSelect.vue?vue&type=template&id=75d3772b& */ "./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b&");
+/* harmony import */ var _FormSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSelect.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FormSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/forms/FormSelect.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSelect.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/FormSelect.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSelect.vue?vue&type=template&id=75d3772b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/FormSelect.vue?vue&type=template&id=75d3772b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSelect_vue_vue_type_template_id_75d3772b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
