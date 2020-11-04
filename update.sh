@@ -14,10 +14,6 @@ echo "Updating database.."
 
 php artisan migrate --force
 
-echo "Restarting workers.."
-
-php artisan horizon:terminate
-
 echo "Clearing cache.."
 
 php artisan cache:clear
@@ -25,5 +21,9 @@ php artisan cache:clear
 echo "Refreshing routes.."
 
 php artisan route:cache
+
+echo "Restarting workers.."
+
+php artisan horizon:terminate
 
 echo "All done!"

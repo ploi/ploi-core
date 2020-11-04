@@ -32,6 +32,10 @@ class DocumentationArticleRequest extends FormRequest
             'content' => [
                 'required',
                 'min:2'
+            ],
+            'category_id' => [
+                'required',
+                'exists:documentation_categories,id'
             ]
         ];
     }

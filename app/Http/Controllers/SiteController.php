@@ -98,17 +98,19 @@ class SiteController extends Controller
 
     public function requestFtpPassword(Request $request, $id)
     {
-        $this->validate($request, ['password' => 'required|string']);
+        if ($request->user()->requires_password_for_ftp) {
+            $this->validate($request, ['password' => 'required|string']);
 
-        if (!Hash::check($request->input('password'), $request->user()->password)) {
-            return response([
-                'message' => 'The given data was invalid',
-                'errors' => [
-                    'password' => [
-                        trans('auth.failed')
+            if (!Hash::check($request->input('password'), $request->user()->password)) {
+                return response([
+                    'message' => 'The given data was invalid',
+                    'errors' => [
+                        'password' => [
+                            trans('auth.failed')
+                        ]
                     ]
-                ]
-            ], 422);
+                ], 422);
+            }
         }
 
         $site = $request->user()->sites()->findOrFail($id);

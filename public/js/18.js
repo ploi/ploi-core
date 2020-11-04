@@ -233,7 +233,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     "package": Object,
-    providers: Object,
+    providers: [Array, Object],
     syncedProviders: Array
   },
   methods: {

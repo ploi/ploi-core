@@ -13,6 +13,6 @@ class DocumentationItem extends Model
 
     public function category()
     {
-        return $this->belongsTo(DocumentationCategory::class);
+        return $this->belongsTo(DocumentationCategory::class, 'documentation_category_id');
     }
 }

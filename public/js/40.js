@@ -159,6 +159,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -252,8 +254,11 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_18__["useNotification"],
     confirmRequestFtpPassword: function confirmRequestFtpPassword() {
-      this.modalIsOpen = true;
-      return;
+      if (!this.$page.props.auth.user.requires_password_for_ftp) {
+        this.requestFtpPassword();
+      } else {
+        this.modalIsOpen = true;
+      }
     },
     closeModal: function closeModal() {
       this.form.password = null;

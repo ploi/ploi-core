@@ -23,6 +23,7 @@
                                         <TableHead>
                                             <TableRow>
                                                 <TableHeader>{{ __('Title') }}</TableHeader>
+                                                <TableHeader>{{ __('Category') }}</TableHeader>
                                                 <TableHeader></TableHeader>
                                             </TableRow>
                                         </TableHead>
@@ -31,6 +32,7 @@
                                                 <TableData>
                                                     {{ article.title }}
                                                 </TableData>
+                                                <TableData>{{ article.category.title }}</TableData>
                                                 <TableData>
                                                     <inertia-link :href="route('admin.documentation.articles.edit', article.id)"
                                                                   class="text-primary font-medium">

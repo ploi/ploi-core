@@ -206,7 +206,7 @@ export default {
 
     props: {
         package: Object,
-        providers: Object,
+        providers: [Array, Object],
         syncedProviders: Array,
     },
 

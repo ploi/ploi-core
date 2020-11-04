@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\DocumentationArticleRequest;
+use App\Models\DocumentationCategory;
 use App\Models\DocumentationItem;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class DocumentationArticleController extends Controller
 {
     public function index()
     {
-        $articles = DocumentationItem::query()->latest()->paginate();
+        $articles = DocumentationItem::query()->with('category:id,title')->latest()->paginate();
 
         return inertia('Admin/Documentation/Articles/Index', [
             'articles' => $articles
@@ -20,7 +21,11 @@ class DocumentationArticleController extends Controller
 
     public function create()
     {
-        return inertia('Admin/Documentation/Articles/Create');
+        $categories = DocumentationCategory::pluck('title', 'id');
+
+        return inertia('Admin/Documentation/Articles/Create', [
+            'categories' => $categories,
+        ]);
     }
 
     public function store(DocumentationArticleRequest $request)
@@ -30,6 +35,9 @@ class DocumentationArticleController extends Controller
             'content' => $request->input('content')
         ]);
 
+        $article->documentation_category_id = $request->input('category_id');
+        $article->save();
+
         return redirect()->route('admin.documentation.articles.index')->with('success', __('Documentation article has been created'));
     }
 
@@ -37,12 +45,15 @@ class DocumentationArticleController extends Controller
     {
         $article = DocumentationItem::findOrFail($id);
 
+        $categories = DocumentationCategory::pluck('title', 'id');
+
         return inertia('Admin/Documentation/Articles/Edit', [
-            'article' => $article
+            'article' => $article,
+            'categories' => $categories
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(DocumentationArticleRequest $request, $id)
     {
         $article = DocumentationItem::findOrFail($id);
 
@@ -50,6 +61,9 @@ class DocumentationArticleController extends Controller
             'title' => $request->input('title'),
             'content' => $request->input('content')
         ]);
+
+        $article->documentation_category_id = $request->input('category_id');
+        $article->save();
 
         return redirect()->route('admin.documentation.articles.index')->with('success', __('Documentation article has been updated'));
     }

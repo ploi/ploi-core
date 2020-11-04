@@ -58,6 +58,7 @@ class HandleInertiaRequests extends Middleware
                         'avatar' => Auth::user()->getGravatar(),
                         'theme' => Auth::user()->theme,
                         'keyboard_shortcuts' => Auth::user()->keyboard_shortcuts,
+                        'requires_password_for_ftp' => Auth::user()->requires_password_for_ftp,
                     ] : null,
                     'package' => auth()->user() && auth()->user()->package ? [
                         'name' => auth()->user()->package->name,

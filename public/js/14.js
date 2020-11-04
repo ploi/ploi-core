@@ -84,6 +84,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -152,7 +160,8 @@ __webpack_require__.r(__webpack_exports__);
         "package": (_this$defaultPackage = this.defaultPackage) !== null && _this$defaultPackage !== void 0 ? _this$defaultPackage : null,
         notes: null,
         language: 'en',
-        blocked: null
+        blocked: null,
+        requires_password_for_ftp: null
       }
     };
   },
@@ -792,6 +801,119 @@ var render = function() {
                                               expression: "form.blocked"
                                             }
                                           }),
+                                          _vm._v(" "),
+                                          _c("div", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.form
+                                                      .requires_password_for_ftp,
+                                                  expression:
+                                                    "form.requires_password_for_ftp"
+                                                }
+                                              ],
+                                              staticClass: "form-checkbox",
+                                              attrs: {
+                                                id: "isolate_per_site_per_user",
+                                                type: "checkbox"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.form
+                                                    .requires_password_for_ftp
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.form
+                                                        .requires_password_for_ftp,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.form
+                                                      .requires_password_for_ftp
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.form
+                                                        .requires_password_for_ftp,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "requires_password_for_ftp",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "requires_password_for_ftp",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "requires_password_for_ftp",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "ml-2 text-sm",
+                                                attrs: {
+                                                  for:
+                                                    "isolate_per_site_per_user"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.__(
+                                                      "Require password to show FTP password"
+                                                    )
+                                                  )
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "text-small mt-1 text-medium-emphasis"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "Disabling this will allow this user to get the FTP password right away."
+                                                      )
+                                                    ) +
+                                                    "\n                                        "
+                                                )
+                                              ]
+                                            )
+                                          ]),
                                           _vm._v(" "),
                                           _c(
                                             "FormActions",

@@ -85,6 +85,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -445,6 +447,12 @@ var render = function() {
                                                     )
                                                   ]),
                                                   _vm._v(" "),
+                                                  _c("TableHeader", [
+                                                    _vm._v(
+                                                      _vm._s(_vm.__("Category"))
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
                                                   _c("TableHeader")
                                                 ],
                                                 1
@@ -467,6 +475,14 @@ var render = function() {
                                                       "\n                                                " +
                                                         _vm._s(article.title) +
                                                         "\n                                            "
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("TableData", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        article.category.title
+                                                      )
                                                     )
                                                   ]),
                                                   _vm._v(" "),
