@@ -36,6 +36,15 @@
                                         </FormSelect>
                                         <FormTextarea :label="__('Blocked')" :errors="$page.props.errors.blocked" rows="2" v-model="form.blocked" />
 
+                                        <div>
+                                            <input id="isolate_per_site_per_user" class="form-checkbox" type="checkbox"
+                                                   v-model="form.requires_password_for_ftp">
+                                            <label for="isolate_per_site_per_user" class="ml-2 text-sm">{{ __('Require password to show FTP password') }}</label>
+                                            <p class="text-small mt-1 text-medium-emphasis">
+                                                {{ __('Disabling this will allow this user to get the FTP password right away.') }}
+                                            </p>
+                                        </div>
+
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                             <Button variant="danger" type="button" @click="confirmDelete">{{ __('Delete') }}</Button>
@@ -119,6 +128,7 @@
                     notes: this.user.notes,
                     language: this.user.language,
                     blocked: this.user.blocked,
+                    requires_password_for_ftp: this.user.requires_password_for_ftp,
                 },
             }
         },

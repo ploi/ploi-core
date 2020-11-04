@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Arr;
 
 class CreateSite implements ShouldQueue
 {
@@ -35,14 +36,14 @@ class CreateSite implements ShouldQueue
     {
         $ploi = new Ploi(config('services.ploi.token'));
 
-        $owner = $this->site->users()->first();
+        $systemUser = $this->site->getSystemUser();
 
         $ploiSite = $ploi->server($this->site->server->ploi_id)->sites()->create(
             $this->site->domain,
             '/public',
             '/',
-            $owner->user_name,
-            decrypt($owner->ftp_password)
+            Arr::get($systemUser, 'user_name'),
+            decrypt(Arr::get($systemUser, 'ftp_password'))
         );
 
         $this->site->ploi_id = $ploiSite->data->id;

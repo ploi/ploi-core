@@ -54,7 +54,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        //
+        // TODO: Implement show feature for a user
     }
 
     public function edit($id)

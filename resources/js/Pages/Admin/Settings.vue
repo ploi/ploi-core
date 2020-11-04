@@ -81,6 +81,15 @@
                                             </p>
                                         </div>
 
+                                        <div>
+                                            <input id="isolate_per_site_per_user" class="form-checkbox" type="checkbox"
+                                                   v-model="form.isolate_per_site_per_user">
+                                            <label for="isolate_per_site_per_user" class="ml-2 text-sm">{{ __('Enable site isolation per site & user') }}</label>
+                                            <p class="text-small mt-1 text-medium-emphasis">
+                                                {{ __('This will make sure each site created by 1 user is always isolated from another.') }}
+                                            </p>
+                                        </div>
+
                                         <FormInput v-if="form.enable_api" allow-random-string :label="__('API token')" :errors="$page.props.errors.api_token"
                                                    v-model="form.api_token"/>
 
@@ -167,6 +176,7 @@
                     allow_registration: this.company_settings.allow_registration,
                     receive_email_on_server_creation: this.company_settings.receive_email_on_server_creation,
                     default_package: this.company_settings.default_package,
+                    isolate_per_site_per_user: this.company_settings.isolate_per_site_per_user,
                 },
             }
         },

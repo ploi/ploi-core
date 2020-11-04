@@ -84,16 +84,46 @@ class Install extends Command
         Package::create([
             'name' => 'Basic',
             'maximum_sites' => 5,
+            'site_permissions' => [
+                'create' => true,
+                'update' => true,
+                'delete' => true
+            ],
+            'server_permissions' => [
+                'create' => false,
+                'update' => false,
+                'delete' => false
+            ]
         ]);
 
         Package::create([
             'name' => 'Professional',
             'maximum_sites' => 5,
+            'site_permissions' => [
+                'create' => true,
+                'update' => true,
+                'delete' => true
+            ],
+            'server_permissions' => [
+                'create' => false,
+                'update' => false,
+                'delete' => false
+            ]
         ]);
 
         Package::create([
             'name' => 'Unlimited',
             'maximum_sites' => 0,
+            'site_permissions' => [
+                'create' => true,
+                'update' => true,
+                'delete' => true
+            ],
+            'server_permissions' => [
+                'create' => false,
+                'update' => false,
+                'delete' => false
+            ]
         ]);
     }
 

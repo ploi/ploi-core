@@ -96,6 +96,9 @@ class ProfileBillingController extends Controller
             }
         }
 
+        $user->package_id = $plan->id;
+        $user->save();
+
         return redirect()->route('profile.billing.index')->with('success', sprintf("Your plan has been updated to %s", $plan->name));
     }
 

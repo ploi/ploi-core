@@ -65,6 +65,11 @@ class Site extends Model
         return $this->morphMany(SystemLog::class, 'model');
     }
 
+    public function systemUsers()
+    {
+        return $this->belongsToMany(SiteSystemUser::class, 'site_system_user_attached');
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
@@ -75,8 +80,25 @@ class Site extends Model
         return $this->status === self::STATUS_ACTIVE;
     }
 
+    public function getSystemUser($withPassword = true)
+    {
+        if (setting('isolate_per_site_per_user') && $this->systemUsers()->first()) {
+            $user = $this->systemUsers()->first();
+        } else {
+            $user = $this->site->users()->first();
+        }
+
+        return [
+            'user_name' => $user->user_name,
+        ] + ($withPassword ? ['ftp_password' => $user->ftp_password] : []);
+    }
+
     public static function booted()
     {
+        static::created(function (self $site) {
+            $site->systemUsers()->create();
+        });
+
         static::deleting(function (self $site) {
             foreach ($site->databases as $database) {
                 $database->delete();
