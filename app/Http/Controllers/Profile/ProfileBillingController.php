@@ -23,9 +23,15 @@ class ProfileBillingController extends Controller
             })
             ->get()
             ->transform(function (Package $package) {
-                $symbol = $package->currency === Package::CURRENCY_EURO ? '€' : '$';
+                $currencies = [
+                    Package::CURRENCY_EURO => '€',
+                    Package::CURRENCY_USD => '$',
+                    Package::CURRENCY_NOK => 'KR ',
+                    Package::CURRENCY_CAD => 'CAD $',
+                    Package::CURRENCY_AUD => 'AUD $',
+                ];
 
-                $package->price_monthly = $symbol . number_format($package->price_monthly, 2, ',', '.');
+                $package->price_monthly = ($currencies[$package->currency] ?? '[Unknown currency]') . number_format($package->price_monthly, 2, ',', '.');
 
                 return $package;
             });
