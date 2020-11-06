@@ -89,8 +89,8 @@ class Site extends Model
         }
 
         return [
-            'user_name' => $user->user_name,
-        ] + ($withPassword ? ['ftp_password' => $user->ftp_password] : []);
+                'user_name' => $user->user_name,
+            ] + ($withPassword ? ['ftp_password' => $user->ftp_password] : []);
     }
 
     public static function booted()
@@ -103,6 +103,19 @@ class Site extends Model
             foreach ($site->databases as $database) {
                 $database->delete();
             }
+
+            $ids = $site->systemUsers->pluck('id');
+            // Detach all db users
+            $site->systemUsers()->detach();
+
+            // Loop through ids an remove old users.
+            foreach ($ids as $id) {
+                $record = SiteSystemUser::find($id);
+                if ($record) {
+                    $record->delete();
+                }
+            }
+
             $site->redirects()->delete();
             $site->cronjobs()->delete();
             $site->certificates()->delete();
