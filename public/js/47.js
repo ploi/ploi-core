@@ -176,6 +176,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -624,7 +632,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _c("div", { staticClass: "pb-4 w-full" }, [
+                        _c("div", { staticClass: "w-full pb-4" }, [
                           _c(
                             "label",
                             {
@@ -694,6 +702,25 @@ var render = function() {
                         { staticClass: "text-lg text-medium-emphasis" },
                         [_vm._v(_vm._s(_vm.__("Available packages")))]
                       ),
+                      _vm._v(" "),
+                      _c("form-input", {
+                        staticClass: "pb-4",
+                        attrs: {
+                          errors: _vm.$page.props.errors.coupon,
+                          disabled: _vm.sending,
+                          placeholder: _vm.__(
+                            "Enter a coupon code if you have one, before subscribing"
+                          ),
+                          label: _vm.__("Coupon")
+                        },
+                        model: {
+                          value: _vm.coupon,
+                          callback: function($$v) {
+                            _vm.coupon = $$v
+                          },
+                          expression: "coupon"
+                        }
+                      }),
                       _vm._v(" "),
                       _c(
                         "Table",
@@ -990,12 +1017,24 @@ var render = function() {
                           )
                         ],
                         1
-                      ),
-                      _vm._v(" "),
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "col-span-5 space-y-8 border-t border-low-emphasis"
+                    },
+                    [
                       _vm.invoices.length
                         ? _c(
                             "h2",
-                            { staticClass: "text-lg text-medium-emphasis" },
+                            {
+                              staticClass: "mt-5 text-lg text-medium-emphasis"
+                            },
                             [_vm._v(_vm._s(_vm.__("Invoices")))]
                           )
                         : _vm._e(),

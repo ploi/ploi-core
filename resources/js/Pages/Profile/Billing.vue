@@ -18,7 +18,7 @@
                                             id="card-holder-name"
                                             :label="__('Card holder name')"/>
 
-                                <div class="pb-4 w-full">
+                                <div class="w-full pb-4">
                                     <label class="form-label" for="card-element">{{ __('Card details') }}</label>
                                     <div id="card-element" class="form-input"></div>
                                 </div>
@@ -37,6 +37,12 @@
                         </div>
                         <div class="col-span-3 space-y-8">
                             <h2 class="text-lg text-medium-emphasis">{{ __('Available packages') }}</h2>
+                            <form-input v-model="coupon"
+                                        :errors="$page.props.errors.coupon"
+                                        :disabled="sending"
+                                        :placeholder="__('Enter a coupon code if you have one, before subscribing')"
+                                        class="pb-4"
+                                        :label="__('Coupon')"/>
                             <Table caption="Package list overview">
                                 <TableHead>
                                     <TableRow>
@@ -93,8 +99,10 @@
                                     </TableRow>
                                 </TableBody>
                             </Table>
+                        </div>
 
-                            <h2 v-if="invoices.length" class="text-lg text-medium-emphasis">{{ __('Invoices') }}</h2>
+                        <div class="col-span-5 space-y-8 border-t border-low-emphasis">
+                            <h2 v-if="invoices.length" class="mt-5 text-lg text-medium-emphasis">{{ __('Invoices') }}</h2>
                             <Table v-if="invoices.length" caption="Invoice list overview">
                                 <TableHead>
                                     <TableRow>
