@@ -7,19 +7,48 @@ use App\Models\User;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 
 class ProfileBillingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         /* @var $user User */
         $user = auth()->user();
+
+        $sortByType = array_key_first($request->input('sortBy', []));
 
         $packages = Package::query()
             ->where(function ($query) {
                 return $query
                     ->where('price_monthly', '>', 0)
                     ->whereNotNull('plan_id');
+            })
+            ->when($request->input('sortBy.' . $sortByType), function ($query, $value) use ($sortByType) {
+                if ($sortByType === 'price') {
+                    return $value === 'asc'
+                        ? $query->orderBy('price_monthly', 'asc')
+                        : $query->orderBy('price_monthly', 'desc');
+                }
+                if ($sortByType === 'servers') {
+                    return $value === 'asc'
+                        ? $query->orderBy('maximum_servers', 'asc')
+                        : $query->orderBy('maximum_servers', 'desc');
+                }
+                if ($sortByType === 'sites') {
+                    return $value === 'asc'
+                        ? $query->orderBy('maximum_sites', 'asc')
+                        : $query->orderBy('maximum_sites', 'desc');
+                }
+                if ($sortByType === 'name') {
+                    return $value === 'asc'
+                        ? $query->orderBy('name', 'asc')
+                        : $query->orderBy('name', 'desc');
+                }
+
+                return $query;
+            }, function ($query) {
+                return $query->orderBy('price_monthly', 'asc');
             })
             ->get()
             ->transform(function (Package $package) {
@@ -36,16 +65,22 @@ class ProfileBillingController extends Controller
                 return $package;
             });
 
-        $intent = $user->createSetupIntent();
-
         return inertia('Profile/Billing', [
             'packages' => $packages,
             'subscription' => $user->subscription('default'),
             'public_key' => config('cashier.key'),
-            'data_client_secret' => $intent->client_secret,
+            'data_client_secret' => function () use ($user) {
+                $intent = $user->createSetupIntent();
+                return $intent->client_secret;
+            },
             'card' => [
                 'last_four' => $user->card_last_four,
                 'brand' => $user->card_brand
+            ],
+            'filters' => [
+                'sort' => [
+                    $sortByType => $request->input('sortBy.' . $sortByType, 'asc'),
+                ]
             ]
         ]);
     }

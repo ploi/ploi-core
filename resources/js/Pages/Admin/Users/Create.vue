@@ -118,7 +118,8 @@
         props: {
             packages: Object,
             languages: Array,
-            defaultPackage: {}
+            defaultPackage: {},
+            defaultLanguage: {}
         },
 
         data() {
@@ -132,9 +133,9 @@
                     role: 'user',
                     package: this.defaultPackage ?? null,
                     notes: null,
-                    language: 'en',
+                    language: this.defaultLanguage ?? 'en',
                     blocked: null,
-                    requires_password_for_ftp: null,
+                    requires_password_for_ftp: true,
                 },
             }
         },

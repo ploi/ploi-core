@@ -18,7 +18,7 @@
                                             id="card-holder-name"
                                             :label="__('Card holder name')"/>
 
-                                <div class="pb-4 w-full">
+                                <div class="w-full pb-4">
                                     <label class="form-label" for="card-element">{{ __('Card details') }}</label>
                                     <div id="card-element" class="form-input"></div>
                                 </div>
@@ -37,14 +37,52 @@
                         </div>
                         <div class="col-span-3 space-y-8">
                             <h2 class="text-lg text-medium-emphasis">{{ __('Available packages') }}</h2>
+                            <form-input v-model="coupon"
+                                        :errors="$page.props.errors.coupon"
+                                        :disabled="sending"
+                                        :placeholder="__('Enter a coupon code if you have one, before subscribing')"
+                                        class="pb-4"
+                                        :label="__('Coupon')"/>
                             <Table caption="Package list overview">
                                 <TableHead>
                                     <TableRow>
-                                        <TableHeader>{{ __('Name') }}</TableHeader>
-                                        <TableHeader>{{ __('Max sites') }}</TableHeader>
-                                        <TableHeader>{{ __('Max servers') }}</TableHeader>
-                                        <TableHeader>{{ __('Monthly price') }}</TableHeader>
-                                        <TableHeader></TableHeader>
+                                        <TableHeader>
+                                            <a href="javascript:void(0);" data-balloon-blunt :aria-label="__('Sort by name')" data-balloon-pos="up" class="text-primary flex items-center space-x-2" @click="requestFilterUrl({sortBy: {'name' : filters.sort.name === 'asc' ? 'desc' : 'asc'}})">
+                                                <span>{{ __('Name') }}</span>
+
+                                                <IconArrowUp v-if="filters.sort.name === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.name === 'desc'" />
+                                            </a>
+                                        </TableHeader>
+                                        <TableHeader>
+                                            <a href="javascript:void(0);" data-balloon-blunt :aria-label="__('Sort by maximum sites')" data-balloon-pos="up" class="text-primary flex items-center space-x-2" @click="requestFilterUrl({sortBy: {'sites' : filters.sort.sites === 'asc' ? 'desc' : 'asc'}})">
+                                                <span>{{ __('Max sites') }}</span>
+
+                                                <IconArrowUp v-if="filters.sort.sites === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.sites === 'desc'" />
+                                            </a>
+                                        </TableHeader>
+                                        <TableHeader>
+                                            <a href="javascript:void(0);" data-balloon-blunt :aria-label="__('Sort by maximum servers')" data-balloon-pos="up" class="text-primary flex items-center space-x-2" @click="requestFilterUrl({sortBy: {'servers' : filters.sort.servers === 'asc' ? 'desc' : 'asc'}})">
+                                                <span>{{ __('Max servers') }}</span>
+
+                                                <IconArrowUp v-if="filters.sort.servers === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.servers === 'desc'" />
+                                            </a>
+                                        </TableHeader>
+                                        <TableHeader>
+                                            <a href="javascript:void(0);" data-balloon-blunt :aria-label="__('Sort by price')" data-balloon-pos="up" class="text-primary flex items-center space-x-2" @click="requestFilterUrl({sortBy: {'price' : filters.sort.price === 'asc' ? 'desc' : 'asc'}})">
+                                                <span>{{ __('Monthly price') }}</span>
+
+                                                <IconArrowUp v-if="filters.sort.price === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.price === 'desc'" />
+                                            </a>
+                                        </TableHeader>
+                                        <TableHeader>
+                                            <inertia-link :href="route('profile.billing.index')" data-balloon-blunt :aria-label="__('Clear sorting')" data-balloon-pos="up">
+                                                <IconClose />
+                                            </inertia-link>
+                                        </TableHeader>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -61,8 +99,10 @@
                                     </TableRow>
                                 </TableBody>
                             </Table>
+                        </div>
 
-                            <h2 v-if="invoices.length" class="text-lg text-medium-emphasis">{{ __('Invoices') }}</h2>
+                        <div class="col-span-5 space-y-8 border-t border-low-emphasis">
+                            <h2 v-if="invoices.length" class="mt-5 text-lg text-medium-emphasis">{{ __('Invoices') }}</h2>
                             <Table v-if="invoices.length" caption="Invoice list overview">
                                 <TableHead>
                                     <TableRow>
@@ -110,6 +150,9 @@
     import IconBox from '@/components/icons/IconBox'
     import IconGlobe from '@/components/icons/IconGlobe'
     import IconStorage from '@/components/icons/IconStorage'
+    import IconArrowUp from '@/components/icons/IconArrowUp'
+    import IconArrowDown from '@/components/icons/IconArrowDown'
+    import IconClose from '@/components/icons/IconClose'
     import Modal from '@/components/Modal'
     import ModalContainer from '@/components/ModalContainer'
     import FormInput from '@/components/forms/FormInput'
@@ -149,6 +192,9 @@
             IconBox,
             IconGlobe,
             IconStorage,
+            IconArrowDown,
+            IconArrowUp,
+            IconClose,
             Modal,
             ModalContainer,
             FormInput,
@@ -168,6 +214,7 @@
             public_key: String,
             data_client_secret: String,
             card: Object,
+            filters: Object,
         },
 
         data() {
@@ -301,6 +348,12 @@
             getInvoices() {
                 window.axios.get(this.route('profile.billing.invoices')).then(response => this.invoices = response.data);
             },
+
+            requestFilterUrl(properties) {
+                this.$inertia.visit(route('profile.billing.index', properties), {
+                    only: ['filters', 'packages']
+                })
+            }
         },
     }
 </script>

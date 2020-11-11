@@ -36,6 +36,10 @@
                                             <option v-for="(name, id) in packages" :value="id" v-text="name"></option>
                                         </FormSelect>
 
+                                        <FormSelect :helper-text="__('Select the default package a user should get when you create or they register')" :label="__('Select default language')" v-model="form.default_language">
+                                            <option v-for="language in languages" :value="language" v-text="language"></option>
+                                        </FormSelect>
+
                                         <div>
                                             <input id="support" class="form-checkbox" type="checkbox"
                                                    v-model="form.support">
@@ -177,13 +181,15 @@
                     receive_email_on_server_creation: this.company_settings.receive_email_on_server_creation,
                     default_package: this.company_settings.default_package,
                     isolate_per_site_per_user: this.company_settings.isolate_per_site_per_user,
+                    default_language: this.company_settings.default_language,
                 },
             }
         },
 
         props: {
             company_settings: Object,
-            packages: {}
+            packages: {},
+            languages: {}
         },
 
         methods: {
