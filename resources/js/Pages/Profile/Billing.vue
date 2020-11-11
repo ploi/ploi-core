@@ -40,11 +40,43 @@
                             <Table caption="Package list overview">
                                 <TableHead>
                                     <TableRow>
-                                        <TableHeader>{{ __('Name') }}</TableHeader>
-                                        <TableHeader>{{ __('Max sites') }}</TableHeader>
-                                        <TableHeader>{{ __('Max servers') }}</TableHeader>
-                                        <TableHeader>{{ __('Monthly price') }}</TableHeader>
-                                        <TableHeader></TableHeader>
+                                        <TableHeader>
+                                            <a href="javascript:void(0);" data-balloon-blunt :aria-label="__('Sort by name')" data-balloon-pos="up" class="text-primary flex items-center space-x-2" @click="requestFilterUrl({sortBy: {'name' : filters.sort.name === 'asc' ? 'desc' : 'asc'}})">
+                                                <span>{{ __('Name') }}</span>
+
+                                                <IconArrowUp v-if="filters.sort.name === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.name === 'desc'" />
+                                            </a>
+                                        </TableHeader>
+                                        <TableHeader>
+                                            <a href="javascript:void(0);" data-balloon-blunt :aria-label="__('Sort by maximum sites')" data-balloon-pos="up" class="text-primary flex items-center space-x-2" @click="requestFilterUrl({sortBy: {'sites' : filters.sort.sites === 'asc' ? 'desc' : 'asc'}})">
+                                                <span>{{ __('Max sites') }}</span>
+
+                                                <IconArrowUp v-if="filters.sort.sites === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.sites === 'desc'" />
+                                            </a>
+                                        </TableHeader>
+                                        <TableHeader>
+                                            <a href="javascript:void(0);" data-balloon-blunt :aria-label="__('Sort by maximum servers')" data-balloon-pos="up" class="text-primary flex items-center space-x-2" @click="requestFilterUrl({sortBy: {'servers' : filters.sort.servers === 'asc' ? 'desc' : 'asc'}})">
+                                                <span>{{ __('Max servers') }}</span>
+
+                                                <IconArrowUp v-if="filters.sort.servers === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.servers === 'desc'" />
+                                            </a>
+                                        </TableHeader>
+                                        <TableHeader>
+                                            <a href="javascript:void(0);" data-balloon-blunt :aria-label="__('Sort by price')" data-balloon-pos="up" class="text-primary flex items-center space-x-2" @click="requestFilterUrl({sortBy: {'price' : filters.sort.price === 'asc' ? 'desc' : 'asc'}})">
+                                                <span>{{ __('Monthly price') }}</span>
+
+                                                <IconArrowUp v-if="filters.sort.price === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.price === 'desc'" />
+                                            </a>
+                                        </TableHeader>
+                                        <TableHeader>
+                                            <inertia-link :href="route('profile.billing.index')" data-balloon-blunt :aria-label="__('Clear sorting')" data-balloon-pos="up">
+                                                <IconClose />
+                                            </inertia-link>
+                                        </TableHeader>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -110,6 +142,9 @@
     import IconBox from '@/components/icons/IconBox'
     import IconGlobe from '@/components/icons/IconGlobe'
     import IconStorage from '@/components/icons/IconStorage'
+    import IconArrowUp from '@/components/icons/IconArrowUp'
+    import IconArrowDown from '@/components/icons/IconArrowDown'
+    import IconClose from '@/components/icons/IconClose'
     import Modal from '@/components/Modal'
     import ModalContainer from '@/components/ModalContainer'
     import FormInput from '@/components/forms/FormInput'
@@ -149,6 +184,9 @@
             IconBox,
             IconGlobe,
             IconStorage,
+            IconArrowDown,
+            IconArrowUp,
+            IconClose,
             Modal,
             ModalContainer,
             FormInput,
@@ -168,6 +206,7 @@
             public_key: String,
             data_client_secret: String,
             card: Object,
+            filters: Object,
         },
 
         data() {
@@ -301,6 +340,12 @@
             getInvoices() {
                 window.axios.get(this.route('profile.billing.invoices')).then(response => this.invoices = response.data);
             },
+
+            requestFilterUrl(properties) {
+                this.$inertia.visit(route('profile.billing.index', properties), {
+                    only: ['filters', 'packages']
+                })
+            }
         },
     }
 </script>

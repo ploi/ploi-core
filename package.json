@@ -24,7 +24,7 @@
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
-        "tailwindcss": "^1.9.0",
+        "tailwindcss": "^1.9.6",
         "v-click-outside": "^3.0.1",
         "vue": "^2.6.11",
         "vue-clipboard2": "^0.3.1",
