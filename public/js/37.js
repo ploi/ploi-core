@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[37],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Sites.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Sites.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Servers.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Servers.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -27,6 +27,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/components/Pagination */ "./resources/js/components/Pagination.vue");
 /* harmony import */ var _hooks_notification__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/hooks/notification */ "./resources/js/hooks/notification.js");
 /* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Tabs */ "./resources/js/Pages/Admin/Services/Tabs.vue");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/Table */ "./resources/js/components/Table.vue");
+/* harmony import */ var _components_TableHead__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/components/TableHead */ "./resources/js/components/TableHead.vue");
+/* harmony import */ var _components_TableHeader__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/components/TableHeader */ "./resources/js/components/TableHeader.vue");
+/* harmony import */ var _components_TableRow__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @/components/TableRow */ "./resources/js/components/TableRow.vue");
+/* harmony import */ var _components_TableBody__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @/components/TableBody */ "./resources/js/components/TableBody.vue");
+/* harmony import */ var _components_TableData__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @/components/TableData */ "./resources/js/components/TableData.vue");
 //
 //
 //
@@ -59,6 +65,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
 
 
 
@@ -79,6 +111,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   layout: _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_12__["default"],
+  metaInfo: function metaInfo() {
+    return {
+      title: "".concat(this.__('Synchronize servers'))
+    };
+  },
   components: {
     TopBar: _components_TopBar__WEBPACK_IMPORTED_MODULE_0__["default"],
     Container: _components_Container__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -95,19 +132,28 @@ __webpack_require__.r(__webpack_exports__);
     SettingsLayout: _components_layouts_SettingsLayout__WEBPACK_IMPORTED_MODULE_13__["default"],
     SettingsSegment: _components_SettingsSegment__WEBPACK_IMPORTED_MODULE_14__["default"],
     Pagination: _components_Pagination__WEBPACK_IMPORTED_MODULE_15__["default"],
-    Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_17__["default"]
+    Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_17__["default"],
+    Table: _components_Table__WEBPACK_IMPORTED_MODULE_18__["default"],
+    TableHead: _components_TableHead__WEBPACK_IMPORTED_MODULE_19__["default"],
+    TableHeader: _components_TableHeader__WEBPACK_IMPORTED_MODULE_20__["default"],
+    TableRow: _components_TableRow__WEBPACK_IMPORTED_MODULE_21__["default"],
+    TableBody: _components_TableBody__WEBPACK_IMPORTED_MODULE_22__["default"],
+    TableData: _components_TableData__WEBPACK_IMPORTED_MODULE_23__["default"]
   },
-  mounted: function mounted() {
-    if (this.$page.props.flash.success) {
-      Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_16__["useNotification"])({
-        variant: 'success',
-        title: "Users",
-        message: this.$page.props.flash.success
-      });
-    }
+  props: {
+    availableServers: Array
   },
   methods: {
-    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_16__["useNotification"]
+    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_16__["useNotification"],
+    syncServer: function syncServer(server) {
+      window.axios.post(this.route('admin.services.servers.sync').url(), server).then(function () {
+        Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_16__["useNotification"])({
+          variant: 'success',
+          title: "Servers",
+          message: "Server ".concat(server.name, " has been synchronized to this system")
+        });
+      });
+    }
   }
 });
 
@@ -307,10 +353,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Sites.vue?vue&type=template&id=2611e384&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Sites.vue?vue&type=template&id=2611e384& ***!
-  \******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Servers.vue?vue&type=template&id=64947908&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Servers.vue?vue&type=template&id=64947908& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -339,7 +385,9 @@ var render = function() {
                     key: "start",
                     fn: function() {
                       return [
-                        _c("PageHeaderTitle", [_vm._v("Synchronize sites")])
+                        _c("PageHeaderTitle", [
+                          _vm._v(_vm._s(_vm.__("Synchronize servers")))
+                        ])
                       ]
                     },
                     proxy: true
@@ -373,9 +421,131 @@ var render = function() {
                                   proxy: true
                                 },
                                 {
+                                  key: "subtitle",
+                                  fn: function() {
+                                    return [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.__(
+                                            "You can synchronize your servers here. It is safe to synchronize already existing servers. If you have installed a extra PHP version for example, you can synchronize to update the versions here."
+                                          )
+                                        )
+                                      )
+                                    ]
+                                  },
+                                  proxy: true
+                                },
+                                {
                                   key: "content",
                                   fn: function() {
-                                    return undefined
+                                    return [
+                                      _c(
+                                        "Table",
+                                        {
+                                          attrs: {
+                                            caption:
+                                              "Available servers overview"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "TableHead",
+                                            [
+                                              _c(
+                                                "TableRow",
+                                                [
+                                                  _c("TableHeader", [
+                                                    _vm._v(
+                                                      _vm._s(_vm.__("Name"))
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("TableHeader", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.__("IP address")
+                                                      )
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("TableHeader")
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "TableBody",
+                                            _vm._l(
+                                              _vm.availableServers,
+                                              function(availableServer) {
+                                                return _c(
+                                                  "TableRow",
+                                                  { key: availableServer.id },
+                                                  [
+                                                    _c("TableData", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          availableServer.name
+                                                        )
+                                                      )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("TableData", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          availableServer.ip_address
+                                                        )
+                                                      )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "TableData",
+                                                      [
+                                                        _c(
+                                                          "Button",
+                                                          {
+                                                            attrs: {
+                                                              size: "sm"
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.syncServer(
+                                                                  availableServer
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                    " +
+                                                                _vm._s(
+                                                                  _vm.__(
+                                                                    "Synchronize"
+                                                                  )
+                                                                ) +
+                                                                "\n                                                "
+                                                            )
+                                                          ]
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              }
+                                            ),
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
                                   },
                                   proxy: true
                                 }
@@ -763,17 +933,17 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Services/Sites.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/Pages/Admin/Services/Sites.vue ***!
-  \*****************************************************/
+/***/ "./resources/js/Pages/Admin/Services/Servers.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/Pages/Admin/Services/Servers.vue ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Sites_vue_vue_type_template_id_2611e384___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sites.vue?vue&type=template&id=2611e384& */ "./resources/js/Pages/Admin/Services/Sites.vue?vue&type=template&id=2611e384&");
-/* harmony import */ var _Sites_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Sites.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Services/Sites.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Servers_vue_vue_type_template_id_64947908___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Servers.vue?vue&type=template&id=64947908& */ "./resources/js/Pages/Admin/Services/Servers.vue?vue&type=template&id=64947908&");
+/* harmony import */ var _Servers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Servers.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Services/Servers.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -783,9 +953,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Sites_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Sites_vue_vue_type_template_id_2611e384___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Sites_vue_vue_type_template_id_2611e384___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Servers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Servers_vue_vue_type_template_id_64947908___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Servers_vue_vue_type_template_id_64947908___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -795,38 +965,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Admin/Services/Sites.vue"
+component.options.__file = "resources/js/Pages/Admin/Services/Servers.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Services/Sites.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Services/Sites.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
+/***/ "./resources/js/Pages/Admin/Services/Servers.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Services/Servers.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Sites_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Sites.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Sites.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Sites_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Servers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Servers.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Servers.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Servers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Services/Sites.vue?vue&type=template&id=2611e384&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Services/Sites.vue?vue&type=template&id=2611e384& ***!
-  \************************************************************************************/
+/***/ "./resources/js/Pages/Admin/Services/Servers.vue?vue&type=template&id=64947908&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Services/Servers.vue?vue&type=template&id=64947908& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sites_vue_vue_type_template_id_2611e384___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Sites.vue?vue&type=template&id=2611e384& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Sites.vue?vue&type=template&id=2611e384&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sites_vue_vue_type_template_id_2611e384___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Servers_vue_vue_type_template_id_64947908___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Servers.vue?vue&type=template&id=64947908& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Servers.vue?vue&type=template&id=64947908&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Servers_vue_vue_type_template_id_64947908___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sites_vue_vue_type_template_id_2611e384___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Servers_vue_vue_type_template_id_64947908___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

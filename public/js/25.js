@@ -1278,7 +1278,19 @@ var render = function() {
                                                         "This will allow you to interact with your system via the API."
                                                       )
                                                     ) +
-                                                    "\n                                        "
+                                                    " "
+                                                ),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass: "text-primary",
+                                                    attrs: {
+                                                      href:
+                                                        "https://docs.ploi-core.io/core-api/introduction",
+                                                      target: "_blank"
+                                                    }
+                                                  },
+                                                  [_vm._v("More information")]
                                                 )
                                               ]
                                             )

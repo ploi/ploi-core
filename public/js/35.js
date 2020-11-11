@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[35],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Providers.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Providers.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Index.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Index.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85,6 +85,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -113,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
   layout: _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_12__["default"],
   metaInfo: function metaInfo() {
     return {
-      title: "".concat(this.__('Synchronize providers'))
+      title: "".concat(this.__('Services'))
     };
   },
   components: {
@@ -141,19 +220,13 @@ __webpack_require__.r(__webpack_exports__);
     TableData: _components_TableData__WEBPACK_IMPORTED_MODULE_23__["default"]
   },
   props: {
-    availableProviders: Array
+    servers: Object,
+    sites: Object,
+    providers: Object
   },
+  mounted: function mounted() {},
   methods: {
-    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_16__["useNotification"],
-    syncProvider: function syncProvider(provider) {
-      window.axios.post(this.route('admin.services.providers.sync', provider.id).url()).then(function () {
-        Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_16__["useNotification"])({
-          variant: 'success',
-          title: "Providers",
-          message: "Provider has been synchronized to this system"
-        });
-      });
-    }
+    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_16__["useNotification"]
   }
 });
 
@@ -353,10 +426,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Providers.vue?vue&type=template&id=c5dc31cc&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Providers.vue?vue&type=template&id=c5dc31cc& ***!
-  \**********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Index.vue?vue&type=template&id=14ae2f4a&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Index.vue?vue&type=template&id=14ae2f4a& ***!
+  \******************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -386,7 +459,7 @@ var render = function() {
                     fn: function() {
                       return [
                         _c("PageHeaderTitle", [
-                          _vm._v(_vm._s(_vm.__("Synchronize providers")))
+                          _vm._v(_vm._s(_vm.__("Services")))
                         ])
                       ]
                     },
@@ -416,22 +489,7 @@ var render = function() {
                                 {
                                   key: "title",
                                   fn: function() {
-                                    return [_vm._v(_vm._s(_vm.__("Overview")))]
-                                  },
-                                  proxy: true
-                                },
-                                {
-                                  key: "subtitle",
-                                  fn: function() {
-                                    return [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.__(
-                                            "You can synchronize your server providers here. After that, you'll be able to set a default provider per package. So servers created by a user via a package will always be put on that selected provider."
-                                          )
-                                        )
-                                      )
-                                    ]
+                                    return [_vm._v(_vm._s(_vm.__("Servers")))]
                                   },
                                   proxy: true
                                 },
@@ -440,113 +498,471 @@ var render = function() {
                                   fn: function() {
                                     return [
                                       _c(
-                                        "Table",
-                                        {
-                                          attrs: {
-                                            caption:
-                                              "Available providers overview"
-                                          }
-                                        },
+                                        "div",
                                         [
                                           _c(
-                                            "TableHead",
+                                            "Table",
+                                            {
+                                              attrs: {
+                                                caption: "Server list overview"
+                                              }
+                                            },
                                             [
                                               _c(
-                                                "TableRow",
+                                                "TableHead",
                                                 [
-                                                  _c("TableHeader", [
-                                                    _vm._v(
-                                                      _vm._s(_vm.__("Name"))
-                                                    )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("TableHeader", [
-                                                    _vm._v(
-                                                      _vm._s(_vm.__("Label"))
-                                                    )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("TableHeader")
+                                                  _c(
+                                                    "TableRow",
+                                                    [
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(_vm.__("Name"))
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.__("Usage")
+                                                          )
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableHeader")
+                                                    ],
+                                                    1
+                                                  )
                                                 ],
                                                 1
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "TableBody",
-                                            _vm._l(
-                                              _vm.availableProviders,
-                                              function(availableProvider) {
-                                                return _c(
-                                                  "TableRow",
-                                                  { key: availableProvider.id },
-                                                  [
-                                                    _c("TableData", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          availableProvider.name
-                                                        )
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("TableData", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          availableProvider.label
-                                                        )
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "TableData",
-                                                      {
-                                                        staticClass:
-                                                          "text-right"
-                                                      },
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "TableBody",
+                                                _vm._l(
+                                                  _vm.servers.data,
+                                                  function(server) {
+                                                    return _c(
+                                                      "TableRow",
+                                                      { key: server.id },
                                                       [
                                                         _c(
-                                                          "Button",
-                                                          {
-                                                            attrs: {
-                                                              size: "sm"
-                                                            },
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                return _vm.syncProvider(
-                                                                  availableProvider
-                                                                )
-                                                              }
-                                                            }
-                                                          },
+                                                          "TableData",
                                                           [
                                                             _vm._v(
                                                               "\n                                                    " +
                                                                 _vm._s(
-                                                                  _vm.__(
-                                                                    "Synchronize"
-                                                                  )
+                                                                  server.name
                                                                 ) +
-                                                                "\n                                                "
+                                                                "\n\n                                                    "
+                                                            ),
+                                                            _c(
+                                                              "p",
+                                                              {
+                                                                staticClass:
+                                                                  "text-medium-emphasis"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    server.ip
+                                                                  )
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "a",
+                                                              {
+                                                                tag: "Button",
+                                                                staticClass:
+                                                                  "text-small text-primary",
+                                                                attrs: {
+                                                                  size: "sm",
+                                                                  target:
+                                                                    "_blank",
+                                                                  href:
+                                                                    "https://ploi.io/panel/servers/" +
+                                                                    server.ploi_id
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\n                                                        " +
+                                                                    _vm._s(
+                                                                      _vm.__(
+                                                                        "View in ploi.io"
+                                                                      )
+                                                                    ) +
+                                                                    "\n                                                    "
+                                                                )
+                                                              ]
                                                             )
-                                                          ]
+                                                          ],
+                                                          1
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("TableData", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              server.sites_count
+                                                            ) +
+                                                              "/" +
+                                                              _vm._s(
+                                                                server.maximum_sites
+                                                              )
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "TableData",
+                                                          [
+                                                            _c(
+                                                              "inertia-link",
+                                                              {
+                                                                staticClass:
+                                                                  "text-primary font-medium",
+                                                                attrs: {
+                                                                  href: _vm.route(
+                                                                    "admin.services.servers.edit",
+                                                                    server.id
+                                                                  )
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\n                                                        " +
+                                                                    _vm._s(
+                                                                      _vm.__(
+                                                                        "Edit"
+                                                                      )
+                                                                    ) +
+                                                                    "\n                                                    "
+                                                                )
+                                                              ]
+                                                            )
+                                                          ],
+                                                          1
                                                         )
                                                       ],
                                                       1
                                                     )
-                                                  ],
-                                                  1
-                                                )
-                                              }
-                                            ),
+                                                  }
+                                                ),
+                                                1
+                                              )
+                                            ],
                                             1
                                           )
                                         ],
                                         1
-                                      )
+                                      ),
+                                      _vm._v(" "),
+                                      _c("pagination", {
+                                        attrs: { links: _vm.servers }
+                                      })
+                                    ]
+                                  },
+                                  proxy: true
+                                }
+                              ])
+                            }),
+                            _vm._v(" "),
+                            _c("SettingsSegment", {
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "title",
+                                  fn: function() {
+                                    return [_vm._v(_vm._s(_vm.__("Sites")))]
+                                  },
+                                  proxy: true
+                                },
+                                {
+                                  key: "content",
+                                  fn: function() {
+                                    return [
+                                      _c(
+                                        "div",
+                                        [
+                                          _c(
+                                            "Table",
+                                            {
+                                              attrs: {
+                                                caption: "Site list overview"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "TableHead",
+                                                [
+                                                  _c(
+                                                    "TableRow",
+                                                    [
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(_vm.__("Name"))
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.__("Server")
+                                                          )
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableHeader")
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "TableBody",
+                                                _vm._l(_vm.sites.data, function(
+                                                  site
+                                                ) {
+                                                  return _c(
+                                                    "TableRow",
+                                                    { key: site.id },
+                                                    [
+                                                      _c("TableData", [
+                                                        _vm._v(
+                                                          "\n                                                    " +
+                                                            _vm._s(
+                                                              site.domain
+                                                            ) +
+                                                            "\n                                                "
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableData", [
+                                                        _vm._v(
+                                                          "\n                                                    " +
+                                                            _vm._s(
+                                                              site.server
+                                                                ? site.server
+                                                                    .name
+                                                                : "-"
+                                                            ) +
+                                                            "\n                                                "
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "TableData",
+                                                        [
+                                                          _c(
+                                                            "inertia-link",
+                                                            {
+                                                              staticClass:
+                                                                "text-primary font-medium",
+                                                              attrs: {
+                                                                href: _vm.route(
+                                                                  "admin.services.sites.edit",
+                                                                  site.id
+                                                                )
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                                        " +
+                                                                  _vm._s(
+                                                                    _vm.__(
+                                                                      "Edit"
+                                                                    )
+                                                                  ) +
+                                                                  "\n                                                    "
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                }),
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("pagination", {
+                                        attrs: { links: _vm.sites }
+                                      })
+                                    ]
+                                  },
+                                  proxy: true
+                                }
+                              ])
+                            }),
+                            _vm._v(" "),
+                            _c("SettingsSegment", {
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "title",
+                                  fn: function() {
+                                    return [_vm._v(_vm._s(_vm.__("Providers")))]
+                                  },
+                                  proxy: true
+                                },
+                                {
+                                  key: "content",
+                                  fn: function() {
+                                    return [
+                                      _c(
+                                        "div",
+                                        [
+                                          _c(
+                                            "Table",
+                                            {
+                                              attrs: {
+                                                caption:
+                                                  "Provider list overview"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "TableHead",
+                                                [
+                                                  _c(
+                                                    "TableRow",
+                                                    [
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(_vm.__("Name"))
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.__("Regions")
+                                                          )
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.__("Plans")
+                                                          )
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableHeader", [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.__(
+                                                              "Attached servers"
+                                                            )
+                                                          )
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("TableHeader")
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "TableBody",
+                                                _vm._l(
+                                                  _vm.providers.data,
+                                                  function(provider) {
+                                                    return _c(
+                                                      "TableRow",
+                                                      { key: provider.id },
+                                                      [
+                                                        _c("TableData", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              provider.name
+                                                            )
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("TableData", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              provider.regions_count
+                                                            )
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("TableData", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              provider.plans_count
+                                                            )
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("TableData", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              provider.servers_count
+                                                            )
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "TableData",
+                                                          [
+                                                            _c(
+                                                              "inertia-link",
+                                                              {
+                                                                staticClass:
+                                                                  "text-primary font-medium",
+                                                                attrs: {
+                                                                  href: _vm.route(
+                                                                    "admin.services.providers.edit",
+                                                                    provider.id
+                                                                  )
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\n                                                        " +
+                                                                    _vm._s(
+                                                                      _vm.__(
+                                                                        "Edit"
+                                                                      )
+                                                                    ) +
+                                                                    "\n                                                    "
+                                                                )
+                                                              ]
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
+                                                  }
+                                                ),
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("pagination", {
+                                        attrs: { links: _vm.sites }
+                                      })
                                     ]
                                   },
                                   proxy: true
@@ -935,17 +1351,17 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Services/Providers.vue":
-/*!*********************************************************!*\
-  !*** ./resources/js/Pages/Admin/Services/Providers.vue ***!
-  \*********************************************************/
+/***/ "./resources/js/Pages/Admin/Services/Index.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/Pages/Admin/Services/Index.vue ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Providers_vue_vue_type_template_id_c5dc31cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Providers.vue?vue&type=template&id=c5dc31cc& */ "./resources/js/Pages/Admin/Services/Providers.vue?vue&type=template&id=c5dc31cc&");
-/* harmony import */ var _Providers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Providers.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Services/Providers.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Index_vue_vue_type_template_id_14ae2f4a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=14ae2f4a& */ "./resources/js/Pages/Admin/Services/Index.vue?vue&type=template&id=14ae2f4a&");
+/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Services/Index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -955,9 +1371,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Providers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Providers_vue_vue_type_template_id_c5dc31cc___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Providers_vue_vue_type_template_id_c5dc31cc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Index_vue_vue_type_template_id_14ae2f4a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Index_vue_vue_type_template_id_14ae2f4a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -967,38 +1383,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Admin/Services/Providers.vue"
+component.options.__file = "resources/js/Pages/Admin/Services/Index.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Services/Providers.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Services/Providers.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************/
+/***/ "./resources/js/Pages/Admin/Services/Index.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Services/Index.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Providers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Providers.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Providers.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Providers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Services/Providers.vue?vue&type=template&id=c5dc31cc&":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Services/Providers.vue?vue&type=template&id=c5dc31cc& ***!
-  \****************************************************************************************/
+/***/ "./resources/js/Pages/Admin/Services/Index.vue?vue&type=template&id=14ae2f4a&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Services/Index.vue?vue&type=template&id=14ae2f4a& ***!
+  \************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Providers_vue_vue_type_template_id_c5dc31cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Providers.vue?vue&type=template&id=c5dc31cc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Providers.vue?vue&type=template&id=c5dc31cc&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Providers_vue_vue_type_template_id_c5dc31cc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_14ae2f4a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=template&id=14ae2f4a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Index.vue?vue&type=template&id=14ae2f4a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_14ae2f4a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Providers_vue_vue_type_template_id_c5dc31cc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_14ae2f4a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
