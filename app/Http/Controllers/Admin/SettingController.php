@@ -22,13 +22,15 @@ class SettingController extends Controller
             'isolate_per_site_per_user' => setting('isolate_per_site_per_user'),
             'enable_api' => setting('enable_api'),
             'api_token' => setting('api_token') ? decrypt(setting('api_token')) : null,
+            'default_language' => setting('default_language', 'en')
         ];
 
         $packages = Package::pluck('name', 'id');
 
         return inertia('Admin/Settings', [
             'company_settings' => $settings,
-            'packages' => $packages
+            'packages' => $packages,
+            'languages' => languages()
         ]);
     }
 
@@ -46,6 +48,7 @@ class SettingController extends Controller
             'isolate_per_site_per_user',
             'enable_api',
             'api_token',
+            'default_language'
         ]) as $key => $value) {
             if ($key === 'api_token') {
                 $value = encrypt($value);

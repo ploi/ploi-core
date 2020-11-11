@@ -8,12 +8,12 @@
                     <form class="space-y-4" @submit.prevent="submit">
                         <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
                         <FormInput :label="__('Email')" type="email" :errors="$page.props.errors.email" v-model="form.email" />
-                        <FormSelect :label="__('Language')" v-model="form.language">
+                        <FormSelect :label="__('Language')" :errors="$page.props.errors.language" v-model="form.language">
                             <option value="en">English</option>
                             <option value="nl">Dutch</option>
                             <option value="fr">French</option>
                             <option value="da">Danish</option>
-                            <option value="nn">Norwegian</option>
+                            <option value="nb-no">Norwegian</option>
                         </FormSelect>
 
                         <FormActions>

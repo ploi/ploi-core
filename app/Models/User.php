@@ -124,6 +124,10 @@ class User extends Authenticatable implements HasLocalePreference
         static::creating(function (self $user) {
             $user->user_name = strtolower(Str::random(10));
             $user->ftp_password = Str::random();
+
+            if (!$user->language) {
+                $user->language = setting('default_language', 'en');
+            }
         });
 
         static::created(function (self $user) {

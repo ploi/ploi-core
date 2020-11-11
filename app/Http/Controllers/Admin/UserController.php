@@ -31,7 +31,8 @@ class UserController extends Controller
         return inertia('Admin/Users/Create', [
             'packages' => $packages,
             'languages' => languages(),
-            'defaultPackage' => (string)setting('default_package')
+            'defaultPackage' => (string)setting('default_package'),
+            'defaultLanguage' => (string)setting('default_language'),
         ]);
     }
 
