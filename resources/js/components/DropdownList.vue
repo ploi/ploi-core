@@ -1,7 +1,7 @@
 <template>
     <div
         :class="[
-            'absolute flex flex-col py-1 overflow-hidden rounded shadow-2xl bg-overlay bf-blur z-20',
+            'absolute flex flex-col py-1 overflow-hidden rounded shadow-2xl bg-overlay md:bf-blur z-20',
             positionClasses,
         ]"
     >

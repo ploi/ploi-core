@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-4 gap-16">
+    <div class="grid grid-cols-4 gap-8 md:gap-16">
         <aside class="col-span-4 md:col-span-1">
             <slot name="nav" />
         </aside>

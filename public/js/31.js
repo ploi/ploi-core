@@ -586,546 +586,559 @@ var render = function() {
             "Container",
             [
               _c("PageBody", [
-                _c("div", { staticClass: "grid grid-cols-5 gap-8" }, [
-                  _c("div", { staticClass: "col-span-2 space-y-4" }, [
-                    _c("h2", { staticClass: "text-lg text-medium-emphasis" }, [
-                      _vm._v(_vm._s(_vm.__("Card information")))
+                _c(
+                  "div",
+                  { staticClass: "grid grid-cols-1 md:grid-cols-5 gap-8" },
+                  [
+                    _c("div", { staticClass: "md:col-span-2 space-y-4" }, [
+                      _c(
+                        "h2",
+                        { staticClass: "text-lg text-medium-emphasis" },
+                        [_vm._v(_vm._s(_vm.__("Card information")))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "form",
+                        {
+                          staticClass: "space-y-4",
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.updateBilling($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm.currentCardLastFour
+                            ? _c("p", [
+                                _vm._v(
+                                  "\n                                ···· ···· ····  " +
+                                    _vm._s(_vm.currentCardLastFour) +
+                                    " (" +
+                                    _vm._s(_vm.currentCardBrand) +
+                                    ")\n                            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("form-input", {
+                            attrs: {
+                              errors: _vm.$page.props.errors.card_holder_name,
+                              disabled: _vm.sending,
+                              id: "card-holder-name",
+                              label: _vm.__("Card holder name")
+                            },
+                            model: {
+                              value: _vm.cardHolderName,
+                              callback: function($$v) {
+                                _vm.cardHolderName = $$v
+                              },
+                              expression: "cardHolderName"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "w-full pb-4" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-label",
+                                attrs: { for: "card-element" }
+                              },
+                              [_vm._v(_vm._s(_vm.__("Card details")))]
+                            ),
+                            _vm._v(" "),
+                            _c("div", {
+                              staticClass: "form-input",
+                              attrs: { id: "card-element" }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "Button",
+                            {
+                              staticClass: "btn-green",
+                              attrs: {
+                                "data-secret": _vm.clientSecret,
+                                id: "card-button",
+                                loading: _vm.sending,
+                                type: "submit"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.__("Save")) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm.subscription
+                            ? _c(
+                                "Button",
+                                {
+                                  attrs: {
+                                    loading: _vm.sending,
+                                    variant: "danger",
+                                    type: "button"
+                                  },
+                                  on: { click: _vm.confirmCancel }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(_vm.__("Cancel")) +
+                                      "\n                            "
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
                     ]),
                     _vm._v(" "),
                     _c(
-                      "form",
-                      {
-                        staticClass: "space-y-4",
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.updateBilling($event)
-                          }
-                        }
-                      },
+                      "div",
+                      { staticClass: "md:col-span-3 space-y-8" },
                       [
-                        _vm.currentCardLastFour
-                          ? _c("p", [
-                              _vm._v(
-                                "\n                                ···· ···· ····  " +
-                                  _vm._s(_vm.currentCardLastFour) +
-                                  " (" +
-                                  _vm._s(_vm.currentCardBrand) +
-                                  ")\n                            "
-                              )
-                            ])
-                          : _vm._e(),
+                        _c(
+                          "h2",
+                          { staticClass: "text-lg text-medium-emphasis" },
+                          [_vm._v(_vm._s(_vm.__("Available packages")))]
+                        ),
                         _vm._v(" "),
                         _c("form-input", {
+                          staticClass: "pb-4",
                           attrs: {
-                            errors: _vm.$page.props.errors.card_holder_name,
+                            errors: _vm.$page.props.errors.coupon,
                             disabled: _vm.sending,
-                            id: "card-holder-name",
-                            label: _vm.__("Card holder name")
+                            placeholder: _vm.__(
+                              "Enter a coupon code if you have one, before subscribing"
+                            ),
+                            label: _vm.__("Coupon")
                           },
                           model: {
-                            value: _vm.cardHolderName,
+                            value: _vm.coupon,
                             callback: function($$v) {
-                              _vm.cardHolderName = $$v
+                              _vm.coupon = $$v
                             },
-                            expression: "cardHolderName"
+                            expression: "coupon"
                           }
                         }),
                         _vm._v(" "),
-                        _c("div", { staticClass: "w-full pb-4" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label",
-                              attrs: { for: "card-element" }
-                            },
-                            [_vm._v(_vm._s(_vm.__("Card details")))]
-                          ),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass: "form-input",
-                            attrs: { id: "card-element" }
-                          })
-                        ]),
-                        _vm._v(" "),
                         _c(
-                          "Button",
-                          {
-                            staticClass: "btn-green",
-                            attrs: {
-                              "data-secret": _vm.clientSecret,
-                              id: "card-button",
-                              loading: _vm.sending,
-                              type: "submit"
-                            }
-                          },
+                          "Table",
+                          { attrs: { caption: "Package list overview" } },
                           [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(_vm.__("Save")) +
-                                "\n                            "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm.subscription
-                          ? _c(
-                              "Button",
-                              {
-                                attrs: {
-                                  loading: _vm.sending,
-                                  variant: "danger",
-                                  type: "button"
-                                },
-                                on: { click: _vm.confirmCancel }
-                              },
+                            _c(
+                              "TableHead",
                               [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(_vm.__("Cancel")) +
-                                    "\n                            "
+                                _c(
+                                  "TableRow",
+                                  [
+                                    _c("TableHeader", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "text-primary flex items-center space-x-2",
+                                          attrs: {
+                                            href: "javascript:void(0);",
+                                            "data-balloon-blunt": "",
+                                            "aria-label": _vm.__(
+                                              "Sort by name"
+                                            ),
+                                            "data-balloon-pos": "up"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.requestFilterUrl({
+                                                sortBy: {
+                                                  name:
+                                                    _vm.filters.sort.name ===
+                                                    "asc"
+                                                      ? "desc"
+                                                      : "asc"
+                                                }
+                                              })
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("span", [
+                                            _vm._v(_vm._s(_vm.__("Name")))
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm.filters.sort.name === "asc"
+                                            ? _c("IconArrowUp")
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.filters.sort.name === "desc"
+                                            ? _c("IconArrowDown")
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("TableHeader", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "text-primary flex items-center space-x-2",
+                                          attrs: {
+                                            href: "javascript:void(0);",
+                                            "data-balloon-blunt": "",
+                                            "aria-label": _vm.__(
+                                              "Sort by maximum sites"
+                                            ),
+                                            "data-balloon-pos": "up"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.requestFilterUrl({
+                                                sortBy: {
+                                                  sites:
+                                                    _vm.filters.sort.sites ===
+                                                    "asc"
+                                                      ? "desc"
+                                                      : "asc"
+                                                }
+                                              })
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("span", [
+                                            _vm._v(_vm._s(_vm.__("Max sites")))
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm.filters.sort.sites === "asc"
+                                            ? _c("IconArrowUp")
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.filters.sort.sites === "desc"
+                                            ? _c("IconArrowDown")
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("TableHeader", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "text-primary flex items-center space-x-2",
+                                          attrs: {
+                                            href: "javascript:void(0);",
+                                            "data-balloon-blunt": "",
+                                            "aria-label": _vm.__(
+                                              "Sort by maximum servers"
+                                            ),
+                                            "data-balloon-pos": "up"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.requestFilterUrl({
+                                                sortBy: {
+                                                  servers:
+                                                    _vm.filters.sort.servers ===
+                                                    "asc"
+                                                      ? "desc"
+                                                      : "asc"
+                                                }
+                                              })
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("span", [
+                                            _vm._v(
+                                              _vm._s(_vm.__("Max servers"))
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm.filters.sort.servers === "asc"
+                                            ? _c("IconArrowUp")
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.filters.sort.servers === "desc"
+                                            ? _c("IconArrowDown")
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("TableHeader", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "text-primary flex items-center space-x-2",
+                                          attrs: {
+                                            href: "javascript:void(0);",
+                                            "data-balloon-blunt": "",
+                                            "aria-label": _vm.__(
+                                              "Sort by price"
+                                            ),
+                                            "data-balloon-pos": "up"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.requestFilterUrl({
+                                                sortBy: {
+                                                  price:
+                                                    _vm.filters.sort.price ===
+                                                    "asc"
+                                                      ? "desc"
+                                                      : "asc"
+                                                }
+                                              })
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("span", [
+                                            _vm._v(
+                                              _vm._s(_vm.__("Monthly price"))
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm.filters.sort.price === "asc"
+                                            ? _c("IconArrowUp")
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.filters.sort.price === "desc"
+                                            ? _c("IconArrowDown")
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "TableHeader",
+                                      [
+                                        _c(
+                                          "inertia-link",
+                                          {
+                                            attrs: {
+                                              href: _vm.route(
+                                                "profile.billing.index"
+                                              ),
+                                              "data-balloon-blunt": "",
+                                              "aria-label": _vm.__(
+                                                "Clear sorting"
+                                              ),
+                                              "data-balloon-pos": "up"
+                                            }
+                                          },
+                                          [_c("IconClose")],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
                                 )
-                              ]
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "TableBody",
+                              _vm._l(_vm.packages, function(webPackage) {
+                                return _c(
+                                  "TableRow",
+                                  { key: webPackage.id },
+                                  [
+                                    _c("TableData", [
+                                      _vm._v(_vm._s(webPackage.name))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("TableData", [
+                                      _vm._v(
+                                        _vm._s(
+                                          webPackage.maximum_sites === 0
+                                            ? "Unlimited"
+                                            : webPackage.maximum_sites
+                                        )
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("TableData", [
+                                      _vm._v(
+                                        _vm._s(
+                                          webPackage.maximum_servers === 0
+                                            ? "Unlimited"
+                                            : webPackage.maximum_servers
+                                        )
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("TableData", [
+                                      _vm._v(_vm._s(webPackage.price_monthly))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "TableData",
+                                      { staticClass: "text-right" },
+                                      [
+                                        _c(
+                                          "Button",
+                                          {
+                                            attrs: {
+                                              size: "sm",
+                                              disabled:
+                                                _vm.sending ||
+                                                (_vm.subscription &&
+                                                  webPackage.plan_id ===
+                                                    _vm.subscription
+                                                      .stripe_plan)
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.updatePlan(
+                                                  webPackage.id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                            " +
+                                                _vm._s(_vm.__("Subscribe")) +
+                                                "\n                                        "
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              }),
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "md:col-span-5 space-y-8 border-t border-low-emphasis"
+                      },
+                      [
+                        _vm.invoices.length
+                          ? _c(
+                              "h2",
+                              {
+                                staticClass: "mt-5 text-lg text-medium-emphasis"
+                              },
+                              [_vm._v(_vm._s(_vm.__("Invoices")))]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.invoices.length
+                          ? _c(
+                              "Table",
+                              { attrs: { caption: "Invoice list overview" } },
+                              [
+                                _c(
+                                  "TableHead",
+                                  [
+                                    _c(
+                                      "TableRow",
+                                      [
+                                        _c("TableHeader", [
+                                          _vm._v(_vm._s(_vm.__("Number")))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("TableHeader", [
+                                          _vm._v(_vm._s(_vm.__("Status")))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("TableHeader", [
+                                          _vm._v(_vm._s(_vm.__("Total")))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("TableHeader", [
+                                          _vm._v(_vm._s(_vm.__("Date")))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("TableHeader")
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "TableBody",
+                                  _vm._l(_vm.invoices, function(invoice) {
+                                    return _c(
+                                      "TableRow",
+                                      { key: invoice.id },
+                                      [
+                                        _c("TableData", [
+                                          _vm._v(_vm._s(invoice.number))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("TableData", [
+                                          _vm._v(_vm._s(invoice.status))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("TableData", [
+                                          _vm._v(_vm._s(invoice.total))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("TableData", [
+                                          _vm._v(_vm._s(invoice.created))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("TableData", [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass: "text-primary",
+                                              attrs: {
+                                                href: _vm.route(
+                                                  "profile.billing.invoices.pdf",
+                                                  invoice.id
+                                                )
+                                              }
+                                            },
+                                            [_vm._v("Download")]
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  }),
+                                  1
+                                )
+                              ],
+                              1
                             )
                           : _vm._e()
                       ],
                       1
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-span-3 space-y-8" },
-                    [
-                      _c(
-                        "h2",
-                        { staticClass: "text-lg text-medium-emphasis" },
-                        [_vm._v(_vm._s(_vm.__("Available packages")))]
-                      ),
-                      _vm._v(" "),
-                      _c("form-input", {
-                        staticClass: "pb-4",
-                        attrs: {
-                          errors: _vm.$page.props.errors.coupon,
-                          disabled: _vm.sending,
-                          placeholder: _vm.__(
-                            "Enter a coupon code if you have one, before subscribing"
-                          ),
-                          label: _vm.__("Coupon")
-                        },
-                        model: {
-                          value: _vm.coupon,
-                          callback: function($$v) {
-                            _vm.coupon = $$v
-                          },
-                          expression: "coupon"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "Table",
-                        { attrs: { caption: "Package list overview" } },
-                        [
-                          _c(
-                            "TableHead",
-                            [
-                              _c(
-                                "TableRow",
-                                [
-                                  _c("TableHeader", [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "text-primary flex items-center space-x-2",
-                                        attrs: {
-                                          href: "javascript:void(0);",
-                                          "data-balloon-blunt": "",
-                                          "aria-label": _vm.__("Sort by name"),
-                                          "data-balloon-pos": "up"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.requestFilterUrl({
-                                              sortBy: {
-                                                name:
-                                                  _vm.filters.sort.name ===
-                                                  "asc"
-                                                    ? "desc"
-                                                    : "asc"
-                                              }
-                                            })
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", [
-                                          _vm._v(_vm._s(_vm.__("Name")))
-                                        ]),
-                                        _vm._v(" "),
-                                        _vm.filters.sort.name === "asc"
-                                          ? _c("IconArrowUp")
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _vm.filters.sort.name === "desc"
-                                          ? _c("IconArrowDown")
-                                          : _vm._e()
-                                      ],
-                                      1
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("TableHeader", [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "text-primary flex items-center space-x-2",
-                                        attrs: {
-                                          href: "javascript:void(0);",
-                                          "data-balloon-blunt": "",
-                                          "aria-label": _vm.__(
-                                            "Sort by maximum sites"
-                                          ),
-                                          "data-balloon-pos": "up"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.requestFilterUrl({
-                                              sortBy: {
-                                                sites:
-                                                  _vm.filters.sort.sites ===
-                                                  "asc"
-                                                    ? "desc"
-                                                    : "asc"
-                                              }
-                                            })
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", [
-                                          _vm._v(_vm._s(_vm.__("Max sites")))
-                                        ]),
-                                        _vm._v(" "),
-                                        _vm.filters.sort.sites === "asc"
-                                          ? _c("IconArrowUp")
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _vm.filters.sort.sites === "desc"
-                                          ? _c("IconArrowDown")
-                                          : _vm._e()
-                                      ],
-                                      1
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("TableHeader", [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "text-primary flex items-center space-x-2",
-                                        attrs: {
-                                          href: "javascript:void(0);",
-                                          "data-balloon-blunt": "",
-                                          "aria-label": _vm.__(
-                                            "Sort by maximum servers"
-                                          ),
-                                          "data-balloon-pos": "up"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.requestFilterUrl({
-                                              sortBy: {
-                                                servers:
-                                                  _vm.filters.sort.servers ===
-                                                  "asc"
-                                                    ? "desc"
-                                                    : "asc"
-                                              }
-                                            })
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", [
-                                          _vm._v(_vm._s(_vm.__("Max servers")))
-                                        ]),
-                                        _vm._v(" "),
-                                        _vm.filters.sort.servers === "asc"
-                                          ? _c("IconArrowUp")
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _vm.filters.sort.servers === "desc"
-                                          ? _c("IconArrowDown")
-                                          : _vm._e()
-                                      ],
-                                      1
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("TableHeader", [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "text-primary flex items-center space-x-2",
-                                        attrs: {
-                                          href: "javascript:void(0);",
-                                          "data-balloon-blunt": "",
-                                          "aria-label": _vm.__("Sort by price"),
-                                          "data-balloon-pos": "up"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.requestFilterUrl({
-                                              sortBy: {
-                                                price:
-                                                  _vm.filters.sort.price ===
-                                                  "asc"
-                                                    ? "desc"
-                                                    : "asc"
-                                              }
-                                            })
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", [
-                                          _vm._v(
-                                            _vm._s(_vm.__("Monthly price"))
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _vm.filters.sort.price === "asc"
-                                          ? _c("IconArrowUp")
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _vm.filters.sort.price === "desc"
-                                          ? _c("IconArrowDown")
-                                          : _vm._e()
-                                      ],
-                                      1
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "TableHeader",
-                                    [
-                                      _c(
-                                        "inertia-link",
-                                        {
-                                          attrs: {
-                                            href: _vm.route(
-                                              "profile.billing.index"
-                                            ),
-                                            "data-balloon-blunt": "",
-                                            "aria-label": _vm.__(
-                                              "Clear sorting"
-                                            ),
-                                            "data-balloon-pos": "up"
-                                          }
-                                        },
-                                        [_c("IconClose")],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "TableBody",
-                            _vm._l(_vm.packages, function(webPackage) {
-                              return _c(
-                                "TableRow",
-                                { key: webPackage.id },
-                                [
-                                  _c("TableData", [
-                                    _vm._v(_vm._s(webPackage.name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("TableData", [
-                                    _vm._v(
-                                      _vm._s(
-                                        webPackage.maximum_sites === 0
-                                          ? "Unlimited"
-                                          : webPackage.maximum_sites
-                                      )
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("TableData", [
-                                    _vm._v(
-                                      _vm._s(
-                                        webPackage.maximum_servers === 0
-                                          ? "Unlimited"
-                                          : webPackage.maximum_servers
-                                      )
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("TableData", [
-                                    _vm._v(_vm._s(webPackage.price_monthly))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "TableData",
-                                    { staticClass: "text-right" },
-                                    [
-                                      _c(
-                                        "Button",
-                                        {
-                                          attrs: {
-                                            size: "sm",
-                                            disabled:
-                                              _vm.sending ||
-                                              (_vm.subscription &&
-                                                webPackage.plan_id ===
-                                                  _vm.subscription.stripe_plan)
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.updatePlan(
-                                                webPackage.id
-                                              )
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                            " +
-                                              _vm._s(_vm.__("Subscribe")) +
-                                              "\n                                        "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "col-span-5 space-y-8 border-t border-low-emphasis"
-                    },
-                    [
-                      _vm.invoices.length
-                        ? _c(
-                            "h2",
-                            {
-                              staticClass: "mt-5 text-lg text-medium-emphasis"
-                            },
-                            [_vm._v(_vm._s(_vm.__("Invoices")))]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.invoices.length
-                        ? _c(
-                            "Table",
-                            { attrs: { caption: "Invoice list overview" } },
-                            [
-                              _c(
-                                "TableHead",
-                                [
-                                  _c(
-                                    "TableRow",
-                                    [
-                                      _c("TableHeader", [
-                                        _vm._v(_vm._s(_vm.__("Number")))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("TableHeader", [
-                                        _vm._v(_vm._s(_vm.__("Status")))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("TableHeader", [
-                                        _vm._v(_vm._s(_vm.__("Total")))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("TableHeader", [
-                                        _vm._v(_vm._s(_vm.__("Date")))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("TableHeader")
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "TableBody",
-                                _vm._l(_vm.invoices, function(invoice) {
-                                  return _c(
-                                    "TableRow",
-                                    { key: invoice.id },
-                                    [
-                                      _c("TableData", [
-                                        _vm._v(_vm._s(invoice.number))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("TableData", [
-                                        _vm._v(_vm._s(invoice.status))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("TableData", [
-                                        _vm._v(_vm._s(invoice.total))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("TableData", [
-                                        _vm._v(_vm._s(invoice.created))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("TableData", [
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass: "text-primary",
-                                            attrs: {
-                                              href: _vm.route(
-                                                "profile.billing.invoices.pdf",
-                                                invoice.id
-                                              )
-                                            }
-                                          },
-                                          [_vm._v("Download")]
-                                        )
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                }),
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    ],
-                    1
-                  )
-                ])
+                  ]
+                )
               ])
             ],
             1

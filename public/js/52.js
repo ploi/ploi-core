@@ -271,101 +271,108 @@ var render = function() {
                 "PageBody",
                 [
                   _c("div", [
-                    _c("ul", { staticClass: "grid grid-cols-3 gap-4" }, [
-                      _c(
-                        "li",
-                        { staticClass: "p-6 rounded shadow bg-surface-3" },
-                        [
-                          _c("div", { staticClass: "flex space-x-4" }, [
-                            _c(
-                              "div",
-                              [_c("IconGlobe", { staticClass: "w-6 h-6" })],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("div", [
+                    _c(
+                      "ul",
+                      { staticClass: "grid grid-cols-1 md:grid-cols-3 gap-4" },
+                      [
+                        _c(
+                          "li",
+                          { staticClass: "p-6 rounded shadow bg-surface-3" },
+                          [
+                            _c("div", { staticClass: "flex space-x-4" }, [
                               _c(
-                                "h3",
-                                { staticClass: "font-semibold text-body" },
-                                [_vm._v(_vm._s(_vm.sites))]
+                                "div",
+                                [_c("IconGlobe", { staticClass: "w-6 h-6" })],
+                                1
                               ),
                               _vm._v(" "),
-                              _c(
-                                "p",
-                                {
-                                  staticClass: "text-medium-emphasis text-small"
-                                },
-                                [_vm._v(_vm._s(_vm.__("Sites")))]
-                              )
+                              _c("div", [
+                                _c(
+                                  "h3",
+                                  { staticClass: "font-semibold text-body" },
+                                  [_vm._v(_vm._s(_vm.sites))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "text-medium-emphasis text-small"
+                                  },
+                                  [_vm._v(_vm._s(_vm.__("Sites")))]
+                                )
+                              ])
                             ])
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        { staticClass: "p-6 rounded shadow bg-surface-3" },
-                        [
-                          _c("div", { staticClass: "flex space-x-4" }, [
-                            _c(
-                              "div",
-                              [_c("IconStorage", { staticClass: "w-6 h-6" })],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("div", [
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "p-6 rounded shadow bg-surface-3" },
+                          [
+                            _c("div", { staticClass: "flex space-x-4" }, [
                               _c(
-                                "h3",
-                                { staticClass: "font-semibold text-body" },
-                                [_vm._v(_vm._s(_vm.servers))]
+                                "div",
+                                [_c("IconStorage", { staticClass: "w-6 h-6" })],
+                                1
                               ),
                               _vm._v(" "),
-                              _c(
-                                "p",
-                                {
-                                  staticClass: "text-medium-emphasis text-small"
-                                },
-                                [_vm._v(_vm._s(_vm.__("Servers")))]
-                              )
+                              _c("div", [
+                                _c(
+                                  "h3",
+                                  { staticClass: "font-semibold text-body" },
+                                  [_vm._v(_vm._s(_vm.servers))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "text-medium-emphasis text-small"
+                                  },
+                                  [_vm._v(_vm._s(_vm.__("Servers")))]
+                                )
+                              ])
                             ])
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        { staticClass: "p-6 rounded shadow bg-surface-3" },
-                        [
-                          _c("div", { staticClass: "flex space-x-4" }, [
-                            _c(
-                              "div",
-                              [_c("IconBox", { staticClass: "w-6 h-6" })],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("div", [
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "p-6 rounded shadow bg-surface-3" },
+                          [
+                            _c("div", { staticClass: "flex space-x-4" }, [
                               _c(
-                                "h3",
-                                { staticClass: "font-semibold text-body" },
-                                [
-                                  _vm._v(
-                                    _vm._s(_vm.$page.props.auth.package.name)
-                                  )
-                                ]
+                                "div",
+                                [_c("IconBox", { staticClass: "w-6 h-6" })],
+                                1
                               ),
                               _vm._v(" "),
-                              _c(
-                                "p",
-                                {
-                                  staticClass: "text-medium-emphasis text-small"
-                                },
-                                [_vm._v(_vm._s(_vm.__("Package")))]
-                              )
+                              _c("div", [
+                                _c(
+                                  "h3",
+                                  { staticClass: "font-semibold text-body" },
+                                  [
+                                    _vm._v(
+                                      _vm._s(_vm.$page.props.auth.package.name)
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "text-medium-emphasis text-small"
+                                  },
+                                  [_vm._v(_vm._s(_vm.__("Package")))]
+                                )
+                              ])
                             ])
-                          ])
-                        ]
-                      )
-                    ])
+                          ]
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c(

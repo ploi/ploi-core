@@ -5,8 +5,8 @@
         <Content>
             <Container>
                 <PageBody>
-                    <div class="grid grid-cols-5 gap-8">
-                        <div class="col-span-2 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                        <div class="md:col-span-2 space-y-4">
                             <h2 class="text-lg text-medium-emphasis">{{ __('Card information') }}</h2>
                             <form @submit.prevent="updateBilling" class="space-y-4">
                                 <p v-if="currentCardLastFour">
@@ -35,7 +35,7 @@
                                 </Button>
                             </form>
                         </div>
-                        <div class="col-span-3 space-y-8">
+                        <div class="md:col-span-3 space-y-8">
                             <h2 class="text-lg text-medium-emphasis">{{ __('Available packages') }}</h2>
                             <form-input v-model="coupon"
                                         :errors="$page.props.errors.coupon"
@@ -101,7 +101,7 @@
                             </Table>
                         </div>
 
-                        <div class="col-span-5 space-y-8 border-t border-low-emphasis">
+                        <div class="md:col-span-5 space-y-8 border-t border-low-emphasis">
                             <h2 v-if="invoices.length" class="mt-5 text-lg text-medium-emphasis">{{ __('Invoices') }}</h2>
                             <Table v-if="invoices.length" caption="Invoice list overview">
                                 <TableHead>

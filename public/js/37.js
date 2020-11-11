@@ -801,7 +801,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "grid grid-cols-4 gap-16" }, [
+  return _c("div", { staticClass: "grid grid-cols-4 gap-8 md:gap-16" }, [
     _c(
       "aside",
       { staticClass: "col-span-4 md:col-span-1" },

@@ -89,7 +89,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "ul",
-    { staticClass: "-ml-4 space-y-1" },
+    { staticClass: "md:-ml-4 space-y-1" },
     _vm._l(_vm.items, function(item) {
       return item
         ? _c(
