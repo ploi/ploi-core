@@ -167,7 +167,7 @@ __webpack_require__.r(__webpack_exports__);
 
       Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__["useConfirmDelete"])({
         title: this.__('Are you sure?'),
-        message: this.__('Are you sure you want to delete this server? Everything associated with this server will be detached.'),
+        message: this.__('Are you sure you want to delete this provider?'),
         onConfirm: function onConfirm() {
           return _this2["delete"]();
         }
@@ -176,40 +176,13 @@ __webpack_require__.r(__webpack_exports__);
     "delete": function _delete() {
       var _this3 = this;
 
-      this.sending = true;
-      this.$inertia["delete"](this.route('admin.services.servers.delete', this.server.id)).then(function () {
-        return _this3.sending = false;
-      });
-    },
-    attach: function attach() {
-      var _this4 = this;
-
-      this.sending = true;
-      this.$inertia.post(this.route('admin.services.servers.attach', this.server.id), this.formAttach).then(function () {
-        _this4.sending = false;
-
-        if (!Object.keys(_this4.$page.props.errors).length) {
-          _this4.formAttach.email = null;
+      this.$inertia["delete"](this.route('admin.services.providers.delete', this.provider.id), {
+        onStart: function onStart() {
+          return _this3.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this3.sending = false;
         }
-      });
-    },
-    confirmDetach: function confirmDetach(userId) {
-      var _this5 = this;
-
-      Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__["useConfirmDelete"])({
-        title: this.__('Are you sure?'),
-        message: this.__('Are you sure you want to detach this user from this server?'),
-        onConfirm: function onConfirm() {
-          return _this5.detach(userId);
-        }
-      });
-    },
-    detach: function detach(userId) {
-      var _this6 = this;
-
-      this.sending = true;
-      this.$inertia["delete"](this.route('admin.services.servers.detach', [this.server.id, userId])).then(function () {
-        return _this6.sending = false;
       });
     }
   }

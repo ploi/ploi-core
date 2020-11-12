@@ -58,6 +58,7 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
 
         Route::get('{provider}/edit', 'ProviderController@edit')->name('edit');
         Route::patch('{provider}', 'ProviderController@update')->name('update');
+        Route::delete('{provider}', 'ProviderController@destroy')->name('delete');
     });
 
     // Site syncing
