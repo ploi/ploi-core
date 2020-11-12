@@ -116,12 +116,10 @@
 
         methods: {
             submit() {
-                this.sending = true;
-
-                this.$inertia.patch(this.route('profile.settings.update'), this.form)
-                    .then(response => {
-                        this.sending = false;
-                    })
+                this.$inertia.patch(this.route('profile.settings.update'), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false,
+                });
             }
         },
     }

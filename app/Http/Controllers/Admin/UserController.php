@@ -32,7 +32,7 @@ class UserController extends Controller
             'packages' => $packages,
             'languages' => languages(),
             'defaultPackage' => (string)setting('default_package'),
-            'defaultLanguage' => (string)setting('default_language'),
+            'defaultLanguage' => (string)setting('default_language', 'en'),
         ]);
     }
 

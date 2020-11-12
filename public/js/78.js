@@ -37,6 +37,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -68,13 +73,17 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      this.sending = true;
       this.$inertia.post(this.route('login'), {
         email: this.form.email,
         password: this.form.password,
         remember: this.form.remember
-      }).then(function () {
-        return _this.sending = false;
+      }, {
+        onStart: function onStart() {
+          return _this.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this.sending = false;
+        }
       });
     }
   }
@@ -170,7 +179,7 @@ var render = function() {
                   block: ""
                 }
               },
-              [_vm._v(_vm._s(_vm.__("Reset password")))]
+              [_vm._v(_vm._s(_vm.__("Reset password")) + "\n            ")]
             ),
             _vm._v(" "),
             _vm.$page.props.settings.allow_registration
@@ -193,7 +202,7 @@ var render = function() {
                           block: ""
                         }
                       },
-                      [_vm._v("Register")]
+                      [_vm._v("Register\n                ")]
                     )
                   : _vm._e()
               ],

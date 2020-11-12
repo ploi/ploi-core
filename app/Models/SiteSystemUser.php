@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Casts\Encrypted;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
 
 class SiteSystemUser extends Model
 {
@@ -32,7 +32,6 @@ class SiteSystemUser extends Model
         static::creating(function (self $siteSystemUser) {
             $siteSystemUser->user_name = strtolower(Str::random(10));
             $siteSystemUser->ftp_password = Str::random();
-
         });
     }
 }

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\DocumentationCategoryRequest;
 use App\Models\DocumentationCategory;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\DocumentationCategoryRequest;
 
 class DocumentationController extends Controller
 {

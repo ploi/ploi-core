@@ -1,5 +1,5 @@
 <template>
-    <ul class="-ml-4 space-y-1">
+    <ul class="md:-ml-4 space-y-1">
         <li v-for="item in items" v-if="item">
             <component
                 :is="item.type && item.type === 'a' ? 'a' : 'inertia-link'"

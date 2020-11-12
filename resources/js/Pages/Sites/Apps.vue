@@ -33,7 +33,7 @@
                                     {{ __('You have the ability here to directly install one of these applications on the fly.') }}
                                 </template>
                                 <template #content>
-                                    <div class="grid grid-cols-3 gap-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                         <Button :variant="type === 'wordpress' ? 'primary' : 'secondary'"
                                                 @click="prepareInstall('wordpress')">{{ __('Install WordPress') }}
                                         </Button>

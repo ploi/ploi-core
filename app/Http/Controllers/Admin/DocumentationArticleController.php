@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\DocumentationArticleRequest;
-use App\Models\DocumentationCategory;
 use App\Models\DocumentationItem;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\DocumentationCategory;
+use App\Http\Requests\Admin\DocumentationArticleRequest;
 
 class DocumentationArticleController extends Controller
 {

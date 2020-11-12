@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Profile;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Package;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Arr;
+use Stripe\Exception\InvalidRequestException;
 
 class ProfileBillingController extends Controller
 {
@@ -125,16 +126,22 @@ class ProfileBillingController extends Controller
         }
 
         // If the user is already subscribed to the default plan, we have to swap it. Otherwise create a new one.
-        if ($user->subscribed('default')) {
-            $user->subscription('default')->swap($planId);
-        } else {
-            if ($coupon = $request->input('coupon')) {
-                $user->newSubscription('default', $planId)
-                    ->withCoupon($coupon)
-                    ->create($user->defaultPaymentMethod()->id);
+        try {
+            if ($user->subscribed('default')) {
+                $user->subscription('default')->swap($planId);
             } else {
-                $user->newSubscription('default', $planId)->create($user->defaultPaymentMethod()->id);
+                if ($coupon = $request->input('coupon')) {
+                    $user->newSubscription('default', $planId)
+                        ->withCoupon($coupon)
+                        ->create($user->defaultPaymentMethod()->id);
+                } else {
+                    $user->newSubscription('default', $planId)->create($user->defaultPaymentMethod()->id);
+                }
             }
+        } catch (InvalidRequestException $exception) {
+            $error = $exception->getJsonBody();
+
+            return redirect()->route('profile.billing.index')->with('error', Arr::get($error, 'error.message'));
         }
 
         $user->package_id = $plan->id;

@@ -12,7 +12,7 @@
 
                 <PageBody>
                     <div>
-                        <ul class="grid grid-cols-3 gap-4">
+                        <ul class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <li class="p-6 rounded shadow bg-surface-3">
                                 <div class="flex space-x-4">
                                     <div>

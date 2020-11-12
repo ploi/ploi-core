@@ -81,7 +81,7 @@
                                                    v-model="form.enable_api">
                                             <label for="enable_api" class="ml-2 text-sm">{{ __('Enable API') }}</label>
                                             <p class="text-small mt-1 text-medium-emphasis">
-                                                {{ __('This will allow you to interact with your system via the API.') }}
+                                                {{ __('This will allow you to interact with your system via the API.') }} <a href="https://docs.ploi-core.io/core-api/introduction" class="text-primary" target="_blank">More information</a>
                                             </p>
                                         </div>
 

@@ -2,12 +2,12 @@
 
 namespace App\Mail\Admin\Server;
 
-use App\Models\Server;
 use App\Models\User;
+use App\Models\Server;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class AdminServerCreatedEmail extends Mailable implements ShouldQueue
 {

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Admin\Server\AdminServerCreatedEmail;
-use App\Models\Server;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Jobs\Servers\CreateServer;
@@ -13,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\ServerResource;
 use App\Mail\Server\ServerCreatedEmail;
 use App\Http\Requests\ServerUpdateRequest;
+use App\Mail\Admin\Server\AdminServerCreatedEmail;
 
 class ServerController extends Controller
 {
@@ -54,7 +53,7 @@ class ServerController extends Controller
         if (setting('receive_email_on_server_creation')) {
             $admins = User::query()->where('role', User::ADMIN)->get();
 
-            foreach($admins as $admin){
+            foreach ($admins as $admin) {
                 Mail::to($admin)->send(new AdminServerCreatedEmail($request->user(), $server));
             }
         }

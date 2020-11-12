@@ -52,11 +52,10 @@
             useNotification,
 
             submit() {
-                this.sending = true
-
-                this.$inertia.post(this.route('register'), this.form).then(() => {
-                    this.sending = false
-                })
+                this.$inertia.post(this.route('register'), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false,
+                });
             },
         },
     }
