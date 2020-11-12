@@ -38,4 +38,20 @@ class Provider extends Model
     {
         return $this->hasMany(Server::class);
     }
+
+    public static function booted()
+    {
+        static::deleting(function(self $provider){
+            $provider->regions()->delete();
+            $provider->plans()->delete();
+            $provider->packages()->detach();
+
+            foreach($provider->servers as $server){
+                $server->provider_id = null;
+                $server->provider_plan_id = null;
+                $server->provider_region_id = null;
+                $server->save();
+            }
+        });
+    }
 }

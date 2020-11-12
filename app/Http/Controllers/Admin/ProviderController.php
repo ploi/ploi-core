@@ -25,4 +25,13 @@ class ProviderController extends Controller
 
         return redirect()->route('admin.services.index')->with('success', __('Provider has been updated'));
     }
+
+    public function destroy($id)
+    {
+        $provider = Provider::findOrFail($id);
+
+        $provider->delete();
+
+        return redirect()->route('admin.services.index')->with('success', __('Provider has been deleted'));
+    }
 }

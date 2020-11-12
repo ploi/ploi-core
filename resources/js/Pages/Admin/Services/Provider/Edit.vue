@@ -129,45 +129,17 @@
             confirmDelete() {
                 useConfirmDelete({
                     title: this.__('Are you sure?'),
-                    message: this.__('Are you sure you want to delete this server? Everything associated with this server will be detached.'),
+                    message: this.__('Are you sure you want to delete this provider?'),
                     onConfirm: () => this.delete(),
                 })
             },
 
             delete() {
-                this.sending = true
-
-                this.$inertia.delete(this.route('admin.services.servers.delete', this.server.id))
-                    .then(() => this.sending = false)
-            },
-
-            attach() {
-                this.sending = true
-
-                this.$inertia.post(this.route('admin.services.servers.attach', this.server.id), this.formAttach)
-                    .then(() => {
-                        this.sending = false
-
-                        if (!Object.keys(this.$page.props.errors).length) {
-                            this.formAttach.email = null;
-                        }
-                    })
-            },
-
-            confirmDetach(userId) {
-                useConfirmDelete({
-                    title: this.__('Are you sure?'),
-                    message: this.__('Are you sure you want to detach this user from this server?'),
-                    onConfirm: () => this.detach(userId),
+                this.$inertia.delete(this.route('admin.services.providers.delete', this.provider.id), {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false
                 })
             },
-
-            detach(userId) {
-                this.sending = true
-
-                this.$inertia.delete(this.route('admin.services.servers.detach', [this.server.id, userId]))
-                    .then(() => this.sending = false)
-            }
         }
     }
 </script>
