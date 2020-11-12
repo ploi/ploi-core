@@ -131,9 +131,13 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      this.sending = true;
-      this.$inertia.patch(this.route('profile.update'), this.form).then(function () {
-        return _this.sending = false;
+      this.$inertia.patch(this.route('profile.update'), this.form, {
+        onStart: function onStart() {
+          return _this.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this.sending = false;
+        }
       });
     }
   }

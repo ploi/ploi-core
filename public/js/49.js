@@ -128,16 +128,20 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      this.sending = false;
-      this.$inertia.patch(this.route('profile.security.update'), this.form).then(function (response) {
-        _this.sending = true;
+      this.$inertia.patch(this.route('profile.security.update'), this.form, {
+        onStart: function onStart() {
+          return _this.sending = true;
+        },
+        onFinish: function onFinish() {
+          _this.sending = false;
 
-        if (!Object.keys(_this.$page.props.errors).length) {
-          _this.form = {
-            current_password: null,
-            password: null,
-            password_confirmation: null
-          };
+          if (!Object.keys(_this.$page.props.errors).length) {
+            _this.form = {
+              current_password: null,
+              password: null,
+              password_confirmation: null
+            };
+          }
         }
       });
     }

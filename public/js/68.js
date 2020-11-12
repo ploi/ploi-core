@@ -64,9 +64,13 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      this.sending = true;
-      this.$inertia.post(this.route('register'), this.form).then(function () {
-        _this.sending = false;
+      this.$inertia.post(this.route('register'), this.form, {
+        onStart: function onStart() {
+          return _this.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this.sending = false;
+        }
       });
     }
   }

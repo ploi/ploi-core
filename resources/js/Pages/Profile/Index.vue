@@ -108,10 +108,10 @@
 
         methods: {
             submit(){
-                this.sending = true
-
-                this.$inertia.patch(this.route('profile.update'), this.form)
-                    .then(() => this.sending = false)
+                this.$inertia.patch(this.route('profile.update'), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false
+                });
             }
         },
     }

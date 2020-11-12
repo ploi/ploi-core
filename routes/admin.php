@@ -27,7 +27,7 @@ Route::group(['prefix' => 'documentation', 'as' => 'documentation.'], function (
     Route::get('{category}/edit', 'DocumentationController@edit')->name('edit');
     Route::patch('{category}', 'DocumentationController@update')->name('update');
 
-    Route::group(['prefix' => 'articles', 'as' => 'articles.'], function(){
+    Route::group(['prefix' => 'articles', 'as' => 'articles.'], function () {
         Route::get('/', 'DocumentationArticleController@index')->name('index');
         Route::get('create', 'DocumentationArticleController@create')->name('create');
         Route::post('/', 'DocumentationArticleController@store')->name('store');

@@ -106,11 +106,10 @@
 
         methods: {
             submit() {
-                this.sending = false;
-
-                this.$inertia.patch(this.route('profile.security.update'), this.form)
-                    .then(response => {
-                        this.sending = true;
+                this.$inertia.patch(this.route('profile.security.update'), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => {
+                        this.sending = false;
 
                         if (!Object.keys(this.$page.props.errors).length) {
                             this.form = {
@@ -119,7 +118,8 @@
                                 password_confirmation: null,
                             }
                         }
-                    })
+                    }
+                });
             }
         },
     }

@@ -347,10 +347,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.$inertia.post(_this.route('profile.billing.update.card'), {
                     payment_method: paymentMethod,
                     billing_details: _this.billingDetails
-                  }).then(function (response) {
-                    _this.sending = false;
-                  })["catch"](function (err) {
-                    _this.sending = false;
+                  }, {
+                    onStart: function onStart() {
+                      return _this.sending = true;
+                    },
+                    onFinish: function onFinish() {
+                      return _this.sending = false;
+                    }
                   });
                 }
 
@@ -365,14 +368,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updatePlan: function updatePlan(id) {
       var _this2 = this;
 
-      this.sending = true;
       this.$inertia.post(this.route('profile.billing.update.plan'), {
         plan: id,
         coupon: this.coupon
-      }).then(function (response) {
-        _this2.sending = false;
-      })["catch"](function (err) {
-        _this2.sending = false;
+      }, {
+        onStart: function onStart() {
+          return _this2.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this2.sending = false;
+        }
       });
     },
     confirmCancel: function confirmCancel() {
@@ -389,11 +394,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     cancel: function cancel() {
       var _this4 = this;
 
-      this.sending = true;
-      this.$inertia["delete"](this.route('profile.billing.cancel.plan')).then(function (response) {
-        _this4.sending = false;
-      })["catch"](function (err) {
-        _this4.sending = false;
+      this.$inertia["delete"](this.route('profile.billing.cancel.plan'), {
+        onStart: function onStart() {
+          return _this4.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this4.sending = false;
+        }
       });
     },
     getInvoices: function getInvoices() {

@@ -303,27 +303,20 @@
                     this.$inertia.post(this.route('profile.billing.update.card'), {
                         payment_method: paymentMethod,
                         billing_details: this.billingDetails
-                    }).then((response) => {
-                        this.sending = false;
-
-                    }).catch((err) => {
-                        this.sending = false;
+                    }, {
+                        onStart: () => this.sending = true,
+                        onFinish: () => this.sending = false
                     });
                 }
             },
 
             updatePlan(id) {
-                this.sending = true;
-
                 this.$inertia.post(this.route('profile.billing.update.plan'), {
                     plan: id,
                     coupon: this.coupon
-                }).then((response) => {
-                    this.sending = false;
-
-                }).catch((err) => {
-                    this.sending = false;
-
+                }, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false
                 });
             },
 
@@ -336,12 +329,9 @@
             },
 
             cancel (){
-                this.sending = true;
-
-                this.$inertia.delete(this.route('profile.billing.cancel.plan')).then((response) => {
-                    this.sending = false;
-                }).catch((err) => {
-                    this.sending = false;
+                this.$inertia.delete(this.route('profile.billing.cancel.plan'), {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false,
                 });
             },
 

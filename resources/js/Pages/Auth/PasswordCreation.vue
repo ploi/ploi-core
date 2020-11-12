@@ -53,16 +53,15 @@
             useNotification,
 
             submit() {
-                this.sending = true
-
                 this.$inertia.post(this.route('password-creation.start', {
                     email: this.email
                 }), {
                     password: this.form.password,
                     password_confirmation: this.form.password_confirmation,
-                }).then(() => {
-                    this.sending = false
-                })
+                }, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false
+                });
             },
         },
     }

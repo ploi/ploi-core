@@ -61,16 +61,15 @@
             useNotification,
 
             submit() {
-                this.sending = true
-
                 this.$inertia.post(this.route('password.update'), {
                     email: this.form.email,
                     token: this.token,
                     password: this.form.password,
                     password_confirmation: this.form.password_confirmation,
-                }).then(() => {
-                    this.sending = false
-                })
+                }, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false,
+                });
             },
         },
     }
