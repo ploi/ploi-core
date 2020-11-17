@@ -20,6 +20,15 @@ Route::group(['prefix' => 'support', 'as' => 'support.'], function () {
     Route::post('{ticket}/close', 'SupportController@close')->name('close');
 });
 
+Route::group(['prefix' => 'alerts', 'as' => 'alerts.'], function () {
+    Route::get('/', 'AlertController@index')->name('index');
+    Route::get('create', 'AlertController@create')->name('create');
+    Route::post('/', 'AlertController@store')->name('store');
+    Route::get('{alert}/edit', 'AlertController@edit')->name('edit');
+    Route::patch('{alert}', 'AlertController@update')->name('update');
+    Route::delete('{alert}', 'AlertController@destroy')->name('delete');
+});
+
 Route::group(['prefix' => 'documentation', 'as' => 'documentation.'], function () {
     Route::get('/', 'DocumentationController@index')->name('index');
     Route::get('create', 'DocumentationController@create')->name('create');

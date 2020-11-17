@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Alert;
 use Inertia\Middleware;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class HandleInertiaRequests extends Middleware
      * Determines the current asset version.
      *
      * @see https://inertiajs.com/asset-versioning
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return string|null
      */
     public function version(Request $request)
@@ -26,7 +27,7 @@ class HandleInertiaRequests extends Middleware
      * Defines the props that are shared by default.
      *
      * @see https://inertiajs.com/shared-data
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function share(Request $request)
@@ -98,6 +99,24 @@ class HandleInertiaRequests extends Middleware
                     ? count(Session::get('errors')->getBag('default')->getMessages())
                     : 0;
             },
+            'system_alert' => function () {
+                $alert = Alert::query()
+                    ->where(function ($query) {
+                        return $query
+                            ->whereNull('expires_at')
+                            ->orWhere('expires_at', '>', now());
+                    })
+                    ->first(['message', 'expires_at', 'type']);
+
+                if (!$alert) {
+                    return null;
+                }
+
+                return [
+                    'message' => $alert->message,
+                    'type' => $alert->type
+                ];
+            }
         ]);
     }
 }

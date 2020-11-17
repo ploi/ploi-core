@@ -94,6 +94,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -609,6 +623,40 @@ var render = function() {
         ? _c("div", { staticClass: "relative bg-primary text-white" }, [
             _vm._m(0)
           ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.$page.props.system_alert
+        ? _c(
+            "div",
+            {
+              staticClass: "relative text-white",
+              class: {
+                "bg-primary": _vm.$page.props.system_alert.type === "info",
+                "bg-warning": _vm.$page.props.system_alert.type === "warning",
+                "bg-danger": _vm.$page.props.system_alert.type === "danger"
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "max-w-screen-xl mx-auto py-3 px-3 sm:px-6 lg:px-8"
+                },
+                [
+                  _c("div", { staticClass: "pr-16 sm:text-center sm:px-16" }, [
+                    _c("p", { staticClass: "font-medium text-on-primary" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.$page.props.system_alert.message) +
+                          "\n                "
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ]
+          )
         : _vm._e(),
       _vm._v(" "),
       _c("PortalTarget", { attrs: { name: "modals" } }),
