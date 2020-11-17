@@ -73,7 +73,7 @@ import Tabs from './Tabs'
 export default {
     metaInfo() {
         return {
-            title: `${this.__('Edit package')}`,
+            title: `${this.__('Edit alert')}`,
         }
     },
 

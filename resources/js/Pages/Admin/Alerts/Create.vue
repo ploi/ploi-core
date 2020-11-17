@@ -74,7 +74,7 @@ import Tabs from './Tabs'
 export default {
     metaInfo() {
         return {
-            title: `${this.__('Create package')}`,
+            title: `${this.__('Create alert')}`,
         }
     },
 
