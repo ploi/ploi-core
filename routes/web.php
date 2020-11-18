@@ -91,14 +91,22 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
         Route::get('/', 'ProfileController@index')->name('index');
         Route::patch('/', 'ProfileController@update')->name('update');
 
+        // Security
         Route::group(['prefix' => 'security', 'as' => 'security.'], function () {
             Route::get('password', 'ProfilePasswordController@index')->name('index');
             Route::patch('password', 'ProfilePasswordController@update')->name('update');
         });
 
+        // Settings
         Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
             Route::get('/', 'ProfileSettingController@index')->name('index');
             Route::patch('/', 'ProfileSettingController@update')->name('update');
+        });
+
+        // Integrations
+        Route::group(['prefix' => 'integrations', 'as' => 'integrations.'], function () {
+            Route::get('/', 'ProfileIntegrationController@index')->name('index');
+            Route::patch('/', 'ProfileIntegrationController@update')->name('update');
         });
 
         if (config('cashier.key') && config('cashier.secret')) {

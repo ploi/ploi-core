@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[11],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -75,45 +75,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -144,6 +105,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   layout: _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_12__["default"],
+  metaInfo: function metaInfo() {
+    return {
+      title: "".concat(this.__('Edit provider'))
+    };
+  },
   components: {
     TopBar: _components_TopBar__WEBPACK_IMPORTED_MODULE_0__["default"],
     Container: _components_Container__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -176,26 +142,24 @@ __webpack_require__.r(__webpack_exports__);
     return {
       sending: false,
       form: {
-        name: this.server.name,
-        ip: this.server.ip,
-        maximum_sites: this.server.maximum_sites
-      },
-      formAttach: {
-        email: null
+        name: this.provider.name
       }
     };
   },
   props: {
-    server: Object,
-    users: [Object, Array]
+    provider: Object
   },
   methods: {
     submit: function submit() {
       var _this = this;
 
-      this.sending = true;
-      this.$inertia.patch(this.route('admin.services.servers.update', this.server.id), this.form).then(function () {
-        return _this.sending = false;
+      this.$inertia.patch(this.route('admin.services.providers.update', this.provider.id), this.form, {
+        onStart: function onStart() {
+          return _this.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this.sending = false;
+        }
       });
     },
     confirmDelete: function confirmDelete() {
@@ -203,7 +167,7 @@ __webpack_require__.r(__webpack_exports__);
 
       Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__["useConfirmDelete"])({
         title: this.__('Are you sure?'),
-        message: this.__('Are you sure you want to delete this server? Everything associated with this server will be detached.'),
+        message: this.__('Are you sure you want to delete this provider?'),
         onConfirm: function onConfirm() {
           return _this2["delete"]();
         }
@@ -212,40 +176,13 @@ __webpack_require__.r(__webpack_exports__);
     "delete": function _delete() {
       var _this3 = this;
 
-      this.sending = true;
-      this.$inertia["delete"](this.route('admin.services.servers.delete', this.server.id)).then(function () {
-        return _this3.sending = false;
-      });
-    },
-    attach: function attach() {
-      var _this4 = this;
-
-      this.sending = true;
-      this.$inertia.post(this.route('admin.services.servers.attach', this.server.id), this.formAttach).then(function () {
-        _this4.sending = false;
-
-        if (!Object.keys(_this4.$page.props.errors).length) {
-          _this4.formAttach.email = null;
+      this.$inertia["delete"](this.route('admin.services.providers.delete', this.provider.id), {
+        onStart: function onStart() {
+          return _this3.sending = true;
+        },
+        onFinish: function onFinish() {
+          return _this3.sending = false;
         }
-      });
-    },
-    confirmDetach: function confirmDetach(userId) {
-      var _this5 = this;
-
-      Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__["useConfirmDelete"])({
-        title: this.__('Are you sure?'),
-        message: this.__('Are you sure you want to detach this user from this server?'),
-        onConfirm: function onConfirm() {
-          return _this5.detach(userId);
-        }
-      });
-    },
-    detach: function detach(userId) {
-      var _this6 = this;
-
-      this.sending = true;
-      this.$inertia["delete"](this.route('admin.services.servers.detach', [this.server.id, userId])).then(function () {
-        return _this6.sending = false;
       });
     }
   }
@@ -620,10 +557,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=template&id=6923fc24&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=template&id=6923fc24& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=template&id=e6fbd200&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=template&id=e6fbd200& ***!
+  \**************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -653,7 +590,7 @@ var render = function() {
                     fn: function() {
                       return [
                         _c("PageHeaderTitle", [
-                          _vm._v(_vm._s(_vm.__("Edit server")))
+                          _vm._v(_vm._s(_vm.__("Edit provider")))
                         ])
                       ]
                     },
@@ -718,40 +655,6 @@ var render = function() {
                                             }
                                           }),
                                           _vm._v(" "),
-                                          _c("FormInput", {
-                                            attrs: {
-                                              label: _vm.__("IP address"),
-                                              errors: _vm.$page.props.errors.ip
-                                            },
-                                            model: {
-                                              value: _vm.form.ip,
-                                              callback: function($$v) {
-                                                _vm.$set(_vm.form, "ip", $$v)
-                                              },
-                                              expression: "form.ip"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("FormInput", {
-                                            attrs: {
-                                              label: _vm.__("Maximum sites"),
-                                              errors:
-                                                _vm.$page.props.errors
-                                                  .maximum_sites
-                                            },
-                                            model: {
-                                              value: _vm.form.maximum_sites,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.form,
-                                                  "maximum_sites",
-                                                  $$v
-                                                )
-                                              },
-                                              expression: "form.maximum_sites"
-                                            }
-                                          }),
-                                          _vm._v(" "),
                                           _c(
                                             "FormActions",
                                             [
@@ -777,190 +680,6 @@ var render = function() {
                                                     _vm._s(_vm.__("Delete"))
                                                   )
                                                 ]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  },
-                                  proxy: true
-                                }
-                              ])
-                            }),
-                            _vm._v(" "),
-                            _c("SettingsSegment", {
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "title",
-                                  fn: function() {
-                                    return [
-                                      _vm._v(_vm._s(_vm.__("Attached users")))
-                                    ]
-                                  },
-                                  proxy: true
-                                },
-                                {
-                                  key: "form",
-                                  fn: function() {
-                                    return [
-                                      _c(
-                                        "form",
-                                        {
-                                          staticClass: "space-y-4",
-                                          on: {
-                                            submit: function($event) {
-                                              $event.preventDefault()
-                                              return _vm.attach($event)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("FormInput", {
-                                            attrs: {
-                                              label: _vm.__("Email"),
-                                              errors:
-                                                _vm.$page.props.errors.email
-                                            },
-                                            model: {
-                                              value: _vm.formAttach.email,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.formAttach,
-                                                  "email",
-                                                  $$v
-                                                )
-                                              },
-                                              expression: "formAttach.email"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "FormActions",
-                                            [
-                                              _c("Button", [
-                                                _vm._v(
-                                                  _vm._s(_vm.__("Save changes"))
-                                                )
-                                              ])
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  },
-                                  proxy: true
-                                },
-                                {
-                                  key: "content",
-                                  fn: function() {
-                                    return [
-                                      _c(
-                                        "div",
-                                        [
-                                          _c(
-                                            "Table",
-                                            {
-                                              attrs: {
-                                                caption:
-                                                  "Attached users list overview"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "TableHead",
-                                                [
-                                                  _c(
-                                                    "TableRow",
-                                                    [
-                                                      _c("TableHeader", [
-                                                        _vm._v(
-                                                          _vm._s(_vm.__("Name"))
-                                                        )
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("TableHeader", [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm.__("Email")
-                                                          )
-                                                        )
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("TableHeader")
-                                                    ],
-                                                    1
-                                                  )
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "TableBody",
-                                                _vm._l(_vm.users, function(
-                                                  user
-                                                ) {
-                                                  return _c(
-                                                    "TableRow",
-                                                    { key: user.id },
-                                                    [
-                                                      _c("TableData", [
-                                                        _vm._v(
-                                                          _vm._s(user.name)
-                                                        )
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("TableData", [
-                                                        _vm._v(
-                                                          _vm._s(user.email)
-                                                        )
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "TableData",
-                                                        [
-                                                          _c(
-                                                            "Button",
-                                                            {
-                                                              attrs: {
-                                                                variant:
-                                                                  "danger",
-                                                                size: "sm"
-                                                              },
-                                                              on: {
-                                                                click: function(
-                                                                  $event
-                                                                ) {
-                                                                  return _vm.confirmDetach(
-                                                                    user.id
-                                                                  )
-                                                                }
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "\n                                                        " +
-                                                                  _vm._s(
-                                                                    _vm.__(
-                                                                      "Detach"
-                                                                    )
-                                                                  ) +
-                                                                  "\n                                                    "
-                                                              )
-                                                            ]
-                                                          )
-                                                        ],
-                                                        1
-                                                      )
-                                                    ],
-                                                    1
-                                                  )
-                                                }),
-                                                1
                                               )
                                             ],
                                             1
@@ -1495,17 +1214,17 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Services/Server/Edit.vue":
-/*!***********************************************************!*\
-  !*** ./resources/js/Pages/Admin/Services/Server/Edit.vue ***!
-  \***********************************************************/
+/***/ "./resources/js/Pages/Admin/Services/Provider/Edit.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Services/Provider/Edit.vue ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Edit_vue_vue_type_template_id_6923fc24___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=6923fc24& */ "./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=template&id=6923fc24&");
-/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Edit_vue_vue_type_template_id_e6fbd200___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=e6fbd200& */ "./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=template&id=e6fbd200&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1516,8 +1235,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Edit_vue_vue_type_template_id_6923fc24___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Edit_vue_vue_type_template_id_6923fc24___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Edit_vue_vue_type_template_id_e6fbd200___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_e6fbd200___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1527,38 +1246,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Admin/Services/Server/Edit.vue"
+component.options.__file = "resources/js/Pages/Admin/Services/Provider/Edit.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=script&lang=js&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************/
+/***/ "./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=template&id=6923fc24&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=template&id=6923fc24& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=template&id=e6fbd200&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=template&id=e6fbd200& ***!
+  \********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6923fc24___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=6923fc24& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Server/Edit.vue?vue&type=template&id=6923fc24&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6923fc24___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_e6fbd200___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=e6fbd200& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Admin/Services/Provider/Edit.vue?vue&type=template&id=e6fbd200&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_e6fbd200___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6923fc24___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_e6fbd200___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
