@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserProvider extends Model
 {
     const TYPE_DNS = 'dns';
+    const TYPE_CLOUDFLARE = 'cloudflare';
 
     public $hidden = [
         'token'

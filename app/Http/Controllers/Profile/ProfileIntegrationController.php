@@ -12,7 +12,7 @@ class ProfileIntegrationController extends Controller
         return inertia('Profile/Integrations');
     }
 
-    public function update()
+    public function update(Request $request)
     {
 
     }
