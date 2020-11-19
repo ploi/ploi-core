@@ -106,7 +106,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
         // Integrations
         Route::group(['prefix' => 'integrations', 'as' => 'integrations.'], function () {
             Route::get('/', 'ProfileIntegrationController@index')->name('index');
-            Route::patch('/', 'ProfileIntegrationController@update')->name('update');
+            Route::post('/', 'ProfileIntegrationController@store')->name('store');
         });
 
         if (config('cashier.key') && config('cashier.secret')) {

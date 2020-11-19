@@ -32,6 +32,33 @@
                                 </template>
                             </SettingsSegment>
 
+                            <EmptyImage v-if="!records.length" />
+
+                            <SettingsSegment v-if="records.length">
+                                <template #title>{{ __('Records') }}</template>
+                                <template #content>
+                                    <div>
+                                        <Table caption="DNS records list overview">
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableHeader>{{ __('Name') }}</TableHeader>
+                                                    <TableHeader>{{ __('Content') }}</TableHeader>
+                                                    <TableHeader></TableHeader>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                <TableRow v-for="record in records" :key="record.id">
+                                                    <TableData>{{ record.name }}</TableData>
+                                                    <TableData>{{ record.display_content }}</TableData>
+                                                    <TableData>
+                                                        <Button variant="danger" size="sm">Delete</Button>
+                                                    </TableData>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                    </div>
+                                </template>
+                            </SettingsSegment>
 
                         </template>
                     </SettingsLayout>
@@ -62,7 +89,6 @@
     import Pagination from '@/components/Pagination'
     import FormActions from '@/components/FormActions'
     import {useNotification} from '@/hooks/notification'
-    import {useConfirmDelete} from '@/hooks/confirm-delete'
     import Tabs from './Tabs'
     import Table from '@/components/Table'
     import TableHead from '@/components/TableHead'
@@ -70,6 +96,7 @@
     import TableRow from '@/components/TableRow'
     import TableBody from '@/components/TableBody'
     import TableData from '@/components/TableData'
+    import EmptyImage from '@/components/EmptyImage'
 
     export default {
         metaInfo() {
@@ -106,11 +133,14 @@
             TableRow,
             TableBody,
             TableData,
+            EmptyImage,
         },
 
         data() {
             return {
                 sending: false,
+
+                records: [],
 
                 form: {
                     a: null,
@@ -137,100 +167,21 @@
             }
         },
 
-        mounted() {
-            if (this.$page.props.flash.success) {
-                useNotification({
-                    variant: 'success',
-                    title: `Databases`,
-                    message: this.$page.props.flash.success,
-                })
-            }
-
-            if(this.shouldBePolling){
-                this.startPollingInterval();
-            }
-        },
-
-        watch: {
-            shouldBePolling: function (value) {
-                if (!value) {
-                    this.clearPollingInterval();
-
-                    return;
-                }
-
-                if(!this.pollingInterval){
-                    this.startPollingInterval();
-                }
-            }
-        },
-
-        computed: {
-            shouldBePolling() {
-                return !!this.databases.data.filter((database) => {
-                    return database.status === 'busy';
-                }).length;
-            }
-        },
-
         props: {
             site: Object,
-            databases: Object,
+        },
+
+        mounted () {
+            this.getRecords();
         },
 
         methods: {
             useNotification,
 
-            startPollingInterval(){
-                this.pollingInterval = setInterval(function () {
-                    this.poll();
-                }.bind(this), 3000);
-            },
-
-            clearPollingInterval(){
-                clearTimeout(this.pollingInterval);
-                this.pollingInterval = null;
-            },
-
-            poll() {
-                this.$inertia.replace(this.route('sites.databases.index', this.site.id), {
-                    only: ['databases'],
-                    preserveScroll: true,
-                })
-            },
-
-            submit() {
-                this.sending = true
-
-                this.$inertia.post(this.route('sites.databases.store', this.site.id), this.form)
-                    .then(() => {
-                        this.sending = false
-
-                        if (!Object.keys(this.$page.props.errors).length) {
-                            this.form.name = null;
-                            this.form.user_name = null;
-                            this.form.password = null;
-                        }
-                    })
-            },
-
-            confirmDelete(database) {
-                useConfirmDelete({
-                    title: this.__('Are you sure?'),
-                    message: `Your database will be deleted permanently, this action cannot be undone.`,
-                    onConfirm: () => this.delete(database),
-                })
-            },
-
-            delete(database) {
-                this.$inertia.delete(this.route('sites.databases.delete', [this.site.id, database.id]), {
-                    preserveScroll: true
-                })
+            getRecords() {
+                axios.get(this.route('sites.dns.records', this.site.id))
+                    .then(response => this.records = response.data);
             }
         },
-
-        beforeDestroy(){
-            this.clearPollingInterval();
-        }
     }
 </script>

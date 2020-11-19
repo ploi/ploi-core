@@ -633,7 +633,7 @@ var render = function() {
     "div",
     {
       class: [
-        "absolute flex flex-col py-1 overflow-hidden rounded shadow-2xl bg-overlay md:bf-blur z-20",
+        "absolute flex flex-col py-1 overflow-hidden rounded shadow-2xl z-20 bg-surface-1",
         _vm.positionClasses
       ]
     },

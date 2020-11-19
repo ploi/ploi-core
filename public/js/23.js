@@ -29,14 +29,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/Pagination */ "./resources/js/components/Pagination.vue");
 /* harmony import */ var _components_FormActions__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/FormActions */ "./resources/js/components/FormActions.vue");
 /* harmony import */ var _hooks_notification__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/hooks/notification */ "./resources/js/hooks/notification.js");
-/* harmony import */ var _hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/hooks/confirm-delete */ "./resources/js/hooks/confirm-delete.js");
-/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Tabs */ "./resources/js/Pages/Sites/Tabs.vue");
-/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @/components/Table */ "./resources/js/components/Table.vue");
-/* harmony import */ var _components_TableHead__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @/components/TableHead */ "./resources/js/components/TableHead.vue");
-/* harmony import */ var _components_TableHeader__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @/components/TableHeader */ "./resources/js/components/TableHeader.vue");
-/* harmony import */ var _components_TableRow__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @/components/TableRow */ "./resources/js/components/TableRow.vue");
-/* harmony import */ var _components_TableBody__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @/components/TableBody */ "./resources/js/components/TableBody.vue");
-/* harmony import */ var _components_TableData__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @/components/TableData */ "./resources/js/components/TableData.vue");
+/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Tabs */ "./resources/js/Pages/Sites/Tabs.vue");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @/components/Table */ "./resources/js/components/Table.vue");
+/* harmony import */ var _components_TableHead__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @/components/TableHead */ "./resources/js/components/TableHead.vue");
+/* harmony import */ var _components_TableHeader__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @/components/TableHeader */ "./resources/js/components/TableHeader.vue");
+/* harmony import */ var _components_TableRow__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @/components/TableRow */ "./resources/js/components/TableRow.vue");
+/* harmony import */ var _components_TableBody__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @/components/TableBody */ "./resources/js/components/TableBody.vue");
+/* harmony import */ var _components_TableData__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @/components/TableData */ "./resources/js/components/TableData.vue");
+/* harmony import */ var _components_EmptyImage__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @/components/EmptyImage */ "./resources/js/components/EmptyImage.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -134,17 +161,19 @@ __webpack_require__.r(__webpack_exports__);
     Form: _components_Form__WEBPACK_IMPORTED_MODULE_16__["default"],
     FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_18__["default"],
     Pagination: _components_Pagination__WEBPACK_IMPORTED_MODULE_17__["default"],
-    Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_21__["default"],
-    Table: _components_Table__WEBPACK_IMPORTED_MODULE_22__["default"],
-    TableHead: _components_TableHead__WEBPACK_IMPORTED_MODULE_23__["default"],
-    TableHeader: _components_TableHeader__WEBPACK_IMPORTED_MODULE_24__["default"],
-    TableRow: _components_TableRow__WEBPACK_IMPORTED_MODULE_25__["default"],
-    TableBody: _components_TableBody__WEBPACK_IMPORTED_MODULE_26__["default"],
-    TableData: _components_TableData__WEBPACK_IMPORTED_MODULE_27__["default"]
+    Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_20__["default"],
+    Table: _components_Table__WEBPACK_IMPORTED_MODULE_21__["default"],
+    TableHead: _components_TableHead__WEBPACK_IMPORTED_MODULE_22__["default"],
+    TableHeader: _components_TableHeader__WEBPACK_IMPORTED_MODULE_23__["default"],
+    TableRow: _components_TableRow__WEBPACK_IMPORTED_MODULE_24__["default"],
+    TableBody: _components_TableBody__WEBPACK_IMPORTED_MODULE_25__["default"],
+    TableData: _components_TableData__WEBPACK_IMPORTED_MODULE_26__["default"],
+    EmptyImage: _components_EmptyImage__WEBPACK_IMPORTED_MODULE_27__["default"]
   },
   data: function data() {
     return {
       sending: false,
+      records: [],
       form: {
         a: null
       },
@@ -163,92 +192,21 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
-  mounted: function mounted() {
-    if (this.$page.props.flash.success) {
-      Object(_hooks_notification__WEBPACK_IMPORTED_MODULE_19__["useNotification"])({
-        variant: 'success',
-        title: "Databases",
-        message: this.$page.props.flash.success
-      });
-    }
-
-    if (this.shouldBePolling) {
-      this.startPollingInterval();
-    }
-  },
-  watch: {
-    shouldBePolling: function shouldBePolling(value) {
-      if (!value) {
-        this.clearPollingInterval();
-        return;
-      }
-
-      if (!this.pollingInterval) {
-        this.startPollingInterval();
-      }
-    }
-  },
-  computed: {
-    shouldBePolling: function shouldBePolling() {
-      return !!this.databases.data.filter(function (database) {
-        return database.status === 'busy';
-      }).length;
-    }
-  },
   props: {
-    site: Object,
-    databases: Object
+    site: Object
+  },
+  mounted: function mounted() {
+    this.getRecords();
   },
   methods: {
     useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_19__["useNotification"],
-    startPollingInterval: function startPollingInterval() {
-      this.pollingInterval = setInterval(function () {
-        this.poll();
-      }.bind(this), 3000);
-    },
-    clearPollingInterval: function clearPollingInterval() {
-      clearTimeout(this.pollingInterval);
-      this.pollingInterval = null;
-    },
-    poll: function poll() {
-      this.$inertia.replace(this.route('sites.databases.index', this.site.id), {
-        only: ['databases'],
-        preserveScroll: true
-      });
-    },
-    submit: function submit() {
+    getRecords: function getRecords() {
       var _this = this;
 
-      this.sending = true;
-      this.$inertia.post(this.route('sites.databases.store', this.site.id), this.form).then(function () {
-        _this.sending = false;
-
-        if (!Object.keys(_this.$page.props.errors).length) {
-          _this.form.name = null;
-          _this.form.user_name = null;
-          _this.form.password = null;
-        }
-      });
-    },
-    confirmDelete: function confirmDelete(database) {
-      var _this2 = this;
-
-      Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__["useConfirmDelete"])({
-        title: this.__('Are you sure?'),
-        message: "Your database will be deleted permanently, this action cannot be undone.",
-        onConfirm: function onConfirm() {
-          return _this2["delete"](database);
-        }
-      });
-    },
-    "delete": function _delete(database) {
-      this.$inertia["delete"](this.route('sites.databases.delete', [this.site.id, database.id]), {
-        preserveScroll: true
+      axios.get(this.route('sites.dns.records', this.site.id)).then(function (response) {
+        return _this.records = response.data;
       });
     }
-  },
-  beforeDestroy: function beforeDestroy() {
-    this.clearPollingInterval();
   }
 });
 
@@ -606,7 +564,142 @@ var render = function() {
                                   proxy: true
                                 }
                               ])
-                            })
+                            }),
+                            _vm._v(" "),
+                            !_vm.records.length ? _c("EmptyImage") : _vm._e(),
+                            _vm._v(" "),
+                            _vm.records.length
+                              ? _c("SettingsSegment", {
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "title",
+                                        fn: function() {
+                                          return [
+                                            _vm._v(_vm._s(_vm.__("Records")))
+                                          ]
+                                        },
+                                        proxy: true
+                                      },
+                                      {
+                                        key: "content",
+                                        fn: function() {
+                                          return [
+                                            _c(
+                                              "div",
+                                              [
+                                                _c(
+                                                  "Table",
+                                                  {
+                                                    attrs: {
+                                                      caption:
+                                                        "DNS records list overview"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "TableHead",
+                                                      [
+                                                        _c(
+                                                          "TableRow",
+                                                          [
+                                                            _c("TableHeader", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.__("Name")
+                                                                )
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("TableHeader", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.__(
+                                                                    "Content"
+                                                                  )
+                                                                )
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("TableHeader")
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "TableBody",
+                                                      _vm._l(
+                                                        _vm.records,
+                                                        function(record) {
+                                                          return _c(
+                                                            "TableRow",
+                                                            { key: record.id },
+                                                            [
+                                                              _c("TableData", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    record.name
+                                                                  )
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c("TableData", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    record.display_content
+                                                                  )
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "TableData",
+                                                                [
+                                                                  _c(
+                                                                    "Button",
+                                                                    {
+                                                                      attrs: {
+                                                                        variant:
+                                                                          "danger",
+                                                                        size:
+                                                                          "sm"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "Delete"
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        }
+                                                      ),
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    3975206407
+                                  )
+                                })
+                              : _vm._e()
                           ]
                         },
                         proxy: true
@@ -725,6 +818,33 @@ var render = function() {
         proxy: true
       }
     ])
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EmptyImage.vue?vue&type=template&id=75d31c8e&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EmptyImage.vue?vue&type=template&id=75d31c8e& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("img", {
+    staticClass: "w-32 md:w-48 m-auto",
+    attrs: { src: "/images/empty.png" }
   })
 }
 var staticRenderFns = []
@@ -1268,6 +1388,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/EmptyImage.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/EmptyImage.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EmptyImage_vue_vue_type_template_id_75d31c8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EmptyImage.vue?vue&type=template&id=75d31c8e& */ "./resources/js/components/EmptyImage.vue?vue&type=template&id=75d31c8e&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _EmptyImage_vue_vue_type_template_id_75d31c8e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EmptyImage_vue_vue_type_template_id_75d31c8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EmptyImage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/EmptyImage.vue?vue&type=template&id=75d31c8e&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/EmptyImage.vue?vue&type=template&id=75d31c8e& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmptyImage_vue_vue_type_template_id_75d31c8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EmptyImage.vue?vue&type=template&id=75d31c8e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EmptyImage.vue?vue&type=template&id=75d31c8e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmptyImage_vue_vue_type_template_id_75d31c8e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmptyImage_vue_vue_type_template_id_75d31c8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Form.vue":
 /*!******************************************!*\
   !*** ./resources/js/components/Form.vue ***!
@@ -1578,35 +1751,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SettingsLayout_vue_vue_type_template_id_85feafc4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/hooks/confirm-delete.js":
-/*!**********************************************!*\
-  !*** ./resources/js/hooks/confirm-delete.js ***!
-  \**********************************************/
-/*! exports provided: useConfirmDelete */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useConfirmDelete", function() { return useConfirmDelete; });
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/store */ "./resources/js/store/index.js");
-
-function useConfirmDelete(_ref) {
-  var title = _ref.title,
-      message = _ref.message,
-      _onConfirm = _ref.onConfirm;
-  return _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('confirmDelete/open', {
-    title: title,
-    message: message,
-    onConfirm: function onConfirm() {
-      _onConfirm();
-
-      _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('confirmDelete/close');
-    }
-  });
-}
 
 /***/ })
 

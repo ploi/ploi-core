@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Str;
 
 class Cloudflare
 {
@@ -42,7 +43,7 @@ class Cloudflare
                 // We add this property so our UI panel can see whether a record is being edited.
                 $record->edit = false;
 
-                $record->display_content = str_limit($record->content, 25);
+                $record->display_content = Str::limit($record->content, 25);
 
                 return $record;
             });

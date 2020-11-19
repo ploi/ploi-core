@@ -656,6 +656,85 @@ var render = function() {
                               ])
                             }),
                             _vm._v(" "),
+                            _vm.$page.props.auth.integrations.cloudflare
+                              ? _c("SettingsSegment", {
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "title",
+                                        fn: function() {
+                                          return [
+                                            _vm._v(
+                                              _vm._s(_vm.__("DNS settings"))
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      },
+                                      {
+                                        key: "form",
+                                        fn: function() {
+                                          return [
+                                            _c(
+                                              "form",
+                                              {
+                                                staticClass: "space-y-4",
+                                                on: {
+                                                  submit: function($event) {
+                                                    $event.preventDefault()
+                                                    return _vm.submit($event)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("FormInput", {
+                                                  attrs: {
+                                                    label: "Cloudflare zone ID",
+                                                    errors:
+                                                      _vm.$page.props.errors
+                                                        .dns_id
+                                                  },
+                                                  model: {
+                                                    value: _vm.form.dns_id,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "dns_id",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "form.dns_id"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "FormActions",
+                                                  [
+                                                    _c("Button", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.__("Save changes")
+                                                        )
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    1835894312
+                                  )
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
                             _vm.can("sites", "delete")
                               ? _c("SettingsSegment", {
                                   scopedSlots: _vm._u(

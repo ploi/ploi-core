@@ -13,8 +13,8 @@
                 <PageBody>
                     <div>
                         <ul class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <li class="p-6 rounded shadow bg-surface-3">
-                                <div class="flex space-x-4">
+                            <li class="p-6 rounded shadow bg-surface-3 transform transition duration-fast ease-in-out hover:scale-95">
+                                <inertia-link :href="route('sites.index')" class="flex space-x-4">
                                     <div>
                                         <IconGlobe class="w-6 h-6"/>
                                     </div>
@@ -22,10 +22,10 @@
                                         <h3 class="font-semibold text-body">{{ sites }}</h3>
                                         <p class="text-medium-emphasis text-small">{{ __('Sites') }}</p>
                                     </div>
-                                </div>
+                                </inertia-link>
                             </li>
-                            <li class="p-6 rounded shadow bg-surface-3">
-                                <div class="flex space-x-4">
+                            <li class="p-6 rounded shadow bg-surface-3 transform transition duration-fast ease-in-out hover:scale-95">
+                                <inertia-link :href="route('servers.index')" class="flex space-x-4">
                                     <div>
                                         <IconStorage class="w-6 h-6"/>
                                     </div>
@@ -33,10 +33,10 @@
                                         <h3 class="font-semibold text-body">{{ servers }}</h3>
                                         <p class="text-medium-emphasis text-small">{{ __('Servers') }}</p>
                                     </div>
-                                </div>
+                                </inertia-link>
                             </li>
-                            <li class="p-6 rounded shadow bg-surface-3">
-                                <div class="flex space-x-4">
+                            <li class="p-6 rounded shadow bg-surface-3 transform transition duration-fast ease-in-out hover:scale-95">
+                                <inertia-link :href="$page.props.settings.billing ? route('profile.billing.index') : route('profile.index')" class="flex space-x-4">
                                     <div>
                                         <IconBox class="w-6 h-6"/>
                                     </div>
@@ -44,7 +44,7 @@
                                         <h3 class="font-semibold text-body">{{ $page.props.auth.package.name }}</h3>
                                         <p class="text-medium-emphasis text-small">{{ __('Package') }}</p>
                                     </div>
-                                </div>
+                                </inertia-link>
                             </li>
                         </ul>
                     </div>

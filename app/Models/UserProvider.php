@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Encrypted;
 use Illuminate\Database\Eloquent\Model;
 
 class UserProvider extends Model
@@ -11,6 +12,16 @@ class UserProvider extends Model
 
     public $hidden = [
         'token'
+    ];
+
+    public $fillable = [
+        'token',
+        'meta'
+    ];
+
+    protected $casts = [
+        'meta' => 'array',
+        'token' => Encrypted::class,
     ];
 
     public function user()

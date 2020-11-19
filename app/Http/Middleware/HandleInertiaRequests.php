@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Alert;
+use App\Models\UserProvider;
 use Inertia\Middleware;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
@@ -67,7 +68,10 @@ class HandleInertiaRequests extends Middleware
                     ] : [
                         'name' => __('None')
                     ],
-                    'can' => $can
+                    'can' => $can,
+                    'integrations' => [
+                        'cloudflare' => (bool)auth()->user() ? auth()->user()->providers()->where('type', UserProvider::TYPE_CLOUDFLARE)->count() : false,
+                    ]
                 ];
             },
 

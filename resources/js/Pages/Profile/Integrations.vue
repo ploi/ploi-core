@@ -6,7 +6,12 @@
             <Container>
                 <PageBody>
                     <form class="space-y-4" @submit.prevent="submit">
+                        <FormSelect :label="__('Select provider')" :errors="$page.props.errors.provider" v-model="form.provider">
+                            <option value="cloudflare">{{ __('Cloudflare') }}</option>
+                        </FormSelect>
 
+                        <FormInput v-if="form.provider === 'cloudflare'" :label="__('API key')" :errors="$page.props.errors.api_key" v-model="form.meta.api_key" />
+                        <FormInput v-if="form.provider === 'cloudflare'" :label="__('Cloudflare email')" :errors="$page.props.errors.cloudflare_email" v-model="form.meta.cloudflare_email" />
 
                         <FormActions>
                             <Button>{{ __('Save changes') }}</Button>
@@ -80,7 +85,10 @@
         data() {
             return {
                 form: {
+                    provider: null,
+                    meta: {
 
+                    }
                 },
 
                 breadcrumbs: [
@@ -102,7 +110,7 @@
 
         methods: {
             submit() {
-                this.$inertia.patch(this.route('profile.integrations.update'), this.form, {
+                this.$inertia.post(this.route('profile.integrations.store'), this.form, {
                     onStart: () => this.sending = true,
                     onFinish: () => this.sending = false,
                 });
