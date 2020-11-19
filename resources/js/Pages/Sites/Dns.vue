@@ -23,7 +23,8 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('A')" :errors="$page.props.errors.a" v-model="form.a"/>
+                                        <FormInput :disabled="sending" :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name"/>
+                                        <FormInput :disabled="sending" :label="__('IPv4 address')" :errors="$page.props.errors.address" v-model="form.address"/>
 
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
@@ -32,7 +33,7 @@
                                 </template>
                             </SettingsSegment>
 
-                            <EmptyImage v-if="!records.length" />
+                            <EmptyImage v-if="!records.length && !loading" />
 
                             <SettingsSegment v-if="records.length">
                                 <template #title>{{ __('Records') }}</template>
@@ -51,7 +52,7 @@
                                                     <TableData>{{ record.name }}</TableData>
                                                     <TableData>{{ record.display_content }}</TableData>
                                                     <TableData>
-                                                        <Button variant="danger" size="sm">Delete</Button>
+                                                        <Button @click="confirmDelete(record)" variant="danger" size="sm">Delete</Button>
                                                     </TableData>
                                                 </TableRow>
                                             </TableBody>
@@ -88,6 +89,7 @@
     import Form from '@/components/Form'
     import Pagination from '@/components/Pagination'
     import FormActions from '@/components/FormActions'
+    import {useConfirmDelete} from '@/hooks/confirm-delete'
     import {useNotification} from '@/hooks/notification'
     import Tabs from './Tabs'
     import Table from '@/components/Table'
@@ -139,11 +141,13 @@
         data() {
             return {
                 sending: false,
+                loading: true,
 
                 records: [],
 
                 form: {
-                    a: null,
+                    name: null,
+                    address: null,
                 },
 
                 breadcrumbs: [
@@ -178,9 +182,52 @@
         methods: {
             useNotification,
 
+            submit() {
+                this.$inertia.post(this.route('sites.dns.store', this.site.id), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => {
+                        this.sending = false;
+                        this.getRecords();
+
+                        this.form = {
+                            name: null,
+                            address: null,
+                        };
+                    }
+                })
+
+            },
+
             getRecords() {
+                this.loading = true;
+
                 axios.get(this.route('sites.dns.records', this.site.id))
-                    .then(response => this.records = response.data);
+                    .then(response => {
+                        this.loading = false;
+                        this.records = response.data
+                    })
+                    .catch(error => {
+                        this.loading = false;
+                    })
+            },
+
+            confirmDelete(record) {
+                useConfirmDelete({
+                    title: this.__('Are you sure?'),
+                    message: this.__('Your DNS will be completely removed.'),
+                    onConfirm: () => this.delete(record),
+                })
+            },
+
+            delete(record) {
+                this.$inertia.delete(this.route('sites.dns.delete', [this.site.id, record.id]), {
+                    preserveScroll: true
+                }, {
+                    onStart: () => this.loading = true,
+                    onFinish: () => {
+
+                    }
+                })
             }
         },
     }
