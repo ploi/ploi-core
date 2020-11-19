@@ -19,7 +19,7 @@
                             <SettingsSegment>
                                 <template #title>{{ __('Create') }}</template>
                                 <template #subtitle>
-                                    Text
+                                    {{ __('Create a new DNS record here.') }}
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
@@ -34,6 +34,10 @@
                             </SettingsSegment>
 
                             <EmptyImage v-if="!records.length && !loading" />
+
+                            <div v-if="loading">
+                                Loading records..
+                            </div>
 
                             <SettingsSegment v-if="records.length">
                                 <template #title>{{ __('Records') }}</template>

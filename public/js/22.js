@@ -109,6 +109,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -560,7 +564,13 @@ var render = function() {
                                   fn: function() {
                                     return [
                                       _vm._v(
-                                        "\n                                Text\n                            "
+                                        "\n                                " +
+                                          _vm._s(
+                                            _vm.__(
+                                              "Create a new DNS record here."
+                                            )
+                                          ) +
+                                          "\n                            "
                                       )
                                     ]
                                   },
@@ -641,6 +651,14 @@ var render = function() {
                             _vm._v(" "),
                             !_vm.records.length && !_vm.loading
                               ? _c("EmptyImage")
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.loading
+                              ? _c("div", [
+                                  _vm._v(
+                                    "\n                            Loading records..\n                        "
+                                  )
+                                ])
                               : _vm._e(),
                             _vm._v(" "),
                             _vm.records.length
