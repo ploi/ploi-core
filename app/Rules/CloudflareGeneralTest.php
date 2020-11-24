@@ -53,6 +53,6 @@ class CloudflareGeneralTest implements Rule
      */
     public function message()
     {
-        return 'We could not authenticate you with Cloudflare, are you sure this is the right API key? Also make sure your profile e-mail matches the one in Cloudflare.';
+        return __('We could not authenticate you with Cloudflare, are you sure this is the right API key? Also make sure your profile e-mail matches the one in Cloudflare.');
     }
 }

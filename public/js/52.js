@@ -378,7 +378,7 @@ var render = function() {
                       ? _c("FormInput", {
                           attrs: {
                             label: _vm.__("API key"),
-                            errors: _vm.$page.props.errors.api_key
+                            errors: _vm.$page.props.errors["meta.api_key"]
                           },
                           model: {
                             value: _vm.form.meta.api_key,
@@ -394,7 +394,8 @@ var render = function() {
                       ? _c("FormInput", {
                           attrs: {
                             label: _vm.__("Cloudflare email"),
-                            errors: _vm.$page.props.errors.cloudflare_email
+                            errors:
+                              _vm.$page.props.errors["meta.cloudflare_email"]
                           },
                           model: {
                             value: _vm.form.meta.cloudflare_email,

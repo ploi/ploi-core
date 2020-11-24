@@ -113,6 +113,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -218,6 +222,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         onFinish: function onFinish() {
           _this.sending = false;
+          _this.records = [];
 
           _this.getRecords();
 
@@ -254,12 +259,16 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.$inertia["delete"](this.route('sites.dns.delete', [this.site.id, record.id]), {
-        preserveScroll: true
-      }, {
+        preserveScroll: true,
         onStart: function onStart() {
-          return _this4.loading = true;
+          return _this4.sending = true;
         },
-        onFinish: function onFinish() {}
+        onFinish: function onFinish() {
+          _this4.sending = false;
+          _this4.records = [];
+
+          _this4.getRecords();
+        }
       });
     }
   }
@@ -654,7 +663,40 @@ var render = function() {
                               : _vm._e(),
                             _vm._v(" "),
                             _vm.loading
-                              ? _c("div", [
+                              ? _c("div", { staticClass: "inline-flex px-4" }, [
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass:
+                                        "animate-spin -ml-1 mr-3 h-5 w-5 text-white",
+                                      attrs: {
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        fill: "none",
+                                        viewBox: "0 0 24 24"
+                                      }
+                                    },
+                                    [
+                                      _c("circle", {
+                                        staticClass: "opacity-25",
+                                        attrs: {
+                                          cx: "12",
+                                          cy: "12",
+                                          r: "10",
+                                          stroke: "currentColor",
+                                          "stroke-width": "4"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("path", {
+                                        staticClass: "opacity-75",
+                                        attrs: {
+                                          fill: "currentColor",
+                                          d:
+                                            "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        }
+                                      })
+                                    ]
+                                  ),
                                   _vm._v(
                                     "\n                            Loading records..\n                        "
                                   )

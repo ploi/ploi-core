@@ -10,8 +10,8 @@
                             <option value="cloudflare">{{ __('Cloudflare') }}</option>
                         </FormSelect>
 
-                        <FormInput v-if="form.provider === 'cloudflare'" :label="__('API key')" :errors="$page.props.errors.api_key" v-model="form.meta.api_key" />
-                        <FormInput v-if="form.provider === 'cloudflare'" :label="__('Cloudflare email')" :errors="$page.props.errors.cloudflare_email" v-model="form.meta.cloudflare_email" />
+                        <FormInput v-if="form.provider === 'cloudflare'" :label="__('API key')" :errors="$page.props.errors['meta.api_key']" v-model="form.meta.api_key" />
+                        <FormInput v-if="form.provider === 'cloudflare'" :label="__('Cloudflare email')" :errors="$page.props.errors['meta.cloudflare_email']" v-model="form.meta.cloudflare_email" />
 
                         <FormActions>
                             <Button>{{ __('Save changes') }}</Button>

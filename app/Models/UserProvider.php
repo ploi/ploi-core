@@ -15,6 +15,7 @@ class UserProvider extends Model
     ];
 
     public $fillable = [
+        'type',
         'token',
         'meta'
     ];

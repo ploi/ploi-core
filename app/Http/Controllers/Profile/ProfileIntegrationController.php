@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileIntegrationRequest;
 use App\Models\UserProvider;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,11 @@ class ProfileIntegrationController extends Controller
         return inertia('Profile/Integrations');
     }
 
-    public function store(Request $request)
+    public function store(ProfileIntegrationRequest $request)
     {
-        $request->user()->providers()->create([
+        $request->user()->providers()->updateOrCreate([
+            'type' => UserProvider::TYPE_CLOUDFLARE
+        ],[
             'type' => UserProvider::TYPE_CLOUDFLARE,
             'token' => $request->input('meta.api_key'),
             'meta' => [

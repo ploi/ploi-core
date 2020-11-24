@@ -113,6 +113,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -672,6 +677,33 @@ var render = function() {
                                         proxy: true
                                       },
                                       {
+                                        key: "content",
+                                        fn: function() {
+                                          return [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "bg-success text-on-primary p-4",
+                                                attrs: { role: "alert" }
+                                              },
+                                              [
+                                                _c("p", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__(
+                                                        "Cloudflare is attached to this domain"
+                                                      )
+                                                    )
+                                                  )
+                                                ])
+                                              ]
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      },
+                                      {
                                         key: "form",
                                         fn: function() {
                                           return [
@@ -730,7 +762,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    1835894312
+                                    2570827382
                                   )
                                 })
                               : _vm._e(),
