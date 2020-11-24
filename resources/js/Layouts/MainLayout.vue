@@ -10,6 +10,20 @@
             </div>
         </div>
 
+        <div class="relative text-white" :class="{
+            'bg-primary' : $page.props.system_alert.type === 'info',
+            'bg-warning' : $page.props.system_alert.type === 'warning',
+            'bg-danger' : $page.props.system_alert.type === 'danger',
+        }" v-if="$page.props.system_alert">
+            <div class="max-w-screen-xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+                <div class="pr-16 sm:text-center sm:px-16">
+                    <p class="font-medium text-on-primary">
+                        {{ $page.props.system_alert.message }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <PortalTarget name="modals"/>
 
         <div class="fixed inset-0 z-50 flex items-start justify-end p-5 pointer-events-none">

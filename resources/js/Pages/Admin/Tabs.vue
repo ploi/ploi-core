@@ -26,6 +26,11 @@
                         active: this.route().current('admin.settings')
                     },
                     {
+                        title: this.__('Alert messages'),
+                        to: this.route('admin.alerts.index'),
+                        active: this.route().current('admin.alerts.*')
+                    },
+                    {
                         title: this.__('System'),
                         to: this.route('admin.system'),
                         active: this.route().current('admin.system')

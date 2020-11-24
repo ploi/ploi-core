@@ -54,19 +54,24 @@
                                 </template>
                             </SettingsSegment>
 
-                            <!--                            <SettingsSegment>-->
-                            <!--                                <template #title>{{ __('DNS settings') }}</template>-->
-                            <!--                                <template #form>-->
-                            <!--                                    <form class="space-y-4" @submit.prevent="submit">-->
-                            <!--                                        <FormInput label="Cloudflare zone ID" :errors="$page.props.errors.dns_id"-->
-                            <!--                                                   v-model="form.dns_id"/>-->
+                            <SettingsSegment v-if="$page.props.auth.integrations.cloudflare">
+                                <template #title>{{ __('DNS settings') }}</template>
+                                <template #content>
+                                    <div class="bg-success text-on-primary p-4 rounded" role="alert">
+                                        <p>{{ __('Cloudflare is attached to this domain') }}</p>
+                                    </div>
+                                </template>
+                                <template #form>
+                                    <form class="space-y-4" @submit.prevent="submit">
+                                        <FormInput label="Cloudflare zone ID" :errors="$page.props.errors.dns_id"
+                                                   v-model="form.dns_id"/>
 
-                            <!--                                        <FormActions>-->
-                            <!--                                            <Button>{{ __('Save changes') }}</Button>-->
-                            <!--                                        </FormActions>-->
-                            <!--                                    </form>-->
-                            <!--                                </template>-->
-                            <!--                            </SettingsSegment>-->
+                                        <FormActions>
+                                            <Button>{{ __('Save changes') }}</Button>
+                                        </FormActions>
+                                    </form>
+                                </template>
+                            </SettingsSegment>
 
                             <SettingsSegment v-if="can('sites', 'delete')">
                                 <template #title>{{ __('Danger zone') }}</template>

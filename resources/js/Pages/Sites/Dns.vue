@@ -19,11 +19,12 @@
                             <SettingsSegment>
                                 <template #title>{{ __('Create') }}</template>
                                 <template #subtitle>
-                                    Text
+                                    {{ __('Create a new DNS record here.') }}
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('A')" :errors="$page.props.errors.a" v-model="form.a"/>
+                                        <FormInput :disabled="sending" :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name"/>
+                                        <FormInput :disabled="sending" :label="__('IPv4 address')" :errors="$page.props.errors.address" v-model="form.address"/>
 
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
@@ -32,6 +33,41 @@
                                 </template>
                             </SettingsSegment>
 
+                            <EmptyImage v-if="!records.length && !loading" />
+
+                            <div v-if="loading" class="inline-flex px-4">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Loading records..
+                            </div>
+
+                            <SettingsSegment v-if="records.length">
+                                <template #title>{{ __('Records') }}</template>
+                                <template #content>
+                                    <div>
+                                        <Table caption="DNS records list overview">
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableHeader>{{ __('Name') }}</TableHeader>
+                                                    <TableHeader>{{ __('Content') }}</TableHeader>
+                                                    <TableHeader></TableHeader>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                <TableRow v-for="record in records" :key="record.id">
+                                                    <TableData>{{ record.name }}</TableData>
+                                                    <TableData>{{ record.display_content }}</TableData>
+                                                    <TableData>
+                                                        <Button @click="confirmDelete(record)" variant="danger" size="sm">Delete</Button>
+                                                    </TableData>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                    </div>
+                                </template>
+                            </SettingsSegment>
 
                         </template>
                     </SettingsLayout>
@@ -61,8 +97,8 @@
     import Form from '@/components/Form'
     import Pagination from '@/components/Pagination'
     import FormActions from '@/components/FormActions'
-    import {useNotification} from '@/hooks/notification'
     import {useConfirmDelete} from '@/hooks/confirm-delete'
+    import {useNotification} from '@/hooks/notification'
     import Tabs from './Tabs'
     import Table from '@/components/Table'
     import TableHead from '@/components/TableHead'
@@ -70,6 +106,7 @@
     import TableRow from '@/components/TableRow'
     import TableBody from '@/components/TableBody'
     import TableData from '@/components/TableData'
+    import EmptyImage from '@/components/EmptyImage'
 
     export default {
         metaInfo() {
@@ -106,14 +143,19 @@
             TableRow,
             TableBody,
             TableData,
+            EmptyImage,
         },
 
         data() {
             return {
                 sending: false,
+                loading: true,
+
+                records: [],
 
                 form: {
-                    a: null,
+                    name: null,
+                    address: null,
                 },
 
                 breadcrumbs: [
@@ -137,100 +179,66 @@
             }
         },
 
-        mounted() {
-            if (this.$page.props.flash.success) {
-                useNotification({
-                    variant: 'success',
-                    title: `Databases`,
-                    message: this.$page.props.flash.success,
-                })
-            }
-
-            if(this.shouldBePolling){
-                this.startPollingInterval();
-            }
-        },
-
-        watch: {
-            shouldBePolling: function (value) {
-                if (!value) {
-                    this.clearPollingInterval();
-
-                    return;
-                }
-
-                if(!this.pollingInterval){
-                    this.startPollingInterval();
-                }
-            }
-        },
-
-        computed: {
-            shouldBePolling() {
-                return !!this.databases.data.filter((database) => {
-                    return database.status === 'busy';
-                }).length;
-            }
-        },
-
         props: {
             site: Object,
-            databases: Object,
+        },
+
+        mounted () {
+            this.getRecords();
         },
 
         methods: {
             useNotification,
 
-            startPollingInterval(){
-                this.pollingInterval = setInterval(function () {
-                    this.poll();
-                }.bind(this), 3000);
-            },
-
-            clearPollingInterval(){
-                clearTimeout(this.pollingInterval);
-                this.pollingInterval = null;
-            },
-
-            poll() {
-                this.$inertia.replace(this.route('sites.databases.index', this.site.id), {
-                    only: ['databases'],
-                    preserveScroll: true,
-                })
-            },
-
             submit() {
-                this.sending = true
+                this.$inertia.post(this.route('sites.dns.store', this.site.id), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => {
+                        this.sending = false;
+                        this.records = [];
+                        this.getRecords();
 
-                this.$inertia.post(this.route('sites.databases.store', this.site.id), this.form)
-                    .then(() => {
-                        this.sending = false
+                        this.form = {
+                            name: null,
+                            address: null,
+                        };
+                    }
+                })
 
-                        if (!Object.keys(this.$page.props.errors).length) {
-                            this.form.name = null;
-                            this.form.user_name = null;
-                            this.form.password = null;
-                        }
+            },
+
+            getRecords() {
+                this.loading = true;
+
+                axios.get(this.route('sites.dns.records', this.site.id))
+                    .then(response => {
+                        this.loading = false;
+                        this.records = response.data
+                    })
+                    .catch(error => {
+                        this.loading = false;
                     })
             },
 
-            confirmDelete(database) {
+            confirmDelete(record) {
                 useConfirmDelete({
                     title: this.__('Are you sure?'),
-                    message: `Your database will be deleted permanently, this action cannot be undone.`,
-                    onConfirm: () => this.delete(database),
+                    message: this.__('Your DNS will be completely removed.'),
+                    onConfirm: () => this.delete(record),
                 })
             },
 
-            delete(database) {
-                this.$inertia.delete(this.route('sites.databases.delete', [this.site.id, database.id]), {
-                    preserveScroll: true
+            delete(record) {
+                this.$inertia.delete(this.route('sites.dns.delete', [this.site.id, record.id]), {
+                    preserveScroll: true,
+                    onStart: () => this.sending = true,
+                    onFinish: () => {
+                        this.sending = false;
+                        this.records = [];
+                        this.getRecords();
+                    }
                 })
             }
         },
-
-        beforeDestroy(){
-            this.clearPollingInterval();
-        }
     }
 </script>
