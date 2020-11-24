@@ -684,7 +684,7 @@ var render = function() {
                                               "div",
                                               {
                                                 staticClass:
-                                                  "bg-success text-on-primary p-4",
+                                                  "bg-success text-on-primary p-4 rounded",
                                                 attrs: { role: "alert" }
                                               },
                                               [
@@ -762,7 +762,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    2570827382
+                                    2238243349
                                   )
                                 })
                               : _vm._e(),

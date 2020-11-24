@@ -11,7 +11,17 @@ class ProfileIntegrationController extends Controller
 {
     public function index()
     {
-        return inertia('Profile/Integrations');
+        $providers = auth()->user()->providers()->latest()->get()->map(function($provider){
+            return [
+                'id' => $provider->id,
+                'type' => $provider->type,
+                'created_at' => $provider->created_at->format('Y-m-d H:i:s')
+            ];
+        });
+
+        return inertia('Profile/Integrations', [
+            'providers' => $providers,
+        ]);
     }
 
     public function store(ProfileIntegrationRequest $request)
@@ -25,6 +35,13 @@ class ProfileIntegrationController extends Controller
                 'cloudflare_email' => encrypt($request->input('meta.cloudflare_email'))
             ]
         ]);
+
+        return redirect()->route('profile.integrations.index');
+    }
+
+    public function destroy($providerId)
+    {
+        auth()->user()->providers()->findOrFail($providerId)->delete();
 
         return redirect()->route('profile.integrations.index');
     }

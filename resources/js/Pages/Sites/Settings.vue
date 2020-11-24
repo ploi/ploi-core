@@ -57,7 +57,7 @@
                             <SettingsSegment v-if="$page.props.auth.integrations.cloudflare">
                                 <template #title>{{ __('DNS settings') }}</template>
                                 <template #content>
-                                    <div class="bg-success text-on-primary p-4" role="alert">
+                                    <div class="bg-success text-on-primary p-4 rounded" role="alert">
                                         <p>{{ __('Cloudflare is attached to this domain') }}</p>
                                     </div>
                                 </template>

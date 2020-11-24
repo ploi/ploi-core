@@ -55,6 +55,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -105,7 +109,9 @@ __webpack_require__.r(__webpack_exports__);
     FormSelect: _components_forms_FormSelect__WEBPACK_IMPORTED_MODULE_19__["default"],
     FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_20__["default"]
   },
-  props: {},
+  props: {
+    providers: Object
+  },
   data: function data() {
     return {
       form: {
@@ -133,7 +139,14 @@ __webpack_require__.r(__webpack_exports__);
           return _this.sending = true;
         },
         onFinish: function onFinish() {
-          return _this.sending = false;
+          _this.sending = false;
+
+          if (!Object.keys(_this.$page.props.errors).length) {
+            _this.form = {
+              provider: null,
+              meta: {}
+            };
+          }
         }
       });
     }
@@ -415,7 +428,9 @@ var render = function() {
                   ],
                   1
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _c("PageBody", [_vm._v("\n                test\n            ")])
             ],
             1
           )
