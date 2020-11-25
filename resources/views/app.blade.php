@@ -15,6 +15,8 @@
         <script src="https://js.stripe.com/v3/"></script>
     @endif
 
+    <link href="{{ asset('storage/app.css') }}" rel="stylesheet"></link>
+    
     @routes
 </head>
 <body>
