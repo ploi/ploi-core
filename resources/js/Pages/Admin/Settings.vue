@@ -215,13 +215,18 @@
                 data.append('default_package', this.form.receive_email_on_server_creation || '')
                 data.append('isolate_per_site_per_user', this.form.isolate_per_site_per_user || false)
                 data.append('default_language', this.form.default_language || 'en')
-                data.append('logo', this.form.logo)
+                data.append('logo', this.form.logo || '')
                 data.append('_method', 'patch')
 
                 this.$inertia.post(this.route('admin.settings.update'), data, {
                     preserveScroll: true,
                     onStart: () => this.sending = true,
                     onFinish: () => this.sending = false,
+                    onSuccess: () => {
+                        if (Object.keys(this.$page.props.errors).length === 0) {
+                            this.form.logo = null
+                        }
+                    },
                 })
             },
         }

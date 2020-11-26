@@ -15,15 +15,15 @@
                class="hidden" />
 
         <div v-if="!value" class="p-2">
-            <button type="button" class="px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white" @click="browse">
+            <Button type="button" class="px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white" @click="browse">
                 Browse
-            </button>
+            </Button>
         </div>
         <div v-else class="flex items-center justify-between p-2">
             <div class="flex-1 pr-1">{{ value.name }} <span class="text-gray-500 text-xs">({{ filesize(value.size) }})</span></div>
-            <button type="button" class="px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white" @click="remove">
+            <Button variant="danger" type="button" class="px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white" @click="remove">
                 Remove
-            </button>
+            </Button>
         </div>
         <ErrorText v-if="errors">{{ errors[0] }}</ErrorText>
         <HelperText v-if="helperText && !errors">{{ helperText }}</HelperText>
@@ -34,6 +34,7 @@
 <script>
 import FormGroup from '@/components/FormGroup'
 import Label from '@/components/Label'
+import Button from '@/components/Button'
 import ErrorText from '@/components/ErrorText'
 import HelperText from '@/components/HelperText'
 import IconClipboard from '@/components/icons/IconClipboard'
@@ -86,6 +87,7 @@ export default {
         HelperText,
         IconClipboard,
         IconKey,
+        Button
     },
 
     data() {

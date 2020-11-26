@@ -33,6 +33,12 @@ class SettingRequest extends FormRequest
             'email' => [
                 'nullable',
                 'email'
+            ],
+
+            'logo' => [
+                'nullable',
+                'image',
+                'max:2000'
             ]
         ];
     }

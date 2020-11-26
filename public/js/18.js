@@ -241,7 +241,7 @@ __webpack_require__.r(__webpack_exports__);
       data.append('default_package', this.form.receive_email_on_server_creation || '');
       data.append('isolate_per_site_per_user', this.form.isolate_per_site_per_user || false);
       data.append('default_language', this.form.default_language || 'en');
-      data.append('logo', this.form.logo);
+      data.append('logo', this.form.logo || '');
       data.append('_method', 'patch');
       this.$inertia.post(this.route('admin.settings.update'), data, {
         preserveScroll: true,
@@ -250,6 +250,11 @@ __webpack_require__.r(__webpack_exports__);
         },
         onFinish: function onFinish() {
           return _this.sending = false;
+        },
+        onSuccess: function onSuccess() {
+          if (Object.keys(_this.$page.props.errors).length === 0) {
+            _this.form.logo = null;
+          }
         }
       });
     }
@@ -428,10 +433,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_FormGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/FormGroup */ "./resources/js/components/FormGroup.vue");
 /* harmony import */ var _components_Label__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/Label */ "./resources/js/components/Label.vue");
-/* harmony import */ var _components_ErrorText__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ErrorText */ "./resources/js/components/ErrorText.vue");
-/* harmony import */ var _components_HelperText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/HelperText */ "./resources/js/components/HelperText.vue");
-/* harmony import */ var _components_icons_IconClipboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/icons/IconClipboard */ "./resources/js/components/icons/IconClipboard.vue");
-/* harmony import */ var _components_icons_IconKey__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/icons/IconKey */ "./resources/js/components/icons/IconKey.vue");
+/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Button */ "./resources/js/components/Button.vue");
+/* harmony import */ var _components_ErrorText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/ErrorText */ "./resources/js/components/ErrorText.vue");
+/* harmony import */ var _components_HelperText__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/HelperText */ "./resources/js/components/HelperText.vue");
+/* harmony import */ var _components_icons_IconClipboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/icons/IconClipboard */ "./resources/js/components/icons/IconClipboard.vue");
+/* harmony import */ var _components_icons_IconKey__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/icons/IconKey */ "./resources/js/components/icons/IconKey.vue");
 //
 //
 //
@@ -465,6 +471,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -513,10 +520,11 @@ var defaultClasses = 'w-full border-medium-emphasis text-body h-10 px-2 border r
   components: {
     FormGroup: _components_FormGroup__WEBPACK_IMPORTED_MODULE_0__["default"],
     Label: _components_Label__WEBPACK_IMPORTED_MODULE_1__["default"],
-    ErrorText: _components_ErrorText__WEBPACK_IMPORTED_MODULE_2__["default"],
-    HelperText: _components_HelperText__WEBPACK_IMPORTED_MODULE_3__["default"],
-    IconClipboard: _components_icons_IconClipboard__WEBPACK_IMPORTED_MODULE_4__["default"],
-    IconKey: _components_icons_IconKey__WEBPACK_IMPORTED_MODULE_5__["default"]
+    ErrorText: _components_ErrorText__WEBPACK_IMPORTED_MODULE_3__["default"],
+    HelperText: _components_HelperText__WEBPACK_IMPORTED_MODULE_4__["default"],
+    IconClipboard: _components_icons_IconClipboard__WEBPACK_IMPORTED_MODULE_5__["default"],
+    IconKey: _components_icons_IconKey__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Button: _components_Button__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -1904,37 +1912,47 @@ var render = function() {
       }),
       _vm._v(" "),
       !_vm.value
-        ? _c("div", { staticClass: "p-2" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white",
-                attrs: { type: "button" },
-                on: { click: _vm.browse }
-              },
-              [_vm._v("\n            Browse\n        ")]
-            )
-          ])
-        : _c("div", { staticClass: "flex items-center justify-between p-2" }, [
-            _c("div", { staticClass: "flex-1 pr-1" }, [
-              _vm._v(_vm._s(_vm.value.name) + " "),
-              _c("span", { staticClass: "text-gray-500 text-xs" }, [
-                _vm._v("(" + _vm._s(_vm.filesize(_vm.value.size)) + ")")
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white",
-                attrs: { type: "button" },
-                on: { click: _vm.remove }
-              },
-              [_vm._v("\n            Remove\n        ")]
-            )
-          ]),
+        ? _c(
+            "div",
+            { staticClass: "p-2" },
+            [
+              _c(
+                "Button",
+                {
+                  staticClass:
+                    "px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white",
+                  attrs: { type: "button" },
+                  on: { click: _vm.browse }
+                },
+                [_vm._v("\n            Browse\n        ")]
+              )
+            ],
+            1
+          )
+        : _c(
+            "div",
+            { staticClass: "flex items-center justify-between p-2" },
+            [
+              _c("div", { staticClass: "flex-1 pr-1" }, [
+                _vm._v(_vm._s(_vm.value.name) + " "),
+                _c("span", { staticClass: "text-gray-500 text-xs" }, [
+                  _vm._v("(" + _vm._s(_vm.filesize(_vm.value.size)) + ")")
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "Button",
+                {
+                  staticClass:
+                    "px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white",
+                  attrs: { variant: "danger", type: "button" },
+                  on: { click: _vm.remove }
+                },
+                [_vm._v("\n            Remove\n        ")]
+              )
+            ],
+            1
+          ),
       _vm._v(" "),
       _vm.errors ? _c("ErrorText", [_vm._v(_vm._s(_vm.errors[0]))]) : _vm._e(),
       _vm._v(" "),

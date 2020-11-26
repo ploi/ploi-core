@@ -844,10 +844,12 @@ var render = function() {
                     "div",
                     { staticClass: "flex items-center space-x-5" },
                     [
-                      _c("img", {
-                        staticClass: "h-14",
-                        attrs: { src: _vm.$page.props.settings.logo }
-                      }),
+                      _vm.$page.props.settings.logo
+                        ? _c("img", {
+                            staticClass: "h-14",
+                            attrs: { src: _vm.$page.props.settings.logo }
+                          })
+                        : _vm._e(),
                       _vm._v(" "),
                       _vm._t("breadcrumbs")
                     ],
