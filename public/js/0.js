@@ -79,7 +79,8 @@ var baseClasses = 'w-full px-4 sm:px-8 mx-auto';
 var sizeClasses = {
   small: 'max-w-sm',
   base: 'max-w-5xl',
-  large: 'max-w-screen-xl'
+  large: 'max-w-screen-xl',
+  fluid: 'max-w-none'
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -341,6 +342,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_icons_IconSun__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/icons/IconSun */ "./resources/js/components/icons/IconSun.vue");
 /* harmony import */ var _components_icons_IconSearch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/icons/IconSearch */ "./resources/js/components/icons/IconSearch.vue");
 /* harmony import */ var _components_IconButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/IconButton */ "./resources/js/components/IconButton.vue");
+//
+//
+//
 //
 //
 //
@@ -818,236 +822,254 @@ var render = function() {
   return _c(
     "header",
     {
-      staticClass: "sticky top-0 border-b border-low-emphasis bg-surface-1 z-30"
+      staticClass: "sticky top-0 border-b border-low-emphasis bg-top-bar z-30"
     },
     [
-      _c("Container", [
-        _c(
-          "div",
-          { staticClass: "flex flex-col" },
-          [
-            _c(
-              "nav",
-              {
-                staticClass:
-                  "flex flex-col items-center justify-between py-4 space-y-4 md:space-y-0 md:flex-row"
-              },
-              [
-                _vm._t("breadcrumbs"),
-                _vm._v(" "),
-                _c("ul", { staticClass: "flex items-center space-x-4" }, [
+      _c(
+        "div",
+        { staticClass: "w-full px-4 sm:px-8 mx-auto max-w-top-bar-container" },
+        [
+          _c(
+            "div",
+            { staticClass: "flex flex-col" },
+            [
+              _c(
+                "nav",
+                {
+                  staticClass:
+                    "flex flex-col items-center justify-between py-4 space-y-4 md:space-y-0 md:flex-row"
+                },
+                [
                   _c(
-                    "li",
-                    {
-                      attrs: {
-                        "aria-label": _vm.__("Search"),
-                        "data-balloon-blunt": "",
-                        "data-balloon-pos": "down"
-                      }
-                    },
+                    "div",
+                    { staticClass: "flex items-center space-x-5" },
                     [
-                      _c(
-                        "IconButton",
-                        { on: { click: _vm.triggerSearch } },
-                        [_c("IconSearch")],
-                        1
-                      )
+                      _c("img", {
+                        staticClass: "h-14",
+                        attrs: { src: _vm.$page.props.settings.logo }
+                      }),
+                      _vm._v(" "),
+                      _vm._t("breadcrumbs")
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
-                  _c(
-                    "li",
-                    {
-                      attrs: {
-                        "aria-label":
-                          _vm.themeMode === "light"
-                            ? _vm.__("Enable dark mode")
-                            : _vm.__("Enable light mode"),
-                        "data-balloon-blunt": "",
-                        "data-balloon-pos": "down"
-                      }
-                    },
-                    [
-                      _c(
-                        "IconButton",
-                        { on: { click: _vm.toggleTheme } },
-                        [
-                          _vm.themeMode === "light" ? _c("IconMoon") : _vm._e(),
-                          _vm._v(" "),
-                          _vm.themeMode === "dark" ? _c("IconSun") : _vm._e()
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _c("Dropdown", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var toggle = ref.toggle
-                              var isOpen = ref.isOpen
-                              return [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "flex h-auto m-0 appearance-none items-center",
-                                    on: { click: toggle }
-                                  },
-                                  [
-                                    _c("span", [
-                                      _vm._v(
-                                        _vm._s(_vm.$page.props.auth.user.name)
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("img", {
+                  _c("ul", { staticClass: "flex items-center space-x-4" }, [
+                    _c(
+                      "li",
+                      {
+                        attrs: {
+                          "aria-label": _vm.__("Search"),
+                          "data-balloon-blunt": "",
+                          "data-balloon-pos": "down"
+                        }
+                      },
+                      [
+                        _c(
+                          "IconButton",
+                          { on: { click: _vm.triggerSearch } },
+                          [_c("IconSearch")],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      {
+                        attrs: {
+                          "aria-label":
+                            _vm.themeMode === "light"
+                              ? _vm.__("Enable dark mode")
+                              : _vm.__("Enable light mode"),
+                          "data-balloon-blunt": "",
+                          "data-balloon-pos": "down"
+                        }
+                      },
+                      [
+                        _c(
+                          "IconButton",
+                          { on: { click: _vm.toggleTheme } },
+                          [
+                            _vm.themeMode === "light"
+                              ? _c("IconMoon")
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.themeMode === "dark" ? _c("IconSun") : _vm._e()
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      [
+                        _c("Dropdown", {
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var toggle = ref.toggle
+                                var isOpen = ref.isOpen
+                                return [
+                                  _c(
+                                    "button",
+                                    {
                                       staticClass:
-                                        "ml-2 inline w-8 h-8 rounded-avatar bg-surface-2",
-                                      attrs: {
-                                        src: _vm.$page.props.auth.user.avatar,
-                                        alt: _vm.$page.props.auth.user.name
-                                      }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                isOpen
-                                  ? _c(
-                                      "DropdownList",
-                                      [
-                                        _vm.$page.props.settings.support
-                                          ? _c(
-                                              "DropdownListItem",
-                                              { attrs: { to: "/support" } },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(_vm.__("Support")) +
-                                                    "\n                                "
-                                                )
-                                              ]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _vm.$page.props.settings.documentation
-                                          ? _c(
-                                              "DropdownListItem",
-                                              {
-                                                attrs: { to: "/documentation" }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.__("Documentation")
-                                                  )
-                                                )
-                                              ]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _c(
-                                          "DropdownListItem",
-                                          {
-                                            attrs: {
-                                              to: _vm.route("profile.index")
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              _vm._s(_vm.__("Profile")) +
-                                                "\n                                "
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _vm.$page.props.settings.billing
-                                          ? _c(
-                                              "DropdownListItem",
-                                              {
-                                                attrs: {
-                                                  to: _vm.route(
-                                                    "profile.billing.index"
-                                                  )
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(_vm.__("Billing")) +
-                                                    "\n                                "
-                                                )
-                                              ]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _vm.$page.props.auth.user.role ===
-                                        "admin"
-                                          ? _c(
-                                              "DropdownListItem",
-                                              {
-                                                staticClass: "text-danger",
-                                                attrs: {
-                                                  to: _vm.route(
-                                                    "admin.dashboard"
-                                                  )
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.__("Administration")
-                                                  ) +
-                                                    "\n                                "
-                                                )
-                                              ]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _c(
-                                          "DropdownListItem",
-                                          {
-                                            attrs: {
-                                              to: _vm.route("logout"),
-                                              method: "post"
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              _vm._s(_vm.__("Sign out")) +
-                                                "\n                                "
-                                            )
-                                          ]
+                                        "flex h-auto m-0 appearance-none items-center",
+                                      on: { click: toggle }
+                                    },
+                                    [
+                                      _c("span", [
+                                        _vm._v(
+                                          _vm._s(_vm.$page.props.auth.user.name)
                                         )
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e()
-                              ]
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("img", {
+                                        staticClass:
+                                          "ml-2 inline w-8 h-8 rounded-avatar bg-surface-2",
+                                        attrs: {
+                                          src: _vm.$page.props.auth.user.avatar,
+                                          alt: _vm.$page.props.auth.user.name
+                                        }
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  isOpen
+                                    ? _c(
+                                        "DropdownList",
+                                        [
+                                          _vm.$page.props.settings.support
+                                            ? _c(
+                                                "DropdownListItem",
+                                                { attrs: { to: "/support" } },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(_vm.__("Support")) +
+                                                      "\n                                "
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.$page.props.settings.documentation
+                                            ? _c(
+                                                "DropdownListItem",
+                                                {
+                                                  attrs: {
+                                                    to: "/documentation"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__("Documentation")
+                                                    )
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _c(
+                                            "DropdownListItem",
+                                            {
+                                              attrs: {
+                                                to: _vm.route("profile.index")
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(_vm.__("Profile")) +
+                                                  "\n                                "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _vm.$page.props.settings.billing
+                                            ? _c(
+                                                "DropdownListItem",
+                                                {
+                                                  attrs: {
+                                                    to: _vm.route(
+                                                      "profile.billing.index"
+                                                    )
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(_vm.__("Billing")) +
+                                                      "\n                                "
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.$page.props.auth.user.role ===
+                                          "admin"
+                                            ? _c(
+                                                "DropdownListItem",
+                                                {
+                                                  staticClass: "text-danger",
+                                                  attrs: {
+                                                    to: _vm.route(
+                                                      "admin.dashboard"
+                                                    )
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.__("Administration")
+                                                    ) +
+                                                      "\n                                "
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _c(
+                                            "DropdownListItem",
+                                            {
+                                              attrs: {
+                                                to: _vm.route("logout"),
+                                                method: "post"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(_vm.__("Sign out")) +
+                                                  "\n                                "
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
+                                ]
+                              }
                             }
-                          }
-                        ])
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _vm._t("tab-bar")
-          ],
-          2
-        )
-      ])
-    ],
-    1
+                          ])
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm._t("tab-bar")
+            ],
+            2
+          )
+        ]
+      )
+    ]
   )
 }
 var staticRenderFns = []

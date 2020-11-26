@@ -615,9 +615,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "antialiased font-sans-serif text-high-emphasis bg-surface"
-    },
+    { staticClass: "antialiased font-body text-high-emphasis bg-surface" },
     [
       _vm.$page.props.settings.demo
         ? _c("div", { staticClass: "relative bg-primary text-white" }, [

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"3dbe90f2fa7234938b8a","1":"18f1ae2f88194471b106","2":"d2a49802291d427ca7c8","3":"a0f4c2f49863abbfe7f1","4":"27416beeac7dd90b6c9f","5":"fbfbcf45610d060d921e","6":"73fc0264b5cc06f5bd55","7":"140acb8c38018bb7c822","8":"800cf8f4ae1573afb58b","9":"f2a85fd7ca99129bd7e2","10":"7109ac26050896c7632e","11":"b437d61d4ead3c781e22","12":"2ab18ae0943746b63751","13":"8151f0644b451f415e6b","14":"5ba34553a8dbd80de385","15":"b93e030809beddfff7dd","16":"69a7e01207316350a34f","17":"ea0aec4ceaa4ad16e409","18":"a78784e6912f39855841","19":"3e9afbeccb1d723825fa","20":"8178c05e74f8dc56d521","21":"2e3d9865257073c0128d","22":"41e9402c08fa96b01178","23":"cc61640c634d51240485","24":"51a97128e8cc7d66a3b3","25":"bc5e40e1b6cfd0537a4d","26":"5a634e68c8cc325d9922","27":"d58caa4cb46cc5b4cbaa","28":"5cc778b6ea55b53927ef","29":"90a55a48473e7dc9dcd1","30":"1cc10db0519a76d1075c","31":"6638dad0b402da0da7db","32":"d31ee3d6e9fff25d60ea","33":"69bb6380ec04934fc761","34":"f73b7b586dcb628a0238","35":"cec6a59e621fba676a19","36":"fb27e3667d6023b4ef5e","37":"eaa34e9061d5589c20e6","38":"dc75a1421954e93e234e","39":"59d66d0467b61aa63589","40":"34e859f47a24902b8974","41":"9a65f0ac4faaf9458b46","42":"79185517ca7a7e8dfb9f","43":"9d9feb9848ad4a682a8c","44":"77a603dda0065501cc1d","45":"ce3a1b4b271e88791404","46":"329f2114dad302cf80ad","47":"17486d24f96188a73ed0","48":"f91e910285fd011b4768","49":"3f61e69cba8d6eb69d67","50":"c6e9a549054c78d13552","51":"b08b0726b49c658a6044","53":"23f79ec7082c146de011","54":"ebba4351fdc7dda59e24","55":"bf6ab8f12a17bdf42483","56":"0fc8a9c045226d81b59e","57":"0ddd60a5a000ec936c82","58":"4823f0b7a0e80fffa181","59":"98a2df4abb8fb3b2f1fb","60":"f2d7dc654b1afd2e4b4f","61":"0ebeddd5589c5c9e13b6","62":"17a5e584de3773f5b06a","63":"0255b720b4cdfaca9756","64":"810d46956098ec36a48a","65":"125441dbdaa3532d11fc","66":"d5ad8ef84fd9ddb78adb","67":"9c262f860fec60d5c9a3","68":"c47e440c910511761cda","69":"b7557e5ab81de2135c1a","70":"cd5835759472d8269c28","71":"3eec5e21b2f354f2b393","72":"43c7fe3c117790caf04e","73":"fb1ecfdaad6d94aa2b97","74":"56a45ed3ec988a6a0727","75":"4204d942d58177e4ff05","76":"c4637ed6669c6bdc2403","77":"1a8473c482f95d7a24bc","78":"33fa2982cb9096943e57","79":"2ed6cea6a8854c1f99c1","80":"8626b00a72d693a0d8f3","81":"fe27c84269b86e706406","82":"622552d73f13d2e0bc05","83":"2a1d212abf660186917d","84":"a11845294f4975c939f5","85":"d70fb3d3ff6aadc9472d","86":"dd36a7c2d9891787ce80"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"78531b3b55880408800d","1":"9e30a07e34955c9b81d0","2":"d2a49802291d427ca7c8","3":"a0f4c2f49863abbfe7f1","4":"27416beeac7dd90b6c9f","5":"70b66e00eccca81de371","6":"73fc0264b5cc06f5bd55","7":"140acb8c38018bb7c822","8":"800cf8f4ae1573afb58b","9":"f2a85fd7ca99129bd7e2","10":"7109ac26050896c7632e","11":"b437d61d4ead3c781e22","12":"2ab18ae0943746b63751","13":"8151f0644b451f415e6b","14":"5ba34553a8dbd80de385","15":"b93e030809beddfff7dd","16":"69a7e01207316350a34f","17":"ea0aec4ceaa4ad16e409","18":"4ee7f311c31e674ef868","19":"600196d42a8c82f8a760","20":"00f96bd398202ad82571","21":"abb6852a025ba076b5e5","22":"6d2f83c5c25785784982","23":"c40adc397ee8e4c75a84","24":"73d5a16ccc2c903386f6","25":"10056281f862a9624e88","26":"e30c6e1fe7ab720751c8","27":"e1f48abf833eaaedf037","28":"5cc778b6ea55b53927ef","29":"90a55a48473e7dc9dcd1","30":"1cc10db0519a76d1075c","31":"6638dad0b402da0da7db","32":"d31ee3d6e9fff25d60ea","33":"69bb6380ec04934fc761","34":"f73b7b586dcb628a0238","35":"cec6a59e621fba676a19","36":"fb27e3667d6023b4ef5e","37":"eaa34e9061d5589c20e6","38":"dc75a1421954e93e234e","39":"59d66d0467b61aa63589","40":"34e859f47a24902b8974","41":"9a65f0ac4faaf9458b46","42":"79185517ca7a7e8dfb9f","43":"9d9feb9848ad4a682a8c","44":"77a603dda0065501cc1d","45":"ce3a1b4b271e88791404","46":"329f2114dad302cf80ad","47":"17486d24f96188a73ed0","48":"f91e910285fd011b4768","49":"c747d78143b323e1c27c","50":"6bff504078271803d2fc","51":"59e89c7a9541e25d3b41","52":"1982998b12b16e3a09d4","53":"23f79ec7082c146de011","54":"ebba4351fdc7dda59e24","55":"bf6ab8f12a17bdf42483","56":"0fc8a9c045226d81b59e","57":"0ddd60a5a000ec936c82","58":"4823f0b7a0e80fffa181","59":"98a2df4abb8fb3b2f1fb","60":"f2d7dc654b1afd2e4b4f","61":"de5ad4bf80180d12103e","62":"17a5e584de3773f5b06a","63":"0255b720b4cdfaca9756","64":"810d46956098ec36a48a","65":"125441dbdaa3532d11fc","66":"d5ad8ef84fd9ddb78adb","67":"9c262f860fec60d5c9a3","68":"c47e440c910511761cda","69":"b7557e5ab81de2135c1a","70":"cd5835759472d8269c28","71":"3eec5e21b2f354f2b393","72":"43c7fe3c117790caf04e","73":"fb1ecfdaad6d94aa2b97","74":"56a45ed3ec988a6a0727","75":"4204d942d58177e4ff05","76":"c4637ed6669c6bdc2403","77":"1a8473c482f95d7a24bc","78":"33fa2982cb9096943e57","79":"2ed6cea6a8854c1f99c1","80":"8626b00a72d693a0d8f3","81":"fe27c84269b86e706406","82":"622552d73f13d2e0bc05","83":"2a1d212abf660186917d","84":"a11845294f4975c939f5","85":"d70fb3d3ff6aadc9472d"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -20740,28 +20740,28 @@ var map = {
 		0,
 		1,
 		2,
-		24
+		25
 	],
 	"./Admin/Documentation/Create.vue": [
 		"./resources/js/Pages/Admin/Documentation/Create.vue",
 		0,
 		1,
 		2,
-		24
+		25
 	],
 	"./Admin/Documentation/Edit": [
 		"./resources/js/Pages/Admin/Documentation/Edit.vue",
 		0,
 		1,
 		2,
-		25
+		26
 	],
 	"./Admin/Documentation/Edit.vue": [
 		"./resources/js/Pages/Admin/Documentation/Edit.vue",
 		0,
 		1,
 		2,
-		25
+		26
 	],
 	"./Admin/Documentation/Index": [
 		"./resources/js/Pages/Admin/Documentation/Index.vue",
@@ -20790,28 +20790,28 @@ var map = {
 		0,
 		1,
 		2,
-		26
+		27
 	],
 	"./Admin/Packages/Create.vue": [
 		"./resources/js/Pages/Admin/Packages/Create.vue",
 		0,
 		1,
 		2,
-		26
+		27
 	],
 	"./Admin/Packages/Edit": [
 		"./resources/js/Pages/Admin/Packages/Edit.vue",
 		0,
 		1,
 		2,
-		23
+		24
 	],
 	"./Admin/Packages/Edit.vue": [
 		"./resources/js/Pages/Admin/Packages/Edit.vue",
 		0,
 		1,
 		2,
-		23
+		24
 	],
 	"./Admin/Packages/Index": [
 		"./resources/js/Pages/Admin/Packages/Index.vue",
@@ -20950,14 +20950,14 @@ var map = {
 		0,
 		1,
 		2,
-		27
+		18
 	],
 	"./Admin/Settings.vue": [
 		"./resources/js/Pages/Admin/Settings.vue",
 		0,
 		1,
 		2,
-		27
+		18
 	],
 	"./Admin/Status": [
 		"./resources/js/Pages/Admin/Status.vue",
@@ -20993,7 +20993,7 @@ var map = {
 		1,
 		2,
 		4,
-		49
+		50
 	],
 	"./Admin/Support/Show.vue": [
 		"./resources/js/Pages/Admin/Support/Show.vue",
@@ -21001,7 +21001,7 @@ var map = {
 		1,
 		2,
 		4,
-		49
+		50
 	],
 	"./Admin/Support/Tabs": [
 		"./resources/js/Pages/Admin/Support/Tabs.vue",
@@ -21046,14 +21046,14 @@ var map = {
 		0,
 		1,
 		2,
-		18
+		19
 	],
 	"./Admin/Users/Create.vue": [
 		"./resources/js/Pages/Admin/Users/Create.vue",
 		0,
 		1,
 		2,
-		18
+		19
 	],
 	"./Admin/Users/Edit": [
 		"./resources/js/Pages/Admin/Users/Edit.vue",
@@ -21221,7 +21221,7 @@ var map = {
 		1,
 		2,
 		4,
-		50
+		51
 	],
 	"./Documentation/Show.vue": [
 		"./resources/js/Pages/Documentation/Show.vue",
@@ -21229,7 +21229,7 @@ var map = {
 		1,
 		2,
 		4,
-		50
+		51
 	],
 	"./Documentation/components/TopBar": [
 		"./resources/js/Pages/Documentation/components/TopBar.vue",
@@ -21289,7 +21289,7 @@ var map = {
 		1,
 		2,
 		4,
-		51
+		52
 	],
 	"./Profile/Index.vue": [
 		"./resources/js/Pages/Profile/Index.vue",
@@ -21297,7 +21297,7 @@ var map = {
 		1,
 		2,
 		4,
-		51
+		52
 	],
 	"./Profile/Integrations": [
 		"./resources/js/Pages/Profile/Integrations.vue",
@@ -21306,7 +21306,7 @@ var map = {
 		2,
 		3,
 		4,
-		86
+		49
 	],
 	"./Profile/Integrations.vue": [
 		"./resources/js/Pages/Profile/Integrations.vue",
@@ -21315,7 +21315,7 @@ var map = {
 		2,
 		3,
 		4,
-		86
+		49
 	],
 	"./Profile/Security": [
 		"./resources/js/Pages/Profile/Security.vue",
@@ -21457,7 +21457,7 @@ var map = {
 		1,
 		2,
 		3,
-		19
+		20
 	],
 	"./Sites/Certificates.vue": [
 		"./resources/js/Pages/Sites/Certificates.vue",
@@ -21465,7 +21465,7 @@ var map = {
 		1,
 		2,
 		3,
-		19
+		20
 	],
 	"./Sites/Cronjobs": [
 		"./resources/js/Pages/Sites/Cronjobs.vue",
@@ -21473,7 +21473,7 @@ var map = {
 		1,
 		2,
 		3,
-		20
+		21
 	],
 	"./Sites/Cronjobs.vue": [
 		"./resources/js/Pages/Sites/Cronjobs.vue",
@@ -21481,7 +21481,7 @@ var map = {
 		1,
 		2,
 		3,
-		20
+		21
 	],
 	"./Sites/Databases": [
 		"./resources/js/Pages/Sites/Databases.vue",
@@ -21489,7 +21489,7 @@ var map = {
 		1,
 		2,
 		3,
-		21
+		22
 	],
 	"./Sites/Databases.vue": [
 		"./resources/js/Pages/Sites/Databases.vue",
@@ -21497,7 +21497,7 @@ var map = {
 		1,
 		2,
 		3,
-		21
+		22
 	],
 	"./Sites/Dns": [
 		"./resources/js/Pages/Sites/Dns.vue",
@@ -21505,7 +21505,7 @@ var map = {
 		1,
 		2,
 		3,
-		22
+		23
 	],
 	"./Sites/Dns.vue": [
 		"./resources/js/Pages/Sites/Dns.vue",
@@ -21513,7 +21513,7 @@ var map = {
 		1,
 		2,
 		3,
-		22
+		23
 	],
 	"./Sites/Index": [
 		"./resources/js/Pages/Sites/Index.vue",

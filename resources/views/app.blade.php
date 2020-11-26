@@ -15,8 +15,10 @@
         <script src="https://js.stripe.com/v3/"></script>
     @endif
 
-    <link href="{{ asset('storage/app.css') }}" rel="stylesheet"></link>
-    
+    @if(file_exists(storage_path('app/public/theme.css')))
+        <link href="{{ asset('storage/theme.css') }}" rel="stylesheet"></link>
+    @endif
+
     @routes
 </head>
 <body>

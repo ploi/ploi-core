@@ -57,6 +57,11 @@ class SettingController extends Controller
             setting([$key => $value]);
         }
 
+        if ($logo = $request->file('logo')) {
+            $request->file('logo')->storeAs('public', 'logo.' . $request->file('logo')->extension());
+            setting(['logo' => '/storage/logo.png']);
+        }
+
         cache()->forget('core.settings');
 
         return redirect()->route('admin.settings')->with('success', __('Settings have been updated'));

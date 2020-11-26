@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Core\Css;
 use App\Jobs\Core\Ping;
 use App\Console\Commands\Core\Install;
 use App\Console\Commands\Core\Synchronize;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     protected $commands = [
+        Css::class,
         Install::class,
         Synchronize::class,
     ];

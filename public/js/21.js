@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[21],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Cronjobs.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Sites/Cronjobs.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -29,14 +29,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/Pagination */ "./resources/js/components/Pagination.vue");
 /* harmony import */ var _components_EmptyImage__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/EmptyImage */ "./resources/js/components/EmptyImage.vue");
 /* harmony import */ var _components_FormActions__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/components/FormActions */ "./resources/js/components/FormActions.vue");
-/* harmony import */ var _hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/hooks/confirm-delete */ "./resources/js/hooks/confirm-delete.js");
-/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Tabs */ "./resources/js/Pages/Sites/Tabs.vue");
-/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @/components/Table */ "./resources/js/components/Table.vue");
-/* harmony import */ var _components_TableHead__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @/components/TableHead */ "./resources/js/components/TableHead.vue");
-/* harmony import */ var _components_TableHeader__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @/components/TableHeader */ "./resources/js/components/TableHeader.vue");
-/* harmony import */ var _components_TableRow__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @/components/TableRow */ "./resources/js/components/TableRow.vue");
-/* harmony import */ var _components_TableBody__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @/components/TableBody */ "./resources/js/components/TableBody.vue");
-/* harmony import */ var _components_TableData__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @/components/TableData */ "./resources/js/components/TableData.vue");
+/* harmony import */ var _hooks_notification__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/hooks/notification */ "./resources/js/hooks/notification.js");
+/* harmony import */ var _hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @/hooks/confirm-delete */ "./resources/js/hooks/confirm-delete.js");
+/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./Tabs */ "./resources/js/Pages/Sites/Tabs.vue");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @/components/Table */ "./resources/js/components/Table.vue");
+/* harmony import */ var _components_TableHead__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @/components/TableHead */ "./resources/js/components/TableHead.vue");
+/* harmony import */ var _components_TableHeader__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @/components/TableHeader */ "./resources/js/components/TableHeader.vue");
+/* harmony import */ var _components_TableRow__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @/components/TableRow */ "./resources/js/components/TableRow.vue");
+/* harmony import */ var _components_TableBody__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @/components/TableBody */ "./resources/js/components/TableBody.vue");
+/* harmony import */ var _components_TableData__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @/components/TableData */ "./resources/js/components/TableData.vue");
 //
 //
 //
@@ -113,6 +114,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -144,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: function metaInfo() {
     return {
-      title: "Databases - ".concat(this.site.domain)
+      title: "Cronjobs - ".concat(this.site.domain)
     };
   },
   layout: _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_12__["default"],
@@ -167,22 +215,22 @@ __webpack_require__.r(__webpack_exports__);
     Form: _components_Form__WEBPACK_IMPORTED_MODULE_16__["default"],
     FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_19__["default"],
     Pagination: _components_Pagination__WEBPACK_IMPORTED_MODULE_17__["default"],
-    Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_21__["default"],
-    Table: _components_Table__WEBPACK_IMPORTED_MODULE_22__["default"],
-    TableHead: _components_TableHead__WEBPACK_IMPORTED_MODULE_23__["default"],
-    TableHeader: _components_TableHeader__WEBPACK_IMPORTED_MODULE_24__["default"],
-    TableRow: _components_TableRow__WEBPACK_IMPORTED_MODULE_25__["default"],
-    TableBody: _components_TableBody__WEBPACK_IMPORTED_MODULE_26__["default"],
-    TableData: _components_TableData__WEBPACK_IMPORTED_MODULE_27__["default"],
+    Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_22__["default"],
+    Table: _components_Table__WEBPACK_IMPORTED_MODULE_23__["default"],
+    TableHead: _components_TableHead__WEBPACK_IMPORTED_MODULE_24__["default"],
+    TableHeader: _components_TableHeader__WEBPACK_IMPORTED_MODULE_25__["default"],
+    TableRow: _components_TableRow__WEBPACK_IMPORTED_MODULE_26__["default"],
+    TableBody: _components_TableBody__WEBPACK_IMPORTED_MODULE_27__["default"],
+    TableData: _components_TableData__WEBPACK_IMPORTED_MODULE_28__["default"],
     EmptyImage: _components_EmptyImage__WEBPACK_IMPORTED_MODULE_18__["default"]
   },
   data: function data() {
     return {
       sending: false,
       form: {
-        name: null,
-        user_name: null,
-        password: null
+        command: "php /home/".concat(this.$page.props.auth.user.user_name, "/").concat(this.site.domain, "/script.php"),
+        interval: 'minutely',
+        frequency: '* * * * *'
       },
       breadcrumbs: [{
         title: this.$page.props.settings.name,
@@ -194,8 +242,8 @@ __webpack_require__.r(__webpack_exports__);
         title: this.site.domain,
         to: this.route('sites.show', this.site.id)
       }, {
-        title: this.__('Databases'),
-        to: this.route('sites.databases.index', this.site.id)
+        title: this.__('Cronjobs'),
+        to: this.route('sites.cronjobs.index', this.site.id)
       }]
     };
   },
@@ -218,16 +266,32 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     shouldBePolling: function shouldBePolling() {
-      return !!this.databases.data.filter(function (database) {
-        return database.status === 'busy';
+      return !!this.cronjobs.data.filter(function (cronjob) {
+        return cronjob.status === 'busy';
       }).length;
+    },
+    convertedFrequency: function convertedFrequency() {
+      if (this.form.interval === 'minutely') {
+        return this.form.frequency = '* * * * *';
+      } else if (this.form.interval === 'hourly') {
+        return this.form.frequency = '0 * * * *';
+      } else if (this.form.interval === 'nightly') {
+        return this.form.frequency = '0 2 * * *';
+      } else if (this.form.interval === 'weekly') {
+        return this.form.frequency = '0 0 * * 0';
+      } else if (this.form.interval === 'monthly') {
+        return this.form.frequency = '0 0 1 * *';
+      } else {
+        return this.form.frequency;
+      }
     }
   },
   props: {
     site: Object,
-    databases: Object
+    cronjobs: Object
   },
   methods: {
+    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_20__["useNotification"],
     startPollingInterval: function startPollingInterval() {
       this.pollingInterval = setInterval(function () {
         this.poll();
@@ -238,8 +302,8 @@ __webpack_require__.r(__webpack_exports__);
       this.pollingInterval = null;
     },
     poll: function poll() {
-      this.$inertia.replace(this.route('sites.databases.index', this.site.id), {
-        only: ['databases'],
+      this.$inertia.replace(this.route('sites.cronjobs.index', this.site.id), {
+        only: ['cronjobs'],
         preserveScroll: true
       });
     },
@@ -247,29 +311,31 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.sending = true;
-      this.$inertia.post(this.route('sites.databases.store', this.site.id), this.form).then(function () {
+      this.$inertia.post(this.route('sites.cronjobs.store', this.site.id), this.form).then(function () {
         _this.sending = false;
 
         if (!Object.keys(_this.$page.props.errors).length) {
-          _this.form.name = null;
-          _this.form.user_name = null;
-          _this.form.password = null;
+          _this.form = {
+            command: "php /home/".concat(_this.$page.props.auth.user.user_name, "/domain.com/script.php"),
+            interval: 'minutely',
+            frequency: '* * * * *'
+          };
         }
       });
     },
-    confirmDelete: function confirmDelete(database) {
+    confirmDelete: function confirmDelete(cronjob) {
       var _this2 = this;
 
-      Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__["useConfirmDelete"])({
+      Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_21__["useConfirmDelete"])({
         title: this.__('Are you sure?'),
-        message: this.__('Your database will be deleted permanently, this action cannot be undone.'),
+        message: this.__('Your cronjob will be deleted permanently, this action cannot be undone.'),
         onConfirm: function onConfirm() {
-          return _this2["delete"](database);
+          return _this2["delete"](cronjob);
         }
       });
     },
-    "delete": function _delete(database) {
-      this.$inertia["delete"](this.route('sites.databases.delete', [this.site.id, database.id]), {
+    "delete": function _delete(cronjob) {
+      this.$inertia["delete"](this.route('sites.cronjobs.delete', [this.site.id, cronjob.id]), {
         preserveScroll: true
       });
     }
@@ -508,10 +574,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc&":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc& ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Cronjobs.vue?vue&type=template&id=d02419e0&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Sites/Cronjobs.vue?vue&type=template&id=d02419e0& ***!
+  \************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -539,7 +605,7 @@ var render = function() {
                   {
                     key: "start",
                     fn: function() {
-                      return [_c("PageHeaderTitle", [_vm._v("Databases")])]
+                      return [_c("PageHeaderTitle", [_vm._v("Cronjobs")])]
                     },
                     proxy: true
                   }
@@ -579,7 +645,7 @@ var render = function() {
                                         "\n                                " +
                                           _vm._s(
                                             _vm.__(
-                                              "Create a new database here to store your application data in."
+                                              "Add a new cronjob here to run your background tasks with."
                                             )
                                           ) +
                                           "\n                            "
@@ -606,56 +672,397 @@ var render = function() {
                                         [
                                           _c("FormInput", {
                                             attrs: {
-                                              label: _vm.__("Name"),
+                                              label: _vm.__("Command"),
                                               errors:
-                                                _vm.$page.props.errors.name
+                                                _vm.$page.props.errors.command
                                             },
                                             model: {
-                                              value: _vm.form.name,
-                                              callback: function($$v) {
-                                                _vm.$set(_vm.form, "name", $$v)
-                                              },
-                                              expression: "form.name"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("FormInput", {
-                                            attrs: {
-                                              label: _vm.__("User"),
-                                              errors:
-                                                _vm.$page.props.errors.user_name
-                                            },
-                                            model: {
-                                              value: _vm.form.user_name,
+                                              value: _vm.form.command,
                                               callback: function($$v) {
                                                 _vm.$set(
                                                   _vm.form,
-                                                  "user_name",
+                                                  "command",
                                                   $$v
                                                 )
                                               },
-                                              expression: "form.user_name"
+                                              expression: "form.command"
                                             }
                                           }),
                                           _vm._v(" "),
-                                          _c("FormInput", {
-                                            attrs: {
-                                              label: _vm.__("Password"),
-                                              errors:
-                                                _vm.$page.props.errors.password
-                                            },
-                                            model: {
-                                              value: _vm.form.password,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.form,
-                                                  "password",
-                                                  $$v
+                                          _c(
+                                            "div",
+                                            [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "inline-block text-small font-medium"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Frequency (" +
+                                                      _vm._s(
+                                                        _vm.convertedFrequency
+                                                      ) +
+                                                      ")\n                                        "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "inline-flex items-center"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.form.interval,
+                                                          expression:
+                                                            "form.interval"
+                                                        }
+                                                      ],
+                                                      staticClass: "form-radio",
+                                                      attrs: {
+                                                        type: "radio",
+                                                        value: "minutely"
+                                                      },
+                                                      domProps: {
+                                                        checked: _vm._q(
+                                                          _vm.form.interval,
+                                                          "minutely"
+                                                        )
+                                                      },
+                                                      on: {
+                                                        change: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.$set(
+                                                            _vm.form,
+                                                            "interval",
+                                                            "minutely"
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      { staticClass: "ml-2" },
+                                                      [_vm._v("Every minute")]
+                                                    )
+                                                  ]
                                                 )
-                                              },
-                                              expression: "form.password"
-                                            }
-                                          }),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "inline-flex items-center"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.form.interval,
+                                                          expression:
+                                                            "form.interval"
+                                                        }
+                                                      ],
+                                                      staticClass: "form-radio",
+                                                      attrs: {
+                                                        type: "radio",
+                                                        name: "radio",
+                                                        value: "hourly"
+                                                      },
+                                                      domProps: {
+                                                        checked: _vm._q(
+                                                          _vm.form.interval,
+                                                          "hourly"
+                                                        )
+                                                      },
+                                                      on: {
+                                                        change: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.$set(
+                                                            _vm.form,
+                                                            "interval",
+                                                            "hourly"
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      { staticClass: "ml-2" },
+                                                      [_vm._v("Hourly")]
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "inline-flex items-center"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.form.interval,
+                                                          expression:
+                                                            "form.interval"
+                                                        }
+                                                      ],
+                                                      staticClass: "form-radio",
+                                                      attrs: {
+                                                        type: "radio",
+                                                        name: "radio",
+                                                        value: "nightly"
+                                                      },
+                                                      domProps: {
+                                                        checked: _vm._q(
+                                                          _vm.form.interval,
+                                                          "nightly"
+                                                        )
+                                                      },
+                                                      on: {
+                                                        change: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.$set(
+                                                            _vm.form,
+                                                            "interval",
+                                                            "nightly"
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      { staticClass: "ml-2" },
+                                                      [_vm._v("Nightly (2AM)")]
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "inline-flex items-center"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.form.interval,
+                                                          expression:
+                                                            "form.interval"
+                                                        }
+                                                      ],
+                                                      staticClass: "form-radio",
+                                                      attrs: {
+                                                        type: "radio",
+                                                        name: "radio",
+                                                        value: "weekly"
+                                                      },
+                                                      domProps: {
+                                                        checked: _vm._q(
+                                                          _vm.form.interval,
+                                                          "weekly"
+                                                        )
+                                                      },
+                                                      on: {
+                                                        change: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.$set(
+                                                            _vm.form,
+                                                            "interval",
+                                                            "weekly"
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      { staticClass: "ml-2" },
+                                                      [_vm._v("Weekly")]
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "inline-flex items-center"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.form.interval,
+                                                          expression:
+                                                            "form.interval"
+                                                        }
+                                                      ],
+                                                      staticClass: "form-radio",
+                                                      attrs: {
+                                                        type: "radio",
+                                                        name: "radio",
+                                                        value: "monthly"
+                                                      },
+                                                      domProps: {
+                                                        checked: _vm._q(
+                                                          _vm.form.interval,
+                                                          "monthly"
+                                                        )
+                                                      },
+                                                      on: {
+                                                        change: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.$set(
+                                                            _vm.form,
+                                                            "interval",
+                                                            "monthly"
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      { staticClass: "ml-2" },
+                                                      [_vm._v("Monthly")]
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "inline-flex items-center"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.form.interval,
+                                                          expression:
+                                                            "form.interval"
+                                                        }
+                                                      ],
+                                                      staticClass: "form-radio",
+                                                      attrs: {
+                                                        type: "radio",
+                                                        name: "radio",
+                                                        value: "custom"
+                                                      },
+                                                      domProps: {
+                                                        checked: _vm._q(
+                                                          _vm.form.interval,
+                                                          "custom"
+                                                        )
+                                                      },
+                                                      on: {
+                                                        change: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.$set(
+                                                            _vm.form,
+                                                            "interval",
+                                                            "custom"
+                                                          )
+                                                        }
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      { staticClass: "ml-2" },
+                                                      [_vm._v("Custom")]
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("FormInput", {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value:
+                                                      _vm.form.interval ===
+                                                      "custom",
+                                                    expression:
+                                                      "form.interval === 'custom'"
+                                                  }
+                                                ],
+                                                attrs: {
+                                                  "helper-text":
+                                                    "min | hour | day/month | month | day/week",
+                                                  errors:
+                                                    _vm.$page.props.errors
+                                                      .frequency,
+                                                  label: _vm.__(
+                                                    "Custom frequency"
+                                                  )
+                                                },
+                                                model: {
+                                                  value: _vm.form.frequency,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "frequency",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "form.frequency"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
                                           _vm._v(" "),
                                           _c(
                                             "FormActions",
@@ -678,11 +1085,11 @@ var render = function() {
                               ])
                             }),
                             _vm._v(" "),
-                            !_vm.databases.meta.total
+                            !_vm.cronjobs.meta.total
                               ? _c("EmptyImage")
                               : _vm._e(),
                             _vm._v(" "),
-                            _vm.databases.meta.total
+                            _vm.cronjobs.meta.total
                               ? _c("SettingsSegment", {
                                   scopedSlots: _vm._u(
                                     [
@@ -690,7 +1097,7 @@ var render = function() {
                                         key: "title",
                                         fn: function() {
                                           return [
-                                            _vm._v(_vm._s(_vm.__("Databases")))
+                                            _vm._v(_vm._s(_vm.__("Cronjobs")))
                                           ]
                                         },
                                         proxy: true
@@ -707,7 +1114,7 @@ var render = function() {
                                                   {
                                                     attrs: {
                                                       caption:
-                                                        "Database list overview"
+                                                        "Cronjob list overview"
                                                     }
                                                   },
                                                   [
@@ -722,7 +1129,19 @@ var render = function() {
                                                             _c("TableHeader", [
                                                               _vm._v(
                                                                 _vm._s(
-                                                                  _vm.__("Name")
+                                                                  _vm.__(
+                                                                    "Command"
+                                                                  )
+                                                                )
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("TableHeader", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.__(
+                                                                    "Frequency"
+                                                                  )
                                                                 )
                                                               )
                                                             ]),
@@ -738,13 +1157,11 @@ var render = function() {
                                                     _c(
                                                       "TableBody",
                                                       _vm._l(
-                                                        _vm.databases.data,
-                                                        function(database) {
+                                                        _vm.cronjobs.data,
+                                                        function(cronjob) {
                                                           return _c(
                                                             "TableRow",
-                                                            {
-                                                              key: database.id
-                                                            },
+                                                            { key: cronjob.id },
                                                             [
                                                               _c(
                                                                 "TableData",
@@ -754,7 +1171,7 @@ var render = function() {
                                                                     {
                                                                       attrs: {
                                                                         variant:
-                                                                          database.status ===
+                                                                          cronjob.status ===
                                                                           "busy"
                                                                             ? "gray"
                                                                             : "success"
@@ -768,7 +1185,15 @@ var render = function() {
                                                               _c("TableData", [
                                                                 _vm._v(
                                                                   _vm._s(
-                                                                    database.name
+                                                                    cronjob.command
+                                                                  )
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c("TableData", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    cronjob.frequency
                                                                   )
                                                                 )
                                                               ]),
@@ -781,7 +1206,7 @@ var render = function() {
                                                                     {
                                                                       attrs: {
                                                                         disabled:
-                                                                          database.status ===
+                                                                          cronjob.status ===
                                                                           "busy",
                                                                         variant:
                                                                           "danger",
@@ -793,7 +1218,7 @@ var render = function() {
                                                                           $event
                                                                         ) {
                                                                           return _vm.confirmDelete(
-                                                                            database
+                                                                            cronjob
                                                                           )
                                                                         }
                                                                       }
@@ -828,7 +1253,7 @@ var render = function() {
                                             ),
                                             _vm._v(" "),
                                             _c("pagination", {
-                                              attrs: { links: _vm.databases }
+                                              attrs: { links: _vm.cronjobs }
                                             })
                                           ]
                                         },
@@ -837,7 +1262,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    2276920851
+                                    723209988
                                   )
                                 })
                               : _vm._e()
@@ -1322,17 +1747,17 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Sites/Databases.vue":
-/*!************************************************!*\
-  !*** ./resources/js/Pages/Sites/Databases.vue ***!
-  \************************************************/
+/***/ "./resources/js/Pages/Sites/Cronjobs.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Sites/Cronjobs.vue ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Databases.vue?vue&type=template&id=70e204dc& */ "./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc&");
-/* harmony import */ var _Databases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Databases.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Cronjobs_vue_vue_type_template_id_d02419e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Cronjobs.vue?vue&type=template&id=d02419e0& */ "./resources/js/Pages/Sites/Cronjobs.vue?vue&type=template&id=d02419e0&");
+/* harmony import */ var _Cronjobs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cronjobs.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Sites/Cronjobs.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1342,9 +1767,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Databases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Cronjobs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Cronjobs_vue_vue_type_template_id_d02419e0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Cronjobs_vue_vue_type_template_id_d02419e0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1354,38 +1779,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Sites/Databases.vue"
+component.options.__file = "resources/js/Pages/Sites/Cronjobs.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
+/***/ "./resources/js/Pages/Sites/Cronjobs.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Sites/Cronjobs.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Databases.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Cronjobs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Cronjobs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Cronjobs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Cronjobs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/Pages/Sites/Cronjobs.vue?vue&type=template&id=d02419e0&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Sites/Cronjobs.vue?vue&type=template&id=d02419e0& ***!
+  \******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Databases.vue?vue&type=template&id=70e204dc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cronjobs_vue_vue_type_template_id_d02419e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Cronjobs.vue?vue&type=template&id=d02419e0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Cronjobs.vue?vue&type=template&id=d02419e0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cronjobs_vue_vue_type_template_id_d02419e0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Cronjobs_vue_vue_type_template_id_d02419e0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

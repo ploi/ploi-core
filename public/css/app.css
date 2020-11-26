@@ -31,6 +31,7 @@
   --border-radius: 0.5rem;
   --border-radius-avatar: 4rem;
   --border-radius-circle: 100%;
+  --top-bar-container: 64rem;
 }
 
 .theme--dark {
@@ -2674,6 +2675,10 @@ video {
   background-color: var(--color-danger);
 }
 
+.bg-top-bar {
+  background-color: var(--top-bar-background-color);
+}
+
 .group:hover .group-hover\:bg-transparent {
   background-color: transparent;
 }
@@ -2712,6 +2717,10 @@ video {
 
 .group:hover .group-hover\:bg-danger {
   background-color: var(--color-danger);
+}
+
+.group:hover .group-hover\:bg-top-bar {
+  background-color: var(--top-bar-background-color);
 }
 
 .group:focus .group-focus\:bg-transparent {
@@ -2754,6 +2763,10 @@ video {
   background-color: var(--color-danger);
 }
 
+.group:focus .group-focus\:bg-top-bar {
+  background-color: var(--top-bar-background-color);
+}
+
 .hover\:bg-transparent:hover {
   background-color: transparent;
 }
@@ -2792,6 +2805,10 @@ video {
 
 .hover\:bg-danger:hover {
   background-color: var(--color-danger);
+}
+
+.hover\:bg-top-bar:hover {
+  background-color: var(--top-bar-background-color);
 }
 
 .focus\:bg-transparent:focus {
@@ -2834,6 +2851,10 @@ video {
   background-color: var(--color-danger);
 }
 
+.focus\:bg-top-bar:focus {
+  background-color: var(--top-bar-background-color);
+}
+
 .active\:bg-transparent:active {
   background-color: transparent;
 }
@@ -2872,6 +2893,10 @@ video {
 
 .active\:bg-danger:active {
   background-color: var(--color-danger);
+}
+
+.active\:bg-top-bar:active {
+  background-color: var(--top-bar-background-color);
 }
 
 .bg-none {
@@ -8718,8 +8743,8 @@ video {
   clear: none;
 }
 
-.font-sans-serif {
-  font-family: var(--font-sans-serif);
+.font-body {
+  font-family: var(--font-body);
 }
 
 .font-hairline {
@@ -13236,6 +13261,10 @@ video {
 
 .max-w-screen-xl {
   max-width: 1280px;
+}
+
+.max-w-top-bar-container {
+  max-width: var(--top-bar-container);
 }
 
 .min-h-0 {
@@ -31944,6 +31973,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .sm\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
+  }
+
   .group:hover .sm\:group-hover\:bg-transparent {
     background-color: transparent;
   }
@@ -31982,6 +32015,10 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .sm\:group-hover\:bg-danger {
     background-color: var(--color-danger);
+  }
+
+  .group:hover .sm\:group-hover\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
   }
 
   .group:focus .sm\:group-focus\:bg-transparent {
@@ -32024,6 +32061,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .group:focus .sm\:group-focus\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
+  }
+
   .sm\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -32062,6 +32103,10 @@ button[aria-label][data-balloon-pos] {
 
   .sm\:hover\:bg-danger:hover {
     background-color: var(--color-danger);
+  }
+
+  .sm\:hover\:bg-top-bar:hover {
+    background-color: var(--top-bar-background-color);
   }
 
   .sm\:focus\:bg-transparent:focus {
@@ -32104,6 +32149,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .sm\:focus\:bg-top-bar:focus {
+    background-color: var(--top-bar-background-color);
+  }
+
   .sm\:active\:bg-transparent:active {
     background-color: transparent;
   }
@@ -32142,6 +32191,10 @@ button[aria-label][data-balloon-pos] {
 
   .sm\:active\:bg-danger:active {
     background-color: var(--color-danger);
+  }
+
+  .sm\:active\:bg-top-bar:active {
+    background-color: var(--top-bar-background-color);
   }
 
   .sm\:bg-none {
@@ -37988,8 +38041,8 @@ button[aria-label][data-balloon-pos] {
     clear: none;
   }
 
-  .sm\:font-sans-serif {
-    font-family: var(--font-sans-serif);
+  .sm\:font-body {
+    font-family: var(--font-body);
   }
 
   .sm\:font-hairline {
@@ -42506,6 +42559,10 @@ button[aria-label][data-balloon-pos] {
 
   .sm\:max-w-screen-xl {
     max-width: 1280px;
+  }
+
+  .sm\:max-w-top-bar-container {
+    max-width: var(--top-bar-container);
   }
 
   .sm\:min-h-0 {
@@ -60844,6 +60901,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .md\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
+  }
+
   .group:hover .md\:group-hover\:bg-transparent {
     background-color: transparent;
   }
@@ -60882,6 +60943,10 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .md\:group-hover\:bg-danger {
     background-color: var(--color-danger);
+  }
+
+  .group:hover .md\:group-hover\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
   }
 
   .group:focus .md\:group-focus\:bg-transparent {
@@ -60924,6 +60989,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .group:focus .md\:group-focus\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
+  }
+
   .md\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -60962,6 +61031,10 @@ button[aria-label][data-balloon-pos] {
 
   .md\:hover\:bg-danger:hover {
     background-color: var(--color-danger);
+  }
+
+  .md\:hover\:bg-top-bar:hover {
+    background-color: var(--top-bar-background-color);
   }
 
   .md\:focus\:bg-transparent:focus {
@@ -61004,6 +61077,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .md\:focus\:bg-top-bar:focus {
+    background-color: var(--top-bar-background-color);
+  }
+
   .md\:active\:bg-transparent:active {
     background-color: transparent;
   }
@@ -61042,6 +61119,10 @@ button[aria-label][data-balloon-pos] {
 
   .md\:active\:bg-danger:active {
     background-color: var(--color-danger);
+  }
+
+  .md\:active\:bg-top-bar:active {
+    background-color: var(--top-bar-background-color);
   }
 
   .md\:bg-none {
@@ -66888,8 +66969,8 @@ button[aria-label][data-balloon-pos] {
     clear: none;
   }
 
-  .md\:font-sans-serif {
-    font-family: var(--font-sans-serif);
+  .md\:font-body {
+    font-family: var(--font-body);
   }
 
   .md\:font-hairline {
@@ -71406,6 +71487,10 @@ button[aria-label][data-balloon-pos] {
 
   .md\:max-w-screen-xl {
     max-width: 1280px;
+  }
+
+  .md\:max-w-top-bar-container {
+    max-width: var(--top-bar-container);
   }
 
   .md\:min-h-0 {
@@ -89744,6 +89829,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .lg\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
+  }
+
   .group:hover .lg\:group-hover\:bg-transparent {
     background-color: transparent;
   }
@@ -89782,6 +89871,10 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .lg\:group-hover\:bg-danger {
     background-color: var(--color-danger);
+  }
+
+  .group:hover .lg\:group-hover\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
   }
 
   .group:focus .lg\:group-focus\:bg-transparent {
@@ -89824,6 +89917,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .group:focus .lg\:group-focus\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
+  }
+
   .lg\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -89862,6 +89959,10 @@ button[aria-label][data-balloon-pos] {
 
   .lg\:hover\:bg-danger:hover {
     background-color: var(--color-danger);
+  }
+
+  .lg\:hover\:bg-top-bar:hover {
+    background-color: var(--top-bar-background-color);
   }
 
   .lg\:focus\:bg-transparent:focus {
@@ -89904,6 +90005,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .lg\:focus\:bg-top-bar:focus {
+    background-color: var(--top-bar-background-color);
+  }
+
   .lg\:active\:bg-transparent:active {
     background-color: transparent;
   }
@@ -89942,6 +90047,10 @@ button[aria-label][data-balloon-pos] {
 
   .lg\:active\:bg-danger:active {
     background-color: var(--color-danger);
+  }
+
+  .lg\:active\:bg-top-bar:active {
+    background-color: var(--top-bar-background-color);
   }
 
   .lg\:bg-none {
@@ -95788,8 +95897,8 @@ button[aria-label][data-balloon-pos] {
     clear: none;
   }
 
-  .lg\:font-sans-serif {
-    font-family: var(--font-sans-serif);
+  .lg\:font-body {
+    font-family: var(--font-body);
   }
 
   .lg\:font-hairline {
@@ -100306,6 +100415,10 @@ button[aria-label][data-balloon-pos] {
 
   .lg\:max-w-screen-xl {
     max-width: 1280px;
+  }
+
+  .lg\:max-w-top-bar-container {
+    max-width: var(--top-bar-container);
   }
 
   .lg\:min-h-0 {
@@ -118644,6 +118757,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .xl\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
+  }
+
   .group:hover .xl\:group-hover\:bg-transparent {
     background-color: transparent;
   }
@@ -118682,6 +118799,10 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .xl\:group-hover\:bg-danger {
     background-color: var(--color-danger);
+  }
+
+  .group:hover .xl\:group-hover\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
   }
 
   .group:focus .xl\:group-focus\:bg-transparent {
@@ -118724,6 +118845,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .group:focus .xl\:group-focus\:bg-top-bar {
+    background-color: var(--top-bar-background-color);
+  }
+
   .xl\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -118762,6 +118887,10 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:hover\:bg-danger:hover {
     background-color: var(--color-danger);
+  }
+
+  .xl\:hover\:bg-top-bar:hover {
+    background-color: var(--top-bar-background-color);
   }
 
   .xl\:focus\:bg-transparent:focus {
@@ -118804,6 +118933,10 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--color-danger);
   }
 
+  .xl\:focus\:bg-top-bar:focus {
+    background-color: var(--top-bar-background-color);
+  }
+
   .xl\:active\:bg-transparent:active {
     background-color: transparent;
   }
@@ -118842,6 +118975,10 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:active\:bg-danger:active {
     background-color: var(--color-danger);
+  }
+
+  .xl\:active\:bg-top-bar:active {
+    background-color: var(--top-bar-background-color);
   }
 
   .xl\:bg-none {
@@ -124688,8 +124825,8 @@ button[aria-label][data-balloon-pos] {
     clear: none;
   }
 
-  .xl\:font-sans-serif {
-    font-family: var(--font-sans-serif);
+  .xl\:font-body {
+    font-family: var(--font-body);
   }
 
   .xl\:font-hairline {
@@ -129206,6 +129343,10 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:max-w-screen-xl {
     max-width: 1280px;
+  }
+
+  .xl\:max-w-top-bar-container {
+    max-width: var(--top-bar-container);
   }
 
   .xl\:min-h-0 {

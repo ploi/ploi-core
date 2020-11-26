@@ -1,5 +1,5 @@
 <template>
-    <div class="antialiased font-sans-serif text-high-emphasis bg-surface">
+    <div class="antialiased font-body text-high-emphasis bg-surface">
         <div class="relative bg-primary text-white" v-if="$page.props.settings.demo">
             <div class="max-w-screen-xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
                 <div class="pr-16 sm:text-center sm:px-16">

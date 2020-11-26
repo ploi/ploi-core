@@ -110,7 +110,8 @@ var baseClasses = 'w-full px-4 sm:px-8 mx-auto';
 var sizeClasses = {
   small: 'max-w-sm',
   base: 'max-w-5xl',
-  large: 'max-w-screen-xl'
+  large: 'max-w-screen-xl',
+  fluid: 'max-w-none'
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
