@@ -32,6 +32,8 @@
   --border-radius-avatar: 4rem;
   --border-radius-circle: 100%;
   --top-bar-container: 64rem;
+  --top-bar-logo-height: 3.5rem;
+  --top-bar-background-color: var(--color-surface-1) ;
 }
 
 .theme--dark {
@@ -9109,6 +9111,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-top-bar-logo {
+  height: var(--top-bar-logo-height);
 }
 
 .text-heading {
@@ -38409,6 +38415,10 @@ button[aria-label][data-balloon-pos] {
     height: 100vh;
   }
 
+  .sm\:h-top-bar-logo {
+    height: var(--top-bar-logo-height);
+  }
+
   .sm\:text-heading {
     font-size: 1.75rem;
     line-height: 2rem;
@@ -67335,6 +67345,10 @@ button[aria-label][data-balloon-pos] {
 
   .md\:h-screen {
     height: 100vh;
+  }
+
+  .md\:h-top-bar-logo {
+    height: var(--top-bar-logo-height);
   }
 
   .md\:text-heading {
@@ -96265,6 +96279,10 @@ button[aria-label][data-balloon-pos] {
     height: 100vh;
   }
 
+  .lg\:h-top-bar-logo {
+    height: var(--top-bar-logo-height);
+  }
+
   .lg\:text-heading {
     font-size: 1.75rem;
     line-height: 2rem;
@@ -125191,6 +125209,10 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:h-screen {
     height: 100vh;
+  }
+
+  .xl\:h-top-bar-logo {
+    height: var(--top-bar-logo-height);
   }
 
   .xl\:text-heading {

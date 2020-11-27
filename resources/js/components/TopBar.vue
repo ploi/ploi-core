@@ -6,7 +6,7 @@
                     class="flex flex-col items-center justify-between py-4 space-y-4 md:space-y-0 md:flex-row"
                 >
                     <div class="flex items-center space-x-5">
-                        <img class="h-14" v-if="$page.props.settings.logo" :src="$page.props.settings.logo" />
+                        <img class="h-top-bar-logo" v-if="$page.props.settings.logo" :src="$page.props.settings.logo" />
                         <slot name="breadcrumbs"></slot>
                     </div>
 

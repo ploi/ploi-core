@@ -29,6 +29,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -115,8 +120,25 @@ var render = function() {
             }
           },
           [
-            _c("h1", { staticClass: "font-semibold text-center text-title" }, [
-              _vm._v(_vm._s(_vm.__("Create password")))
+            _c("div", { staticClass: "flex flex-col items-center space-y-5" }, [
+              _vm.$page.props.settings.logo
+                ? _c("img", {
+                    staticClass: "h-14",
+                    attrs: { src: _vm.$page.props.settings.logo }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "h1",
+                { staticClass: "font-semibold text-center text-title" },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.__("Create password")) +
+                      "\n                "
+                  )
+                ]
+              )
             ]),
             _vm._v(" "),
             _c("FormInput", {

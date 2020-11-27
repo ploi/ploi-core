@@ -25,6 +25,9 @@ module.exports = {
             },
             backgroundColor: {
                 'top-bar' : 'var(--top-bar-background-color)'
+            },
+            height: {
+                'top-bar-logo' : 'var(--top-bar-logo-height)'
             }
         },
         fontFamily: {

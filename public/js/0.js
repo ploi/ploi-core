@@ -846,7 +846,7 @@ var render = function() {
                     [
                       _vm.$page.props.settings.logo
                         ? _c("img", {
-                            staticClass: "h-14",
+                            staticClass: "h-top-bar-logo",
                             attrs: { src: _vm.$page.props.settings.logo }
                           })
                         : _vm._e(),
