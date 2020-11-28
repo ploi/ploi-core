@@ -1,6 +1,6 @@
 :root {
-  --font-sans-serif: "Inter", sans-serif;
-  --color-white: #ffff;
+  --font-body: "Inter", sans-serif;
+  --color-white: #fff;
   --color-gray-1: #f7f7f7;
   --color-gray-2: #e6e6e6;
   --color-gray-3: #cacaca;
@@ -33,7 +33,9 @@
   --border-radius-circle: 100%;
   --top-bar-container: 64rem;
   --top-bar-logo-height: 3.5rem;
-  --top-bar-background-color: var(--color-surface-1) ;
+  --top-bar-background-color: var(--color-surface-1);
+  --top-bar-text-color: var(--color-text-medium-emphasis);
+  --breadcrumbs-text-color: var(--color-text-medium-emphasis);
 }
 
 .theme--dark {
@@ -23536,6 +23538,14 @@ video {
   color: var(--color-danger);
 }
 
+.text-breadcrumbs {
+  color: var(--breadcrumbs-text-color);
+}
+
+.text-top-bar {
+  color: var(--top-bar-text-color);
+}
+
 .group:hover .group-hover\:text-low-emphasis {
   color: var(--color-text-low-emphasis);
 }
@@ -23578,6 +23588,14 @@ video {
 
 .group:hover .group-hover\:text-danger {
   color: var(--color-danger);
+}
+
+.group:hover .group-hover\:text-breadcrumbs {
+  color: var(--breadcrumbs-text-color);
+}
+
+.group:hover .group-hover\:text-top-bar {
+  color: var(--top-bar-text-color);
 }
 
 .group:focus .group-focus\:text-low-emphasis {
@@ -23624,6 +23642,14 @@ video {
   color: var(--color-danger);
 }
 
+.group:focus .group-focus\:text-breadcrumbs {
+  color: var(--breadcrumbs-text-color);
+}
+
+.group:focus .group-focus\:text-top-bar {
+  color: var(--top-bar-text-color);
+}
+
 .hover\:text-low-emphasis:hover {
   color: var(--color-text-low-emphasis);
 }
@@ -23666,6 +23692,14 @@ video {
 
 .hover\:text-danger:hover {
   color: var(--color-danger);
+}
+
+.hover\:text-breadcrumbs:hover {
+  color: var(--breadcrumbs-text-color);
+}
+
+.hover\:text-top-bar:hover {
+  color: var(--top-bar-text-color);
 }
 
 .focus-within\:text-low-emphasis:focus-within {
@@ -23712,6 +23746,14 @@ video {
   color: var(--color-danger);
 }
 
+.focus-within\:text-breadcrumbs:focus-within {
+  color: var(--breadcrumbs-text-color);
+}
+
+.focus-within\:text-top-bar:focus-within {
+  color: var(--top-bar-text-color);
+}
+
 .focus\:text-low-emphasis:focus {
   color: var(--color-text-low-emphasis);
 }
@@ -23756,6 +23798,14 @@ video {
   color: var(--color-danger);
 }
 
+.focus\:text-breadcrumbs:focus {
+  color: var(--breadcrumbs-text-color);
+}
+
+.focus\:text-top-bar:focus {
+  color: var(--top-bar-text-color);
+}
+
 .active\:text-low-emphasis:active {
   color: var(--color-text-low-emphasis);
 }
@@ -23798,6 +23848,14 @@ video {
 
 .active\:text-danger:active {
   color: var(--color-danger);
+}
+
+.active\:text-breadcrumbs:active {
+  color: var(--breadcrumbs-text-color);
+}
+
+.active\:text-top-bar:active {
+  color: var(--top-bar-text-color);
 }
 
 .text-opacity-0 {
@@ -52838,6 +52896,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .sm\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .sm\:text-top-bar {
+    color: var(--top-bar-text-color);
+  }
+
   .group:hover .sm\:group-hover\:text-low-emphasis {
     color: var(--color-text-low-emphasis);
   }
@@ -52880,6 +52946,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .sm\:group-hover\:text-danger {
     color: var(--color-danger);
+  }
+
+  .group:hover .sm\:group-hover\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .group:hover .sm\:group-hover\:text-top-bar {
+    color: var(--top-bar-text-color);
   }
 
   .group:focus .sm\:group-focus\:text-low-emphasis {
@@ -52926,6 +53000,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .group:focus .sm\:group-focus\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .group:focus .sm\:group-focus\:text-top-bar {
+    color: var(--top-bar-text-color);
+  }
+
   .sm\:hover\:text-low-emphasis:hover {
     color: var(--color-text-low-emphasis);
   }
@@ -52968,6 +53050,14 @@ button[aria-label][data-balloon-pos] {
 
   .sm\:hover\:text-danger:hover {
     color: var(--color-danger);
+  }
+
+  .sm\:hover\:text-breadcrumbs:hover {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .sm\:hover\:text-top-bar:hover {
+    color: var(--top-bar-text-color);
   }
 
   .sm\:focus-within\:text-low-emphasis:focus-within {
@@ -53014,6 +53104,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .sm\:focus-within\:text-breadcrumbs:focus-within {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .sm\:focus-within\:text-top-bar:focus-within {
+    color: var(--top-bar-text-color);
+  }
+
   .sm\:focus\:text-low-emphasis:focus {
     color: var(--color-text-low-emphasis);
   }
@@ -53058,6 +53156,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .sm\:focus\:text-breadcrumbs:focus {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .sm\:focus\:text-top-bar:focus {
+    color: var(--top-bar-text-color);
+  }
+
   .sm\:active\:text-low-emphasis:active {
     color: var(--color-text-low-emphasis);
   }
@@ -53100,6 +53206,14 @@ button[aria-label][data-balloon-pos] {
 
   .sm\:active\:text-danger:active {
     color: var(--color-danger);
+  }
+
+  .sm\:active\:text-breadcrumbs:active {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .sm\:active\:text-top-bar:active {
+    color: var(--top-bar-text-color);
   }
 
   .sm\:text-opacity-0 {
@@ -81770,6 +81884,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .md\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .md\:text-top-bar {
+    color: var(--top-bar-text-color);
+  }
+
   .group:hover .md\:group-hover\:text-low-emphasis {
     color: var(--color-text-low-emphasis);
   }
@@ -81812,6 +81934,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .md\:group-hover\:text-danger {
     color: var(--color-danger);
+  }
+
+  .group:hover .md\:group-hover\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .group:hover .md\:group-hover\:text-top-bar {
+    color: var(--top-bar-text-color);
   }
 
   .group:focus .md\:group-focus\:text-low-emphasis {
@@ -81858,6 +81988,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .group:focus .md\:group-focus\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .group:focus .md\:group-focus\:text-top-bar {
+    color: var(--top-bar-text-color);
+  }
+
   .md\:hover\:text-low-emphasis:hover {
     color: var(--color-text-low-emphasis);
   }
@@ -81900,6 +82038,14 @@ button[aria-label][data-balloon-pos] {
 
   .md\:hover\:text-danger:hover {
     color: var(--color-danger);
+  }
+
+  .md\:hover\:text-breadcrumbs:hover {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .md\:hover\:text-top-bar:hover {
+    color: var(--top-bar-text-color);
   }
 
   .md\:focus-within\:text-low-emphasis:focus-within {
@@ -81946,6 +82092,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .md\:focus-within\:text-breadcrumbs:focus-within {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .md\:focus-within\:text-top-bar:focus-within {
+    color: var(--top-bar-text-color);
+  }
+
   .md\:focus\:text-low-emphasis:focus {
     color: var(--color-text-low-emphasis);
   }
@@ -81990,6 +82144,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .md\:focus\:text-breadcrumbs:focus {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .md\:focus\:text-top-bar:focus {
+    color: var(--top-bar-text-color);
+  }
+
   .md\:active\:text-low-emphasis:active {
     color: var(--color-text-low-emphasis);
   }
@@ -82032,6 +82194,14 @@ button[aria-label][data-balloon-pos] {
 
   .md\:active\:text-danger:active {
     color: var(--color-danger);
+  }
+
+  .md\:active\:text-breadcrumbs:active {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .md\:active\:text-top-bar:active {
+    color: var(--top-bar-text-color);
   }
 
   .md\:text-opacity-0 {
@@ -110702,6 +110872,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .lg\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .lg\:text-top-bar {
+    color: var(--top-bar-text-color);
+  }
+
   .group:hover .lg\:group-hover\:text-low-emphasis {
     color: var(--color-text-low-emphasis);
   }
@@ -110744,6 +110922,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .lg\:group-hover\:text-danger {
     color: var(--color-danger);
+  }
+
+  .group:hover .lg\:group-hover\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .group:hover .lg\:group-hover\:text-top-bar {
+    color: var(--top-bar-text-color);
   }
 
   .group:focus .lg\:group-focus\:text-low-emphasis {
@@ -110790,6 +110976,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .group:focus .lg\:group-focus\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .group:focus .lg\:group-focus\:text-top-bar {
+    color: var(--top-bar-text-color);
+  }
+
   .lg\:hover\:text-low-emphasis:hover {
     color: var(--color-text-low-emphasis);
   }
@@ -110832,6 +111026,14 @@ button[aria-label][data-balloon-pos] {
 
   .lg\:hover\:text-danger:hover {
     color: var(--color-danger);
+  }
+
+  .lg\:hover\:text-breadcrumbs:hover {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .lg\:hover\:text-top-bar:hover {
+    color: var(--top-bar-text-color);
   }
 
   .lg\:focus-within\:text-low-emphasis:focus-within {
@@ -110878,6 +111080,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .lg\:focus-within\:text-breadcrumbs:focus-within {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .lg\:focus-within\:text-top-bar:focus-within {
+    color: var(--top-bar-text-color);
+  }
+
   .lg\:focus\:text-low-emphasis:focus {
     color: var(--color-text-low-emphasis);
   }
@@ -110922,6 +111132,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .lg\:focus\:text-breadcrumbs:focus {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .lg\:focus\:text-top-bar:focus {
+    color: var(--top-bar-text-color);
+  }
+
   .lg\:active\:text-low-emphasis:active {
     color: var(--color-text-low-emphasis);
   }
@@ -110964,6 +111182,14 @@ button[aria-label][data-balloon-pos] {
 
   .lg\:active\:text-danger:active {
     color: var(--color-danger);
+  }
+
+  .lg\:active\:text-breadcrumbs:active {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .lg\:active\:text-top-bar:active {
+    color: var(--top-bar-text-color);
   }
 
   .lg\:text-opacity-0 {
@@ -139634,6 +139860,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .xl\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .xl\:text-top-bar {
+    color: var(--top-bar-text-color);
+  }
+
   .group:hover .xl\:group-hover\:text-low-emphasis {
     color: var(--color-text-low-emphasis);
   }
@@ -139676,6 +139910,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .xl\:group-hover\:text-danger {
     color: var(--color-danger);
+  }
+
+  .group:hover .xl\:group-hover\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .group:hover .xl\:group-hover\:text-top-bar {
+    color: var(--top-bar-text-color);
   }
 
   .group:focus .xl\:group-focus\:text-low-emphasis {
@@ -139722,6 +139964,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .group:focus .xl\:group-focus\:text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .group:focus .xl\:group-focus\:text-top-bar {
+    color: var(--top-bar-text-color);
+  }
+
   .xl\:hover\:text-low-emphasis:hover {
     color: var(--color-text-low-emphasis);
   }
@@ -139764,6 +140014,14 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:hover\:text-danger:hover {
     color: var(--color-danger);
+  }
+
+  .xl\:hover\:text-breadcrumbs:hover {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .xl\:hover\:text-top-bar:hover {
+    color: var(--top-bar-text-color);
   }
 
   .xl\:focus-within\:text-low-emphasis:focus-within {
@@ -139810,6 +140068,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .xl\:focus-within\:text-breadcrumbs:focus-within {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .xl\:focus-within\:text-top-bar:focus-within {
+    color: var(--top-bar-text-color);
+  }
+
   .xl\:focus\:text-low-emphasis:focus {
     color: var(--color-text-low-emphasis);
   }
@@ -139854,6 +140120,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--color-danger);
   }
 
+  .xl\:focus\:text-breadcrumbs:focus {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .xl\:focus\:text-top-bar:focus {
+    color: var(--top-bar-text-color);
+  }
+
   .xl\:active\:text-low-emphasis:active {
     color: var(--color-text-low-emphasis);
   }
@@ -139896,6 +140170,14 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:active\:text-danger:active {
     color: var(--color-danger);
+  }
+
+  .xl\:active\:text-breadcrumbs:active {
+    color: var(--breadcrumbs-text-color);
+  }
+
+  .xl\:active\:text-top-bar:active {
+    color: var(--top-bar-text-color);
   }
 
   .xl\:text-opacity-0 {

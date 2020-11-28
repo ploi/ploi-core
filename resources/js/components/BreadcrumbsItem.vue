@@ -1,5 +1,5 @@
 <template>
-    <inertia-link :href="to" class="font-medium text-body text-medium-emphasis">
+    <inertia-link :href="to" class="font-medium text-body text-breadcrumbs">
         <slot></slot>
     </inertia-link>
 </template>

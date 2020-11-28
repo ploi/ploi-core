@@ -527,7 +527,7 @@ var render = function() {
   return _c(
     "inertia-link",
     {
-      staticClass: "font-medium text-body text-medium-emphasis",
+      staticClass: "font-medium text-body text-breadcrumbs",
       attrs: { href: _vm.to }
     },
     [_vm._t("default")],
@@ -837,7 +837,7 @@ var render = function() {
                 "nav",
                 {
                   staticClass:
-                    "flex flex-col items-center justify-between py-4 space-y-4 md:space-y-0 md:flex-row"
+                    "flex flex-col items-center justify-between py-4 space-y-4 md:space-y-0 md:flex-row text-top-bar"
                 },
                 [
                   _c(
@@ -870,7 +870,7 @@ var render = function() {
                         _c(
                           "IconButton",
                           { on: { click: _vm.triggerSearch } },
-                          [_c("IconSearch")],
+                          [_c("IconSearch", { staticClass: "text-top-bar" })],
                           1
                         )
                       ],
@@ -895,10 +895,12 @@ var render = function() {
                           { on: { click: _vm.toggleTheme } },
                           [
                             _vm.themeMode === "light"
-                              ? _c("IconMoon")
+                              ? _c("IconMoon", { staticClass: "text-top-bar" })
                               : _vm._e(),
                             _vm._v(" "),
-                            _vm.themeMode === "dark" ? _c("IconSun") : _vm._e()
+                            _vm.themeMode === "dark"
+                              ? _c("IconSun", { staticClass: "text-top-bar" })
+                              : _vm._e()
                           ],
                           1
                         )

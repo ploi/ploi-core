@@ -28,6 +28,10 @@ module.exports = {
             },
             height: {
                 'top-bar-logo' : 'var(--top-bar-logo-height)'
+            },
+            textColor: {
+                'breadcrumbs' : 'var(--breadcrumbs-text-color)',
+                'top-bar' : 'var(--top-bar-text-color)',
             }
         },
         fontFamily: {

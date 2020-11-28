@@ -1,7 +1,7 @@
 :root {
-    --font-sans-serif: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
 
-    --color-white: #ffff;
+    --color-white: #fff;
     --color-gray-1: #f7f7f7;
     --color-gray-2: #e6e6e6;
     --color-gray-3: #cacaca;
@@ -41,7 +41,10 @@
 
     --top-bar-container: 64rem;
     --top-bar-logo-height: 3.5rem;
-    --top-bar-background-color: var(--color-surface-1)
+    --top-bar-background-color: var(--color-surface-1);
+    --top-bar-text-color: var(--color-text-medium-emphasis);
+
+    --breadcrumbs-text-color: var(--color-text-medium-emphasis);
 }
 
 .theme--dark {
