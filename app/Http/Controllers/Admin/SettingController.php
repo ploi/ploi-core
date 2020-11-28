@@ -67,7 +67,7 @@ class SettingController extends Controller
 
             $version = Str::random();
 
-            $request->file('logo')->storeAs('public/logo', 'logo-' . $version . '.' . $request->file('logo')->extension());
+            $request->file('logo')->storePubliclyAs('logo', 'logo-' . $version . '.' . $request->file('logo')->extension(), 'public');
             setting(['logo' => '/storage/logo/logo-' . $version . '.' . $request->file('logo')->extension()]);
         }
 
