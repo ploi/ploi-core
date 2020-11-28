@@ -35,6 +35,10 @@
   --top-bar-logo-height: 3.5rem;
   --top-bar-background-color: var(--color-surface-1);
   --top-bar-text-color: var(--color-text-medium-emphasis);
+  --tab-bar-background-color: var(--color-surface-2);
+  --tab-bar-item-active-background-color: var(--color-surface-1);
+  --tab-bar-item-text-color: var(--color-text-medium-emphasis);
+  --tab-bar-item-active-text-color: var(--color-text-high-emphasis);
   --breadcrumbs-text-color: var(--color-text-medium-emphasis);
 }
 
@@ -2683,6 +2687,14 @@ video {
   background-color: var(--top-bar-background-color);
 }
 
+.bg-tab-bar {
+  background-color: var(--tab-bar-background-color);
+}
+
+.bg-tab-bar-item {
+  background-color: var(--tab-bar-item-active-background-color);
+}
+
 .group:hover .group-hover\:bg-transparent {
   background-color: transparent;
 }
@@ -2725,6 +2737,14 @@ video {
 
 .group:hover .group-hover\:bg-top-bar {
   background-color: var(--top-bar-background-color);
+}
+
+.group:hover .group-hover\:bg-tab-bar {
+  background-color: var(--tab-bar-background-color);
+}
+
+.group:hover .group-hover\:bg-tab-bar-item {
+  background-color: var(--tab-bar-item-active-background-color);
 }
 
 .group:focus .group-focus\:bg-transparent {
@@ -2771,6 +2791,14 @@ video {
   background-color: var(--top-bar-background-color);
 }
 
+.group:focus .group-focus\:bg-tab-bar {
+  background-color: var(--tab-bar-background-color);
+}
+
+.group:focus .group-focus\:bg-tab-bar-item {
+  background-color: var(--tab-bar-item-active-background-color);
+}
+
 .hover\:bg-transparent:hover {
   background-color: transparent;
 }
@@ -2813,6 +2841,14 @@ video {
 
 .hover\:bg-top-bar:hover {
   background-color: var(--top-bar-background-color);
+}
+
+.hover\:bg-tab-bar:hover {
+  background-color: var(--tab-bar-background-color);
+}
+
+.hover\:bg-tab-bar-item:hover {
+  background-color: var(--tab-bar-item-active-background-color);
 }
 
 .focus\:bg-transparent:focus {
@@ -2859,6 +2895,14 @@ video {
   background-color: var(--top-bar-background-color);
 }
 
+.focus\:bg-tab-bar:focus {
+  background-color: var(--tab-bar-background-color);
+}
+
+.focus\:bg-tab-bar-item:focus {
+  background-color: var(--tab-bar-item-active-background-color);
+}
+
 .active\:bg-transparent:active {
   background-color: transparent;
 }
@@ -2901,6 +2945,14 @@ video {
 
 .active\:bg-top-bar:active {
   background-color: var(--top-bar-background-color);
+}
+
+.active\:bg-tab-bar:active {
+  background-color: var(--tab-bar-background-color);
+}
+
+.active\:bg-tab-bar-item:active {
+  background-color: var(--tab-bar-item-active-background-color);
 }
 
 .bg-none {
@@ -23546,6 +23598,14 @@ video {
   color: var(--top-bar-text-color);
 }
 
+.text-tab-bar {
+  color: var(--tab-bar-item-text-color);
+}
+
+.text-tab-bar-active {
+  color: var(--tab-bar-item-active-text-color);
+}
+
 .group:hover .group-hover\:text-low-emphasis {
   color: var(--color-text-low-emphasis);
 }
@@ -23596,6 +23656,14 @@ video {
 
 .group:hover .group-hover\:text-top-bar {
   color: var(--top-bar-text-color);
+}
+
+.group:hover .group-hover\:text-tab-bar {
+  color: var(--tab-bar-item-text-color);
+}
+
+.group:hover .group-hover\:text-tab-bar-active {
+  color: var(--tab-bar-item-active-text-color);
 }
 
 .group:focus .group-focus\:text-low-emphasis {
@@ -23650,6 +23718,14 @@ video {
   color: var(--top-bar-text-color);
 }
 
+.group:focus .group-focus\:text-tab-bar {
+  color: var(--tab-bar-item-text-color);
+}
+
+.group:focus .group-focus\:text-tab-bar-active {
+  color: var(--tab-bar-item-active-text-color);
+}
+
 .hover\:text-low-emphasis:hover {
   color: var(--color-text-low-emphasis);
 }
@@ -23700,6 +23776,14 @@ video {
 
 .hover\:text-top-bar:hover {
   color: var(--top-bar-text-color);
+}
+
+.hover\:text-tab-bar:hover {
+  color: var(--tab-bar-item-text-color);
+}
+
+.hover\:text-tab-bar-active:hover {
+  color: var(--tab-bar-item-active-text-color);
 }
 
 .focus-within\:text-low-emphasis:focus-within {
@@ -23754,6 +23838,14 @@ video {
   color: var(--top-bar-text-color);
 }
 
+.focus-within\:text-tab-bar:focus-within {
+  color: var(--tab-bar-item-text-color);
+}
+
+.focus-within\:text-tab-bar-active:focus-within {
+  color: var(--tab-bar-item-active-text-color);
+}
+
 .focus\:text-low-emphasis:focus {
   color: var(--color-text-low-emphasis);
 }
@@ -23806,6 +23898,14 @@ video {
   color: var(--top-bar-text-color);
 }
 
+.focus\:text-tab-bar:focus {
+  color: var(--tab-bar-item-text-color);
+}
+
+.focus\:text-tab-bar-active:focus {
+  color: var(--tab-bar-item-active-text-color);
+}
+
 .active\:text-low-emphasis:active {
   color: var(--color-text-low-emphasis);
 }
@@ -23856,6 +23956,14 @@ video {
 
 .active\:text-top-bar:active {
   color: var(--top-bar-text-color);
+}
+
+.active\:text-tab-bar:active {
+  color: var(--tab-bar-item-text-color);
+}
+
+.active\:text-tab-bar-active:active {
+  color: var(--tab-bar-item-active-text-color);
 }
 
 .text-opacity-0 {
@@ -32041,6 +32149,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .sm\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .sm\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .group:hover .sm\:group-hover\:bg-transparent {
     background-color: transparent;
   }
@@ -32083,6 +32199,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .sm\:group-hover\:bg-top-bar {
     background-color: var(--top-bar-background-color);
+  }
+
+  .group:hover .sm\:group-hover\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .group:hover .sm\:group-hover\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .group:focus .sm\:group-focus\:bg-transparent {
@@ -32129,6 +32253,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .group:focus .sm\:group-focus\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .group:focus .sm\:group-focus\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .sm\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -32171,6 +32303,14 @@ button[aria-label][data-balloon-pos] {
 
   .sm\:hover\:bg-top-bar:hover {
     background-color: var(--top-bar-background-color);
+  }
+
+  .sm\:hover\:bg-tab-bar:hover {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .sm\:hover\:bg-tab-bar-item:hover {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .sm\:focus\:bg-transparent:focus {
@@ -32217,6 +32357,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .sm\:focus\:bg-tab-bar:focus {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .sm\:focus\:bg-tab-bar-item:focus {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .sm\:active\:bg-transparent:active {
     background-color: transparent;
   }
@@ -32259,6 +32407,14 @@ button[aria-label][data-balloon-pos] {
 
   .sm\:active\:bg-top-bar:active {
     background-color: var(--top-bar-background-color);
+  }
+
+  .sm\:active\:bg-tab-bar:active {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .sm\:active\:bg-tab-bar-item:active {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .sm\:bg-none {
@@ -52904,6 +53060,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .sm\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .sm\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .group:hover .sm\:group-hover\:text-low-emphasis {
     color: var(--color-text-low-emphasis);
   }
@@ -52954,6 +53118,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .sm\:group-hover\:text-top-bar {
     color: var(--top-bar-text-color);
+  }
+
+  .group:hover .sm\:group-hover\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .group:hover .sm\:group-hover\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .group:focus .sm\:group-focus\:text-low-emphasis {
@@ -53008,6 +53180,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .group:focus .sm\:group-focus\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .group:focus .sm\:group-focus\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .sm\:hover\:text-low-emphasis:hover {
     color: var(--color-text-low-emphasis);
   }
@@ -53058,6 +53238,14 @@ button[aria-label][data-balloon-pos] {
 
   .sm\:hover\:text-top-bar:hover {
     color: var(--top-bar-text-color);
+  }
+
+  .sm\:hover\:text-tab-bar:hover {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .sm\:hover\:text-tab-bar-active:hover {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .sm\:focus-within\:text-low-emphasis:focus-within {
@@ -53112,6 +53300,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .sm\:focus-within\:text-tab-bar:focus-within {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .sm\:focus-within\:text-tab-bar-active:focus-within {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .sm\:focus\:text-low-emphasis:focus {
     color: var(--color-text-low-emphasis);
   }
@@ -53164,6 +53360,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .sm\:focus\:text-tab-bar:focus {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .sm\:focus\:text-tab-bar-active:focus {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .sm\:active\:text-low-emphasis:active {
     color: var(--color-text-low-emphasis);
   }
@@ -53214,6 +53418,14 @@ button[aria-label][data-balloon-pos] {
 
   .sm\:active\:text-top-bar:active {
     color: var(--top-bar-text-color);
+  }
+
+  .sm\:active\:text-tab-bar:active {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .sm\:active\:text-tab-bar-active:active {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .sm\:text-opacity-0 {
@@ -61029,6 +61241,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .md\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .md\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .group:hover .md\:group-hover\:bg-transparent {
     background-color: transparent;
   }
@@ -61071,6 +61291,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .md\:group-hover\:bg-top-bar {
     background-color: var(--top-bar-background-color);
+  }
+
+  .group:hover .md\:group-hover\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .group:hover .md\:group-hover\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .group:focus .md\:group-focus\:bg-transparent {
@@ -61117,6 +61345,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .group:focus .md\:group-focus\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .group:focus .md\:group-focus\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .md\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -61159,6 +61395,14 @@ button[aria-label][data-balloon-pos] {
 
   .md\:hover\:bg-top-bar:hover {
     background-color: var(--top-bar-background-color);
+  }
+
+  .md\:hover\:bg-tab-bar:hover {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .md\:hover\:bg-tab-bar-item:hover {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .md\:focus\:bg-transparent:focus {
@@ -61205,6 +61449,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .md\:focus\:bg-tab-bar:focus {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .md\:focus\:bg-tab-bar-item:focus {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .md\:active\:bg-transparent:active {
     background-color: transparent;
   }
@@ -61247,6 +61499,14 @@ button[aria-label][data-balloon-pos] {
 
   .md\:active\:bg-top-bar:active {
     background-color: var(--top-bar-background-color);
+  }
+
+  .md\:active\:bg-tab-bar:active {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .md\:active\:bg-tab-bar-item:active {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .md\:bg-none {
@@ -81892,6 +82152,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .md\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .md\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .group:hover .md\:group-hover\:text-low-emphasis {
     color: var(--color-text-low-emphasis);
   }
@@ -81942,6 +82210,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .md\:group-hover\:text-top-bar {
     color: var(--top-bar-text-color);
+  }
+
+  .group:hover .md\:group-hover\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .group:hover .md\:group-hover\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .group:focus .md\:group-focus\:text-low-emphasis {
@@ -81996,6 +82272,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .group:focus .md\:group-focus\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .group:focus .md\:group-focus\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .md\:hover\:text-low-emphasis:hover {
     color: var(--color-text-low-emphasis);
   }
@@ -82046,6 +82330,14 @@ button[aria-label][data-balloon-pos] {
 
   .md\:hover\:text-top-bar:hover {
     color: var(--top-bar-text-color);
+  }
+
+  .md\:hover\:text-tab-bar:hover {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .md\:hover\:text-tab-bar-active:hover {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .md\:focus-within\:text-low-emphasis:focus-within {
@@ -82100,6 +82392,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .md\:focus-within\:text-tab-bar:focus-within {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .md\:focus-within\:text-tab-bar-active:focus-within {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .md\:focus\:text-low-emphasis:focus {
     color: var(--color-text-low-emphasis);
   }
@@ -82152,6 +82452,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .md\:focus\:text-tab-bar:focus {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .md\:focus\:text-tab-bar-active:focus {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .md\:active\:text-low-emphasis:active {
     color: var(--color-text-low-emphasis);
   }
@@ -82202,6 +82510,14 @@ button[aria-label][data-balloon-pos] {
 
   .md\:active\:text-top-bar:active {
     color: var(--top-bar-text-color);
+  }
+
+  .md\:active\:text-tab-bar:active {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .md\:active\:text-tab-bar-active:active {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .md\:text-opacity-0 {
@@ -90017,6 +90333,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .lg\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .lg\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .group:hover .lg\:group-hover\:bg-transparent {
     background-color: transparent;
   }
@@ -90059,6 +90383,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .lg\:group-hover\:bg-top-bar {
     background-color: var(--top-bar-background-color);
+  }
+
+  .group:hover .lg\:group-hover\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .group:hover .lg\:group-hover\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .group:focus .lg\:group-focus\:bg-transparent {
@@ -90105,6 +90437,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .group:focus .lg\:group-focus\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .group:focus .lg\:group-focus\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .lg\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -90147,6 +90487,14 @@ button[aria-label][data-balloon-pos] {
 
   .lg\:hover\:bg-top-bar:hover {
     background-color: var(--top-bar-background-color);
+  }
+
+  .lg\:hover\:bg-tab-bar:hover {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .lg\:hover\:bg-tab-bar-item:hover {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .lg\:focus\:bg-transparent:focus {
@@ -90193,6 +90541,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .lg\:focus\:bg-tab-bar:focus {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .lg\:focus\:bg-tab-bar-item:focus {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .lg\:active\:bg-transparent:active {
     background-color: transparent;
   }
@@ -90235,6 +90591,14 @@ button[aria-label][data-balloon-pos] {
 
   .lg\:active\:bg-top-bar:active {
     background-color: var(--top-bar-background-color);
+  }
+
+  .lg\:active\:bg-tab-bar:active {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .lg\:active\:bg-tab-bar-item:active {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .lg\:bg-none {
@@ -110880,6 +111244,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .lg\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .lg\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .group:hover .lg\:group-hover\:text-low-emphasis {
     color: var(--color-text-low-emphasis);
   }
@@ -110930,6 +111302,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .lg\:group-hover\:text-top-bar {
     color: var(--top-bar-text-color);
+  }
+
+  .group:hover .lg\:group-hover\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .group:hover .lg\:group-hover\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .group:focus .lg\:group-focus\:text-low-emphasis {
@@ -110984,6 +111364,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .group:focus .lg\:group-focus\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .group:focus .lg\:group-focus\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .lg\:hover\:text-low-emphasis:hover {
     color: var(--color-text-low-emphasis);
   }
@@ -111034,6 +111422,14 @@ button[aria-label][data-balloon-pos] {
 
   .lg\:hover\:text-top-bar:hover {
     color: var(--top-bar-text-color);
+  }
+
+  .lg\:hover\:text-tab-bar:hover {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .lg\:hover\:text-tab-bar-active:hover {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .lg\:focus-within\:text-low-emphasis:focus-within {
@@ -111088,6 +111484,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .lg\:focus-within\:text-tab-bar:focus-within {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .lg\:focus-within\:text-tab-bar-active:focus-within {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .lg\:focus\:text-low-emphasis:focus {
     color: var(--color-text-low-emphasis);
   }
@@ -111140,6 +111544,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .lg\:focus\:text-tab-bar:focus {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .lg\:focus\:text-tab-bar-active:focus {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .lg\:active\:text-low-emphasis:active {
     color: var(--color-text-low-emphasis);
   }
@@ -111190,6 +111602,14 @@ button[aria-label][data-balloon-pos] {
 
   .lg\:active\:text-top-bar:active {
     color: var(--top-bar-text-color);
+  }
+
+  .lg\:active\:text-tab-bar:active {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .lg\:active\:text-tab-bar-active:active {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .lg\:text-opacity-0 {
@@ -119005,6 +119425,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .xl\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .xl\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .group:hover .xl\:group-hover\:bg-transparent {
     background-color: transparent;
   }
@@ -119047,6 +119475,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .xl\:group-hover\:bg-top-bar {
     background-color: var(--top-bar-background-color);
+  }
+
+  .group:hover .xl\:group-hover\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .group:hover .xl\:group-hover\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .group:focus .xl\:group-focus\:bg-transparent {
@@ -119093,6 +119529,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .group:focus .xl\:group-focus\:bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .group:focus .xl\:group-focus\:bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .xl\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -119135,6 +119579,14 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:hover\:bg-top-bar:hover {
     background-color: var(--top-bar-background-color);
+  }
+
+  .xl\:hover\:bg-tab-bar:hover {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .xl\:hover\:bg-tab-bar-item:hover {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .xl\:focus\:bg-transparent:focus {
@@ -119181,6 +119633,14 @@ button[aria-label][data-balloon-pos] {
     background-color: var(--top-bar-background-color);
   }
 
+  .xl\:focus\:bg-tab-bar:focus {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .xl\:focus\:bg-tab-bar-item:focus {
+    background-color: var(--tab-bar-item-active-background-color);
+  }
+
   .xl\:active\:bg-transparent:active {
     background-color: transparent;
   }
@@ -119223,6 +119683,14 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:active\:bg-top-bar:active {
     background-color: var(--top-bar-background-color);
+  }
+
+  .xl\:active\:bg-tab-bar:active {
+    background-color: var(--tab-bar-background-color);
+  }
+
+  .xl\:active\:bg-tab-bar-item:active {
+    background-color: var(--tab-bar-item-active-background-color);
   }
 
   .xl\:bg-none {
@@ -139868,6 +140336,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .xl\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .xl\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .group:hover .xl\:group-hover\:text-low-emphasis {
     color: var(--color-text-low-emphasis);
   }
@@ -139918,6 +140394,14 @@ button[aria-label][data-balloon-pos] {
 
   .group:hover .xl\:group-hover\:text-top-bar {
     color: var(--top-bar-text-color);
+  }
+
+  .group:hover .xl\:group-hover\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .group:hover .xl\:group-hover\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .group:focus .xl\:group-focus\:text-low-emphasis {
@@ -139972,6 +140456,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .group:focus .xl\:group-focus\:text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .group:focus .xl\:group-focus\:text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .xl\:hover\:text-low-emphasis:hover {
     color: var(--color-text-low-emphasis);
   }
@@ -140022,6 +140514,14 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:hover\:text-top-bar:hover {
     color: var(--top-bar-text-color);
+  }
+
+  .xl\:hover\:text-tab-bar:hover {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .xl\:hover\:text-tab-bar-active:hover {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .xl\:focus-within\:text-low-emphasis:focus-within {
@@ -140076,6 +140576,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .xl\:focus-within\:text-tab-bar:focus-within {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .xl\:focus-within\:text-tab-bar-active:focus-within {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .xl\:focus\:text-low-emphasis:focus {
     color: var(--color-text-low-emphasis);
   }
@@ -140128,6 +140636,14 @@ button[aria-label][data-balloon-pos] {
     color: var(--top-bar-text-color);
   }
 
+  .xl\:focus\:text-tab-bar:focus {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .xl\:focus\:text-tab-bar-active:focus {
+    color: var(--tab-bar-item-active-text-color);
+  }
+
   .xl\:active\:text-low-emphasis:active {
     color: var(--color-text-low-emphasis);
   }
@@ -140178,6 +140694,14 @@ button[aria-label][data-balloon-pos] {
 
   .xl\:active\:text-top-bar:active {
     color: var(--top-bar-text-color);
+  }
+
+  .xl\:active\:text-tab-bar:active {
+    color: var(--tab-bar-item-text-color);
+  }
+
+  .xl\:active\:text-tab-bar-active:active {
+    color: var(--tab-bar-item-active-text-color);
   }
 
   .xl\:text-opacity-0 {

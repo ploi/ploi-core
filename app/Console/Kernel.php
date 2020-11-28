@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\Core\Css;
+use App\Console\Commands\Core\CssBackup;
 use App\Jobs\Core\Ping;
 use App\Console\Commands\Core\Install;
 use App\Console\Commands\Core\Synchronize;
@@ -13,6 +14,7 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         Css::class,
+        CssBackup::class,
         Install::class,
         Synchronize::class,
     ];

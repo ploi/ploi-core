@@ -44,6 +44,11 @@
     --top-bar-background-color: var(--color-surface-1);
     --top-bar-text-color: var(--color-text-medium-emphasis);
 
+    --tab-bar-background-color: var(--color-surface-2);
+    --tab-bar-item-active-background-color: var(--color-surface-1);
+    --tab-bar-item-text-color: var(--color-text-medium-emphasis);
+    --tab-bar-item-active-text-color: var(--color-text-high-emphasis);
+
     --breadcrumbs-text-color: var(--color-text-medium-emphasis);
 }
 

@@ -14,7 +14,7 @@ class Css extends Command
     public function handle()
     {
         if(file_exists(storage_path('app/public/theme.css')) && !$this->confirm('You seem to already have a theme.css published, are you sure you want to overwrite?')){
-            $this->warn('Aborted publishing of theme.css');
+            $this->warn('Aborted publishing of theme.css.');
 
             return 0;
         }

@@ -82,6 +82,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -139,16 +146,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_18__["useNotification"],
-    update: function update() {
-      var _this = this;
-
-      this.sending = true;
-      this.updating = true;
-      this.$inertia.post(this.route('admin.system.update')).then(function (response) {
-        _this.sending = false;
-      });
-    }
+    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_18__["useNotification"]
   }
 });
 
@@ -446,9 +444,47 @@ var render = function() {
                                       _vm._v(" "),
                                       _vm.version.out_of_date && !_vm.updating
                                         ? _c(
-                                            "Button",
-                                            { on: { click: _vm.update } },
-                                            [_vm._v("Update")]
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "bg-primary text-on-primary px-4 py-3 rounded relative space-y-2",
+                                              attrs: { role: "alert" }
+                                            },
+                                            [
+                                              _c(
+                                                "strong",
+                                                { staticClass: "font-bold" },
+                                                [_vm._v("Update available")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "p",
+                                                { staticClass: "block" },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                        An update is available for your system, please upgrade.\n                                    "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "block font-bold underline",
+                                                  attrs: {
+                                                    href:
+                                                      "https://docs.ploi-core.io/digging-deeper/manual-update",
+                                                    target: "_blank"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "Find out how to upgrade here"
+                                                  )
+                                                ]
+                                              )
+                                            ]
                                           )
                                         : _vm._e()
                                     ]

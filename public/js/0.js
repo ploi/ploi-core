@@ -301,8 +301,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 var transitionClasses = 'transition duration-fast hover:text-high-emphasis focus:text-high-emphasis';
-var baseClasses = 'inline-flex items-center justify-center h-10 px-6 font-medium rounded text-small text-medium-emphasis';
-var activeClasses = 'shadow text-high-emphasis bg-surface-1';
+var baseClasses = 'inline-flex items-center justify-center h-10 px-6 font-medium rounded text-small text-tab-bar';
+var activeClasses = 'shadow text-tab-bar-active bg-tab-bar-item';
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     to: {
@@ -741,7 +741,7 @@ var render = function() {
     "ul",
     {
       staticClass:
-        "inline-flex flex-row p-1 overflow-hidden overflow-x-auto whitespace-no-wrap rounded bg-surface-2"
+        "inline-flex flex-row p-1 overflow-hidden overflow-x-auto whitespace-no-wrap rounded bg-tab-bar"
     },
     _vm._l(_vm.items, function(item) {
       return item
