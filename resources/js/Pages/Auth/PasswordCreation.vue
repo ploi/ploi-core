@@ -2,7 +2,12 @@
     <div class="flex items-center justify-center w-full min-h-screen">
         <Container size="small">
             <form class="space-y-4" @submit.prevent="submit">
-                <h1 class="font-semibold text-center text-title">{{ __('Create password') }}</h1>
+                <div class="flex flex-col items-center space-y-5">
+                    <img class="h-14" v-if="$page.props.settings.logo" :src="$page.props.settings.logo" />
+                    <h1 class="font-semibold text-center text-title">
+                        {{ __('Create password') }}
+                    </h1>
+                </div>
 
                 <FormInput :label="__('Password')" :errors="$page.props.errors.password" v-model="form.password" id="password" type="password" required/>
                 <FormInput :label="__('Confirm password')" :errors="$page.props.errors.password_confirmation" v-model="form.password_confirmation" id="password_confirmation" type="password" required/>

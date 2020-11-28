@@ -15,6 +15,10 @@
         <script src="https://js.stripe.com/v3/"></script>
     @endif
 
+    @if(file_exists($theme = storage_path('app/public/theme.css')))
+        <link href="{{ asset('storage/theme.css') }}?v={{ md5_file($theme) }}" rel="stylesheet"></link>
+    @endif
+
     @routes
 </head>
 <body>

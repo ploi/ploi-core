@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Package;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SettingRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class SettingController extends Controller
 {
@@ -55,6 +57,18 @@ class SettingController extends Controller
             }
 
             setting([$key => $value]);
+        }
+
+        if ($logo = $request->file('logo')) {
+            // If we previously had a logo, rotate that
+            if ($oldLogo = setting('logo')) {
+                Storage::delete(str_replace('/storage/', '/public/', $oldLogo));
+            }
+
+            $version = Str::random();
+
+            $request->file('logo')->storePubliclyAs('logo', 'logo-' . $version . '.' . $request->file('logo')->extension(), 'public');
+            setting(['logo' => '/storage/logo/logo-' . $version . '.' . $request->file('logo')->extension()]);
         }
 
         cache()->forget('core.settings');

@@ -1,22 +1,25 @@
 <template>
-    <header class="sticky top-0 border-b border-low-emphasis bg-surface-1 z-30">
-        <Container>
+    <header class="sticky top-0 border-b border-low-emphasis bg-top-bar z-30">
+        <div class="w-full px-4 sm:px-8 mx-auto max-w-top-bar-container">
             <div class="flex flex-col">
                 <nav
-                    class="flex flex-col items-center justify-between py-4 space-y-4 md:space-y-0 md:flex-row"
+                    class="flex flex-col items-center justify-between py-4 space-y-4 md:space-y-0 md:flex-row text-top-bar"
                 >
-                    <slot name="breadcrumbs"></slot>
+                    <div class="flex items-center space-x-5">
+                        <img class="h-top-bar-logo" v-if="$page.props.settings.logo" :src="$page.props.settings.logo" />
+                        <slot name="breadcrumbs"></slot>
+                    </div>
 
                     <ul class="flex items-center space-x-4">
                         <li :aria-label="__('Search')" data-balloon-blunt data-balloon-pos="down">
                             <IconButton @click="triggerSearch">
-                                <IconSearch/>
+                                <IconSearch class="text-top-bar"/>
                             </IconButton>
                         </li>
                         <li :aria-label="themeMode === 'light' ? __('Enable dark mode') : __('Enable light mode')" data-balloon-blunt data-balloon-pos="down">
                             <IconButton @click="toggleTheme">
-                                <IconMoon v-if="themeMode === 'light'"/>
-                                <IconSun v-if="themeMode === 'dark'"/>
+                                <IconMoon class="text-top-bar" v-if="themeMode === 'light'"/>
+                                <IconSun class="text-top-bar" v-if="themeMode === 'dark'"/>
                             </IconButton>
                         </li>
                         <li>
@@ -51,7 +54,7 @@
 
                 <slot name="tab-bar"></slot>
             </div>
-        </Container>
+        </div>
     </header>
 </template>
 

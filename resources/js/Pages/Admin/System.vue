@@ -27,7 +27,14 @@
                                     <p>{{ __('Current version') }}: {{ version.current }}</p>
                                     <p>{{ __('Remote version') }}: {{ version.remote }}</p>
 
-                                    <Button v-if="version.out_of_date && !updating" @click="update">Update</Button>
+                                    <div v-if="version.out_of_date && !updating" class="bg-primary text-on-primary px-4 py-3 rounded relative space-y-2" role="alert">
+                                        <strong class="font-bold">Update available</strong>
+                                        <p class="block">
+                                            An update is available for your system, please upgrade.
+                                        </p>
+
+                                        <a class="block font-bold underline" href="https://docs.ploi-core.io/digging-deeper/manual-update" target="_blank">Find out how to upgrade here</a>
+                                    </div>
                                 </template>
                             </SettingsSegment>
 
@@ -116,16 +123,6 @@
 
         methods: {
             useNotification,
-
-            update() {
-                this.sending = true;
-                this.updating = true;
-
-                this.$inertia.post(this.route('admin.system.update'))
-                    .then(response => {
-                        this.sending = false;
-                    })
-            }
         }
     }
 </script>

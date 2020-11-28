@@ -17,9 +17,29 @@ module.exports = {
     plugins: [
         require('@tailwindcss/ui'),
     ],
+
     theme: {
+        extend: {
+            maxWidth: {
+                'top-bar-container' : 'var(--top-bar-container)'
+            },
+            backgroundColor: {
+                'top-bar' : 'var(--top-bar-background-color)',
+                'tab-bar' : 'var(--tab-bar-background-color)',
+                'tab-bar-item' : 'var(--tab-bar-item-active-background-color)',
+            },
+            height: {
+                'top-bar-logo' : 'var(--top-bar-logo-height)'
+            },
+            textColor: {
+                'breadcrumbs' : 'var(--breadcrumbs-text-color)',
+                'top-bar' : 'var(--top-bar-text-color)',
+                'tab-bar' : 'var(--tab-bar-item-text-color)',
+                'tab-bar-active' : 'var(--tab-bar-item-active-text-color)',
+            }
+        },
         fontFamily: {
-            'sans-serif': 'var(--font-sans-serif)',
+            'body': 'var(--font-body)',
         },
         fontSize: {
             heading: ['1.75rem', '2rem'],

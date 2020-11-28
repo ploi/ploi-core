@@ -29,6 +29,9 @@
                                         <FormInput :label="__('E-mail address')" :errors="$page.props.errors.email"
                                                    v-model="form.email"/>
 
+                                        <FormFileInput accept="image/*" :label="__('Logo')" type="file" :errors="$page.props.errors.logo"
+                                                   v-model="form.logo"/>
+
                                         <FormInput :helper-text="__('Separate by comma to allow more email addresses')" :label="__('Support email addresses')" :errors="$page.props.errors.support_emails"
                                                    v-model="form.support_emails"/>
 
@@ -128,6 +131,7 @@
     import SettingsLayout from '@/components/layouts/SettingsLayout'
     import SettingsSegment from '@/components/SettingsSegment'
     import FormInput from '@/components/forms/FormInput'
+    import FormFileInput from '@/components/forms/FormFileInput'
     import FormSelect from '@/components/forms/FormSelect'
     import Form from '@/components/Form'
     import FormActions from '@/components/FormActions'
@@ -157,6 +161,7 @@
             StatusBubble,
             NotificationBadge,
             FormInput,
+            FormFileInput,
             FormSelect,
             SettingsLayout,
             SettingsSegment,
@@ -182,6 +187,7 @@
                     default_package: this.company_settings.default_package,
                     isolate_per_site_per_user: this.company_settings.isolate_per_site_per_user,
                     default_language: this.company_settings.default_language,
+                    logo: null,
                 },
             }
         },
@@ -196,10 +202,31 @@
             useNotification,
 
             submit() {
-                this.$inertia.patch(this.route('admin.settings.update'), this.form, {
+                var data = new FormData();
+                data.append('name', this.form.name || '')
+                data.append('email', this.form.email || '')
+                data.append('support_emails', this.form.support_emails || '')
+                data.append('support', this.form.support || false)
+                data.append('enable_api', this.form.enable_api || false)
+                data.append('api_token', this.form.api_token || '')
+                data.append('documentation', this.form.documentation || false)
+                data.append('allow_registration', this.form.allow_registration || false)
+                data.append('receive_email_on_server_creation', this.form.receive_email_on_server_creation || false)
+                data.append('default_package', this.form.receive_email_on_server_creation || '')
+                data.append('isolate_per_site_per_user', this.form.isolate_per_site_per_user || false)
+                data.append('default_language', this.form.default_language || 'en')
+                data.append('logo', this.form.logo || '')
+                data.append('_method', 'patch')
+
+                this.$inertia.post(this.route('admin.settings.update'), data, {
                     preserveScroll: true,
                     onStart: () => this.sending = true,
                     onFinish: () => this.sending = false,
+                    onSuccess: () => {
+                        if (Object.keys(this.$page.props.errors).length === 0) {
+                            this.form.logo = null
+                        }
+                    },
                 })
             },
         }
