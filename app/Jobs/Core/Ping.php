@@ -19,6 +19,8 @@ class Ping implements ShouldQueue
     {
         $version = new VersionChecker;
 
+        $version->flushVersionData();
+
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
