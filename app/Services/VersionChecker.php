@@ -34,4 +34,14 @@ class VersionChecker
     {
         return $this->currentVersion < $this->remoteVersion || $this->currentVersion != $this->remoteVersion;
     }
+
+    public function flushVersionData()
+    {
+        try {
+            cache()->forget('ploi-core-current-version');
+            cache()->forget('ploi-core-remote-version');
+        } catch (\Exception $exception) {
+
+        }
+    }
 }
