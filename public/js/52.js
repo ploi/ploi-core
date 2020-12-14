@@ -58,6 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -418,6 +419,10 @@ var render = function() {
                         _vm._v(" "),
                         _c("option", { attrs: { value: "nb-no" } }, [
                           _vm._v("Norwegian")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "pt" } }, [
+                          _vm._v("Portuguese")
                         ])
                       ]
                     ),

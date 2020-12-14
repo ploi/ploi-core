@@ -14,6 +14,7 @@
                             <option value="fr">French</option>
                             <option value="da">Danish</option>
                             <option value="nb-no">Norwegian</option>
+                            <option value="pt">Portuguese</option>
                         </FormSelect>
 
                         <FormActions>
