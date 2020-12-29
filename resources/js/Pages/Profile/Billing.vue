@@ -35,7 +35,10 @@
                                 </Button>
                             </form>
                         </div>
-                        <div class="md:col-span-3 space-y-8">
+                        <div class="md:col-span-3 space-y-8" v-if="!packages.length">
+                            There are currently no packages to choose from.
+                        </div>
+                        <div class="md:col-span-3 space-y-8" v-if="packages.length">
                             <h2 class="text-lg text-medium-emphasis">{{ __('Available packages') }}</h2>
                             <form-input v-model="coupon"
                                         :errors="$page.props.errors.coupon"
