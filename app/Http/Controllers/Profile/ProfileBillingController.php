@@ -66,14 +66,17 @@ class ProfileBillingController extends Controller
                 return $package;
             });
 
+        try {
+            $clientSecret = $user->createSetupIntent()->client_secret;
+        } catch (\Exception $exception) {
+            return inertia('Profile/BillingError');
+        }
+
         return inertia('Profile/Billing', [
             'packages' => $packages,
             'subscription' => $user->subscription('default'),
             'public_key' => config('cashier.key'),
-            'data_client_secret' => function () use ($user) {
-                $intent = $user->createSetupIntent();
-                return $intent->client_secret;
-            },
+            'data_client_secret' => $clientSecret,
             'card' => [
                 'last_four' => $user->card_last_four,
                 'brand' => $user->card_brand

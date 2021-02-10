@@ -158,7 +158,7 @@ export default {
 
     props: {
         servers: Object,
-        dataProviders: Object,
+        dataProviders: [Array, Object],
     },
 
     computed: {
