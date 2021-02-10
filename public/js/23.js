@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[23],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Dns.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Sites/Dns.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -27,9 +27,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_forms_FormInput__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/components/forms/FormInput */ "./resources/js/components/forms/FormInput.vue");
 /* harmony import */ var _components_Form__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/components/Form */ "./resources/js/components/Form.vue");
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/Pagination */ "./resources/js/components/Pagination.vue");
-/* harmony import */ var _components_FormActions__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/FormActions */ "./resources/js/components/FormActions.vue");
-/* harmony import */ var _hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/hooks/confirm-delete */ "./resources/js/hooks/confirm-delete.js");
-/* harmony import */ var _hooks_notification__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/hooks/notification */ "./resources/js/hooks/notification.js");
+/* harmony import */ var _components_EmptyImage__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/EmptyImage */ "./resources/js/components/EmptyImage.vue");
+/* harmony import */ var _components_FormActions__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/components/FormActions */ "./resources/js/components/FormActions.vue");
+/* harmony import */ var _hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/hooks/confirm-delete */ "./resources/js/hooks/confirm-delete.js");
 /* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Tabs */ "./resources/js/Pages/Sites/Tabs.vue");
 /* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @/components/Table */ "./resources/js/components/Table.vue");
 /* harmony import */ var _components_TableHead__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @/components/TableHead */ "./resources/js/components/TableHead.vue");
@@ -37,7 +37,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_TableRow__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @/components/TableRow */ "./resources/js/components/TableRow.vue");
 /* harmony import */ var _components_TableBody__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @/components/TableBody */ "./resources/js/components/TableBody.vue");
 /* harmony import */ var _components_TableData__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @/components/TableData */ "./resources/js/components/TableData.vue");
-/* harmony import */ var _components_EmptyImage__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @/components/EmptyImage */ "./resources/js/components/EmptyImage.vue");
 //
 //
 //
@@ -114,10 +113,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-
 
 
 
@@ -149,7 +144,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: function metaInfo() {
     return {
-      title: "".concat(this.__('DNS'), " - ").concat(this.site.domain)
+      title: "Databases - ".concat(this.site.domain)
     };
   },
   layout: _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_12__["default"],
@@ -170,7 +165,7 @@ __webpack_require__.r(__webpack_exports__);
     SettingsLayout: _components_layouts_SettingsLayout__WEBPACK_IMPORTED_MODULE_13__["default"],
     SettingsSegment: _components_SettingsSegment__WEBPACK_IMPORTED_MODULE_14__["default"],
     Form: _components_Form__WEBPACK_IMPORTED_MODULE_16__["default"],
-    FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_18__["default"],
+    FormActions: _components_FormActions__WEBPACK_IMPORTED_MODULE_19__["default"],
     Pagination: _components_Pagination__WEBPACK_IMPORTED_MODULE_17__["default"],
     Tabs: _Tabs__WEBPACK_IMPORTED_MODULE_21__["default"],
     Table: _components_Table__WEBPACK_IMPORTED_MODULE_22__["default"],
@@ -179,16 +174,15 @@ __webpack_require__.r(__webpack_exports__);
     TableRow: _components_TableRow__WEBPACK_IMPORTED_MODULE_25__["default"],
     TableBody: _components_TableBody__WEBPACK_IMPORTED_MODULE_26__["default"],
     TableData: _components_TableData__WEBPACK_IMPORTED_MODULE_27__["default"],
-    EmptyImage: _components_EmptyImage__WEBPACK_IMPORTED_MODULE_28__["default"]
+    EmptyImage: _components_EmptyImage__WEBPACK_IMPORTED_MODULE_18__["default"]
   },
   data: function data() {
     return {
       sending: false,
-      loading: true,
-      records: [],
       form: {
         name: null,
-        address: null
+        user_name: null,
+        password: null
       },
       breadcrumbs: [{
         title: this.$page.props.settings.name,
@@ -200,77 +194,88 @@ __webpack_require__.r(__webpack_exports__);
         title: this.site.domain,
         to: this.route('sites.show', this.site.id)
       }, {
-        title: this.__('DNS'),
-        to: this.route('sites.dns.index', this.site.id)
+        title: this.__('Databases'),
+        to: this.route('sites.databases.index', this.site.id)
       }]
     };
   },
-  props: {
-    site: Object
-  },
   mounted: function mounted() {
-    this.getRecords();
+    if (this.shouldBePolling) {
+      this.startPollingInterval();
+    }
+  },
+  watch: {
+    shouldBePolling: function shouldBePolling(value) {
+      if (!value) {
+        this.clearPollingInterval();
+        return;
+      }
+
+      if (!this.pollingInterval) {
+        this.startPollingInterval();
+      }
+    }
+  },
+  computed: {
+    shouldBePolling: function shouldBePolling() {
+      return !!this.databases.data.filter(function (database) {
+        return database.status === 'busy';
+      }).length;
+    }
+  },
+  props: {
+    site: Object,
+    databases: Object
   },
   methods: {
-    useNotification: _hooks_notification__WEBPACK_IMPORTED_MODULE_20__["useNotification"],
+    startPollingInterval: function startPollingInterval() {
+      this.pollingInterval = setInterval(function () {
+        this.poll();
+      }.bind(this), 3000);
+    },
+    clearPollingInterval: function clearPollingInterval() {
+      clearTimeout(this.pollingInterval);
+      this.pollingInterval = null;
+    },
+    poll: function poll() {
+      this.$inertia.replace(this.route('sites.databases.index', this.site.id), {
+        only: ['databases'],
+        preserveScroll: true
+      });
+    },
     submit: function submit() {
       var _this = this;
 
-      this.$inertia.post(this.route('sites.dns.store', this.site.id), this.form, {
-        onStart: function onStart() {
-          return _this.sending = true;
-        },
-        onFinish: function onFinish() {
-          _this.sending = false;
-          _this.records = [];
+      this.sending = true;
+      this.$inertia.post(this.route('sites.databases.store', this.site.id), this.form).then(function () {
+        _this.sending = false;
 
-          _this.getRecords();
-
-          _this.form = {
-            name: null,
-            address: null
-          };
+        if (!Object.keys(_this.$page.props.errors).length) {
+          _this.form.name = null;
+          _this.form.user_name = null;
+          _this.form.password = null;
         }
       });
     },
-    getRecords: function getRecords() {
+    confirmDelete: function confirmDelete(database) {
       var _this2 = this;
 
-      this.loading = true;
-      axios.get(this.route('sites.dns.records', this.site.id)).then(function (response) {
-        _this2.loading = false;
-        _this2.records = response.data;
-      })["catch"](function (error) {
-        _this2.loading = false;
-      });
-    },
-    confirmDelete: function confirmDelete(record) {
-      var _this3 = this;
-
-      Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_19__["useConfirmDelete"])({
+      Object(_hooks_confirm_delete__WEBPACK_IMPORTED_MODULE_20__["useConfirmDelete"])({
         title: this.__('Are you sure?'),
-        message: this.__('Your DNS will be completely removed.'),
+        message: this.__('Your database will be deleted permanently, this action cannot be undone.'),
         onConfirm: function onConfirm() {
-          return _this3["delete"](record);
+          return _this2["delete"](database);
         }
       });
     },
-    "delete": function _delete(record) {
-      var _this4 = this;
-
-      this.$inertia["delete"](this.route('sites.dns.delete', [this.site.id, record.id]), {
-        preserveScroll: true,
-        onStart: function onStart() {
-          return _this4.sending = true;
-        },
-        onFinish: function onFinish() {
-          _this4.sending = false;
-          _this4.records = [];
-
-          _this4.getRecords();
-        }
+    "delete": function _delete(database) {
+      this.$inertia["delete"](this.route('sites.databases.delete', [this.site.id, database.id]), {
+        preserveScroll: true
       });
     }
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.clearPollingInterval();
   }
 });
 
@@ -503,10 +508,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Dns.vue?vue&type=template&id=562c07a6&":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Sites/Dns.vue?vue&type=template&id=562c07a6& ***!
-  \*******************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc& ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -534,9 +539,7 @@ var render = function() {
                   {
                     key: "start",
                     fn: function() {
-                      return [
-                        _c("PageHeaderTitle", [_vm._v(_vm._s(_vm.__("DNS")))])
-                      ]
+                      return [_c("PageHeaderTitle", [_vm._v("Databases")])]
                     },
                     proxy: true
                   }
@@ -576,7 +579,7 @@ var render = function() {
                                         "\n                                " +
                                           _vm._s(
                                             _vm.__(
-                                              "Create a new DNS record here."
+                                              "Create a new database here to store your application data in."
                                             )
                                           ) +
                                           "\n                            "
@@ -603,7 +606,6 @@ var render = function() {
                                         [
                                           _c("FormInput", {
                                             attrs: {
-                                              disabled: _vm.sending,
                                               label: _vm.__("Name"),
                                               errors:
                                                 _vm.$page.props.errors.name
@@ -619,21 +621,39 @@ var render = function() {
                                           _vm._v(" "),
                                           _c("FormInput", {
                                             attrs: {
-                                              disabled: _vm.sending,
-                                              label: _vm.__("IPv4 address"),
+                                              label: _vm.__("User"),
                                               errors:
-                                                _vm.$page.props.errors.address
+                                                _vm.$page.props.errors.user_name
                                             },
                                             model: {
-                                              value: _vm.form.address,
+                                              value: _vm.form.user_name,
                                               callback: function($$v) {
                                                 _vm.$set(
                                                   _vm.form,
-                                                  "address",
+                                                  "user_name",
                                                   $$v
                                                 )
                                               },
-                                              expression: "form.address"
+                                              expression: "form.user_name"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("FormInput", {
+                                            attrs: {
+                                              label: _vm.__("Password"),
+                                              errors:
+                                                _vm.$page.props.errors.password
+                                            },
+                                            model: {
+                                              value: _vm.form.password,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "password",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "form.password"
                                             }
                                           }),
                                           _vm._v(" "),
@@ -658,52 +678,11 @@ var render = function() {
                               ])
                             }),
                             _vm._v(" "),
-                            !_vm.records.length && !_vm.loading
+                            !_vm.databases.meta.total
                               ? _c("EmptyImage")
                               : _vm._e(),
                             _vm._v(" "),
-                            _vm.loading
-                              ? _c("div", { staticClass: "inline-flex px-4" }, [
-                                  _c(
-                                    "svg",
-                                    {
-                                      staticClass:
-                                        "animate-spin -ml-1 mr-3 h-5 w-5 text-white",
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        fill: "none",
-                                        viewBox: "0 0 24 24"
-                                      }
-                                    },
-                                    [
-                                      _c("circle", {
-                                        staticClass: "opacity-25",
-                                        attrs: {
-                                          cx: "12",
-                                          cy: "12",
-                                          r: "10",
-                                          stroke: "currentColor",
-                                          "stroke-width": "4"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("path", {
-                                        staticClass: "opacity-75",
-                                        attrs: {
-                                          fill: "currentColor",
-                                          d:
-                                            "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                            Loading records..\n                        "
-                                  )
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.records.length
+                            _vm.databases.meta.total
                               ? _c("SettingsSegment", {
                                   scopedSlots: _vm._u(
                                     [
@@ -711,7 +690,7 @@ var render = function() {
                                         key: "title",
                                         fn: function() {
                                           return [
-                                            _vm._v(_vm._s(_vm.__("Records")))
+                                            _vm._v(_vm._s(_vm.__("Databases")))
                                           ]
                                         },
                                         proxy: true
@@ -728,7 +707,7 @@ var render = function() {
                                                   {
                                                     attrs: {
                                                       caption:
-                                                        "DNS records list overview"
+                                                        "Database list overview"
                                                     }
                                                   },
                                                   [
@@ -738,20 +717,12 @@ var render = function() {
                                                         _c(
                                                           "TableRow",
                                                           [
-                                                            _c("TableHeader", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm.__("Name")
-                                                                )
-                                                              )
-                                                            ]),
+                                                            _c("TableHeader"),
                                                             _vm._v(" "),
                                                             _c("TableHeader", [
                                                               _vm._v(
                                                                 _vm._s(
-                                                                  _vm.__(
-                                                                    "Content"
-                                                                  )
+                                                                  _vm.__("Name")
                                                                 )
                                                               )
                                                             ]),
@@ -767,24 +738,37 @@ var render = function() {
                                                     _c(
                                                       "TableBody",
                                                       _vm._l(
-                                                        _vm.records,
-                                                        function(record) {
+                                                        _vm.databases.data,
+                                                        function(database) {
                                                           return _c(
                                                             "TableRow",
-                                                            { key: record.id },
+                                                            {
+                                                              key: database.id
+                                                            },
                                                             [
-                                                              _c("TableData", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    record.name
+                                                              _c(
+                                                                "TableData",
+                                                                [
+                                                                  _c(
+                                                                    "StatusBubble",
+                                                                    {
+                                                                      attrs: {
+                                                                        variant:
+                                                                          database.status ===
+                                                                          "busy"
+                                                                            ? "gray"
+                                                                            : "success"
+                                                                      }
+                                                                    }
                                                                   )
-                                                                )
-                                                              ]),
+                                                                ],
+                                                                1
+                                                              ),
                                                               _vm._v(" "),
                                                               _c("TableData", [
                                                                 _vm._v(
                                                                   _vm._s(
-                                                                    record.display_content
+                                                                    database.name
                                                                   )
                                                                 )
                                                               ]),
@@ -796,6 +780,9 @@ var render = function() {
                                                                     "Button",
                                                                     {
                                                                       attrs: {
+                                                                        disabled:
+                                                                          database.status ===
+                                                                          "busy",
                                                                         variant:
                                                                           "danger",
                                                                         size:
@@ -806,14 +793,20 @@ var render = function() {
                                                                           $event
                                                                         ) {
                                                                           return _vm.confirmDelete(
-                                                                            record
+                                                                            database
                                                                           )
                                                                         }
                                                                       }
                                                                     },
                                                                     [
                                                                       _vm._v(
-                                                                        "Delete"
+                                                                        "\n                                                        " +
+                                                                          _vm._s(
+                                                                            _vm.__(
+                                                                              "Delete"
+                                                                            )
+                                                                          ) +
+                                                                          "\n                                                    "
                                                                       )
                                                                     ]
                                                                   )
@@ -832,7 +825,11 @@ var render = function() {
                                                 )
                                               ],
                                               1
-                                            )
+                                            ),
+                                            _vm._v(" "),
+                                            _c("pagination", {
+                                              attrs: { links: _vm.databases }
+                                            })
                                           ]
                                         },
                                         proxy: true
@@ -840,7 +837,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    3491713762
+                                    2276920851
                                   )
                                 })
                               : _vm._e()
@@ -1325,17 +1322,17 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Sites/Dns.vue":
-/*!******************************************!*\
-  !*** ./resources/js/Pages/Sites/Dns.vue ***!
-  \******************************************/
+/***/ "./resources/js/Pages/Sites/Databases.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Pages/Sites/Databases.vue ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Dns_vue_vue_type_template_id_562c07a6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dns.vue?vue&type=template&id=562c07a6& */ "./resources/js/Pages/Sites/Dns.vue?vue&type=template&id=562c07a6&");
-/* harmony import */ var _Dns_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dns.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Sites/Dns.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Databases.vue?vue&type=template&id=70e204dc& */ "./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc&");
+/* harmony import */ var _Databases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Databases.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1345,9 +1342,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Dns_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Dns_vue_vue_type_template_id_562c07a6___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Dns_vue_vue_type_template_id_562c07a6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Databases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1357,38 +1354,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Sites/Dns.vue"
+component.options.__file = "resources/js/Pages/Sites/Databases.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Sites/Dns.vue?vue&type=script&lang=js&":
-/*!*******************************************************************!*\
-  !*** ./resources/js/Pages/Sites/Dns.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************/
+/***/ "./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dns_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Dns.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Dns.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dns_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Databases.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Databases.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Sites/Dns.vue?vue&type=template&id=562c07a6&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/Pages/Sites/Dns.vue?vue&type=template&id=562c07a6& ***!
-  \*************************************************************************/
+/***/ "./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc& ***!
+  \*******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dns_vue_vue_type_template_id_562c07a6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Dns.vue?vue&type=template&id=562c07a6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Dns.vue?vue&type=template&id=562c07a6&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dns_vue_vue_type_template_id_562c07a6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Databases.vue?vue&type=template&id=70e204dc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Sites/Databases.vue?vue&type=template&id=70e204dc&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dns_vue_vue_type_template_id_562c07a6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Databases_vue_vue_type_template_id_70e204dc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

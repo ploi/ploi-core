@@ -98,7 +98,7 @@ class Install extends Command
 
         Package::create([
             'name' => 'Professional',
-            'maximum_sites' => 5,
+            'maximum_sites' => 30,
             'site_permissions' => [
                 'create' => true,
                 'update' => true,

@@ -193,7 +193,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     servers: Object,
-    dataProviders: Object
+    dataProviders: [Array, Object]
   },
   computed: {
     shouldBePolling: function shouldBePolling() {
