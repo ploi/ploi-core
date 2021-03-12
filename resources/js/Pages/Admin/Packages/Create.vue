@@ -31,6 +31,7 @@
                                         <FormSelect :errors="$page.props.errors.currency" v-if="form.plan_id" :label="__('Currency')" v-model="form.currency">
                                             <option value="usd">{{ __('USD $') }}</option>
                                             <option value="eur">{{ __('Euro €') }}</option>
+                                            <option value="gbp">{{ __('GBP £') }}</option>
                                             <option value="nok">{{ __('NOK (Norwegian Krone)') }}</option>
                                             <option value="aud">{{ __('AUD (Australian dollar)') }}</option>
                                             <option value="cad">{{ __('CAD (Canadian dollar)') }}</option>
