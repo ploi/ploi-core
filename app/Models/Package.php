@@ -12,6 +12,7 @@ class Package extends Model
     const CURRENCY_NOK = 'nok';
     const CURRENCY_AUD = 'aud';
     const CURRENCY_CAD = 'cad';
+    const CURRENCY_GBP = 'gbp';
 
     public $fillable = [
         'name',
