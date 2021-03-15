@@ -45,8 +45,8 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
-        if ($defaultPackage = setting('default_package')) {
-            $user->package_id = $defaultPackage;
+        if (setting('default_package') && setting('default_package') != 'false') {
+            $user->package_id = setting('default_package');
             $user->save();
         }
     }
