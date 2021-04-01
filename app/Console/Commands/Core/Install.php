@@ -4,6 +4,7 @@ namespace App\Console\Commands\Core;
 
 use Exception;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use RuntimeException;
 use App\Models\Package;
 use App\Services\Ploi\Ploi;
@@ -34,6 +35,7 @@ class Install extends Command
         $this->askAboutDefaultPackages();
         $this->checkApplicationUrl();
         $this->createInstallationFile();
+        $this->linkStorage();
 
         $this->info('Succes! Installation has finished.');
         $this->info('Visit your platform at ' . env('APP_URL'));
@@ -201,6 +203,11 @@ class Install extends Command
     protected function createInstallationFile()
     {
         file_put_contents(storage_path($this->installationFile), json_encode($this->getInstallationPayload(), JSON_PRETTY_PRINT));
+    }
+
+    protected function linkStorage()
+    {
+        Artisan::call('storage:link');
     }
 
     protected function createDatabaseCredentials(): bool
