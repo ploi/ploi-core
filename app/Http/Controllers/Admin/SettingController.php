@@ -56,6 +56,10 @@ class SettingController extends Controller
                 $value = encrypt($value);
             }
 
+            if ($key === 'default_package' && $value === 'false') {
+                $value = null;
+            }
+
             setting([$key => $value]);
         }
 
