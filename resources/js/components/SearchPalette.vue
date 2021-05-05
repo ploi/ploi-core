@@ -1,5 +1,5 @@
 <template>
-    <div v-if="searchOpen" class="w-full h-screen fixed inset-0 bg-backdrop z-40 flex items-center flex-col">
+    <div v-if="searchOpen" class="w-full h-screen fixed inset-0 bg-backdrop bf-blur z-40 flex items-center flex-col">
         <div class="w-full max-w-4xl p-8 space-y-4" v-click-outside="closeSearch">
             <input v-model="search" ref="search" class="w-full h-12 px-4 rounded bg-surface-1 shadow-md" type="text"
                    :placeholder="__('Type to search anything...')">

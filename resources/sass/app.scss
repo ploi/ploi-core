@@ -1,9 +1,7 @@
 @import 'variables';
 
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
 @import 'nprogress';
@@ -12,7 +10,7 @@
 @import "~balloon-css/src/balloon";
 
 .bf-blur {
-    backdrop-filter: saturate(200%) blur(24px);
+    backdrop-filter: blur(2px) saturate(125%);
 }
 
 .text-gradient {

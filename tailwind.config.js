@@ -1,9 +1,4 @@
 module.exports = {
-    future: {
-        removeDeprecatedGapUtilities: true,
-        purgeLayersByDefault: true,
-    },
-
     purge: {
         content: [
             './resources/js/**/*.vue',
@@ -14,8 +9,10 @@ module.exports = {
             whitelist: ['theme--dark'],
         }
     },
+
     plugins: [
-        require('@tailwindcss/ui'),
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography')
     ],
 
     theme: {
@@ -36,7 +33,12 @@ module.exports = {
                 'top-bar' : 'var(--top-bar-text-color)',
                 'tab-bar' : 'var(--tab-bar-item-text-color)',
                 'tab-bar-active' : 'var(--tab-bar-item-active-text-color)',
-            }
+            },
+            borderRadius: {
+                default: 'var(--border-radius)',
+                circle: 'var(--border-radius-circle)',
+                avatar: 'var(--border-radius-avatar)',
+            },
         },
         fontFamily: {
             'body': 'var(--font-body)',
@@ -87,11 +89,6 @@ module.exports = {
             'success': 'var(--color-success)',
             'warning': 'var(--color-warning)',
             'danger': 'var(--color-danger)',
-        },
-        borderRadius: {
-            default: 'var(--border-radius)',
-            circle: 'var(--border-radius-circle)',
-            avatar: 'var(--border-radius-avatar)',
         },
         transitionDuration: {
             fast: '200ms',

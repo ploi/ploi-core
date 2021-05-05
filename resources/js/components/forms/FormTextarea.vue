@@ -10,6 +10,7 @@
                   @input="updateValue($event.target.value)"
                   :placeholder="placeholder"></textarea>
         <ErrorText v-if="errors">{{ errors[0] }}</ErrorText>
+        <HelperText v-if="helperText && !errors">{{ helperText }}</HelperText>
     </FormGroup>
 </template>
 
@@ -17,6 +18,7 @@
     import FormGroup from '@/components/FormGroup'
     import Label from '@/components/Label'
     import ErrorText from '@/components/ErrorText'
+    import HelperText from '@/components/HelperText'
 
     const defaultClasses =
         'w-full border-medium-emphasis text-body max-w-lg px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary'
@@ -48,13 +50,17 @@
             rows: {
                 default: 3,
                 required: false,
-            }
+            },
+            helperText: {
+                type: String
+            },
         },
 
         components: {
             FormGroup,
             Label,
             ErrorText,
+            HelperText
         },
 
         data() {
