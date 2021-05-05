@@ -143,7 +143,8 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
     if (setting('documentation')) {
         Route::group(['prefix' => 'documentation', 'as' => 'documentation.'], function () {
             Route::get('/', 'DocumentationController@index')->name('index');
-            Route::get('{documentationItem}', 'DocumentationController@show')->name('show');
+            Route::get('{documentationCategory}', 'DocumentationController@show')->name('show');
+            Route::get('{documentationCategory}/article/{documentationItem}', 'DocumentationController@showArticle')->name('article.show');
         });
     }
 });

@@ -11,10 +11,14 @@
                 </PageHeader>
 
                 <PageBody>
-                    <EmptyImage v-if="!items.meta.total" />
-                    <List>
+                    <SettingsLayout>
+                        <template #nav>
+                            <Tabs :items="items.data" />
+                        </template>
+                        <template #segments>
+                        </template>
+                    </SettingsLayout>
 
-                    </List>
                 </PageBody>
             </Container>
         </Content>
@@ -44,6 +48,9 @@
     import FormInput from '@/components/forms/FormInput'
     import FormTextarea from '@/components/forms/FormTextarea'
     import FormActions from '@/components/FormActions'
+    import SettingsSegment from '@/components/SettingsSegment'
+    import SettingsLayout from '@/components/layouts/SettingsLayout'
+    import Tabs from './Tabs';
 
     export default {
         metaInfo() {
@@ -75,7 +82,10 @@
             FormInput,
             FormTextarea,
             FormActions,
-            EmptyImage
+            EmptyImage,
+            Tabs,
+            SettingsLayout,
+            SettingsSegment
         },
 
         props: {

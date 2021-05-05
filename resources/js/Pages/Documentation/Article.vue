@@ -6,7 +6,7 @@
             <Container>
                 <PageHeader>
                     <template #start>
-                        <PageHeaderTitle>{{ category.title }}</PageHeaderTitle>
+                        <PageHeaderTitle>{{ article.title }}</PageHeaderTitle>
                     </template>
                 </PageHeader>
 
@@ -16,11 +16,7 @@
                             <Tabs :items="items.data" />
                         </template>
                         <template #segments>
-                            <ul class="list-disc list-inside">
-                                <li v-for="article in articles">
-                                    <inertia-link class="text-primary" :href="route('documentation.article.show', [category.id, article.id])">{{ article.title }}</inertia-link>
-                                </li>
-                            </ul>
+                            <div class="prose" v-html="article.content"></div>
                         </template>
                     </SettingsLayout>
                 </PageBody>
@@ -59,7 +55,7 @@ import Tabs from './Tabs';
 export default {
     metaInfo() {
         return {
-            title: this.category.title,
+            title: this.article.title,
         }
     },
 
@@ -95,7 +91,7 @@ export default {
     props: {
         category: Object,
         items: Object,
-        articles: Array,
+        article: Object,
     },
 
     data() {
@@ -113,9 +109,12 @@ export default {
                     title: this.category.title,
                     to: this.route('documentation.show', this.category.id),
                 },
+                {
+                    title: this.article.title,
+                    to: this.route('documentation.article.show', [this.category.id, this.article.id]),
+                },
             ],
         }
     },
-
 }
 </script>

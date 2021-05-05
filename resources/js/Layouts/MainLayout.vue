@@ -70,7 +70,7 @@
             leave-class="opacity-100"
             leave-to-class="opacity-0"
         >
-            <div v-if="backdropIsOpen" class="fixed inset-0 z-40 bg-backdrop"></div>
+            <div v-if="backdropIsOpen" class="fixed inset-0 z-40 bg-backdrop bf-blur"></div>
         </Transition>
 
         <SearchPalette/>

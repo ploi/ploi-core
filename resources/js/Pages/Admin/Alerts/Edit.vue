@@ -107,7 +107,7 @@ export default {
             sending: false,
 
             form: {
-                type: 'info',
+                type: this.alert.type,
                 message: this.alert.message,
                 expires_at: this.alert.expires_at,
             },
