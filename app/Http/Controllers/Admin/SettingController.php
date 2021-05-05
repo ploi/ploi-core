@@ -60,6 +60,14 @@ class SettingController extends Controller
                 $value = null;
             }
 
+            if ($value === 'false') {
+                $value = 0;
+            }
+
+            if ($value === 'true') {
+                $value = 1;
+            }
+
             setting([$key => $value]);
         }
 
