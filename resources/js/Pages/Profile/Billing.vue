@@ -22,7 +22,7 @@
                                             :errors="$page.props.errors.address"
                                             :disabled="sending"
                                             :label="__('Address')"/>
-                                <form-select :label="__('Country')" :errors="$page.props.errors.country" v-model="country">
+                                <form-select :disabled="sending" :label="__('Country')" :errors="$page.props.errors.country" v-model="country">
                                     <option :value="code" v-for="(country, code) in countries" v-text="country"></option>
                                 </form-select>
                                 <form-input v-model="zip"
