@@ -75,6 +75,7 @@ class ProfileBillingController extends Controller
 
         return inertia('Profile/Billing', [
             'packages' => $packages,
+            'countries' => countries(),
             'subscription' => $user->subscription('default'),
             'public_key' => config('cashier.key'),
             'data_client_secret' => $clientSecret,
@@ -96,8 +97,14 @@ class ProfileBillingController extends Controller
         $user = $request->user();
 
         $user->createOrGetStripeCustomer([
-            'name' => $user->name,
-            'description' => $request->input('billing_details')
+            'name' => $request->input('billing_details.name'),
+            'description' => 'Ploi Core Customer ' . $request->input('billing_details.name'),
+            'address' => [
+                'line1' => $request->input('billing_details.address.line1'),
+                'postal_code' => $request->input('billing_details.address.postal_code'),
+                'city' => $request->input('billing_details.address.city'),
+                'country' => $request->input('billing_details.address.country'),
+            ]
         ]);
 
         foreach ($user->paymentMethods() as $paymentMethod) {

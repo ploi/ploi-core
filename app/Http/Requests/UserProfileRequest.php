@@ -41,6 +41,22 @@ class UserProfileRequest extends FormRequest
                 'required',
                 'string',
                 Rule::in(languages()),
+            ],
+            'address' => [
+                'nullable',
+                'string'
+            ],
+            'country' => [
+                'nullable',
+                'string'
+            ],
+            'zip' => [
+                'nullable',
+                'string'
+            ],
+            'city' => [
+                'nullable',
+                'string'
             ]
         ];
     }

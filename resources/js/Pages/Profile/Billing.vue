@@ -18,6 +18,22 @@
                                             id="card-holder-name"
                                             :label="__('Card holder name')"/>
 
+                                <form-input v-model="address"
+                                            :errors="$page.props.errors.address"
+                                            :disabled="sending"
+                                            :label="__('Address')"/>
+                                <form-select :label="__('Country')" :errors="$page.props.errors.country" v-model="country">
+                                    <option :value="code" v-for="(country, code) in countries" v-text="country"></option>
+                                </form-select>
+                                <form-input v-model="zip"
+                                            :errors="$page.props.errors.zip"
+                                            :disabled="sending"
+                                            :label="__('ZIP (postal code)')"/>
+                                <form-input v-model="city"
+                                            :errors="$page.props.errors.city"
+                                            :disabled="sending"
+                                            :label="__('City')"/>
+
                                 <div class="w-full pb-4">
                                     <label class="form-label" for="card-element">{{ __('Card details') }}</label>
                                     <div id="card-element" class="form-input"></div>
@@ -159,6 +175,7 @@
     import Modal from '@/components/Modal'
     import ModalContainer from '@/components/ModalContainer'
     import FormInput from '@/components/forms/FormInput'
+    import FormSelect from '@/components/forms/FormSelect'
     import FormTextarea from '@/components/forms/FormTextarea'
     import FormActions from '@/components/FormActions'
     import Table from '@/components/Table'
@@ -201,6 +218,7 @@
             Modal,
             ModalContainer,
             FormInput,
+            FormSelect,
             FormTextarea,
             FormActions,
             Table,
@@ -213,6 +231,7 @@
 
         props: {
             packages: Array,
+            countries: Object,
             subscription: [Object, null],
             public_key: String,
             data_client_secret: String,
@@ -231,6 +250,11 @@
                 currentCardLastFour: this.card.last_four,
                 currentCardBrand: this.card.brand,
                 coupon: '',
+
+                address: this.$page.props.auth.user.address,
+                country: this.$page.props.auth.user.country,
+                zip: this.$page.props.auth.user.zip,
+                city: this.$page.props.auth.user.city,
 
                 invoices: [],
 
@@ -288,6 +312,12 @@
                             card: this.cardElement,
                             billing_details: {
                                 name: this.cardHolderName,
+                                address: {
+                                    line1: this.address,
+                                    postal_code: this.zip,
+                                    city: this.city,
+                                    country: this.country,
+                                }
                             }
                         }
                     }
@@ -305,7 +335,15 @@
                     const paymentMethod = setupIntent.payment_method;
                     this.$inertia.post(this.route('profile.billing.update.card'), {
                         payment_method: paymentMethod,
-                        billing_details: this.billingDetails
+                        billing_details: {
+                            name: this.cardHolderName,
+                            address: {
+                                line1: this.address,
+                                postal_code: this.zip,
+                                city: this.city,
+                                country: this.country,
+                            }
+                        }
                     }, {
                         onStart: () => this.sending = true,
                         onFinish: () => this.sending = false

@@ -17,6 +17,13 @@
                             <option value="pt">Portuguese</option>
                         </FormSelect>
 
+                        <FormInput :label="__('Address')" type="text" :errors="$page.props.errors.address" v-model="form.address" />
+                        <FormSelect :label="__('Country')" :errors="$page.props.errors.country" v-model="form.country">
+                            <option :value="code" v-for="(country, code) in countries" v-text="country"></option>
+                        </FormSelect>
+                        <FormInput :label="__('ZIP')" type="text" :errors="$page.props.errors.zip" v-model="form.zip" />
+                        <FormInput :label="__('City')" type="text" :errors="$page.props.errors.city" v-model="form.city" />
+
                         <FormActions>
                             <Button>{{ __('Save changes') }}</Button>
                         </FormActions>
@@ -84,6 +91,7 @@
 
         props: {
             profile: Object,
+            countries: Object,
         },
 
         data() {
@@ -92,6 +100,11 @@
                     name: this.profile.name,
                     email: this.profile.email,
                     language: this.profile.language,
+
+                    address: this.profile.address,
+                    country: this.profile.country,
+                    zip: this.profile.zip,
+                    city: this.profile.city,
                 },
 
                 breadcrumbs: [

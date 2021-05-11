@@ -13,6 +13,10 @@
     backdrop-filter: blur(2px) saturate(125%);
 }
 
+.bf-blur-high {
+    backdrop-filter: blur(15px) saturate(125%);
+}
+
 .text-gradient {
     background: -webkit-linear-gradient(
             35deg,

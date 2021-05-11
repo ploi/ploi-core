@@ -19,7 +19,11 @@ class UserProfileResource extends JsonResource
         return [
             'name' => $this->name,
             'email' => $this->email,
-            'language' => $this->language
+            'language' => $this->language,
+            'address' => $this->address,
+            'country' => $this->country,
+            'zip' => $this->zip,
+            'city' => $this->city
         ];
     }
 }
