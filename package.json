@@ -13,13 +13,16 @@
         "@inertiajs/inertia": "^0.4.3",
         "@inertiajs/inertia-vue": "^0.3.2",
         "@inertiajs/progress": "^0.1.2",
-        "@tailwindcss/ui": "^0.3.0",
+        "@tailwindcss/forms": "^0.3.2",
+        "@tailwindcss/typography": "^0.4.0",
+        "autoprefixer": "^10.2.5",
         "axios": "^0.19",
         "balloon-css": "^1.2.0",
         "cross-env": "^7.0",
         "laravel-mix": "^6.0.18",
         "lodash": "^4.17.15",
         "portal-vue": "^2.1.7",
+        "postcss": "^8.2.13",
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
@@ -31,11 +34,5 @@
         "vue-meta": "^2.4.0",
         "vue-template-compiler": "^2.6.11",
         "vuex": "^3.5.1"
-    },
-    "dependencies": {
-        "@tailwindcss/forms": "^0.3.2",
-        "@tailwindcss/typography": "^0.4.0",
-        "autoprefixer": "^10.2.5",
-        "postcss": "^8.2.13"
     }
 }

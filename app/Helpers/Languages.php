@@ -1,7 +1,7 @@
 <?php
 
 if (!function_exists('languages')) {
-    function languages()
+    function languages(): array
     {
         $languages = [
             'en'

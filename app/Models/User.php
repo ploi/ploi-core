@@ -28,6 +28,7 @@ class User extends Authenticatable implements HasLocalePreference
         'address',
         'city',
         'country',
+        'zip',
         'notes',
         'language',
         'blocked',
