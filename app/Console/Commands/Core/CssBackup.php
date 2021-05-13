@@ -13,7 +13,7 @@ class CssBackup extends Command
 
     public function handle()
     {
-        if(!file_exists(storage_path('app/public/theme.css'))){
+        if (!file_exists(storage_path('app/public/theme.css'))) {
             $this->warn('There is no custom theme.css, aborting backup.');
 
             return 0;

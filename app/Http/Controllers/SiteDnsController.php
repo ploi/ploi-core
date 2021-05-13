@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SiteDnsRequest;
 use App\Models\Site;
+use Illuminate\Support\Arr;
 use App\Models\UserProvider;
 use App\Services\Cloudflare;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
+use App\Http\Requests\SiteDnsRequest;
 
 class SiteDnsController extends Controller
 {
