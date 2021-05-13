@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Package;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\SettingRequest;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Admin\SettingRequest;
 
 class SettingController extends Controller
 {

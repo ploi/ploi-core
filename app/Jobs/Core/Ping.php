@@ -3,8 +3,8 @@
 namespace App\Jobs\Core;
 
 use App\Services\Ploi\Ploi;
-use App\Services\VersionChecker;
 use Illuminate\Bus\Queueable;
+use App\Services\VersionChecker;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Models\UserProvider;
+use Illuminate\Validation\Rule;
 use App\Rules\CloudflareGeneralTest;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class ProfileIntegrationRequest extends FormRequest
 {

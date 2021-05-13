@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Str;
+use GuzzleHttp\Exception\ClientException;
 
 class Cloudflare
 {

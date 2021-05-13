@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Profile;
 
+use App\Models\UserProvider;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileIntegrationRequest;
-use App\Models\UserProvider;
-use Illuminate\Http\Request;
 
 class ProfileIntegrationController extends Controller
 {
     public function index()
     {
-        $providers = auth()->user()->providers()->latest()->get()->map(function($provider){
+        $providers = auth()->user()->providers()->latest()->get()->map(function ($provider) {
             return [
                 'id' => $provider->id,
                 'type' => $provider->type,
@@ -28,7 +27,7 @@ class ProfileIntegrationController extends Controller
     {
         $request->user()->providers()->updateOrCreate([
             'type' => UserProvider::TYPE_CLOUDFLARE
-        ],[
+        ], [
             'type' => UserProvider::TYPE_CLOUDFLARE,
             'token' => $request->input('meta.api_key'),
             'meta' => [

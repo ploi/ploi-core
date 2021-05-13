@@ -41,7 +41,6 @@ class VersionChecker
             cache()->forget('ploi-core-current-version');
             cache()->forget('ploi-core-remote-version');
         } catch (\Exception $exception) {
-
         }
     }
 }

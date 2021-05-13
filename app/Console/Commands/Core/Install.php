@@ -4,7 +4,6 @@ namespace App\Console\Commands\Core;
 
 use Exception;
 use App\Models\User;
-use Illuminate\Support\Facades\Artisan;
 use RuntimeException;
 use App\Models\Package;
 use App\Services\Ploi\Ploi;
@@ -13,6 +12,7 @@ use Illuminate\Console\Command;
 use App\Services\VersionChecker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Artisan;
 
 class Install extends Command
 {

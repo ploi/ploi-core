@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AlertRequest;
-use App\Models\Alert;
-use Illuminate\Http\Request;
 
 class AlertController extends Controller
 {

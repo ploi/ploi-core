@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
+use App\Models\DocumentationItem;
 use App\Models\DocumentationCategory;
 use App\Http\Resources\DocumentationCategoryRouteResource;
-use App\Models\DocumentationItem;
-use Illuminate\Support\Str;
 
 class DocumentationController extends Controller
 {

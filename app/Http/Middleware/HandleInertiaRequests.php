@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\Models\Alert;
-use App\Models\UserProvider;
 use Inertia\Middleware;
 use Illuminate\Support\Arr;
+use App\Models\UserProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
