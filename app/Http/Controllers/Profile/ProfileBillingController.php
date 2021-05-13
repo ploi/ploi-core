@@ -60,6 +60,7 @@ class ProfileBillingController extends Controller
                     Package::CURRENCY_CAD => 'CAD $',
                     Package::CURRENCY_AUD => 'AUD $',
                     Package::CURRENCY_GBP => 'GBP £',
+                    Package::CURRENCY_INR => 'INR ',
                 ];
 
                 $package->price_monthly = ($currencies[$package->currency] ?? '[Unknown currency]') . number_format($package->price_monthly, 2, ',', '.');

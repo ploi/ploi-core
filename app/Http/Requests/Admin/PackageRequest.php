@@ -40,6 +40,7 @@ class PackageRequest extends FormRequest
                     Package::CURRENCY_AUD,
                     Package::CURRENCY_CAD,
                     Package::CURRENCY_GBP,
+                    Package::CURRENCY_INR,
                 ])
             ],
             'maximum_sites' => [
