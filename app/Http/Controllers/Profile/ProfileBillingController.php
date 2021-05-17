@@ -53,17 +53,9 @@ class ProfileBillingController extends Controller
             })
             ->get()
             ->transform(function (Package $package) {
-                $currencies = [
-                    Package::CURRENCY_EURO => '€',
-                    Package::CURRENCY_USD => '$',
-                    Package::CURRENCY_NOK => 'KR ',
-                    Package::CURRENCY_CAD => 'CAD $',
-                    Package::CURRENCY_AUD => 'AUD $',
-                    Package::CURRENCY_GBP => 'GBP £',
-                    Package::CURRENCY_INR => 'INR ',
-                ];
+                $currency = $this->transformCurrency($package->currency);
 
-                $package->price_monthly = ($currencies[$package->currency] ?? '[Unknown currency]') . number_format($package->price_monthly, 2, ',', '.');
+                $package->price_monthly = ($currency ?? '[Unknown currency]') . number_format($package->price_monthly, 2, ',', '.');
 
                 return $package;
             });
@@ -175,7 +167,7 @@ class ProfileBillingController extends Controller
     public function invoices(Request $request)
     {
         return $request->user()->invoices()->map(function ($invoice) {
-            $symbol = $invoice->currency === Package::CURRENCY_EURO ? '€' : '$';
+            $symbol = $this->transformCurrency($invoice->currency);
 
             return [
                 'id' => $invoice->id,
@@ -194,5 +186,20 @@ class ProfileBillingController extends Controller
             'vendor' => setting('name'),
             'product' => 'Webhosting'
         ]);
+    }
+
+    protected function transformCurrency($key)
+    {
+        $currencies = [
+            Package::CURRENCY_EURO => '€',
+            Package::CURRENCY_USD => '$',
+            Package::CURRENCY_NOK => 'KR ',
+            Package::CURRENCY_CAD => 'CAD $',
+            Package::CURRENCY_AUD => 'AUD $',
+            Package::CURRENCY_GBP => 'GBP £',
+            Package::CURRENCY_INR => 'INR ₹',
+        ];
+
+        return $currencies[strtolower($key)];
     }
 }

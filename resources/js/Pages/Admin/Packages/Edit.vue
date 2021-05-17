@@ -37,7 +37,7 @@
                                             <option value="nok">{{ __('NOK (Norwegian Krone)') }}</option>
                                             <option value="aud">{{ __('AUD (Australian dollar)') }}</option>
                                             <option value="cad">{{ __('CAD (Canadian dollar)') }}</option>
-                                            <option value="inr">{{ __('INR (Indian rupee)') }}</option>
+                                            <option value="inr">{{ __('INR ₹ (Indian rupee)') }}</option>
                                         </FormSelect>
 
                                         <div class="space-y-4">
