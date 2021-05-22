@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Ploi Core</title>
+    <title>{{ setting('name') }}</title>
 
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
 
