@@ -61,9 +61,9 @@ class Server extends Resource
 
     public function create(
         string $name,
-        int $provider,
-        int $region,
-        int $plan
+        $provider,
+        $region,
+        $plan
     ): stdClass {
 
         // Remove the id
@@ -88,8 +88,6 @@ class Server extends Resource
             $response = $this->getPloi()->makeAPICall($this->getEndpoint(), 'post', $options);
         } catch (NotValid $exception) {
             $errors = json_decode($exception->getMessage())->errors;
-
-            dd($errors);
 
             throw $exception;
         }
