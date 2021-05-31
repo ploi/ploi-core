@@ -110,6 +110,11 @@ class User extends Authenticatable implements HasLocalePreference
         return $this->hasMany(SupportTicket::class);
     }
 
+    public function supportTicketReplies()
+    {
+        return $this->hasMany(SupportTicketReply::class);
+    }
+
     public function systemLogs()
     {
         return $this->hasMany(SystemLog::class);
@@ -139,6 +144,8 @@ class User extends Authenticatable implements HasLocalePreference
             $user->systemLogs()->delete();
             $user->servers()->detach();
             $user->sites()->detach();
+            $user->supportTicketReplies()->delete();
+            $user->supportTickets()->delete();
         });
     }
 }
