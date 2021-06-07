@@ -21,4 +21,9 @@ class Unauthenticated extends Exception
     {
         parent::__construct($message);
     }
+
+    public function render($request)
+    {
+        return redirect()->route('dashboard')->with('error', 'Unable to authenticate with backend server, please check API keys and connection.');
+    }
 }
