@@ -37,6 +37,7 @@ class SiteController extends Controller
             $server = $request->user()->servers()->findOrFail($serverId);
         } else {
             $server = Server::query()
+                ->where('maximum_sites', '>', 0)
                 ->doesntHave('users')
                 ->withCount('sites')
                 ->inRandomOrder()
