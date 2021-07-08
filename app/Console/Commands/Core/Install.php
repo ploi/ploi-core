@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Artisan;
 class Install extends Command
 {
     protected $company;
-    protected $signature = 'core:install';
+    protected $signature = 'core:install {--force}';
     protected $description = 'Installation command for Ploi Core';
     protected $versionChecker;
     protected $installationFile = 'app/installation';
@@ -37,7 +37,12 @@ class Install extends Command
         $this->createInstallationFile();
         $this->linkStorage();
 
-        $this->info('Succes! Installation has finished.');
+        $this->info('Success! Installation has finished.');
+        $this->line(' ');
+        $this->writeSeparationLine();
+        $this->info('Make sure to also setup emailing, the cronjob and the queue worker.');
+        $this->writeSeparationLine();
+        $this->line(' ');
         $this->info('Visit your platform at ' . env('APP_URL'));
     }
 
@@ -155,7 +160,7 @@ class Install extends Command
 
     protected function intro()
     {
-        $this->info('*---------------------------------------------------------------------------*');
+        $this->writeSeparationLine();
         $this->line('Ploi Core Installation');
         $this->line('Ploi Core version: ' . $this->versionChecker->currentVersion);
         $this->line('Ploi Core remote: ' . $this->versionChecker->remoteVersion);
@@ -165,13 +170,13 @@ class Install extends Command
         $this->line('Website: https://ploi-core.io');
         $this->line('E-mail: core@ploi.io');
         $this->line('Terms of service: https://ploi-core.io/terms');
-        $this->info('*---------------------------------------------------------------------------*');
+        $this->writeSeparationLine();
         $this->line('');
     }
 
     protected function isInstalled()
     {
-        if (file_exists(storage_path($this->installationFile))) {
+        if (file_exists(storage_path($this->installationFile)) && !$this->option('force')) {
             $this->line('');
             $this->comment('Ploi Core has already been installed before.');
             $this->comment('If you still want to start installation, remove this file to continue: ./storage/' . $this->installationFile);
@@ -378,5 +383,10 @@ class Install extends Command
     protected function writeToConfig(string $key, ?string $value): void
     {
         $this->laravel['config'][$key] = $value;
+    }
+
+    protected function writeSeparationLine()
+    {
+        $this->info('*---------------------------------------------------------------------------*');
     }
 }
