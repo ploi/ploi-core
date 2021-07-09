@@ -38,9 +38,12 @@
                                             <TableBody>
                                                 <TableRow v-for="user in users.data" :key="user.id">
                                                     <TableData>
-                                                        {{ user.name }}
+                                                        <inertia-link :href="route('admin.users.show', user.id)">
+                                                            <span class="text-primary">{{ user.name }}</span>
 
-                                                        <p class="text-medium-emphasis">{{ user.email }}</p>
+                                                            <p class="text-medium-emphasis">{{ user.email }}</p>
+                                                        </inertia-link>
+
                                                     </TableData>
                                                     <TableData>{{ user.user_name }}</TableData>
                                                     <TableData>{{ user.role }}</TableData>

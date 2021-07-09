@@ -144,7 +144,7 @@ class User extends Authenticatable implements HasLocalePreference
             $user->systemLogs()->delete();
             $user->servers()->detach();
             $user->sites()->detach();
-            foreach($user->supportTickets as $supportTicket){
+            foreach ($user->supportTickets as $supportTicket) {
                 $supportTicket->replies()->delete();
             }
             $user->supportTickets()->delete();

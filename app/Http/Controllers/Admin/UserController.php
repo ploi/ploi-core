@@ -55,7 +55,17 @@ class UserController extends Controller
 
     public function show($id)
     {
-        // TODO: Implement show feature for a user
+        $user = User::query()->findOrFail($id);
+
+        $servers = $user->servers()->withCount('sites')->latest()->paginate(5, ['*'], 'page_servers');
+
+        $sites = $user->sites()->with('server:id,name')->latest()->paginate(5, ['*'], 'page_sites');
+
+        return inertia('Admin/Users/Show', [
+            'user' => $user,
+            'sites' => $sites,
+            'servers' => $servers,
+        ]);
     }
 
     public function edit($id)
