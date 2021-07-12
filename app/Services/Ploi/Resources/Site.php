@@ -67,7 +67,8 @@ class Site extends Resource
         string $projectRoot = '/',
         string $systemUser = 'ploi',
         string $systemUserPassword = null
-    ): stdClass {
+    ): stdClass
+    {
 
         // Remove the id
         $this->setId(null);
@@ -98,6 +99,11 @@ class Site extends Resource
             }
 
             throw $exception;
+        }
+
+        // TODO: Debugging purposes
+        if (!$response->getJson() || !$response->getJson()->data) {
+            info(json_encode($response->getJson()));
         }
 
         // Set the id of the site
@@ -142,7 +148,7 @@ class Site extends Resource
         return $response->getJson()->data;
     }
 
-    public function phpVersion($version = '7.4') :stdClass
+    public function phpVersion($version = '7.4'): stdClass
     {
         // Set the options
         $options = [

@@ -41,6 +41,7 @@ class PackageRequest extends FormRequest
                     Package::CURRENCY_CAD,
                     Package::CURRENCY_GBP,
                     Package::CURRENCY_INR,
+                    Package::CURRENCY_THB,
                 ])
             ],
             'maximum_sites' => [
@@ -58,7 +59,11 @@ class PackageRequest extends FormRequest
             ],
             'price_monthly' => [
                 'nullable',
-                'numeric'
+                'numeric',
+            ],
+            'price_yearly' => [
+                'nullable',
+                'numeric',
             ],
             'server_permissions' => [
                 'array'

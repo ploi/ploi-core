@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'domain' => null,
+    'domain' => env('HORIZON_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'path' => 'horizon',
+    'path' => env('HORIZON_PATH', 'horizon'),
 
     /*
     |--------------------------------------------------------------------------
@@ -145,13 +145,13 @@ return [
     | Memory Limit (MB)
     |--------------------------------------------------------------------------
     |
-    | This value describes the maximum amount of memory the Horizon worker
-    | may consume before it is terminated and restarted. You should set
-    | this value according to the resources available to your server.
+    | This value describes the maximum amount of memory the Horizon master
+    | supervisor may consume before it is terminated and restarted. For
+    | configuring these limits on your workers, see the next section.
     |
     */
 
-    'memory_limit' => 64,
+    'memory_limit' => env('HORIZON_MEMORY_LIMIT', 64),
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +163,9 @@ return [
     | queued jobs and will be provisioned by Horizon during deployment.
     |
     */
+
+    'defaults' => [
+    ],
 
     'environments' => [
         'production' => [
