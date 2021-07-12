@@ -91,7 +91,7 @@
                                         </TableHeader>
                                         <TableHeader>
                                             <a href="javascript:void(0);" data-balloon-blunt :aria-label="__('Sort by price')" data-balloon-pos="up" class="text-primary flex items-center space-x-2" @click="requestFilterUrl({sortBy: {'price' : filters.sort.price === 'asc' ? 'desc' : 'asc'}})">
-                                                <span>{{ __('Monthly price') }}</span>
+                                                <span>{{ __('Price') }}</span>
 
                                                 <IconArrowUp v-if="filters.sort.price === 'asc'" />
                                                 <IconArrowDown v-if="filters.sort.price === 'desc'" />
@@ -109,7 +109,8 @@
                                         <TableData>{{ webPackage.name }}</TableData>
                                         <TableData>{{ webPackage.maximum_sites === 0 ? 'Unlimited' : webPackage.maximum_sites }}</TableData>
                                         <TableData>{{ webPackage.maximum_servers === 0 ? 'Unlimited' : webPackage.maximum_servers }}</TableData>
-                                        <TableData>{{ webPackage.price_monthly }}</TableData>
+                                        <TableData v-if="webPackage.period === 'monthly'">{{ webPackage.price_monthly }} p/month</TableData>
+                                        <TableData v-else-if="webPackage.period === 'yearly'">{{ webPackage.price_yearly }} yearly</TableData>
                                         <TableData class="text-right">
                                             <Button size="sm" :disabled="sending || (subscription && webPackage.plan_id === subscription.stripe_plan)" @click="updatePlan(webPackage.id)">
                                                 {{ __('Subscribe') }}

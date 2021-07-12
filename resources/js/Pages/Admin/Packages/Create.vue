@@ -27,8 +27,12 @@
                                         <FormInput :label="__('Maximum sites')" type="number" min="0" :errors="$page.props.errors.maximum_sites" v-model="form.maximum_sites" />
                                         <FormInput :label="__('Maximum servers')" type="number" min="0" :errors="$page.props.errors.maximum_servers" v-model="form.maximum_servers" />
                                         <FormInput :label="__('Plan ID')" :errors="$page.props.errors.plan_id" v-model="form.plan_id" />
-                                        <FormInput v-if="form.plan_id" :label="__('Monthly price')" :errors="$page.props.errors.price_monthly" v-model="form.price_monthly" />
-                                        <FormSelect :errors="$page.props.errors.currency" v-if="form.plan_id" :label="__('Currency')" v-model="form.currency">
+                                        <FormInput v-if="form.plan_id" :label="__('Monthly price')"
+                                                   helper-text="Fill this in if you want it to be monthly payments"
+                                                   :errors="$page.props.errors.price_monthly" v-model="form.price_monthly"/>
+                                        <FormInput v-if="form.plan_id" :label="__('Yearly price')"
+                                                   helper-text="Fill this in if you want it to be yearly payments"
+                                                   :errors="$page.props.errors.price_yearly" v-model="form.price_yearly"/>                                        <FormSelect :errors="$page.props.errors.currency" v-if="form.plan_id" :label="__('Currency')" v-model="form.currency">
                                             <option value="usd">{{ __('USD $') }}</option>
                                             <option value="eur">{{ __('Euro €') }}</option>
                                             <option value="gbp">{{ __('GBP £') }}</option>
@@ -36,6 +40,7 @@
                                             <option value="aud">{{ __('AUD (Australian dollar)') }}</option>
                                             <option value="cad">{{ __('CAD (Canadian dollar)') }}</option>
                                             <option value="inr">{{ __('INR ₹ (Indian rupee)') }}</option>
+                                            <option value="thb">{{ __('THB (Thai bath)') }}</option>
                                         </FormSelect>
 
                                         <div class="space-y-4">
@@ -197,6 +202,7 @@
                         delete: false
                     },
                     price_monthly: null,
+                    price_yearly: null,
                     providers: []
                 },
             }

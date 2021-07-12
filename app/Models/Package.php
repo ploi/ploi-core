@@ -14,6 +14,7 @@ class Package extends Model
     const CURRENCY_CAD = 'cad';
     const CURRENCY_GBP = 'gbp';
     const CURRENCY_INR = 'inr';
+    const CURRENCY_THB = 'thb';
 
     public $fillable = [
         'name',
@@ -21,6 +22,7 @@ class Package extends Model
         'currency',
         'price_hourly',
         'price_monthly',
+        'price_yearly',
         'maximum_sites',
         'maximum_servers',
         'site_permissions',

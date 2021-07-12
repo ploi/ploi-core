@@ -22,7 +22,11 @@ class ProfileBillingController extends Controller
         $packages = Package::query()
             ->where(function ($query) {
                 return $query
-                    ->where('price_monthly', '>', 0)
+                    ->where(function ($query) {
+                        return $query
+                            ->where('price_monthly', '>', 0)
+                            ->orWhere('price_yearly', '>', 0);
+                    })
                     ->whereNotNull('plan_id');
             })
             ->when($request->input('sortBy.' . $sortByType), function ($query, $value) use ($sortByType) {
@@ -55,7 +59,14 @@ class ProfileBillingController extends Controller
             ->transform(function (Package $package) {
                 $currency = $this->transformCurrency($package->currency);
 
+                $package->period = 'monthly';
+
+                if ($package->price_yearly > 0) {
+                    $package->period = 'yearly';
+                }
+
                 $package->price_monthly = ($currency ?? '[Unknown currency]') . number_format($package->price_monthly, 2, ',', '.');
+                $package->price_yearly = ($currency ?? '[Unknown currency]') . number_format($package->price_yearly, 2, ',', '.');
 
                 return $package;
             });
@@ -198,8 +209,9 @@ class ProfileBillingController extends Controller
             Package::CURRENCY_AUD => 'AUD $',
             Package::CURRENCY_GBP => 'GBP £',
             Package::CURRENCY_INR => 'INR ₹',
+            Package::CURRENCY_THB => 'THB ',
         ];
 
-        return $currencies[strtolower($key)];
+        return $currencies[strtolower($key)] ?? '$';
     }
 }
