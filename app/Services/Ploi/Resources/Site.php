@@ -99,6 +99,8 @@ class Site extends Resource
             }
 
             throw $exception;
+        } catch (\Exception $exception) {
+            info($exception->getMessage());
         }
 
         // TODO: Debugging purposes
