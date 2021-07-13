@@ -104,7 +104,7 @@ class Site extends Resource
         }
 
         // TODO: Debugging purposes
-        if (!$response->getJson() || !$response->getJson()->data) {
+        if (!$response->getJson() || !isset($response->getJson()->data)) {
             info(json_encode($response->getJson()));
         }
 
