@@ -105,7 +105,7 @@ class Site extends Resource
 
         // TODO: Debugging purposes
         if (!$response->getJson() || !isset($response->getJson()->data)) {
-            info(json_encode($response->getJson()));
+            throw new \Exception($response->getJson()->error ?? 'Unknown error has occured');
         }
 
         // Set the id of the site

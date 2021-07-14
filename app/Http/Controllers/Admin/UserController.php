@@ -45,8 +45,8 @@ class UserController extends Controller
             $user->save();
         }
 
-        if ($package = $request->input('package')) {
-            $user->package_id = $package;
+        if ($request->input('package') && Package::find($request->input('package'))) {
+            $user->package_id = $request->input('package');
             $user->save();
         }
 

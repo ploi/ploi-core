@@ -142,10 +142,10 @@
 
         methods: {
             submit() {
-                this.sending = true
-
-                this.$inertia.post(this.route('admin.users.store'), this.form)
-                    .then(() => this.sending = false)
+                this.$inertia.post(this.route('admin.users.store'), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => this.sending = false
+                })
             }
         }
     }

@@ -83,8 +83,12 @@ class PackageRequest extends FormRequest
             $merge['price_monthly'] = 0.000;
         }
 
+        if (!$this->price_yearly) {
+            $merge['price_yearly'] = 0.000;
+        }
+
         // If we don't have the currency filled in, merge a default
-        if (!$this->price_monthly) {
+        if (!$this->price_monthly || !$this->price_yearly) {
             $merge['currency'] = Package::CURRENCY_USD;
         }
 
