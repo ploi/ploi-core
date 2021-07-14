@@ -127,23 +127,23 @@
             reply() {
                 this.loading = true;
 
-                this.$inertia.post(this.route('admin.support.reply', this.ticket.id), this.form)
-                    .then(response => {
+                this.$inertia.post(this.route('admin.support.reply', this.ticket.id), this.form, {
+                    onStart: () => this.sending = true,
+                    onFinish: () => {
                         this.loading = false;
 
                         if (!Object.keys(this.$page.props.errors).length) {
                             this.form.content = null;
                         }
-                    })
+                    }
+                });
             },
 
             close() {
-                this.loading = true;
-
-                this.$inertia.post(this.route('admin.support.close', this.ticket.id))
-                    .then(response => {
-                        this.loading = false;
-                    })
+                this.$inertia.post(this.route('admin.support.close', this.ticket.id), {
+                    onStart: () => this.loading = true,
+                    onFinish: () => this.loading = false
+                })
             }
         },
     }
