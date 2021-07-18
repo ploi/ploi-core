@@ -118,7 +118,7 @@
             useNotification,
 
             syncServer (server){
-                window.axios.post(this.route('admin.services.servers.sync').url(), server)
+                window.axios.post(this.route('admin.services.servers.sync'), server)
                 .then(() => {
                     useNotification({
                         variant: 'success',

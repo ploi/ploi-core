@@ -118,7 +118,7 @@
             useNotification,
 
             syncProvider (provider){
-                window.axios.post(this.route('admin.services.providers.sync', provider.id).url())
+                window.axios.post(this.route('admin.services.providers.sync', provider.id))
                 .then(() => {
                     useNotification({
                         variant: 'success',
