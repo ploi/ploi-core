@@ -4,6 +4,7 @@ namespace App\Console\Commands\Core;
 
 use Exception;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use RuntimeException;
 use App\Models\Package;
 use App\Services\Ploi\Ploi;
@@ -145,7 +146,9 @@ class Install extends Command
             ->get((new Ploi)->url . 'ping');
 
         if (!$response->ok() || !$response->json()) {
-            return false;
+            return [
+                'error' => Arr::get($response->json(), 'message', 'An unknown error has occurred.')
+            ];
         }
 
         return $response->json();
@@ -277,6 +280,18 @@ class Install extends Command
 
         if (!$this->company) {
             $this->error('Could not authenticate with ploi.io, please retry by running this command again.');
+
+            exit();
+        }
+
+        if (isset($this->company['error'])) {
+            $this->error($this->company['error']);
+
+            exit();
+        }
+
+        if ($this->company['user']['subscription'] !== 'unlimited') {
+            $this->error('Your subscription does not cover the usage of Ploi Core. Please upgrade your subscription to Unlimited.');
 
             exit();
         }
