@@ -246,7 +246,7 @@ export default {
         requestFtpPassword() {
             this.$page.props.errors = [];
 
-            window.axios.post(this.route('sites.request-ftp-password', this.site.id).url(), this.form)
+            window.axios.post(this.route('sites.request-ftp-password', this.site.id), this.form)
                 .then(response => {
                     if (!response.data.ftp_password) {
                         this.useNotification({

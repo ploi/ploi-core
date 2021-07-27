@@ -103,7 +103,7 @@ export default {
 
                 this.results = null;
 
-                window.axios.get(this.route('search', {query: this.search}).url())
+                window.axios.get(this.route('search', {query: this.search}))
                     .then((response) => {
                         this.loading = false;
                         this.totalResults = response.data.total;
