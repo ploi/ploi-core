@@ -18,6 +18,8 @@ class Certificate extends Model
 
     public $fillable = [
         'domain',
-        'type'
+        'type',
+        'certificate',
+        'private',
     ];
 }

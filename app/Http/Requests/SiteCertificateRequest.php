@@ -25,15 +25,36 @@ class SiteCertificateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'domain' => [
-                'required',
-                'string',
-                Rule::unique('certificates', 'domain')->where(function ($query) {
-                    return $query->where('site_id', $this->route('site'));
-                }),
-                new LetsEncryptMatchHostWithIp($this->route('site'))
-            ]
-        ];
+        $rules = [];
+
+        if ($this->input('type') === 'letsencrypt') {
+            $rules = [
+                'domain' => [
+                    'required',
+                    'string',
+                    Rule::unique('certificates', 'domain')->where(function ($query) {
+                        return $query->where('site_id', $this->route('site'));
+                    }),
+                    new LetsEncryptMatchHostWithIp($this->route('site'))
+                ]
+            ];
+        }
+
+        if ($this->input('type') === 'custom') {
+            $rules = [
+                'certificate' => [
+                    'required',
+                    'string',
+                    'min:5'
+                ],
+                'private' => [
+                    'required',
+                    'string',
+                    'min:5'
+                ]
+            ];
+        }
+
+        return $rules;
     }
 }

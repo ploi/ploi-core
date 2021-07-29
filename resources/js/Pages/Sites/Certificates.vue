@@ -31,7 +31,7 @@
 
                                         <FormInput v-if="form.type === 'letsencrypt'" :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
 
-                                        <FormTextarea v-if="form.type === 'custom'" :label="__('Private key')" :errors="$page.props.errors.private_key" rows="2" v-model="form.private_key" />
+                                        <FormTextarea v-if="form.type === 'custom'" :label="__('Private key')" :errors="$page.props.errors.private" rows="2" v-model="form.private" />
                                         <FormTextarea v-if="form.type === 'custom'" :label="__('Certificate')" :errors="$page.props.errors.certificate" rows="2" v-model="form.certificate" />
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
@@ -157,7 +157,9 @@
 
                 form: {
                     domain: null,
-                    type: 'letsencrypt'
+                    type: 'letsencrypt',
+                    certificate: null,
+                    private: null,
                 },
 
                 breadcrumbs: [
@@ -229,7 +231,7 @@
             },
 
             poll() {
-                this.$inertia.replace(this.route('sites.certificates.index', this.site.id), {
+                this.$inertia.get(this.route('sites.certificates.index', this.site.id), {
                     only: ['certificates'],
                     preserveScroll: true,
                 })
@@ -264,6 +266,9 @@
             },
 
             setDomainData(){
+                this.form.certificate = null;
+                this.form.private = null;
+
                 if (this.site.domain.startsWith('www.')) {
                     this.form.domain = this.site.domain + ',' + this.site.domain.replace('www.', '');
                 } else {
