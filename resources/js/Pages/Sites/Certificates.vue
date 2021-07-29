@@ -19,12 +19,20 @@
                             <SettingsSegment>
                                 <template #title>{{ __('Create') }}</template>
                                 <template #subtitle>
-                                    {{ __('Request a new Let\'s Encrypt certificate here. Make sure that the DNS has fully propagated.')}}
+                                    <span v-if="form.type === 'letsencrypt'" v-text="__('Request a new Let\'s Encrypt certificate here. Make sure that the DNS has fully propagated.')"></span>
+                                    <span v-if="form.type === 'custom'" v-text="__('Install your own SSL certificate here. Make sure to enter the private key and certificate.')"></span>
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
+                                        <FormSelect :label="__('Select certificate type')" v-model="form.type">
+                                            <option value="letsencrypt">Let's Encrypt certificate</option>
+                                            <option value="custom">Custom SSL certificate</option>
+                                        </FormSelect>
 
+                                        <FormInput v-if="form.type === 'letsencrypt'" :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
+
+                                        <FormTextarea v-if="form.type === 'custom'" :label="__('Private key')" :errors="$page.props.errors.private_key" rows="2" v-model="form.private_key" />
+                                        <FormTextarea v-if="form.type === 'custom'" :label="__('Certificate')" :errors="$page.props.errors.certificate" rows="2" v-model="form.certificate" />
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                         </FormActions>
@@ -88,6 +96,8 @@
     import SettingsLayout from '@/components/layouts/SettingsLayout'
     import SettingsSegment from '@/components/SettingsSegment'
     import FormInput from '@/components/forms/FormInput'
+    import FormSelect from '@/components/forms/FormSelect'
+    import FormTextarea from '@/components/forms/FormTextarea'
     import Form from '@/components/Form'
     import Pagination from '@/components/Pagination'
     import EmptyImage from '@/components/EmptyImage'
@@ -124,6 +134,8 @@
             StatusBubble,
             NotificationBadge,
             FormInput,
+            FormSelect,
+            FormTextarea,
             SettingsLayout,
             SettingsSegment,
             Form,
@@ -145,6 +157,7 @@
 
                 form: {
                     domain: null,
+                    type: 'letsencrypt'
                 },
 
                 breadcrumbs: [
@@ -225,14 +238,15 @@
             submit() {
                 this.sending = true
 
-                this.$inertia.post(this.route('sites.certificates.store', this.site.id), this.form)
-                    .then(() => {
+                this.$inertia.post(this.route('sites.certificates.store', this.site.id), this.form, {
+                    onFinish: () => {
                         this.sending = false
 
                         if (!Object.keys(this.$page.props.errors).length) {
                             this.setDomainData();
                         }
-                    })
+                    }
+                });
             },
 
             confirmDelete(certificate) {

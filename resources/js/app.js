@@ -1,4 +1,4 @@
-import { InertiaApp, plugin } from '@inertiajs/inertia-vue'
+import { InertiaApp, plugin, InertiaLink } from '@inertiajs/inertia-vue'
 import Vue from 'vue';
 import VueMeta from 'vue-meta'
 import store from '@/store'
@@ -14,6 +14,7 @@ Vue.use(VueMeta)
 Vue.use(VueClipboard)
 Vue.mixin({ methods: { route: window.route } })
 Vue.mixin(require('./mixins'));
+Vue.component('InertiaLink', InertiaLink)
 import { InertiaProgress } from '@inertiajs/progress'
 
 InertiaProgress.init({
