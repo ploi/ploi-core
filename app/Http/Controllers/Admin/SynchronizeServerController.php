@@ -11,7 +11,7 @@ class SynchronizeServerController extends Controller
 {
     public function index()
     {
-        if (config('app.demo')) {
+        if ($this->isDemo()) {
             return redirect('/')->with('info', __('This feature is not available in demo mode.'));
         }
 
@@ -19,7 +19,9 @@ class SynchronizeServerController extends Controller
 
         $availableServers = $ploi->synchronize()->servers()->getData();
 
-        $currentServers = Server::whereNotIn('id', array_keys((array)$availableServers))->get();
+        $currentServers = Server::query()
+            ->whereNotIn('id', array_keys((array)$availableServers))
+            ->get();
 
         return inertia('Admin/Services/Servers', [
             'availableServers' => $availableServers,

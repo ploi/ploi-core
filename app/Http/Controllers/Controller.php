@@ -9,4 +9,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use ValidatesRequests, AuthorizesRequests;
+
+    protected function isDemo()
+    {
+        return config('app.demo');
+    }
 }

@@ -73,6 +73,7 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     // Site syncing
     Route::group(['prefix' => 'sites', 'as' => 'sites.'], function () {
         Route::get('/', 'SynchronizeSiteController@index')->name('index');
+        Route::post('/', 'SynchronizeSiteController@synchronizeSite')->name('sync');
 
         Route::get('{site}/edit', 'SiteController@edit')->name('edit');
         Route::post('{site}/attach', 'SiteController@attach')->name('attach');

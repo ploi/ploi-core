@@ -19,4 +19,9 @@ class Synchronize extends Resource
     {
         return $this->getPloi()->makeAPICall($this->getEndpoint() . '/servers');
     }
+
+    public function sites()
+    {
+        return $this->getPloi()->makeAPICall($this->getEndpoint() . '/sites');
+    }
 }
