@@ -9,7 +9,7 @@
                     </h1>
                 </div>
 
-                <FormInput :label="__('Email')" :errors="$page.props.errors.email" v-model="form.email" id="email"
+                <FormInput :label="__('Email')" :autofocus="true" :errors="$page.props.errors.email" v-model="form.email" id="email"
                            type="email" required/>
 
                 <FormInput :label="__('Password')" v-model="form.password" id="password" type="password" required/>
