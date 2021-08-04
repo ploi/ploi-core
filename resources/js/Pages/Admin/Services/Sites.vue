@@ -20,6 +20,10 @@
                                 <template #title>{{ __('Overview') }}</template>
                                 <template #subtitle>{{ __('You can synchronize your sites here. It is safe to synchronize already existing sites.') }}</template>
                                 <template #content>
+                                    <Button size="sm" :disabled="loading" v-on:click="syncAll">
+                                        {{ __('Synchronize all sites') }}
+                                    </Button>
+
                                     <Table caption="Available sites overview">
                                         <TableHead>
                                             <TableRow>
@@ -30,8 +34,8 @@
                                         <TableBody>
                                             <TableRow v-for="availableSite in availableSites" :key="availableSite.id">
                                                 <TableData>{{ availableSite.domain }}</TableData>
-                                                <TableData>
-                                                    <Button size="sm" v-on:click="syncSite(availableSite)">
+                                                <TableData class="flex justify-end">
+                                                    <Button :disabled="loading" size="sm" v-on:click="syncSite(availableSite)">
                                                         {{ __('Synchronize') }}
                                                     </Button>
                                                 </TableData>
@@ -106,18 +110,49 @@
             availableSites: Array,
         },
 
+        data() {
+            return {
+                loading: false,
+            }
+        },
+
         methods: {
             useNotification,
 
             syncSite (site){
+                this.loading = true;
+
                 window.axios.post(this.route('admin.services.sites.sync'), site)
                     .then(() => {
+                        this.loading = false;
+
                         useNotification({
                             variant: 'success',
                             title: `Sites`,
                             message: `Site ${site.domain} has been synchronized to this system`
                         })
-                    });
+                    })
+                    .catch(error => {
+                        this.loading = false;
+                    })
+            },
+
+            syncAll() {
+                this.loading = true;
+
+                window.axios.post(this.route('admin.services.sites.sync.all'))
+                    .then(() => {
+                        this.loading = false;
+
+                        useNotification({
+                            variant: 'success',
+                            title: `Sites`,
+                            message: `All sites have been synchronized to this system`
+                        })
+                    })
+                    .catch(error => {
+                        this.loading = false;
+                    })
             }
         },
     }

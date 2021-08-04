@@ -16,9 +16,7 @@ class SynchronizeSiteController extends Controller
             return redirect('/')->with('info', __('This feature is not available in demo mode.'));
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $availableSites = $ploi->synchronize()->sites()->getData();
+        $availableSites = $this->getPloi()->synchronize()->sites()->getData();
 
         $currentSites = Site::query()
             ->whereNotIn('id', array_keys((array)$availableSites))
@@ -32,7 +30,7 @@ class SynchronizeSiteController extends Controller
 
     public function synchronizeSite(Request $request)
     {
-        $server = Server::where('ploi_id', $request->input('server_id'))->firstOrFail();
+        $server = Server::query()->where('ploi_id', $request->input('server_id'))->firstOrFail();
 
         $site = Site::query()
             ->updateOrCreate([
@@ -45,5 +43,26 @@ class SynchronizeSiteController extends Controller
         $site->status = $request->input('status');
         $site->server_id = $server->id;
         $site->save();
+    }
+
+    public function synchronizeAll(Request $request)
+    {
+        $availableSites = $this->getPloi()->synchronize()->sites()->getData();
+
+        foreach ($availableSites as $availableSite) {
+            $server = Server::query()->where('ploi_id', $availableSite->server_id)->firstOrFail();
+
+            $site = Site::query()
+                ->updateOrCreate([
+                    'ploi_id' => $availableSite->server_id
+                ], [
+                    'domain' => $availableSite->domain,
+                    'php_version' => $availableSite->php_version,
+                ]);
+
+            $site->status = $availableSite->status;
+            $site->server_id = $server->id;
+            $site->save();
+        }
     }
 }
