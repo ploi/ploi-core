@@ -23,6 +23,7 @@
                :value="value"
                @input="updateValue($event.target.value)"
                :disabled="loading || disabled"
+               :autofocus="autofocus"
                :placeholder="placeholder" />
         <ErrorText v-if="errors">{{ errors[0] }}</ErrorText>
         <HelperText v-if="helperText && !errors">{{ helperText }}</HelperText>
@@ -92,6 +93,11 @@ export default {
             required: false,
             default: false,
         },
+        autofocus: {
+            type: Boolean,
+            required: false,
+            default: false,
+        }
     },
 
     components: {

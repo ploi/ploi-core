@@ -26,6 +26,11 @@
                         active: this.route().current('admin.services.servers.index')
                     },
                     {
+                        title: this.__('Synchronize sites'),
+                        to: this.route('admin.services.sites.index'),
+                        active: this.route().current('admin.services.sites.index')
+                    },
+                    {
                         title: this.__('Synchronize providers'),
                         to: this.route('admin.services.providers.index'),
                         active: this.route().current('admin.services.providers.index')

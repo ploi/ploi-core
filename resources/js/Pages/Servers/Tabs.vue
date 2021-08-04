@@ -26,11 +26,11 @@
                         to: this.route('servers.show', this.server.id),
                         active: this.route().current('servers.show')
                     },
-                    {
+                    this.can('servers', 'update') ? {
                         title: this.__('Settings'),
                         to: this.route('servers.settings.show', this.server.id),
                         active: this.route().current('servers.settings.show')
-                    },
+                    } : null,
                 ],
             }
         },

@@ -157,7 +157,7 @@
             }
 
             // If it includes a create true parameter, then we open the creation modal
-            if(window.location.search.includes('create=true')){
+            if(window.location.search.includes('create=')){
                 this.modalIsOpen = true;
             }
             if(window.location.search.includes('server=')){

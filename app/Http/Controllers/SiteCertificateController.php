@@ -25,6 +25,9 @@ class SiteCertificateController extends Controller
 
         $certificate = $site->certificates()->create([
             'domain' => $request->input('domain'),
+            'type' => $request->input('type', 'letsencrypt'),
+            'certificate' => $request->input('certificate'),
+            'private' => $request->input('private')
         ]);
 
         $certificate->server_id = $site->server_id;

@@ -67,8 +67,7 @@ class Site extends Resource
         string $projectRoot = '/',
         string $systemUser = 'ploi',
         string $systemUserPassword = null
-    ): stdClass
-    {
+    ): stdClass {
 
         // Remove the id
         $this->setId(null);

@@ -14,36 +14,42 @@ class CreateCertificate implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $certificate;
+    public Certificate $certificate;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param Certificate $certificate
-     */
     public function __construct(Certificate $certificate)
     {
         $this->certificate = $certificate;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
     public function handle()
     {
         $ploi = new Ploi(config('services.ploi.token'));
 
-        $ploiCertificate = $ploi->server($this->certificate->server->ploi_id)
-            ->sites($this->certificate->site->ploi_id)
-            ->certificates()
-            ->create(
-                $this->certificate->domain
-            );
+        if ($this->certificate->type === 'letsencrypt') {
+            $ploiCertificate = $ploi->server($this->certificate->server->ploi_id)
+                ->sites($this->certificate->site->ploi_id)
+                ->certificates()
+                ->create(
+                    $this->certificate->domain
+                );
 
-        $this->certificate->ploi_id = $ploiCertificate->id;
-        $this->certificate->save();
+            $this->certificate->ploi_id = $ploiCertificate->id;
+            $this->certificate->save();
+        }
+
+        if ($this->certificate->type === 'custom') {
+            $ploiCertificate = $ploi->server($this->certificate->server->ploi_id)
+                ->sites($this->certificate->site->ploi_id)
+                ->certificates()
+                ->create(
+                    $this->certificate->certificate,
+                    $this->certificate->type,
+                    $this->certificate->private
+                );
+
+            $this->certificate->ploi_id = $ploiCertificate->id;
+            $this->certificate->save();
+        }
 
         // Lets fetch the status after 5 seconds
         dispatch(new FetchCertificateStatus($this->certificate))->delay(now()->addSeconds(5));

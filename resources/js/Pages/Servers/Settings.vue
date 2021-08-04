@@ -6,7 +6,7 @@
             <Container>
                 <PageHeader>
                     <template #start>
-                        <PageHeaderTitle>{{ __('Settings') }}</PageHeaderTitle>
+                        <PageHeaderTitle>{{ server.name }}</PageHeaderTitle>
                     </template>
                 </PageHeader>
 

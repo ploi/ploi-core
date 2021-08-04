@@ -89,7 +89,7 @@
                                         </Table>
                                     </div>
 
-                                    <pagination :links="sites"/>
+                                    <pagination :links="sites" :preserve-scroll="true"/>
                                 </template>
                             </SettingsSegment>
 
@@ -127,7 +127,7 @@
                                         </Table>
                                     </div>
 
-                                    <pagination :links="servers"/>
+                                    <pagination :links="servers" :preserve-scroll="true"/>
                                 </template>
                             </SettingsSegment>
                         </template>

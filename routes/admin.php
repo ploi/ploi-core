@@ -52,6 +52,7 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::group(['prefix' => 'servers', 'as' => 'servers.'], function () {
         Route::get('/', 'SynchronizeServerController@index')->name('index');
         Route::post('/', 'SynchronizeServerController@synchronizeServer')->name('sync');
+        Route::post('all', 'SynchronizeServerController@synchronizeAll')->name('sync.all');
 
         Route::get('{server}/edit', 'ServerController@edit')->name('edit');
         Route::post('{server}/attach', 'ServerController@attach')->name('attach');
@@ -73,6 +74,8 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     // Site syncing
     Route::group(['prefix' => 'sites', 'as' => 'sites.'], function () {
         Route::get('/', 'SynchronizeSiteController@index')->name('index');
+        Route::post('/', 'SynchronizeSiteController@synchronizeSite')->name('sync');
+        Route::post('all', 'SynchronizeSiteController@synchronizeAll')->name('sync.all');
 
         Route::get('{site}/edit', 'SiteController@edit')->name('edit');
         Route::post('{site}/attach', 'SiteController@attach')->name('attach');

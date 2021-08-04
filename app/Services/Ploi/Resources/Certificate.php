@@ -43,7 +43,7 @@ class Certificate extends Resource
         return $this->getPloi()->makeAPICall($this->getEndpoint());
     }
 
-    public function create(string $certificate, string $type = 'letsencrypt'): stdClass
+    public function create(string $certificate, string $type = 'letsencrypt', string $private = null): stdClass
     {
         // Remove the id
         $this->setId(null);
@@ -51,8 +51,9 @@ class Certificate extends Resource
         // Set the options
         $options = [
             'body' => json_encode([
-                'certificate' => $certificate,
                 'type' => $type,
+                'certificate' => $certificate,
+                'private' => $private,
             ]),
         ];
 

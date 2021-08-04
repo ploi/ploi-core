@@ -118,7 +118,7 @@
                                         </Table>
                                     </div>
 
-                                    <pagination :links="sites"/>
+                                    <pagination :links="providers"/>
                                 </template>
                             </SettingsSegment>
                         </template>
