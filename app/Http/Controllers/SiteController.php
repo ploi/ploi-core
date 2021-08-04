@@ -38,7 +38,17 @@ class SiteController extends Controller
         } else {
             $server = Server::query()
                 ->where('maximum_sites', '>', 0)
-                ->doesntHave('users')
+                ->where(function ($query) {
+                    return $query
+                        ->where(function ($query) {
+                            return $query->whereHas('users', function ($query) {
+                                return $query->where('user_id', auth()->id());
+                            });
+                        })
+                        ->orWhere(function ($query) {
+                            return $query->doesntHave('users');
+                        });
+                })
                 ->withCount('sites')
                 ->inRandomOrder()
                 ->first();
