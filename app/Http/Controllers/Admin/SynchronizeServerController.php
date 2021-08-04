@@ -15,9 +15,7 @@ class SynchronizeServerController extends Controller
             return redirect('/')->with('info', __('This feature is not available in demo mode.'));
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $availableServers = $ploi->synchronize()->servers()->getData();
+        $availableServers = $this->getPloi()->synchronize()->servers()->getData();
 
         $currentServers = Server::query()
             ->whereNotIn('id', array_keys((array)$availableServers))
