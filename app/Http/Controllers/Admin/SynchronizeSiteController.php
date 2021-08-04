@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Server;
 use App\Models\Site;
-use App\Services\Ploi\Ploi;
+use App\Models\Server;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SynchronizeSiteController extends Controller
 {
