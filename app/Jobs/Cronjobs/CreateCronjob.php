@@ -4,6 +4,7 @@ namespace App\Jobs\Cronjobs;
 
 use App\Models\Cronjob;
 use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class CreateCronjob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $cronjob;
 
@@ -35,13 +36,14 @@ class CreateCronjob implements ShouldQueue
     {
         $owner = $this->cronjob->site->users()->first();
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploiCronjob = $ploi->server($this->cronjob->server->ploi_id)->cronjobs()->create(
-            $this->cronjob->command,
-            $this->cronjob->frequency,
-            $owner->user_name
-        );
+        $ploiCronjob = $this->getPloi()
+            ->server($this->cronjob->server->ploi_id)
+            ->cronjobs()
+            ->create(
+                $this->cronjob->command,
+                $this->cronjob->frequency,
+                $owner->user_name
+            );
 
         $this->cronjob->ploi_id = $ploiCronjob->id;
         $this->cronjob->save();

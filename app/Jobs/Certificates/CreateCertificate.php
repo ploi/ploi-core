@@ -4,6 +4,7 @@ namespace App\Jobs\Certificates;
 
 use App\Models\Certificate;
 use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class CreateCertificate implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public Certificate $certificate;
 
@@ -23,10 +24,9 @@ class CreateCertificate implements ShouldQueue
 
     public function handle()
     {
-        $ploi = new Ploi(config('services.ploi.token'));
-
         if ($this->certificate->type === 'letsencrypt') {
-            $ploiCertificate = $ploi->server($this->certificate->server->ploi_id)
+            $ploiCertificate = $this->getPloi()
+                ->server($this->certificate->server->ploi_id)
                 ->sites($this->certificate->site->ploi_id)
                 ->certificates()
                 ->create(
@@ -38,7 +38,8 @@ class CreateCertificate implements ShouldQueue
         }
 
         if ($this->certificate->type === 'custom') {
-            $ploiCertificate = $ploi->server($this->certificate->server->ploi_id)
+            $ploiCertificate = $this->getPloi()
+                ->server($this->certificate->server->ploi_id)
                 ->sites($this->certificate->site->ploi_id)
                 ->certificates()
                 ->create(

@@ -4,6 +4,7 @@ namespace App\Jobs\Certificates;
 
 use App\Models\Certificate;
 use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use App\Traits\JobHasThresholds;
 use Illuminate\Queue\SerializesModels;
@@ -13,7 +14,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class FetchCertificateStatus implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds, HasPloi;
 
     public $certificate;
 
@@ -23,7 +24,7 @@ class FetchCertificateStatus implements ShouldQueue
      * @param Certificate $certificate
      * @param int $threshold
      */
-    public function __construct(Certificate $certificate, $threshold = 0)
+    public function __construct(Certificate $certificate, int $threshold = 0)
     {
         $this->certificate = $certificate;
         $this->setThreshold($threshold);
@@ -43,9 +44,8 @@ class FetchCertificateStatus implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploiCronjob = $ploi->server($this->certificate->server->ploi_id)
+        $ploiCronjob = $this->getPloi()
+            ->server($this->certificate->server->ploi_id)
             ->sites($this->certificate->site->ploi_id)
             ->certificates()
             ->get($this->certificate->ploi_id)
