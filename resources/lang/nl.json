@@ -237,6 +237,7 @@
     "This will allow your customers to make support requests to you.": "Dit maakt het mogelijk voor je klanten om contact op te kunnen nemen.",
     "Enable documentation platform": "Zet documentatie platform aan",
     "This will allow you to create articles for your users to look at.": "Dit maakt het mogelijk om artikelen te schrijven zoals tutorials.",
+    "This will make sure each site created by one user is always isolated from another.": "Dit zorgt ervoor dat elke site die aangemaakt wordt op een aparte system user aangemaakt wordt, zodat elke site geïsoleerd is van elkaar.",
     "Send welcome email": "Verstuur welkom email",
     "Server has been updated": "Server is geüpdatet",
     "Select default package": "Selecteer standaard pakket",
