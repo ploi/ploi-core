@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Databases;
 
+use App\Traits\HasPloi;
 use App\Models\Database;
-use App\Services\Ploi\Ploi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class CreateDatabase implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $database;
     public $password;
@@ -38,9 +38,10 @@ class CreateDatabase implements ShouldQueue
     {
         $databaseUser = $this->database->users()->first();
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploiDatabase = $ploi->server($this->database->server->ploi_id)->databases()->create($this->database->name, $databaseUser->name, $this->password);
+        $ploiDatabase = $this->getPloi()
+            ->server($this->database->server->ploi_id)
+            ->databases()
+            ->create($this->database->name, $databaseUser->name, $this->password);
 
         $this->database->ploi_id = $ploiDatabase->id;
         $this->database->save();

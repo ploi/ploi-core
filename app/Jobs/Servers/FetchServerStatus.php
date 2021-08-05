@@ -3,7 +3,7 @@
 namespace App\Jobs\Servers;
 
 use App\Models\Server;
-use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use App\Traits\JobHasThresholds;
 use Illuminate\Queue\SerializesModels;
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class FetchServerStatus implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds, HasPloi;
 
     public $server;
 
@@ -43,9 +43,7 @@ class FetchServerStatus implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi;
-
-        $ploiServer = $ploi->server($this->server->ploi_id)->get()->getData();
+        $ploiServer = $this->getPloi()->server($this->server->ploi_id)->get()->getData();
 
         if ($ploiServer->status !== Server::STATUS_ACTIVE) {
             $this->incrementThreshold();

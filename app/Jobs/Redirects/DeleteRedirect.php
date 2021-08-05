@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Redirects;
 
-use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class DeleteRedirect implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $serverPloiId;
     public $sitePloiId;
@@ -42,9 +42,8 @@ class DeleteRedirect implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploi->server($this->serverPloiId)
+        $this->getPloi()
+            ->server($this->serverPloiId)
             ->sites($this->sitePloiId)
             ->redirects()
             ->delete($this->redirectPloiId);

@@ -3,7 +3,7 @@
 namespace App\Jobs\Servers;
 
 use App\Models\Server;
-use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class CreateServer implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $server;
     public $tries = 1;
@@ -34,9 +34,7 @@ class CreateServer implements ShouldQueue
      */
     public function handle()
     {
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploiServer = $ploi->server()->create(
+        $ploiServer = $this->getPloi()->server()->create(
             $this->server->name,
             $this->server->provider->ploi_id,
             $this->server->providerRegion->region_id,

@@ -3,7 +3,7 @@
 namespace App\Jobs\Sites;
 
 use App\Models\Site;
-use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Support\Arr;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class CreateSite implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $site;
 
@@ -34,11 +34,9 @@ class CreateSite implements ShouldQueue
      */
     public function handle()
     {
-        $ploi = new Ploi(config('services.ploi.token'));
-
         $systemUser = $this->site->getSystemUser();
 
-        $ploiSite = $ploi->server($this->site->server->ploi_id)->sites()->create(
+        $ploiSite = $this->getPloi()->server($this->site->server->ploi_id)->sites()->create(
             $this->site->domain,
             '/public',
             '/',

@@ -3,7 +3,7 @@
 namespace App\Jobs\Sites;
 
 use App\Models\Site;
-use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use App\Traits\JobHasThresholds;
 use Illuminate\Queue\SerializesModels;
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class FetchSiteStatus implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds, HasPloi;
 
     public $site;
 
@@ -43,9 +43,7 @@ class FetchSiteStatus implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi;
-
-        $ploiSite = $ploi->server($this->site->server->ploi_id)->sites()->get($this->site->ploi_id)->getData();
+        $ploiSite = $this->getPloi()->server($this->site->server->ploi_id)->sites()->get($this->site->ploi_id)->getData();
 
         if ($ploiSite->status !== Site::STATUS_ACTIVE) {
             $this->incrementThreshold();

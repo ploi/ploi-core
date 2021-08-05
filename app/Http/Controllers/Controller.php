@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
-    use ValidatesRequests, AuthorizesRequests;
+    use ValidatesRequests, AuthorizesRequests, HasPloi;
 
     protected function isDemo()
     {
         return config('app.demo');
-    }
-
-    protected function getPloi()
-    {
-        return new Ploi(config('services.ploi.token'));
     }
 }

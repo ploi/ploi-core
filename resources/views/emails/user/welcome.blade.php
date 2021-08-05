@@ -10,7 +10,7 @@
 @else
 {{ __('Welcome to :app, you can directly login with the credentials you have used when signing up.', ['app' => config('app.name')]) }}
 @component('mail::button', ['url' => config('app.url')])
-    {{ __('Visit') }}
+    {{ __('Visit ' . config('app.name')) }}
 @endcomponent
 @endif
 @endcomponent
