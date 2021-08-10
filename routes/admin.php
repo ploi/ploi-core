@@ -4,8 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
-Route::get('settings', 'SettingController@index')->name('settings');
-Route::patch('settings', 'SettingController@update')->name('settings.update');
+Route::group(['prefix' => 'settings'], function () {
+    Route::get('/', 'SettingController@index')->name('settings');
+    Route::patch('/', 'SettingController@update')->name('settings.update');
+    Route::get('terms', 'SettingController@terms')->name('settings.terms');
+    Route::get('terms/template', 'SettingController@termsTemplate')->name('settings.terms.template');
+    Route::patch('terms', 'SettingController@updateTerms')->name('settings.terms.update');
+});
+
 
 Route::get('system', 'SystemController@index')->name('system');
 Route::post('system/update', 'SystemController@update')->name('system.update');

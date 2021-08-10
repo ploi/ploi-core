@@ -11,6 +11,8 @@ Route::post('password-creation', 'Auth\CreatePasswordController@start')->name('p
 
 Route::get('installation-incomplete', 'PageController@installationIncomplete')->name('installation-incomplete');
 
+Route::get('page/{slug}', 'PageController@show')->name('page.show');
+
 // All auth protected routes
 Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');

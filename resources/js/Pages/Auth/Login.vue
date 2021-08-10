@@ -27,6 +27,12 @@
                             v-if="$page.props.settings.allow_registration" block>Register
                     </Button>
                 </div>
+
+                <TextDivider v-if="$page.props.settings.has_terms" :without-text="true"></TextDivider>
+
+                <div class="flex" v-if="$page.props.settings.has_terms">
+                    <inertia-link :href="route('page.show', 'terms-of-service')" class="text-medium-emphasis hover:text-high-emphasis border-b border-dotted">Terms Of Service</inertia-link>
+                </div>
             </form>
         </Container>
     </div>

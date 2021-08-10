@@ -8,6 +8,7 @@
 const baseClasses = 'w-full px-4 sm:px-8 mx-auto'
 const sizeClasses = {
     small: 'max-w-sm',
+    medium: 'max-w-xl',
     base: 'max-w-5xl',
     large: 'max-w-screen-xl',
     fluid: 'max-w-none',

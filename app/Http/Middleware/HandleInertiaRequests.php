@@ -87,7 +87,8 @@ class HandleInertiaRequests extends Middleware
                     'documentation' => setting('documentation', false),
                     'logo' => setting('logo'),
                     'allow_registration' => setting('allow_registration'),
-                    'billing' => config('cashier.key') && config('cashier.secret')
+                    'billing' => config('cashier.key') && config('cashier.secret'),
+                    'has_terms' => setting('terms') ? true : false
                 ];
             },
             'flash' => function () {
