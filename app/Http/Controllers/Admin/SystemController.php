@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Jobs\Core\UpdateSystem;
 use App\Services\VersionChecker;
 use App\Http\Controllers\Controller;
+use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
 class SystemController extends Controller
 {
-    public function index()
+    public function index(MasterSupervisorRepository $masterSupervisorRepository)
     {
         if (config('app.demo')) {
             return redirect('/')->with('info', __('This feature is not available in demo mode.'));
@@ -17,12 +18,18 @@ class SystemController extends Controller
 
         $version = (new VersionChecker)->getVersions();
 
+        $horizonRunning = true;
+        if (!$masterSupervisorRepository->all()) {
+            $horizonRunning = false;
+        }
+
         return inertia('Admin/System', [
             'version' => [
                 'out_of_date' => $version->isOutOfDate(),
                 'current' => $version->currentVersion,
                 'remote' => $version->remoteVersion
-            ]
+            ],
+            'horizonRunning' => $horizonRunning
         ]);
     }
 
