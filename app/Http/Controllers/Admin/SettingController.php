@@ -93,6 +93,7 @@ class SettingController extends Controller
     {
         return inertia('Admin/Terms', [
             'settings' => [
+                'logo' => setting('logo'),
                 'name' => setting('name'),
                 'terms_required' => setting('accept_terms_required'),
                 'terms' => setting('terms'),
