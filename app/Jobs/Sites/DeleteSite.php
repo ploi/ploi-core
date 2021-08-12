@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Sites;
 
-use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class DeleteSite implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $serverPloiId;
     public $sitePloiId;
@@ -34,8 +34,6 @@ class DeleteSite implements ShouldQueue
      */
     public function handle()
     {
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploi->server($this->serverPloiId)->sites()->delete($this->sitePloiId);
+        $this->getPloi()->server($this->serverPloiId)->sites()->delete($this->sitePloiId);
     }
 }

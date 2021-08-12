@@ -121,9 +121,15 @@
                                             </div>
                                         </div>
 
-                                        <div class="space-y-2">
+                                        <div class="space-y-2" v-if="form.server_permissions['create']">
                                             <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">
                                                 {{ __('Available server providers') }}</h3>
+
+                                            <div v-if="!Object.keys(providers).length" class="bg-primary text-on-primary px-4 py-3 rounded relative space-y-2" role="alert">
+                                                <p class="block">
+                                                    There are no server providers to select from. You can synchronize new server providers from the Services tab.
+                                                </p>
+                                            </div>
 
                                             <div v-for="(name, id) in providers">
                                                 <input :id="`provider-${id}`" :value="id" v-model="form.providers"

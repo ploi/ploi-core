@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Package;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -86,5 +87,43 @@ class SettingController extends Controller
         cache()->forget('core.settings');
 
         return redirect()->route('admin.settings')->with('success', __('Settings have been updated'));
+    }
+
+    public function terms()
+    {
+        return inertia('Admin/Terms', [
+            'settings' => [
+                'logo' => setting('logo'),
+                'name' => setting('name'),
+                'terms_required' => setting('accept_terms_required'),
+                'terms' => setting('terms'),
+                'privacy' => setting('privacy')
+            ]
+        ]);
+    }
+
+    public function updateTerms(Request $request)
+    {
+        setting(['accept_terms_required' => $request->input('terms_required'),]);
+        setting(['terms' => $request->input('terms'),]);
+        setting(['privacy' => $request->input('privacy'),]);
+
+        return redirect()->route('admin.settings.terms')->with('success', __('Terms have been updated'));
+    }
+
+    public function termsTemplate(Request $request)
+    {
+        $template = file_get_contents(storage_path('templates/terms-of-service.md'));
+        $template = str_replace([
+            '{NAME}',
+            '{WEBSITE}',
+            '{DATE}'
+        ], [
+            setting('name'),
+            config('app.url'),
+            date('Y-m-d')
+        ], $template);
+
+        return ['content' => $template];
     }
 }

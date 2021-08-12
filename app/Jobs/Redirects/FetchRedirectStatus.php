@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Redirects;
 
+use App\Traits\HasPloi;
 use App\Models\Redirect;
-use App\Services\Ploi\Ploi;
 use Illuminate\Bus\Queueable;
 use App\Traits\JobHasThresholds;
 use Illuminate\Queue\SerializesModels;
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class FetchRedirectStatus implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds, HasPloi;
 
     public $redirect;
 
@@ -23,7 +23,7 @@ class FetchRedirectStatus implements ShouldQueue
      * @param Redirect $redirect
      * @param int $threshold
      */
-    public function __construct(Redirect $redirect, $threshold = 0)
+    public function __construct(Redirect $redirect, int $threshold = 0)
     {
         $this->redirect = $redirect;
         $this->setThreshold($threshold);
@@ -43,9 +43,8 @@ class FetchRedirectStatus implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploiRedirect = $ploi->server($this->redirect->server->ploi_id)
+        $ploiRedirect = $this->getPloi()
+            ->server($this->redirect->server->ploi_id)
             ->sites($this->redirect->site->ploi_id)
             ->redirects()
             ->get($this->redirect->ploi_id)->getData();

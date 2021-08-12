@@ -14,7 +14,40 @@
                 <FormInput :label="__('Password')" :errors="$page.props.errors.password" v-model="form.password" id="password" type="password" required/>
                 <FormInput :label="__('Confirm password')" :errors="$page.props.errors.password_confirmation" v-model="form.password_confirmation" id="password_confirmation" type="password" required/>
 
-                <Button variant="primary" :disabled="sending" block>{{ __('Start') }}</Button>
+                <div v-if="$page.props.settings.accept_terms_required">
+                    <input id="terms_required" class="form-checkbox" type="checkbox"
+                           v-model="form.terms">
+                    <label for="terms_required" class="ml-2 text-sm">
+                        {{__('Accept terms of service') }}
+                    </label>
+                    <ErrorText v-if="$page.props.errors.terms">{{ $page.props.errors.terms[0] }}</ErrorText>
+                </div>
+
+                <Button variant="primary" :disabled="sending" block>{{ __('Register') }}</Button>
+
+                <TextDivider>{{ __('Or') }}</TextDivider>
+
+                <div class="space-y-3">
+                    <Button as="inertia-link" :href="route('login')" variant="secondary" block>{{ __('Login') }}</Button>
+                </div>
+
+                <TextDivider v-if="$page.props.settings.has_terms" :without-text="true"></TextDivider>
+
+                <div class="flex justify-between"
+                     v-if="$page.props.settings.has_terms || $page.props.settings.has_privacy">
+                    <div v-if="$page.props.settings.has_terms">
+                        <inertia-link :href="route('page.show', 'terms-of-service')"
+                                      class="text-small text-medium-emphasis hover:text-high-emphasis border-b border-dotted">
+                            Terms Of Service
+                        </inertia-link>
+                    </div>
+                    <div v-if="$page.props.settings.has_privacy">
+                        <inertia-link :href="route('page.show', 'privacy-policy')"
+                                      class="text-small text-medium-emphasis hover:text-high-emphasis border-b border-dotted">
+                            Privacy Policy
+                        </inertia-link>
+                    </div>
+                </div>
             </form>
         </Container>
     </div>
@@ -23,6 +56,7 @@
 <script>
     import TextDivider from '@/components/TextDivider'
     import FormInput from '@/components/forms/FormInput'
+    import ErrorText from '@/components/ErrorText'
     import Button from '@/components/Button'
     import Container from '@/components/Container'
     import {useNotification} from '@/hooks/notification'
@@ -39,12 +73,14 @@
             FormInput,
             Button,
             Container,
+            ErrorText,
         },
 
         data() {
             return {
                 sending: false,
                 form: {
+                    terms: false,
                     name: null,
                     email: null,
                     password: null,

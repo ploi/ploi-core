@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Databases;
 
+use App\Traits\HasPloi;
 use App\Models\Database;
-use App\Services\Ploi\Ploi;
 use Illuminate\Bus\Queueable;
 use App\Traits\JobHasThresholds;
 use Illuminate\Queue\SerializesModels;
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class FetchDatabaseStatus implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds, HasPloi;
 
     public $database;
 
@@ -23,7 +23,7 @@ class FetchDatabaseStatus implements ShouldQueue
      * @param Database $database
      * @param int $threshold
      */
-    public function __construct(Database $database, $threshold = 0)
+    public function __construct(Database $database, int $threshold = 0)
     {
         $this->database = $database;
         $this->setThreshold($threshold);
@@ -43,9 +43,11 @@ class FetchDatabaseStatus implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploiDatabase = $ploi->server($this->database->server->ploi_id)->databases()->get($this->database->ploi_id)->getData();
+        $ploiDatabase = $this->getPloi()
+            ->server($this->database->server->ploi_id)
+            ->databases()
+            ->get($this->database->ploi_id)
+            ->getData();
 
         if ($ploiDatabase->status !== Database::STATUS_ACTIVE) {
             $this->incrementThreshold();

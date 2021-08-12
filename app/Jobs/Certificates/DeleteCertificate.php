@@ -3,6 +3,7 @@
 namespace App\Jobs\Certificates;
 
 use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class DeleteCertificate implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $serverPloiId;
     public $sitePloiId;
@@ -42,9 +43,8 @@ class DeleteCertificate implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploi->server($this->serverPloiId)
+        $this->getPloi()
+            ->server($this->serverPloiId)
             ->sites($this->sitePloiId)
             ->certificates()
             ->delete($this->certificatePloiId);

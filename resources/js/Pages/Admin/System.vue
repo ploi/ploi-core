@@ -26,6 +26,7 @@
                                 <template #content>
                                     <p>{{ __('Current version') }}: {{ version.current }}</p>
                                     <p>{{ __('Remote version') }}: {{ version.remote }}</p>
+                                    <p>Horizon worker status: <span v-if="horizonRunning" class="text-success">Active</span><span v-else class="text-danger">Inactive</span></p>
 
                                     <div v-if="version.out_of_date && !updating" class="bg-primary text-on-primary px-4 py-3 rounded relative space-y-2" role="alert">
                                         <strong class="font-bold">Update available</strong>
@@ -111,7 +112,8 @@
         },
 
         props: {
-            version: Object
+            version: Object,
+            horizonRunning: Boolean
         },
 
         data() {

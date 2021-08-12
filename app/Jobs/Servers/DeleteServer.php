@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Servers;
 
-use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class DeleteServer implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $serverPloiId;
 
@@ -32,8 +32,6 @@ class DeleteServer implements ShouldQueue
      */
     public function handle()
     {
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploi->server($this->serverPloiId)->delete();
+        $this->getPloi()->server($this->serverPloiId)->delete();
     }
 }

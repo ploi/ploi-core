@@ -4,6 +4,7 @@ namespace App\Jobs\Cronjobs;
 
 use App\Models\Cronjob;
 use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use App\Traits\JobHasThresholds;
 use Illuminate\Queue\SerializesModels;
@@ -13,7 +14,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class FetchCronjobStatus implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, JobHasThresholds, HasPloi;
 
     public $cronjob;
 
@@ -23,7 +24,7 @@ class FetchCronjobStatus implements ShouldQueue
      * @param Cronjob $cronjob
      * @param int $threshold
      */
-    public function __construct(Cronjob $cronjob, $threshold = 0)
+    public function __construct(Cronjob $cronjob, int $threshold = 0)
     {
         $this->cronjob = $cronjob;
         $this->setThreshold($threshold);
@@ -43,9 +44,11 @@ class FetchCronjobStatus implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploiCronjob = $ploi->server($this->cronjob->server->ploi_id)->cronjobs()->get($this->cronjob->ploi_id)->getData();
+        $ploiCronjob = $this->getPloi()
+            ->server($this->cronjob->server->ploi_id)
+            ->cronjobs()
+            ->get($this->cronjob->ploi_id)
+            ->getData();
 
         if ($ploiCronjob->status !== Cronjob::STATUS_ACTIVE) {
             $this->incrementThreshold();

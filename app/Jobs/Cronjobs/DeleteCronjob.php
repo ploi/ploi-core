@@ -3,6 +3,7 @@
 namespace App\Jobs\Cronjobs;
 
 use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class DeleteCronjob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $serverPloiId;
     public $cronjobPloiId;
@@ -39,8 +40,9 @@ class DeleteCronjob implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploi->server($this->serverPloiId)->cronjobs()->delete($this->cronjobPloiId);
+        $this->getPloi()
+            ->server($this->serverPloiId)
+            ->cronjobs()
+            ->delete($this->cronjobPloiId);
     }
 }

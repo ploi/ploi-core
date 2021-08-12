@@ -44,7 +44,7 @@
                                     <DropdownListItem class="text-danger" v-if="$page.props.auth.user.role === 'admin'"
                                                       :to="route('admin.dashboard')">{{ __('Administration') }}
                                     </DropdownListItem>
-                                    <DropdownListItem :to="route('logout')" method="post">{{ __('Sign out') }}
+                                    <DropdownListItem :to="route('logout')" component-is="button" method="post">{{ __('Sign out') }}
                                     </DropdownListItem>
                                 </DropdownList>
                             </Dropdown>

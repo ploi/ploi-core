@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Redirects;
 
+use App\Traits\HasPloi;
 use App\Models\Redirect;
-use App\Services\Ploi\Ploi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class CreateRedirect implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $redirect;
 
@@ -33,9 +33,7 @@ class CreateRedirect implements ShouldQueue
      */
     public function handle()
     {
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploiRedirect = $ploi
+        $ploiRedirect = $this->getPloi()
             ->server($this->redirect->server->ploi_id)
             ->sites($this->redirect->site->ploi_id)
             ->redirects()

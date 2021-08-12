@@ -3,6 +3,7 @@
 namespace App\Jobs\Databases;
 
 use App\Services\Ploi\Ploi;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class DeleteDatabase implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $serverPloiId;
     public $databasePloiId;
@@ -40,8 +41,6 @@ class DeleteDatabase implements ShouldQueue
             return;
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
-
-        $ploi->server($this->serverPloiId)->databases()->delete($this->databasePloiId);
+        $this->getPloi()->server($this->serverPloiId)->databases()->delete($this->databasePloiId);
     }
 }

@@ -11,15 +11,15 @@ class SynchronizeProviderController extends Controller
 {
     public function index()
     {
-        if (config('app.demo')) {
+        if ($this->isDemo()) {
             return redirect('/')->with('info', __('This feature is not available in demo mode.'));
         }
 
-        $ploi = new Ploi(config('services.ploi.token'));
+        $availableProviders = $this->getPloi()->user()->serverProviders()->getData();
 
-        $availableProviders = $ploi->user()->serverProviders()->getData();
-
-        $currentProviders = Provider::whereNotIn('id', array_keys((array)$availableProviders))->get();
+        $currentProviders = Provider::query()
+            ->whereNotIn('id', array_keys((array)$availableProviders))
+            ->get();
 
         return inertia('Admin/Services/Providers', [
             'availableProviders' => $availableProviders,
@@ -29,7 +29,7 @@ class SynchronizeProviderController extends Controller
 
     public function synchronize(Request $request, $providerId)
     {
-        $ploiProvider = (new Ploi)->user()->serverProviders($providerId)->getData();
+        $ploiProvider = $this->getPloi()->user()->serverProviders($providerId)->getData();
 
         $provider = Provider::updateOrCreate([
             'ploi_id' => $ploiProvider->id,
