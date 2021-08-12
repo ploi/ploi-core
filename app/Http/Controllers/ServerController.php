@@ -104,9 +104,21 @@ class ServerController extends Controller
     {
         $provider = $request->user()->package->providers()->findOrFail($providerId);
 
+        $regions = $provider->regions()
+            ->when($provider->allowed_regions, function ($query) use ($provider) {
+                return $query->whereIn('id', $provider->allowed_regions);
+            })
+            ->pluck('label', 'id');
+
+        $plans = $provider->plans()
+            ->when($provider->allowed_plans, function ($query) use ($provider) {
+                return $query->whereIn('id', $provider->allowed_plans);
+            })
+            ->pluck('label', 'id');
+
         return [
-            'regions' => $provider->regions()->pluck('label', 'id'),
-            'plans' => $provider->plans()->pluck('label', 'id'),
+            'regions' => $regions,
+            'plans' => $plans,
         ];
     }
 }

@@ -28,6 +28,14 @@ class ProviderRequest extends FormRequest
                 'required',
                 'string',
                 'max:255'
+            ],
+            'allowed_plans' => [
+                'nullable',
+                'array'
+            ],
+            'allowed_regions' => [
+                'nullable',
+                'array'
             ]
         ];
     }

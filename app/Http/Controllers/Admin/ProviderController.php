@@ -14,6 +14,8 @@ class ProviderController extends Controller
 
         return inertia('Admin/Services/Provider/Edit', [
             'provider' => $provider,
+            'availablePlans' => $provider->plans()->pluck('label', 'id'),
+            'availableRegions' => $provider->regions()->pluck('label', 'id'),
         ]);
     }
 
