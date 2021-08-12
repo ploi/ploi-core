@@ -19,6 +19,12 @@ class PageController extends Controller
             ]);
         }
 
+        if ($slug === 'privacy-policy' && setting('privacy')) {
+            return inertia('Pages/Privacy', [
+                'content' => Str::markdown(setting('privacy'))
+            ]);
+        }
+
         abort(404);
     }
 }
