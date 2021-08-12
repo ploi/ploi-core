@@ -8,6 +8,11 @@ class Provider extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'allowed_plans' => 'json',
+        'allowed_regions' => 'json',
+    ];
+
     public function getNameWithLabelAttribute()
     {
         $string = $this->name;

@@ -30,7 +30,17 @@
                                         </TableHead>
                                         <TableBody>
                                             <TableRow v-for="availableProvider in availableProviders" :key="availableProvider.id">
-                                                <TableData>{{ availableProvider.name }}</TableData>
+                                                <TableData class="space-y-2">
+                                                    <div>
+                                                        {{ availableProvider.name }}
+                                                    </div>
+
+                                                    <div class="space-x-1 text-xs">
+                                                        <span class="text-medium-emphasis">{{ availableProvider.provider.plans.length }} plan(s)</span>
+                                                        <span>&centerdot;</span>
+                                                        <span class="text-medium-emphasis">{{ availableProvider.provider.regions.length }} region(s)</span>
+                                                    </div>
+                                                </TableData>
                                                 <TableData>{{ availableProvider.label }}</TableData>
                                                 <TableData class="text-right">
                                                     <Button size="sm" v-on:click="syncProvider(availableProvider)">

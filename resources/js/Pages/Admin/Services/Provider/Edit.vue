@@ -21,6 +21,43 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
+
+                                        <div class="space-y-4">
+                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">
+                                                {{ __('Allowed plans') }}</h3>
+
+                                            <p class="text-medium-emphasis">
+                                                Select the plans here that your users are allowed to use for this provider.
+                                                If there are no plans selected, all will be available.
+                                            </p>
+
+                                            <div>
+                                                <div class="space-y-1" v-for="(name, id) in availablePlans">
+                                                    <input :id="`plan-${id}`" :value="id" v-model="form.allowed_plans"
+                                                           class="form-checkbox" type="checkbox">
+                                                    <label :for="`plan-${id}`" class="ml-2 text-sm">{{ name }}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-4">
+                                            <h3 class="text-base leading-6 font-medium border-b border-dotted border-medium-emphasis pb-1">
+                                                {{ __('Allowed regions') }}</h3>
+
+                                            <p class="text-medium-emphasis">
+                                                Select the regions here that your users are allowed to use for this provider.
+                                                If there are no regions selected, all will be available.
+                                            </p>
+
+                                            <div>
+                                                <div class="space-y-1" v-for="(name, id) in availableRegions">
+                                                    <input :id="`region-${id}`" :value="id" v-model="form.allowed_regions"
+                                                           class="form-checkbox" type="checkbox">
+                                                    <label :for="`region-${id}`" class="ml-2 text-sm">{{ name }}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                             <Button variant="danger" type="button" @click="confirmDelete">{{ __('Delete') }}</Button>
@@ -110,12 +147,16 @@
 
                 form: {
                     name: this.provider.name,
+                    allowed_plans: this.provider.allowed_plans ?? [],
+                    allowed_regions: this.provider.allowed_regions ?? [],
                 },
             }
         },
 
         props: {
             provider: Object,
+            availableRegions: [Object, Array],
+            availablePlans: [Object, Array]
         },
 
         methods: {
