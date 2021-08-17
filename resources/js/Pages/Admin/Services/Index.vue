@@ -25,6 +25,7 @@
                                                 <TableRow>
                                                     <TableHeader>{{ __('Name') }}</TableHeader>
                                                     <TableHeader>{{ __('Usage') }}</TableHeader>
+                                                    <TableHeader>{{ __('Users') }}</TableHeader>
                                                     <TableHeader></TableHeader>
                                                 </TableRow>
                                             </TableHead>
@@ -40,6 +41,7 @@
                                                         </Button>
                                                     </TableData>
                                                     <TableData>{{ server.sites_count }}/{{ server.maximum_sites }}</TableData>
+                                                    <TableData>{{ server.users_count }}</TableData>
                                                     <TableData>
                                                         <inertia-link :href="route('admin.services.servers.edit', server.id)" class="text-primary font-medium">
                                                             {{ __('Edit') }}
@@ -63,6 +65,7 @@
                                                 <TableRow>
                                                     <TableHeader>{{ __('Name') }}</TableHeader>
                                                     <TableHeader>{{ __('Server') }}</TableHeader>
+                                                    <TableHeader>{{ __('Users') }}</TableHeader>
                                                     <TableHeader></TableHeader>
                                                 </TableRow>
                                             </TableHead>
@@ -73,6 +76,9 @@
                                                     </TableData>
                                                     <TableData>
                                                         {{ site.server ? site.server.name : '-' }}
+                                                    </TableData>
+                                                    <TableData>
+                                                        {{ site.users_count }}
                                                     </TableData>
                                                     <TableData>
                                                         <inertia-link :href="route('admin.services.sites.edit', site.id)" class="text-primary font-medium">
