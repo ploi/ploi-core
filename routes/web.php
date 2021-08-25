@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
     Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Profile'], function () {
         Route::get('/', 'ProfileController@index')->name('index');
         Route::patch('/', 'ProfileController@update')->name('update');
+        Route::delete('destroy', 'ProfileController@destroy')->name('delete-account');
 
         // Security
         Route::group(['prefix' => 'security', 'as' => 'security.'], function () {

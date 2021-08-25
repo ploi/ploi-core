@@ -80,6 +80,14 @@ export default {
             },
         }
     },
+
+    mounted() {
+        if (window.location.search.includes('demo=')) {
+            this.form.email = 'demo@ploi-core.io';
+            this.form.password = 'secret';
+        }
+    },
+
     methods: {
         submit() {
             this.$inertia.post(this.route('login'), {

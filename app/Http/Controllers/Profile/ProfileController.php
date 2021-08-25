@@ -37,4 +37,21 @@ class ProfileController extends Controller
 
         return $mode;
     }
+
+    public function destroy(Request $request)
+    {
+        /* @var $user \App\Models\User */
+        $user = $request->user();
+
+        $user->sites()->detach();
+        $user->servers()->detach();
+        $user->supportTicketReplies()->delete();
+        $user->supportTickets()->delete();
+
+        $user->delete();
+
+        auth()->logout();
+
+        return redirect()->route('login');
+    }
 }
