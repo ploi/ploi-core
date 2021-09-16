@@ -27825,6 +27825,35 @@ button[aria-label][data-balloon-pos] {
   -webkit-text-fill-color: transparent;
 }
 
+.theme--dark .prose {
+  color: var(--text-medium-emphasis);
+}
+
+.theme--dark .vue-simplemde .editor-toolbar {
+  border-left: 1px solid var(--color-surface-3);
+  border-top: 1px solid var(--color-surface-3);
+  border-right: 1px solid var(--color-surface-3);
+}
+
+.theme--dark .vue-simplemde .editor-toolbar .separator {
+  border-left: 1px solid var(--color-surface-3);
+  border-right: transparent;
+}
+
+.theme--dark .vue-simplemde .editor-toolbar a {
+  color: var(--text-medium-emphasis) !important;
+}
+
+.theme--dark .vue-simplemde .editor-toolbar a:hover {
+  background: var(--color-surface-3);
+}
+
+.theme--dark .vue-simplemde .CodeMirror {
+  background: var(--color-surface-1);
+  color: var(--text-medium-emphasis);
+  border: 1px solid var(--color-surface-3);
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
