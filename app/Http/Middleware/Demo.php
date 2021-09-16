@@ -10,7 +10,7 @@ class Demo
     protected $safeRoutes = [
         'login',
         'logout',
-        //'profile/toggle-theme'
+        'profile/toggle-theme'
     ];
 
     protected $allowedIps = [

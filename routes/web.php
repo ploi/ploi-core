@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
     });
 
     // Server routes
-    Route::group(['prefix' => 'servers', 'as' => 'servers.'], function () {
+    Route::group(['prefix' => 'servers', 'as' => 'servers.', 'middleware' => 'has.access:servers'], function () {
         Route::get('/', 'ServerController@index')->name('index');
         Route::get('{provider}/plans-and-regions', 'ServerController@plansAndRegions')->name('plans-and-regions');
         Route::get('{server}', 'ServerController@show')->name('show');

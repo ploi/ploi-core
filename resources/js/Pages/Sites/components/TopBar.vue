@@ -42,10 +42,10 @@ export default {
                     to: this.route('sites.index'),
                     active: this.route().current('sites.*')
                 },
-                {
-                    title: 'Servers',
+                (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete) ? {
+                    title: this.__('Servers'),
                     to: this.route('servers.index'),
-                },
+                } : null,
             ],
         }
     },

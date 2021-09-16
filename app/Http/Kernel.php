@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'has.access' => \App\Http\Middleware\HasAccessToThisGroup::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'global.api.authenticated' => \App\Http\Middleware\GlobalApiAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
