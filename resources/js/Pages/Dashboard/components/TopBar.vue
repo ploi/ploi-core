@@ -29,6 +29,14 @@ export default {
         breadcrumbs: Array,
     },
 
+    computed: {
+        hasServerAccess() {
+            return this.$page.props.auth.can.servers.create ||
+                this.$page.props.auth.can.servers.delete ||
+                this.$page.props.auth.can.servers.update
+        }
+    },
+
     data() {
         return {
             tabBars: [
@@ -41,10 +49,10 @@ export default {
                     title: this.__('Sites'),
                     to: this.route('sites.index'),
                 },
-                {
+                (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete) ? {
                     title: this.__('Servers'),
                     to: this.route('servers.index'),
-                },
+                } : null,
             ],
         }
     },

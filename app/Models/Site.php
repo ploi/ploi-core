@@ -5,6 +5,9 @@ namespace App\Models;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed|string domain
+ */
 class Site extends Model
 {
     const STATUS_BUSY = 'busy';
@@ -95,6 +98,10 @@ class Site extends Model
 
     public static function booted()
     {
+        static::creating(function (self $site) {
+            $site->domain = strtolower($site->domain);
+        });
+
         static::created(function (self $site) {
             $site->systemUsers()->create();
         });
