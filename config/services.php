@@ -33,5 +33,9 @@ return [
     'ploi' => [
         'token' => env('PLOI_TOKEN'),
         'core-token' => env('PLOI_CORE_TOKEN')
+    ],
+
+    'ploi-api' => [
+        'url' => env('PLOI_API_URL', 'https://core-api.ploi.io/')
     ]
 ];
