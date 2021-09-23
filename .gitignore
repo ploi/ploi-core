@@ -12,4 +12,5 @@ npm-debug.log
 yarn-error.log
 .idea
 .php_cs.cache
+.php-cs-fixer.cache
 /public/js/resources*.js
