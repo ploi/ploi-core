@@ -3,7 +3,7 @@
 With Ploi Core, you'll power-launch your webhosting company. 
 Using the ploi.io system as backbone you will be able to serve your customers your custom panel & feeling.
 
-<p align="center"><img src="https://ploi-core.io/images/featured.png" width="100%"></p>
+<p align="center"><img src="https://ploi-core.io/images/og.jpg" width="100%"></p>
 
 ## Documentation
 
