@@ -25,7 +25,7 @@ class Ploi
 
     public function __construct(string $token = null, string $coreApiToken = null)
     {
-        $this->url = app()->isLocal() ? 'http://core-api.ploi.test/' : 'https://core-api.ploi.io/';
+        $this->url = config('services.ploi-api.url');
 
         if (!$token) {
             $token = config('services.ploi.token');
