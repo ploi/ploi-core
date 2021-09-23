@@ -2,7 +2,6 @@
 
 namespace App\Jobs\Certificates;
 
-use App\Services\Ploi\Ploi;
 use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;

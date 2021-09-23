@@ -3,7 +3,6 @@
 namespace App\Jobs\Cronjobs;
 
 use App\Models\Cronjob;
-use App\Services\Ploi\Ploi;
 use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
