@@ -42,7 +42,7 @@ export default {
                     to: this.route('sites.index'),
                     active: this.route().current('sites.*')
                 },
-                this.$page.props.auth.can.length && (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete) ? {
+                Object.keys(this.$page.props.auth.can).length && (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete) ? {
                     title: this.__('Servers'),
                     to: this.route('servers.index'),
                 } : null,

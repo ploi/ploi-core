@@ -142,7 +142,7 @@ export default {
 
     computed: {
         hasAccessToServers () {
-            return this.$page.props.auth.can.length && (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete);
+            return Object.keys(this.$page.props.auth.can).length && (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete);
         }
     },
 
