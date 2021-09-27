@@ -18,6 +18,7 @@ class Site extends Model
     const PROJECT_OCTOBERCMS = 'october-cms';
 
     public $fillable = [
+        'ploi_id',
         'domain',
         'dns_id'
     ];

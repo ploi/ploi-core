@@ -1,6 +1,6 @@
 <template>
     <aside
-        class="relative w-full h-full max-w-lg p-8 rounded shadow-2xl pointer-events-auto bg-overlay bf-blur-high"
+        class="relative w-full h-full max-w-lg p-8 rounded shadow-2xl pointer-events-auto bg-overlay bf-blur-high overflow-y-scroll"
         v-click-outside="() => $emit('close')"
     >
         <button

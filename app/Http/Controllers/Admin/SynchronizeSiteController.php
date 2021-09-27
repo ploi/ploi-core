@@ -31,6 +31,7 @@ class SynchronizeSiteController extends Controller
     {
         $server = Server::query()->where('ploi_id', $request->input('server_id'))->firstOrFail();
 
+        /* @var $site \App\Models\Site */
         $site = Site::query()
             ->updateOrCreate([
                 'ploi_id' => $request->input('id')
@@ -42,6 +43,23 @@ class SynchronizeSiteController extends Controller
         $site->status = $request->input('status');
         $site->server_id = $server->id;
         $site->save();
+
+        $certificates = $this->getPloi()->server($request->input('server_id'))->sites($request->input('id'))->certificates()->get()->getData();
+
+        if ($certificates) {
+            foreach ($certificates as $certificate) {
+                $site->certificates()->updateOrCreate([
+                    'ploi_id' => $certificate->id,
+                ], [
+                    'status' => $certificate->status,
+                    'ploi_id' => $certificate->id,
+                    'domain' => $certificate->domain,
+                    'type' => $certificate->type,
+                ]);
+            }
+        }
+
+        return response('ok');
     }
 
     public function synchronizeAll(Request $request)

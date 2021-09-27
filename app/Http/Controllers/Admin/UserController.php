@@ -16,7 +16,7 @@ class UserController extends Controller
                 return $query->where('name', 'like', '%' . $value . '%')->orWhere('email', 'like', '%' . $value . '%');
             })
             ->latest()
-            ->paginate(5);
+            ->paginate(config('core.pagination.per_page'));
 
         return inertia('Admin/Users/Index', [
             'filters' => request()->all('search'),
@@ -57,9 +57,9 @@ class UserController extends Controller
     {
         $user = User::query()->findOrFail($id);
 
-        $servers = $user->servers()->withCount('sites')->latest()->paginate(5, ['*'], 'page_servers');
+        $servers = $user->servers()->withCount('sites')->latest()->paginate(config('core.pagination.per_page'), ['*'], 'page_servers');
 
-        $sites = $user->sites()->with('server:id,name')->latest()->paginate(5, ['*'], 'page_sites');
+        $sites = $user->sites()->with('server:id,name')->latest()->paginate(config('core.pagination.per_page'), ['*'], 'page_sites');
 
         return inertia('Admin/Users/Show', [
             'user' => $user,

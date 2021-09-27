@@ -50,7 +50,7 @@ export default {
                     title: this.__('Sites'),
                     to: this.route('sites.index'),
                 },
-                this.$page.props.auth.can.length && (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete) ? {
+                Object.keys(this.$page.props.auth.can).length && (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete) ? {
                     title: this.__('Servers'),
                     to: this.route('servers.index'),
                 } : null,

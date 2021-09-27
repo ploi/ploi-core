@@ -21,5 +21,7 @@ class Certificate extends Model
         'type',
         'certificate',
         'private',
+        'ploi_id',
+        'status'
     ];
 }
