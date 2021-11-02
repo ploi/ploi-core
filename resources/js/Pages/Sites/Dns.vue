@@ -210,7 +210,7 @@
             getRecords() {
                 this.loading = true;
 
-                axios.get(this.route('sites.dns.records', this.site.id))
+                window.axios.get(this.route('sites.dns.records', this.site.id))
                     .then(response => {
                         this.loading = false;
                         this.records = response.data

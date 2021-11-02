@@ -64,19 +64,21 @@
 
                 this.$inertia.post(this.route('password.email'), {
                     email: this.form.email,
-                }).then(() => {
-                    this.sending = false
+                }, {
+                    onFinish: () => {
+                        this.sending = false
 
-                    if (!Object.keys(this.$page.props.errors).length) {
-                        this.form.email = null;
+                        if (!Object.keys(this.$page.props.errors).length) {
+                            this.form.email = null;
 
-                        useNotification({
-                            variant: 'success',
-                            title: this.__('Reset password'),
-                            message: this.$page.props.flash.success,
-                        })
+                            useNotification({
+                                variant: 'success',
+                                title: this.__('Reset password'),
+                                message: this.$page.props.flash.success,
+                            })
+                        }
                     }
-                })
+                });
             },
         },
     }

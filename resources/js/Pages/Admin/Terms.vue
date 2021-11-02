@@ -145,7 +145,7 @@ export default {
         },
 
         getTemplate(type) {
-            axios.get(this.route('admin.settings.terms.template'))
+            window.axios.get(this.route('admin.settings.terms.template'))
                 .then(response => {
                     this.$refs.terms_of_service.simplemde.value(response.data.content);
                     this.form.terms = response.data.content;

@@ -196,10 +196,11 @@
                 this.$inertia.post(this.route('sites.apps.store', this.site.id), {
                     type: this.type,
                     options: this.options
-                })
-                    .then(() => {
-                        this.type = null;
-                    })
+                }, {
+                    onFinish: () => {
+                        this.type = null
+                    }
+                });
             },
 
             uninstall() {

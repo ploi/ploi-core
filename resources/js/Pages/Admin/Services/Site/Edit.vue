@@ -158,8 +158,11 @@
             submit() {
                 this.sending = true
 
-                this.$inertia.patch(this.route('admin.services.sites.update', this.site.id), this.form)
-                    .then(() => this.sending = false)
+                this.$inertia.patch(this.route('admin.services.sites.update', this.site.id), this.form, {
+                    onFinish: () => {
+                        this.sending = false;
+                    }
+                })
             },
 
             confirmDelete() {
@@ -173,21 +176,25 @@
             delete() {
                 this.sending = true
 
-                this.$inertia.delete(this.route('admin.services.sites.delete', this.site.id))
-                    .then(() => this.sending = false)
+                this.$inertia.delete(this.route('admin.services.sites.delete', this.site.id), {
+                    onFinish: () => {
+                        this.sending = false;
+                    }
+                })
             },
 
             attach() {
                 this.sending = true
 
-                this.$inertia.post(this.route('admin.services.sites.attach', this.site.id), this.formAttach)
-                    .then(() => {
+                this.$inertia.post(this.route('admin.services.sites.attach', this.site.id), this.formAttach, {
+                    onFinish: () => {
                         this.sending = false
 
                         if (!Object.keys(this.$page.props.errors).length) {
                             this.formAttach.email = null;
                         }
-                    })
+                    }
+                });
             },
 
             confirmDetach(userId) {
@@ -201,8 +208,11 @@
             detach(userId) {
                 this.sending = true
 
-                this.$inertia.delete(this.route('admin.services.sites.detach', [this.site.id, userId]))
-                    .then(() => this.sending = false)
+                this.$inertia.delete(this.route('admin.services.sites.detach', [this.site.id, userId]), {
+                    onFinish: () => {
+                        this.sending = false;
+                    }
+                })
             }
         }
     }

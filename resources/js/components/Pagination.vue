@@ -14,7 +14,7 @@
         props: {
             links: Object,
             preserveScroll: {
-                default: false,
+                default: true,
             },
         },
 

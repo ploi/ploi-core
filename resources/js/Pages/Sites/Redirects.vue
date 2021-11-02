@@ -227,7 +227,7 @@
             },
 
             poll() {
-                this.$inertia.replace(this.route('sites.redirects.index', this.site.id), {
+                this.$inertia.get(this.route('sites.redirects.index', this.site.id), {
                     only: ['redirects'],
                     preserveScroll: true,
                 })
@@ -236,8 +236,8 @@
             submit() {
                 this.sending = true
 
-                this.$inertia.post(this.route('sites.redirects.store', this.site.id), this.form)
-                    .then(() => {
+                this.$inertia.post(this.route('sites.redirects.store', this.site.id), this.form, {
+                    onFinish: () => {
                         this.sending = false
 
                         if (!Object.keys(this.$page.props.errors).length) {
@@ -245,7 +245,8 @@
                             this.form.redirect_to = null;
                             this.form.type = 'redirect';
                         }
-                    })
+                    }
+                });
             },
 
             confirmDelete(redirect) {
