@@ -135,15 +135,16 @@
             submit() {
                 this.loading = true;
 
-                this.$inertia.post(this.route('support.store'), this.form)
-                    .then(response => {
+                this.$inertia.post(this.route('support.store'), this.form, {
+                    onFinish: () => {
                         if (!Object.keys(this.$page.props.errors).length) {
                             this.form.title = null;
                             this.form.content = null;
                             this.loading = false;
                             this.modalIsOpen = false;
                         }
-                    })
+                    }
+                })
             }
         },
     }

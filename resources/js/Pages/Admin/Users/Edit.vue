@@ -169,8 +169,11 @@ export default {
         delete() {
             this.sending = true
 
-            this.$inertia.delete(this.route('admin.users.destroy', this.user.id))
-                .then(() => this.sending = false)
+            this.$inertia.delete(this.route('admin.users.destroy', this.user.id), {
+                onFinish: () => {
+                    this.sending = false;
+                }
+            })
         }
     }
 }

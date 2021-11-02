@@ -283,7 +283,7 @@
             },
 
             poll() {
-                this.$inertia.replace(this.route('sites.cronjobs.index', this.site.id), {
+                this.$inertia.get(this.route('sites.cronjobs.index', this.site.id), {
                     only: ['cronjobs'],
                     preserveScroll: true,
                 })
@@ -292,18 +292,19 @@
             submit() {
                 this.sending = true
 
-                this.$inertia.post(this.route('sites.cronjobs.store', this.site.id), this.form)
-                    .then(() => {
+                this.$inertia.post(this.route('sites.cronjobs.store', this.site.id), this.form, {
+                    onFinish: () => {
                         this.sending = false
 
                         if (!Object.keys(this.$page.props.errors).length) {
                             this.form = {
-                                command: `php /home/${this.$page.props.auth.user.user_name}/domain.com/script.php`,
+                                command: `php /home/${this.$page.props.auth.user.user_name}/${this.site.domain}/script.php`,
                                 interval: 'minutely',
                                 frequency: '* * * * *',
                             }
                         }
-                    })
+                    }
+                })
             },
 
             confirmDelete(cronjob) {
