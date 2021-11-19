@@ -18,18 +18,13 @@ class SystemController extends Controller
 
         $version = (new VersionChecker)->getVersions();
 
-        $horizonRunning = true;
-        if (!$masterSupervisorRepository->all()) {
-            $horizonRunning = false;
-        }
-
         return inertia('Admin/System', [
             'version' => [
                 'out_of_date' => $version->isOutOfDate(),
                 'current' => $version->currentVersion,
                 'remote' => $version->remoteVersion
             ],
-            'horizonRunning' => $horizonRunning
+            'horizonRunning' => !!$masterSupervisorRepository->all()
         ]);
     }
 

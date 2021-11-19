@@ -43,6 +43,18 @@
                                             <option v-for="language in languages" :value="language" v-text="language"></option>
                                         </FormSelect>
 
+                                        <FormSelect :helper-text="__('This will rotate any logs older than selected, this helps cleanup your database')" :label="__('Rotate logs after')" v-model="form.rotate_logs_after">
+                                            <option value="">Don't rotate logs</option>
+                                            <option value="weeks-1">Older than 1 week</option>
+                                            <option value="months-1">Older than 1 month</option>
+                                            <option value="months-3">Older than 3 months</option>
+                                            <option value="months-6">Older than 6 months</option>
+                                            <option value="years-1">Older than 1 year</option>
+                                            <option value="years-2">Older than 2 years</option>
+                                            <option value="years-3">Older than 3 years</option>
+                                            <option value="years-4">Older than 4 years</option>
+                                        </FormSelect>
+
                                         <div>
                                             <input id="support" class="form-checkbox" type="checkbox"
                                                    v-model="form.support">
@@ -188,6 +200,7 @@
                     isolate_per_site_per_user: this.company_settings.isolate_per_site_per_user,
                     default_language: this.company_settings.default_language,
                     logo: null,
+                    rotate_logs_after: this.company_settings.rotate_logs_after,
                 },
             }
         },
@@ -216,6 +229,7 @@
                 data.append('isolate_per_site_per_user', this.form.isolate_per_site_per_user || false)
                 data.append('default_language', this.form.default_language || 'en')
                 data.append('logo', this.form.logo || '')
+                data.append('rotate_logs_after', this.form.rotate_logs_after || '')
                 data.append('_method', 'patch')
 
                 this.$inertia.post(this.route('admin.settings.update'), data, {
