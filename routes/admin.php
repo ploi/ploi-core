@@ -10,6 +10,7 @@ Route::group(['prefix' => 'settings'], function () {
     Route::get('terms', 'SettingController@terms')->name('settings.terms');
     Route::get('terms/template', 'SettingController@termsTemplate')->name('settings.terms.template');
     Route::patch('terms', 'SettingController@updateTerms')->name('settings.terms.update');
+    Route::delete('remove-logo', 'SettingController@removeLogo')->name('settings.remove-logo');
 });
 
 

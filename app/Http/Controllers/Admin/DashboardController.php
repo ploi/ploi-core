@@ -16,8 +16,9 @@ class DashboardController extends Controller
             'servers' => Server::count(),
             'sites' => Site::count(),
             'users' => User::count(),
-            'logs' => SystemLog::latest()->limit(10)->with('model')->get()
-                ->map(function (SystemLog $systemLog) {
+            'logs' => SystemLog::query()
+                ->latest()->limit(10)->with('model')->paginate()
+                ->through(function (SystemLog $systemLog) {
                     return [
                         'title' => __($systemLog->title, [
                             'site' => $systemLog->model->domain ?? '-Unknown-'
