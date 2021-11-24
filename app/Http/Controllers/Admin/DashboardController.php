@@ -10,14 +10,16 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function __invoke()
     {
         return inertia('Admin/Dashboard', [
             'servers' => Server::count(),
             'sites' => Site::count(),
             'users' => User::count(),
             'logs' => SystemLog::query()
-                ->latest()->limit(10)->with('model')->paginate()
+                ->latest()
+                ->with('model')
+                ->paginate(5)
                 ->through(function (SystemLog $systemLog) {
                     return [
                         'title' => __($systemLog->title, [

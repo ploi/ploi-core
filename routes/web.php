@@ -118,6 +118,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
                 Route::get('/', 'ProfileBillingController@index')->name('index');
 
                 Route::post('card/update', 'ProfileBillingController@updateCard')->name('update.card');
+                Route::delete('card', 'ProfileBillingController@deleteCard')->name('delete.card');
                 Route::post('plan/update', 'ProfileBillingController@updatePlan')->name('update.plan');
                 Route::delete('plan/cancel', 'ProfileBillingController@cancel')->name('cancel.plan');
                 Route::get('invoices', 'ProfileBillingController@invoices')->name('invoices');

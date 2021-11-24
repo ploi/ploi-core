@@ -122,6 +122,16 @@ class ProfileBillingController extends Controller
         return redirect()->route('profile.billing.index')->with('success', 'Your card has been added, you can now update your plan');
     }
 
+    public function deleteCard(Request $request)
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        $user->deletePaymentMethods();
+
+        return redirect()->route('profile.billing.index')->with('success', 'Your credit card has been removed from your account');
+    }
+
     public function updatePlan(Request $request)
     {
         /** @var User $user */

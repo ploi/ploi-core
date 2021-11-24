@@ -93,7 +93,7 @@
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
-                                                           :value="site.domain"/>
+                                                           :value="mainDnsRecord"/>
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
@@ -224,6 +224,15 @@ export default {
         site: Object,
         ip_address: String,
         system_user: Object,
+    },
+
+    computed: {
+        mainDnsRecord() {
+            if (this.site.domain.includes('www')) {
+                return this.site.domain.replace('www.', '');
+            }
+            return this.site.domain;
+        }
     },
 
     methods: {
