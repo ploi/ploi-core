@@ -25,7 +25,9 @@ class SettingController extends Controller
             'isolate_per_site_per_user' => setting('isolate_per_site_per_user'),
             'enable_api' => setting('enable_api'),
             'api_token' => setting('api_token') ? decrypt(setting('api_token')) : null,
-            'default_language' => setting('default_language', 'en')
+            'rotate_logs_after' => setting('rotate_logs_after') ? setting('rotate_logs_after') : null,
+            'default_language' => setting('default_language', 'en'),
+            'has_logo' => (bool)setting('logo'),
         ];
 
         $packages = Package::pluck('name', 'id');
@@ -51,7 +53,8 @@ class SettingController extends Controller
             'isolate_per_site_per_user',
             'enable_api',
             'api_token',
-            'default_language'
+            'default_language',
+            'rotate_logs_after',
         ]) as $key => $value) {
             if ($key === 'api_token') {
                 $value = encrypt($value);
@@ -125,5 +128,14 @@ class SettingController extends Controller
         ], $template);
 
         return ['content' => $template];
+    }
+
+    public function removeLogo(Request $request)
+    {
+        Storage::delete(setting('logo'));
+
+        setting(['logo' => null]);
+
+        return redirect()->back()->with('success', 'Logo has ben removed');
     }
 }

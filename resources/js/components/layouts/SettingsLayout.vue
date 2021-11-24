@@ -4,7 +4,7 @@
             <slot name="nav" />
         </aside>
         <section class="col-span-4 md:col-span-3">
-            <div class="space-y-16">
+            <div :class="space">
                 <slot name="segments"></slot>
             </div>
         </section>
@@ -18,6 +18,10 @@ export default {
             type: Array,
             required: false,
         },
+        space: {
+            type: String,
+            default: 'space-y-16'
+        }
     },
 }
 </script>

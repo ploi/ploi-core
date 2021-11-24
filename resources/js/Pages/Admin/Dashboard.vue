@@ -11,12 +11,12 @@
                 </PageHeader>
 
                 <PageBody>
-                    <SettingsLayout>
+                    <SettingsLayout space="space-y-0">
                         <template #nav>
-                            <Tabs />
+                            <Tabs class="mb-16" />
                         </template>
                         <template #segments>
-                            <div>
+                            <div class="mb-16">
                                 <ul class="grid grid-cols-3 gap-4">
                                     <li class="p-6 rounded shadow bg-surface-3">
                                         <div class="flex space-x-4">
@@ -54,10 +54,10 @@
                                 </ul>
                             </div>
 
-                            <div>
+                            <div class="pb-4">
                                 <h2>{{ __('Recent logs') }}</h2>
                                 <List>
-                                    <ListItem v-for="log in logs" :key="log.id">
+                                    <ListItem v-for="log in logs.data" :key="log.id">
                                         <template #title>
                                             {{ log.title }}
                                         </template>
@@ -66,7 +66,7 @@
                                     </ListItem>
                                 </List>
                             </div>
-
+                            <pagination :links="logs"/>
                         </template>
                     </SettingsLayout>
 
@@ -82,6 +82,7 @@
     import Container from '@/components/Container'
     import Content from '@/components/Content'
     import Page from '@/components/Page'
+    import Pagination from '@/components/Pagination'
     import PageHeader from '@/components/PageHeader'
     import PageHeaderTitle from '@/components/PageHeaderTitle'
     import PageBody from '@/components/PageBody'
@@ -116,6 +117,7 @@
             Container,
             Content,
             Page,
+            Pagination,
             PageHeader,
             PageHeaderTitle,
             PageBody,
@@ -140,7 +142,7 @@
             servers: Number,
             sites: Number,
             users: Number,
-            logs: Array,
+            logs: [Array, Object],
         }
     }
 </script>
