@@ -22,7 +22,7 @@
     @if($logo = setting('logo'))
         <link rel="icon" type="image/x-icon" href="{{ $logo }}">
     @endif
-    
+
     @routes
 </head>
 <body>
