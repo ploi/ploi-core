@@ -14,6 +14,10 @@ class Cleanup extends Command
 
     public function handle()
     {
+        if (!setting('rotate_logs_after')) {
+            return Command::SUCCESS;
+        }
+
         $rotationDate = $this->getRotationDate();
 
         $rotated = SystemLog::query()
@@ -25,7 +29,7 @@ class Cleanup extends Command
         return Command::SUCCESS;
     }
 
-    protected function getRotationDate(): Carbon
+    protected function getRotationDate()
     {
         switch (setting('rotate_logs_after')) {
             case 'weeks-1':

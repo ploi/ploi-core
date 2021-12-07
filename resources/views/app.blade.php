@@ -19,6 +19,10 @@
         <link href="{{ asset('storage/theme.css') }}?v={{ md5_file($theme) }}" rel="stylesheet"></link>
     @endif
 
+    @if($logo = setting('logo'))
+        <link rel="icon" type="image/x-icon" href="{{ $logo }}">
+    @endif
+
     @routes
 </head>
 <body>

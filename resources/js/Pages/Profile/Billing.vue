@@ -7,16 +7,26 @@
                 <PageBody>
                     <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
                         <div class="md:col-span-2 space-y-4">
+                            <div v-if="ends" class="space-y-4 border-b border-low-emphasis pb-4">
+                                <h2 class="text-lg text-medium-emphasis">{{ __('Subscription') }}</h2>
+
+                                <p>
+                                    Renews on {{ ends }}
+                                </p>
+                            </div>
+
                             <h2 class="text-lg text-medium-emphasis">{{ __('Card information') }}</h2>
                             <form @submit.prevent="updateBilling" class="space-y-4">
-                                <p v-if="currentCardLastFour">
-                                    &centerdot;&centerdot;&centerdot;&centerdot;&nbsp;&centerdot;&centerdot;&centerdot;&centerdot;&nbsp;&centerdot;&centerdot;&centerdot;&centerdot;&nbsp;
-                                    {{ currentCardLastFour }} ({{ currentCardBrand }})
-                                </p>
-                                <Button v-if="currentCardLastFour" @click="deleteCard" size="sm" :loading="sending"
-                                        variant="danger" type="button">
-                                    {{ __('Remove card') }}
-                                </Button>
+                                <div v-if="currentCardLastFour" class="border-b border-low-emphasis pb-4 space-y-2">
+                                    <p>
+                                        &centerdot;&centerdot;&centerdot;&centerdot;&nbsp;&centerdot;&centerdot;&centerdot;&centerdot;&nbsp;&centerdot;&centerdot;&centerdot;&centerdot;&nbsp;
+                                        {{ currentCardLastFour }} ({{ currentCardBrand }})
+                                    </p>
+                                    <Button @click="deleteCard" size="sm" :loading="sending"
+                                            variant="danger" type="button">
+                                        {{ __('Remove card') }}
+                                    </Button>
+                                </div>
 
                                 <form-input v-model="cardHolderName"
                                             :errors="$page.props.errors.card_holder_name"
@@ -275,6 +285,7 @@ export default {
         data_client_secret: String,
         card: Object,
         filters: Object,
+        ends: String,
     },
 
     data() {

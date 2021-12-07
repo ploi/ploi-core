@@ -77,11 +77,14 @@ class ProfileBillingController extends Controller
             return inertia('Profile/BillingError');
         }
 
+        $subscription = $user->subscription();
+
         return inertia('Profile/Billing', [
             'packages' => $packages,
             'countries' => countries(),
-            'subscription' => $user->subscription('default'),
+            'subscription' => $subscription,
             'public_key' => config('cashier.key'),
+            'ends' => $subscription ? Carbon::createFromTimeStamp($subscription->asStripeSubscription()->current_period_end)->format('F jS, Y') ?? null : null,
             'data_client_secret' => $clientSecret,
             'card' => [
                 'last_four' => $user->card_last_four,
