@@ -12,10 +12,6 @@ class SystemController extends Controller
 {
     public function index(MasterSupervisorRepository $masterSupervisorRepository)
     {
-        if (config('app.demo')) {
-            return redirect('/')->with('info', __('This feature is not available in demo mode.'));
-        }
-
         $version = (new VersionChecker)->getVersions();
 
         return inertia('Admin/System', [

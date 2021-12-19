@@ -126,15 +126,15 @@ export default {
             sending: false,
 
             form: this.$inertia.form({
-                terms: this.settings.terms,
-                terms_required: this.settings.terms_required,
-                privacy: this.settings.privacy,
+                terms: this.terms_settings.terms,
+                terms_required: this.terms_settings.terms_required,
+                privacy: this.terms_settings.privacy,
             })
         }
     },
 
     props: {
-        settings: Object,
+        terms_settings: Object,
     },
 
     methods: {
