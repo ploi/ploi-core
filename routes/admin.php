@@ -13,7 +13,6 @@ Route::group(['prefix' => 'settings'], function () {
     Route::delete('remove-logo', 'SettingController@removeLogo')->name('settings.remove-logo');
 });
 
-
 Route::get('system', 'SystemController@index')->name('system');
 Route::post('system/update', 'SystemController@update')->name('system.update');
 Route::get('status', 'StatusController@index')->name('status.index');

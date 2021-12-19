@@ -95,7 +95,7 @@ class SettingController extends Controller
     public function terms()
     {
         return inertia('Admin/Terms', [
-            'settings' => [
+            'terms_settings' => [
                 'logo' => setting('logo'),
                 'name' => setting('name'),
                 'terms_required' => setting('accept_terms_required'),

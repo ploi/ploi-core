@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Core;
 
-use Carbon\Carbon;
 use App\Models\SystemLog;
 use Illuminate\Console\Command;
 
