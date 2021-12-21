@@ -42,6 +42,9 @@ class Install extends Command
         $this->line(' ');
         $this->writeSeparationLine();
         $this->info('Make sure to also setup emailing, the cronjob and the queue worker.');
+        $this->line(' ');
+        $this->info('Setting up emailing: https://docs.ploi-core.io/getting-started/setting-up-email');
+        $this->info('Setting up cronjob & queue worker: https://docs.ploi-core.io/getting-started/installation');
         $this->writeSeparationLine();
         $this->line(' ');
         $this->info('Visit your platform at ' . env('APP_URL'));
@@ -54,28 +57,32 @@ class Install extends Command
 
     protected function askAboutAdministrationAccount()
     {
-        $this->info('Let\'s start by setting up your administration account.');
+        if (!User::query()->where('role', User::ADMIN)->count()) {
+            $this->info('Let\'s start by setting up your administration account.');
 
-        $name = $this->ask('What is your name', $this->company['user_name']);
-        $email = $this->ask('What is your e-mail address', $this->company['email']);
-        $password = $this->secret('What password do you desire');
+            $name = $this->ask('What is your name', $this->company['user_name']);
+            $email = $this->ask('What is your e-mail address', $this->company['email']);
+            $password = $this->secret('What password do you desire');
 
-        $check = User::where('email', $email)->count();
+            $check = User::where('email', $email)->count();
 
-        if ($check) {
-            $this->line('');
-            $this->comment('This user is already present in your system, please refresh your database or use different credentials.');
-            $this->comment('Aborting installation..');
+            if ($check) {
+                $this->line('');
+                $this->comment('This user is already present in your system, please refresh your database or use different credentials.');
+                $this->comment('Aborting installation..');
 
-            exit();
+                exit();
+            }
+
+            User::forceCreate([
+                'name' => $name,
+                'email' => $email,
+                'password' => $password,
+                'role' => User::ADMIN
+            ]);
+        } else {
+            $this->line('Already found a administrator user in your system. Use that user to login.');
         }
-
-        User::forceCreate([
-            'name' => $name,
-            'email' => $email,
-            'password' => $password,
-            'role' => User::ADMIN
-        ]);
     }
 
     protected function askAboutDefaultPackages()
