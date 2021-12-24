@@ -1,14 +1,8 @@
 module.exports = {
-    purge: {
-        content: [
-            './resources/js/**/*.vue',
-            './resources/views/**/*.blade.php',
-        ],
-        options: {
-            whitelistPatternsChildren: [],
-            whitelist: ['theme--dark'],
-        }
-    },
+    content: [
+        './resources/js/**/*.vue',
+        './resources/views/**/*.blade.php',
+    ],
 
     plugins: [
         require('@tailwindcss/forms'),
@@ -18,21 +12,21 @@ module.exports = {
     theme: {
         extend: {
             maxWidth: {
-                'top-bar-container' : 'var(--top-bar-container)'
+                'top-bar-container': 'var(--top-bar-container)'
             },
             backgroundColor: {
-                'top-bar' : 'var(--top-bar-background-color)',
-                'tab-bar' : 'var(--tab-bar-background-color)',
-                'tab-bar-item' : 'var(--tab-bar-item-active-background-color)',
+                'top-bar': 'var(--top-bar-background-color)',
+                'tab-bar': 'var(--tab-bar-background-color)',
+                'tab-bar-item': 'var(--tab-bar-item-active-background-color)',
             },
             height: {
-                'top-bar-logo' : 'var(--top-bar-logo-height)'
+                'top-bar-logo': 'var(--top-bar-logo-height)'
             },
             textColor: {
-                'breadcrumbs' : 'var(--breadcrumbs-text-color)',
-                'top-bar' : 'var(--top-bar-text-color)',
-                'tab-bar' : 'var(--tab-bar-item-text-color)',
-                'tab-bar-active' : 'var(--tab-bar-item-active-text-color)',
+                'breadcrumbs': 'var(--breadcrumbs-text-color)',
+                'top-bar': 'var(--top-bar-text-color)',
+                'tab-bar': 'var(--tab-bar-item-text-color)',
+                'tab-bar-active': 'var(--tab-bar-item-active-text-color)',
             },
             borderRadius: {
                 default: 'var(--border-radius)',
