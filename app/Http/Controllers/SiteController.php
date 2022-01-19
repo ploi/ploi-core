@@ -21,7 +21,7 @@ class SiteController extends Controller
                 return $query->where('server_id', $value);
             })
             ->latest()
-            ->paginate(10);
+            ->paginate(config('core.pagination.per_page'));
 
         $availableServers = auth()->user()->servers()->pluck('name', 'id');
 
