@@ -39,7 +39,7 @@
                             You can remove your account here. This will remove all data of your account.
                         </p>
                         <FormActions>
-                            <Button variant="danger">{{ __('Save changes') }}</Button>
+                            <Button variant="danger">{{ __('Delete account') }}</Button>
                         </FormActions>
                     </form>
                 </PageBody>
