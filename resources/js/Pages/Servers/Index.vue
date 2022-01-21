@@ -26,6 +26,14 @@
                             <option :value="`${null}`">{{ __('Select random plan') }}</option>
                             <option v-for="(name, id) in plans" :value="id">{{ name }}</option>
                         </FormSelect>
+
+                        <FormSelect :loading="loading" :errors="$page.props.errors.database_type" :label="__('Select database type')"
+                                    v-model="form.database_type">
+                            <option value="mysql">{{ __('MySQL 5.7') }}</option>
+                            <option value="mariadb">{{ __('MariaDB') }}</option>
+                            <option value="postgresql">{{ __('PostgreSQL') }}</option>
+                            <option value="postgresql13">{{ __('PostgreSQL 13') }}</option>
+                        </FormSelect>
                     </template>
 
                     <template #form-actions>
@@ -71,7 +79,7 @@
 
                                     <DropdownList :position="position" v-if="isOpen">
                                         <DropdownListItem :to="route('servers.show', server.id)">View</DropdownListItem>
-                                        <DropdownListItemButton v-if="can('servers', 'delete')" class="text-danger"
+                                        <DropdownListItemButton v-if="can('servers', 'delete')" class="!text-danger"
                                                                 @click="confirmDelete(server)">
                                             Delete
                                         </DropdownListItemButton>
@@ -219,6 +227,7 @@ export default {
                 provider: null,
                 region: null,
                 plan: null,
+                database_type: 'mysql'
             },
 
             providers: this.dataProviders,
@@ -254,7 +263,7 @@ export default {
         },
 
         poll() {
-            this.$inertia.replace(this.route('servers.index'), {
+            this.$inertia.get(this.route('servers.index'), {}, {
                 only: ['servers'],
                 preserveScroll: true,
             })

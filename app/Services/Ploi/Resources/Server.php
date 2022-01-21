@@ -63,7 +63,11 @@ class Server extends Resource
         string $name,
         $provider,
         $region,
-        $plan
+        $plan,
+        $type = 'server',
+        $databaseType = 'mysql',
+        $webserverType = 'nginx',
+        $phpVersion = '7.4'
     ): stdClass {
 
         // Remove the id
@@ -76,10 +80,10 @@ class Server extends Resource
                 'plan' => $plan,
                 'region' => $region,
                 'credential' => $provider,
-                'type' => 'server',
-                'database_type' => 'mysql',
-                'webserver_type' => 'nginx',
-                'php_version' => '7.4'
+                'type' => $type,
+                'database_type' => $databaseType,
+                'webserver_type' => $webserverType,
+                'php_version' => $phpVersion
             ]),
         ];
 

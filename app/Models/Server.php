@@ -17,7 +17,8 @@ class Server extends Model
         'internal_ip',
         'ssh_port',
         'maximum_sites',
-        'available_php_versions'
+        'available_php_versions',
+        'database_type'
     ];
 
     protected $casts = [

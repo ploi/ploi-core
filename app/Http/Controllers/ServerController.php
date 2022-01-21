@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Server;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Jobs\Servers\CreateServer;
@@ -38,7 +39,8 @@ class ServerController extends Controller
 
         /* @var $server \App\Models\Server */
         $server = $request->user()->servers()->create([
-            'name' => $request->input('name')
+            'name' => $request->input('name'),
+            'database_type' => $request->input('database_type', 'mysql')
         ]);
 
         $server->provider()->associate($provider);
@@ -64,6 +66,10 @@ class ServerController extends Controller
     public function show($id)
     {
         $server = auth()->user()->servers()->findOrFail($id);
+
+        if ($server->status === Server::STATUS_BUSY) {
+            return redirect()->back()->with('info', 'This server is currently busy, please check back later.');
+        }
 
         return inertia('Servers/Show', [
             'server' => $server,
