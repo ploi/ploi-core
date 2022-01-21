@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Server;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ServerRequest extends FormRequest
 {
@@ -45,6 +46,11 @@ class ServerRequest extends FormRequest
                 'required',
                 'not_in:0',
                 'exists:provider_plans,id'
+            ],
+            'database_type' => [
+                'required',
+                'string',
+                Rule::in(['mysql', 'mariadb', 'postgresql', 'postgresql13'])
             ]
         ];
     }

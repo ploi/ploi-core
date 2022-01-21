@@ -17,21 +17,11 @@ class CreateServer implements ShouldQueue
     public $server;
     public $tries = 1;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param Server $server
-     */
     public function __construct(Server $server)
     {
         $this->server = $server;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
     public function handle()
     {
         $ploiServer = $this->getPloi()->server()->create(
@@ -39,12 +29,14 @@ class CreateServer implements ShouldQueue
             $this->server->provider->ploi_id,
             $this->server->providerRegion->region_id,
             $this->server->providerPlan->plan_id,
+            'server',
+            $this->server->database_type
         );
 
         $this->server->ploi_id = $ploiServer->id;
         $this->server->save();
 
-        // Lets fetch the status after 5 minutes
+        // Let's fetch the status after 5 minutes
         dispatch(new FetchServerStatus($this->server))->delay(now()->addMinutes(5));
     }
 
