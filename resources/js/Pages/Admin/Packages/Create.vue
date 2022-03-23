@@ -56,6 +56,7 @@
                                             <option value="cad">{{ __('CAD (Canadian dollar)') }}</option>
                                             <option value="inr">{{ __('INR ₹ (Indian rupee)') }}</option>
                                             <option value="thb">{{ __('THB (Thai bath)') }}</option>
+                                            <option value="brl">{{ __('BRL R$ (Brazilian Real)') }}</option>
                                         </FormSelect>
 
                                         <div class="space-y-4">
