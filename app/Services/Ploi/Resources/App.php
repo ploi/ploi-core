@@ -66,7 +66,7 @@ class App extends Resource
         $this->setId($response->getJson()->data->id);
 
         // Return the data
-        return $response->getJson()->data;
+        return $response->getJson();
     }
 
     public function uninstall($type): bool

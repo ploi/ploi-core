@@ -22,7 +22,7 @@ import ErrorText from '@/components/ErrorText'
 import HelperText from '@/components/HelperText'
 
 const defaultClasses =
-    'w-full border-medium-emphasis text-body h-10 max-w-lg px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary'
+    'w-full border-medium-emphasis text-body h-10 px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary'
 
 export default {
     props: {

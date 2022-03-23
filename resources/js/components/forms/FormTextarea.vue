@@ -21,7 +21,7 @@
     import HelperText from '@/components/HelperText'
 
     const defaultClasses =
-        'w-full border-medium-emphasis text-body max-w-lg px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary'
+        'w-full border-medium-emphasis text-body px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary'
 
     export default {
         props: {

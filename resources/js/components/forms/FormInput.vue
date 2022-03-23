@@ -1,5 +1,5 @@
 <template>
-    <FormGroup class="relative max-w-lg">
+    <FormGroup class="relative">
         <Label :errors="errors" :forId="id">{{ label }}</Label>
 
         <button type="button" @click="copy" v-if="allowCopy" class="flex items-center right-0 absolute text-xs text-medium-emphasis">

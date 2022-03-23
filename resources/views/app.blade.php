@@ -16,16 +16,24 @@
     @endif
 
     @if(file_exists($theme = storage_path('app/public/theme.css')))
-        <link href="{{ asset('storage/theme.css') }}?v={{ md5_file($theme) }}" rel="stylesheet"></link>
+        <link href="{{ asset('storage/theme.css') }}?v={{ md5_file($theme) }}" rel="stylesheet"/>
     @endif
 
     @if($logo = setting('logo'))
         <link rel="icon" type="image/x-icon" href="{{ $logo }}">
     @endif
 
+    @if(view()->exists('header'))
+        {!! view('header')->render() !!}
+    @endif
+
     @routes
 </head>
 <body>
 @inertia
+
+@if(view()->exists('footer'))
+    {!! view('footer')->render() !!}
+@endif
 </body>
 </html>
