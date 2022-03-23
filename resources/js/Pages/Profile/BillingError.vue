@@ -5,7 +5,15 @@
         <Content>
             <Container>
                 <PageBody>
-                    There's an issue getting in touch with the payment service provider. Please check your settings and the error log.
+                    <div class="bg-warning text-on-warning px-4 py-3 rounded relative space-y-2" role="alert">
+                        <strong class="font-bold">Problem with billing provider.</strong>
+                        <p class="block">
+                            There's an issue getting in touch with the payment service provider. Please check your settings and the error log or get in touch
+                            with the administrator of this software.
+                        </p>
+
+                        <a class="block font-bold underline" href="https://docs.ploi-core.io/digging-deeper/using-stripe" target="_blank">How to setup Stripe for billing</a>
+                    </div>
                 </PageBody>
             </Container>
         </Content>

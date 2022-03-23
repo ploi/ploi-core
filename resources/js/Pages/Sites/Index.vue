@@ -62,6 +62,8 @@
                             </template>
                         </ListItem>
                     </List>
+
+                    <pagination :links="sites"/>
                 </PageBody>
             </Container>
         </Content>
@@ -98,6 +100,7 @@
     import DropdownListItem from '@/components/DropdownListItem'
     import DropdownListItemButton from '@/components/DropdownListItemButton'
     import {useConfirmDelete} from '@/hooks/confirm-delete'
+    import Pagination from '@/components/Pagination'
 
     export default {
         metaInfo() {
@@ -135,7 +138,8 @@
             Dropdown,
             DropdownList,
             DropdownListItem,
-            DropdownListItemButton
+            DropdownListItemButton,
+            Pagination
         },
 
         props: {

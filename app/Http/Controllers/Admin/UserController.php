@@ -11,7 +11,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('package:id,name')
+        $users = User::query()
+            ->withCount('sites', 'servers')
+            ->with('package:id,name')
             ->when(request()->input('search'), function ($query, $value) {
                 return $query->where('name', 'like', '%' . $value . '%')->orWhere('email', 'like', '%' . $value . '%');
             })

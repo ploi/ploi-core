@@ -223,6 +223,7 @@ class ProfileBillingController extends Controller
             Package::CURRENCY_GBP => 'GBP £',
             Package::CURRENCY_INR => 'INR ₹',
             Package::CURRENCY_THB => 'THB ',
+            Package::CURRENCY_BRL=> 'BRL R$ ',
         ];
 
         return $currencies[strtolower($key)] ?? '$';

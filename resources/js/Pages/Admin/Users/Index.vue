@@ -42,6 +42,7 @@
                                                             <span class="text-primary">{{ user.name }}</span>
 
                                                             <p class="text-medium-emphasis">{{ user.email }}</p>
+                                                            <p class="text-medium-emphasis">{{ user.sites_count }} {{ __choice('site|sites', user.sites_count) }} &centerdot; {{ user.servers_count }} {{ __choice('server|servers', user.servers_count) }}</p>
                                                         </inertia-link>
 
                                                     </TableData>

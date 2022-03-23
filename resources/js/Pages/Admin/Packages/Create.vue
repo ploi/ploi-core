@@ -29,11 +29,14 @@
                                                    v-model="form.name"/>
                                         <FormInput :label="__('Maximum sites')" type="number" min="0"
                                                    :errors="$page.props.errors.maximum_sites"
+                                                   helper-text="Set to 0 for unlimited"
                                                    v-model="form.maximum_sites"/>
                                         <FormInput :label="__('Maximum servers')" type="number" min="0"
                                                    :errors="$page.props.errors.maximum_servers"
+                                                   helper-text="Set to 0 for unlimited"
                                                    v-model="form.maximum_servers"/>
                                         <FormInput :label="__('Plan ID')" :errors="$page.props.errors.plan_id"
+                                                   helper-text="Enter the pricing ID from Stripe here"
                                                    v-model="form.plan_id"/>
                                         <FormInput v-if="form.plan_id" :label="__('Monthly price')"
                                                    helper-text="Fill this in if you want it to be monthly payments"
@@ -53,6 +56,7 @@
                                             <option value="cad">{{ __('CAD (Canadian dollar)') }}</option>
                                             <option value="inr">{{ __('INR ₹ (Indian rupee)') }}</option>
                                             <option value="thb">{{ __('THB (Thai bath)') }}</option>
+                                            <option value="brl">{{ __('BRL R$ (Brazilian Real)') }}</option>
                                         </FormSelect>
 
                                         <div class="space-y-4">

@@ -20,7 +20,8 @@ class Site extends Model
     public $fillable = [
         'ploi_id',
         'domain',
-        'dns_id'
+        'dns_id',
+        'project'
     ];
 
     public function setDnsIdAttribute($value)
