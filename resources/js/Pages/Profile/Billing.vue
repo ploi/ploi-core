@@ -70,7 +70,13 @@
                             </form>
                         </div>
                         <div class="md:col-span-3 space-y-8" v-if="!packages.length">
-                            There are currently no packages to choose from.
+                            <div class="bg-primary text-on-primary px-4 py-3 rounded relative space-y-2" role="alert">
+                                <strong class="font-bold">No packages available.</strong>
+                                <p class="block">
+                                    There are currently no packages to choose from. If you're and administrator, you can
+                                    attach packages via the administrator area.
+                                </p>
+                            </div>
                         </div>
                         <div class="md:col-span-3 space-y-8" v-if="packages.length">
                             <h2 class="text-lg text-medium-emphasis">{{ __('Available packages') }}</h2>

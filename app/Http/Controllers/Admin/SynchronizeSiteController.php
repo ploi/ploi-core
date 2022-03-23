@@ -38,6 +38,7 @@ class SynchronizeSiteController extends Controller
             ], [
                 'domain' => $request->input('domain'),
                 'php_version' => $request->input('php_version'),
+                'project' => $request->input('project_type')
             ]);
 
         $site->status = $request->input('status');

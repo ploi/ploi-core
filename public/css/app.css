@@ -1760,6 +1760,9 @@ select {
 .\!text-danger {
   color: var(--color-danger) !important;
 }
+.text-on-warning {
+  color: var(--color-text-on-warning);
+}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1820,6 +1823,13 @@ select {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.delay-150 {
+  transition-delay: 150ms;
 }
 .duration-fast {
   transition-duration: 200ms;
@@ -2124,9 +2134,23 @@ button[aria-label][data-balloon-pos] {
   color: var(--text-medium-emphasis);
   border: 1px solid var(--color-surface-3);
 }
+.hover\:-translate-y-1:hover {
+  --tw-translate-y: -0.25rem;
+  transform: var(--tw-transform);
+}
 .hover\:scale-95:hover {
   --tw-scale-x: .95;
   --tw-scale-y: .95;
+  transform: var(--tw-transform);
+}
+.hover\:scale-110:hover {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: var(--tw-transform);
+}
+.hover\:scale-125:hover {
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
   transform: var(--tw-transform);
 }
 .hover\:bg-surface-2:hover {
