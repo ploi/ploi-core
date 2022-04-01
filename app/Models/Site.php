@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\SiteAlias;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +23,10 @@ class Site extends Model
         'domain',
         'dns_id',
         'project'
+    ];
+
+    public $casts = [
+        'aliases' => SiteAlias::class,
     ];
 
     public function setDnsIdAttribute($value)

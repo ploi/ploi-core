@@ -1636,6 +1636,7 @@ select {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+<<<<<<< Updated upstream
 .px-2\.5 {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
@@ -1648,6 +1649,8 @@ select {
   padding-top: 0px;
   padding-bottom: 0px;
 }
+=======
+>>>>>>> Stashed changes
 .pr-16 {
   padding-right: 4rem;
 }
@@ -1715,9 +1718,12 @@ select {
 .leading-6 {
   line-height: 1.5rem;
 }
+<<<<<<< Updated upstream
 .leading-4 {
   line-height: 1rem;
 }
+=======
+>>>>>>> Stashed changes
 .text-high-emphasis {
   color: var(--color-text-high-emphasis);
 }
@@ -1824,6 +1830,7 @@ select {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+<<<<<<< Updated upstream
 .transition-transform {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1831,6 +1838,8 @@ select {
 .delay-150 {
   transition-delay: 150ms;
 }
+=======
+>>>>>>> Stashed changes
 .duration-fast {
   transition-duration: 200ms;
 }
@@ -2134,20 +2143,26 @@ button[aria-label][data-balloon-pos] {
   color: var(--text-medium-emphasis);
   border: 1px solid var(--color-surface-3);
 }
+<<<<<<< Updated upstream
 .hover\:-translate-y-1:hover {
   --tw-translate-y: -0.25rem;
   transform: var(--tw-transform);
 }
+=======
+>>>>>>> Stashed changes
 .hover\:scale-95:hover {
   --tw-scale-x: .95;
   --tw-scale-y: .95;
   transform: var(--tw-transform);
 }
+<<<<<<< Updated upstream
 .hover\:scale-110:hover {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
   transform: var(--tw-transform);
 }
+=======
+>>>>>>> Stashed changes
 .hover\:scale-125:hover {
   --tw-scale-x: 1.25;
   --tw-scale-y: 1.25;

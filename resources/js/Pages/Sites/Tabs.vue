@@ -51,6 +51,11 @@
                         to: this.route('sites.certificates.index', this.site.id),
                         active: this.route().current('sites.certificates.index')
                     },
+                    {
+                        title: this.__('Aliases'),
+                        to: this.route('sites.aliases.index', this.site.id),
+                        active: this.route().current('sites.aliases.index')
+                    },
                     this.site.dns_id ? {
                         title: this.__('DNS'),
                         to: this.route('sites.dns.index', this.site.id),

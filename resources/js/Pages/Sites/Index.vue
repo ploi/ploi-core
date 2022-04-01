@@ -47,7 +47,7 @@
                                     {{ site.domain }}
                                 </inertia-link>
                             </template>
-                            <template v-if="site.project === 'wordpress'" #subtitle>WordPress installed</template>
+                            <template v-if="site.project === 'wordpress'" #subtitle>{{ __('WordPress installed') }}</template>
                             <template #suffix>
                                 <Dropdown v-slot="{ isOpen, toggle, position }">
                                     <IconButton @click="toggle">

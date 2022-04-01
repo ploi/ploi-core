@@ -6,7 +6,7 @@
             <Container>
                 <PageHeader>
                     <template #start>
-                        <PageHeaderTitle>{{ __('Certificates') }}</PageHeaderTitle>
+                        <PageHeaderTitle>{{ __('Aliases') }}</PageHeaderTitle>
                     </template>
                 </PageHeader>
 
@@ -18,21 +18,9 @@
                         <template #segments>
                             <SettingsSegment>
                                 <template #title>{{ __('Create') }}</template>
-                                <template #subtitle>
-                                    <span v-if="form.type === 'letsencrypt'" v-text="__('Request a new Let\'s Encrypt certificate here. Make sure that the DNS has fully propagated.')"></span>
-                                    <span v-if="form.type === 'custom'" v-text="__('Install your own SSL certificate here. Make sure to enter the private key and certificate.')"></span>
-                                </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormSelect :label="__('Select certificate type')" v-model="form.type">
-                                            <option value="letsencrypt">Let's Encrypt certificate</option>
-                                            <option value="custom">Custom SSL certificate</option>
-                                        </FormSelect>
-
                                         <FormInput v-if="form.type === 'letsencrypt'" :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
-
-                                        <FormTextarea v-if="form.type === 'custom'" :label="__('Private key')" :errors="$page.props.errors.private" rows="2" v-model="form.private" />
-                                        <FormTextarea v-if="form.type === 'custom'" :label="__('Certificate')" :errors="$page.props.errors.certificate" rows="2" v-model="form.certificate" />
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                         </FormActions>
@@ -40,35 +28,23 @@
                                 </template>
                             </SettingsSegment>
 
-                            <EmptyImage v-if="!certificates.meta.total" />
+                            <EmptyImage v-if="false" />
 
-                            <SettingsSegment v-if="certificates.meta.total">
-                                <template #title>{{ __('Certificates') }}</template>
+                            <SettingsSegment>
+                                <template #title>{{ __('Aliases') }}</template>
                                 <template #content>
                                     <div>
                                         <Table caption="Cronjob list overview">
                                             <TableHead>
                                                 <TableRow>
                                                     <TableHeader></TableHeader>
-                                                    <TableHeader>{{ __('Certificate') }}</TableHeader>
+                                                    <TableHeader>{{ __('Alias') }}</TableHeader>
                                                     <TableHeader></TableHeader>
                                                 </TableRow>
                                             </TableHead>
-                                            <TableBody>
-                                                <TableRow v-for="certificate in certificates.data" :key="certificate.id">
-                                                    <TableData><StatusBubble :variant="certificate.status === 'busy' ? 'gray' : 'success'"/></TableData>
-                                                    <TableData>{{ certificate.domain }}</TableData>
-                                                    <TableData>
-                                                        <Button :disabled="certificate.status === 'busy'" variant="danger" size="sm"
-                                                                @click="confirmDelete(certificate)">Delete
-                                                        </Button>
-                                                    </TableData>
-                                                </TableRow>
-                                            </TableBody>
+
                                         </Table>
                                     </div>
-
-                                    <pagination :links="certificates"/>
                                 </template>
                             </SettingsSegment>
                         </template>
@@ -176,41 +152,20 @@
                         to: this.route('sites.show', this.site.id),
                     },
                     {
-                        title: this.__('Certificates'),
-                        to: this.route('sites.certificates.index', this.site.id),
+                        title: this.__('Aliases'),
+                        to: this.route('sites.aliases.index', this.site.id),
                     },
                 ],
             }
         },
 
         mounted() {
-            if(this.shouldBePolling){
-                this.startPollingInterval();
-            }
-
-            this.setDomainData();
         },
 
         watch: {
-            shouldBePolling: function (value) {
-                if (!value) {
-                    this.clearPollingInterval();
-
-                    return;
-                }
-
-                if(!this.pollingInterval){
-                    this.startPollingInterval();
-                }
-            }
         },
 
         computed: {
-            shouldBePolling() {
-                return !!this.certificates.data.filter((certificate) => {
-                    return certificate.status === 'busy';
-                }).length;
-            },
         },
 
         props: {
@@ -219,66 +174,7 @@
         },
 
         methods: {
-            startPollingInterval(){
-                this.pollingInterval = setInterval(function () {
-                    this.poll();
-                }.bind(this), 3000);
-            },
 
-            clearPollingInterval(){
-                clearTimeout(this.pollingInterval);
-                this.pollingInterval = null;
-            },
-
-            poll() {
-                this.$inertia.get(this.route('sites.certificates.index', this.site.id), {
-                    only: ['certificates'],
-                    preserveScroll: true,
-                })
-            },
-
-            submit() {
-                this.sending = true
-
-                this.$inertia.post(this.route('sites.certificates.store', this.site.id), this.form, {
-                    onFinish: () => {
-                        this.sending = false
-
-                        if (!Object.keys(this.$page.props.errors).length) {
-                            this.setDomainData();
-                        }
-                    }
-                });
-            },
-
-            confirmDelete(certificate) {
-                useConfirmDelete({
-                    title: this.__('Are you sure?'),
-                    message: `Your certificate will be deleted permanently, this action cannot be undone.`,
-                    onConfirm: () => this.delete(certificate),
-                })
-            },
-
-            delete(certificate) {
-                this.$inertia.delete(this.route('sites.certificates.delete', [this.site.id, certificate.id]), {
-                    preserveScroll: true
-                })
-            },
-
-            setDomainData(){
-                this.form.certificate = null;
-                this.form.private = null;
-
-                if (this.site.domain.startsWith('www.')) {
-                    this.form.domain = this.site.domain + ',' + this.site.domain.replace('www.', '');
-                } else {
-                    this.form.domain = this.site.domain + ',www.' + this.site.domain;
-                }
-            }
         },
-
-        beforeDestroy(){
-            this.clearPollingInterval();
-        }
     }
 </script>
