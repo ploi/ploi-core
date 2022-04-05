@@ -12,7 +12,11 @@ class SiteAlias implements CastsAttributes
             return [];
         }
 
-        return json_decode($value, true);
+        $data = json_decode($value, true);
+
+        sort($data);
+
+        return $data;
     }
 
     public function set($model, string $key, $value, array $attributes)

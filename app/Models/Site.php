@@ -22,7 +22,8 @@ class Site extends Model
         'ploi_id',
         'domain',
         'dns_id',
-        'project'
+        'project',
+        'aliases'
     ];
 
     public $casts = [
@@ -101,6 +102,22 @@ class Site extends Model
         return [
                 'user_name' => $user->user_name,
             ] + ($withPassword ? ['ftp_password' => $user->ftp_password] : []);
+    }
+
+    public function addAlias($alias)
+    {
+        $aliases = $this->aliases;
+
+        $aliases[] = $alias;
+
+        $this->aliases = $aliases;
+        $this->save();
+    }
+
+    public function removeAlias($alias)
+    {
+        $this->aliases = array_diff($this->aliases, [$alias]);
+        $this->save();
     }
 
     public static function booted()

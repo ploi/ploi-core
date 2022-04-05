@@ -20,7 +20,7 @@
                                 <template #title>{{ __('Create') }}</template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput v-if="form.type === 'letsencrypt'" :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
+                                        <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                         </FormActions>
@@ -28,13 +28,13 @@
                                 </template>
                             </SettingsSegment>
 
-                            <EmptyImage v-if="false" />
+                            <EmptyImage v-if="!aliases.length" />
 
-                            <SettingsSegment>
+                            <SettingsSegment v-if="aliases.length">
                                 <template #title>{{ __('Aliases') }}</template>
                                 <template #content>
                                     <div>
-                                        <Table caption="Cronjob list overview">
+                                        <Table caption="Aliases list overview">
                                             <TableHead>
                                                 <TableRow>
                                                     <TableHeader></TableHeader>
@@ -42,7 +42,17 @@
                                                     <TableHeader></TableHeader>
                                                 </TableRow>
                                             </TableHead>
-
+                                            <TableBody>
+                                                <TableRow v-for="(alias, index) in aliases" :key="index">
+                                                    <TableData><StatusBubble :variant="'success'"/></TableData>
+                                                    <TableData>{{ alias }}</TableData>
+                                                    <TableData>
+                                                        <Button variant="danger" size="sm"
+                                                                @click="confirmDelete(alias)">Delete
+                                                        </Button>
+                                                    </TableData>
+                                                </TableRow>
+                                            </TableBody>
                                         </Table>
                                     </div>
                                 </template>
@@ -133,9 +143,6 @@
 
                 form: {
                     domain: null,
-                    type: 'letsencrypt',
-                    certificate: null,
-                    private: null,
                 },
 
                 breadcrumbs: [
@@ -170,11 +177,34 @@
 
         props: {
             site: Object,
-            certificates: Object,
+            aliases: [Object, Array],
         },
 
         methods: {
+            submit() {
+                this.sending = true
 
+                this.$inertia.post(this.route('sites.aliases.store', this.site.id), this.form, {
+                    onFinish: () => {
+                        this.sending = false
+                        this.form.domain = null;
+                    }
+                });
+            },
+
+            confirmDelete(alias) {
+                useConfirmDelete({
+                    title: this.__('Are you sure?'),
+                    message: `Your alias will be deleted permanently, this action cannot be undone.`,
+                    onConfirm: () => this.delete(alias),
+                })
+            },
+
+            delete(alias) {
+                this.$inertia.delete(this.route('sites.aliases.delete', [this.site.id, alias]), {
+                    preserveScroll: true
+                })
+            },
         },
     }
 </script>
