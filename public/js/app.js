@@ -2849,11 +2849,8 @@ module.exports = {
      */
     __: function __(key, replace) {
       var translation = this.$page.props.translations[key] ? this.$page.props.translations[key] : key;
-      console.log(replace);
 
       _forEach(replace, function (value, key) {
-        console.log(value, key);
-        console.log(translation);
         translation = translation.replace(':' + key, value);
       });
 

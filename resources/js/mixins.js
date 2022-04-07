@@ -6,10 +6,7 @@ module.exports = {
         __(key, replace) {
             let translation = this.$page.props.translations[key] ? this.$page.props.translations[key] : key;
 
-            console.log(replace);
             _forEach(replace, (value, key) => {
-                console.log(value, key)
-                console.log(translation);
                 translation = translation.replace(':' + key, value);
             });
 
