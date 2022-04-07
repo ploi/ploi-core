@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Resources\Admin\SiteResource;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,6 +11,18 @@ use App\Http\Requests\Admin\ServerAttachRequest;
 
 class SiteController extends Controller
 {
+    public function index()
+    {
+        return inertia('Admin/Sites/Index', [
+            'sites' => SiteResource::collection(
+                Site::query()
+                    ->with('server:id,name', 'users:id,name')
+                    ->latest()
+                    ->paginate(config('core.pagination.per_page'))
+            )
+        ]);
+    }
+
     public function edit($id)
     {
         $site = Site::findOrFail($id);

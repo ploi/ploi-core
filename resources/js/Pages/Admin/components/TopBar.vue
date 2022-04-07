@@ -57,6 +57,16 @@ export default {
                     active: this.route().current('admin.documentation.*')
                 } : null,
                 {
+                    title: this.__('Sites'),
+                    to: this.route('admin.sites.index'),
+                    active: this.route().current('admin.sites.*')
+                },
+                {
+                    title: this.__('Servers'),
+                    to: this.route('admin.servers.index'),
+                    active: this.route().current('admin.servers.*')
+                },
+                {
                     title: 'Services',
                     to: this.route('admin.services.index'),
                     active: this.route().current('admin.services.*')

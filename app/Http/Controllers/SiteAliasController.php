@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SiteAliasRequest;
 use App\Http\Resources\SiteAliasResource;
 use App\Jobs\Aliases\CreateAlias;
 use App\Jobs\Aliases\DeleteAlias;
@@ -19,7 +20,7 @@ class SiteAliasController extends Controller
         ]);
     }
 
-    public function store(Request $request, $id)
+    public function store(SiteAliasRequest $request, $id)
     {
         $site = $request->user()->sites()->findOrFail($id);
 

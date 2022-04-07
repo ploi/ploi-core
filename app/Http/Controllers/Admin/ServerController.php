@@ -6,10 +6,23 @@ use App\Models\User;
 use App\Models\Server;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Admin\ServerResource;
 use App\Http\Requests\Admin\ServerAttachRequest;
 
 class ServerController extends Controller
 {
+    public function index()
+    {
+        return inertia('Admin/Servers/Index', [
+            'servers' => ServerResource::collection(
+                Server::query()
+                ->with('users:id,name')
+                ->latest()
+                ->paginate(config('core.pagination.per_page'))
+            )
+        ]);
+    }
+
     public function edit($id)
     {
         $server = Server::findOrFail($id);

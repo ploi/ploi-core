@@ -51,6 +51,14 @@ Route::group(['prefix' => 'documentation', 'as' => 'documentation.'], function (
     });
 });
 
+Route::group(['prefix' => 'sites', 'as' => 'sites.'], function () {
+    Route::get('/', 'SiteController@index')->name('index');
+});
+
+Route::group(['prefix' => 'servers', 'as' => 'servers.'], function () {
+    Route::get('/', 'ServerController@index')->name('index');
+});
+
 Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::get('/', 'ServiceController@index')->name('index');
 

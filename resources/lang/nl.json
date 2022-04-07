@@ -38,6 +38,7 @@
     "Card details": "Kaart gegevens",
     "Invoices": "Facturen",
     "Subscribe": "Abbonneer",
+    "Price": "Prijs",
     "Administration": "Administratie",
     "Overview": "Overzicht",
     "Visit": "Bezoek",
@@ -155,6 +156,9 @@
     "Your website is being created": "Je website wordt momenteel aangemaakt",
     "Site settings have been updated": "Site instellingen zijn bijgewerkt",
 
+    "Are you ready to subscribe to this plan? If you have any coupon codes, make sure to enter them before subscribing.": "Ben je klaar om aan te melden voor dit pakket? Als je nog een kortingscode hebt moet je deze eerst invoeren voordat je abbonneerd.",
+    "Enter a coupon code if you have one, before subscribing": "Voer een kortingscode in",
+
     "A new account has been created for you": "Er is een nieuw account aangemaakt",
     "Welcome to :app": "Welkom bij :app",
     "Hi!": "Hallo!",
@@ -203,6 +207,8 @@
     "Edit server": "Bewerk server",
     "Edit site": "Bewerk website",
     "Maximum sites": "Maximale sites",
+    "Max sites": "Maximale sites",
+    "Max servers": "Maximale servers",
     "Role": "Rol",
     "Attached users": "Gekoppelde gebruikers",
     "This user is already attached to this server": "Deze gebruiker is al gekoppeld aan deze server",
@@ -258,5 +264,12 @@
     "System update has been dispatched, this could take around 2/3 minutes for it to complete": "Systeem update is gestart, het kan 2 tot 3 minuten duren voordat de update klaar is",
     "A user has created a new server": "Een gebruiker heeft een nieuwe server aangemaakt",
     "A new server with the name :server has been created by the user :user": "Er is een nieuwe server :server aangemaakt door gebruiker :user",
-    "View user": "Bekijk gebruiker"
+    "Description": "Inhoud",
+    "View user": "Bekijk gebruiker",
+    "Categories": "Categoriëen",
+    "Category": "Categorie",
+    "Create category": "Nieuwe categorie",
+    "Articles": "Artikelen",
+    "Create article": "Nieuw artikel",
+    "You may use markdown in this field for markup": "Je kunt markdown gebruiken voor de opmaak van dit artikel"
 }

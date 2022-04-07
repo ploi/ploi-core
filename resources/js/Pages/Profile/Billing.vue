@@ -407,13 +407,20 @@ export default {
         },
 
         updatePlan(id) {
-            this.$inertia.post(this.route('profile.billing.update.plan'), {
-                plan: id,
-                coupon: this.coupon
-            }, {
-                onStart: () => this.sending = true,
-                onFinish: () => this.sending = false
-            });
+            useConfirm({
+                title: this.__('Are you sure?'),
+                message: this.__('Are you ready to subscribe to this plan? If you have any coupon codes, make sure to enter them before subscribing.'),
+                variant: 'info',
+                onConfirm: () => {
+                    this.$inertia.post(this.route('profile.billing.update.plan'), {
+                        plan: id,
+                        coupon: this.coupon
+                    }, {
+                        onStart: () => this.sending = true,
+                        onFinish: () => this.sending = false
+                    });
+                }
+            })
         },
 
         confirmCancel() {
