@@ -17,6 +17,7 @@ class SiteController extends Controller
     {
         $sites = auth()->user()
             ->sites()
+            ->with('server:id,name')
             ->when(request('server'), function ($query, $value) {
                 return $query->where('server_id', $value);
             })

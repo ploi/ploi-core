@@ -7,12 +7,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class SiteResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function toArray($request)
     {
         /* @var $this \App\Models\Site */
@@ -20,7 +14,11 @@ class SiteResource extends JsonResource
             'id' => $this->id,
             'status' => $this->parseStatus($this->status),
             'domain' => $this->domain,
+            'php_version' => $this->php_version,
             'project' => $this->project,
+            'server' => $this->server ? [
+                'name' => $this->server->name
+            ] : null,
             'created_at' => $this->created_at
         ];
     }

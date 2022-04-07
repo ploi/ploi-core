@@ -2112,6 +2112,10 @@ button[aria-label][data-balloon-pos] {
   color: var(--text-medium-emphasis);
   border: 1px solid var(--color-surface-3);
 }
+.before\:content-\[\'test\'\]::before {
+  --tw-content: 'test';
+  content: var(--tw-content);
+}
 .hover\:scale-95:hover {
   --tw-scale-x: .95;
   --tw-scale-y: .95;

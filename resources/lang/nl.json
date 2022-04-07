@@ -78,6 +78,7 @@
     "Create a site": "Voeg een site toe",
     "Create site": "Site toevoegen",
     "DNS settings": "DNS instellingen",
+    "DNS settings for aliases": "DNS instellingen voor aliasen",
     "View site": "Bekijk website",
     "Start installation": "Start installatie",
     "Install WordPress": "Installeer WordPress",
@@ -105,6 +106,7 @@
     "Auto": "Automatisch",
     "site|sites": "website|websites",
     "WordPress installed": "WordPress geïnstalleerd",
+    "On server": "Op server",
     "Aliases": "Aliassen",
 
     "Support requests": "Support aanvragen",
