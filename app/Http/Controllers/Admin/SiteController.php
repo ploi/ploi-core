@@ -14,11 +14,16 @@ class SiteController extends Controller
     public function index()
     {
         return inertia('Admin/Sites/Index', [
+            'filters' => request()->all('search'),
             'sites' => SiteResource::collection(
                 Site::query()
+                    ->when(request()->input('search'), function ($query, $value) {
+                        return $query->where('domain', 'like', '%' . $value . '%');
+                    })
                     ->with('server:id,name', 'users:id,name')
                     ->latest()
                     ->paginate(config('core.pagination.per_page'))
+                    ->withQueryString()
             )
         ]);
     }

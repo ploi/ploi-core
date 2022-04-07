@@ -14,11 +14,16 @@ class ServerController extends Controller
     public function index()
     {
         return inertia('Admin/Servers/Index', [
+            'filters' => request()->all('search'),
             'servers' => ServerResource::collection(
                 Server::query()
-                ->with('users:id,name')
-                ->latest()
-                ->paginate(config('core.pagination.per_page'))
+                    ->when(request()->input('search'), function ($query, $value) {
+                        return $query->where('name', 'like', '%' . $value . '%')->orWhere('ip', 'like', '%' . $value . '%');
+                    })
+                    ->with('users:id,name')
+                    ->latest()
+                    ->paginate(config('core.pagination.per_page'))
+                    ->withQueryString()
             )
         ]);
     }

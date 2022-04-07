@@ -147,7 +147,7 @@
     "WordPress is open source software you can use to create a beautiful website, blog, or app.": "WordPress is open source software wat je kan gebruiken om eenvoudig je website, blog of app te bouwen.",
     "Create database & attach to WordPress": "Maak een nieuwe database en koppel WordPress",
     "This will also create a database and attach it directly for you so you have a easy start.": "Dit maakt een nieuwe database aan, en koppelt je WordPress installatie gelijk zodat je meteen kunt beginnen met installeren.",
-    "You currently have a application installed.": "Je hebt momenteel een applicatie geïnstalleerd.",
+    "You currently have :application installed.": "Je hebt momenteel :application geïnstalleerd.",
 
     "Nextcloud is a suite of client-server software for creating and using file hosting services, it is comparable to Dropbox.": "Nextcloud is software om bestanden mee te hosten, het is vergelijkbaar met Dropbox.",
 

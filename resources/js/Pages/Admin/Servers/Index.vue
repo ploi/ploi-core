@@ -15,6 +15,11 @@
                         <template #segments>
                             <SettingsSegment>
                                 <template #title>{{ __('Servers') }}</template>
+                                <template #form>
+                                    <form class="space-y-4 pb-5 mb-5 border-b border-low-emphasis">
+                                        <FormInput :label="__('Search')" v-model="form.search" />
+                                    </form>
+                                </template>
                                 <template #content>
                                     <div>
                                         <Table caption="Server list overview">
@@ -82,6 +87,7 @@ import SettingsLayout from '@/components/layouts/SettingsLayout'
 import SettingsSegment from '@/components/SettingsSegment'
 import Pagination from '@/components/Pagination'
 import {useNotification} from '@/hooks/notification'
+import FormInput from '@/components/forms/FormInput'
 import Table from '@/components/Table'
 import TableHead from '@/components/TableHead'
 import TableHeader from '@/components/TableHeader'
@@ -89,6 +95,8 @@ import TableRow from '@/components/TableRow'
 import TableBody from '@/components/TableBody'
 import TableData from '@/components/TableData'
 import IconPhp from '@/components/icons/IconPhp'
+import throttle from "lodash/throttle";
+import pickBy from "lodash/pickBy";
 
 export default {
     layout: MainLayout,
@@ -122,10 +130,12 @@ export default {
         TableBody,
         TableData,
         IconPhp,
+        FormInput,
     },
 
     props: {
         servers: Object,
+        filters: Object,
     },
 
     mounted() {
@@ -134,5 +144,27 @@ export default {
     methods: {
         useNotification,
     },
+
+    data () {
+        return {
+            form: {
+                search: this.filters.search,
+            }
+        }
+    },
+
+    watch: {
+        form: {
+            handler: throttle(function() {
+                let query = pickBy(this.form)
+                this.$inertia.get(this.route('admin.servers.index', Object.keys(query).length ? query : { remember: 'forget' }), {},{
+                    preserveScroll: true,
+                    preserveState: true,
+                })
+            }, 500),
+            deep: true
+        },
+    },
+
 }
 </script>
