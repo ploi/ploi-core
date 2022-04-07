@@ -114,7 +114,7 @@
     import DropdownList from '@/components/DropdownList'
     import DropdownListItem from '@/components/DropdownListItem'
     import DropdownListItemButton from '@/components/DropdownListItemButton'
-    import {useConfirmDelete} from '@/hooks/confirm-delete'
+    import {useConfirm} from '@/hooks/confirm'
     import Pagination from '@/components/Pagination'
 
     export default {
@@ -263,7 +263,7 @@
             },
 
             confirmDelete(site) {
-                useConfirmDelete({
+                useConfirm({
                     title: this.__('Are you sure?'),
                     message: this.__('Your site will be deleted completely, this action is irreversible.'),
                     onConfirm: () => this.delete(site),

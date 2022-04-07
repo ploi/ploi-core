@@ -103,7 +103,7 @@ import FormTextarea from '@/components/forms/FormTextarea'
 import FormSelect from '@/components/forms/FormSelect'
 import Form from '@/components/Form'
 import FormActions from '@/components/FormActions'
-import {useConfirmDelete} from '@/hooks/confirm-delete'
+import {useConfirm} from '@/hooks/confirm'
 import Tabs from './../Tabs'
 import Table from '@/components/Table'
 import TableHead from '@/components/TableHead'
@@ -174,7 +174,7 @@ export default {
         },
 
         confirmDelete() {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: this.__('Are you sure you want to delete this server? Everything associated with this server will be detached.'),
                 onConfirm: () => this.delete(),
@@ -202,7 +202,7 @@ export default {
         },
 
         confirmDetach(userId) {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: this.__('Are you sure you want to detach this user from this server?'),
                 onConfirm: () => this.detach(userId),

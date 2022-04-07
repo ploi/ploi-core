@@ -3007,10 +3007,10 @@ var OPEN_BACKDROP = 'OPEN_BACKDROP';
 
 /***/ }),
 
-/***/ "./resources/js/store/confirm-delete/actions.js":
-/*!******************************************************!*\
-  !*** ./resources/js/store/confirm-delete/actions.js ***!
-  \******************************************************/
+/***/ "./resources/js/store/confirm/actions.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/confirm/actions.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3018,7 +3018,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "actions": () => (/* binding */ actions)
 /* harmony export */ });
-/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./resources/js/store/confirm-delete/types.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./resources/js/store/confirm/types.js");
 
 var actions = {
   open: function open(_ref, payload) {
@@ -3041,24 +3041,24 @@ var actions = {
 
 /***/ }),
 
-/***/ "./resources/js/store/confirm-delete/module.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/store/confirm-delete/module.js ***!
-  \*****************************************************/
+/***/ "./resources/js/store/confirm/module.js":
+/*!**********************************************!*\
+  !*** ./resources/js/store/confirm/module.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "confirmDelete": () => (/* binding */ confirmDelete)
+/* harmony export */   "confirm": () => (/* binding */ confirm)
 /* harmony export */ });
-/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./resources/js/store/confirm-delete/state.js");
-/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/confirm-delete/mutations.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./resources/js/store/confirm-delete/actions.js");
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./resources/js/store/confirm/state.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/confirm/mutations.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./resources/js/store/confirm/actions.js");
 
 
 
-var confirmDelete = {
+var confirm = {
   namespaced: true,
   state: _state__WEBPACK_IMPORTED_MODULE_0__.state,
   mutations: _mutations__WEBPACK_IMPORTED_MODULE_1__.mutations,
@@ -3067,10 +3067,10 @@ var confirmDelete = {
 
 /***/ }),
 
-/***/ "./resources/js/store/confirm-delete/mutations.js":
-/*!********************************************************!*\
-  !*** ./resources/js/store/confirm-delete/mutations.js ***!
-  \********************************************************/
+/***/ "./resources/js/store/confirm/mutations.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/confirm/mutations.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3078,7 +3078,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "mutations": () => (/* binding */ mutations)
 /* harmony export */ });
-/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./resources/js/store/confirm-delete/types.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./resources/js/store/confirm/types.js");
 var _mutations;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -3100,10 +3100,10 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, _types__WEBPACK_IM
 
 /***/ }),
 
-/***/ "./resources/js/store/confirm-delete/state.js":
-/*!****************************************************!*\
-  !*** ./resources/js/store/confirm-delete/state.js ***!
-  \****************************************************/
+/***/ "./resources/js/store/confirm/state.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/confirm/state.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3116,16 +3116,17 @@ var state = function state() {
     isOpen: false,
     title: undefined,
     message: undefined,
-    onConfirm: undefined
+    onConfirm: undefined,
+    variant: 'danger'
   };
 };
 
 /***/ }),
 
-/***/ "./resources/js/store/confirm-delete/types.js":
-/*!****************************************************!*\
-  !*** ./resources/js/store/confirm-delete/types.js ***!
-  \****************************************************/
+/***/ "./resources/js/store/confirm/types.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/confirm/types.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3153,7 +3154,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _confirm_delete_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./confirm-delete/module */ "./resources/js/store/confirm-delete/module.js");
+/* harmony import */ var _confirm_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./confirm/module */ "./resources/js/store/confirm/module.js");
 /* harmony import */ var _backdrop_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./backdrop/module */ "./resources/js/store/backdrop/module.js");
 /* harmony import */ var _notification_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./notification/module */ "./resources/js/store/notification/module.js");
 
@@ -3164,7 +3165,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
   modules: {
-    confirmDelete: _confirm_delete_module__WEBPACK_IMPORTED_MODULE_0__.confirmDelete,
+    confirm: _confirm_module__WEBPACK_IMPORTED_MODULE_0__.confirm,
     backdrop: _backdrop_module__WEBPACK_IMPORTED_MODULE_1__.backdrop,
     notification: _notification_module__WEBPACK_IMPORTED_MODULE_2__.notification
   }
@@ -27136,7 +27137,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Admin_Alerts_Create_vue":"672d3033717fd822","resources_js_Pages_Admin_Alerts_Edit_vue":"228d6948aa54dfaf","resources_js_Pages_Admin_Alerts_Index_vue":"52cdd896e320dd65","resources_js_Pages_Admin_Alerts_Tabs_vue":"8587b7dfce9dcaa8","resources_js_Pages_Admin_ApplicationLogs_vue":"87451c1d2cafa3de","resources_js_Pages_Admin_Dashboard_vue":"9d08ef85b9767678","resources_js_Pages_Admin_Documentation_Articles_Create_vue":"4672dfd87987c695","resources_js_Pages_Admin_Documentation_Articles_Edit_vue":"f8f51e5a89c615e9","resources_js_Pages_Admin_Documentation_Articles_Index_vue":"1ef4f074bcfc8045","resources_js_Pages_Admin_Documentation_Create_vue":"f4797d956fddff27","resources_js_Pages_Admin_Documentation_Edit_vue":"e5ad44d3dece65be","resources_js_Pages_Admin_Documentation_Index_vue":"8fc2e5873dfa3ec0","resources_js_Pages_Admin_Documentation_Tabs_vue":"c4df127ce8b15957","resources_js_Pages_Admin_Packages_Create_vue":"3de48c874449363c","resources_js_Pages_Admin_Packages_Edit_vue":"5255288ecaf95442","resources_js_Pages_Admin_Packages_Index_vue":"3fab8d75269dcd50","resources_js_Pages_Admin_Packages_Tabs_vue":"5a1e2edbfe4f50dd","resources_js_Pages_Admin_Services_Index_vue":"9ff1f43b33e0f8ce","resources_js_Pages_Admin_Services_Provider_Edit_vue":"81360b56ffed2c10","resources_js_Pages_Admin_Services_Providers_vue":"2b527885823fbc54","resources_js_Pages_Admin_Services_Server_Edit_vue":"398c0208a2db3e91","resources_js_Pages_Admin_Services_Servers_vue":"add964904dc750e3","resources_js_Pages_Admin_Services_Site_Edit_vue":"6a1a72477bbbe7fd","resources_js_Pages_Admin_Services_Sites_vue":"522f41c826487641","resources_js_Pages_Admin_Services_Tabs_vue":"d5aad87d057e0c40","resources_js_Pages_Admin_Settings_vue":"0d36ad1209e400b4","resources_js_Pages_Admin_Status_vue":"edcb1ad3a135401d","resources_js_Pages_Admin_Support_Index_vue":"e2c4e6938bee5f37","resources_js_Pages_Admin_Support_Show_vue":"5869995499e6ce7c","resources_js_Pages_Admin_Support_Tabs_vue":"e410d3e8c44bae60","resources_js_Pages_Admin_System_vue":"9e901b83f25ab6f3","resources_js_Pages_Admin_Tabs_vue":"d233a7be28718d28","resources_js_Pages_Admin_TabsStatus_vue":"708bd41d457b48b6","resources_js_Pages_Admin_Terms_vue":"578f4d0586f3a017","resources_js_Pages_Admin_Users_Create_vue":"d5e0dc25c1278c94","resources_js_Pages_Admin_Users_Edit_vue":"d127a8a240168eb4","resources_js_Pages_Admin_Users_Index_vue":"bd669c947e5d9aae","resources_js_Pages_Admin_Users_Show_vue":"b6ccf612ce8bfe75","resources_js_Pages_Admin_Users_Tabs_vue":"208c3868e155b2b3","resources_js_Pages_Admin_components_TopBar_vue":"5cacd4fadc498526","resources_js_Pages_Auth_Email_vue":"1acc796c653f6e1a","resources_js_Pages_Auth_Login_vue":"23ae1a8c62ed3049","resources_js_Pages_Auth_PasswordCreation_vue":"edfb38fff59dcce7","resources_js_Pages_Auth_Register_vue":"c9ea04567600c1a0","resources_js_Pages_Auth_Reset_vue":"628ff94f26de7743","resources_js_Pages_Core_InstallationIncomplete_vue":"c71814d3ac1013ce","resources_js_Pages_Dashboard_Index_vue":"dfa1bd00f0bea15d","resources_js_Pages_Dashboard_components_TopBar_vue":"7e8cd8e27b62bb6b","resources_js_Pages_Documentation_Article_vue":"9c97d5a753acab74","resources_js_Pages_Documentation_Index_vue":"57df1ff5f502fb63","resources_js_Pages_Documentation_Show_vue":"1714a6fbd3b3387e","resources_js_Pages_Documentation_Tabs_vue":"230a209d79ebdbfc","resources_js_Pages_Documentation_components_TopBar_vue":"d5af1815ac2798a1","resources_js_Pages_Errors_403_vue":"855e43a4c796df24","resources_js_Pages_Errors_404_vue":"e5bd1caffa4cee67","resources_js_Pages_Pages_Privacy_vue":"928eebbc2b733cf0","resources_js_Pages_Pages_Terms_vue":"af212b02ae14355d","resources_js_Pages_Profile_Billing_vue":"749eb8f930d733c3","resources_js_Pages_Profile_BillingError_vue":"09c62ff00857c70a","resources_js_Pages_Profile_Index_vue":"449525757e58f4a6","resources_js_Pages_Profile_Integrations_vue":"4b63d3ae6666a65d","resources_js_Pages_Profile_Security_vue":"94e29a34a06493bb","resources_js_Pages_Profile_Settings_vue":"d9c6a452685fc906","resources_js_Pages_Profile_components_TopBar_vue":"d40b280e80d30d67","resources_js_Pages_Servers_Index_vue":"3fdfd37ff5a9b13e","resources_js_Pages_Servers_Settings_vue":"f0443651208c690a","resources_js_Pages_Servers_Show_vue":"b35fc884fe832c7a","resources_js_Pages_Servers_Tabs_vue":"688afd52868493b1","resources_js_Pages_Servers_components_TopBar_vue":"eead268ae0d7fca4","resources_js_Pages_Sites_Aliases_vue":"63273fd72afb5330","resources_js_Pages_Sites_Apps_vue":"6137f33d661e4ad6","resources_js_Pages_Sites_Certificates_vue":"601964871f1da9cb","resources_js_Pages_Sites_Cronjobs_vue":"a999f470aa9b8ea1","resources_js_Pages_Sites_Databases_vue":"41940c7b8e6f7e61","resources_js_Pages_Sites_Dns_vue":"8df327c58a23679b","resources_js_Pages_Sites_Index_vue":"7ea017292f01762b","resources_js_Pages_Sites_Redirects_vue":"06eaf35ee3819d55","resources_js_Pages_Sites_Settings_vue":"cae94f1910d860f3","resources_js_Pages_Sites_Show_vue":"f1ff59bdde18479b","resources_js_Pages_Sites_Tabs_vue":"9a4d608ce1e3ca82","resources_js_Pages_Sites_components_TopBar_vue":"245e1eb254a88432","resources_js_Pages_Support_Closed_vue":"c0bb39c0c4b9ea67","resources_js_Pages_Support_Index_vue":"eebfc34f6c4800d8","resources_js_Pages_Support_Show_vue":"49f5b8fc60cb0e5c","resources_js_Pages_Support_components_TopBar_vue":"66ca041becfd70e1"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Admin_Alerts_Create_vue":"abe8c659c122d343","resources_js_Pages_Admin_Alerts_Edit_vue":"353d2d0ca1002d9b","resources_js_Pages_Admin_Alerts_Index_vue":"454294bc3459b822","resources_js_Pages_Admin_Alerts_Tabs_vue":"8587b7dfce9dcaa8","resources_js_Pages_Admin_ApplicationLogs_vue":"6dc92ab213d1a98f","resources_js_Pages_Admin_Dashboard_vue":"381ec74eea236206","resources_js_Pages_Admin_Documentation_Articles_Create_vue":"d8baf0e17971bdbf","resources_js_Pages_Admin_Documentation_Articles_Edit_vue":"17045e08764a98a8","resources_js_Pages_Admin_Documentation_Articles_Index_vue":"4577fa855bba2129","resources_js_Pages_Admin_Documentation_Create_vue":"438df0c77c24deee","resources_js_Pages_Admin_Documentation_Edit_vue":"a13bdd9986465ebe","resources_js_Pages_Admin_Documentation_Index_vue":"50ddf3425cfdd385","resources_js_Pages_Admin_Documentation_Tabs_vue":"c4df127ce8b15957","resources_js_Pages_Admin_Packages_Create_vue":"e9c49624cdec8a98","resources_js_Pages_Admin_Packages_Edit_vue":"0458f2ec8492680b","resources_js_Pages_Admin_Packages_Index_vue":"be7e432e2db5bf6f","resources_js_Pages_Admin_Packages_Tabs_vue":"5a1e2edbfe4f50dd","resources_js_Pages_Admin_Services_Index_vue":"1543240498681783","resources_js_Pages_Admin_Services_Provider_Edit_vue":"22e3f494a2546cce","resources_js_Pages_Admin_Services_Providers_vue":"7e9e59fbc5c23b6e","resources_js_Pages_Admin_Services_Server_Edit_vue":"0921c40f6cbbfa4d","resources_js_Pages_Admin_Services_Servers_vue":"821a4380a443e6b7","resources_js_Pages_Admin_Services_Site_Edit_vue":"642ad63cab7dcb0a","resources_js_Pages_Admin_Services_Sites_vue":"49f9b27157e7bb85","resources_js_Pages_Admin_Services_Tabs_vue":"d5aad87d057e0c40","resources_js_Pages_Admin_Settings_vue":"db587f97b18b2738","resources_js_Pages_Admin_Status_vue":"c3f07436e599cace","resources_js_Pages_Admin_Support_Index_vue":"2e48598efdca20d9","resources_js_Pages_Admin_Support_Show_vue":"3ff37b334e4cefc9","resources_js_Pages_Admin_Support_Tabs_vue":"e410d3e8c44bae60","resources_js_Pages_Admin_System_vue":"55eb52a4e589cdae","resources_js_Pages_Admin_Tabs_vue":"d233a7be28718d28","resources_js_Pages_Admin_TabsStatus_vue":"708bd41d457b48b6","resources_js_Pages_Admin_Terms_vue":"40c2296a8f8c25b0","resources_js_Pages_Admin_Users_Create_vue":"be34ece7afb618ea","resources_js_Pages_Admin_Users_Edit_vue":"ae931b8bc1c61883","resources_js_Pages_Admin_Users_Index_vue":"20c67afc4c172c69","resources_js_Pages_Admin_Users_Show_vue":"73d7edc734232e03","resources_js_Pages_Admin_Users_Tabs_vue":"208c3868e155b2b3","resources_js_Pages_Admin_components_TopBar_vue":"5cacd4fadc498526","resources_js_Pages_Auth_Email_vue":"1acc796c653f6e1a","resources_js_Pages_Auth_Login_vue":"23ae1a8c62ed3049","resources_js_Pages_Auth_PasswordCreation_vue":"edfb38fff59dcce7","resources_js_Pages_Auth_Register_vue":"c9ea04567600c1a0","resources_js_Pages_Auth_Reset_vue":"628ff94f26de7743","resources_js_Pages_Core_InstallationIncomplete_vue":"c71814d3ac1013ce","resources_js_Pages_Dashboard_Index_vue":"628cabaad7e0df26","resources_js_Pages_Dashboard_components_TopBar_vue":"7e8cd8e27b62bb6b","resources_js_Pages_Documentation_Article_vue":"dbdaa0e97c0ca0e4","resources_js_Pages_Documentation_Index_vue":"e0b5d3f50f3b6c94","resources_js_Pages_Documentation_Show_vue":"3c874f7e4fe6fdca","resources_js_Pages_Documentation_Tabs_vue":"230a209d79ebdbfc","resources_js_Pages_Documentation_components_TopBar_vue":"d5af1815ac2798a1","resources_js_Pages_Errors_403_vue":"8315d15d1a8b1f9f","resources_js_Pages_Errors_404_vue":"9a1475d86a9e77ed","resources_js_Pages_Pages_Privacy_vue":"928eebbc2b733cf0","resources_js_Pages_Pages_Terms_vue":"af212b02ae14355d","resources_js_Pages_Profile_Billing_vue":"c39a1314fa915a92","resources_js_Pages_Profile_BillingError_vue":"45fc354678ceb774","resources_js_Pages_Profile_Index_vue":"e5500f4b8fff341f","resources_js_Pages_Profile_Integrations_vue":"4465fc846d9289d4","resources_js_Pages_Profile_Security_vue":"09e19ea1fb5d2892","resources_js_Pages_Profile_Settings_vue":"9dce650f2a302f98","resources_js_Pages_Profile_components_TopBar_vue":"d40b280e80d30d67","resources_js_Pages_Servers_Index_vue":"26ece62e005a604c","resources_js_Pages_Servers_Settings_vue":"faecf28c3e87fab4","resources_js_Pages_Servers_Show_vue":"f06994caa13ade99","resources_js_Pages_Servers_Tabs_vue":"688afd52868493b1","resources_js_Pages_Servers_components_TopBar_vue":"eead268ae0d7fca4","resources_js_Pages_Sites_Aliases_vue":"28dcb0d63783b1ad","resources_js_Pages_Sites_Apps_vue":"9bc102ea95b3715d","resources_js_Pages_Sites_Certificates_vue":"b98a14706ee5f2fd","resources_js_Pages_Sites_Cronjobs_vue":"f7da1030d6db4677","resources_js_Pages_Sites_Databases_vue":"237fe2acbe66d102","resources_js_Pages_Sites_Dns_vue":"8a680d6ea815b403","resources_js_Pages_Sites_Index_vue":"1546d393fc3f2503","resources_js_Pages_Sites_Redirects_vue":"d66a72863b565a8f","resources_js_Pages_Sites_Settings_vue":"107eab38bce61164","resources_js_Pages_Sites_Show_vue":"57872f9d48875c15","resources_js_Pages_Sites_Tabs_vue":"9a4d608ce1e3ca82","resources_js_Pages_Sites_components_TopBar_vue":"245e1eb254a88432","resources_js_Pages_Support_Closed_vue":"66dcc60cef65d955","resources_js_Pages_Support_Index_vue":"7cf5f195ef946d45","resources_js_Pages_Support_Show_vue":"d414d7e50a7565f0","resources_js_Pages_Support_components_TopBar_vue":"66ca041becfd70e1"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

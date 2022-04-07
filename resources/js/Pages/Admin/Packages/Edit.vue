@@ -169,7 +169,7 @@ import FormInput from '@/components/forms/FormInput'
 import FormSelect from '@/components/forms/FormSelect'
 import Form from '@/components/Form'
 import FormActions from '@/components/FormActions'
-import {useConfirmDelete} from '@/hooks/confirm-delete'
+import {useConfirm} from '@/hooks/confirm'
 import Tabs from './Tabs'
 
 export default {
@@ -237,7 +237,7 @@ export default {
         },
 
         confirmDelete() {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: this.__('Are you sure you want to delete this package? Everything associated with this package will be detached.'),
                 onConfirm: () => this.delete(),

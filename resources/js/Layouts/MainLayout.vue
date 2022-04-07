@@ -83,14 +83,14 @@
             leave-class="opacity-100"
             leave-to-class="opacity-0"
         >
-            <ConfirmDelete/>
+            <Confirm/>
         </Transition>
         <slot/>
     </div>
 </template>
 
 <script>
-    import ConfirmDelete from '@/components/ConfirmDelete'
+    import Confirm from '@/components/Confirm'
     import Notification from '@/components/Notification'
     import IconDanger from '@/components/icons/IconDanger'
     import IconWarning from '@/components/icons/IconWarning'
@@ -101,7 +101,7 @@
 
     export default {
         components: {
-            ConfirmDelete,
+            Confirm,
             Notification,
             IconDanger,
             IconWarning,

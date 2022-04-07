@@ -102,7 +102,7 @@
     import Pagination from '@/components/Pagination'
     import EmptyImage from '@/components/EmptyImage'
     import FormActions from '@/components/FormActions'
-    import {useConfirmDelete} from '@/hooks/confirm-delete'
+    import {useConfirm} from '@/hooks/confirm'
     import Tabs from './Tabs'
     import Table from '@/components/Table'
     import TableHead from '@/components/TableHead'
@@ -250,7 +250,7 @@
             },
 
             confirmDelete(redirect) {
-                useConfirmDelete({
+                useConfirm({
                     title: this.__('Are you sure?'),
                     message: this.__(`Your redirect will be deleted permanently, this action cannot be undone.`),
                     onConfirm: () => this.delete(redirect),

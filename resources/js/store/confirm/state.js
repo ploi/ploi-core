@@ -3,4 +3,5 @@ export const state = () => ({
     title: undefined,
     message: undefined,
     onConfirm: undefined,
+    variant: 'danger'
 })

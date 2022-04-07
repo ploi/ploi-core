@@ -97,7 +97,7 @@
     import Form from '@/components/Form'
     import Pagination from '@/components/Pagination'
     import FormActions from '@/components/FormActions'
-    import {useConfirmDelete} from '@/hooks/confirm-delete'
+    import {useConfirm} from '@/hooks/confirm'
     import {useNotification} from '@/hooks/notification'
     import Tabs from './Tabs'
     import Table from '@/components/Table'
@@ -221,7 +221,7 @@
             },
 
             confirmDelete(record) {
-                useConfirmDelete({
+                useConfirm({
                     title: this.__('Are you sure?'),
                     message: this.__('Your DNS will be completely removed.'),
                     onConfirm: () => this.delete(record),

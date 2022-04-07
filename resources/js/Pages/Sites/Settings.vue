@@ -112,7 +112,7 @@ import SettingsSegment from '@/components/SettingsSegment'
 import FormInput from '@/components/forms/FormInput'
 import Form from '@/components/Form'
 import FormActions from '@/components/FormActions'
-import {useConfirmDelete} from '@/hooks/confirm-delete'
+import {useConfirm} from '@/hooks/confirm'
 import Tabs from './Tabs'
 
 export default {
@@ -210,7 +210,7 @@ export default {
         },
 
         confirmDelete() {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: this.__('Your site will be deleted completely, this action is irreversible.'),
                 onConfirm: () => this.delete(),
