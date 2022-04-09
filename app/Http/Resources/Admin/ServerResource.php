@@ -13,6 +13,8 @@ class ServerResource extends JsonResource
             'name' => $this->name,
             'ip' => $this->ip,
             'users' => $this->users,
+            'sites_count' => $this->sites_count,
+            'maximum_sites' => $this->maximum_sites,
             'created_at' => $this->created_at->format('Y-m-d H:i:s')
         ];
     }

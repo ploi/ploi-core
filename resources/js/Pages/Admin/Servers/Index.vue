@@ -17,7 +17,7 @@
                                 <template #title>{{ __('Servers') }}</template>
                                 <template #form>
                                     <form class="space-y-4 pb-5 mb-5 border-b border-low-emphasis">
-                                        <FormInput :label="__('Search')" v-model="form.search" />
+                                        <FormInput :label="__('Search')" :placeholder="__('Search on server name, or the name/email of the owner of the server')" v-model="form.search" />
                                     </form>
                                 </template>
                                 <template #content>
@@ -28,6 +28,7 @@
                                                     <TableHeader>{{ __('Name') }}</TableHeader>
                                                     <TableHeader>{{ __('IP') }}</TableHeader>
                                                     <TableHeader>{{ __('Users') }}</TableHeader>
+                                                    <TableHeader>{{ __('Max sites') }}</TableHeader>
                                                     <TableHeader>{{ __('Date') }}</TableHeader>
                                                     <TableHeader></TableHeader>
                                                 </TableRow>
@@ -45,10 +46,13 @@
                                                         <inertia-link v-else class="text-primary" :href="route('admin.users.show', user.id)" :key="user.id" v-for="user in server.users">{{ user.name }}</inertia-link>
                                                     </TableData>
                                                     <TableData>
+                                                        {{ server.maximum_sites }} ({{ __('Current') }}: {{ server.sites_count}})
+                                                    </TableData>
+                                                    <TableData>
                                                         {{ server.created_at }}
                                                     </TableData>
                                                     <TableData>
-                                                        <inertia-link :href="route('admin.services.sites.edit', server.id)" class="text-primary font-medium">
+                                                        <inertia-link :href="route('admin.services.servers.edit', server.id)" class="text-primary font-medium">
                                                             {{ __('Edit') }}
                                                         </inertia-link>
                                                     </TableData>

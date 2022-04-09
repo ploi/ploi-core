@@ -32,6 +32,7 @@
     "General": "Algemeen",
     "Settings": "Instellingen",
     "Billing": "Facturering",
+    "Username": "Gebruikersnaam",
     "Card information": "Kaart informatie",
     "Available packages": "Beschikbare pakketten",
     "Card holder name": "Kaarthouder naam",
@@ -111,6 +112,8 @@
     "Aliases": "Aliassen",
     "Your alias will be deleted permanently, this action cannot be undone.": "Deze alias zal permanent verwijderd worden, deze actie kan niet ongedaan gemaakt worden.",
     "Alias has been created": "Alias is aangemaakt",
+    "Current": "Huidig",
+    "Notes": "Opmerkingen",
 
     "Support requests": "Support aanvragen",
     "Open support requests": "Openstaande aanvragen",
@@ -198,6 +201,7 @@
     "Package": "Pakket",
     "System": "Systeem",
     "Replies": "Reacties",
+    "Customer payment ID": "Klant betalings ID",
     "Information": "Informatie",
     "Synchronize": "Synchroniseer",
     "Company name": "Bedrijfsnaam",
@@ -272,5 +276,7 @@
     "Create category": "Nieuwe categorie",
     "Articles": "Artikelen",
     "Create article": "Nieuw artikel",
-    "You may use markdown in this field for markup": "Je kunt markdown gebruiken voor de opmaak van dit artikel"
+    "You may use markdown in this field for markup": "Je kunt markdown gebruiken voor de opmaak van dit artikel",
+
+    "Search on server name, or the name/email of the owner of the server": "Zoek op server naam, of de naam/email van de eigenaar van de server"
 }
