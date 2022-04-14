@@ -289,5 +289,6 @@
     "Articles": "Artikelen",
     "Create article": "Nieuw artikel",
     "You may use markdown in this field for markup": "Je kunt markdown gebruiken voor de opmaak van dit artikel",
-    "Search on server name, or the name/email of the owner of the server": "Zoek op server naam, of de naam/email van de eigenaar van de server"
+    "Search on server name, or the name/email of the owner of the server": "Zoek op server naam, of de naam/email van de eigenaar van de server",
+    "Search on site domain, or the name/email of the owner of the site": "Zoek op de site, of de naam/email van de eigenaar van de site"
 }
