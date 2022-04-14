@@ -13,26 +13,15 @@ class AdminServerCreatedEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    public $server;
+    public User $user;
+    public Server $server;
 
-    /**
-     * Create a new message instance.
-     *
-     * @param User $user
-     * @param Server $server
-     */
     public function __construct(User $user, Server $server)
     {
         $this->user = $user;
         $this->server = $server;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
         return $this

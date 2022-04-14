@@ -25,7 +25,7 @@
                                         <FormSelect :label="__('Category')" :errors="$page.props.errors.category_id" v-model="form.category_id">
                                             <option v-for="(title, id) in categories" :value="id" v-text="title"></option>
                                         </FormSelect>
-                                        <FormTextarea rows="10" helper-text="You may use markdown in this field for markup" :label="__('Content')"
+                                        <FormTextarea rows="10" :helper-text="__('You may use markdown in this field for markup')" :label="__('Content')"
                                                       :errors="$page.props.errors.content" v-model="form.content"/>
 
                                         <FormActions>

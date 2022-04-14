@@ -82,7 +82,7 @@
     import TableRow from '@/components/TableRow'
     import TableBody from '@/components/TableBody'
     import TableData from '@/components/TableData'
-    import {useConfirmDelete} from '@/hooks/confirm-delete'
+    import {useConfirm} from '@/hooks/confirm'
 
     export default {
         metaInfo() {
@@ -156,7 +156,7 @@
         },
 
         methods: {
-            useConfirmDelete,
+            useConfirm,
 
             submit() {
                 this.$inertia.patch(this.route('servers.settings.update', this.server.id), this.form, {
@@ -166,7 +166,7 @@
             },
 
             confirmDelete() {
-                useConfirmDelete({
+                useConfirm({
                     title: this.__('Are you sure?'),
                     message: this.__('Your server will be deleted completely, this action is irreversible.'),
                     onConfirm: () => this.delete(),

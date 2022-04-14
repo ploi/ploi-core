@@ -47,7 +47,21 @@
                                     {{ site.domain }}
                                 </inertia-link>
                             </template>
-                            <template v-if="site.project === 'wordpress'" #subtitle>WordPress installed</template>
+                            <template #subtitle>
+                                <div class="flex items-center space-x-2">
+                                    <div class="flex items-center space-x-2">
+                                        <span><icon-php /> </span>
+                                        <span>{{ site.php_version }}</span>
+                                    </div>
+
+                                    <div v-if="site.project === 'wordpress'">&centerdot;</div>
+                                    <div v-if="site.project === 'wordpress'">{{ __('WordPress installed') }}</div>
+
+                                    <div v-if="site.server">&centerdot;</div>
+                                    <div v-if="site.server">{{ __('On server') }} {{ site.server.name }}</div>
+                                </div>
+                            </template>
+
                             <template #suffix>
                                 <Dropdown v-slot="{ isOpen, toggle, position }">
                                     <IconButton @click="toggle">
@@ -90,6 +104,7 @@
     import IconStorage from '@/components/icons/IconStorage'
     import IconButton from '@/components/IconButton'
     import IconMore from '@/components/icons/IconMore'
+    import IconPhp from '@/components/icons/IconPhp'
     import Modal from '@/components/Modal'
     import ModalContainer from '@/components/ModalContainer'
     import FormInput from '@/components/forms/FormInput'
@@ -99,7 +114,7 @@
     import DropdownList from '@/components/DropdownList'
     import DropdownListItem from '@/components/DropdownListItem'
     import DropdownListItemButton from '@/components/DropdownListItemButton'
-    import {useConfirmDelete} from '@/hooks/confirm-delete'
+    import {useConfirm} from '@/hooks/confirm'
     import Pagination from '@/components/Pagination'
 
     export default {
@@ -123,6 +138,7 @@
             List,
             IconButton,
             IconMore,
+            IconPhp,
             ListItem,
             StatusBubble,
             NotificationBadge,
@@ -247,7 +263,7 @@
             },
 
             confirmDelete(site) {
-                useConfirmDelete({
+                useConfirm({
                     title: this.__('Are you sure?'),
                     message: this.__('Your site will be deleted completely, this action is irreversible.'),
                     onConfirm: () => this.delete(site),

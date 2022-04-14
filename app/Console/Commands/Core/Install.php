@@ -202,9 +202,9 @@ class Install extends Command
     {
         if (!config('app.key')) {
             $this->call('key:generate');
-        }
 
-        $this->info('Application key has been set');
+            $this->info('Application key has been set');
+        }
     }
 
     protected function checkApplicationUrl()
@@ -315,7 +315,7 @@ class Install extends Command
     protected function runDatabaseMigrations()
     {
         $this->info('Running database migrations..');
-        $this->call('migrate');
+        $this->call('migrate', ['--force' => true]);
         $this->info('Database migrations successful');
     }
 

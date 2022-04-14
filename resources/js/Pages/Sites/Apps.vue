@@ -19,7 +19,7 @@
                             <SettingsSegment v-if="site.project">
                                 <template #title>{{ __('Overview') }}</template>
                                 <template #subtitle>
-                                    {{ __('You currently have a application installed.') }}
+                                    {{ __('You currently have :application installed.', {application: site.project}) }}
                                 </template>
 
                                 <template #content>

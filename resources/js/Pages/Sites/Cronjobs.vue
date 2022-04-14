@@ -142,7 +142,7 @@
     import EmptyImage from '@/components/EmptyImage'
     import FormActions from '@/components/FormActions'
     import {useNotification} from '@/hooks/notification'
-    import {useConfirmDelete} from '@/hooks/confirm-delete'
+    import {useConfirm} from '@/hooks/confirm'
     import Tabs from './Tabs'
     import Table from '@/components/Table'
     import TableHead from '@/components/TableHead'
@@ -308,7 +308,7 @@
             },
 
             confirmDelete(cronjob) {
-                useConfirmDelete({
+                useConfirm({
                     title: this.__('Are you sure?'),
                     message: this.__('Your cronjob will be deleted permanently, this action cannot be undone.'),
                     onConfirm: () => this.delete(cronjob),

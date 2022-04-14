@@ -2,7 +2,7 @@ import { state } from './state'
 import { mutations } from './mutations'
 import { actions } from './actions'
 
-export const confirmDelete = {
+export const confirm = {
     namespaced: true,
     state,
     mutations,

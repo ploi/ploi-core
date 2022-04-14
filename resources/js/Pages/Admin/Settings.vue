@@ -120,6 +120,20 @@
                                         </div>
 
                                         <div>
+                                            <input id="receive_email_on_site_creation" class="form-checkbox"
+                                                   type="checkbox"
+                                                   v-model="form.receive_email_on_site_creation">
+                                            <label for="receive_email_on_site_creation" class="ml-2 text-sm">{{
+                                                    __('Receive email when customers create site')
+                                                }}</label>
+                                            <p class="text-small mt-1 text-medium-emphasis">
+                                                {{
+                                                    __('This will send an email to all admins notifying them about a new site installation.')
+                                                }}
+                                            </p>
+                                        </div>
+
+                                        <div>
                                             <input id="enable_api" class="form-checkbox" type="checkbox"
                                                    v-model="form.enable_api">
                                             <label for="enable_api" class="ml-2 text-sm">{{ __('Enable API') }}</label>
@@ -127,7 +141,7 @@
                                                 {{
                                                     __('This will allow you to interact with your system via the API.')
                                                 }} <a href="https://docs.ploi-core.io/core-api/introduction"
-                                                      class="text-primary" target="_blank">More information</a>
+                                                      class="text-primary" target="_blank">{{ __('More information')}}</a>
                                             </p>
                                         </div>
 
@@ -232,6 +246,7 @@ export default {
                 documentation: this.company_settings.documentation,
                 allow_registration: this.company_settings.allow_registration,
                 receive_email_on_server_creation: this.company_settings.receive_email_on_server_creation,
+                receive_email_on_site_creation: this.company_settings.receive_email_on_site_creation,
                 default_package: this.company_settings.default_package,
                 isolate_per_site_per_user: this.company_settings.isolate_per_site_per_user,
                 default_language: this.company_settings.default_language,
@@ -261,6 +276,7 @@ export default {
             data.append('documentation', this.form.documentation || false)
             data.append('allow_registration', this.form.allow_registration || false)
             data.append('receive_email_on_server_creation', this.form.receive_email_on_server_creation || false)
+            data.append('receive_email_on_site_creation', this.form.receive_email_on_site_creation || false)
             data.append('default_package', this.form.receive_email_on_server_creation || '')
             data.append('isolate_per_site_per_user', this.form.isolate_per_site_per_user || false)
             data.append('default_language', this.form.default_language || 'en')

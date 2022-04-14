@@ -204,4 +204,9 @@ class Site extends Resource
     {
         return new App($this->getServer(), $this, $id);
     }
+
+    public function aliases($id = null): Alias
+    {
+        return new Alias($this->getServer(), $this, $id);
+    }
 }

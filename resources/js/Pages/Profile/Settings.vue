@@ -70,7 +70,7 @@ import ModalContainer from '@/components/ModalContainer'
 import FormInput from '@/components/forms/FormInput'
 import FormSelect from '@/components/forms/FormSelect'
 import FormActions from '@/components/FormActions'
-import {useConfirmDelete} from '@/hooks/confirm-delete'
+import {useConfirm} from '@/hooks/confirm'
 
 export default {
     metaInfo() {
@@ -140,7 +140,7 @@ export default {
             });
         },
         deleteAccount() {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: `Are you sure you want to remove your account? All data will be deleted and services will be detached.`,
                 onConfirm: () => {

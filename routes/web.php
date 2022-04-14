@@ -65,6 +65,13 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
             Route::delete('{certificate}', 'SiteCertificateController@destroy')->name('delete');
         });
 
+        // Site aliases
+        Route::group(['prefix' => '{site}/aliases', 'as' => 'aliases.'], function () {
+            Route::get('/', 'SiteAliasController@index')->name('index');
+            Route::post('/', 'SiteAliasController@store')->name('store');
+            Route::delete('{alias}', 'SiteAliasController@destroy')->name('delete');
+        });
+
         // Site DNS
         Route::group(['prefix' => '{site}/dns', 'as' => 'dns.'], function () {
             Route::get('/', 'SiteDnsController@index')->name('index');

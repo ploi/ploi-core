@@ -123,7 +123,7 @@ import Dropdown from '@/components/Dropdown'
 import DropdownList from '@/components/DropdownList'
 import DropdownListItem from '@/components/DropdownListItem'
 import DropdownListItemButton from '@/components/DropdownListItemButton'
-import {useConfirmDelete} from '@/hooks/confirm-delete'
+import {useConfirm} from '@/hooks/confirm'
 
 export default {
     metaInfo() {
@@ -291,7 +291,7 @@ export default {
         },
 
         confirmDelete(server) {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: `Your server will be deleted completely, this action is irreversible.`,
                 onConfirm: () => this.delete(server),

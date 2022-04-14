@@ -36,7 +36,7 @@
                                                     </TableData>
                                                 </TableRow>
                                                 <TableRow>
-                                                    <TableHeader>{{ __('Email address') }}</TableHeader>
+                                                    <TableHeader>{{ __('E-mail address') }}</TableHeader>
                                                     <TableData :border="false">
                                                         {{ user.email }}
                                                     </TableData>

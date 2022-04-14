@@ -102,7 +102,7 @@
     import Pagination from '@/components/Pagination'
     import EmptyImage from '@/components/EmptyImage'
     import FormActions from '@/components/FormActions'
-    import {useConfirmDelete} from '@/hooks/confirm-delete'
+    import {useConfirm} from '@/hooks/confirm'
     import Tabs from './Tabs'
     import Table from '@/components/Table'
     import TableHead from '@/components/TableHead'
@@ -177,7 +177,7 @@
                     },
                     {
                         title: this.__('Certificates'),
-                        to: this.route('sites.cronjobs.index', this.site.id),
+                        to: this.route('sites.certificates.index', this.site.id),
                     },
                 ],
             }
@@ -252,7 +252,7 @@
             },
 
             confirmDelete(certificate) {
-                useConfirmDelete({
+                useConfirm({
                     title: this.__('Are you sure?'),
                     message: `Your certificate will be deleted permanently, this action cannot be undone.`,
                     onConfirm: () => this.delete(certificate),

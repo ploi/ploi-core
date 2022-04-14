@@ -46,6 +46,16 @@ export default {
                     to: this.route('admin.packages.index'),
                     active: this.route().current('admin.packages.*')
                 },
+                {
+                    title: this.__('Sites'),
+                    to: this.route('admin.sites.index'),
+                    active: this.route().current('admin.sites.*')
+                },
+                {
+                    title: this.__('Servers'),
+                    to: this.route('admin.servers.index'),
+                    active: this.route().current('admin.servers.*')
+                },
                 this.$page.props.settings.support ? {
                     title: `${this.__('Support')} (${this.$page.props.openTickets})`,
                     to: this.route('admin.support.index'),

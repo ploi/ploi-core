@@ -120,6 +120,27 @@
                                     </form>
                                 </template>
                             </SettingsSegment>
+
+                            <SettingsSegment v-if="site.aliases.length">
+                                <template #title>{{ __('DNS settings for aliases') }}</template>
+                                <template #subtitle>
+                                    {{ __('Setup these DNS records to attach your webhosting to your domain.') }}
+                                </template>
+                                <template #form>
+                                    <form class="space-y-4">
+                                        <div class="grid grid-cols-2 gap-4" v-for="alias in site.aliases">
+                                            <div class="col-span-2 md:col-span-1">
+                                                <FormInput label="A" :errors="$page.props.errors.domain"
+                                                           :value="alias"/>
+                                            </div>
+                                            <div class="col-span-2 md:col-span-1">
+                                                <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
+                                                           :value="ip_address"/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </template>
+                            </SettingsSegment>
                         </template>
                     </SettingsLayout>
                 </PageBody>

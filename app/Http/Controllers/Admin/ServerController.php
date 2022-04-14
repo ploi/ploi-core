@@ -4,12 +4,39 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Server;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Admin\ServerResource;
 use App\Http\Requests\Admin\ServerAttachRequest;
 
 class ServerController extends Controller
 {
+    public function index()
+    {
+        return inertia('Admin/Servers/Index', [
+            'filters' => request()->all('search'),
+            'servers' => ServerResource::collection(
+                Server::query()
+                    ->when(request()->input('search'), function (Builder $query, $value) {
+                        return $query
+                            ->where('name', 'like', '%' . $value . '%')
+                            ->orWhere('ip', 'like', '%' . $value . '%')
+                            ->orWhereHas('users', function (Builder $query) use ($value) {
+                                return $query
+                                    ->where('name', 'LIKE', '%' . $value . '%')
+                                    ->orWhere('email', 'LIKE', '%' . $value . '%');
+                            });
+                    })
+                    ->with('users:id,name')
+                    ->withCount('sites')
+                    ->latest()
+                    ->paginate(config('core.pagination.per_page'))
+                    ->withQueryString()
+            )
+        ]);
+    }
+
     public function edit($id)
     {
         $server = Server::findOrFail($id);

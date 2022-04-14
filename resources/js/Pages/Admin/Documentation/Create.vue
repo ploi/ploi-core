@@ -22,7 +22,7 @@
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Title')" :errors="$page.props.errors.title"
                                                    v-model="form.title"/>
-                                        <FormTextarea :label="__('Description')" helper-text="You may use markdown in this field for markup" :errors="$page.props.errors.description" v-model="form.description" />
+                                        <FormTextarea :label="__('Description')" :helper-text="__('You may use markdown in this field for markup')" :errors="$page.props.errors.description" v-model="form.description" />
 
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>

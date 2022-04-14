@@ -78,7 +78,7 @@ import TableHeader from '@/components/TableHeader'
 import TableRow from '@/components/TableRow'
 import TableBody from '@/components/TableBody'
 import TableData from '@/components/TableData'
-import {useConfirmDelete} from '@/hooks/confirm-delete'
+import {useConfirm} from '@/hooks/confirm'
 
 export default {
     metaInfo() {
@@ -164,7 +164,7 @@ export default {
         },
 
         confirmDelete(provider) {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: this.__('Your provider integration will be deleted permanently, this cannot be undone.'),
                 onConfirm: () => this.delete(provider),

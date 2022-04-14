@@ -239,7 +239,7 @@ import TableRow from '@/components/TableRow'
 import TableBody from '@/components/TableBody'
 import TableData from '@/components/TableData'
 import {useNotification} from '@/hooks/notification'
-import {useConfirmDelete} from '@/hooks/confirm-delete'
+import {useConfirm} from '@/hooks/confirm'
 
 export default {
     metaInfo() {
@@ -356,7 +356,7 @@ export default {
 
     methods: {
         useNotification,
-        useConfirmDelete,
+        useConfirm,
 
         async updateBilling() {
             this.sending = true;
@@ -407,17 +407,24 @@ export default {
         },
 
         updatePlan(id) {
-            this.$inertia.post(this.route('profile.billing.update.plan'), {
-                plan: id,
-                coupon: this.coupon
-            }, {
-                onStart: () => this.sending = true,
-                onFinish: () => this.sending = false
-            });
+            useConfirm({
+                title: this.__('Are you sure?'),
+                message: this.__('Are you ready to subscribe to this plan? If you have any coupon codes, make sure to enter them before subscribing.'),
+                variant: 'info',
+                onConfirm: () => {
+                    this.$inertia.post(this.route('profile.billing.update.plan'), {
+                        plan: id,
+                        coupon: this.coupon
+                    }, {
+                        onStart: () => this.sending = true,
+                        onFinish: () => this.sending = false
+                    });
+                }
+            })
         },
 
         confirmCancel() {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: this.__('Your subscription will be put to an end. An expire date will be send to you when your plan expires.'),
                 onConfirm: () => this.cancel(),
@@ -442,7 +449,7 @@ export default {
         },
 
         deleteCard() {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: this.__('Are you sure you want to remove your card from your account? New payments will not be able to process.'),
                 onConfirm: () => {

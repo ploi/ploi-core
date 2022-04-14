@@ -92,7 +92,7 @@ import FormTextarea from '@/components/forms/FormTextarea'
 import FormSelect from '@/components/forms/FormSelect'
 import Form from '@/components/Form'
 import FormActions from '@/components/FormActions'
-import {useConfirmDelete} from '@/hooks/confirm-delete'
+import {useConfirm} from '@/hooks/confirm'
 import Tabs from './Tabs'
 
 export default {
@@ -159,7 +159,7 @@ export default {
         },
 
         confirmDelete() {
-            useConfirmDelete({
+            useConfirm({
                 title: this.__('Are you sure?'),
                 message: `Are you sure you want to delete this user? Everything associated with this user will be detached.`,
                 onConfirm: () => this.delete(),

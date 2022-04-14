@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Admin\Site\AdminSiteCreatedEmail;
 use App\Models\Server;
+use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Jobs\Sites\CreateSite;
@@ -10,6 +12,7 @@ use App\Jobs\Sites\DeleteSite;
 use App\Http\Requests\SiteRequest;
 use App\Http\Resources\SiteResource;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
@@ -17,6 +20,7 @@ class SiteController extends Controller
     {
         $sites = auth()->user()
             ->sites()
+            ->with('server:id,name')
             ->when(request('server'), function ($query, $value) {
                 return $query->where('server_id', $value);
             })
@@ -74,6 +78,14 @@ class SiteController extends Controller
             'title' => 'New site :site created',
             'description' => 'A new site has been created'
         ])->model()->associate($site)->save();
+
+        if (setting('receive_email_on_site_creation')) {
+            $admins = User::query()->where('role', User::ADMIN)->get();
+
+            foreach ($admins as $admin) {
+                Mail::to($admin)->send(new AdminSiteCreatedEmail($request->user(), $server, $site));
+            }
+        }
 
         return redirect()->route('sites.index')->with('success', __('Your website is being created'));
     }
