@@ -72,7 +72,7 @@ class SynchronizeSiteController extends Controller
 
             $site = Site::query()
                 ->updateOrCreate([
-                    'ploi_id' => $availableSite->server_id
+                    'ploi_id' => $availableSite->id
                 ], [
                     'domain' => $availableSite->domain,
                     'php_version' => $availableSite->php_version,
