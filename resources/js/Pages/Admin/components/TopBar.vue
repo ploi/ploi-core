@@ -46,16 +46,6 @@ export default {
                     to: this.route('admin.packages.index'),
                     active: this.route().current('admin.packages.*')
                 },
-                this.$page.props.settings.support ? {
-                    title: `${this.__('Support')} (${this.$page.props.openTickets})`,
-                    to: this.route('admin.support.index'),
-                    active: this.route().current('admin.support.*')
-                } : null,
-                this.$page.props.settings.documentation ? {
-                    title: this.__('Documentation'),
-                    to: this.route('admin.documentation.index'),
-                    active: this.route().current('admin.documentation.*')
-                } : null,
                 {
                     title: this.__('Sites'),
                     to: this.route('admin.sites.index'),
@@ -66,6 +56,16 @@ export default {
                     to: this.route('admin.servers.index'),
                     active: this.route().current('admin.servers.*')
                 },
+                this.$page.props.settings.support ? {
+                    title: `${this.__('Support')} (${this.$page.props.openTickets})`,
+                    to: this.route('admin.support.index'),
+                    active: this.route().current('admin.support.*')
+                } : null,
+                this.$page.props.settings.documentation ? {
+                    title: this.__('Documentation'),
+                    to: this.route('admin.documentation.index'),
+                    active: this.route().current('admin.documentation.*')
+                } : null,
                 {
                     title: 'Services',
                     to: this.route('admin.services.index'),

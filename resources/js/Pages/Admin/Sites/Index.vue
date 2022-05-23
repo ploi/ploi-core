@@ -17,7 +17,7 @@
                                 <template #title>{{ __('Sites') }}</template>
                                 <template #form>
                                     <form class="space-y-4 pb-5 mb-5 border-b border-low-emphasis">
-                                        <FormInput :label="__('Search')" v-model="form.search" />
+                                        <FormInput :label="__('Search')" :placeholder="__('Search on site domain, or the name/email of the owner of the site')" v-model="form.search" />
                                     </form>
                                 </template>
                                 <template #content>
