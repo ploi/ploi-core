@@ -134,6 +134,10 @@ class User extends Authenticatable implements HasLocalePreference
             if (!$user->language) {
                 $user->language = setting('default_language', 'en');
             }
+
+            if($days = setting('trial')){
+                $user->trial_ends_at = now()->addDays($days);
+            }
         });
 
         static::created(function (self $user) {
