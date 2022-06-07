@@ -29,7 +29,10 @@
                                             <option value="custom">Custom SSL certificate</option>
                                         </FormSelect>
 
-                                        <FormInput v-if="form.type === 'letsencrypt'" :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
+                                        <div>
+                                            <FormInput v-if="form.type === 'letsencrypt'" :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
+                                            <button type="button" @click="setDomainData(true)" class="text-primary text-small border-b border-dotted">Click here to add aliases</button>
+                                        </div>
 
                                         <FormTextarea v-if="form.type === 'custom'" :label="__('Private key')" :errors="$page.props.errors.private" rows="2" v-model="form.private" />
                                         <FormTextarea v-if="form.type === 'custom'" :label="__('Certificate')" :errors="$page.props.errors.certificate" rows="2" v-model="form.certificate" />
@@ -265,7 +268,7 @@
                 })
             },
 
-            setDomainData(){
+            setDomainData(withAliases){
                 this.form.certificate = null;
                 this.form.private = null;
 
@@ -273,6 +276,10 @@
                     this.form.domain = this.site.domain + ',' + this.site.domain.replace('www.', '');
                 } else {
                     this.form.domain = this.site.domain + ',www.' + this.site.domain;
+                }
+
+                if(withAliases){
+                    this.form.domain = this.form.domain + ',' + this.site.aliases.join(',');
                 }
             }
         },
