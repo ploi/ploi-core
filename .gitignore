@@ -16,3 +16,5 @@ yarn-error.log
 /public/js/resources*.js
 /storage/views/header.blade.php
 /storage/views/footer.blade.php
+rr
+.rr.yaml
