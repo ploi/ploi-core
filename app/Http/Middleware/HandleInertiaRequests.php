@@ -68,7 +68,8 @@ class HandleInertiaRequests extends Middleware
                     ] : null,
                     'package' => auth()->user() && auth()->user()->package ? [
                         'name' => auth()->user()->package->name,
-                        'maximum_sites' => auth()->user()->package->maximum_sites
+                        'maximum_sites' => auth()->user()->package->maximum_sites,
+                        'trial' => auth()->user()->onTrial()
                     ] : [
                         'name' => __('None')
                     ],

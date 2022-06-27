@@ -9,7 +9,7 @@ class Synchronize extends Command
 {
     protected $signature = 'core:synchronize';
 
-    protected $description = 'Synchronze data';
+    protected $description = 'Synchronize data';
 
     public function handle()
     {

@@ -30,6 +30,7 @@ class SettingController extends Controller
             'default_language' => setting('default_language', 'en'),
             'has_logo' => (bool)setting('logo'),
             'trial' => setting('trial'),
+            'trial_package' => setting('trial_package'),
         ];
 
         $packages = Package::pluck('name', 'id');
@@ -59,6 +60,7 @@ class SettingController extends Controller
             'default_language',
             'rotate_logs_after',
             'trial',
+            'trial_package'
         ]) as $key => $value) {
             if ($key === 'api_token') {
                 $value = encrypt($value);

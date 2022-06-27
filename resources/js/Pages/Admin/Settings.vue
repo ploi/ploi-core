@@ -36,7 +36,7 @@
                                                        v-model="form.logo"/>
 
                                         <Button v-if="company_settings.has_logo" variant="danger" type="button"
-                                                class="ml-2 px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white"
+                                                class="ml-2 px-4 py-1 bg-red-500 hover:bg-red-700 rounded-sm text-xs font-medium text-white"
                                                 @click="removeLogo">
                                             Remove logo
                                         </Button>
@@ -87,6 +87,14 @@
                                         <FormInput v-if="form.trialEnabled" type="number" :label="__('Trial days')"
                                                    :errors="$page.props.errors.trial"
                                                    v-model="form.trial"/>
+
+                                        <FormSelect
+                                            v-if="form.trialEnabled"
+                                            :errors="$page.props.errors.trial_package"
+                                            :helper-text="__('Select the trial package a user should get when they get their trial')"
+                                            :label="__('Select trial package')" v-model="form.trial_package">
+                                            <option v-for="(name, id) in packages" :value="id" v-text="name"></option>
+                                        </FormSelect>
 
                                         <div>
                                             <input id="support" class="form-checkbox" type="checkbox"
@@ -273,7 +281,8 @@ export default {
                 logo: null,
                 rotate_logs_after: this.company_settings.rotate_logs_after,
                 trialEnabled: false,
-                trial: this.company_settings.trial
+                trial: this.company_settings.trial,
+                trial_package: this.company_settings.trial_package,
             },
         }
     },
@@ -303,12 +312,13 @@ export default {
             data.append('allow_registration', this.form.allow_registration || false)
             data.append('receive_email_on_server_creation', this.form.receive_email_on_server_creation || false)
             data.append('receive_email_on_site_creation', this.form.receive_email_on_site_creation || false)
-            data.append('default_package', this.form.receive_email_on_server_creation || '')
+            data.append('default_package', this.form.default_package || '')
             data.append('isolate_per_site_per_user', this.form.isolate_per_site_per_user || false)
             data.append('default_language', this.form.default_language || 'en')
             data.append('logo', this.form.logo || '')
             data.append('rotate_logs_after', this.form.rotate_logs_after || '')
             data.append('trial', this.form.trial || '')
+            data.append('trial_package', this.form.trial_package || '')
             data.append('_method', 'patch')
 
             this.$inertia.post(this.route('admin.settings.update'), data, {

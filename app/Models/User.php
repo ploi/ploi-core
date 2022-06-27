@@ -47,7 +47,8 @@ class User extends Authenticatable implements HasLocalePreference
         'email_verified_at' => 'datetime',
         'ftp_password' => Encrypted::class,
         'keyboard_shortcuts' => 'boolean',
-        'requires_password_for_ftp' => 'boolean'
+        'requires_password_for_ftp' => 'boolean',
+        'trial_ends_at' => 'datetime',
     ];
 
     protected $appends = [
