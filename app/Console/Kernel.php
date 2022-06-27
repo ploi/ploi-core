@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Core\Trial;
 use App\Jobs\Core\Ping;
 use App\Console\Commands\Core\Css;
 use App\Console\Commands\Core\Cleanup;
@@ -19,6 +20,7 @@ class Kernel extends ConsoleKernel
         Install::class,
         Synchronize::class,
         Cleanup::class,
+        Trial::class,
     ];
 
     protected function schedule(Schedule $schedule)
@@ -28,5 +30,6 @@ class Kernel extends ConsoleKernel
         })->dailyAt('02:00');
 
         $schedule->command('core:cleanup')->daily();
+        $schedule->command('core:trial')->dailyAt('10:00');
     }
 }

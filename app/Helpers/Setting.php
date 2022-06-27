@@ -28,7 +28,7 @@ if (!function_exists('setting')) {
         $value = Arr::get(app('settings'), $key, $default);
 
         // Boolean casting
-        if ($value === "0" || $value === "1") {
+        if ($value === "0" || $value === "1" && $key !== 'trial_package') {
             return (bool) $value;
         }
 

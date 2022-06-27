@@ -47,7 +47,8 @@ class User extends Authenticatable implements HasLocalePreference
         'email_verified_at' => 'datetime',
         'ftp_password' => Encrypted::class,
         'keyboard_shortcuts' => 'boolean',
-        'requires_password_for_ftp' => 'boolean'
+        'requires_password_for_ftp' => 'boolean',
+        'trial_ends_at' => 'datetime',
     ];
 
     protected $appends = [
@@ -133,6 +134,10 @@ class User extends Authenticatable implements HasLocalePreference
 
             if (!$user->language) {
                 $user->language = setting('default_language', 'en');
+            }
+
+            if($days = setting('trial')){
+                $user->trial_ends_at = now()->addDays($days);
             }
         });
 

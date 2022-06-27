@@ -39,6 +39,10 @@ class SettingRequest extends FormRequest
                 'nullable',
                 'image',
                 'max:2000'
+            ],
+
+            'trial_package' => [
+                'required_with:trial'
             ]
         ];
     }

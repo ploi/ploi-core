@@ -42,8 +42,15 @@
                                     <div>
                                         <IconBox class="w-6 h-6"/>
                                     </div>
-                                    <div>
-                                        <h3 class="font-semibold text-body">{{ $page.props.auth.package.name }}</h3>
+                                    <div class="w-full">
+                                        <div class="flex justify-between">
+                                            <h3 class="font-semibold text-body">{{ $page.props.auth.package.name }}</h3>
+                                            <span
+                                                v-if="$page.props.auth.package.trial"
+                                                class="inline-flex items-center justify-center h-6 px-2 text-xs font-semibold tracking-tight text-blue-700 rounded-full bg-blue-500/10">
+                                                Trial
+                                            </span>
+                                        </div>
                                         <p class="text-medium-emphasis text-small">{{ __('Package') }}</p>
                                     </div>
                                 </inertia-link>

@@ -35,10 +35,7 @@ class RegisterController extends Controller
                 'required',
                 'string',
                 'confirmed',
-                Password::min(6)
-                    ->letters()
-                    ->numbers()
-                    ->uncompromised()
+                Password::defaults()
             ],
         ];
 
@@ -53,17 +50,32 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        return User::create([
+        $fields = [
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
-        ]);
+        ];
+
+        if ($days = setting('trial')) {
+            $fields['trial_ends_at'] = now()->addDays($days);
+        }
+
+        return User::create($fields);
     }
 
     protected function registered(Request $request, $user)
     {
-        if (setting('default_package') && setting('default_package') != 'false') {
+        if (
+            setting('default_package') &&
+            setting('default_package') != 'false' &&
+            !setting('trial')
+        ) {
             $user->package_id = setting('default_package');
+            $user->save();
+        }
+
+        if (setting('trial') && setting('trial_package')) {
+            $user->package_id = setting('trial_package');
             $user->save();
         }
     }

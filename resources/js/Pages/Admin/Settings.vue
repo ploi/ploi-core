@@ -19,7 +19,9 @@
                             <SettingsSegment>
                                 <template #title>{{ __('Overview') }}</template>
                                 <template #subtitle>
-                                    {{ __('Change all the system settings here. All changes are in effect immediately.') }}
+                                    {{
+                                        __('Change all the system settings here. All changes are in effect immediately.')
+                                    }}
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
@@ -33,7 +35,9 @@
                                                        :errors="$page.props.errors.logo"
                                                        v-model="form.logo"/>
 
-                                        <Button v-if="company_settings.has_logo" variant="danger" type="button" class="ml-2 px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white" @click="removeLogo">
+                                        <Button v-if="company_settings.has_logo" variant="danger" type="button"
+                                                class="ml-2 px-4 py-1 bg-red-500 hover:bg-red-700 rounded-sm text-xs font-medium text-white"
+                                                @click="removeLogo">
                                             Remove logo
                                         </Button>
 
@@ -67,6 +71,29 @@
                                             <option value="years-2">Older than 2 years</option>
                                             <option value="years-3">Older than 3 years</option>
                                             <option value="years-4">Older than 4 years</option>
+                                        </FormSelect>
+
+                                        <div>
+                                            <input id="trial" class="form-checkbox" type="checkbox"
+                                                   v-model="form.trialEnabled">
+                                            <label for="trial" class="ml-2 text-sm">{{
+                                                    __('Enable trial')
+                                                }}</label>
+                                            <p class="text-small mt-1 text-medium-emphasis">
+                                                {{ __('This will allow you to have users with trials.') }}
+                                            </p>
+                                        </div>
+
+                                        <FormInput v-if="form.trialEnabled" type="number" :label="__('Trial days')"
+                                                   :errors="$page.props.errors.trial"
+                                                   v-model="form.trial"/>
+
+                                        <FormSelect
+                                            v-if="form.trialEnabled"
+                                            :errors="$page.props.errors.trial_package"
+                                            :helper-text="__('Select the trial package a user should get when they get their trial')"
+                                            :label="__('Select trial package')" v-model="form.trial_package">
+                                            <option v-for="(name, id) in packages" :value="id" v-text="name"></option>
                                         </FormSelect>
 
                                         <div>
@@ -141,7 +168,8 @@
                                                 {{
                                                     __('This will allow you to interact with your system via the API.')
                                                 }} <a href="https://docs.ploi-core.io/core-api/introduction"
-                                                      class="text-primary" target="_blank">{{ __('More information')}}</a>
+                                                      class="text-primary"
+                                                      target="_blank">{{ __('More information') }}</a>
                                             </p>
                                         </div>
 
@@ -252,8 +280,15 @@ export default {
                 default_language: this.company_settings.default_language,
                 logo: null,
                 rotate_logs_after: this.company_settings.rotate_logs_after,
+                trialEnabled: false,
+                trial: this.company_settings.trial,
+                trial_package: this.company_settings.trial_package,
             },
         }
+    },
+
+    mounted() {
+        this.form.trialEnabled = !!this.company_settings.trial;
     },
 
     props: {
@@ -277,11 +312,13 @@ export default {
             data.append('allow_registration', this.form.allow_registration || false)
             data.append('receive_email_on_server_creation', this.form.receive_email_on_server_creation || false)
             data.append('receive_email_on_site_creation', this.form.receive_email_on_site_creation || false)
-            data.append('default_package', this.form.receive_email_on_server_creation || '')
+            data.append('default_package', this.form.default_package || '')
             data.append('isolate_per_site_per_user', this.form.isolate_per_site_per_user || false)
             data.append('default_language', this.form.default_language || 'en')
             data.append('logo', this.form.logo || '')
             data.append('rotate_logs_after', this.form.rotate_logs_after || '')
+            data.append('trial', this.form.trial || '')
+            data.append('trial_package', this.form.trial_package || '')
             data.append('_method', 'patch')
 
             this.$inertia.post(this.route('admin.settings.update'), data, {

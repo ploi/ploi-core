@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Setting;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,17 @@ class AppServiceProvider extends ServiceProvider
                     return [];
                 }
             });
+        });
+    }
+
+    public function boot()
+    {
+        Password::defaults(function () {
+            $rule = Password::min(6);
+
+            return $this->app->isProduction()
+                ? $rule->letters()->numbers()->uncompromised()
+                : $rule;
         });
     }
 }
