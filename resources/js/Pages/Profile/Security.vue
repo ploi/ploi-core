@@ -5,14 +5,37 @@
         <Content>
             <Container>
                 <PageBody>
-                    <form class="space-y-4" @submit.prevent="submit">
-                        <FormInput :label="__('Current password')" type="password" :errors="$page.props.errors.current_password" v-model="form.current_password"/>
-                        <FormInput :label="__('New password')" type="password" :errors="$page.props.errors.password" v-model="form.password"/>
-                        <FormInput :label="__('Confirm new password')" type="password" :errors="$page.props.errors.password_confirmation" v-model="form.password_confirmation"/>
-                        <FormActions>
-                            <Button>{{ __('Save changes') }}</Button>
-                        </FormActions>
-                    </form>
+                    <SettingsSegment>
+                        <template #title>
+                            {{ __('Password')}}
+                        </template>
+                        <template #subtitle>
+                            {{ __('Change your password') }}
+                        </template>
+                        <template #form>
+                            <form class="space-y-4" @submit.prevent="submit">
+                                <FormInput :label="__('Current password')" type="password" :errors="$page.props.errors.current_password" v-model="form.current_password"/>
+                                <div class="w-full flex space-x-4">
+                                    <FormInput :label="__('New password')" type="password" :errors="$page.props.errors.password" v-model="form.password" class="w-1/2" />
+                                    <FormInput :label="__('Confirm new password')" type="password" :errors="$page.props.errors.password_confirmation" v-model="form.password_confirmation" class="w-1/2" />
+                                </div>
+                                <FormActions>
+                                    <Button>{{ __('Save changes') }}</Button>
+                                </FormActions>
+                            </form>
+                        </template>
+                    </SettingsSegment>
+                    <SettingsSegment>
+                        <template #title>
+                            {{ __('Two-factor authentication') }}
+                        </template>
+                        <template #subtitle>
+                            {{ __('Manage two-factor authentication for your account.') }}
+                        </template>
+                        <template #content>
+                            <TwoFactorAuthentication :secret="twoFactor.secret" :recoveryCodes="twoFactor.recoveryCodes" :enabled="twoFactor.enabled" />
+                        </template>
+                    </SettingsSegment>
                 </PageBody>
             </Container>
         </Content>
@@ -41,6 +64,9 @@
     import FormInput from '@/components/forms/FormInput'
     import FormSelect from '@/components/forms/FormSelect'
     import FormActions from '@/components/FormActions'
+    import SettingsSegment from "../../components/SettingsSegment";
+    import {Inertia} from "@inertiajs/inertia";
+    import TwoFactorAuthentication from "./components/TwoFactorAuthentication";
 
     export default {
         metaInfo() {
@@ -52,6 +78,8 @@
         layout: MainLayout,
 
         components: {
+            TwoFactorAuthentication,
+            SettingsSegment,
             TopBar,
             Container,
             Content,
@@ -76,7 +104,8 @@
 
         props: {
             profile: Object,
-            languages: Array
+            languages: Array,
+            twoFactor: Object,
         },
 
         data() {
@@ -106,7 +135,7 @@
 
         methods: {
             submit() {
-                this.$inertia.patch(this.route('profile.security.update'), this.form, {
+                this.$inertia.patch(this.route('profile.security.updatePassword'), this.form, {
                     onStart: () => this.sending = true,
                     onFinish: () => {
                         this.sending = false;
