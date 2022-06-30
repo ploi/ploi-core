@@ -75,7 +75,7 @@ class HandleInertiaRequests extends Middleware
                     ],
                     'can' => $can,
                     'integrations' => [
-                        'cloudflare' => (bool)auth()->user() ? auth()->user()->providers()->where('type', UserProvider::TYPE_CLOUDFLARE)->count() : false,
+                        'cloudflare' => (bool) auth()->user() ? auth()->user()->providers()->where('type', UserProvider::TYPE_CLOUDFLARE)->count() : false,
                     ]
                 ];
             },
