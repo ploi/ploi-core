@@ -130,10 +130,7 @@
             useNotification,
 
             refreshVersions() {
-                this.$inertia.get(this.route('admin.system') + '?flush=true', {}, {
-                    // preserveState: true,
-                    // preserveScroll: true,
-                });
+                this.$inertia.get(this.route('admin.system') + '?flush=true');
             }
         }
     }
