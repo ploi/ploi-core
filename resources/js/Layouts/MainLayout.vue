@@ -16,10 +16,7 @@
             'bg-danger' : $page.props.system_alert.type === 'danger',
         }" v-if="$page.props.system_alert">
             <div class="max-w-screen-xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-                <div class="pr-16 sm:text-center sm:px-16">
-                    <p class="font-medium text-on-primary">
-                        {{ $page.props.system_alert.message }}
-                    </p>
+                <div class="pr-16 sm:text-center sm:px-16 font-medium text-on-primary" v-html="$page.props.system_alert.message_html">
                 </div>
             </div>
         </div>
