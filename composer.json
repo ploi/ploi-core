@@ -40,7 +40,8 @@
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.2",
         "phpunit/phpunit": "^9.5.4",
-        "spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^1.0",
+        "spatie/laravel-ray": "^1.29"
     },
     "config": {
         "optimize-autoloader": true,
