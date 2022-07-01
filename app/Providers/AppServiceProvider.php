@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use Exception;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
             return $app['cache']->remember('core.settings', now()->addDay(), function () {
                 try {
                     return Setting::pluck('value', 'key')->toArray();
-                } catch (\Exception $exception) {
+                } catch (Exception $exception) {
                     return [];
                 }
             });

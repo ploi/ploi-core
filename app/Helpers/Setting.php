@@ -1,17 +1,19 @@
 <?php
 
+use App\Models\Setting;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Arr;
 
 if (!function_exists('setting')) {
     /**
      * @param null $key
      * @param null $default
-     * @return array|ArrayAccess|bool|\Illuminate\Contracts\Foundation\Application|mixed
+     * @return array|ArrayAccess|bool|Application|mixed
      */
     function setting($key = null, $default = null)
     {
         if (is_array($key)) {
-            \App\Models\Setting::updateOrCreate([
+            Setting::updateOrCreate([
                 'key' => key($key)
             ], [
                 'value' => Arr::first($key)
@@ -20,6 +22,7 @@ if (!function_exists('setting')) {
             try {
                 cache()->forget('core.settings');
             } catch (Exception $e) {
+                //
             }
 
             return true;

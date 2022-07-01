@@ -56,7 +56,8 @@ class Handler extends ExceptionHandler
     {
         $response = parent::render($request, $exception);
 
-        if (in_array($response->status(), [403, 404])) {
+        // Only return an Inertia-response when there are special Vue-templates (403 and 404) and when it isn't an API request.
+        if (in_array($response->status(), [403, 404]) && ! $request->routeIs('api.*')) {
             return app(HandleInertiaRequests::class)
                 ->handle($request, fn () => inertia()->render('Errors/' . $response->status(), ['status' => $response->status()])
                 ->toResponse($request));

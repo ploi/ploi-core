@@ -8,28 +8,27 @@ use App\Services\Ploi\Exceptions\Http\Unauthenticated;
 
 class GlobalApiAuthenticated
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
-        if (!$this->isAuthenticated($request)) {
+        abort_unless($this->hasApiEnabled(), 404);
+
+        abort_unless($this->isAuthenticated($request), 403);
+
+        if (! $this->isAuthenticated($request)) {
             throw new Unauthenticated('Unauthenticated for global access.');
         }
 
         return $next($request);
     }
 
+    protected function hasApiEnabled(): bool
+    {
+        return setting('enable_api') && (bool) setting('api_token');
+    }
+
     protected function isAuthenticated(Request $request)
     {
-        return
-            setting('enable_api') &&
-            setting('api_token') &&
-            $request->bearerToken() &&
-            $request->bearerToken() === decrypt(setting('api_token'));
+        return $request->bearerToken()
+            && $request->bearerToken() === decrypt(setting('api_token'));
     }
 }
