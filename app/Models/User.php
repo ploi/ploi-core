@@ -5,15 +5,15 @@ namespace App\Models;
 use App\Casts\Encrypted;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Laragear\TwoFactor\Contracts\TwoFactorAuthenticatable;
-use Laragear\TwoFactor\TwoFactorAuthentication;
 use Laravel\Cashier\Billable;
 use App\Mail\User\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Notifications\Notifiable;
+use Laragear\TwoFactor\TwoFactorAuthentication;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Translation\HasLocalePreference;
+use Laragear\TwoFactor\Contracts\TwoFactorAuthenticatable;
 
 class User extends Authenticatable implements HasLocalePreference, TwoFactorAuthenticatable
 {
@@ -99,13 +99,15 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
 
     public function servers()
     {
-        return $this->morphedByMany(Server::class, 'service', 'user_service')
+        return $this
+            ->morphedByMany(Server::class, 'service', 'user_service')
             ->using(UserService::class)->withTimestamps();
     }
 
     public function sites()
     {
-        return $this->morphedByMany(Site::class, 'service', 'user_service')
+        return $this
+            ->morphedByMany(Site::class, 'service', 'user_service')
             ->using(UserService::class)->withTimestamps();
     }
 

@@ -3,26 +3,33 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\UserRequest;
-use App\Http\Resources\Api\UserResource;
+use App\DataTransferObjects\UserData;
+use App\DataTransferObjects\Support\DataCollection;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): DataCollection
     {
-        return UserResource::collection(User::latest()->paginate());
+        return UserData::collection(User::latest()->paginate());
     }
 
-    public function store(UserRequest $request)
+    public function store(Request $request): Response
     {
-        $user = User::create($request->validated());
+        $userData = UserData::validate($request->only('name', 'email'));
 
-        return new UserResource($user);
+        $user = User::create($userData->toArray());
+
+        return response(
+            content: ['data' => UserData::from($user)],
+            status: 201
+        );
     }
 
-    public function show($id)
+    public function show(User $user): Response
     {
-        return new UserResource(User::findOrFail($id));
+        return response(content: ['data' => UserData::from($user)], status: 200);
     }
 }

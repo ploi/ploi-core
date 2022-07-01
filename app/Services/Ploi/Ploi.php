@@ -3,11 +3,12 @@
 namespace App\Services\Ploi;
 
 use Exception;
-use GuzzleHttp\Client;
 use App\Services\Ploi\Http\Response;
+use Illuminate\Support\Facades\Http;
 use App\Services\Ploi\Resources\User;
 use App\Services\Ploi\Resources\Server;
 use Psr\Http\Message\ResponseInterface;
+use Illuminate\Http\Client\PendingRequest;
 use App\Services\Ploi\Resources\Synchronize;
 use App\Services\Ploi\Exceptions\Http\NotFound;
 use App\Services\Ploi\Exceptions\Http\NotValid;
@@ -19,19 +20,22 @@ use App\Services\Ploi\Exceptions\Http\PerformingMaintenance;
 class Ploi
 {
     public $url;
-    private $guzzle;
+
     private $apiToken;
+
     private $apiCoreToken;
+
+    protected PendingRequest $client;
 
     public function __construct(string $token = null, string $coreApiToken = null)
     {
         $this->url = config('services.ploi-api.url');
 
-        if (!$token) {
+        if (! $token) {
             $token = config('services.ploi.token');
         }
 
-        if (!$coreApiToken) {
+        if (! $coreApiToken) {
             $coreApiToken = config('services.ploi.core-token');
         }
 
@@ -57,18 +61,13 @@ class Ploi
         return $this;
     }
 
-    public function buildClient()
+    public function buildClient(): static
     {
-        // Generate a new Guzzle client
-        $this->guzzle = new Client([
-            'base_uri' => $this->url,
-            'http_errors' => false,
-            'headers' => [
-                'Authorization' => 'Bearer ' . $this->getApiToken(),
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-                'X-Ploi-Core-Key' => $this->getCoreApiToken()
-            ],
+        $this->client = Http::baseUrl($this->url)->withHeaders([
+            'Authorization' => 'Bearer ' . $this->getApiToken(),
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'X-Ploi-Core-Key' => $this->getCoreApiToken(),
         ]);
 
         return $this;
@@ -86,7 +85,7 @@ class Ploi
 
     public function makeAPICall(string $url, string $method = 'get', array $options = []): Response
     {
-        if (!in_array($method, ['get', 'post', 'patch', 'delete'])) {
+        if (! in_array($method, ['get', 'post', 'patch', 'delete'])) {
             throw new Exception('Invalid method type');
         }
 
@@ -97,7 +96,7 @@ class Ploi
          *
          * @var ResponseInterface $response
          */
-        $response = $this->guzzle->{$method}($url, $options);
+        $response = $this->client->{$method}($url, $options);
 
         switch ($response->getStatusCode()) {
             case 401:
