@@ -31,13 +31,14 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->configureRateLimiting();
 
         $this->routes(function () {
             // The settings('enable_api') is now handled by the GlobalApiAuthenticated middleware,
-            // because the conditional inside this service makes testing very hard.
+            // because the conditional inside this service makes testing very hard. This doesn't
+            // matter for existing users, because now the middleware will return 404 responses.
             Route::prefix('api')
                 ->middleware(['api', 'global.api.authenticated'])
                 ->namespace($this->namespace . '\Api')
@@ -61,7 +62,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function configureRateLimiting()
+    protected function configureRateLimiting(): void
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60);
