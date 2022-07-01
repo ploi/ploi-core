@@ -11,10 +11,19 @@
 |
 */
 
+use Tests\Fixtures\ApiCall;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(Tests\TestCase::class, LazilyRefreshDatabase::class)
+    ->beforeEach(fn () => Http::preventStrayRequests())
     ->in(__DIR__);
+
+// Enable the API for the API-tests.
+uses()
+    ->beforeEach(fn () => enableApi())
+    ->in(__DIR__ . '/Unit/Http/Controllers/Api');
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +51,15 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function enableApi(): void
 {
-    // ..
+    setting(['enable_api' => true,]);
+    setting(['api_token' => encrypt('secret')]);
+
+    App::forgetInstance('settings');
+}
+
+function api(): ApiCall
+{
+    return app(ApiCall::class);
 }
