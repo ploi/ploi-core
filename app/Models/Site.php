@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Casts\SiteAlias;
 use DateTimeInterface;
+use App\Casts\SiteAlias;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-/**
- * @property mixed|string domain
- */
 class Site extends Model
 {
+    use HasFactory;
+    
     const STATUS_BUSY = 'busy';
     const STATUS_ACTIVE = 'active';
 

@@ -2,10 +2,11 @@
 
 namespace App\Services\Ploi\Resources;
 
-use stdClass;
 use App\Services\Ploi\Exceptions\Http\NotValid;
+use Exception;
 use Services\Ploi\Exceptions\Resource\RequiresId;
 use Services\Ploi\Exceptions\Resource\Server\Site\DomainAlreadyExists;
+use stdClass;
 
 /**
  * Class Site
@@ -98,17 +99,17 @@ class Site extends Resource
             }
 
             throw $exception;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             info($exception->getMessage());
         }
 
         // TODO: Debugging purposes
         if (!$response->getJson() || !isset($response->getJson()->data)) {
-            throw new \Exception($response->getJson()->error ?? 'Unknown error has occured');
+            throw new Exception($response->getJson()->error ?? 'Unknown error has occured');
         }
 
         // Set the id of the site
-        $this->setId($response->getJson()->data->id);
+        $this->setId($response->getData()->id);
 
         // Return the data
         return $response->getJson();
