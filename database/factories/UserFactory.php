@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use Closure;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Package;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
@@ -27,5 +29,21 @@ class UserFactory extends Factory
             $model->createTwoFactorAuth();
             $model->enableTwoFactorAuth();
         });
+    }
+
+    public function withPackage(Closure $modifyFactory = null): static
+    {
+        $factory = Package::factory();
+
+        if ($modifyFactory) {
+            $factory = $modifyFactory($factory);
+        }
+
+        return $this->set('package_id', $factory);
+    }
+
+    public function admin(): static
+    {
+        return $this->set('role', User::ADMIN);
     }
 }
