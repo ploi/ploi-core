@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Server;
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Jobs\Servers\CreateServer;
-use App\Jobs\Servers\DeleteServer;
-use App\Http\Requests\ServerRequest;
-use Illuminate\Support\Facades\Mail;
-use App\Http\Resources\ServerResource;
-use App\Mail\Server\ServerCreatedEmail;
+use App\Actions\Server\CreateServerAction;
+use App\DataTransferObjects\ServerData;
 use App\Http\Requests\ServerUpdateRequest;
-use App\Mail\Admin\Server\AdminServerCreatedEmail;
+use App\Http\Resources\ServerResource;
+use App\Jobs\Servers\DeleteServer;
+use App\Models\Server;
+use Illuminate\Http\Request;
 
 class ServerController extends Controller
 {
@@ -31,34 +27,9 @@ class ServerController extends Controller
         ]);
     }
 
-    public function store(ServerRequest $request)
+    public function store(ServerData $serverData)
     {
-        $provider = $request->user()->package->providers()->findOrFail($request->input('provider'));
-        $region = $provider->regions()->findOrFail($request->input('region'));
-        $plan = $provider->plans()->findOrFail($request->input('plan'));
-
-        /* @var $server \App\Models\Server */
-        $server = $request->user()->servers()->create([
-            'name' => $request->input('name'),
-            'database_type' => $request->input('database_type', 'mysql')
-        ]);
-
-        $server->provider()->associate($provider);
-        $server->providerRegion()->associate($region);
-        $server->providerPlan()->associate($plan);
-        $server->save();
-
-        dispatch(new CreateServer($server));
-
-        Mail::to($request->user())->send(new ServerCreatedEmail($request->user(), $server));
-
-        if (setting('receive_email_on_server_creation')) {
-            $admins = User::query()->where('role', User::ADMIN)->get();
-
-            foreach ($admins as $admin) {
-                Mail::to($admin)->send(new AdminServerCreatedEmail($request->user(), $server));
-            }
-        }
+        $server = app(CreateServerAction::class)->execute($serverData);
 
         return redirect()->route('servers.index');
     }
