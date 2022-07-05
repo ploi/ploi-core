@@ -29,7 +29,9 @@ class ServerController extends Controller
 
     public function store(ServerData $serverData)
     {
-        $server = app(CreateServerAction::class)->execute($serverData);
+        $this->authorize('create', Server::class);
+
+        app(CreateServerAction::class)->execute($serverData);
 
         return redirect()->route('servers.index');
     }

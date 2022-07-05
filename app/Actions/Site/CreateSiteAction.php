@@ -2,56 +2,52 @@
 
 namespace App\Actions\Site;
 
+use App\DataTransferObjects\SiteData;
+use App\Jobs\Sites\CreateSite;
+use App\Mail\Admin\Site\AdminSiteCreatedEmail;
+use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
-use App\Models\Server;
-use App\Jobs\Sites\CreateSite;
-use Illuminate\Support\Facades\Mail;
-use App\DataTransferObjects\SiteData;
 use Illuminate\Database\Eloquent\Model;
-use App\Mail\Admin\Site\AdminSiteCreatedEmail;
+use Illuminate\Support\Facades\Mail;
 
 class CreateSiteAction
 {
     public function execute(SiteData $siteData): ?Site
     {
-        $server = $this->determineServer($siteData->server_id ?? null);
+        $server = $this->determineServer($siteData);
 
-        if (! $server) {
+        if ( ! $server ) {
             return null;
         }
 
         $site = $server->sites()->create($siteData->toArray());
 
-        auth()->user()->sites()->save($site);
+        $siteData->getUser()->sites()->save($site);
 
         dispatch(new CreateSite($site));
 
-        auth()->user()->systemLogs()->create([
+        $siteData->getUser()->systemLogs()->create([
             'title' => 'New site :site created',
             'description' => 'A new site has been created',
         ])->model()->associate($site)->save();
 
-        $this->sendAdminSiteCreatedEmails($server, $site);
+        $this->sendAdminSiteCreatedEmails($server, $site, $siteData->getUser());
 
         return $site;
     }
 
-    protected function determineServer(?int $serverId): ?Server
+    protected function determineServer(SiteData $siteData): ?Server
     {
-        if ($serverId) {
-            return auth()->user()->servers()->findOrFail($serverId);
+        if ( $siteData->server_id ) {
+            return $siteData->getUser()->servers()->findOrFail($siteData->server_id);
         }
 
         $server = Server::query()
             ->where('maximum_sites', '>', 0)
-            ->where(function ($query) {
+            ->where(function ($query) use ($siteData) {
                 return $query
-                    ->where(function ($query) {
-                        return $query->whereHas('users', function ($query) {
-                            return $query->where('user_id', auth()->id());
-                        });
-                    })
+                    ->where(fn ($query) => $query->whereHas('users', fn ($query) => $query->where('user_id', $siteData->getUser()->id)))
                     ->orWhere(function ($query) {
                         return $query->doesntHave('users');
                     });
@@ -65,16 +61,16 @@ class CreateSiteAction
             : null;
     }
 
-    protected function sendAdminSiteCreatedEmails(Server $server, Model|Site $site): void
+    protected function sendAdminSiteCreatedEmails(Server $server, Model|Site $site, User $user): void
     {
-        if (! setting('receive_email_on_site_creation')) {
+        if ( ! setting('receive_email_on_site_creation') ) {
             return;
         }
 
         $admins = User::where('role', User::ADMIN)->get();
 
         foreach ($admins as $admin) {
-            Mail::to($admin)->send(new AdminSiteCreatedEmail(user: auth()->user(), server: $server, site: $site));
+            Mail::to($admin)->send(new AdminSiteCreatedEmail(user: $user, server: $server, site: $site));
         }
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Site extends Model
 {
     use HasFactory;
-    
+
     const STATUS_BUSY = 'busy';
     const STATUS_ACTIVE = 'active';
 

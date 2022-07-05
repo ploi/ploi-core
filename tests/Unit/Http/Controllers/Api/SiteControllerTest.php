@@ -1,14 +1,14 @@
 <?php
 
+use App\Mail\Admin\Site\AdminSiteCreatedEmail;
+use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
-use App\Models\Server;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
-use function Pest\Laravel\assertDatabaseHas;
 
-use App\Mail\Admin\Site\AdminSiteCreatedEmail;
+use function Pest\Laravel\assertDatabaseHas;
 
 it('can list sites', function () {
     $server = Server::factory()
@@ -107,6 +107,7 @@ it('can create a site', function () {
     $response = api()
         ->post(route('api.site.store'), [
             'domain' => 'example.ploi.io',
+            'user_id' => $user->id,
         ])
         ->assertCreated()
         ->collect()
@@ -147,4 +148,24 @@ it('can create a site', function () {
             'domain' => 'example.ploi.io',
         ],
     ]);
+});
+
+it('requires the user id', function () {
+    $user = User::factory()->withPackage()->create();
+
+    api()
+        ->post(route('api.site.store'), [
+            'domain' => 'example.ploi.io',
+        ])
+        ->assertInvalid('user_id');
+});
+
+it('requires the domain', function () {
+    $user = User::factory()->withPackage()->create();
+
+    api()
+        ->post(route('api.site.store'), [
+            'user_id' => 'example.ploi.io',
+        ])
+        ->assertInvalid('domain');
 });

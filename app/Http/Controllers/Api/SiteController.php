@@ -20,14 +20,12 @@ class SiteController extends Controller
 
     public function store(Request $request): Response|JsonResponse
     {
-        $site = app(CreateSiteAction::class)->execute(
-            SiteData::validate($request->only('server_id', 'domain'))
-        );
+        $site = app(CreateSiteAction::class)->execute(SiteData::validate($request));
 
         $site->refresh();
 
         return $site
-            ? response(content: ['data' => SiteData::from($site)], status: 201)
+            ? response(content: ['data' => SiteData::from($site)->toArray()], status: 201)
             : response()->json([
                 'message' => __('It seems there is no free server room for this site to take place. Please get in touch with support to resolve this.')
             ], 422);

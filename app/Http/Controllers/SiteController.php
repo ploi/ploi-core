@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
-use App\Jobs\Sites\DeleteSite;
-use App\Http\Resources\SiteResource;
-use Illuminate\Support\Facades\Hash;
-use App\DataTransferObjects\SiteData;
-use Illuminate\Http\RedirectResponse;
 use App\Actions\Site\CreateSiteAction;
+use App\DataTransferObjects\SiteData;
+use App\Http\Resources\SiteResource;
+use App\Jobs\Sites\DeleteSite;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 
 class SiteController extends Controller
 {
@@ -32,9 +32,9 @@ class SiteController extends Controller
         ]);
     }
 
-    public function store(SiteData $siteData): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        $site = app(CreateSiteAction::class)->execute($siteData);
+        $site = app(CreateSiteAction::class)->execute(SiteData::validate($request));
 
         return $site
             ? redirect()->route('sites.index')->with('success', __('Your website is being created'))

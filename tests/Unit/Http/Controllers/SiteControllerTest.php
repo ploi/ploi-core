@@ -1,15 +1,16 @@
 <?php
 
+use App\Mail\Admin\Site\AdminSiteCreatedEmail;
+use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
-use App\Models\Server;
-use function Pest\Laravel\post;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
+use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
-use App\Mail\Admin\Site\AdminSiteCreatedEmail;
+use function Pest\Laravel\post;
 
 it('can create a new site', function () {
     Mail::fake();
@@ -30,7 +31,9 @@ it('can create a new site', function () {
     setting(['receive_email_on_site_creation' => true]);
     App::forgetInstance('settings');
 
-    $user = User::factory()->withPackage()->create();
+    actingAs(
+        $user = User::factory()->withPackage()->create()
+    );
 
     $server = Server::factory()
         ->ploiId('12345')
@@ -38,6 +41,7 @@ it('can create a new site', function () {
         ->create();
 
     post(route('sites.store'), ['domain' => 'example.ploi.io'])
+        ->assertSessionHasNoErrors()
         ->assertRedirect();
 
     assertDatabaseHas(Site::class, [
