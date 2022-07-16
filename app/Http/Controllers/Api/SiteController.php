@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Actions\Site\CreateSiteAction;
 use App\DataTransferObjects\SiteData;
-use App\DataTransferObjects\Support\DataCollection;
 use App\Http\Controllers\Controller;
 use App\Models\Site;
 use Illuminate\Http\JsonResponse;
@@ -13,14 +12,16 @@ use Illuminate\Http\Response;
 
 class SiteController extends Controller
 {
-    public function index(): DataCollection
+    public function index(): mixed
     {
         return SiteData::collection(Site::paginate());
     }
 
     public function store(Request $request): Response|JsonResponse
     {
-        $site = app(CreateSiteAction::class)->execute(SiteData::validate($request));
+        $site = app(CreateSiteAction::class)->execute(
+            SiteData::validateAndCreate($request)
+        );
 
         $site->refresh();
 

@@ -26,14 +26,14 @@ class SiteData extends Data
         #[Exists( Server::class ), IntegerType]
         public ?int $server_id = null,
         #[Required, StringType, Rule( [new Hostname(), new ValidateMaximumSites()] )]
-        public string $domain,
-        #[IntegerType]
+        public ?string $domain = null,
+        #[Required, IntegerType]
         public ?int $user_id = null,
     ) {}
 
     public static function fromRequest(Request $request): static
     {
-        return static::from($request->only(['server_id', 'domain', 'user_id']));
+        return static::validate($request->only(['server_id', 'domain', 'user_id']));
     }
 
     public static function authorize(): bool

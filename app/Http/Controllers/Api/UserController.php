@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DataTransferObjects\UserData;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Controllers\Controller;
-use App\DataTransferObjects\UserData;
-use App\DataTransferObjects\Support\DataCollection;
 
 class UserController extends Controller
 {
-    public function index(): DataCollection
+    public function index(): mixed
     {
         return UserData::collection(User::latest()->paginate());
     }
