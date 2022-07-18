@@ -29,9 +29,7 @@ class Alias extends Resource
     public function create(array $aliases)
     {
         $options = [
-            'body' => json_encode([
-                'aliases' => $aliases,
-            ]),
+            'aliases' => $aliases,
         ];
 
         return $this->getPloi()->makeAPICall($this->getEndpoint(), 'post', $options);
@@ -39,6 +37,6 @@ class Alias extends Resource
 
     public function delete(string $alias)
     {
-        return $this->getPloi()->makeAPICall($this->getEndpoint() . '/' . $alias , 'delete');
+        return $this->getPloi()->makeAPICall($this->getEndpoint() . '/' . $alias, 'delete');
     }
 }

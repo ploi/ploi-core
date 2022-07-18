@@ -48,11 +48,9 @@ class Cronjob extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'command' => $command,
-                'frequency' => $frequency,
-                'user' => $user,
-            ]),
+            'command' => $command,
+            'frequency' => $frequency,
+            'user' => $user,
         ];
 
         // Build the endpoint

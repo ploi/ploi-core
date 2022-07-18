@@ -8,6 +8,7 @@ use App\Services\Ploi\Exceptions\Http\NotValid;
 class Redirect extends Resource
 {
     private $server;
+
     private $site;
 
     public function __construct(Server $server, Site $site, int $id = null)
@@ -50,11 +51,9 @@ class Redirect extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'redirect_from' => $redirectFrom,
-                'redirect_to' => $redirectTo,
-                'type' => $type,
-            ]),
+            'redirect_from' => $redirectFrom,
+            'redirect_to' => $redirectTo,
+            'type' => $type,
         ];
 
         // Build the endpoint

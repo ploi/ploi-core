@@ -8,6 +8,7 @@ use App\Services\Ploi\Exceptions\Http\NotValid;
 class Certificate extends Resource
 {
     private $server;
+
     private $site;
 
     public function __construct(Server $server, Site $site, int $id = null)
@@ -50,11 +51,9 @@ class Certificate extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'type' => $type,
-                'certificate' => $certificate,
-                'private' => $private,
-            ]),
+            'type' => $type,
+            'certificate' => $certificate,
+            'private' => $private,
         ];
 
         // Build the endpoint

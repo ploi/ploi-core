@@ -48,12 +48,10 @@ class NetworkRule extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'name' => $name,
-                'port' => $port,
-                'type' => $type,
-                'from_ip_address' => $fromIpAddress,
-            ]),
+            'name' => $name,
+            'port' => $port,
+            'type' => $type,
+            'from_ip_address' => $fromIpAddress,
         ];
 
         // Build the endpoint

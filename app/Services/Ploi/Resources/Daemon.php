@@ -48,11 +48,9 @@ class Daemon extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'command' => $command,
-                'system_user' => $systemUser,
-                'processes' => $processes
-            ]),
+            'command' => $command,
+            'system_user' => $systemUser,
+            'processes' => $processes,
         ];
 
         // Build the endpoint

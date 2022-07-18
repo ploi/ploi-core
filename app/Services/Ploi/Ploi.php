@@ -90,6 +90,14 @@ class Ploi
         }
 
         /**
+         * This is a temporary method that was necessary for the switch from the Guzzle client to the Http facade.
+         * We _should not_ need this, but it feels safer to keep this fallback code around for now.
+         */
+        if (count($options) === 1 && array_key_exists('body', $options)) {
+            $options = is_string($options['body']) ? json_decode($options['body']) : $options['body'];
+        }
+
+        /**
          * Because we're calling the method dynamically PHPStorm doesn't
          * know that we're getting a response back, so we manually
          * tell it what is returned.
