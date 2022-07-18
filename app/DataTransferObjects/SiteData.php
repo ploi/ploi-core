@@ -2,6 +2,7 @@
 
 namespace App\DataTransferObjects;
 
+use App\DataTransferObjects\Support\Concerns\BelongsToUser;
 use App\DataTransferObjects\Support\Data;
 use App\DataTransferObjects\Support\WithUser;
 use App\Models\Server;
@@ -17,7 +18,7 @@ use Spatie\LaravelData\Attributes\Validation\StringType;
 
 class SiteData extends Data
 {
-    use WithUser;
+    use BelongsToUser;
 
     public function __construct(
         public ?int $id = null,
