@@ -1,0 +1,50 @@
+name: "Run tests"
+
+on:
+  push:
+  workflow_call:
+
+jobs:
+  test:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: XXX
+        ports:
+          - 3306/tcp
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, mysql
+          coverage: none
+
+      - name: Start mysql service
+        run: sudo systemctl start mysql
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Install dependencies
+        run: |
+          composer upgrade -W --no-interaction --prefer-dist
+
+      - name: Execute tests
+        run: vendor/bin/pest
+        env:
+          DB_PASSWORD_TEST: password
+          DB_PORT_TEST: ${{ job.services.mysql.ports['3306'] }}
+          DB_DATABASE_TEST: XXX
