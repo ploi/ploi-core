@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Site\CreateSiteAction;
-use App\DataTransferObjects\SiteData;
-use App\Http\Resources\SiteResource;
-use App\Jobs\Sites\DeleteSite;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use App\Jobs\Sites\DeleteSite;
+use App\Http\Resources\SiteResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\DataTransferObjects\SiteData;
+use Illuminate\Http\RedirectResponse;
+use App\Actions\Site\CreateSiteAction;
 
 class SiteController extends Controller
 {
@@ -38,6 +39,8 @@ class SiteController extends Controller
             'domain' => ['required'],
         ]);
 
+        $data['user_id'] = Auth::id();
+
         $site = app(CreateSiteAction::class)->execute(
             SiteData::validate($data)
         );
@@ -53,7 +56,7 @@ class SiteController extends Controller
     {
         $site = auth()->user()->sites()->findOrFail($id);
 
-        if ( ! $site->isActive() ) {
+        if (! $site->isActive()) {
             return redirect()->route('sites.index')->with('info', __('This site does not seem to be active, please wait for the process to finish'));
         }
 
@@ -79,10 +82,10 @@ class SiteController extends Controller
 
     public function requestFtpPassword(Request $request, $id)
     {
-        if ( $request->user()->requires_password_for_ftp ) {
+        if ($request->user()->requires_password_for_ftp) {
             $this->validate($request, ['password' => 'required|string']);
 
-            if ( ! Hash::check($request->input('password'), $request->user()->password) ) {
+            if (! Hash::check($request->input('password'), $request->user()->password)) {
                 return response([
                     'message' => 'The given data was invalid',
                     'errors' => [
