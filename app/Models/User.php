@@ -3,17 +3,17 @@
 namespace App\Models;
 
 use App\Casts\Encrypted;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Laravel\Cashier\Billable;
 use App\Mail\User\WelcomeEmail;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Notifications\Notifiable;
-use Laragear\TwoFactor\TwoFactorAuthentication;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Contracts\Translation\HasLocalePreference;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Laragear\TwoFactor\Contracts\TwoFactorAuthenticatable;
+use Laragear\TwoFactor\TwoFactorAuthentication;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements HasLocalePreference, TwoFactorAuthenticatable
 {
@@ -38,6 +38,7 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
         'theme',
         'keyboard_shortcuts',
         'requires_password_for_ftp',
+        'package_id'
     ];
 
     protected $hidden = [

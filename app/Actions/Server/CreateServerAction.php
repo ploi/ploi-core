@@ -15,7 +15,7 @@ class CreateServerAction
     {
         [$provider, $providerRegion, $providerPlan] = $this->determineProviderRegionPlan($serverData);
 
-        $server = auth()->user()->servers()->create([
+        $server = $serverData->getUser()->servers()->create([
             'name' => $serverData->name,
             'database_type' => $serverData->database_type,
         ]);
@@ -34,7 +34,7 @@ class CreateServerAction
 
     protected function determineProviderRegionPlan(ServerData $serverData): array
     {
-        $provider = auth()->user()->package->providers()->findOrFail($serverData->provider_id);
+        $provider = $serverData->getUser()->package->providers()->findOrFail($serverData->provider_id);
         $region = $provider->regions()->findOrFail($serverData->provider_region_id);
         $plan = $provider->plans()->findOrFail($serverData->provider_plan_id);
 

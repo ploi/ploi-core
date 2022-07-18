@@ -8,7 +8,9 @@ use App\Http\Requests\ServerUpdateRequest;
 use App\Http\Resources\ServerResource;
 use App\Jobs\Servers\DeleteServer;
 use App\Models\Server;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServerController extends Controller
 {
@@ -27,11 +29,23 @@ class ServerController extends Controller
         ]);
     }
 
-    public function store(ServerData $serverData)
+    public function store(Request $request): RedirectResponse
     {
         $this->authorize('create', Server::class);
 
-        app(CreateServerAction::class)->execute($serverData);
+        $data = $request->validate([
+            'name' => ['required'],
+            'provider_id' => ['required'],
+            'provider_region_id' => ['required'],
+            'provider_plan_id' => ['required'],
+            'database_type' => ['required'],
+        ]);
+
+        $data['user_id'] = Auth::id();
+
+        app(CreateServerAction::class)->execute(
+            ServerData::validate($data)
+        );
 
         return redirect()->route('servers.index');
     }

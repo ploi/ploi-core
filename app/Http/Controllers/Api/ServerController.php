@@ -10,9 +10,20 @@ use Illuminate\Http\Response;
 
 class ServerController extends Controller
 {
-    public function create(Request $request): Response
+    public function store(Request $request): Response
     {
-        $server = app(CreateServerAction::class)->execute(ServerData::validate($request));
+        $data = $request->validate([
+            'name' => ['required'],
+            'provider_id' => ['required'],
+            'provider_region_id' => ['required'],
+            'provider_plan_id' => ['required'],
+            'database_type' => ['required'],
+            'user_id' => ['required'],
+        ]);
+
+        $server = app(CreateServerAction::class)->execute(
+            ServerData::validate($data)
+        );
 
         return response(content: ['data' => ServerData::from($server)->toArray()], status: 201);
     }

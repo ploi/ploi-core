@@ -34,7 +34,13 @@ class SiteController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $site = app(CreateSiteAction::class)->execute(SiteData::validate($request));
+        $data = $request->validate([
+            'domain' => ['required'],
+        ]);
+
+        $site = app(CreateSiteAction::class)->execute(
+            SiteData::validate($data)
+        );
 
         return $site
             ? redirect()->route('sites.index')->with('success', __('Your website is being created'))
@@ -47,7 +53,7 @@ class SiteController extends Controller
     {
         $site = auth()->user()->sites()->findOrFail($id);
 
-        if (! $site->isActive()) {
+        if ( ! $site->isActive() ) {
             return redirect()->route('sites.index')->with('info', __('This site does not seem to be active, please wait for the process to finish'));
         }
 
@@ -73,10 +79,10 @@ class SiteController extends Controller
 
     public function requestFtpPassword(Request $request, $id)
     {
-        if ($request->user()->requires_password_for_ftp) {
+        if ( $request->user()->requires_password_for_ftp ) {
             $this->validate($request, ['password' => 'required|string']);
 
-            if (! Hash::check($request->input('password'), $request->user()->password)) {
+            if ( ! Hash::check($request->input('password'), $request->user()->password) ) {
                 return response([
                     'message' => 'The given data was invalid',
                     'errors' => [

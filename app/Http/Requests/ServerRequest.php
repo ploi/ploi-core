@@ -15,7 +15,7 @@ class ServerRequest extends FormRequest
      */
     public function authorize()
     {
-        return dump($this->user()->can('create', Server::class));
+        return $this->user()->can('create', Server::class);
     }
 
     /**

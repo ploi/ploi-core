@@ -108,6 +108,7 @@ it('can create a site', function () {
         ->post(route('api.site.store'), [
             'domain' => 'example.ploi.io',
             'user_id' => $user->id,
+            'server_id' => $server->id,
         ])
         ->assertCreated()
         ->collect()
@@ -150,22 +151,10 @@ it('can create a site', function () {
     ]);
 });
 
-it('requires the user id', function () {
-    $user = User::factory()->withPackage()->create();
-
+it('requires the user_id, server_id and domain', function () {
     api()
-        ->post(route('api.site.store'), [
-            'domain' => 'example.ploi.io',
-        ])
-        ->assertInvalid('user_id');
-});
-
-it('requires the domain', function () {
-    $user = User::factory()->withPackage()->create();
-
-    api()
-        ->post(route('api.site.store'), [
-            'user_id' => 'example.ploi.io',
-        ])
+        ->post(route('api.site.store'))
+        ->assertInvalid('user_id')
+        ->assertInvalid('server_id')
         ->assertInvalid('domain');
 });

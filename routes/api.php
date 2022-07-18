@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('users', UserController::class)
     ->names('user')
-    ->only('index', 'store', 'show');
+    ->only('index', 'store', 'show', 'update', 'destroy');
 
 Route::resource('sites', SiteController::class)
     ->names('site')
