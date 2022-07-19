@@ -19,21 +19,9 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, mysql
           coverage: none
 
-      - name: Start mysql service
-        run: sudo systemctl start mysql
-
-      - name: Setup problem matchers
-        run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
       - name: Install dependencies
         run: |
-          composer upgrade -W --no-interaction --prefer-dist
+          composer install
 
       - name: Execute tests
         run: vendor/bin/pest
-        env:
-          DB_PASSWORD_TEST: password
-          DB_PORT_TEST: ${{ job.services.mysql.ports['3306'] }}
-          DB_DATABASE_TEST: XXX
