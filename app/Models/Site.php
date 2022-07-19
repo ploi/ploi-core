@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use DateTimeInterface;
 use App\Casts\SiteAlias;
-use Illuminate\Database\Eloquent\Model;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Site extends Model
 {
@@ -127,7 +128,9 @@ class Site extends Model
         });
 
         static::created(function (self $site) {
-            $site->systemUsers()->create();
+            $site->systemUsers()->create([
+                'user_name' => Str::of($site->domain)->remove(['.', '-'])->limit(8, '')->lower()
+            ]);
         });
 
         static::deleting(function (self $site) {

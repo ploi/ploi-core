@@ -25,4 +25,9 @@ class SiteFactory extends Factory
     {
         return $this->set('server_id', $server);
     }
+
+    public function domain(string $domain): static
+    {
+        return $this->set('domain', $domain);
+    }
 }
