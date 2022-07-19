@@ -30,8 +30,7 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm install
-      - run: rm -f public/mix-manifest.json
-      - run: npm run prod
+      - run: npm run production
 
       - name: Commit build assets
         run: |
