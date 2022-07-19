@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Admin\Site\AdminSiteCreatedEmail;
-use App\Models\Server;
-use App\Models\User;
-use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
-use App\Jobs\Sites\CreateSite;
-use App\Jobs\Sites\DeleteSite;
 use App\Http\Requests\SiteRequest;
 use App\Http\Resources\SiteResource;
+use App\Jobs\Sites\CreateSite;
+use App\Jobs\Sites\DeleteSite;
+use App\Mail\Admin\Site\AdminSiteCreatedEmail;
+use App\Models\Server;
+use App\Models\Site;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -140,5 +142,20 @@ class SiteController extends Controller
         $systemUser = $site->getSystemUser();
 
         return ['ftp_password' => decrypt(Arr::get($systemUser, 'ftp_password'))];
+    }
+
+    public function checkDomainExistence(Request $request): JsonResponse
+    {
+        $domainToCheck = $request->input('domain');
+
+        if (! $domainToCheck) {
+            return response()->json(['result' => null]);
+        }
+
+        $exists = Site::whereDomain($domainToCheck)->exists();
+
+        return response()->json([
+            'result' => $exists
+        ]);
     }
 }

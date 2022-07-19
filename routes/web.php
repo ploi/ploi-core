@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Profile\ProfileSecurityController;
 use App\Http\Controllers\Auth\AuthenticateTwoFactorController;
+use App\Http\Controllers\Profile\ProfileSecurityController;
+use App\Http\Controllers\Profile\TwoFactorAuthentication\ConfirmTwoFactorAuthenticationController;
 use App\Http\Controllers\Profile\TwoFactorAuthentication\RegenerateRecoveryCodesController;
 use App\Http\Controllers\Profile\TwoFactorAuthentication\TwoFactorAuthenticationController;
-use App\Http\Controllers\Profile\TwoFactorAuthentication\ConfirmTwoFactorAuthenticationController;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
             Route::delete('{site}', 'SiteController@destroy')->name('delete');
             Route::post('/', 'SiteController@store')->name('store');
             Route::post('{site}/request-ftp-password', 'SiteController@requestFtpPassword')->name('request-ftp-password');
+            Route::post('check-domain-existence', 'SiteController@checkDomainExistence')->name('check-domain-existence');
 
             Route::get('{site}/settings', 'SiteSettingController@show')->name('settings.show');
             Route::patch('{site}/settings', 'SiteSettingController@update')->name('settings.update');
