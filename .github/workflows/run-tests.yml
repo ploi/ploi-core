@@ -8,7 +8,7 @@ jobs:
   test:
     name: Pest (PHP ${{ matrix.php }} – ${{ matrix.os }})
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
         php: [8.0, 8.1]
