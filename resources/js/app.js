@@ -1,11 +1,17 @@
-import { InertiaApp, plugin, InertiaLink } from '@inertiajs/inertia-vue'
+import {InertiaApp, InertiaLink, plugin} from '@inertiajs/inertia-vue'
 import Vue from 'vue';
 import VueMeta from 'vue-meta'
 import store from '@/store'
 import PortalVue from 'portal-vue'
 import vClickOutside from 'v-click-outside'
 import VueClipboard from 'vue-clipboard2'
-window._forEach = require('lodash/forEach');
+import forEach from 'lodash/forEach';
+import mixins from './mixins';
+import {InertiaProgress} from '@inertiajs/progress'
+import axios from 'axios';
+import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
+
+window._forEach = forEach;
 
 Vue.use(vClickOutside)
 Vue.use(PortalVue)
@@ -13,9 +19,8 @@ Vue.use(plugin)
 Vue.use(VueMeta)
 Vue.use(VueClipboard)
 Vue.mixin({ methods: { route: window.route } })
-Vue.mixin(require('./mixins'));
+Vue.mixin(mixins);
 Vue.component('InertiaLink', InertiaLink)
-import { InertiaProgress } from '@inertiajs/progress'
 
 InertiaProgress.init({
     delay: 250,
@@ -26,7 +31,7 @@ InertiaProgress.init({
 
 window.eventBus = new Vue();
 
-window.axios = require('axios');
+window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -42,7 +47,7 @@ new Vue({
     render: h => h(InertiaApp, {
         props: {
             initialPage: pageData,
-            resolveComponent: name => import(`@/Pages/${name}`).then(module => module.default),
+            resolveComponent: name => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
         },
     }),
 }).$mount(app)
