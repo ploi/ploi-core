@@ -11,7 +11,6 @@ jobs:
     uses: ./.github/workflows/run-tests.yml
 
   deploy:
-    needs: test
     name: Prepare build assets
     runs-on: ubuntu-latest
     steps:
