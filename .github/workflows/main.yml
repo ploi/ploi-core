@@ -3,12 +3,12 @@ name: Run tests & build files
 on:
   push:
     branches:
-      - main-prepare
+      - master
 
 jobs:
   test:
     name: Run tests
-    uses: ploi-deploy/ploi-core/.github/workflows/run-tests.yml@main-prepare
+    uses: ploi-deploy/ploi-core/.github/workflows/run-tests.yml@master
 
   deploy:
     needs: test
@@ -31,16 +31,14 @@ jobs:
           node-version: '12.x'
       - run: npm install
       - run: rm -f public/mix-manifest.json
-      - run: npm run prod --section=frontend
-      - run: npm run prod --section=admin
+      - run: npm run prod
 
       - name: Commit build assets
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git checkout -B main-files main-prepare
-          git add -f public/
+          git checkout -B master-files master
           git commit -m "Run Laravel Mix en build front-end assets"
-          git checkout -B main
-          git merge main-files
-          git push -f origin main
+          git checkout -B master
+          git merge master-files
+          git push origin master
