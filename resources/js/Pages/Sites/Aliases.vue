@@ -21,6 +21,7 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
+                                        <FormCheckbox :label="__('Request new certificate')" :errors="$page.props.errors.request_new_certicate" v-model="form.request_new_certicate"/>
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                         </FormActions>
@@ -66,38 +67,39 @@
 </template>
 
 <script>
-    import TopBar from './components/TopBar'
-    import Container from '@/components/Container'
-    import Content from '@/components/Content'
-    import Page from '@/components/Page'
-    import PageHeader from '@/components/PageHeader'
-    import PageHeaderTitle from '@/components/PageHeaderTitle'
-    import PageBody from '@/components/PageBody'
-    import Button from '@/components/Button'
-    import List from '@/components/List'
-    import ListItem from '@/components/ListItem'
-    import StatusBubble from '@/components/StatusBubble'
-    import NotificationBadge from '@/components/NotificationBadge'
-    import MainLayout from '@/Layouts/MainLayout'
-    import SettingsLayout from '@/components/layouts/SettingsLayout'
-    import SettingsSegment from '@/components/SettingsSegment'
-    import FormInput from '@/components/forms/FormInput'
-    import FormSelect from '@/components/forms/FormSelect'
-    import FormTextarea from '@/components/forms/FormTextarea'
-    import Form from '@/components/Form'
-    import Pagination from '@/components/Pagination'
-    import EmptyImage from '@/components/EmptyImage'
-    import FormActions from '@/components/FormActions'
-    import {useConfirm} from '@/hooks/confirm'
-    import Tabs from './Tabs'
-    import Table from '@/components/Table'
-    import TableHead from '@/components/TableHead'
-    import TableHeader from '@/components/TableHeader'
-    import TableRow from '@/components/TableRow'
-    import TableBody from '@/components/TableBody'
-    import TableData from '@/components/TableData'
+import TopBar from './components/TopBar'
+import Container from '@/components/Container'
+import Content from '@/components/Content'
+import Page from '@/components/Page'
+import PageHeader from '@/components/PageHeader'
+import PageHeaderTitle from '@/components/PageHeaderTitle'
+import PageBody from '@/components/PageBody'
+import Button from '@/components/Button'
+import List from '@/components/List'
+import ListItem from '@/components/ListItem'
+import StatusBubble from '@/components/StatusBubble'
+import NotificationBadge from '@/components/NotificationBadge'
+import MainLayout from '@/Layouts/MainLayout'
+import SettingsLayout from '@/components/layouts/SettingsLayout'
+import SettingsSegment from '@/components/SettingsSegment'
+import FormInput from '@/components/forms/FormInput'
+import FormSelect from '@/components/forms/FormSelect'
+import FormCheckbox from '@/components/forms/FormCheckbox'
+import FormTextarea from '@/components/forms/FormTextarea'
+import Form from '@/components/Form'
+import Pagination from '@/components/Pagination'
+import EmptyImage from '@/components/EmptyImage'
+import FormActions from '@/components/FormActions'
+import {useConfirm} from '@/hooks/confirm'
+import Tabs from './Tabs'
+import Table from '@/components/Table'
+import TableHead from '@/components/TableHead'
+import TableHeader from '@/components/TableHeader'
+import TableRow from '@/components/TableRow'
+import TableBody from '@/components/TableBody'
+import TableData from '@/components/TableData'
 
-    export default {
+export default {
         metaInfo() {
             return {
                 title: `${this.__('Certificates')} - ${this.site.domain}`,
@@ -120,6 +122,7 @@
             StatusBubble,
             NotificationBadge,
             FormInput,
+            FormCheckbox,
             FormSelect,
             FormTextarea,
             SettingsLayout,
@@ -143,6 +146,7 @@
 
                 form: {
                     domain: null,
+                    request_new_certicate: false,
                 },
 
                 breadcrumbs: [
@@ -188,6 +192,7 @@
                     onFinish: () => {
                         this.sending = false
                         this.form.domain = null;
+                        this.form.request_new_certicate = false;
                     }
                 });
             },

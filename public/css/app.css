@@ -1131,6 +1131,9 @@ select {
 .mt-2 {
   margin-top: 0.5rem;
 }
+.ml-4 {
+  margin-left: 1rem;
+}
 .block {
   display: block;
 }
