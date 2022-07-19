@@ -27,7 +27,7 @@ class SiteController extends Controller
             'domain' => ['required'],
             'user_id' => ['required'],
         ]);
-        
+
         $site = app(CreateSiteAction::class)->execute(
             SiteData::validate($data)
         );
