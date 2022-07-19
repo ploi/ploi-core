@@ -8,7 +8,7 @@ on:
 jobs:
   test:
     name: Run tests
-    uses: ploi-deploy/ploi-core/.github/workflows/run-tests.yml@master
+    uses: ./.github/workflows/run-tests.yml
 
   deploy:
     needs: test
