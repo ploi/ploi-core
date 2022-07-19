@@ -7,7 +7,14 @@ on:
 jobs:
   test:
     name: Pest
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        php: [8.0, 8.1]
+        stability: [prefer-lowest, prefer-stable]
+
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -15,13 +22,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, mysql
           coverage: none
 
       - name: Install dependencies
         run: |
-          composer install
+          composer install --${{ matrix.stability }}
 
       - name: Execute tests
         run: vendor/bin/pest
