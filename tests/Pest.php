@@ -11,10 +11,10 @@
 |
 */
 
-use Tests\Fixtures\ApiCall;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Tests\Fixtures\ApiCall;
 
 uses(Tests\TestCase::class, LazilyRefreshDatabase::class)
     ->beforeEach(fn () => Http::preventStrayRequests())
@@ -23,7 +23,7 @@ uses(Tests\TestCase::class, LazilyRefreshDatabase::class)
 // Enable the API for the API-tests.
 uses()
     ->beforeEach(fn () => enableApi())
-    ->in(__DIR__ . '/Unit/Http/Controllers/Api');
+    ->in(__DIR__ . '/Feature/Http/Controllers/Api');
 
 /*
 |--------------------------------------------------------------------------
