@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: Pest
+    name: Pest (PHP ${{ matrix.php }} – ${{ matrix.os }})
     strategy:
       fail-fast: true
       matrix:
