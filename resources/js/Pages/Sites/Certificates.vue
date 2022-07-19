@@ -49,7 +49,7 @@
                                 <template #title>{{ __('Certificates') }}</template>
                                 <template #content>
                                     <div>
-                                        <Table caption="Cronjob list overview">
+                                        <Table caption="Certificates list overview">
                                             <TableHead>
                                                 <TableRow>
                                                     <TableHeader></TableHeader>
@@ -60,7 +60,9 @@
                                             <TableBody>
                                                 <TableRow v-for="certificate in certificates.data" :key="certificate.id">
                                                     <TableData><StatusBubble :variant="certificate.status === 'busy' ? 'gray' : 'success'"/></TableData>
-                                                    <TableData>{{ certificate.domain }}</TableData>
+                                                    <TableData style="word-break: break-word" class="px-4">
+                                                        <span>{{ certificate.domain }}</span>
+                                                    </TableData>
                                                     <TableData>
                                                         <Button :disabled="certificate.status === 'busy'" variant="danger" size="sm"
                                                                 @click="confirmDelete(certificate)">Delete
@@ -83,38 +85,38 @@
 </template>
 
 <script>
-    import TopBar from './components/TopBar'
-    import Container from '@/components/Container'
-    import Content from '@/components/Content'
-    import Page from '@/components/Page'
-    import PageHeader from '@/components/PageHeader'
-    import PageHeaderTitle from '@/components/PageHeaderTitle'
-    import PageBody from '@/components/PageBody'
-    import Button from '@/components/Button'
-    import List from '@/components/List'
-    import ListItem from '@/components/ListItem'
-    import StatusBubble from '@/components/StatusBubble'
-    import NotificationBadge from '@/components/NotificationBadge'
-    import MainLayout from '@/Layouts/MainLayout'
-    import SettingsLayout from '@/components/layouts/SettingsLayout'
-    import SettingsSegment from '@/components/SettingsSegment'
-    import FormInput from '@/components/forms/FormInput'
-    import FormSelect from '@/components/forms/FormSelect'
-    import FormTextarea from '@/components/forms/FormTextarea'
-    import Form from '@/components/Form'
-    import Pagination from '@/components/Pagination'
-    import EmptyImage from '@/components/EmptyImage'
-    import FormActions from '@/components/FormActions'
-    import {useConfirm} from '@/hooks/confirm'
-    import Tabs from './Tabs'
-    import Table from '@/components/Table'
-    import TableHead from '@/components/TableHead'
-    import TableHeader from '@/components/TableHeader'
-    import TableRow from '@/components/TableRow'
-    import TableBody from '@/components/TableBody'
-    import TableData from '@/components/TableData'
+import TopBar from './components/TopBar'
+import Container from '@/components/Container'
+import Content from '@/components/Content'
+import Page from '@/components/Page'
+import PageHeader from '@/components/PageHeader'
+import PageHeaderTitle from '@/components/PageHeaderTitle'
+import PageBody from '@/components/PageBody'
+import Button from '@/components/Button'
+import List from '@/components/List'
+import ListItem from '@/components/ListItem'
+import StatusBubble from '@/components/StatusBubble'
+import NotificationBadge from '@/components/NotificationBadge'
+import MainLayout from '@/Layouts/MainLayout'
+import SettingsLayout from '@/components/layouts/SettingsLayout'
+import SettingsSegment from '@/components/SettingsSegment'
+import FormInput from '@/components/forms/FormInput'
+import FormSelect from '@/components/forms/FormSelect'
+import FormTextarea from '@/components/forms/FormTextarea'
+import Form from '@/components/Form'
+import Pagination from '@/components/Pagination'
+import EmptyImage from '@/components/EmptyImage'
+import FormActions from '@/components/FormActions'
+import {useConfirm} from '@/hooks/confirm'
+import Tabs from './Tabs'
+import Table from '@/components/Table'
+import TableHead from '@/components/TableHead'
+import TableHeader from '@/components/TableHeader'
+import TableRow from '@/components/TableRow'
+import TableBody from '@/components/TableBody'
+import TableData from '@/components/TableData'
 
-    export default {
+export default {
         metaInfo() {
             return {
                 title: `${this.__('Certificates')} - ${this.site.domain}`,
