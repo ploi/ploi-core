@@ -12,7 +12,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         php: [8.0, 8.1]
-        stability: [prefer-lowest, prefer-stable]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -28,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer install --${{ matrix.stability }}
+          composer install
 
       - name: Execute tests
         run: vendor/bin/pest
