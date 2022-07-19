@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: PHPUnit
+    name: Pest
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
