@@ -3,7 +3,7 @@ name: Run tests & build files
 on:
   push:
     branches:
-      - master
+      - 131-set-up-github-action-for-ploi-core
 
 jobs:
   test:
@@ -37,8 +37,5 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git checkout -B master-files master
           git commit -m "Run Laravel Mix en build front-end assets"
-          git checkout -B master
-          git merge master-files
-          git push origin master
+          git push origin
