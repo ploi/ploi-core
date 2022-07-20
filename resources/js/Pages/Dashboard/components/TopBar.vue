@@ -5,7 +5,7 @@
         </template>
         <template #tab-bar>
             <TopBarTabBarContainer>
-                <TabBar :items="tabBars" />
+<!--                <TabBar :items="tabBars" />-->
             </TopBarTabBarContainer>
         </template>
     </TopBar>
@@ -20,7 +20,7 @@ export default {
     components: {
         TopBar,
         Breadcrumbs,
-        TabBar,
+        // TabBar,
         TopBarTabBarContainer,
     },
 

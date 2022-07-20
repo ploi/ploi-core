@@ -39,7 +39,34 @@ const app = document.getElementById('app')
 
 let pageData = JSON.parse(app.dataset.page)
 
+// createInertiaApp({
+//     title: (title) => `${title} - ${appName}`,
+//     resolve: (name) => require(`./Pages/${name}.vue`),
+    // resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    // setup({el, App, props, plugin}) {
+    //     Vue
+    //         .use(plugin)
+            // .use(vClickOutside)
+            // .use(PortalVue)
+            // .use(VueMeta)
+            // .use(VueClipboard)
+            // .mixin(mixins)
+            // .component('InertiaLink', InertiaLink)
+            // .mixin({methods: {route}});
 
+        // new Vue({
+        //     render: h => h(App, props),
+        // })
+        //     .$mount(el);
+    // },
+// });
+
+// InertiaProgress.init({
+//     delay: 250,
+//     color: '#1b8ae8',
+//     includeCSS: true,
+//     showSpinner: false,
+// })
 
 new Vue({
     store,
@@ -50,8 +77,9 @@ new Vue({
         props: {
             initialPage: pageData,
             resolveComponent: async(name) => {
-                const pages = import.meta.glob('./Pages/**/*.vue');
+                const pages = import.meta.glob('./**/*.vue');
 
+                console.log(name);
                 return (await resolvePageComponent(`./Pages/${name}.vue`, pages)).default;
             }
         },

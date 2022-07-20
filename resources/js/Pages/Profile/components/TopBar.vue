@@ -20,7 +20,7 @@ export default {
     components: {
         TopBar,
         Breadcrumbs,
-        TabBar,
+        // TabBar,
         TopBarTabBarContainer,
     },
 
