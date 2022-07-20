@@ -97,7 +97,7 @@ it('can create a site', function () {
     setting(['receive_email_on_site_creation' => true]);
     App::forgetInstance('settings');
 
-    $user = User::factory()->withPackage()->create();
+    $user = User::factory()->create();
 
     $server = Server::factory()
         ->ploiId('12345')
@@ -157,4 +157,16 @@ it('requires the user_id, server_id and domain', function () {
         ->assertInvalid('user_id')
         ->assertInvalid('server_id')
         ->assertInvalid('domain');
+});
+
+it('requires the domain to be a valid hostname', function () {
+    $user = User::factory()->create();
+
+    api()
+        ->post(route('api.site.store'), [
+            'domain' => 'hello there',
+            'user_id' => 1,
+            'server_id' => 1,
+        ])
+        ->assertInvalid(['domain', 'server_id']);
 });
