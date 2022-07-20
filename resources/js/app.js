@@ -10,6 +10,7 @@ import mixins from '@/mixins';
 import {InertiaProgress} from '@inertiajs/progress'
 import axios from 'axios';
 import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
+import '../sass/app.scss';
 
 window._forEach = forEach;
 
