@@ -1,0 +1,1 @@
+import{s as o}from"./app.79e1f42d.js";function c({title:r,message:n,onConfirm:i,variant:s}){return o.dispatch("confirm/open",{title:r,message:n,onConfirm:()=>{i(),o.dispatch("confirm/close")},variant:s})}export{c as u};

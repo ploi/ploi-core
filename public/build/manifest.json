@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.afed1c99.js",
+    "file": "assets/app.79e1f42d.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -173,7 +173,7 @@
     ]
   },
   "resources/js/Layouts/MainLayout.vue": {
-    "file": "assets/MainLayout.32034cd8.js",
+    "file": "assets/MainLayout.17290af6.js",
     "src": "resources/js/Layouts/MainLayout.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -184,7 +184,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/app.js"
     ]
@@ -245,8 +245,8 @@
       "_plugin-vue2_normalizer.000ba15c.js"
     ]
   },
-  "_notification.2c23a76c.js": {
-    "file": "assets/notification.2c23a76c.js",
+  "_notification.db2f2ae7.js": {
+    "file": "assets/notification.db2f2ae7.js",
     "imports": [
       "resources/js/app.js"
     ]
@@ -255,7 +255,7 @@
     "file": "assets/plugin-vue2_normalizer.000ba15c.js"
   },
   "resources/js/Pages/Admin/Alerts/Create.vue": {
-    "file": "assets/Create.094afb36.js",
+    "file": "assets/Create.ae459369.js",
     "src": "resources/js/Pages/Admin/Alerts/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -301,7 +301,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -662,7 +662,7 @@
     ]
   },
   "resources/js/Pages/Admin/Alerts/Edit.vue": {
-    "file": "assets/Edit.4fb33b09.js",
+    "file": "assets/Edit.2fb50602.js",
     "src": "resources/js/Pages/Admin/Alerts/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -686,7 +686,7 @@
       "resources/js/components/forms/FormSelect.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Admin/Alerts/Tabs.vue",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
@@ -709,7 +709,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -719,14 +719,14 @@
       "resources/js/components/icons/IconKey.vue"
     ]
   },
-  "_confirm.de1ba996.js": {
-    "file": "assets/confirm.de1ba996.js",
+  "_confirm.059313bf.js": {
+    "file": "assets/confirm.059313bf.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/Pages/Admin/Alerts/Index.vue": {
-    "file": "assets/Index.8487b05a.js",
+    "file": "assets/Index.d9444fb6.js",
     "src": "resources/js/Pages/Admin/Alerts/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -774,7 +774,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js"
     ]
   },
@@ -835,7 +835,7 @@
     ]
   },
   "resources/js/Pages/Admin/ApplicationLogs.vue": {
-    "file": "assets/ApplicationLogs.8e6d88ae.js",
+    "file": "assets/ApplicationLogs.ed860880.js",
     "src": "resources/js/Pages/Admin/ApplicationLogs.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -865,7 +865,7 @@
       "resources/js/components/TableRow.vue",
       "resources/js/components/TableBody.vue",
       "resources/js/components/TableData.vue",
-      "_pickBy.7dd56e5a.js",
+      "_pickBy.33496a24.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/Dropdown.vue",
@@ -887,7 +887,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -905,14 +905,14 @@
       "_plugin-vue2_normalizer.000ba15c.js"
     ]
   },
-  "_pickBy.7dd56e5a.js": {
-    "file": "assets/pickBy.7dd56e5a.js",
+  "_pickBy.33496a24.js": {
+    "file": "assets/pickBy.33496a24.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/Pages/Admin/Dashboard.vue": {
-    "file": "assets/Dashboard.87b3fe22.js",
+    "file": "assets/Dashboard.7030db76.js",
     "src": "resources/js/Pages/Admin/Dashboard.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -961,7 +961,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1004,7 +1004,7 @@
     ]
   },
   "resources/js/Pages/Admin/Documentation/Articles/Create.vue": {
-    "file": "assets/Create.89738d8c.js",
+    "file": "assets/Create.bd1d92dd.js",
     "src": "resources/js/Pages/Admin/Documentation/Articles/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1050,7 +1050,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1069,7 +1069,7 @@
     ]
   },
   "resources/js/Pages/Admin/Documentation/Articles/Edit.vue": {
-    "file": "assets/Edit.9d147055.js",
+    "file": "assets/Edit.28317b81.js",
     "src": "resources/js/Pages/Admin/Documentation/Articles/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1115,7 +1115,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1126,7 +1126,7 @@
     ]
   },
   "resources/js/Pages/Admin/Documentation/Articles/Index.vue": {
-    "file": "assets/Index.14c42244.js",
+    "file": "assets/Index.c389e3a6.js",
     "src": "resources/js/Pages/Admin/Documentation/Articles/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1146,7 +1146,7 @@
       "resources/js/components/layouts/SettingsLayout.vue",
       "resources/js/components/SettingsSegment.vue",
       "resources/js/components/Pagination.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/Documentation/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1179,7 +1179,7 @@
     ]
   },
   "resources/js/Pages/Admin/Documentation/Create.vue": {
-    "file": "assets/Create.36de8b35.js",
+    "file": "assets/Create.5e255301.js",
     "src": "resources/js/Pages/Admin/Documentation/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1224,7 +1224,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1235,7 +1235,7 @@
     ]
   },
   "resources/js/Pages/Admin/Documentation/Edit.vue": {
-    "file": "assets/Edit.aceeabfc.js",
+    "file": "assets/Edit.6951c487.js",
     "src": "resources/js/Pages/Admin/Documentation/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1280,7 +1280,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1291,7 +1291,7 @@
     ]
   },
   "resources/js/Pages/Admin/Documentation/Index.vue": {
-    "file": "assets/Index.2b2f0a6e.js",
+    "file": "assets/Index.1317d6fc.js",
     "src": "resources/js/Pages/Admin/Documentation/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1311,7 +1311,7 @@
       "resources/js/components/layouts/SettingsLayout.vue",
       "resources/js/components/SettingsSegment.vue",
       "resources/js/components/Pagination.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/Documentation/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1344,7 +1344,7 @@
     ]
   },
   "resources/js/Pages/Admin/Packages/Create.vue": {
-    "file": "assets/Create.3b419e55.js",
+    "file": "assets/Create.307137b8.js",
     "src": "resources/js/Pages/Admin/Packages/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1389,7 +1389,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1408,7 +1408,7 @@
     ]
   },
   "resources/js/Pages/Admin/Packages/Edit.vue": {
-    "file": "assets/Edit.05d85c8f.js",
+    "file": "assets/Edit.26d86580.js",
     "src": "resources/js/Pages/Admin/Packages/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1431,7 +1431,7 @@
       "resources/js/components/forms/FormSelect.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Admin/Packages/Tabs.vue",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
@@ -1454,7 +1454,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1465,7 +1465,7 @@
     ]
   },
   "resources/js/Pages/Admin/Packages/Index.vue": {
-    "file": "assets/Index.15731b03.js",
+    "file": "assets/Index.4b1079b2.js",
     "src": "resources/js/Pages/Admin/Packages/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1513,12 +1513,12 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/Pages/Admin/Servers/Index.vue": {
-    "file": "assets/Index.b2e7552c.js",
+    "file": "assets/Index.ab89975d.js",
     "src": "resources/js/Pages/Admin/Servers/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1538,7 +1538,7 @@
       "resources/js/components/layouts/SettingsLayout.vue",
       "resources/js/components/SettingsSegment.vue",
       "resources/js/components/Pagination.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1547,7 +1547,7 @@
       "resources/js/components/TableBody.vue",
       "resources/js/components/TableData.vue",
       "resources/js/components/icons/IconPhp.vue",
-      "_pickBy.7dd56e5a.js",
+      "_pickBy.33496a24.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/Dropdown.vue",
@@ -1587,7 +1587,7 @@
     ]
   },
   "resources/js/Pages/Admin/Services/Index.vue": {
-    "file": "assets/Index.19ebed32.js",
+    "file": "assets/Index.b71fa000.js",
     "src": "resources/js/Pages/Admin/Services/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1607,7 +1607,7 @@
       "resources/js/components/layouts/SettingsLayout.vue",
       "resources/js/components/SettingsSegment.vue",
       "resources/js/components/Pagination.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/Services/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1648,7 +1648,7 @@
     ]
   },
   "resources/js/Pages/Admin/Services/Provider/Edit.vue": {
-    "file": "assets/Edit.b7775943.js",
+    "file": "assets/Edit.36526b55.js",
     "src": "resources/js/Pages/Admin/Services/Provider/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1672,7 +1672,7 @@
       "resources/js/components/forms/FormSelect.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Admin/Services/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1701,7 +1701,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1712,7 +1712,7 @@
     ]
   },
   "resources/js/Pages/Admin/Services/Providers.vue": {
-    "file": "assets/Providers.0a5ea452.js",
+    "file": "assets/Providers.84805820.js",
     "src": "resources/js/Pages/Admin/Services/Providers.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1732,7 +1732,7 @@
       "resources/js/components/layouts/SettingsLayout.vue",
       "resources/js/components/SettingsSegment.vue",
       "resources/js/components/Pagination.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/Services/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1765,7 +1765,7 @@
     ]
   },
   "resources/js/Pages/Admin/Services/Server/Edit.vue": {
-    "file": "assets/Edit.ebfb7fc3.js",
+    "file": "assets/Edit.cdc2fb1f.js",
     "src": "resources/js/Pages/Admin/Services/Server/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1789,7 +1789,7 @@
       "resources/js/components/forms/FormSelect.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Admin/Services/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1818,7 +1818,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1829,7 +1829,7 @@
     ]
   },
   "resources/js/Pages/Admin/Services/Servers.vue": {
-    "file": "assets/Servers.66050590.js",
+    "file": "assets/Servers.f6776225.js",
     "src": "resources/js/Pages/Admin/Services/Servers.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1849,7 +1849,7 @@
       "resources/js/components/layouts/SettingsLayout.vue",
       "resources/js/components/SettingsSegment.vue",
       "resources/js/components/Pagination.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/Services/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1882,7 +1882,7 @@
     ]
   },
   "resources/js/Pages/Admin/Services/Site/Edit.vue": {
-    "file": "assets/Edit.a6c0bf0f.js",
+    "file": "assets/Edit.3190f902.js",
     "src": "resources/js/Pages/Admin/Services/Site/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1906,7 +1906,7 @@
       "resources/js/components/forms/FormSelect.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Admin/Services/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1935,7 +1935,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -1946,7 +1946,7 @@
     ]
   },
   "resources/js/Pages/Admin/Services/Sites.vue": {
-    "file": "assets/Sites.888440e3.js",
+    "file": "assets/Sites.61bacd17.js",
     "src": "resources/js/Pages/Admin/Services/Sites.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1966,7 +1966,7 @@
       "resources/js/components/layouts/SettingsLayout.vue",
       "resources/js/components/SettingsSegment.vue",
       "resources/js/components/Pagination.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/Services/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -1999,7 +1999,7 @@
     ]
   },
   "resources/js/Pages/Admin/Settings.vue": {
-    "file": "assets/Settings.201f8648.js",
+    "file": "assets/Settings.09830615.js",
     "src": "resources/js/Pages/Admin/Settings.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2023,7 +2023,7 @@
       "resources/js/components/forms/FormSelect.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/Tabs.vue",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
@@ -2071,7 +2071,7 @@
     ]
   },
   "resources/js/Pages/Admin/Sites/Index.vue": {
-    "file": "assets/Index.6090b159.js",
+    "file": "assets/Index.399ba6f8.js",
     "src": "resources/js/Pages/Admin/Sites/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2091,7 +2091,7 @@
       "resources/js/components/layouts/SettingsLayout.vue",
       "resources/js/components/SettingsSegment.vue",
       "resources/js/components/Pagination.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -2100,7 +2100,7 @@
       "resources/js/components/TableBody.vue",
       "resources/js/components/TableData.vue",
       "resources/js/components/icons/IconPhp.vue",
-      "_pickBy.7dd56e5a.js",
+      "_pickBy.33496a24.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/Dropdown.vue",
@@ -2132,7 +2132,7 @@
     ]
   },
   "resources/js/Pages/Admin/Status.vue": {
-    "file": "assets/Status.de8aea25.js",
+    "file": "assets/Status.c4c7ef8f.js",
     "src": "resources/js/Pages/Admin/Status.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2154,7 +2154,7 @@
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/TabsStatus.vue",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
@@ -2195,7 +2195,7 @@
     ]
   },
   "resources/js/Pages/Admin/Support/Index.vue": {
-    "file": "assets/Index.a338f47c.js",
+    "file": "assets/Index.03e16656.js",
     "src": "resources/js/Pages/Admin/Support/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2243,7 +2243,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js"
     ]
   },
@@ -2256,7 +2256,7 @@
     ]
   },
   "resources/js/Pages/Admin/Support/Show.vue": {
-    "file": "assets/Show.b25d6662.js",
+    "file": "assets/Show.954422e1.js",
     "src": "resources/js/Pages/Admin/Support/Show.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2302,7 +2302,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -2350,7 +2350,7 @@
     ]
   },
   "resources/js/Pages/Admin/System.vue": {
-    "file": "assets/System.eb2dbc10.js",
+    "file": "assets/System.f80edcfc.js",
     "src": "resources/js/Pages/Admin/System.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2372,7 +2372,7 @@
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/Tabs.vue",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
@@ -2405,7 +2405,7 @@
     ]
   },
   "resources/js/Pages/Admin/Terms.vue": {
-    "file": "assets/Terms.cfb0c0fe.js",
+    "file": "assets/Terms.149884ef.js",
     "src": "resources/js/Pages/Admin/Terms.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2430,7 +2430,7 @@
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
       "resources/js/components/forms/FormCustom.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Admin/Tabs.vue",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
@@ -2478,7 +2478,7 @@
     ]
   },
   "resources/js/Pages/Admin/Users/Create.vue": {
-    "file": "assets/Create.171f71e0.js",
+    "file": "assets/Create.1676a1dd.js",
     "src": "resources/js/Pages/Admin/Users/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2524,7 +2524,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -2543,7 +2543,7 @@
     ]
   },
   "resources/js/Pages/Admin/Users/Edit.vue": {
-    "file": "assets/Edit.760e048c.js",
+    "file": "assets/Edit.7057432c.js",
     "src": "resources/js/Pages/Admin/Users/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2567,7 +2567,7 @@
       "resources/js/components/forms/FormSelect.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Admin/Users/Tabs.vue",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
@@ -2590,7 +2590,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -2601,7 +2601,7 @@
     ]
   },
   "resources/js/Pages/Admin/Users/Index.vue": {
-    "file": "assets/Index.c1691cbc.js",
+    "file": "assets/Index.10d0ebed.js",
     "src": "resources/js/Pages/Admin/Users/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2621,7 +2621,7 @@
       "resources/js/components/layouts/SettingsLayout.vue",
       "resources/js/components/SettingsSegment.vue",
       "resources/js/components/Pagination.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/components/forms/FormInput.vue",
       "resources/js/Pages/Admin/Users/Tabs.vue",
       "resources/js/components/Table.vue",
@@ -2630,7 +2630,7 @@
       "resources/js/components/TableRow.vue",
       "resources/js/components/TableBody.vue",
       "resources/js/components/TableData.vue",
-      "_pickBy.7dd56e5a.js",
+      "_pickBy.33496a24.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/Dropdown.vue",
@@ -2662,7 +2662,7 @@
     ]
   },
   "resources/js/Pages/Admin/Users/Show.vue": {
-    "file": "assets/Show.b3e0fd29.js",
+    "file": "assets/Show.9606cf61.js",
     "src": "resources/js/Pages/Admin/Users/Show.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2715,7 +2715,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -2752,7 +2752,7 @@
     ]
   },
   "resources/js/Pages/Auth/Email.vue": {
-    "file": "assets/Email.254c86d0.js",
+    "file": "assets/Email.ed1bd555.js",
     "src": "resources/js/Pages/Auth/Email.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2760,7 +2760,7 @@
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/Button.vue",
       "resources/js/components/Container.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -2790,7 +2790,7 @@
     ]
   },
   "resources/js/Pages/Auth/PasswordCreation.vue": {
-    "file": "assets/PasswordCreation.1fbf704c.js",
+    "file": "assets/PasswordCreation.e3028af4.js",
     "src": "resources/js/Pages/Auth/PasswordCreation.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2798,7 +2798,7 @@
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/Button.vue",
       "resources/js/components/Container.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -2810,7 +2810,7 @@
     ]
   },
   "resources/js/Pages/Auth/Register.vue": {
-    "file": "assets/Register.a36678a0.js",
+    "file": "assets/Register.2833ea7e.js",
     "src": "resources/js/Pages/Auth/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2819,7 +2819,7 @@
       "resources/js/components/ErrorText.vue",
       "resources/js/components/Button.vue",
       "resources/js/components/Container.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -2830,7 +2830,7 @@
     ]
   },
   "resources/js/Pages/Auth/Reset.vue": {
-    "file": "assets/Reset.c136b36b.js",
+    "file": "assets/Reset.5731d59d.js",
     "src": "resources/js/Pages/Auth/Reset.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2838,7 +2838,7 @@
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/Button.vue",
       "resources/js/components/Container.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -2868,7 +2868,7 @@
     ]
   },
   "resources/js/Pages/Dashboard/Index.vue": {
-    "file": "assets/Index.3eae7cec.js",
+    "file": "assets/Index.578a3ae0.js",
     "src": "resources/js/Pages/Dashboard/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2888,7 +2888,7 @@
       "resources/js/components/icons/IconBox.vue",
       "resources/js/components/icons/IconGlobe.vue",
       "resources/js/components/icons/IconStorage.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/Dropdown.vue",
@@ -2936,7 +2936,7 @@
     ]
   },
   "resources/js/Pages/Documentation/Article.vue": {
-    "file": "assets/Article.aa9769b3.js",
+    "file": "assets/Article.c44066b8.js",
     "src": "resources/js/Pages/Documentation/Article.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -2986,7 +2986,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3037,7 +3037,7 @@
     ]
   },
   "resources/js/Pages/Documentation/Index.vue": {
-    "file": "assets/Index.99fd0405.js",
+    "file": "assets/Index.884c31b5.js",
     "src": "resources/js/Pages/Documentation/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3087,7 +3087,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3100,7 +3100,7 @@
     ]
   },
   "resources/js/Pages/Documentation/Show.vue": {
-    "file": "assets/Show.14c23440.js",
+    "file": "assets/Show.2c52fa92.js",
     "src": "resources/js/Pages/Documentation/Show.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3150,7 +3150,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3163,7 +3163,7 @@
     ]
   },
   "resources/js/Pages/Errors/403.vue": {
-    "file": "assets/403.b6f06aab.js",
+    "file": "assets/403.c5d6c026.js",
     "src": "resources/js/Pages/Errors/403.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3201,12 +3201,12 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/Pages/Errors/404.vue": {
-    "file": "assets/404.0290eddc.js",
+    "file": "assets/404.854369ec.js",
     "src": "resources/js/Pages/Errors/404.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3230,7 +3230,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js"
     ]
   },
@@ -3271,7 +3271,7 @@
     ]
   },
   "resources/js/Pages/Profile/Billing.vue": {
-    "file": "assets/Billing.85d25845.js",
+    "file": "assets/Billing.12a1f5e3.js",
     "src": "resources/js/Pages/Profile/Billing.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3306,8 +3306,8 @@
       "resources/js/components/TableRow.vue",
       "resources/js/components/TableBody.vue",
       "resources/js/components/TableData.vue",
-      "_notification.2c23a76c.js",
-      "_confirm.de1ba996.js",
+      "_notification.db2f2ae7.js",
+      "_confirm.059313bf.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/Dropdown.vue",
@@ -3378,7 +3378,7 @@
     ]
   },
   "resources/js/Pages/Profile/BillingError.vue": {
-    "file": "assets/BillingError.e3a9f530.js",
+    "file": "assets/BillingError.eb48d093.js",
     "src": "resources/js/Pages/Profile/BillingError.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3424,14 +3424,14 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormActions.vue",
       "resources/js/components/Form.vue"
     ]
   },
   "resources/js/Pages/Profile/Index.vue": {
-    "file": "assets/Index.d6da7305.js",
+    "file": "assets/Index.08de3331.js",
     "src": "resources/js/Pages/Profile/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3477,7 +3477,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3490,7 +3490,7 @@
     ]
   },
   "resources/js/Pages/Profile/Integrations.vue": {
-    "file": "assets/Integrations.a64f2770.js",
+    "file": "assets/Integrations.e6e7f73c.js",
     "src": "resources/js/Pages/Profile/Integrations.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3521,7 +3521,7 @@
       "resources/js/components/TableRow.vue",
       "resources/js/components/TableBody.vue",
       "resources/js/components/TableData.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/Dropdown.vue",
@@ -3543,7 +3543,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3556,7 +3556,7 @@
     ]
   },
   "resources/js/Pages/Profile/Security.vue": {
-    "file": "assets/Security.570a88b4.js",
+    "file": "assets/Security.bc2d81f3.js",
     "src": "resources/js/Pages/Profile/Security.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3604,7 +3604,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3618,7 +3618,7 @@
     ]
   },
   "resources/js/Pages/Profile/components/TwoFactorAuthentication.vue": {
-    "file": "assets/TwoFactorAuthentication.17d79f90.js",
+    "file": "assets/TwoFactorAuthentication.b51fcaa2.js",
     "src": "resources/js/Pages/Profile/components/TwoFactorAuthentication.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3644,7 +3644,7 @@
     ]
   },
   "resources/js/Pages/Profile/Settings.vue": {
-    "file": "assets/Settings.106cc540.js",
+    "file": "assets/Settings.bd09f569.js",
     "src": "resources/js/Pages/Profile/Settings.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3669,7 +3669,7 @@
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/forms/FormSelect.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/Dropdown.vue",
@@ -3691,7 +3691,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3704,7 +3704,7 @@
     ]
   },
   "resources/js/Pages/Servers/Index.vue": {
-    "file": "assets/Index.a419c816.js",
+    "file": "assets/Index.22b96eab.js",
     "src": "resources/js/Pages/Servers/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3736,7 +3736,7 @@
       "resources/js/components/DropdownList.vue",
       "resources/js/components/DropdownListItem.vue",
       "resources/js/components/DropdownListItemButton.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/icons/IconMoon.vue",
@@ -3754,7 +3754,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3805,7 +3805,7 @@
     ]
   },
   "resources/js/Pages/Servers/Settings.vue": {
-    "file": "assets/Settings.851e4c47.js",
+    "file": "assets/Settings.849e09b1.js",
     "src": "resources/js/Pages/Servers/Settings.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3846,7 +3846,7 @@
       "resources/js/components/TableRow.vue",
       "resources/js/components/TableBody.vue",
       "resources/js/components/TableData.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
       "resources/js/components/icons/IconMoon.vue",
@@ -3864,7 +3864,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3885,7 +3885,7 @@
     ]
   },
   "resources/js/Pages/Servers/Show.vue": {
-    "file": "assets/Show.4e7f9b0f.js",
+    "file": "assets/Show.b845aee4.js",
     "src": "resources/js/Pages/Servers/Show.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3943,7 +3943,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -3956,7 +3956,7 @@
     ]
   },
   "resources/js/Pages/Sites/Aliases.vue": {
-    "file": "assets/Aliases.269a4422.js",
+    "file": "assets/Aliases.4ed955b4.js",
     "src": "resources/js/Pages/Sites/Aliases.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -3982,7 +3982,7 @@
       "resources/js/components/Pagination.vue",
       "resources/js/components/EmptyImage.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Sites/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -4011,7 +4011,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -4052,7 +4052,7 @@
     ]
   },
   "resources/js/Pages/Sites/Apps.vue": {
-    "file": "assets/Apps.9f694d82.js",
+    "file": "assets/Apps.3475e6cf.js",
     "src": "resources/js/Pages/Sites/Apps.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4102,7 +4102,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -4113,7 +4113,7 @@
     ]
   },
   "resources/js/Pages/Sites/Certificates.vue": {
-    "file": "assets/Certificates.33f47162.js",
+    "file": "assets/Certificates.7293afb5.js",
     "src": "resources/js/Pages/Sites/Certificates.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4139,7 +4139,7 @@
       "resources/js/components/Pagination.vue",
       "resources/js/components/EmptyImage.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Sites/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -4168,7 +4168,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -4179,7 +4179,7 @@
     ]
   },
   "resources/js/Pages/Sites/Cronjobs.vue": {
-    "file": "assets/Cronjobs.30ce5cbd.js",
+    "file": "assets/Cronjobs.8867e2c1.js",
     "src": "resources/js/Pages/Sites/Cronjobs.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4203,8 +4203,8 @@
       "resources/js/components/Pagination.vue",
       "resources/js/components/EmptyImage.vue",
       "resources/js/components/FormActions.vue",
-      "_notification.2c23a76c.js",
-      "_confirm.de1ba996.js",
+      "_notification.db2f2ae7.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Sites/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -4243,7 +4243,7 @@
     ]
   },
   "resources/js/Pages/Sites/Databases.vue": {
-    "file": "assets/Databases.96a4c583.js",
+    "file": "assets/Databases.ca4a2820.js",
     "src": "resources/js/Pages/Sites/Databases.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4267,7 +4267,7 @@
       "resources/js/components/Pagination.vue",
       "resources/js/components/EmptyImage.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Sites/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -4296,7 +4296,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -4307,7 +4307,7 @@
     ]
   },
   "resources/js/Pages/Sites/Dns.vue": {
-    "file": "assets/Dns.5aa2bdda.js",
+    "file": "assets/Dns.d13cf74c.js",
     "src": "resources/js/Pages/Sites/Dns.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4330,8 +4330,8 @@
       "resources/js/components/Form.vue",
       "resources/js/components/Pagination.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
-      "_notification.2c23a76c.js",
+      "_confirm.059313bf.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Sites/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -4371,7 +4371,7 @@
     ]
   },
   "resources/js/Pages/Sites/Index.vue": {
-    "file": "assets/Index.93c67b5e.js",
+    "file": "assets/Index.9d78f5c3.js",
     "src": "resources/js/Pages/Sites/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4404,7 +4404,7 @@
       "resources/js/components/DropdownList.vue",
       "resources/js/components/DropdownListItem.vue",
       "resources/js/components/DropdownListItemButton.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/components/Pagination.vue",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
@@ -4423,7 +4423,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -4436,7 +4436,7 @@
     ]
   },
   "resources/js/Pages/Sites/Redirects.vue": {
-    "file": "assets/Redirects.39a788d5.js",
+    "file": "assets/Redirects.5049c36c.js",
     "src": "resources/js/Pages/Sites/Redirects.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4461,7 +4461,7 @@
       "resources/js/components/Pagination.vue",
       "resources/js/components/EmptyImage.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Sites/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -4490,7 +4490,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -4501,7 +4501,7 @@
     ]
   },
   "resources/js/Pages/Sites/Settings.vue": {
-    "file": "assets/Settings.993d8bd5.js",
+    "file": "assets/Settings.ca72acaf.js",
     "src": "resources/js/Pages/Sites/Settings.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4523,7 +4523,7 @@
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_confirm.de1ba996.js",
+      "_confirm.059313bf.js",
       "resources/js/Pages/Sites/Tabs.vue",
       "_plugin-vue2_normalizer.000ba15c.js",
       "resources/js/components/TopBar.vue",
@@ -4546,7 +4546,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/FormGroup.vue",
       "resources/js/components/Label.vue",
@@ -4557,7 +4557,7 @@
     ]
   },
   "resources/js/Pages/Sites/Show.vue": {
-    "file": "assets/Show.db4c3426.js",
+    "file": "assets/Show.63e28a20.js",
     "src": "resources/js/Pages/Sites/Show.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4579,7 +4579,7 @@
       "resources/js/components/forms/FormInput.vue",
       "resources/js/components/Form.vue",
       "resources/js/components/FormActions.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/Pages/Sites/Tabs.vue",
       "resources/js/components/Table.vue",
       "resources/js/components/TableHead.vue",
@@ -4630,7 +4630,7 @@
     ]
   },
   "resources/js/Pages/Support/Closed.vue": {
-    "file": "assets/Closed.5e6dd465.js",
+    "file": "assets/Closed.f77d96fb.js",
     "src": "resources/js/Pages/Support/Closed.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4675,7 +4675,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -4710,7 +4710,7 @@
     ]
   },
   "resources/js/Pages/Support/Index.vue": {
-    "file": "assets/Index.501a40c1.js",
+    "file": "assets/Index.32754fd7.js",
     "src": "resources/js/Pages/Support/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4757,7 +4757,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
@@ -4770,7 +4770,7 @@
     ]
   },
   "resources/js/Pages/Support/Show.vue": {
-    "file": "assets/Show.67ec6353.js",
+    "file": "assets/Show.f9d7a68e.js",
     "src": "resources/js/Pages/Support/Show.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -4816,7 +4816,7 @@
       "resources/js/components/icons/IconSuccess.vue",
       "resources/js/components/icons/IconInfo.vue",
       "resources/js/components/SearchPalette.vue",
-      "_notification.2c23a76c.js",
+      "_notification.db2f2ae7.js",
       "resources/js/app.js",
       "resources/js/components/icons/IconClose.vue",
       "resources/js/components/Form.vue",
