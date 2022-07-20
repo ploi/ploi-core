@@ -6,7 +6,7 @@
             <Container>
                 <PageHeader>
                     <template #start>
-                        <PageHeaderTitle>{{ __('Administration') }} XYZ</PageHeaderTitle>
+                        <PageHeaderTitle>{{ __('Administration') }}</PageHeaderTitle>
                     </template>
                 </PageHeader>
 
