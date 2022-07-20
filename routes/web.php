@@ -34,7 +34,6 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
             Route::delete('{site}', 'SiteController@destroy')->name('delete');
             Route::post('/', 'SiteController@store')->name('store');
             Route::post('{site}/request-ftp-password', 'SiteController@requestFtpPassword')->name('request-ftp-password');
-            Route::post('check-domain-existence', 'SiteController@checkDomainExistence')->name('check-domain-existence');
 
             Route::get('{site}/settings', 'SiteSettingController@show')->name('settings.show');
             Route::patch('{site}/settings', 'SiteSettingController@update')->name('settings.update');

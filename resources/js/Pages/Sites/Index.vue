@@ -8,10 +8,6 @@
                     <template #form>
                         <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
 
-                        <div class="text-sm">
-                            <p class="text-orange-600" v-if="domainExists === true">{{ __('Warning: domain already exists.') }}</p>
-                        </div>
-
                         <FormSelect v-if="Object.keys(availableServers).length" :label="__('Select server')" v-model="form.server_id">
                             <option :value="`${null}`">{{ __('Select random server') }}</option>
                             <option v-for="(name, id) in availableServers" :value="id" v-text="name"></option>
@@ -120,7 +116,6 @@ import DropdownListItem from '@/components/DropdownListItem'
 import DropdownListItemButton from '@/components/DropdownListItemButton'
 import {useConfirm} from '@/hooks/confirm'
 import Pagination from '@/components/Pagination'
-import debounce from "lodash/debounce";
 
 
 export default {
@@ -205,10 +200,6 @@ export default {
                     this.startPollingInterval();
                 }
             },
-
-            'form.domain': debounce(function(value) {
-                this.checkDomainExistence();
-            }, 200)
         },
 
         data() {
@@ -259,13 +250,6 @@ export default {
                 this.modalIsOpen = false;
                 this.form.domain = null;
                 this.$page.props.errors = [];
-            },
-
-            checkDomainExistence() {
-                window.axios.post(this.route('sites.check-domain-existence'), {domain: this.form.domain}).then(response => {
-                    console.log(response.data);
-                    this.domainExists = response.data.result;
-                });
             },
 
             submit() {

@@ -39,6 +39,12 @@ class SiteController extends Controller
 
     public function store(SiteRequest $request)
     {
+        if (Site::query()->where('domain', $request->input('domain'))->exists()) {
+            return redirect()->back()->withErrors([
+                'domain' => 'This domain is not available.'
+            ]);
+        }
+
         if ($serverId = $request->input('server_id')) {
             $server = $request->user()->servers()->findOrFail($serverId);
         } else {
@@ -142,20 +148,5 @@ class SiteController extends Controller
         $systemUser = $site->getSystemUser();
 
         return ['ftp_password' => decrypt(Arr::get($systemUser, 'ftp_password'))];
-    }
-
-    public function checkDomainExistence(Request $request): JsonResponse
-    {
-        $domainToCheck = $request->input('domain');
-
-        if (! $domainToCheck) {
-            return response()->json(['result' => null]);
-        }
-
-        $exists = Site::whereDomain($domainToCheck)->exists();
-
-        return response()->json([
-            'result' => $exists
-        ]);
     }
 }
