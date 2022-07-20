@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     methods: {
         /**
          * Translate the given key.

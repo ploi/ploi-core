@@ -54,14 +54,14 @@
 </template>
 
 <script>
-    import TextDivider from '@/components/TextDivider'
-    import FormInput from '@/components/forms/FormInput'
-    import ErrorText from '@/components/ErrorText'
-    import Button from '@/components/Button'
-    import Container from '@/components/Container'
-    import {useNotification} from '@/hooks/notification'
+import TextDivider from '@/components/TextDivider.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import ErrorText from '@/components/ErrorText.vue'
+import Button from '@/components/Button.vue'
+import Container from '@/components/Container.vue'
+import {useNotification} from '@/hooks/notification'
 
-    export default {
+export default {
         metaInfo() {
             return {
                 title: `${this.__('Register')}`,

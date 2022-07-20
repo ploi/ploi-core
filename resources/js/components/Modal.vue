@@ -30,11 +30,11 @@
 </template>
 
 <script>
-    import IconClose from '@/components/icons/IconClose'
-    import FormActions from '@/components/FormActions'
-    import Form from '@/components/Form'
+import IconClose from '@/components/icons/IconClose.vue'
+import FormActions from '@/components/FormActions.vue'
+import Form from '@/components/Form.vue'
 
-    export default {
+export default {
         components: {
             IconClose,
             FormActions,

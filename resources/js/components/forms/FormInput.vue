@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import FormGroup from '@/components/FormGroup'
-import Label from '@/components/Label'
-import ErrorText from '@/components/ErrorText'
-import HelperText from '@/components/HelperText'
-import IconClipboard from '@/components/icons/IconClipboard'
-import IconKey from '@/components/icons/IconKey'
+import FormGroup from '@/components/FormGroup.vue'
+import Label from '@/components/Label.vue'
+import ErrorText from '@/components/ErrorText.vue'
+import HelperText from '@/components/HelperText.vue'
+import IconClipboard from '@/components/icons/IconClipboard.vue'
+import IconKey from '@/components/icons/IconKey.vue'
 
 const defaultClasses =
     'w-full border-medium-emphasis text-body h-10 px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary'
