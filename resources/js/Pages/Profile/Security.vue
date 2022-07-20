@@ -20,7 +20,7 @@
                                     <FormInput :label="__('Confirm new password')" type="password" :errors="$page.props.errors.password_confirmation" v-model="form.password_confirmation" class="w-1/2" />
                                 </div>
                                 <FormActions>
-                                    <Button>{{ __('Save changes') }}</Button>
+                                    <Button>{{ __('Save') }}</Button>
                                 </FormActions>
                             </form>
                         </template>

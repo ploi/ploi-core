@@ -25,7 +25,7 @@
                         <FormInput :label="__('City')" type="text" :errors="$page.props.errors.city" v-model="form.city" />
 
                         <FormActions>
-                            <Button>{{ __('Save changes') }}</Button>
+                            <Button>{{ __('Save') }}</Button>
                         </FormActions>
                     </form>
                 </PageBody>

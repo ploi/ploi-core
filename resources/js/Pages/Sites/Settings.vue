@@ -24,7 +24,7 @@
                                                    v-model="form.domain"/>
 
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                         </FormActions>
                                     </form>
                                 </template>
@@ -73,7 +73,7 @@
                                                    v-model="form.dns_id"/>
 
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                         </FormActions>
                                     </form>
                                 </template>

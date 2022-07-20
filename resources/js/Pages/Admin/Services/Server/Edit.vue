@@ -28,7 +28,7 @@
                                                    :errors="$page.props.errors.maximum_sites"
                                                    v-model="form.maximum_sites"/>
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                             <Button variant="danger" type="button" @click="confirmDelete">
                                                 {{ __('Delete') }}
                                             </Button>
@@ -44,7 +44,7 @@
                                         <FormInput :label="__('Email')" :errors="$page.props.errors.email"
                                                    v-model="formAttach.email"/>
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                         </FormActions>
                                     </form>
                                 </template>

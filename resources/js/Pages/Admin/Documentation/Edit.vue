@@ -25,7 +25,7 @@
                                         <FormTextarea :label="__('Description')" helper-text="You may use markdown in this field for markup" :errors="$page.props.errors.description" v-model="form.description" />
 
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                         </FormActions>
                                     </form>
                                 </template>
