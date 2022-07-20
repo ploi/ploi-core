@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 use App\Jobs\Sites\DeleteSite;
 use App\Http\Resources\SiteResource;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\SiteRequest;
+use App\Jobs\Sites\CreateSite;
+use App\Mail\Admin\Site\AdminSiteCreatedEmail;
+use App\Models\Server;
+use App\Models\Site;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use App\DataTransferObjects\SiteData;
 use Illuminate\Http\RedirectResponse;
@@ -38,6 +45,55 @@ class SiteController extends Controller
         $data = $request->validate([
             'domain' => ['required'],
         ]);
+
+        if (Site::query()->where('domain', $request->input('domain'))->exists()) {
+            return redirect()->back()->withErrors([
+                'domain' => 'This domain is not available.'
+            ]);
+        }
+
+        if ($serverId = $request->input('server_id')) {
+            $server = $request->user()->servers()->findOrFail($serverId);
+        } else {
+            $server = Server::query()
+                ->where('maximum_sites', '>', 0)
+                ->where(function ($query) {
+                    return $query
+                        ->where(function ($query) {
+                            return $query->whereHas('users', function ($query) {
+                                return $query->where('user_id', auth()->id());
+                            });
+                        })
+                        ->orWhere(function ($query) {
+                            return $query->doesntHave('users');
+                        });
+                })
+                ->withCount('sites')
+                ->inRandomOrder()
+                ->first();
+
+            if ($server && $server->sites_count >= $server->maximum_sites) {
+                $server = null;
+            }
+        }
+
+        if (!$server) {
+            return redirect()->back()->withErrors([
+                'domain' => __('It seems there is no free server room for this site to take place. Please get in touch with support to resolve this.')
+            ]);
+        }
+
+        $site = $server->sites()->create($request->all());
+
+        $request->user()->sites()->save($site);
+
+        dispatch(new CreateSite($site));
+
+        $request->user()->systemLogs()->create([
+            'title' => 'New site :site created',
+            'description' => 'A new site has been created'
+        ])->model()->associate($site)->save();
+
 
         $data['user_id'] = Auth::id();
 

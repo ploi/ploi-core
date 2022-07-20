@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Profile\ProfileSecurityController;
 use App\Http\Controllers\Auth\AuthenticateTwoFactorController;
+use App\Http\Controllers\Profile\ProfileSecurityController;
+use App\Http\Controllers\Profile\TwoFactorAuthentication\ConfirmTwoFactorAuthenticationController;
 use App\Http\Controllers\Profile\TwoFactorAuthentication\RegenerateRecoveryCodesController;
 use App\Http\Controllers\Profile\TwoFactorAuthentication\TwoFactorAuthenticationController;
-use App\Http\Controllers\Profile\TwoFactorAuthentication\ConfirmTwoFactorAuthenticationController;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
