@@ -3,7 +3,7 @@ name: Run tests & build files
 on:
   push:
     branches:
-      - master
+      - develop-test
 
 jobs:
   test:
