@@ -100,7 +100,7 @@ import TableData from '@/components/TableData.vue'
 export default {
         metaInfo() {
             return {
-                title: `${this.__('Certificates')} - ${this.site.domain}`,
+                title: `${this.__('Aliases')} - ${this.site.domain}`,
             }
         },
 
