@@ -32,7 +32,7 @@ it('can create a new site', function () {
     App::forgetInstance('settings');
 
     actingAs(
-        $user = User::factory()->create()
+        $user = User::factory()->withPackage()->create()
     );
 
     $server = Server::factory()
