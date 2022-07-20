@@ -5,7 +5,7 @@
         </template>
         <template #tab-bar>
             <TopBarTabBarContainer>
-<!--                <TabBar :items="tabBars" />-->
+                <TabBar :items="tabBars" />
             </TopBarTabBarContainer>
         </template>
     </TopBar>
@@ -15,12 +15,13 @@
 import TopBar from '@/components/TopBar.vue'
 import Breadcrumbs from '@/components/Breadcrumbs.vue'
 import TopBarTabBarContainer from '@/components/TopBarTabBarContainer.vue'
+import TabBar from '@/components/TabBar.vue'
 
 export default {
     components: {
         TopBar,
         Breadcrumbs,
-        // TabBar,
+        TabBar,
         TopBarTabBarContainer,
     },
 
