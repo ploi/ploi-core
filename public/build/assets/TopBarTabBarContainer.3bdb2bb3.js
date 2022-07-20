@@ -1,0 +1,1 @@
+import{n as t}from"./plugin-vue2_normalizer.000ba15c.js";const r={};var a=function(){var n=this,e=n._self._c;return e("nav",{staticClass:"flex items-center justify-center pb-4"},[n._t("default")],2)},s=[],l=t(r,a,s,!1,null,null,null,null);const c=l.exports;export{c as default};

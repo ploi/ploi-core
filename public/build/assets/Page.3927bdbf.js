@@ -1,0 +1,1 @@
+import{n as l}from"./plugin-vue2_normalizer.000ba15c.js";const r={};var s=function(){var n=this,e=n._self._c;return e("div",{staticClass:"flex flex-col min-h-screen"},[n._t("default")],2)},t=[],a=l(r,s,t,!1,null,null,null,null);const o=a.exports;export{o as default};
