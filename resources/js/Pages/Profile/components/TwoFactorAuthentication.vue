@@ -56,7 +56,7 @@ export default {
     props: {
         secret: Object,
         recoveryCodes: Array,
-        enabled: BooleanI
+        enabled: Boolean
     },
 
     data() {
