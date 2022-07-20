@@ -8,21 +8,26 @@ export default defineConfig({
             /** CSS is dynamically imported in the app.js file. */
             'resources/js/app.js',
         ]),
-vue({
-    template: {
-        transformAssetUrls: {
-            video: [],
-            source: [],
-            img: [],
-            image: [],
-            use: []
-        },
-    },
-}),
+        vue({
+            template: {
+                transformAssetUrls: {
+                    video: [],
+                    source: [],
+                    img: [],
+                    image: [],
+                    use: []
+                },
+            },
+        }),
     ],
     resolve: {
         alias: {
             "@": '/resources/js'
         }
-    }
+    },
+    build: {
+        commonjsOptions: {
+            include: ['codemirror/addon/edit/continuelist.js']
+        }
+    },
 });

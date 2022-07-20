@@ -42,10 +42,10 @@
                                             Load Terms of Service template
                                         </Button>
                                         <FormCustom label="Content Terms Of Service">
-<!--                                            <vue-simplemde v-model="form.terms" ref="terms_of_service"/>-->
+                                            <vue-simplemde v-model="form.terms" ref="terms_of_service"/>
                                         </FormCustom>
                                         <FormCustom label="Content Privacy Policy">
-<!--                                            <vue-simplemde v-model="form.privacy"/>-->
+                                            <vue-simplemde v-model="form.privacy"/>
                                         </FormCustom>
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -85,7 +85,7 @@ import FormActions from '@/components/FormActions.vue'
 import FormCustom from '@/components/forms/FormCustom.vue'
 import {useNotification} from '@/hooks/notification'
 import Tabs from './Tabs.vue'
-// import VueSimplemde from 'vue-simplemde'
+import VueSimplemde from 'vue-simplemde'
 
 export default {
     metaInfo() {
@@ -117,7 +117,7 @@ export default {
         Form,
         FormActions,
         Tabs,
-        // VueSimplemde,
+        VueSimplemde,
         FormCustom
     },
 
@@ -147,7 +147,7 @@ export default {
         getTemplate(type) {
             window.axios.get(this.route('admin.settings.terms.template'))
                 .then(response => {
-                    // this.$refs.terms_of_service.simplemde.value(response.data.content);
+                    this.$refs.terms_of_service.simplemde.value(response.data.content);
                     this.form.terms = response.data.content;
 
                     useNotification({
@@ -163,7 +163,7 @@ export default {
 </script>
 
 <style>
-/*@import '~simplemde/dist/simplemde.min.css';*/
+@import 'simplemde/dist/simplemde.min.css';
 
 .editor-toolbar.fullscreen {
     z-index: 50;
