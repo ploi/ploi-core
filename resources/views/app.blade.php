@@ -8,7 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
 
-    @vite(['resources/js/app.js'])
+    @vite('resources/js/app.js')
 
     @if(config('cashier.key') && config('cashier.secret'))
         <script src="https://js.stripe.com/v3/"></script>
