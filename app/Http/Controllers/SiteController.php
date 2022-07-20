@@ -40,12 +40,8 @@ class SiteController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(SiteRequest $request): RedirectResponse
     {
-        $data = $request->validate([
-            'domain' => ['required'],
-        ]);
-
         if (Site::query()->where('domain', $request->input('domain'))->exists()) {
             return redirect()->back()->withErrors([
                 'domain' => 'This domain is not available.'
@@ -83,22 +79,10 @@ class SiteController extends Controller
             ]);
         }
 
-        $site = $server->sites()->create($request->all());
-
-        $request->user()->sites()->save($site);
-
-        dispatch(new CreateSite($site));
-
-        $request->user()->systemLogs()->create([
-            'title' => 'New site :site created',
-            'description' => 'A new site has been created'
-        ])->model()->associate($site)->save();
-
-
-        $data['user_id'] = Auth::id();
+        $request->merge(['user_id' => auth()->id()]);
 
         $site = app(CreateSiteAction::class)->execute(
-            SiteData::validate($data)
+            SiteData::validate($request)
         );
 
         return $site
