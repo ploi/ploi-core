@@ -12,10 +12,9 @@
 </template>
 
 <script>
-import TopBar from '@/components/TopBar'
-import Breadcrumbs from '@/components/Breadcrumbs'
-import TabBar from '@/components/TabBar'
-import TopBarTabBarContainer from '@/components/TopBarTabBarContainer'
+import TopBar from '@/components/TopBar.vue'
+import Breadcrumbs from '@/components/Breadcrumbs.vue'
+import TopBarTabBarContainer from '@/components/TopBarTabBarContainer.vue'
 
 export default {
     components: {

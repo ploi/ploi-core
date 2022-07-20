@@ -8,8 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
 
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet"></link>
-    <script src="{{ mix('/js/app.js') }}" defer></script>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     @if(config('cashier.key') && config('cashier.secret'))
         <script src="https://js.stripe.com/v3/"></script>

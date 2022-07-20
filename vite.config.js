@@ -5,17 +5,20 @@ import vue from '@vitejs/plugin-vue2';
 export default defineConfig({
     plugins: [
         laravel([
-            'resources/css/app.css',
+            'resources/sass/app.scss',
             'resources/js/app.js',
         ]),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
-        }),
+vue({
+    template: {
+        transformAssetUrls: {
+            video: [],
+            source: [],
+            img: [],
+            image: [],
+            use: []
+        },
+    },
+}),
     ],
     resolve: {
         alias: {

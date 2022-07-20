@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import TextDivider from '@/components/TextDivider'
-import FormInput from '@/components/forms/FormInput'
-import Button from '@/components/Button'
-import Container from '@/components/Container'
+import TextDivider from '@/components/TextDivider.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import Button from '@/components/Button.vue'
+import Container from '@/components/Container.vue'
 
 export default {
     metaInfo: {title: 'Privacy Policy'},

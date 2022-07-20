@@ -6,7 +6,7 @@ import PortalVue from 'portal-vue'
 import vClickOutside from 'v-click-outside'
 import VueClipboard from 'vue-clipboard2'
 import forEach from 'lodash/forEach';
-import mixins from './mixins';
+import mixins from '@/mixins';
 import {InertiaProgress} from '@inertiajs/progress'
 import axios from 'axios';
 import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
@@ -18,7 +18,7 @@ Vue.use(PortalVue)
 Vue.use(plugin)
 Vue.use(VueMeta)
 Vue.use(VueClipboard)
-Vue.mixin({ methods: { route: window.route } })
+Vue.mixin({methods: {route: window.route}})
 Vue.mixin(mixins);
 Vue.component('InertiaLink', InertiaLink)
 
@@ -39,6 +39,8 @@ const app = document.getElementById('app')
 
 let pageData = JSON.parse(app.dataset.page)
 
+
+
 new Vue({
     store,
     metaInfo: {
@@ -47,7 +49,11 @@ new Vue({
     render: h => h(InertiaApp, {
         props: {
             initialPage: pageData,
-            resolveComponent: name => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+            resolveComponent: async(name) => {
+                const pages = import.meta.glob('./Pages/**/*.vue');
+
+                return (await resolvePageComponent(`./Pages/${name}.vue`, pages)).default;
+            }
         },
     }),
 }).$mount(app)

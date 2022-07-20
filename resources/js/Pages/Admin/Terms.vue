@@ -42,10 +42,10 @@
                                             Load Terms of Service template
                                         </Button>
                                         <FormCustom label="Content Terms Of Service">
-                                            <vue-simplemde v-model="form.terms" ref="terms_of_service"/>
+<!--                                            <vue-simplemde v-model="form.terms" ref="terms_of_service"/>-->
                                         </FormCustom>
                                         <FormCustom label="Content Privacy Policy">
-                                            <vue-simplemde v-model="form.privacy"/>
+<!--                                            <vue-simplemde v-model="form.privacy"/>-->
                                         </FormCustom>
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
@@ -62,30 +62,30 @@
 </template>
 
 <script>
-import TopBar from './components/TopBar'
-import Container from '@/components/Container'
-import Content from '@/components/Content'
-import Page from '@/components/Page'
-import PageHeader from '@/components/PageHeader'
-import PageHeaderTitle from '@/components/PageHeaderTitle'
-import PageBody from '@/components/PageBody'
-import Button from '@/components/Button'
-import List from '@/components/List'
-import ListItem from '@/components/ListItem'
-import StatusBubble from '@/components/StatusBubble'
-import NotificationBadge from '@/components/NotificationBadge'
-import MainLayout from '@/Layouts/MainLayout'
-import SettingsLayout from '@/components/layouts/SettingsLayout'
-import SettingsSegment from '@/components/SettingsSegment'
-import FormInput from '@/components/forms/FormInput'
-import FormFileInput from '@/components/forms/FormFileInput'
-import FormSelect from '@/components/forms/FormSelect'
-import Form from '@/components/Form'
-import FormActions from '@/components/FormActions'
-import FormCustom from '@/components/forms/FormCustom'
+import TopBar from './components/TopBar.vue'
+import Container from '@/components/Container.vue'
+import Content from '@/components/Content.vue'
+import Page from '@/components/Page.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageHeaderTitle from '@/components/PageHeaderTitle.vue'
+import PageBody from '@/components/PageBody.vue'
+import Button from '@/components/Button.vue'
+import List from '@/components/List.vue'
+import ListItem from '@/components/ListItem.vue'
+import StatusBubble from '@/components/StatusBubble.vue'
+import NotificationBadge from '@/components/NotificationBadge.vue'
+import MainLayout from '@/Layouts/MainLayout.vue'
+import SettingsLayout from '@/components/layouts/SettingsLayout.vue'
+import SettingsSegment from '@/components/SettingsSegment.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import FormFileInput from '@/components/forms/FormFileInput.vue'
+import FormSelect from '@/components/forms/FormSelect.vue'
+import Form from '@/components/Form.vue'
+import FormActions from '@/components/FormActions.vue'
+import FormCustom from '@/components/forms/FormCustom.vue'
 import {useNotification} from '@/hooks/notification'
-import Tabs from './Tabs'
-import VueSimplemde from 'vue-simplemde'
+import Tabs from './Tabs.vue'
+// import VueSimplemde from 'vue-simplemde'
 
 export default {
     metaInfo() {
@@ -117,7 +117,7 @@ export default {
         Form,
         FormActions,
         Tabs,
-        VueSimplemde,
+        // VueSimplemde,
         FormCustom
     },
 
@@ -147,7 +147,7 @@ export default {
         getTemplate(type) {
             window.axios.get(this.route('admin.settings.terms.template'))
                 .then(response => {
-                    this.$refs.terms_of_service.simplemde.value(response.data.content);
+                    // this.$refs.terms_of_service.simplemde.value(response.data.content);
                     this.form.terms = response.data.content;
 
                     useNotification({
@@ -163,7 +163,7 @@ export default {
 </script>
 
 <style>
-@import '~simplemde/dist/simplemde.min.css';
+/*@import '~simplemde/dist/simplemde.min.css';*/
 
 .editor-toolbar.fullscreen {
     z-index: 50;
