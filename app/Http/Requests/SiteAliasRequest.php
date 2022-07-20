@@ -20,7 +20,7 @@ class SiteAliasRequest extends FormRequest
                 'string',
                 new Hostname,
             ],
-            'request_new_certicate' => [
+            'request_new_certificate' => [
                 'required',
             ]
         ];

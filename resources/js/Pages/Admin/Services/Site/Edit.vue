@@ -22,7 +22,7 @@
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain" />
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                             <Button variant="danger" type="button" @click="confirmDelete">{{ __('Delete') }}</Button>
                                         </FormActions>
                                     </form>
@@ -35,7 +35,7 @@
                                     <form class="space-y-4" @submit.prevent="attach">
                                         <FormInput :label="__('Email')" :errors="$page.props.errors.email" v-model="formAttach.email"/>
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                         </FormActions>
                                     </form>
                                 </template>

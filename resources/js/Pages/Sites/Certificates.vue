@@ -37,7 +37,7 @@
                                         <FormTextarea v-if="form.type === 'custom'" :label="__('Private key')" :errors="$page.props.errors.private" rows="2" v-model="form.private" />
                                         <FormTextarea v-if="form.type === 'custom'" :label="__('Certificate')" :errors="$page.props.errors.certificate" rows="2" v-model="form.certificate" />
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                         </FormActions>
                                     </form>
                                 </template>
