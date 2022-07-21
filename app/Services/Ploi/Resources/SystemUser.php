@@ -48,10 +48,8 @@ class SystemUser extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'name' => $name,
-                'sudo' => $sudo
-            ]),
+            'name' => $name,
+            'sudo' => $sudo,
         ];
 
         // Build the endpoint

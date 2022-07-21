@@ -1,0 +1,41 @@
+name: Run tests & build files
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Run tests
+    uses: ./.github/workflows/run-tests.yml
+
+  deploy:
+    needs: test
+    name: Prepare build assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: pcntl
+
+      - run: composer install
+        name: Install dependencies
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm install
+      - run: npm run production
+
+      - name: Commit build assets
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m "Run Laravel Mix en build front-end assets"
+          git push origin

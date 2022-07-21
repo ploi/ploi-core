@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Sites;
 
+use Throwable;
 use App\Models\Site;
 use App\Traits\HasPloi;
 use Illuminate\Support\Arr;
@@ -15,24 +16,12 @@ class CreateSite implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
-    public $site;
-
-    /**
-     * Create a new job instance.
-     *
-     * @param Site $site
-     */
-    public function __construct(Site $site)
-    {
-        $this->site = $site;
+    public function __construct(
+        public Site $site,
+    ) {
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle()
+    public function handle(): void
     {
         $systemUser = $this->site->getSystemUser();
 
@@ -51,8 +40,12 @@ class CreateSite implements ShouldQueue
         dispatch(new FetchSiteStatus($this->site))->delay(now()->addSeconds(3));
     }
 
-    public function failed(\Exception $exception)
+    public function failed(Throwable $exception): void
     {
         $this->site->delete();
+
+        if (app()->isLocal()) {
+            throw $exception;
+        }
     }
 }

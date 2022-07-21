@@ -35,7 +35,7 @@
                                             <option value="danger">{{ __('Danger') }}</option>
                                         </FormSelect>
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                         </FormActions>
                                     </form>
                                 </template>

@@ -27,7 +27,7 @@
                                         <FormInput :disabled="sending" :label="__('IPv4 address')" :errors="$page.props.errors.address" v-model="form.address"/>
 
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                         </FormActions>
                                     </form>
                                 </template>

@@ -2,16 +2,34 @@
 
 namespace App\Rules;
 
+use App\Models\User;
+use Illuminate\Contracts\Validation\DataAwareRule;
 use Illuminate\Contracts\Validation\Rule;
 
-class ValidateMaximumSites implements Rule
+class ValidateMaximumSites implements Rule, DataAwareRule
 {
+    protected array $data;
+
+    public function setData($data): static
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    protected function getUser(): User
+    {
+        return $this->data['user_id'] ?? null
+                ? User::find($this->data['user_id'])
+                : auth()->user();
+    }
+
     public function passes($attribute, $value)
     {
-        $package = auth()->user()->package;
+        $package = $this->getUser()->package;
 
         // If the user does not have a package, it can continue
-        if (!$package) {
+        if (! $package) {
             return true;
         }
 
@@ -20,7 +38,7 @@ class ValidateMaximumSites implements Rule
             return true;
         }
 
-        if ($package->maximum_sites <= auth()->user()->sites()->count()) {
+        if ($package->maximum_sites <= $this->getUser()->sites()->count()) {
             return false;
         }
 

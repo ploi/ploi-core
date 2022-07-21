@@ -26,7 +26,7 @@
                         </div>
 
                         <FormActions>
-                            <Button>{{ __('Save changes') }}</Button>
+                            <Button>{{ __('Save') }}</Button>
                         </FormActions>
                     </form>
                 </PageBody>

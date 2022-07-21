@@ -30,7 +30,7 @@
                                         <TableBody>
                                             <TableRow v-for="alert in alerts.data" :key="alert.id">
                                                 <TableData>
-                                                    {{ alert.message }}
+                                                    <div v-html="alert.message_html"></div>
 
                                                     <p class="text-medium-emphasis">{{ alert.type }}</p>
                                                 </TableData>

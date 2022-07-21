@@ -6,7 +6,6 @@ use App\Http\Requests\SiteAliasRequest;
 use App\Http\Resources\SiteAliasResource;
 use App\Jobs\Aliases\CreateAlias;
 use App\Jobs\Aliases\DeleteAlias;
-use Illuminate\Http\Request;
 
 class SiteAliasController extends Controller
 {
@@ -26,7 +25,7 @@ class SiteAliasController extends Controller
 
         $site->addAlias($request->input('domain'));
 
-        dispatch(new CreateAlias($site, $request->input('domain')));
+        dispatch(new CreateAlias($site, $request->input('domain'), $request->boolean('request_new_certificate')));
 
         return redirect()->route('sites.aliases.index', $id)->with('success', __('Alias has been created'));
     }

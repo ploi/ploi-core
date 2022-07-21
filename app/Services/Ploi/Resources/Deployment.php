@@ -54,9 +54,7 @@ class Deployment extends Resource
         }
 
         $options = [
-            'body' => json_encode([
-                'deploy_script' => $script
-            ]),
+            'deploy_script' => $script,
         ];
 
         $this->setEndpoint($this->getEndpoint() . '/deploy/script');

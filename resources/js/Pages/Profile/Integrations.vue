@@ -18,7 +18,7 @@
                                    v-model="form.meta.cloudflare_email"/>
 
                         <FormActions>
-                            <Button>{{ __('Save changes') }}</Button>
+                            <Button>{{ __('Save') }}</Button>
                         </FormActions>
                     </form>
                 </PageBody>

@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Casts\SiteAlias;
 use DateTimeInterface;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
-/**
- * @property mixed|string domain
- */
 class Site extends Model
 {
+    use HasFactory;
+
     const STATUS_BUSY = 'busy';
     const STATUS_ACTIVE = 'active';
 
@@ -127,7 +128,9 @@ class Site extends Model
         });
 
         static::created(function (self $site) {
-            $site->systemUsers()->create();
+            $site->systemUsers()->create([
+                'user_name' => Str::of($site->domain)->remove(['.', '-'])->limit(8, '')->lower()
+            ]);
         });
 
         static::deleting(function (self $site) {

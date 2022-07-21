@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Exception;
+
 class VersionChecker
 {
     public $remoteVersion;
@@ -35,12 +37,13 @@ class VersionChecker
         return $this->currentVersion < $this->remoteVersion || $this->currentVersion != $this->remoteVersion;
     }
 
-    public function flushVersionData()
+    public function flushVersionData(): void
     {
         try {
             cache()->forget('ploi-core-current-version');
             cache()->forget('ploi-core-remote-version');
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
+            //
         }
     }
 }

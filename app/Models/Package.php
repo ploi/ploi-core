@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Casts\PermissionCast;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model
 {
+    use HasFactory;
+    
     const CURRENCY_EURO = 'eur';
     const CURRENCY_USD = 'usd';
     const CURRENCY_NOK = 'nok';

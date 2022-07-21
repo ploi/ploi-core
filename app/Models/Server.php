@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Server extends Model
 {
+    use HasFactory;
+
     const STATUS_BUSY = 'busy';
     const STATUS_ACTIVE = 'active';
 
@@ -32,7 +35,8 @@ class Server extends Model
 
     public function users()
     {
-        return $this->morphToMany(User::class, 'service', 'user_service')
+        return $this
+            ->morphToMany(User::class, 'service', 'user_service')
             ->using(UserService::class)
             ->withTimestamps();
     }

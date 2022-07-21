@@ -56,14 +56,12 @@ class Queue extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'connection' => $connection,
-                'queue' => $queue,
-                'maximum_seconds' => $maximumSeconds,
-                'sleep' => $sleep,
-                'processes' => $processes,
-                'maximum_tries' => $maximumTries
-            ]),
+            'connection' => $connection,
+            'queue' => $queue,
+            'maximum_seconds' => $maximumSeconds,
+            'sleep' => $sleep,
+            'processes' => $processes,
+            'maximum_tries' => $maximumTries
         ];
 
         // Build the endpoint

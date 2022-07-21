@@ -50,7 +50,7 @@ class Server extends Resource
             $this->setId($id);
         }
 
-        if (!$this->getId()) {
+        if (! $this->getId()) {
             throw new RequiresId('No server ID set');
         }
 
@@ -75,16 +75,14 @@ class Server extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'name' => $name,
-                'plan' => $plan,
-                'region' => $region,
-                'credential' => $provider,
-                'type' => $type,
-                'database_type' => $databaseType,
-                'webserver_type' => $webserverType,
-                'php_version' => $phpVersion
-            ]),
+            'name' => $name,
+            'plan' => $plan,
+            'region' => $region,
+            'credential' => $provider,
+            'type' => $type,
+            'database_type' => $databaseType,
+            'webserver_type' => $webserverType,
+            'php_version' => $phpVersion,
         ];
 
         // Make the request

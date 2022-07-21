@@ -85,39 +85,40 @@
 </template>
 
 <script>
-    import TopBar from './components/TopBar'
-    import Container from '@/components/Container'
-    import Content from '@/components/Content'
-    import Page from '@/components/Page'
-    import PageHeader from '@/components/PageHeader'
-    import PageHeaderTitle from '@/components/PageHeaderTitle'
-    import PageBody from '@/components/PageBody'
-    import Button from '@/components/Button'
-    import List from '@/components/List'
-    import ListItem from '@/components/ListItem'
-    import StatusBubble from '@/components/StatusBubble'
-    import NotificationBadge from '@/components/NotificationBadge'
-    import MainLayout from '@/Layouts/MainLayout'
-    import EmptyImage from '@/components/EmptyImage'
-    import IconBox from '@/components/icons/IconBox'
-    import IconGlobe from '@/components/icons/IconGlobe'
-    import IconStorage from '@/components/icons/IconStorage'
-    import IconButton from '@/components/IconButton'
-    import IconMore from '@/components/icons/IconMore'
-    import IconPhp from '@/components/icons/IconPhp'
-    import Modal from '@/components/Modal'
-    import ModalContainer from '@/components/ModalContainer'
-    import FormInput from '@/components/forms/FormInput'
-    import FormSelect from '@/components/forms/FormSelect'
-    import FormActions from '@/components/FormActions'
-    import Dropdown from '@/components/Dropdown'
-    import DropdownList from '@/components/DropdownList'
-    import DropdownListItem from '@/components/DropdownListItem'
-    import DropdownListItemButton from '@/components/DropdownListItemButton'
-    import {useConfirm} from '@/hooks/confirm'
-    import Pagination from '@/components/Pagination'
+import TopBar from './components/TopBar'
+import Container from '@/components/Container'
+import Content from '@/components/Content'
+import Page from '@/components/Page'
+import PageHeader from '@/components/PageHeader'
+import PageHeaderTitle from '@/components/PageHeaderTitle'
+import PageBody from '@/components/PageBody'
+import Button from '@/components/Button'
+import List from '@/components/List'
+import ListItem from '@/components/ListItem'
+import StatusBubble from '@/components/StatusBubble'
+import NotificationBadge from '@/components/NotificationBadge'
+import MainLayout from '@/Layouts/MainLayout'
+import EmptyImage from '@/components/EmptyImage'
+import IconBox from '@/components/icons/IconBox'
+import IconGlobe from '@/components/icons/IconGlobe'
+import IconStorage from '@/components/icons/IconStorage'
+import IconButton from '@/components/IconButton'
+import IconMore from '@/components/icons/IconMore'
+import IconPhp from '@/components/icons/IconPhp'
+import Modal from '@/components/Modal'
+import ModalContainer from '@/components/ModalContainer'
+import FormInput from '@/components/forms/FormInput'
+import FormSelect from '@/components/forms/FormSelect'
+import FormActions from '@/components/FormActions'
+import Dropdown from '@/components/Dropdown'
+import DropdownList from '@/components/DropdownList'
+import DropdownListItem from '@/components/DropdownListItem'
+import DropdownListItemButton from '@/components/DropdownListItemButton'
+import {useConfirm} from '@/hooks/confirm'
+import Pagination from '@/components/Pagination'
 
-    export default {
+
+export default {
         metaInfo() {
             return {
                 title: `${this.__('Sites')}`,
@@ -198,7 +199,7 @@
                 if(!this.pollingInterval){
                     this.startPollingInterval();
                 }
-            }
+            },
         },
 
         data() {
@@ -207,6 +208,8 @@
                     domain: null,
                     server_id: null,
                 },
+
+                domainExists: null,
 
                 pollingInterval: null,
 

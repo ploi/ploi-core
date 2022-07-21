@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -31,17 +31,19 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            if (setting('enable_api')) {
-                Route::prefix('api')
-                    ->middleware('api')
-                    ->namespace($this->namespace . '\Api')
-                    ->group(base_path('routes/api.php'));
-            }
+            // The settings('enable_api') is now handled by the GlobalApiAuthenticated middleware,
+            // because the conditional inside this service makes testing very hard. This doesn't
+            // matter for existing users, because now the middleware will return 404 responses.
+            Route::prefix('api')
+                ->middleware(['api', 'global.api.authenticated'])
+                ->namespace($this->namespace . '\Api')
+                ->as('api.')
+                ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
@@ -60,7 +62,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function configureRateLimiting()
+    protected function configureRateLimiting(): void
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60);

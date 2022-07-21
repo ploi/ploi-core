@@ -9,20 +9,20 @@
                         <FormInput :loading="loading" :label="__('Name')" placeholder="webserver-01"
                                    :errors="$page.props.errors.name" v-model="form.name"/>
 
-                        <FormSelect :loading="loading" :errors="$page.props.errors.provider" :label="__('Select provider')"
-                                    v-model="form.provider">
+                        <FormSelect :loading="loading" :errors="$page.props.errors.provider_id" :label="__('Select provider')"
+                                    v-model="form.provider_id">
                             <option :value="`${null}`">{{ __('Select random provider') }}</option>
                             <option v-for="(name, id) in providers" :value="id">{{ name }}</option>
                         </FormSelect>
 
-                        <FormSelect :loading="loading" :errors="$page.props.errors.region" :label="__('Select region')"
-                                    v-model="form.region">
+                        <FormSelect :loading="loading" :errors="$page.props.errors.provider_region_id" :label="__('Select region')"
+                                    v-model="form.provider_region_id">
                             <option :value="`${null}`">{{ __('Select random region') }}</option>
                             <option v-for="(name, id) in regions" :value="id">{{ name }}</option>
                         </FormSelect>
 
-                        <FormSelect :loading="loading" :errors="$page.props.errors.plan" :label="__('Select plan')"
-                                    v-model="form.plan">
+                        <FormSelect :loading="loading" :errors="$page.props.errors.provider_plan_id" :label="__('Select plan')"
+                                    v-model="form.provider_plan_id">
                             <option :value="`${null}`">{{ __('Select random plan') }}</option>
                             <option v-for="(name, id) in plans" :value="id">{{ name }}</option>
                         </FormSelect>
@@ -224,9 +224,9 @@ export default {
 
             form: {
                 name: null,
-                provider: null,
-                region: null,
-                plan: null,
+                provider_id: null,
+                provider_region_id: null,
+                provider_plan_id: null,
                 database_type: 'mysql'
             },
 
@@ -280,9 +280,9 @@ export default {
 
                         this.form = {
                             name: null,
-                            provider: null,
-                            region: null,
-                            plan: null,
+                            provider_id: null,
+                            provider_region_id: null,
+                            provider_plan_id: null,
                         }
                     }
                 },

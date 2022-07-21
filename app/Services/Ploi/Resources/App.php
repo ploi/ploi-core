@@ -9,6 +9,7 @@ use App\Services\Ploi\Exceptions\Http\NotValid;
 class App extends Resource
 {
     private $server;
+
     private $site;
 
     public function __construct(Server $server, Site $site, int $id = null)
@@ -51,9 +52,7 @@ class App extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'create_database' => Arr::get($options, 'create_database', false)
-            ]),
+            'create_database' => Arr::get($options, 'create_database', false),
         ];
 
         try {

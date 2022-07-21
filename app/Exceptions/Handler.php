@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Throwable;
+use Illuminate\Http\Request;
+use App\Http\Middleware\HandleInertiaRequests;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -29,10 +33,10 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param \Throwable $exception
+     * @param Throwable $exception
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function report(Throwable $exception)
     {
@@ -42,24 +46,21 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Throwable $exception
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @param Throwable $exception
+     * @return Response
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function render($request, Throwable $exception)
     {
         $response = parent::render($request, $exception);
 
-        if (in_array($response->status(), [404, 403])) {
-            \Route::any($request->path(), function () use ($exception, $request) {
-                return parent::render($request, $exception);
-            })->middleware('web');
-
-            return inertia()->render('Errors/' . $response->status(), ['status' => $response->status()])
-                ->toResponse($request)
-                ->setStatusCode($response->status());
+        // Only return an Inertia-response when there are special Vue-templates (403 and 404) and when it isn't an API request.
+        if (in_array($response->status(), [403, 404]) && ! $request->routeIs('api.*')) {
+            return app(HandleInertiaRequests::class)
+                ->handle($request, fn () => inertia()->render('Errors/' . $response->status(), ['status' => $response->status()])
+                ->toResponse($request));
         }
 
         return $response;

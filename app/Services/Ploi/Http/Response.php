@@ -2,41 +2,46 @@
 
 namespace App\Services\Ploi\Http;
 
+use Illuminate\Http\Client\Response as ClientResponse;
 use stdClass;
-use Psr\Http\Message\ResponseInterface;
 
 class Response
 {
-    private $json;
-    private $response;
+    protected ?stdClass $json;
 
-    public function __construct(ResponseInterface $response)
+    protected ClientResponse $response;
+
+    public function __construct(ClientResponse $response)
     {
         $this->setResponse($response);
         $this->decodeJson();
     }
 
-    private function setResponse(ResponseInterface $response): self
+    private function setResponse(ClientResponse $response): self
     {
         $this->response = $response;
 
         return $this;
     }
 
-    public function getResponse(): ResponseInterface
+    public function getResponse(): ClientResponse
     {
         return $this->response;
     }
 
     private function decodeJson(): self
     {
-        $json = json_decode($this->getResponse()->getBody());
+        $json = $this->getResponse()->json();
 
         return $this->setJson($json);
     }
 
-    public function setJson(stdClass $json = null): self
+    public function setJson(stdClass|array $json = null): self
     {
+        if (is_array($json)) {
+            $json = json_decode(json_encode($json));
+        }
+
         $this->json = $json;
 
         return $this;

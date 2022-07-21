@@ -48,11 +48,9 @@ class Database extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'name' => $name,
-                'user' => $user,
-                'password' => $password,
-            ]),
+            'name' => $name,
+            'user' => $user,
+            'password' => $password,
         ];
 
         // Build the endpoint

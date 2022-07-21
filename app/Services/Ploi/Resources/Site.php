@@ -3,6 +3,7 @@
 namespace App\Services\Ploi\Resources;
 
 use stdClass;
+use Exception;
 use App\Services\Ploi\Exceptions\Http\NotValid;
 use Services\Ploi\Exceptions\Resource\RequiresId;
 use Services\Ploi\Exceptions\Resource\Server\Site\DomainAlreadyExists;
@@ -74,13 +75,11 @@ class Site extends Resource
 
         // Set the options
         $options = [
-            'body' => json_encode([
-                'root_domain' => $domain,
-                'web_directory' => $webDirectory,
-                'project_root' => $projectRoot,
-                'system_user' => $systemUser,
-                'system_user_password' => $systemUserPassword
-            ]),
+            'root_domain' => $domain,
+            'web_directory' => $webDirectory,
+            'project_root' => $projectRoot,
+            'system_user' => $systemUser,
+            'system_user_password' => $systemUserPassword,
         ];
 
         // Build the endpoint
@@ -92,23 +91,23 @@ class Site extends Resource
         } catch (NotValid $exception) {
             $errors = json_decode($exception->getMessage())->errors;
 
-            if (!empty($errors->root_domain)
+            if (! empty($errors->root_domain)
                 && $errors->root_domain[0] === 'The root domain has already been taken.') {
                 throw new DomainAlreadyExists($domain . ' already exists!');
             }
 
             throw $exception;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             info($exception->getMessage());
         }
 
         // TODO: Debugging purposes
-        if (!$response->getJson() || !isset($response->getJson()->data)) {
-            throw new \Exception($response->getJson()->error ?? 'Unknown error has occured');
+        if (! $response->getJson() || ! isset($response->getJson()->data)) {
+            throw new Exception($response->getJson()->error ?? 'Unknown error has occured');
         }
 
         // Set the id of the site
-        $this->setId($response->getJson()->data->id);
+        $this->setId($response->getData()->id);
 
         // Return the data
         return $response->getJson();
@@ -133,7 +132,7 @@ class Site extends Resource
             $this->setId($id);
         }
 
-        if (!$this->getId()) {
+        if (! $this->getId()) {
             throw new RequiresId('No Site ID set');
         }
 
@@ -142,7 +141,7 @@ class Site extends Resource
         $response = $this->getPloi()->makeAPICall($this->getEndpoint());
 
         // Wrap the logs if they're not already wrapped
-        if (!is_array($response->getJson()->data)) {
+        if (! is_array($response->getJson()->data)) {
             return [$response->getJson()->data];
         }
 
@@ -153,9 +152,7 @@ class Site extends Resource
     {
         // Set the options
         $options = [
-            'body' => json_encode([
-                'php_version' => $version,
-            ]),
+            'php_version' => $version,
         ];
 
         // Build the endpoint

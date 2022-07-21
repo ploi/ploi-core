@@ -30,7 +30,7 @@
                                             <option value="permanent">{{ __('Permanent') }} (301)</option>
                                         </FormSelect>
                                         <FormActions>
-                                            <Button>{{ __('Save changes') }}</Button>
+                                            <Button>{{ __('Save') }}</Button>
                                         </FormActions>
                                     </form>
                                 </template>
