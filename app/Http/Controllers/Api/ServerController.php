@@ -25,6 +25,6 @@ class ServerController extends Controller
             ServerData::validate($data)
         );
 
-        return response(content: ['data' => ServerData::from($server)->toArray()], status: 201);
+        return response(content: ['data' => ServerData::from($server->refresh())->toArray()], status: 201);
     }
 }

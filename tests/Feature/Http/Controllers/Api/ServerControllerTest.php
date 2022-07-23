@@ -22,9 +22,9 @@ it('can create a new server', function () {
                 'id' => 1,
                 'status' => 'created',
                 'type' => 'server',
-                'name' => 'example-server'
-            ]
-        ])
+                'name' => 'example-server',
+            ],
+        ]),
     ]);
 
     Bus::fake([FetchServerStatus::class]);
@@ -37,20 +37,39 @@ it('can create a new server', function () {
     $region = ProviderRegion::sole();
     $plan = ProviderPlan::sole();
 
-    api()
+    $response = api()
         ->post(route('api.server.store'), [
-        'ploi_id' => 2,
-        'provider_id' => $provider->id,
-        'provider_region_id' => $region->id,
-        'provider_plan_id' => $plan->id,
-        'name' => 'example-server',
-        'database_type' => 'postgresql',
-        'user_id' => $user->id,
-    ])
-        ->assertCreated();
+            'ploi_id' => 2,
+            'provider_id' => $provider->id,
+            'provider_region_id' => $region->id,
+            'provider_plan_id' => $plan->id,
+            'name' => 'example-server',
+            'database_type' => 'postgresql',
+            'user_id' => $user->id,
+        ])
+        ->assertCreated()
+        ->collect()
+        ->all();
+
+    $server = Server::sole();
+
+    expect($response)
+        ->toBe([
+            'data' => [
+                'id' => $server->id,
+                'status' => 'busy',
+                'name' => 'example-server',
+                'provider_id' => $provider->id,
+                'provider_region_id' => $region->id,
+                'provider_plan_id' => $plan->id,
+                'database_type' => 'postgresql',
+                'user_id' => $user->id,
+                'created_at' => $server->created_at->toIsoString()
+            ]
+        ]);
 
     assertDatabaseHas(Server::class, [
-       'name' => 'example-server',
+        'name' => 'example-server',
     ]);
 
     Bus::assertDispatched(FetchServerStatus::class);

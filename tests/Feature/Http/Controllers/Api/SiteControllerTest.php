@@ -15,6 +15,7 @@ it('can list sites', function () {
         ->create();
 
     $sites = Site::factory(20)
+        ->withUser($user = User::factory()->create())
         ->withServer($server)
         ->create();
 
@@ -33,6 +34,8 @@ it('can list sites', function () {
                     'status' => $site->status,
                     'server_id' => $site->server_id,
                     'domain' => $site->domain,
+                    'user_id' => $site->users()->soleValue('id'),
+                    'created_at' => $site->created_at->toIsoString(),
                 ])
                 ->all(),
             'links' => [
@@ -109,6 +112,7 @@ it('can create a site', function () {
             'domain' => 'example.ploi.io',
             'user_id' => $user->id,
             'server_id' => $server->id,
+            'status' => 'malicious-status'
         ])
         ->assertCreated()
         ->collect()
@@ -122,6 +126,8 @@ it('can create a site', function () {
             'status' => Site::STATUS_ACTIVE,
             'server_id' => $server->id,
             'domain' => 'example.ploi.io',
+            'user_id' => $user->id,
+            'created_at' => $site->created_at->toIsoString()
         ],
     ]);
 
@@ -147,6 +153,8 @@ it('can create a site', function () {
             'status' => Site::STATUS_ACTIVE,
             'server_id' => $server->id,
             'domain' => 'example.ploi.io',
+            'user_id' => $user->id,
+            'created_at' => $site->created_at->toIsoString()
         ],
     ]);
 });

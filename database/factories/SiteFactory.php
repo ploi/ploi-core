@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Server;
 use App\Models\Site;
+use App\Models\User;
+use Closure;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SiteFactory extends Factory
@@ -29,5 +31,12 @@ class SiteFactory extends Factory
     public function domain(string $domain): static
     {
         return $this->set('domain', $domain);
+    }
+
+    public function withUser(User|Closure $user): static
+    {
+        return $this->afterCreating(function(Site $site) use ($user): void {
+           $site->users()->attach($user);
+        });
     }
 }

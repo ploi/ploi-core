@@ -6,6 +6,7 @@ use App\Casts\SiteAlias;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Support\Str;
 
 class Site extends Model
@@ -70,6 +71,11 @@ class Site extends Model
         return $this->morphToMany(User::class, 'service', 'user_service')
             ->using(UserService::class)
             ->withTimestamps();
+    }
+
+    public function user(): HasOneThrough
+    {
+        return $this->hasOneThrough(User::class, UserService::class, 'service_id', 'id', 'id', 'user_id');
     }
 
     public function logs()
