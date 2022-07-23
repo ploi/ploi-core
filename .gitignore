@@ -20,3 +20,4 @@ yarn-error.log
 /storage/views/footer.blade.php
 rr
 .rr.yaml
+.DS_Store
