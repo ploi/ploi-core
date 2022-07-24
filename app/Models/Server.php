@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class Server extends Model
 {
@@ -39,6 +40,11 @@ class Server extends Model
             ->morphToMany(User::class, 'service', 'user_service')
             ->using(UserService::class)
             ->withTimestamps();
+    }
+
+    public function user(): HasOneThrough
+    {
+        return $this->hasOneThrough(User::class, UserService::class, 'service_id', 'id', 'id', 'user_id');
     }
 
     public function logs()

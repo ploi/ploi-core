@@ -7,7 +7,9 @@ use App\DataTransferObjects\Support\Data;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
 use App\Models\ProviderRegion;
+use App\Models\Server;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Spatie\LaravelData\Attributes\Validation\AlphaDash;
 use Spatie\LaravelData\Attributes\Validation\Exists;
 use Spatie\LaravelData\Attributes\Validation\In;
@@ -21,6 +23,9 @@ class ServerData extends Data
     use BelongsToUser;
 
     public function __construct(
+        public ?int $id = null,
+        #[StringType]
+        public ?string $status = null,
         #[StringType, AlphaDash, Max( 40 )]
         public string $name,
         #[NotIn( 0 ), Exists( Provider::class, 'id' )]
@@ -33,5 +38,11 @@ class ServerData extends Data
         public string $database_type,
         #[Exists( User::class, 'id' ), IntegerType]
         public ?int $user_id = null,
+        public ?Carbon $created_at = null,
     ) {}
+
+    public static function fromModel(Server $server): static
+    {
+        return static::from(array_merge($server->toArray(), ['user_id' => $server->user->id]));
+    }
 }

@@ -5,13 +5,13 @@ namespace App\DataTransferObjects;
 use App\DataTransferObjects\Support\Concerns\BelongsToUser;
 use App\DataTransferObjects\Support\Data;
 use App\DataTransferObjects\Support\Rules\CustomRule;
-use App\DataTransferObjects\Support\WithUser;
 use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
 use App\Rules\Hostname;
 use App\Rules\ValidateMaximumSites;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Spatie\LaravelData\Attributes\Validation\Exists;
 use Spatie\LaravelData\Attributes\Validation\IntegerType;
 use Spatie\LaravelData\Attributes\Validation\StringType;
@@ -29,6 +29,7 @@ class SiteData extends Data
         public ?string $domain = null,
         #[Exists(User::class, 'id'), IntegerType]
         public ?int $user_id = null,
+        public ?Carbon $created_at = null,
     ) {}
 
     public static function authorize(): bool
@@ -40,6 +41,11 @@ class SiteData extends Data
         return auth()->user()->can('create', Site::class);
     }
 
+    public static function fromModel(Site $site): static
+    {
+        return static::from(array_merge($site->toArray(), ['user_id' => $site->user->id]));
+    }
+
     public function toArray(): array
     {
         return Arr::only(parent::toArray(), [
@@ -47,6 +53,8 @@ class SiteData extends Data
             'status',
             'server_id',
             'domain',
+            'user_id',
+            'created_at',
         ]);
     }
 }
