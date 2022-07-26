@@ -28,10 +28,10 @@ class SiteDnsRequest extends FormRequest
                 'required',
                 'string',
             ],
-            'address' => [
+            'content' => [
                 'required',
                 'ipv4'
-            ]
+            ],
         ];
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SiteDnsRequest;
 use App\Models\Site;
-use Illuminate\Support\Arr;
 use App\Models\UserProvider;
 use App\Services\Cloudflare;
-use Illuminate\Http\Request;
-use App\Http\Requests\SiteDnsRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Arr;
 
 class SiteDnsController extends Controller
 {
@@ -27,17 +27,34 @@ class SiteDnsController extends Controller
 
         $dns = $this->getDnsInstance($site);
 
+        $state = Arr::only($request->validated(), ['name', 'content']);
+
         $dns->addRecord(
-            $request->input('name'),
-            $request->input('address'),
+            name: $state['name'],
+            content: $state['content'],
         );
 
         return redirect()->route('sites.dns.index', $id)->with('success', __('DNS record has been created'));
     }
 
-    public function update(Request $request, $id)
+    public function update($id, $recordId, SiteDnsRequest $request): RedirectResponse
     {
-        //
+        $site = auth()->user()->sites()->findOrFail($id);
+
+        $state = $request->validated();
+
+        $dns = $this->getDnsInstance($site);
+
+        $success = $dns->updateRecord($recordId, [
+            'name' => $state['name'],
+            'content' => $state['content'],
+        ]);
+
+        if (is_bool($success) && ! $success) {
+            return redirect()->route('sites.dns.index', $id)->with('error', __('Error updating DNS record'));
+        }
+
+        return redirect()->route('sites.dns.index', $id)->with('success', __('DNS record saved'));
     }
 
     public function records($id)

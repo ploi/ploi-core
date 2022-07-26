@@ -81,6 +81,8 @@
     "Create site": "Site toevoegen",
     "DNS settings": "DNS instellingen",
     "DNS settings for aliases": "DNS instellingen voor aliasen",
+    "DNS record saved": "DNS record opgeslagen",
+    "Error updating DNS record": "Fout met updaten DNS record",
     "View site": "Bekijk website",
     "Start installation": "Start installatie",
     "Install WordPress": "Installeer WordPress",

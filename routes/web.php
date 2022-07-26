@@ -29,7 +29,8 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
 
         // Site routes
         Route::group(['prefix' => 'sites', 'as' => 'sites.'], function () {
-            Route::get('/', 'SiteController@index')->name('index');
+            Route::get('/', 'SiteControl
+            ler@index')->name('index');
             Route::get('{site}', 'SiteController@show')->name('show');
             Route::delete('{site}', 'SiteController@destroy')->name('delete');
             Route::post('/', 'SiteController@store')->name('store');
@@ -87,6 +88,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
                 Route::get('records', 'SiteDnsController@records')->name('records');
                 Route::post('/', 'SiteDnsController@store')->name('store');
                 Route::delete('{record}', 'SiteDnsController@destroy')->name('delete');
+                Route::put('{record}', 'SiteDnsController@update')->name('update');
             });
         });
 

@@ -24,7 +24,7 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :disabled="sending" :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name"/>
-                                        <FormInput :disabled="sending" :label="__('IPv4 address')" :errors="$page.props.errors.address" v-model="form.address"/>
+                                        <FormInput :disabled="sending" :label="__('IPv4 address')" :errors="$page.props.errors.content" v-model="form.content"/>
 
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -56,10 +56,16 @@
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
-                                                <TableRow v-for="record in records" :key="record.id">
-                                                    <TableData>{{ record.name }}</TableData>
-                                                    <TableData>{{ record.display_content }}</TableData>
+                                                <TableRow v-for="(record, index) in records" :key="record.id" class="px-2">
                                                     <TableData>
+                                                        <Input :value="record.name" type="text" :id="index + 'x'" onkeyup="window.Vue.set(this.records, index, this.value)" />
+                                                        <p v-text="records[index].name" />
+                                                    </TableData>
+                                                    <TableData>
+                                                        <Input v-model="records[index].content" type="text" id="TODO" />
+                                                    </TableData>
+                                                    <TableData>
+                                                        <Button @click="save(record, index)" variant="primary" size="sm">Save</Button>
                                                         <Button @click="confirmDelete(record)" variant="danger" size="sm">Delete</Button>
                                                     </TableData>
                                                 </TableRow>
@@ -78,37 +84,38 @@
 </template>
 
 <script>
-    import TopBar from './components/TopBar'
-    import Container from '@/components/Container'
-    import Content from '@/components/Content'
-    import Page from '@/components/Page'
-    import PageHeader from '@/components/PageHeader'
-    import PageHeaderTitle from '@/components/PageHeaderTitle'
-    import PageBody from '@/components/PageBody'
-    import Button from '@/components/Button'
-    import List from '@/components/List'
-    import ListItem from '@/components/ListItem'
-    import StatusBubble from '@/components/StatusBubble'
-    import NotificationBadge from '@/components/NotificationBadge'
-    import MainLayout from '@/Layouts/MainLayout'
-    import SettingsLayout from '@/components/layouts/SettingsLayout'
-    import SettingsSegment from '@/components/SettingsSegment'
-    import FormInput from '@/components/forms/FormInput'
-    import Form from '@/components/Form'
-    import Pagination from '@/components/Pagination'
-    import FormActions from '@/components/FormActions'
-    import {useConfirm} from '@/hooks/confirm'
-    import {useNotification} from '@/hooks/notification'
-    import Tabs from './Tabs'
-    import Table from '@/components/Table'
-    import TableHead from '@/components/TableHead'
-    import TableHeader from '@/components/TableHeader'
-    import TableRow from '@/components/TableRow'
-    import TableBody from '@/components/TableBody'
-    import TableData from '@/components/TableData'
-    import EmptyImage from '@/components/EmptyImage'
+import TopBar from './components/TopBar'
+import Container from '@/components/Container'
+import Content from '@/components/Content'
+import Page from '@/components/Page'
+import PageHeader from '@/components/PageHeader'
+import PageHeaderTitle from '@/components/PageHeaderTitle'
+import PageBody from '@/components/PageBody'
+import Button from '@/components/Button'
+import List from '@/components/List'
+import ListItem from '@/components/ListItem'
+import StatusBubble from '@/components/StatusBubble'
+import NotificationBadge from '@/components/NotificationBadge'
+import MainLayout from '@/Layouts/MainLayout'
+import SettingsLayout from '@/components/layouts/SettingsLayout'
+import SettingsSegment from '@/components/SettingsSegment'
+import FormInput from '@/components/forms/FormInput'
+import Form from '@/components/Form'
+import Pagination from '@/components/Pagination'
+import FormActions from '@/components/FormActions'
+import {useConfirm} from '@/hooks/confirm'
+import {useNotification} from '@/hooks/notification'
+import Tabs from './Tabs'
+import Table from '@/components/Table'
+import TableHead from '@/components/TableHead'
+import TableHeader from '@/components/TableHeader'
+import TableRow from '@/components/TableRow'
+import TableBody from '@/components/TableBody'
+import TableData from '@/components/TableData'
+import EmptyImage from '@/components/EmptyImage'
+import Input from "../../components/Input";
 
-    export default {
+export default {
         metaInfo() {
             return {
                 title: `${this.__('DNS')} - ${this.site.domain}`,
@@ -118,6 +125,7 @@
         layout: MainLayout,
 
         components: {
+            Input,
             TopBar,
             Container,
             Content,
@@ -153,9 +161,11 @@
 
                 records: [],
 
+                recordUpdateValidationMessages: {},
+
                 form: {
                     name: null,
-                    address: null,
+                    content: null,
                 },
 
                 breadcrumbs: [
@@ -200,11 +210,15 @@
 
                         this.form = {
                             name: null,
-                            address: null,
+                            content: null,
                         };
                     }
                 })
 
+            },
+
+            updateRecordName(event, index) {
+                alert(event.target.value, index);
             },
 
             getRecords() {
@@ -214,10 +228,20 @@
                     .then(response => {
                         this.loading = false;
                         this.records = response.data
-                    })
+                    g})
                     .catch(error => {
                         this.loading = false;
                     })
+            },
+
+            save(record) {
+                this.$inertia.put(this.route('sites.dns.update', [this.site.id, record.id]), {
+                    name: record.name,
+                    content: record.content,
+                }, {
+                    preserveScroll: true,
+                    onStart: () => this.sending = true,
+                });
             },
 
             confirmDelete(record) {
