@@ -24,13 +24,5 @@ export default defineConfig({
         alias: {
             "@": '/resources/js'
         }
-    },
-    optimizeDeps: {
-        include: ['codemirror/addon/edit/continuelist.js']
-    },
-    build: {
-        commonjsOptions: {
-            include: ['codemirror/addon/edit/continuelist.js', 'node_modules', ]
-        }
-    },
+    }
 });
