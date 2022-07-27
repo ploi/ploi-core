@@ -35,8 +35,5 @@
         "vue-meta": "^2.4.0",
         "vue-template-compiler": "^2.6.11",
         "vuex": "^3.6.2"
-    },
-    "dependencies": {
-        "vue-simplemde": "^2.0.0"
     }
 }

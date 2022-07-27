@@ -1041,6 +1041,9 @@ select {
 .z-30 {
   z-index: 30;
 }
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -1220,6 +1223,9 @@ select {
 }
 .w-5 {
   width: 1.25rem;
+}
+.\!w-16 {
+  width: 4rem !important;
 }
 .w-3 {
   width: 0.75rem;
@@ -1422,6 +1428,9 @@ select {
   -moz-column-gap: 1rem;
        column-gap: 1rem;
 }
+.gap-y-2 {
+  row-gap: 0.5rem;
+}
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1514,9 +1523,6 @@ select {
 }
 .whitespace-nowrap {
   white-space: nowrap;
-}
-.break-words {
-  overflow-wrap: break-word;
 }
 .rounded {
   border-radius: 0.25rem;
@@ -1682,6 +1688,9 @@ select {
 }
 .pb-4 {
   padding-bottom: 1rem;
+}
+.pr-4 {
+  padding-right: 1rem;
 }
 .pr-1 {
   padding-right: 0.25rem;

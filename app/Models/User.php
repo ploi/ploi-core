@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Casts\Encrypted;
 use App\Mail\User\WelcomeEmail;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +16,7 @@ use Laragear\TwoFactor\Contracts\TwoFactorAuthenticatable;
 use Laragear\TwoFactor\TwoFactorAuthentication;
 use Laravel\Cashier\Billable;
 
-class User extends Authenticatable implements HasLocalePreference, TwoFactorAuthenticatable
+class User extends Authenticatable implements HasLocalePreference, TwoFactorAuthenticatable, FilamentUser
 {
     use Billable, HasFactory, Notifiable, TwoFactorAuthentication;
 
@@ -66,6 +67,11 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
         } else {
             $this->attributes['password'] = bcrypt($value);
         }
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->role === self::ADMIN;
     }
 
     public function getAvatarAttribute()

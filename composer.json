@@ -13,6 +13,7 @@
         "ext-json": "*",
         "aws/aws-sdk-php": "^3.224",
         "cloudflare/sdk": "^1.3",
+        "filament/filament": "^2.0",
         "guzzlehttp/guzzle": "^7.4.1",
         "inertiajs/inertia-laravel": "^0.5.4",
         "laragear/two-factor": "^1.1",
@@ -86,7 +87,8 @@
             "vendor/bin/php-cs-fixer fix"
         ],
         "post-update-cmd": [
-            "@php artisan horizon:publish"
+            "@php artisan horizon:publish",
+            "@php artisan filament:upgrade"
         ]
     }
 }
