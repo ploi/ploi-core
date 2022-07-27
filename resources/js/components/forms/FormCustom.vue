@@ -9,12 +9,12 @@
 </template>
 
 <script>
-    import FormGroup from '@/components/FormGroup'
-    import Label from '@/components/Label'
-    import ErrorText from '@/components/ErrorText'
-    import HelperText from '@/components/HelperText'
+import FormGroup from '@/components/FormGroup.vue'
+import Label from '@/components/Label.vue'
+import ErrorText from '@/components/ErrorText.vue'
+import HelperText from '@/components/HelperText.vue'
 
-    const defaultClasses =
+const defaultClasses =
         'w-full border-medium-emphasis text-body max-w-lg px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary'
 
     export default {

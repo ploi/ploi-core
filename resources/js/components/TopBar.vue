@@ -59,14 +59,14 @@
 </template>
 
 <script>
-import Container from '@/components/Container'
-import Dropdown from '@/components/Dropdown'
-import DropdownList from '@/components/DropdownList'
-import DropdownListItem from '@/components/DropdownListItem'
-import IconMoon from '@/components/icons/IconMoon'
-import IconSun from '@/components/icons/IconSun'
-import IconSearch from '@/components/icons/IconSearch'
-import IconButton from '@/components/IconButton'
+import Container from '@/components/Container.vue'
+import Dropdown from '@/components/Dropdown.vue'
+import DropdownList from '@/components/DropdownList.vue'
+import DropdownListItem from '@/components/DropdownListItem.vue'
+import IconMoon from '@/components/icons/IconMoon.vue'
+import IconSun from '@/components/icons/IconSun.vue'
+import IconSearch from '@/components/icons/IconSearch.vue'
+import IconButton from '@/components/IconButton.vue'
 
 export default {
     components: {

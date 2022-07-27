@@ -1,0 +1,1 @@
+import{n as r}from"./plugin-vue2_normalizer.000ba15c.js";const n={props:{to:{type:String,required:!0}}};var s=function(){var t=this,e=t._self._c;return e("inertia-link",{staticClass:"font-medium text-body text-breadcrumbs",attrs:{href:t.to}},[t._t("default")],2)},a=[],o=r(n,s,a,!1,null,null,null,null);const c=o.exports;export{c as default};

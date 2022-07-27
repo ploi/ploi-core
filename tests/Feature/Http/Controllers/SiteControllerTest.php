@@ -4,6 +4,7 @@ use App\Mail\Admin\Site\AdminSiteCreatedEmail;
 use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
+use Database\Factories\PackageFactory;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
@@ -32,7 +33,7 @@ it('can create a new site', function () {
     App::forgetInstance('settings');
 
     actingAs(
-        $user = User::factory()->withPackage()->create()
+        $user = User::factory()->withPackage(fn(PackageFactory $factory) => $factory->set('maximum_sites', 20))->create()
     );
 
     $server = Server::factory()

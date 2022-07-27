@@ -1,21 +1,27 @@
-import { InertiaApp, plugin, InertiaLink } from '@inertiajs/inertia-vue'
+import {InertiaApp, InertiaLink, plugin} from '@inertiajs/inertia-vue'
 import Vue from 'vue';
 import VueMeta from 'vue-meta'
 import store from '@/store'
 import PortalVue from 'portal-vue'
 import vClickOutside from 'v-click-outside'
 import VueClipboard from 'vue-clipboard2'
-window._forEach = require('lodash/forEach');
+import forEach from 'lodash/forEach';
+import mixins from '@/mixins';
+import {InertiaProgress} from '@inertiajs/progress'
+import axios from 'axios';
+import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
+import '../sass/app.scss';
+
+window._forEach = forEach;
 
 Vue.use(vClickOutside)
 Vue.use(PortalVue)
 Vue.use(plugin)
 Vue.use(VueMeta)
 Vue.use(VueClipboard)
-Vue.mixin({ methods: { route: window.route } })
-Vue.mixin(require('./mixins'));
+Vue.mixin({methods: {route: window.route}})
+Vue.mixin(mixins);
 Vue.component('InertiaLink', InertiaLink)
-import { InertiaProgress } from '@inertiajs/progress'
 
 InertiaProgress.init({
     delay: 250,
@@ -26,13 +32,42 @@ InertiaProgress.init({
 
 window.eventBus = new Vue();
 
-window.axios = require('axios');
+window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 const app = document.getElementById('app')
 
 let pageData = JSON.parse(app.dataset.page)
+
+// createInertiaApp({
+//     title: (title) => `${title} - ${appName}`,
+//     resolve: (name) => require(`./Pages/${name}.vue`),
+    // resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    // setup({el, App, props, plugin}) {
+    //     Vue
+    //         .use(plugin)
+            // .use(vClickOutside)
+            // .use(PortalVue)
+            // .use(VueMeta)
+            // .use(VueClipboard)
+            // .mixin(mixins)
+            // .component('InertiaLink', InertiaLink)
+            // .mixin({methods: {route}});
+
+        // new Vue({
+        //     render: h => h(App, props),
+        // })
+        //     .$mount(el);
+    // },
+// });
+
+// InertiaProgress.init({
+//     delay: 250,
+//     color: '#1b8ae8',
+//     includeCSS: true,
+//     showSpinner: false,
+// })
 
 new Vue({
     store,
@@ -42,7 +77,12 @@ new Vue({
     render: h => h(InertiaApp, {
         props: {
             initialPage: pageData,
-            resolveComponent: name => import(`@/Pages/${name}`).then(module => module.default),
+            resolveComponent: async(name) => {
+                const pages = import.meta.glob('./**/*.vue');
+
+                console.log(name);
+                return (await resolvePageComponent(`./Pages/${name}.vue`, pages)).default;
+            }
         },
     }),
 }).$mount(app)

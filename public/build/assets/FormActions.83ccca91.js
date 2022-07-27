@@ -1,0 +1,1 @@
+import{n as e}from"./plugin-vue2_normalizer.000ba15c.js";const n={props:{justify:{type:String,default:"justify-start"}}};var r=function(){var t=this,s=t._self._c;return s("div",{staticClass:"flex items-center space-x-2",class:[t.justify]},[t._t("default")],2)},a=[],l=e(n,r,a,!1,null,null,null,null);const _=l.exports;export{_ as default};

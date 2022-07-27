@@ -1,0 +1,1 @@
+import{n as t}from"./plugin-vue2_normalizer.000ba15c.js";const r={};var s=function(){var e=this,n=e._self._c;return n("header",{staticClass:"flex justify-between mt-16 mb-8"},[n("div",[e._t("start")],2),n("div",[e._t("end")],2)])},a=[],_=t(r,s,a,!1,null,null,null,null);const c=_.exports;export{c as default};

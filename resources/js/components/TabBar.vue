@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import TabBarItem from '@/components/TabBarItem'
+import TabBarItem from '@/components/TabBarItem.vue'
 
 export default {
     components: {

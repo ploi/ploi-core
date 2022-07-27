@@ -87,16 +87,16 @@
 </template>
 
 <script>
-    import Confirm from '@/components/Confirm'
-    import Notification from '@/components/Notification'
-    import IconDanger from '@/components/icons/IconDanger'
-    import IconWarning from '@/components/icons/IconWarning'
-    import IconSuccess from '@/components/icons/IconSuccess'
-    import IconInfo from '@/components/icons/IconInfo'
-    import SearchPalette from '@/components/SearchPalette'
-    import {useNotification} from '@/hooks/notification'
+import Confirm from '@/components/Confirm.vue'
+import Notification from '@/components/Notification.vue'
+import IconDanger from '@/components/icons/IconDanger.vue'
+import IconWarning from '@/components/icons/IconWarning.vue'
+import IconSuccess from '@/components/icons/IconSuccess.vue'
+import IconInfo from '@/components/icons/IconInfo.vue'
+import SearchPalette from '@/components/SearchPalette.vue'
+import {useNotification} from '@/hooks/notification'
 
-    export default {
+export default {
         components: {
             Confirm,
             Notification,
