@@ -29,8 +29,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
 
         // Site routes
         Route::group(['prefix' => 'sites', 'as' => 'sites.'], function () {
-            Route::get('/', 'SiteControl
-            ler@index')->name('index');
+            Route::get('/', 'SiteController@index')->name('index');
             Route::get('{site}', 'SiteController@show')->name('show');
             Route::delete('{site}', 'SiteController@destroy')->name('delete');
             Route::post('/', 'SiteController@store')->name('store');

@@ -1,6 +1,6 @@
 <template>
     <FormGroup>
-        <Label :errors="errors" :forId="id">{{ label }}</Label>
+        <Label :errors="errors" :forId="id" v-if="label">{{ label }}</Label>
         <select :disabled="loading || disabled" :class="[
             defaultClasses,
             disabled || loading ? 'opacity-50' : '',
@@ -32,7 +32,7 @@ export default {
         },
         label: {
             type: String,
-            required: true,
+            required: false,
         },
         type: {
             type: String,

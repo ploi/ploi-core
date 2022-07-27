@@ -1,6 +1,6 @@
 <template>
     <FormGroup class="relative">
-        <Label :errors="errors" :forId="id">{{ label }}</Label>
+        <Label :errors="errors" :forId="id" v-if="label">{{ label }}</Label>
 
         <button type="button" @click="copy" v-if="allowCopy" class="flex items-center right-0 absolute text-xs text-medium-emphasis">
             <IconClipboard class="mr-2" />
@@ -50,7 +50,7 @@ export default {
         },
         label: {
             type: String,
-            required: true,
+            required: false,
         },
         type: {
             type: String,

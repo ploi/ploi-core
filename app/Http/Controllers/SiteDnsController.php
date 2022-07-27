@@ -27,11 +27,13 @@ class SiteDnsController extends Controller
 
         $dns = $this->getDnsInstance($site);
 
-        $state = Arr::only($request->validated(), ['name', 'content']);
+        $state = Arr::only($request->validated(), ['name', 'content', 'type', 'ttl']);
 
         $dns->addRecord(
             name: $state['name'],
             content: $state['content'],
+            type: $state['type'],
+            ttl: $state['ttl']
         );
 
         return redirect()->route('sites.dns.index', $id)->with('success', __('DNS record has been created'));
@@ -48,6 +50,8 @@ class SiteDnsController extends Controller
         $success = $dns->updateRecord($recordId, [
             'name' => $state['name'],
             'content' => $state['content'],
+            'type' => $state['type'],
+            'ttl' => $state['ttl'],
         ]);
 
         if (is_bool($success) && ! $success) {

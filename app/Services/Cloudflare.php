@@ -110,9 +110,10 @@ class Cloudflare
             $record = $dns->getRecordDetails($this->zoneId, $id);
 
             return $dns->updateRecordDetails($this->zoneId, $id, [
-                'type' => object_get($record, 'type'),
+                'type' => Arr::get($data, 'type'),
                 'name' => Arr::get($data, 'name'),
                 'content' => Arr::get($data, 'content'),
+                'ttl' => Arr::get($data, 'ttl'),
             ]);
         } catch (ClientException $e) {
             return false;
