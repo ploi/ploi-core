@@ -19,6 +19,8 @@ class CertificateResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Site management';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -64,14 +66,14 @@ class CertificateResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -79,5 +81,5 @@ class CertificateResource extends Resource
             'create' => Pages\CreateCertificate::route('/create'),
             'edit' => Pages\EditCertificate::route('/{record}/edit'),
         ];
-    }    
+    }
 }

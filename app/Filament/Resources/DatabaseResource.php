@@ -19,6 +19,8 @@ class DatabaseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Site management';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -57,14 +59,14 @@ class DatabaseResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -72,5 +74,5 @@ class DatabaseResource extends Resource
             'create' => Pages\CreateDatabase::route('/create'),
             'edit' => Pages\EditDatabase::route('/{record}/edit'),
         ];
-    }    
+    }
 }

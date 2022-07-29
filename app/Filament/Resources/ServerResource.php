@@ -17,7 +17,9 @@ class ServerResource extends Resource
 {
     protected static ?string $model = Server::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-server';
+
+    protected static ?string $navigationGroup = 'Server management';
 
     public static function form(Form $form): Form
     {
@@ -81,14 +83,14 @@ class ServerResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -96,5 +98,5 @@ class ServerResource extends Resource
             'create' => Pages\CreateServer::route('/create'),
             'edit' => Pages\EditServer::route('/{record}/edit'),
         ];
-    }    
+    }
 }

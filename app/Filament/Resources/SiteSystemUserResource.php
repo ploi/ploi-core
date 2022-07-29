@@ -19,6 +19,8 @@ class SiteSystemUserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Site management';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -50,14 +52,14 @@ class SiteSystemUserResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -65,5 +67,5 @@ class SiteSystemUserResource extends Resource
             'create' => Pages\CreateSiteSystemUser::route('/create'),
             'edit' => Pages\EditSiteSystemUser::route('/{record}/edit'),
         ];
-    }    
+    }
 }

@@ -19,6 +19,8 @@ class ProviderRegionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Providers';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -53,14 +55,14 @@ class ProviderRegionResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -68,5 +70,5 @@ class ProviderRegionResource extends Resource
             'create' => Pages\CreateProviderRegion::route('/create'),
             'edit' => Pages\EditProviderRegion::route('/{record}/edit'),
         ];
-    }    
+    }
 }

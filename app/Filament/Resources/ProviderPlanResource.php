@@ -19,6 +19,8 @@ class ProviderPlanResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Providers';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -53,14 +55,14 @@ class ProviderPlanResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -68,5 +70,5 @@ class ProviderPlanResource extends Resource
             'create' => Pages\CreateProviderPlan::route('/create'),
             'edit' => Pages\EditProviderPlan::route('/{record}/edit'),
         ];
-    }    
+    }
 }

@@ -2,6 +2,7 @@
     "name": "ploi-core",
     "private": true,
     "scripts": {
+        "watch": "npm run development",
         "dev": "npm run development",
         "development": "vite",
         "prod": "npm run production",

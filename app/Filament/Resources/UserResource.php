@@ -17,7 +17,7 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
@@ -81,32 +81,13 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('package_id'),
-                Tables\Columns\TextColumn::make('user_name'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('company'),
-                Tables\Columns\TextColumn::make('address'),
-                Tables\Columns\TextColumn::make('city'),
-                Tables\Columns\TextColumn::make('zip'),
-                Tables\Columns\TextColumn::make('country'),
-                Tables\Columns\TextColumn::make('notes'),
-                Tables\Columns\TextColumn::make('billing_details'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('role'),
-                Tables\Columns\TextColumn::make('theme'),
-                Tables\Columns\TextColumn::make('language'),
-                Tables\Columns\TextColumn::make('blocked'),
-                Tables\Columns\BooleanColumn::make('keyboard_shortcuts'),
+                Tables\Columns\TextColumn::make('user_name')->searchable(),
+                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('email')->searchable(),
+                Tables\Columns\TextColumn::make('servers_count')->label('Servers')->counts('servers')->sortable(),
+                Tables\Columns\TextColumn::make('sites_count')->label('Sites')->counts('sites')->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('stripe_id'),
-                Tables\Columns\TextColumn::make('card_brand'),
-                Tables\Columns\TextColumn::make('card_last_four'),
-                Tables\Columns\TextColumn::make('trial_ends_at')
+                    ->sortable()
                     ->dateTime(),
             ])
             ->filters([
@@ -117,16 +98,17 @@ class UserResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -134,5 +116,5 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
-    }    
+    }
 }
