@@ -10,8 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use STS\FilamentImpersonate\Impersonate;
 
 class UserResource extends Resource
 {
@@ -19,61 +18,39 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('package_id'),
-                Forms\Components\TextInput::make('user_name')
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('company')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('address')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('city')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('zip')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('country')
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('notes')
-                    ->maxLength(65535),
-                Forms\Components\Textarea::make('billing_details')
-                    ->maxLength(65535),
+                    ->label(__('Name'))
+                    ->required(),
                 Forms\Components\TextInput::make('email')
+                    ->label(__('E-mail address'))
                     ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('role')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('theme')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('language')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('ftp_password')
+                    ->required(),
+                Forms\Components\Textarea::make('notes')
+                    ->label(__('Notes'))
                     ->maxLength(65535),
+                Forms\Components\Select::make('role')
+                    ->options([
+                        User::ADMIN => __('Administrator'),
+                        User::USER => __('User'),
+                    ])
+                    ->required(),
+                Forms\Components\Select::make('package_id')
+                    ->label(__('Package'))
+                    ->relationship('package', 'name'),
+                Forms\Components\Select::make('language')
+                    ->label(__('Language'))
+                    ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language])),
                 Forms\Components\Textarea::make('blocked')
-                    ->maxLength(65535),
-                Forms\Components\Toggle::make('requires_password_for_ftp')
-                    ->required(),
-                Forms\Components\Toggle::make('keyboard_shortcuts')
-                    ->required(),
-                Forms\Components\TextInput::make('stripe_id')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('card_brand')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('card_last_four')
-                    ->maxLength(4),
-                Forms\Components\DateTimePicker::make('trial_ends_at'),
+                    ->label(__('Blocked')),
+                Forms\Components\Checkbox::make('requires_password_for_ftp')
+                    ->label(__('Require password to show FTP password'))
+                    ->helperText(__('Disabling this will allow this user to get the FTP password right away.')),
             ]);
     }
 
@@ -81,19 +58,33 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_name')->searchable(),
-                Tables\Columns\TextColumn::make('name')->searchable(),
-                Tables\Columns\TextColumn::make('email')->searchable(),
-                Tables\Columns\TextColumn::make('servers_count')->label('Servers')->counts('servers')->sortable(),
-                Tables\Columns\TextColumn::make('sites_count')->label('Sites')->counts('sites')->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->sortable()
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('Name'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('user_name')
+                    ->label(__('User name'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->label(__('E-mail address'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('servers_count')
+                    ->label(__('Servers'))
+                    ->counts('servers')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('sites_count')
+                    ->label(__('Sites'))
+                    ->counts('sites')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('role')
+                    ->label(__('Role')),
+                Tables\Columns\TextColumn::make('package.name')
+                    ->label(__('Package')),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Impersonate::make('impersonate'),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -105,7 +96,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\SitesRelationManager::class,
+            RelationManagers\ServersRelationManager::class,
         ];
     }
 

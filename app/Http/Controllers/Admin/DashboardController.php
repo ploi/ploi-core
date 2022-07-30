@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Site;
-use App\Models\User;
-use App\Models\Server;
-use App\Models\SystemLog;
 use App\Http\Controllers\Controller;
+use App\Models\Server;
+use App\Models\Site;
+use App\Models\SystemLog;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -23,12 +23,14 @@ class DashboardController extends Controller
                 ->through(function (SystemLog $systemLog) {
                     return [
                         'title' => __($systemLog->title, [
-                            'site' => $systemLog->model->domain ?? '-Unknown-'
+                            'site' => $systemLog->model->domain ?? '-Unknown-',
                         ]),
-                        'description' => __($systemLog->description),
-                        'created_at_human' => $systemLog->created_at->diffForHumans()
+                        'description' => __($systemLog->description, [
+                            'site' => $systemLog->model->domain ?? '-Unknown-',
+                        ]),
+                        'created_at_huma≥n' => $systemLog->created_at->diffForHumans(),
                     ];
-                })
+                }),
         ]);
     }
 }

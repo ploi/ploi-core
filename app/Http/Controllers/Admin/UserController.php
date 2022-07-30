@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Models\Package;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
+use App\Models\Package;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -22,19 +22,20 @@ class UserController extends Controller
 
         return inertia('Admin/Users/Index', [
             'filters' => request()->all('search'),
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
     public function create()
     {
-        $packages = Package::orderBy('name')->pluck('name', 'id');
+        $packages = Package::orderBy('name')
+            ->pluck('name', 'id');
 
         return inertia('Admin/Users/Create', [
             'packages' => $packages,
             'languages' => languages(),
-            'defaultPackage' => (string)setting('default_package'),
-            'defaultLanguage' => (string)setting('default_language', 'en'),
+            'defaultPackage' => (string) setting('default_package'),
+            'defaultLanguage' => (string) setting('default_language', 'en'),
         ]);
     }
 
@@ -42,12 +43,12 @@ class UserController extends Controller
     {
         $user = User::create($request->all());
 
-        if ($request->input('role') === User::ADMIN) {
+        if ( $request->input('role') === User::ADMIN ) {
             $user->role = User::ADMIN;
             $user->save();
         }
 
-        if ($request->input('package') && Package::find($request->input('package'))) {
+        if ( $request->input('package') && Package::find($request->input('package')) ) {
             $user->package_id = $request->input('package');
             $user->save();
         }
@@ -77,7 +78,7 @@ class UserController extends Controller
         return inertia('Admin/Users/Edit', [
             'user' => User::findOrFail($id),
             'packages' => $packages,
-            'languages' => languages()
+            'languages' => languages(),
         ]);
     }
 
@@ -87,12 +88,12 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        if ($request->input('role') !== $user->role) {
+        if ( $request->input('role') !== $user->role ) {
             $user->role = $request->input('role');
             $user->save();
         }
 
-        if ($request->input('package') !== $user->package_id) {
+        if ( $request->input('package') !== $user->package_id ) {
             $user->package_id = $request->input('package');
             $user->save();
         }

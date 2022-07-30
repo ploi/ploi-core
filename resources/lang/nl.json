@@ -116,7 +116,6 @@
     "Alias has been created": "Alias is aangemaakt",
     "Current": "Huidig",
     "Notes": "Opmerkingen",
-
     "Support requests": "Support aanvragen",
     "Open support requests": "Openstaande aanvragen",
     "Closed support requests": "Gesloten aanvragen",
@@ -124,7 +123,6 @@
     "Thank you for submitting your support request.": "Bedankt voor de ondersteuningsaanvraag.",
     "Create ticket": "Ondersteunings aanvraag aanmaken",
     "Support ticket has been closed": "Ondersteunings aanvraag is gesloten",
-
     "You have the ability here to directly install one of these applications on the fly.": "Je hebt hier de mogelijkheid om deze applicaties met 1 klik te installeren.",
     "Setup these DNS records to attach your webhosting to your domain.": "Stel deze DNS waarden in voor het domein om het te koppelen met het webhosting pakket.",
     "You have reached the maximum limit of sites you can have on your package.": "Je hebt het maximaal aantal sites bereikt wat je op je account mag hebben.",
@@ -149,22 +147,16 @@
     "Your server will be deleted completely, this action is irreversible.": "Je server zal volledig verwijderd worden, dit kan niet ongedaan gemaakt worden.",
     "We were unable to match all of the entered domains to your server, make sure you point your domain DNS to your server.": "We zijn niet in staat om je domein te matchen met het IP adres van de server. Zorg ervoor dat de DNS volledig omgezet is.",
     "This site does not seem to be active, please wait for the process to finish": "Deze site is niet actief, wacht tot het proces afgerond is",
-
     "WordPress is open source software you can use to create a beautiful website, blog, or app.": "WordPress is open source software wat je kan gebruiken om eenvoudig je website, blog of app te bouwen.",
     "Create database & attach to WordPress": "Maak een nieuwe database en koppel WordPress",
     "This will also create a database and attach it directly for you so you have a easy start.": "Dit maakt een nieuwe database aan, en koppelt je WordPress installatie gelijk zodat je meteen kunt beginnen met installeren.",
     "You currently have :application installed.": "Je hebt momenteel :application geïnstalleerd.",
-
     "Nextcloud is a suite of client-server software for creating and using file hosting services, it is comparable to Dropbox.": "Nextcloud is software om bestanden mee te hosten, het is vergelijkbaar met Dropbox.",
-
     "October is a free, open-source and self-hosted content management system (CMS) based on the PHP programming language and Laravel web application framework.": "OctoberCMS is een gratis open-source self-hosted CMS systeem gebasseerd op het Laravel PHP framework.",
-
     "Your website is being created": "Je website wordt momenteel aangemaakt",
     "Site settings have been updated": "Site instellingen zijn bijgewerkt",
-
     "Are you ready to subscribe to this plan? If you have any coupon codes, make sure to enter them before subscribing.": "Ben je klaar om aan te melden voor dit pakket? Als je nog een kortingscode hebt moet je deze eerst invoeren voordat je abbonneerd.",
     "Enter a coupon code if you have one, before subscribing": "Voer een kortingscode in",
-
     "A new account has been created for you": "Er is een nieuw account aangemaakt",
     "Welcome to :app": "Welkom bij :app",
     "Hi!": "Hallo!",
@@ -178,7 +170,6 @@
     "You have set a password for your account": "Je hebt een wachtwoord aangemaakt voor je account",
     "Your new server is being created": "Je nieuwe server wordt aangemaakt",
     "You have created a new server :server, installation usually takes around 15 to 20 minutes. You will receive a email upon completion.": "Je hebt een nieuwe server :server aangemaakt, installatie duurt normaal tussen de 15 en 20 minuten. Je ontvangt een email zodra de installatie afgerond is.",
-
     "New site :site created": "Nieuwe website :site aangemaakt",
     "Site PHP version has changed": "Website PHP versie aangepast",
     "PHP version changed for site :site": "PHP versie voor website :site is aangepast",
@@ -187,13 +178,11 @@
     "A new database has been created": "Er is een nieuwe database aangemaakt",
     "New redirect :redirect created": "Nieuwe omleiding :redirect aangemaakt",
     "A new redirect has been created": "Er is een nieuwe omleiding aangemaakt",
-
     "Create server": "Server aanmaken",
     "Create a server": "Server aanmaken",
     "Select provider": "Selecteer provider",
     "Select region": "Selecteer regio",
     "Select plan": "Selecteer plan",
-
     "Detach": "Ontkoppelen",
     "Monthly price": "Prijs maandelijks",
     "Users": "Gebruikers",
@@ -228,7 +217,6 @@
     "Package has been created": "Pakket is aangemaakt",
     "Package has been updated": "Pakket is aangepast",
     "Package has been removed": "Pakket is verwijderd",
-
     "Server permissions": "Server permissies",
     "Allow server creation": "Laat server aanmaken toe",
     "This will allow users to create servers": "Dit maakt het mogelijk voor klanten om een server aan te maken",
@@ -236,7 +224,6 @@
     "This will allow users to update servers": "Dit maakt het mogelijk voor klanten om hun server te updaten",
     "Allow server deletion": "Laat server verwijderen toe",
     "This will allow users to delete servers": "Dit maakt het mogelijk voor klante nom hun server te verwijderen",
-
     "Site permissions": "Website permissies",
     "Allow site creation": "Laat website aanmaken toe",
     "This will allow users to create sites": "Dit maakt het mogelijk voor klanten om een server aan te maken",
@@ -244,7 +231,6 @@
     "This will allow users to update sites": "Dit maakt het mogelijk voor klanten om hun server te updaten",
     "Allow site deletion": "Laat website verwijderen toe",
     "This will allow users to delete sites": "Dit maakt het mogelijk voor klante nom hun server te verwijderen",
-
     "Recent logs": "Recente gebeurtenissen",
     "Settings have been updated": "Instellingen zijn bijgewerkt",
     "Are you sure you want to delete this package? Everything associated with this package will be detached.": "Weet je zeker dat je dit pakket wilt verwijderen? Alle gebruikers gekoppeld aan dit pakket zullen losgemaakt worden.",
@@ -276,6 +262,7 @@
     "Are you sure you want to delete this server? Everything associated with this server will be detached.": "Weet je zeker dat je deze server wilt verwijderen? Alles geassocieerd aan deze server wordt ook verwijderd.",
     "You can synchronize your servers here. It is safe to synchronize already existing servers. If you have installed a extra PHP version for example, you can synchronize to update the versions here.": "Je kunt hier je servers synchroniseren naar je systeem. Het is veilig om bestaande servers wederom te synchroniseren. Dit kan handig zijn mocht je extra PHP versies geïnstalleerd hebben via ploi.io.",
     "Create a new package here to attach to your users. You can create as many packages as you want, the advantage is that you are able to provide custom packages for your users.": "Je kunt hier een nieuw pakket aanmaken voor je gebruikers. Je kunt zoveel pakketten aanmaken als je wilt, het voordeel hiervan is dat je custom packages kan aanbieden aan je klanten.",
+    "Not attached to Stripe.": "Niet verbonden met Stripe",
     "System update has been dispatched, this could take around 2/3 minutes for it to complete": "Systeem update is gestart, het kan 2 tot 3 minuten duren voordat de update klaar is",
     "A user has created a new server": "Een gebruiker heeft een nieuwe server aangemaakt",
     "A user has created a new site": "Een gebruiker heeft een nieuwe website aangemaakt",

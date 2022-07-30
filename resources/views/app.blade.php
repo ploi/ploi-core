@@ -15,7 +15,7 @@
     @endif
 
     @if(file_exists($theme = storage_path('app/public/theme.css')))
-        <link href="{{ asset('storage/theme.css') }}?v={{ md5_file($theme) }}" rel="stylesheet"/>
+        <link href="{{ asset('storage/theme.css') }}?v={{ md5_file($theme) }}" rel="stylesheet" />
     @endif
 
     @if($logo = setting('logo'))
@@ -29,10 +29,12 @@
     @routes
 </head>
 <body>
-@inertia
+    @inertia
 
-@if(view()->exists('footer'))
-    {!! view('footer')->render() !!}
-@endif
+    @if(view()->exists('footer'))
+        {!! view('footer')->render() !!}
+    @endif
+
+    <x-impersonate::banner />
 </body>
 </html>
