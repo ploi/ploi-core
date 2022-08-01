@@ -10,8 +10,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProviderPlanResource extends Resource
 {
@@ -20,6 +18,8 @@ class ProviderPlanResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     protected static ?string $navigationGroup = 'Providers';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -67,8 +67,6 @@ class ProviderPlanResource extends Resource
     {
         return [
             'index' => Pages\ListProviderPlans::route('/'),
-            'create' => Pages\CreateProviderPlan::route('/create'),
-            'edit' => Pages\EditProviderPlan::route('/{record}/edit'),
         ];
     }
 }

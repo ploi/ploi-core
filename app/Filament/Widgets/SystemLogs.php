@@ -28,7 +28,10 @@ class SystemLogs extends BaseWidget
                     'site' => $record->model->domain ?? '-Unknown-',
                     'database' => $record->model->name ?? '-Unknown-',
                 ]))
-                ->description(fn (SystemLog $record) => $record->description),
+                ->description(fn (SystemLog $record) => __($record->description, [
+                    'site' => $record->model->domain ?? '-Unknown-',
+                    'database' => $record->model->name ?? '-Unknown-',
+                ])),
         ];
     }
 }

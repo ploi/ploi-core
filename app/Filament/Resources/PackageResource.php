@@ -6,6 +6,7 @@ use App\Filament\Resources\PackageResource\Pages;
 use App\Filament\Resources\PackageResource\RelationManagers;
 use App\Models\Package;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -45,11 +46,13 @@ class PackageResource extends Resource
                 TextInput::make('price_monthly')
                     ->numeric()
                     ->label(__('Monthly price'))
-                    ->helperText(__('Fill this in if you want it to be monthly payments')),
+                    ->helperText(__('Fill this in if you want it to be monthly payments'))
+                    ->required(),
                 TextInput::make('price_yearly')
                     ->numeric()
                     ->label(__('Yearly price'))
-                    ->helperText(__('Fill this in if you want it to be yearly payments')),
+                    ->helperText(__('Fill this in if you want it to be yearly payments'))
+                    ->required(),
                 Select::make('currency')
                     ->label(__('Currency'))
                     ->options([
@@ -64,7 +67,35 @@ class PackageResource extends Resource
                         'brl' => 'BRL R$ (Brazilian Real)',
                     ])
                     ->required(),
-
+                Grid::make()
+                    ->schema([
+                        Section::make(__('Server permissions'))
+                            ->schema([
+                                Checkbox::make('server_permissions.create')
+                                    ->label('Allow server creation')
+                                    ->helperText('This will allow users to create servers'),
+                                Checkbox::make('server_permissions.update')
+                                    ->label('Allow server updates')
+                                    ->helperText('This will allow users to update servers'),
+                                Checkbox::make('server_permissions.delete')
+                                    ->label('Allow server deletion')
+                                    ->helperText('This will allow users to delete servers'),
+                            ])
+                            ->columnSpan(1),
+                        Section::make(__('Site permissions'))
+                            ->schema([
+                                Checkbox::make('site_permissions.create')
+                                    ->label('Allow site creation')
+                                    ->helperText('This will allow users to create sites'),
+                                Checkbox::make('site_permissions.update')
+                                    ->label('Allow site updates')
+                                    ->helperText('This will allow users to update sites'),
+                                Checkbox::make('site_permissions.delete')
+                                    ->label('Allow site deletion')
+                                    ->helperText('This will allow users to delete sites'),
+                            ])
+                            ->columnSpan(1),
+                    ]),
             ]);
     }
 
@@ -89,18 +120,6 @@ class PackageResource extends Resource
                     ->label(__('Maximum servers')),
                 Tables\Columns\TextColumn::make('users_count')
                     ->counts('users'),
-                Section::make(__('Server permissions'))
-                    ->schema([
-                        Checkbox::make('server_permissions.create')
-                            ->label('Allow server creation')
-                            ->helperText('This will allow users to create servers'),
-                        Checkbox::make('server_permissions.update')
-                            ->label('Allow server updates')
-                            ->helperText('This will allow users to update servers'),
-                        Checkbox::make('server_permissions.delete')
-                            ->label('Allow server deletion')
-                            ->helperText('This will allow users to delete servers'),
-                    ]),
             ])
             ->filters([
                 //

@@ -30,15 +30,14 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->label(__('E-mail address'))
                     ->email()
+                    ->unique(table: User::class, column: 'email', ignoreRecord: true)
                     ->required(),
-                Forms\Components\Textarea::make('notes')
-                    ->label(__('Notes'))
-                    ->maxLength(65535),
                 Forms\Components\Select::make('role')
                     ->options([
                         User::ADMIN => __('Administrator'),
                         User::USER => __('User'),
                     ])
+                    ->columnSpan(2)
                     ->required(),
                 Forms\Components\Select::make('package_id')
                     ->label(__('Package'))
@@ -46,6 +45,9 @@ class UserResource extends Resource
                 Forms\Components\Select::make('language')
                     ->label(__('Language'))
                     ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language])),
+                Forms\Components\Textarea::make('notes')
+                    ->label(__('Notes'))
+                    ->maxLength(65535),
                 Forms\Components\Textarea::make('blocked')
                     ->label(__('Blocked')),
                 Forms\Components\Checkbox::make('requires_password_for_ftp')
@@ -83,14 +85,14 @@ class UserResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->appendActions([
                 Impersonate::make('impersonate'),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ])
-            ->defaultSort('created_at', 'desc');
+            ->defaultSort('users.created_at', 'desc');
     }
 
     public static function getRelations(): array

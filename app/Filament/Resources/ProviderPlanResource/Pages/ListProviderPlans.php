@@ -13,7 +13,11 @@ class ListProviderPlans extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\Action::make('synchronize_providers')
+                ->label(__('Synchronize providers'))
+                ->action(function () {
+                    //
+                }),
         ];
     }
 }

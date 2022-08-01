@@ -10,8 +10,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProviderRegionResource extends Resource
 {
@@ -20,6 +18,8 @@ class ProviderRegionResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     protected static ?string $navigationGroup = 'Providers';
+
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -67,8 +67,6 @@ class ProviderRegionResource extends Resource
     {
         return [
             'index' => Pages\ListProviderRegions::route('/'),
-            'create' => Pages\CreateProviderRegion::route('/create'),
-            'edit' => Pages\EditProviderRegion::route('/{record}/edit'),
         ];
     }
 }

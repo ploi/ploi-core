@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ServerAttachRequest;
 use App\Http\Resources\Admin\SiteResource;
+use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ServerAttachRequest;
 
 class SiteController extends Controller
 {
@@ -24,7 +25,7 @@ class SiteController extends Controller
                     ->latest()
                     ->paginate(config('core.pagination.per_page'))
                     ->withQueryString()
-            )
+            ),
         ]);
     }
 
@@ -36,13 +37,13 @@ class SiteController extends Controller
             return [
                 'id' => $user->id,
                 'name' => $user->name,
-                'email' => $user->email
+                'email' => $user->email,
             ];
         });
 
         return inertia('Admin/Services/Site/Edit', [
             'site' => $site,
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
@@ -52,7 +53,7 @@ class SiteController extends Controller
 
         $site->update($request->all());
 
-        return redirect()->route('admin.services.index')->with('success', __('Server has been updated'));
+        return redirect()->route('admin.services.index')->with('success', __('Site has been updated'));
     }
 
     public function destroy($id)
@@ -61,19 +62,19 @@ class SiteController extends Controller
 
         $site->delete();
 
-        return redirect()->route('admin.services.index')->with('success', __('Server has been deleted'));
+        return redirect()->route('admin.services.index')->with('success', __('Site has been deleted'));
     }
 
     public function attach(ServerAttachRequest $request, $id)
     {
-        /* @var $site \App\Models\Server */
+        /* @var $site Server */
         $site = Site::findOrFail($id);
 
         $user = User::where('email', $request->input('email'))->first();
 
-        if ($site->users()->where('email', $request->input('email'))->count()) {
+        if ( $site->users()->where('email', $request->input('email'))->count() ) {
             return redirect()->back()->withErrors([
-                'email' => __('This user is already attached to this site')
+                'email' => __('This user is already attached to this site'),
             ]);
         }
 

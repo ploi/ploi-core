@@ -5,13 +5,16 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ServerResource\Pages;
 use App\Filament\Resources\ServerResource\RelationManagers;
 use App\Models\Server;
+use App\Models\User;
+use App\Services\Ploi\Ploi;
 use Filament\Forms;
+use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\HtmlString;
 
 class ServerResource extends Resource
 {
@@ -25,29 +28,18 @@ class ServerResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('provider_id'),
-                Forms\Components\TextInput::make('provider_plan_id'),
-                Forms\Components\TextInput::make('provider_region_id'),
-                Forms\Components\TextInput::make('status')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('ploi_id'),
                 Forms\Components\TextInput::make('name')
-                    ->maxLength(255),
+                    ->label(__('Name'))
+                    ->rules(['alpha_dash'])
+                    ->maxLength(40)
+                    ->columnSpan(2),
                 Forms\Components\TextInput::make('ip')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('internal_ip')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('ssh_port')
-                    ->required(),
-                Forms\Components\TextInput::make('available_php_versions'),
-                Forms\Components\TextInput::make('type')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('database_type')
-                    ->required()
-                    ->maxLength(255),
+                    ->label(__('IP address'))
+                    ->columnSpan(2),
                 Forms\Components\TextInput::make('maximum_sites')
-                    ->required(),
+                    ->integer()
+                    ->required()
+                    ->columnSpan(2),
             ]);
     }
 
@@ -55,22 +47,38 @@ class ServerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('provider_id'),
-                Tables\Columns\TextColumn::make('provider_plan_id'),
-                Tables\Columns\TextColumn::make('provider_region_id'),
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('ploi_id'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('ip'),
-                Tables\Columns\TextColumn::make('internal_ip'),
-                Tables\Columns\TextColumn::make('ssh_port'),
-                Tables\Columns\TextColumn::make('available_php_versions'),
-                Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('database_type'),
-                Tables\Columns\TextColumn::make('maximum_sites'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('Name'))
+                    ->searchable(),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->label(__('Status'))
+                    ->enum([
+                        Server::STATUS_BUSY => __('Busy'),
+                        Server::STATUS_ACTIVE => __('Active'),
+                    ])
+                    ->colors([
+                        'warning' => Server::STATUS_BUSY,
+                        'success' => Server::STATUS_ACTIVE,
+                    ]),
+                Tables\Columns\TextColumn::make('users')
+                    ->label(__('Users'))
+                    ->getStateUsing(function (Server $record) {
+                        $state = $record
+                            ->users
+                            ->map(function (User $user) {
+                                return '<a href="' . route('filament.resources.users.edit', ['record' => $user]) . '" class="text-primary-600">' . $user->name . '</a>';
+                            })
+                            ->implode(', ') ?: '-';
+
+                        return new HtmlString($state);
+                    }),
+                Tables\Columns\TextColumn::make('maximum_sites')
+                    ->label(__('Max sites'))
+                    ->formatStateUsing(fn (Server $record) => $record->maximum_sites . " (Current: {$record->sites_count})"),
+                Tables\Columns\TextColumn::make('ip')
+                    ->label(__('IP')),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Date'))
                     ->dateTime(),
             ])
             ->filters([
@@ -78,16 +86,46 @@ class ServerResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('synchronize_server')
+                    ->label(__('Synchronize'))
+                    ->icon('heroicon-o-refresh')
+                    ->action(function (Server $record) {
+                        $serverData = Ploi::make()->server()->get($record->ploi_id)->getData();
+
+                        $server = Server::query()
+                            ->updateOrCreate([
+                                'ploi_id' => $serverData->id,
+                            ], [
+                                'status' => $serverData->status,
+                                'name' => $serverData->name,
+                                'ip' => $serverData->ip_address,
+                                'ssh_port' => $serverData->ssh_port,
+                                'internal_ip' => $serverData->internal_ip,
+                                'available_php_versions' => $serverData->installed_php_versions,
+                            ]);
+
+                        Notification::make()
+                            ->body(__('Server :server synchronized successfully.', ['server' => $server->name]))
+                            ->success()
+                            ->send();
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->with(['users'])
+            ->withCount('sites');
+    }
+
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\UsersRelationManager::class,
         ];
     }
 
@@ -95,8 +133,12 @@ class ServerResource extends Resource
     {
         return [
             'index' => Pages\ListServers::route('/'),
-            'create' => Pages\CreateServer::route('/create'),
             'edit' => Pages\EditServer::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 }

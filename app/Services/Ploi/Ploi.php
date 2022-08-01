@@ -2,20 +2,20 @@
 
 namespace App\Services\Ploi;
 
-use Exception;
-use App\Services\Ploi\Http\Response;
-use Illuminate\Support\Facades\Http;
-use App\Services\Ploi\Resources\User;
-use App\Services\Ploi\Resources\Server;
-use Psr\Http\Message\ResponseInterface;
-use Illuminate\Http\Client\PendingRequest;
-use App\Services\Ploi\Resources\Synchronize;
+use App\Services\Ploi\Exceptions\Http\InternalServerError;
 use App\Services\Ploi\Exceptions\Http\NotFound;
 use App\Services\Ploi\Exceptions\Http\NotValid;
+use App\Services\Ploi\Exceptions\Http\PerformingMaintenance;
 use App\Services\Ploi\Exceptions\Http\TooManyAttempts;
 use App\Services\Ploi\Exceptions\Http\Unauthenticated;
-use App\Services\Ploi\Exceptions\Http\InternalServerError;
-use App\Services\Ploi\Exceptions\Http\PerformingMaintenance;
+use App\Services\Ploi\Http\Response;
+use App\Services\Ploi\Resources\Server;
+use App\Services\Ploi\Resources\Synchronize;
+use App\Services\Ploi\Resources\User;
+use Exception;
+use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Facades\Http;
+use Psr\Http\Message\ResponseInterface;
 
 class Ploi
 {
@@ -31,11 +31,11 @@ class Ploi
     {
         $this->url = config('services.ploi-api.url');
 
-        if (! $token) {
+        if ( ! $token ) {
             $token = config('services.ploi.token');
         }
 
-        if (! $coreApiToken) {
+        if ( ! $coreApiToken ) {
             $coreApiToken = config('services.ploi.core-token');
         }
 
@@ -43,6 +43,11 @@ class Ploi
         $this->setCoreApiToken($coreApiToken);
 
         $this->buildClient();
+    }
+
+    public static function make(): static
+    {
+        return new static();
     }
 
     public function setApiToken($token): self
@@ -85,7 +90,7 @@ class Ploi
 
     public function makeAPICall(string $url, string $method = 'get', array $options = []): Response
     {
-        if (! in_array($method, ['get', 'post', 'patch', 'delete'])) {
+        if ( ! in_array($method, ['get', 'post', 'patch', 'delete']) ) {
             throw new Exception('Invalid method type');
         }
 
@@ -93,7 +98,7 @@ class Ploi
          * This is a temporary method that was necessary for the switch from the Guzzle client to the Http facade.
          * We _should not_ need this, but it feels safer to keep this fallback code around for now.
          */
-        if (count($options) === 1 && array_key_exists('body', $options)) {
+        if ( count($options) === 1 && array_key_exists('body', $options) ) {
             $options = is_string($options['body']) ? json_decode($options['body']) : $options['body'];
         }
 

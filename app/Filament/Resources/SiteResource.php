@@ -4,14 +4,18 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SiteResource\Pages;
 use App\Filament\Resources\SiteResource\RelationManagers;
+use App\Models\Server;
 use App\Models\Site;
+use App\Models\User;
+use App\Services\Ploi\Ploi;
 use Filament\Forms;
+use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Contracts\Database\Builder;
+use Illuminate\Support\HtmlString;
 
 class SiteResource extends Resource
 {
@@ -21,23 +25,18 @@ class SiteResource extends Resource
 
     protected static ?string $navigationGroup = 'Site management';
 
+    protected static ?int $navigationSort = 0;
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('server_id'),
-                Forms\Components\TextInput::make('status')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('ploi_id'),
                 Forms\Components\TextInput::make('domain')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('project')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('php_version')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('aliases'),
-                Forms\Components\Textarea::make('dns_id')
-                    ->maxLength(65535),
+                    ->label(__('Domain'))
+                    ->required()
+                    ->hostname()
+                    ->unique(Site::class, column: 'domain', ignoreRecord: true)
+                    ->columnSpan(2),
             ]);
     }
 
@@ -45,17 +44,38 @@ class SiteResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('server_id'),
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('ploi_id'),
-                Tables\Columns\TextColumn::make('domain'),
-                Tables\Columns\TextColumn::make('project'),
-                Tables\Columns\TextColumn::make('php_version'),
-                Tables\Columns\TextColumn::make('aliases'),
-                Tables\Columns\TextColumn::make('dns_id'),
+                Tables\Columns\TextColumn::make('domain')
+                    ->description(function (Site $record) {
+                        return "PHP $record->php_version";
+                    })
+                    ->label(__('Name'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('server.name')
+                    ->label(__('Server')),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->enum([
+                        Site::STATUS_BUSY => __('Busy'),
+                        Site::STATUS_ACTIVE => __('Active'),
+                    ])
+                    ->colors([
+                        'warning' => Site::STATUS_BUSY,
+                        'success' => Site::STATUS_ACTIVE,
+                    ])
+                    ->label(__('Status')),
+                Tables\Columns\TextColumn::make('users')
+                    ->label(__('Users'))
+                    ->getStateUsing(function (Site $record) {
+                        $state = $record
+                            ->users
+                            ->map(function (User $user) {
+                                return '<a href="' . route('filament.resources.users.edit', ['record' => $user]) . '" class="text-primary-600">' . $user->name . '</a>';
+                            })
+                            ->implode(', ') ?: '-';
+
+                        return new HtmlString($state);
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Date'))
                     ->dateTime(),
             ])
             ->filters([
@@ -63,24 +83,77 @@ class SiteResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('synchronize_site')
+                    ->label(__('Synchronize'))
+                    ->icon('heroicon-o-refresh')
+                    ->action(function (Site $record) {
+                        $siteData = Ploi::make()->server($record->server->ploi_id)->sites()->get($record->ploi_id)->getData();
+
+                        $server = Server::query()
+                            ->where('ploi_id', $siteData->server_id)
+                            ->firstOrFail();
+
+                        $site = Site::query()
+                            ->updateOrCreate([
+                                'ploi_id' => $siteData->id,
+                            ], [
+                                'domain' => $siteData->domain,
+                                'php_version' => $siteData->php_version,
+                                'project' => $siteData->project_type,
+                            ]);
+
+                        $site->status = $siteData->status;
+                        $site->server_id = $server->id;
+                        $site->save();
+
+                        $certificates = Ploi::make()->server($siteData->server_id)->sites($siteData->id)->certificates()->get()->getData();
+
+                        if ( $certificates ) {
+                            foreach ($certificates as $certificate) {
+                                $site->certificates()->updateOrCreate([
+                                    'ploi_id' => $certificate->id,
+                                ], [
+                                    'status' => $certificate->status,
+                                    'ploi_id' => $certificate->id,
+                                    'domain' => $certificate->domain,
+                                    'type' => $certificate->type,
+                                ]);
+                            }
+                        }
+
+                        Notification::make()
+                            ->body(__('Site :site synchronized successfully.', ['site' => $site->domain]))
+                            ->success()
+                            ->send();
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()
+            ->with(['users', 'server']);
+    }
+
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\UsersRelationManager::class,
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListSites::route('/'),
-            'create' => Pages\CreateSite::route('/create'),
             'edit' => Pages\EditSite::route('/{record}/edit'),
         ];
     }

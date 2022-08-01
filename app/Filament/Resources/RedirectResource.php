@@ -10,8 +10,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class RedirectResource extends Resource
 {
@@ -20,6 +18,8 @@ class RedirectResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     protected static ?string $navigationGroup = 'Site management';
+
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
