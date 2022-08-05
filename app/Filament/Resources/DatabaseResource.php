@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\DatabaseResource\Pages;
 use App\Filament\Resources\DatabaseResource\RelationManagers;
 use App\Models\Database;
-use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -15,7 +14,7 @@ class DatabaseResource extends Resource
 {
     protected static ?string $model = Database::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-database';
 
     protected static ?string $navigationGroup = 'Site management';
 
@@ -25,13 +24,7 @@ class DatabaseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('site_id'),
-                Forms\Components\TextInput::make('server_id'),
-                Forms\Components\TextInput::make('status')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('ploi_id'),
-                Forms\Components\TextInput::make('name')
-                    ->maxLength(255),
+                //
             ]);
     }
 
@@ -39,24 +32,34 @@ class DatabaseResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('site_id'),
-                Tables\Columns\TextColumn::make('server_id'),
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('ploi_id'),
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('server.name')
+                    ->label(__('Server')),
+                Tables\Columns\TextColumn::make('site.domain')
+                    ->label(__('Site')),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->enum([
+                        Database::STATUS_BUSY => __('Busy'),
+                        Database::STATUS_ACTIVE => __('Active'),
+                    ])
+                    ->colors([
+                        'warning' => Database::STATUS_BUSY,
+                        'success' => Database::STATUS_ACTIVE,
+                    ])
+                    ->label(__('Status')),
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('Name')),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Date'))
                     ->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                //
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                //
             ]);
     }
 
@@ -71,8 +74,6 @@ class DatabaseResource extends Resource
     {
         return [
             'index' => Pages\ListDatabases::route('/'),
-            'create' => Pages\CreateDatabase::route('/create'),
-            'edit' => Pages\EditDatabase::route('/{record}/edit'),
         ];
     }
 }

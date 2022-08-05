@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
-use App\Filament\Resources\ServerResource;
 use App\Filament\Resources\SiteResource;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -21,6 +20,6 @@ class SitesRelationManager extends RelationManager
 
     public static function table(Table $table): Table
     {
-        return ServerResource::table($table);
+        return SiteResource::table($table);
     }
 }

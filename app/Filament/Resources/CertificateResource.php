@@ -10,12 +10,13 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
 
 class CertificateResource extends Resource
 {
     protected static ?string $model = Certificate::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-annotation';
 
     protected static ?string $navigationGroup = 'Site management';
 
@@ -25,7 +26,7 @@ class CertificateResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('site_id'),
+                Forms\Components\TextInput::make('site.name'),
                 Forms\Components\TextInput::make('server_id'),
                 Forms\Components\TextInput::make('status')
                     ->maxLength(255),
@@ -43,17 +44,26 @@ class CertificateResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('site_id'),
-                Tables\Columns\TextColumn::make('server_id'),
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('ploi_id'),
-                Tables\Columns\TextColumn::make('domain'),
-                Tables\Columns\TextColumn::make('certificate'),
-                Tables\Columns\TextColumn::make('private'),
-                Tables\Columns\TextColumn::make('type'),
+                Tables\Columns\TextColumn::make('server.name')
+                    ->label(__('Server')),
+                Tables\Columns\TextColumn::make('site.domain')
+                    ->label(__('Main domain')),
+                Tables\Columns\TextColumn::make('type')
+                    ->label('Type'),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->enum([
+                        Certificate::STATUS_BUSY => __('Busy'),
+                        Certificate::STATUS_ACTIVE => __('Active'),
+                    ])
+                    ->colors([
+                        'warning' => Certificate::STATUS_BUSY,
+                        'success' => Certificate::STATUS_ACTIVE,
+                    ])
+                    ->label(__('Status')),
+                Tables\Columns\TextColumn::make('domain')
+                    ->label('Domains & aliases'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Date'))
                     ->dateTime(),
             ])
             ->filters([
@@ -67,6 +77,12 @@ class CertificateResource extends Resource
             ]);
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->orderBy('domain');
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -78,8 +94,6 @@ class CertificateResource extends Resource
     {
         return [
             'index' => Pages\ListCertificates::route('/'),
-            'create' => Pages\CreateCertificate::route('/create'),
-            'edit' => Pages\EditCertificate::route('/{record}/edit'),
         ];
     }
 }

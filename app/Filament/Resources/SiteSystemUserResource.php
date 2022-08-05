@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SiteSystemUserResource\Pages;
 use App\Filament\Resources\SiteSystemUserResource\RelationManagers;
 use App\Models\SiteSystemUser;
-use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -15,7 +14,7 @@ class SiteSystemUserResource extends Resource
 {
     protected static ?string $model = SiteSystemUser::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     protected static ?string $navigationGroup = 'Site management';
 
@@ -25,10 +24,7 @@ class SiteSystemUserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_name')
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('ftp_password')
-                    ->maxLength(65535),
+                //
             ]);
     }
 
@@ -36,20 +32,22 @@ class SiteSystemUserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_name'),
+                Tables\Columns\TextColumn::make('site.domain')
+                    ->label(__('Site')),
+                Tables\Columns\TextColumn::make('user_name')
+                    ->label(__('Username')),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Date'))
                     ->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                //
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                //
             ]);
     }
 
@@ -64,8 +62,6 @@ class SiteSystemUserResource extends Resource
     {
         return [
             'index' => Pages\ListSiteSystemUsers::route('/'),
-            'create' => Pages\CreateSiteSystemUser::route('/create'),
-            'edit' => Pages\EditSiteSystemUser::route('/{record}/edit'),
         ];
     }
 }

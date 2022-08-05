@@ -19,7 +19,7 @@
     @endif
 
     @if($logo = setting('logo'))
-        <link rel="icon" type="image/x-icon" href="{{ $logo }}">
+        <link rel="icon" type="image/x-icon" href="{{ \Illuminate\Support\Facades\Storage::disk('logos')->url($logo) }}">
     @endif
 
     @if(view()->exists('header'))

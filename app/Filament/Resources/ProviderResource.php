@@ -2,20 +2,24 @@
 
 namespace App\Filament\Resources;
 
+use App\Actions\Provider\SynchronizeProviderAction;
 use App\Filament\Resources\ProviderResource\Pages;
 use App\Filament\Resources\ProviderResource\RelationManagers;
+use App\Filament\Resources\ProviderResource\Widgets\AvailableProvidersOverview;
 use App\Models\Provider;
 use Filament\Forms;
+use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProviderResource extends Resource
 {
     protected static ?string $model = Provider::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-cloud-upload';
 
     protected static ?string $navigationGroup = 'Providers';
 
@@ -39,31 +43,52 @@ class ProviderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('ploi_id'),
-                Tables\Columns\TextColumn::make('label'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('allowed_plans'),
-                Tables\Columns\TextColumn::make('allowed_regions'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('name')
+                    ->description(function (Provider $record) {
+                        return "{$record->plans_count} plan(s) · {$record->regions_count} region(s)";
+                    })
+                    ->label(__('Name')),
+                Tables\Columns\TextColumn::make('label')
+                    ->label(__('Label')),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('synchronize_provider')
+                    ->label(__('Synchronize'))
+                    ->icon('heroicon-o-refresh')
+                    ->action(function (Provider $record) {
+                        $provider = app(SynchronizeProviderAction::class)->execute($record->ploi_id);
+
+                        Notification::make()
+                            ->body(__('Provider :provider synchronized successfully.', ['provider' => $provider->name]))
+                            ->success()
+                            ->send();
+                    }),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                //
             ]);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withCount(['plans', 'regions']);
     }
 
     public static function getRelations(): array
     {
         return [
             //
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            AvailableProvidersOverview::class,
         ];
     }
 

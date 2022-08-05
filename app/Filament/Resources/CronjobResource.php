@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CronjobResource\Pages;
 use App\Filament\Resources\CronjobResource\RelationManagers;
 use App\Models\Cronjob;
-use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -15,7 +14,7 @@ class CronjobResource extends Resource
 {
     protected static ?string $model = Cronjob::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-clock';
 
     protected static ?string $navigationGroup = 'Site management';
 
@@ -25,18 +24,7 @@ class CronjobResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('site_id'),
-                Forms\Components\TextInput::make('server_id'),
-                Forms\Components\TextInput::make('status')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('ploi_id'),
-                Forms\Components\TextInput::make('command')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('user')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('frequency')
-                    ->required()
-                    ->maxLength(255),
+                //
             ]);
     }
 
@@ -44,26 +32,36 @@ class CronjobResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('site_id'),
-                Tables\Columns\TextColumn::make('server_id'),
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('ploi_id'),
-                Tables\Columns\TextColumn::make('command'),
-                Tables\Columns\TextColumn::make('user'),
-                Tables\Columns\TextColumn::make('frequency'),
+                Tables\Columns\TextColumn::make('site.domain')
+                    ->label(__('Site')),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->enum([
+                        Cronjob::STATUS_BUSY => __('Busy'),
+                        Cronjob::STATUS_ACTIVE => __('Active'),
+                    ])
+                    ->colors([
+                        'warning' => Cronjob::STATUS_BUSY,
+                        'success' => Cronjob::STATUS_ACTIVE,
+                    ])
+                    ->label(__('Status')),
+                Tables\Columns\TextColumn::make('server.name')
+                    ->label(__('Server')),
+                Tables\Columns\TextColumn::make('command')
+                    ->label(__('Command')),
+                Tables\Columns\TextColumn::make('frequency')
+                    ->label(__('Frequency')),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Date'))
                     ->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                //
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                //
             ]);
     }
 
@@ -78,8 +76,6 @@ class CronjobResource extends Resource
     {
         return [
             'index' => Pages\ListCronjobs::route('/'),
-            'create' => Pages\CreateCronjob::route('/create'),
-            'edit' => Pages\EditCronjob::route('/{record}/edit'),
         ];
     }
 }

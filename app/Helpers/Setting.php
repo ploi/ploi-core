@@ -4,7 +4,7 @@ use App\Models\Setting;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Arr;
 
-if (!function_exists('setting')) {
+if ( ! function_exists('setting') ) {
     /**
      * @param null $key
      * @param null $default
@@ -12,11 +12,21 @@ if (!function_exists('setting')) {
      */
     function setting($key = null, $default = null)
     {
-        if (is_array($key)) {
+        if ( is_array($key) ) {
+            $value = Arr::first($key);
+
+            if ( $value === true ) {
+                $value = '1';
+            }
+
+            if ( $value === false ) {
+                $value = '0';
+            }
+
             Setting::updateOrCreate([
                 'key' => key($key)
             ], [
-                'value' => Arr::first($key)
+                'value' => $value,
             ]);
 
             try {
@@ -31,7 +41,7 @@ if (!function_exists('setting')) {
         $value = Arr::get(app('settings'), $key, $default);
 
         // Boolean casting
-        if ($value === "0" || $value === "1" && $key !== 'trial_package') {
+        if ( $value === "0" || $value === "1" && $key !== 'trial_package' ) {
             return (bool) $value;
         }
 

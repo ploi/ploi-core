@@ -15,7 +15,7 @@ class RedirectResource extends Resource
 {
     protected static ?string $model = Redirect::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-external-link';
 
     protected static ?string $navigationGroup = 'Site management';
 
@@ -43,26 +43,38 @@ class RedirectResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('site_id'),
-                Tables\Columns\TextColumn::make('server_id'),
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('ploi_id'),
-                Tables\Columns\TextColumn::make('redirect_from'),
-                Tables\Columns\TextColumn::make('redirect_to'),
-                Tables\Columns\TextColumn::make('type'),
+                Tables\Columns\TextColumn::make('server.name')
+                    ->label(__('Server')),
+                Tables\Columns\TextColumn::make('site.domain')
+                    ->label(__('Site')),
+                Tables\Columns\TextColumn::make('type')
+                    ->label(__('Type')),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->enum([
+                        Redirect::STATUS_BUSY => __('Busy'),
+                        Redirect::STATUS_ACTIVE => __('Active'),
+                    ])
+                    ->colors([
+                        'warning' => Redirect::STATUS_BUSY,
+                        'success' => Redirect::STATUS_ACTIVE,
+                    ])
+                    ->label(__('Status')),
+                Tables\Columns\TextColumn::make('redirect_from')
+                    ->label(__('Redirect from')),
+                Tables\Columns\TextColumn::make('redirect_to')
+                    ->label(__('Redirect to')),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Date'))
                     ->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                //
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                //
             ]);
     }
 
@@ -77,8 +89,6 @@ class RedirectResource extends Resource
     {
         return [
             'index' => Pages\ListRedirects::route('/'),
-            'create' => Pages\CreateRedirect::route('/create'),
-            'edit' => Pages\EditRedirect::route('/{record}/edit'),
         ];
     }
 }

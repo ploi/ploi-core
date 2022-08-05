@@ -4,8 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProviderPlanResource\Pages;
 use App\Filament\Resources\ProviderPlanResource\RelationManagers;
+use App\Models\Provider;
 use App\Models\ProviderPlan;
-use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -15,7 +15,7 @@ class ProviderPlanResource extends Resource
 {
     protected static ?string $model = ProviderPlan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-cube';
 
     protected static ?string $navigationGroup = 'Providers';
 
@@ -25,11 +25,7 @@ class ProviderPlanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('provider_id'),
-                Forms\Components\TextInput::make('plan_id')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('label')
-                    ->maxLength(255),
+                //
             ]);
     }
 
@@ -37,22 +33,25 @@ class ProviderPlanResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('provider_id'),
-                Tables\Columns\TextColumn::make('plan_id'),
-                Tables\Columns\TextColumn::make('label'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('provider.name')
+                    ->label(__('Provider')),
+                Tables\Columns\TextColumn::make('plan_id')
+                    ->label(__('Plan ID'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('label')
+                    ->label(__('Label'))
+                    ->searchable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('provider_id')
+                    ->label(__('Provider'))
+                    ->options(fn () => Provider::orderBy('name')->get()->mapWithKeys(fn (Provider $provider) => [$provider->id => $provider->name])),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                //
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                //
             ]);
     }
 

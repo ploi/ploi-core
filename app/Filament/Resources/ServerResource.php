@@ -119,7 +119,7 @@ class ServerResource extends Resource
     {
         return parent::getEloquentQuery()
             ->with(['users'])
-            ->withCount('sites');
+            ->withCount(['sites']);
     }
 
     public static function getRelations(): array
