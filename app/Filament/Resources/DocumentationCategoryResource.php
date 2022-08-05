@@ -19,11 +19,11 @@ class DocumentationCategoryResource extends Resource
 {
     protected static ?string $model = DocumentationCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
 
     protected static ?string $navigationGroup = 'Documentation';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $pluralLabel = 'Categories';
 
