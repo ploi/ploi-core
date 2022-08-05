@@ -89,7 +89,7 @@ class HandleInertiaRequests extends Middleware
                     'name' => setting('name', 'Company'),
                     'support' => setting('support', false),
                     'documentation' => setting('documentation', false),
-                    'logo' => Storage::disk('logos')->url(setting('logo')),
+                    'logo' => setting('logo') ? Storage::disk('logos')->url(setting('logo')) : null,
                     'allow_registration' => setting('allow_registration'),
                     'billing' => config('cashier.key') && config('cashier.secret'),
                     'has_terms' => (bool) setting('terms'),
