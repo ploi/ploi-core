@@ -152,6 +152,8 @@ class Settings extends Page
         $state = $this->form->getState();
 
         $oldLogo = setting('logo');
+        $oldDocumentation = setting('documentation');
+        $oldSupport = setting('support');
 
         if ( $state['logo'] === null && $oldLogo ) {
             Storage::disk('logos')->delete($oldLogo);
@@ -168,7 +170,7 @@ class Settings extends Page
             ->body(__('Settings saved.'))
             ->send();
 
-        if ( $state['logo'] !== $oldLogo ) {
+        if ( $state['logo'] !== $oldLogo || $state['documentation'] !== $oldDocumentation || $state['support'] !== $oldSupport ) {
             $this->redirectRoute('filament.pages.settings');
         }
     }

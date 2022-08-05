@@ -36,7 +36,8 @@ class FilamentServiceProvider extends PluginServiceProvider
                 'Server management',
                 'Site management',
                 'Providers',
-                'Settings'
+                'Documentation',
+                'Settings',
             ]);
 
             TextInput::macro('hostname', function () {
