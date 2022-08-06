@@ -20,7 +20,7 @@
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-small text-body">{{ ticket.user.name }}</h3>
-                                        <p class="text-medium-emphasis">{{ ticket.content_html }}</p>
+                                        <p class="text-medium-emphasis" v-html="ticket.content_html"></p>
                                     </div>
                                 </div>
                             </li>
@@ -31,9 +31,7 @@
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-small text-body">{{ reply.user.name }}</h3>
-                                        <p class="text-medium-emphasis">
-                                            {{ reply.content_html }}
-                                        </p>
+                                        <p class="text-medium-emphasis" v-html="reply.content_html"></p>
                                     </div>
                                 </div>
                             </li>
