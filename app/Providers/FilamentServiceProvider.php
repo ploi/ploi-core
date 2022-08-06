@@ -13,18 +13,6 @@ class FilamentServiceProvider extends PluginServiceProvider
 {
     public static string $name = 'ploi-core::admin';
 
-    protected array $widgets = [
-        //
-    ];
-
-    protected array $pages = [
-        //
-    ];
-
-    protected array $resources = [
-        //
-    ];
-
     public function boot(): void
     {
         Filament::serving(function () {
