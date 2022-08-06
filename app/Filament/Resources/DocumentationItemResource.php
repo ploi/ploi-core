@@ -11,8 +11,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 
 class DocumentationItemResource extends Resource
 {
@@ -72,26 +70,5 @@ class DocumentationItemResource extends Resource
             'create' => Pages\CreateDocumentationItem::route('/create'),
             'edit' => Pages\EditDocumentationItem::route('/{record}/edit'),
         ];
-    }
-
-    protected static function getGlobalSearchEloquentQuery(): Builder
-    {
-        return parent::getGlobalSearchEloquentQuery()->with(['category']);
-    }
-
-    public static function getGloballySearchableAttributes(): array
-    {
-        return ['title', 'category.title'];
-    }
-
-    public static function getGlobalSearchResultDetails(Model $record): array
-    {
-        $details = [];
-
-        if ( $record->category ) {
-            $details['Category'] = $record->category->title;
-        }
-
-        return $details;
     }
 }
