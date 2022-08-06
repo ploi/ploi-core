@@ -1,5 +1,5 @@
 <x-filament::page>
-    <div class="px-4 py-3 rounded-md border border-gray-400">
+    <div class="px-4 py-4 rounded-lg border border-gray-400">
         <p>{{ __("Check your system's version here. If there's an update available you'll be able to press the update button to update your system.") }}</p>
 
         <ul class="mt-4">
@@ -9,7 +9,7 @@
         </ul>
 
         @if($this->hasAvailableUpdate())
-            <div class="mt-8 bg-primary-600 text-white rounded px-4 py-3">
+            <div class="mt-8 bg-primary-600 text-white rounded-lg px-4 py-3">
                 <h2 class="text-lg">{{ __('Update available') }}</h2>
                 <p>{{ __('An update is available for your system, please upgrade.') }}</p>
 
@@ -18,12 +18,12 @@
         @endif
     </div>
 
-    <div class="mt-8 pl-4 px-4 py-4 rounded-md border border-gray-400">
-        <ul class="list-disc ml-4">
-            <li><a class="text-primary-600" href="https://docs.ploi-core.io/">Ploi Core Docs</a></li>
-            <li><a class="text-primary-600" href="https://ploi.io/">Ploi Website</a></li>
-            <li><a class="text-primary-600" href="https://ploi.io/login">Ploi Panel</a></li>
-            <li><a class="text-primary-600" href="https://github.com/ploi-deploy/ploi-core">Ploi GitHub repository </a></li>
+    <div class="mt-8 pl-4 px-4 py-4 rounded-lg border border-gray-400">
+        <ul class="list-disc ml-6 text-gray-600">
+            <li><a class="text-primary-600 font-bold" href="https://docs.ploi-core.io/">Ploi Core Docs</a></li>
+            <li><a class="text-primary-600 font-bold" href="https://ploi.io/">Ploi Website</a></li>
+            <li><a class="text-primary-600 font-bold" href="https://ploi.io/login">Ploi Panel</a></li>
+            <li><a class="text-primary-600 font-bold" href="https://github.com/ploi-deploy/ploi-core">Ploi GitHub repository </a></li>
         </ul>
     </div>
 </x-filament::page>
