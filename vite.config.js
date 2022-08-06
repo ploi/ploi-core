@@ -46,7 +46,7 @@ export default defineConfig({
     build: {
         outDir: process.env?.TAILWIND_CONFIG
             ? `./public/build/${process.env.TAILWIND_CONFIG}`
-            : "./public/build/frontend",
+            : "./public/build",
     },
     resolve: {
         alias: {
