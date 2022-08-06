@@ -30,7 +30,8 @@ jobs:
         with:
           node-version: '14.x'
       - run: npm install
-      - run: npm run production
+      - run: npm run prod
+      - run: npm run prod:filament
 
       - name: Commit build assets
         run: |
