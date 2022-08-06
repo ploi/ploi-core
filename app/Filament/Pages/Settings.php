@@ -159,9 +159,7 @@ class Settings extends Page
             Storage::disk('logos')->delete($oldLogo);
         }
 
-        foreach ($state as $key => $value) {
-            setting([$key => $value]);
-        }
+        setting($state);
 
         cache()->forget('core.settings');
 

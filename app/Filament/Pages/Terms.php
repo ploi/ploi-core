@@ -82,9 +82,7 @@ class Terms extends Page
     {
         $state = $this->form->getState();
 
-        foreach ($state as $key => $value) {
-            setting([$key => $value]);
-        }
+        setting($state);
 
         cache()->forget('core.settings');
 

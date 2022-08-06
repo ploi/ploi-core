@@ -12,22 +12,22 @@ if ( ! function_exists('setting') ) {
      */
     function setting($key = null, $default = null)
     {
-        if ( is_array($key) ) {
-            $value = Arr::first($key);
+        if ( is_array($settings = $key) ) {
+            foreach ($settings as $key => $value) {
+                if ( $value === true ) {
+                    $value = '1';
+                }
 
-            if ( $value === true ) {
-                $value = '1';
+                if ( $value === false ) {
+                    $value = '0';
+                }
+
+                Setting::updateOrCreate([
+                    'key' => $key,
+                ], [
+                    'value' => $value,
+                ]);
             }
-
-            if ( $value === false ) {
-                $value = '0';
-            }
-
-            Setting::updateOrCreate([
-                'key' => key($key)
-            ], [
-                'value' => $value,
-            ]);
 
             try {
                 cache()->forget('core.settings');
