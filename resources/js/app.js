@@ -19,7 +19,6 @@ createInertiaApp({
     setup({el, app, props, plugin}) {
         return createApp({render: () => h(app, props)})
             .use(plugin)
-            .mixin({methods: {route}})
             .use(vClickOutside)
             .use(VueMeta)
             .use(VueClipboard)

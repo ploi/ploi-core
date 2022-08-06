@@ -41,7 +41,7 @@
                                     </DropdownListItem>
                                     <DropdownListItem v-if="$page.props.settings.billing" :to="route('profile.billing.index')">{{ __('Billing') }}
                                     </DropdownListItem>
-                                    <DropdownListItem class="!text-danger" component-is="a" v-if="$page.props.auth.user.role === 'admin'"
+                                    <DropdownListItem class="!text-danger" :component-is-inertia-link="false" component-is="a" v-if="$page.props.auth.user.role === 'admin'"
                                                       to="/admin">{{ __('Administration') }}
                                     </DropdownListItem>
                                     <DropdownListItem :to="route('logout')" component-is="button" method="post">{{ __('Sign out') }}
