@@ -1,1 +1,0 @@
-import{n as r}from"./plugin-vue2_normalizer.000ba15c.js";const s={};var a=function(){var n=this,t=n._self._c;return t("form",{staticClass:"space-y-4",on:{submit:function(e){return e.preventDefault(),n.$emit("submit")}}},[n._t("default")],2)},o=[],l=r(s,a,o,!1,null,null,null,null);const u=l.exports;export{u as default};

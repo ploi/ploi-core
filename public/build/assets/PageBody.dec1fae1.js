@@ -1,1 +1,0 @@
-import{n as s}from"./plugin-vue2_normalizer.000ba15c.js";const t={};var a=function(){var n=this,e=n._self._c;return e("section",{staticClass:"my-8 space-y-8"},[n._t("default")],2)},r=[],_=s(t,a,r,!1,null,null,null,null);const c=_.exports;export{c as default};

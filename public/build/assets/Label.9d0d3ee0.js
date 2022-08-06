@@ -1,1 +1,0 @@
-import{n as t}from"./plugin-vue2_normalizer.000ba15c.js";const n={props:{forId:{type:String,required:!1},errors:{type:Array}}};var l=function(){var r=this,e=r._self._c;return e("label",{class:["text-small"],attrs:{for:r.forId}},[r._t("default")],2)},s=[],a=t(n,l,s,!1,null,null,null,null);const f=a.exports;export{f as default};

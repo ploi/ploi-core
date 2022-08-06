@@ -1,1 +1,0 @@
-import{n}from"./plugin-vue2_normalizer.000ba15c.js";const a={};var r=function(){var t=this,e=t._self._c;return e("img",{staticClass:"w-32 md:w-48 m-auto",attrs:{src:"/images/empty.png",alt:"Decorative image for empty list."}})},s=[],m=n(a,r,s,!1,null,null,null,null);const _=m.exports;export{_ as default};

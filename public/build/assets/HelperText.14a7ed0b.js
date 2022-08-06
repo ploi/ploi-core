@@ -1,1 +1,0 @@
-import{n}from"./plugin-vue2_normalizer.000ba15c.js";const s={};var l=function(){var e=this,t=e._self._c;return t("p",{staticClass:"text-medium-emphasis text-small"},[e._t("default")],2)},r=[],a=n(s,l,r,!1,null,null,null,null);const c=a.exports;export{c as default};

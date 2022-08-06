@@ -1,1 +1,0 @@
-import{n as t}from"./plugin-vue2_normalizer.000ba15c.js";const a={};var r=function(){var e=this,n=e._self._c;return n("h1",{staticClass:"font-semibold text-heading"},[e._t("default")],2)},s=[],l=t(a,r,s,!1,null,null,null,null);const c=l.exports;export{c as default};

@@ -1,1 +1,0 @@
-import{n as r}from"./plugin-vue2_normalizer.000ba15c.js";const t={};var _=function(){var n=this,e=n._self._c;return e("tr",[n._t("default")],2)},l=[],a=r(t,_,l,!1,null,null,null,null);const c=a.exports;export{c as default};
