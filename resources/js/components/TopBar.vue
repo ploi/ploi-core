@@ -13,13 +13,13 @@
                     <ul class="flex items-center space-x-4">
                         <li :aria-label="__('Search')" data-balloon-blunt data-balloon-pos="down">
                             <IconButton @click="triggerSearch">
-                                <IconSearch class="text-top-bar"/>
+                                <IconSearch class="text-top-bar" />
                             </IconButton>
                         </li>
                         <li :aria-label="themeMode === 'light' ? __('Enable dark mode') : __('Enable light mode')" data-balloon-blunt data-balloon-pos="down">
                             <IconButton @click="toggleTheme">
-                                <IconMoon class="text-top-bar" v-if="themeMode === 'light'"/>
-                                <IconSun class="text-top-bar" v-if="themeMode === 'dark'"/>
+                                <IconMoon class="text-top-bar" v-if="themeMode === 'light'" />
+                                <IconSun class="text-top-bar" v-if="themeMode === 'dark'" />
                             </IconButton>
                         </li>
                         <li>
@@ -118,7 +118,7 @@ export default {
         },
 
         triggerSearch() {
-            window.eventBus.$emit('openSearch');
+            window.eventBus.emit('openSearch');
         }
     }
 }

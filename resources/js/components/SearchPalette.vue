@@ -83,7 +83,7 @@ export default {
     mounted() {
         document.addEventListener('keydown', this.handleKeydown);
 
-        window.eventBus.$on('openSearch', () => {
+        window.eventBus.on('openSearch', () => {
             this.openSearch();
         });
     },

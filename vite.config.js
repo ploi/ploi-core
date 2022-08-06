@@ -1,6 +1,6 @@
 import {defineConfig} from 'vite';
 import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue2';
+import vue from '@vitejs/plugin-vue';
 
 let inputs = [];
 
@@ -21,6 +21,11 @@ export default defineConfig({
         }),
         vue({
             template: {
+                compilerOptions: {
+                    compatConfig: {
+                        MODE: 2,
+                    }
+                },
                 transformAssetUrls: {
                     video: [],
                     source: [],
@@ -47,10 +52,12 @@ export default defineConfig({
         outDir: process.env?.TAILWIND_CONFIG
             ? `./public/build/${process.env.TAILWIND_CONFIG}`
             : "./public/build",
+        minify: false,
     },
     resolve: {
         alias: {
-            "@": '/resources/js'
+            "@": '/resources/js',
+            "vue": "@vue/compat"
         }
     }
 });

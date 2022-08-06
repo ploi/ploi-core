@@ -8,7 +8,7 @@
                     <template #form>
                         <FormInput type="password" :label="__('Enter your account password to reveal FTP password')"
                                    v-model="form.password"
-                                   :errors="$page.props.errors.password"/>
+                                   :errors="$page.props.errors.password" />
                     </template>
 
                     <template #form-actions>
@@ -18,7 +18,7 @@
             </ModalContainer>
         </Portal>
 
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -38,7 +38,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -57,21 +57,22 @@
                                                 <TableRow>
                                                     <TableHeader>{{ __('FTP host') }}</TableHeader>
                                                     <TableData :border="false">
-                                                        <copy :label="`${ip_address}`" :value="ip_address"/>
+                                                        <copy :label="`${ip_address}`" :value="ip_address" />
                                                     </TableData>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableHeader>{{ __('FTP user') }}</TableHeader>
                                                     <TableData :border="false">
                                                         <copy :label="`${system_user.user_name}`"
-                                                              :value="system_user.user_name"/>
+                                                              :value="system_user.user_name" />
                                                     </TableData>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableHeader>{{ __('FTP password') }}</TableHeader>
                                                     <TableData :border="false">
-                                                        <div v-if="ftp_password" v-text="ftp_password">
-                                                            <copy :label="`${ftp_password}`" :value="ftp_password"/>
+                                                        <div v-if="ftp_password">
+                                                            <span v-text="ftp_password"></span>
+                                                            <copy :label="`${ftp_password}`" :value="ftp_password" />
                                                         </div>
 
                                                         <Button variant="secondary" @click="confirmRequestFtpPassword"
@@ -100,21 +101,21 @@
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
-                                                           :value="mainDnsRecord"/>
+                                                           :value="mainDnsRecord" />
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
-                                                           :value="ip_address"/>
+                                                           :value="ip_address" />
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
-                                                           :value="`www`"/>
+                                                           :value="`www`" />
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
-                                                           :value="ip_address"/>
+                                                           :value="ip_address" />
                                             </div>
                                         </div>
                                     </form>
@@ -131,11 +132,11 @@
                                         <div class="grid grid-cols-2 gap-4" v-for="alias in site.aliases">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
-                                                           :value="alias"/>
+                                                           :value="alias" />
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
-                                                           :value="ip_address"/>
+                                                           :value="ip_address" />
                                             </div>
                                         </div>
                                     </form>
