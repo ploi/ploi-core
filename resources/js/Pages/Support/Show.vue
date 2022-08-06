@@ -1,6 +1,6 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -16,23 +16,23 @@
                             <li class="p-6 rounded shadow bg-surface-3">
                                 <div class="flex space-x-4">
                                     <div>
-                                        <img :src="ticket.user.avatar" class="w-8 h-8 rounded-avatar bg-surface-2"/>
+                                        <img :src="ticket.user.avatar" class="w-8 h-8 rounded-avatar bg-surface-2" />
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-small text-body">{{ ticket.user.name }}</h3>
-                                        <p class="text-medium-emphasis">{{ ticket.content }}</p>
+                                        <p class="text-medium-emphasis">{{ ticket.content_html }}</p>
                                     </div>
                                 </div>
                             </li>
                             <li class="p-6 rounded shadow bg-surface-3" v-for="reply in replies.data">
                                 <div class="flex space-x-4">
                                     <div>
-                                        <img :src="reply.user.avatar" class="w-8 h-8 rounded-avatar bg-surface-2"/>
+                                        <img :src="reply.user.avatar" class="w-8 h-8 rounded-avatar bg-surface-2" />
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-small text-body">{{ reply.user.name }}</h3>
                                         <p class="text-medium-emphasis">
-                                            {{ reply.content }}
+                                            {{ reply.content_html }}
                                         </p>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
 
                         <form class="space-y-4" @submit.prevent="reply" v-if="ticket.status !== 'closed'">
                             <FormTextarea :label="__('Reply')" :errors="$page.props.errors.reply"
-                                          v-model="form.content"/>
+                                          v-model="form.content" />
 
                             <FormActions>
                                 <Button>{{ __('Save') }}</Button>

@@ -37,6 +37,7 @@ class FilamentServiceProvider extends PluginServiceProvider
                 'Site management',
                 'Providers',
                 'Documentation',
+                'Support',
                 'Settings',
             ]);
 
