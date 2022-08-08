@@ -89,7 +89,8 @@ class ServerResource extends Resource
                     ->label(__('Synchronize'))
                     ->tooltip(__('This will synchronize the latest data from this provider to your Ploi Core installation'))
                     ->icon('heroicon-o-refresh')
-                    ->action(fn (Server $record) => app(SynchronizeServerAction::class)->execute($record->ploi_id)),
+                    ->action(fn (Server $record) => app(SynchronizeServerAction::class)->execute($record->ploi_id))
+                    ->visible(fn (Server $record) => $record->status === Server::STATUS_ACTIVE),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

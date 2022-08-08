@@ -47,6 +47,7 @@ class SiteResource extends Resource
                         return "PHP $record->php_version";
                     })
                     ->label(__('Name'))
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('server.name')
                     ->label(__('Server')),
@@ -86,8 +87,9 @@ class SiteResource extends Resource
                     ->tooltip(__('This will synchronize the latest data from this provider to your Ploi Core installation'))
                     ->icon('heroicon-o-refresh')
                     ->action(function (Site $record) {
-                        app(SynchronizeSiteAction::class)->execute($record->ploi_id);
-                    }),
+                        app(SynchronizeSiteAction::class)->execute($record->server->ploi_id, $record->ploi_id);
+                    })
+                    ->visible(fn (Site $record) => $record->status === Site::STATUS_ACTIVE),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
