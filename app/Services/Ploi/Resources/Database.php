@@ -2,12 +2,14 @@
 
 namespace App\Services\Ploi\Resources;
 
-use stdClass;
 use App\Services\Ploi\Exceptions\Http\NotValid;
+use stdClass;
 
 class Database extends Resource
 {
     private $server;
+
+    private $database;
 
     public function __construct(Server $server, int $id = null)
     {
@@ -22,7 +24,7 @@ class Database extends Resource
     {
         $this->setEndpoint($this->getServer()->getEndpoint() . '/' . $this->getServer()->getId() . '/databases');
 
-        if ($this->getId()) {
+        if ( $this->getId() ) {
             $this->setEndpoint($this->getEndpoint() . '/' . $this->getId());
         }
 
@@ -31,7 +33,7 @@ class Database extends Resource
 
     public function get(int $id = null)
     {
-        if ($id) {
+        if ( $id ) {
             $this->setId($id);
         }
 
@@ -72,7 +74,7 @@ class Database extends Resource
 
     public function delete(int $id): bool
     {
-        if ($id) {
+        if ( $id ) {
             $this->setId($id);
         }
 
@@ -81,5 +83,10 @@ class Database extends Resource
         $response = $this->getPloi()->makeAPICall($this->getEndpoint(), 'delete');
 
         return $response->getResponse()->getStatusCode() === 200;
+    }
+
+    public function users(int $id = null): DatabaseUser
+    {
+        return new DatabaseUser($this, $id);
     }
 }

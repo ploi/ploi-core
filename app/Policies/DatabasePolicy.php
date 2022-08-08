@@ -27,7 +27,7 @@ class DatabasePolicy
 
     public function update(User $user, Database $database): bool
     {
-        return false;
+        return true;
     }
 
     public function delete(User $user, Database $database): bool
