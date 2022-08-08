@@ -17,12 +17,9 @@ class SupportTicketReply extends Model
         'content_html',
     ];
 
-    public static function booted(): void
-    {
-        static::saved(function (self $model) {
-            $model->supportTicket->touch();
-        });
-    }
+    protected $touches = [
+        'supportTicket',
+    ];
 
     public function supportTicket(): BelongsTo
     {

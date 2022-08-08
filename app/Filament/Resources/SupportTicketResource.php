@@ -29,6 +29,11 @@ class SupportTicketResource extends Resource
         return (bool) setting('support');
     }
 
+    protected static function getNavigationBadge(): ?string
+    {
+        return static::getEloquentQuery()->count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form
