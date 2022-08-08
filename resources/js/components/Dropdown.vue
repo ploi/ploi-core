@@ -1,5 +1,5 @@
 <template>
-    <div v-click-outside="close" ref="dropdown" class="relative">
+    <div ref="dropdown" class="relative">
         <slot v-bind="{ isOpen, open, close, toggle, position }"></slot>
     </div>
 </template>
@@ -41,7 +41,7 @@ export default {
     mounted() {
         window.addEventListener('click', this.outsideClickListener)
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('click', this.outsideClickListener)
     },
 }

@@ -275,7 +275,7 @@ export default {
             }
         },
 
-        beforeDestroy(){
+        beforeUnmount(){
             this.clearPollingInterval();
         }
     }

@@ -88,7 +88,7 @@ export default {
         });
     },
 
-    destroyed() {
+    unmounted() {
         if (this.timeout) clearTimeout(this.timeout);
     },
 

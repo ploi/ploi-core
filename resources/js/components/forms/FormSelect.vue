@@ -7,7 +7,7 @@
             loading ? 'cursor-wait' : '',
             ]" :id="id" :required="required" :placeholder="placeholder"
                 @input="updateValue($event.target.value)"
-                v-model="value">
+                v-model="modelValue">
             <slot></slot>
         </select>
         <ErrorText v-if="errors">{{ errors[0] }}</ErrorText>
@@ -51,7 +51,7 @@ export default {
         placeholder: {
             type: String,
         },
-        value: {
+        modelValue: {
             required: false,
             default: '',
         },
@@ -83,7 +83,7 @@ export default {
 
     methods: {
         updateValue(value) {
-            this.$emit('input', value);
+            this.$emit('update:modelValue', value);
         },
     },
 }
