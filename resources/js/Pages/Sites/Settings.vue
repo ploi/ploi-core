@@ -227,7 +227,7 @@ export default {
         },
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
         this.clearTimeoutInterval();
     }
 }

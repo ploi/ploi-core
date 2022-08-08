@@ -31,11 +31,11 @@ class Ploi
     {
         $this->url = config('services.ploi-api.url');
 
-        if ( ! $token ) {
+        if (!$token) {
             $token = config('services.ploi.token');
         }
 
-        if ( ! $coreApiToken ) {
+        if (!$coreApiToken) {
             $coreApiToken = config('services.ploi.core-token');
         }
 
@@ -68,12 +68,17 @@ class Ploi
 
     public function buildClient(): static
     {
-        $this->client = Http::baseUrl($this->url)->withHeaders([
-            'Authorization' => 'Bearer ' . $this->getApiToken(),
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'X-Ploi-Core-Key' => $this->getCoreApiToken(),
-        ]);
+        $this->client = Http::baseUrl($this->url)
+            ->withHeaders([
+                'Authorization' => 'Bearer ' . $this->getApiToken(),
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'X-Ploi-Core-Key' => $this->getCoreApiToken(),
+            ]);
+
+        if (app()->isLocal()) {
+            $this->client->withoutVerifying();
+        }
 
         return $this;
     }
@@ -90,7 +95,7 @@ class Ploi
 
     public function makeAPICall(string $url, string $method = 'get', array $options = []): Response
     {
-        if ( ! in_array($method, ['get', 'post', 'patch', 'delete']) ) {
+        if (!in_array($method, ['get', 'post', 'patch', 'delete'])) {
             throw new Exception('Invalid method type');
         }
 
@@ -98,7 +103,7 @@ class Ploi
          * This is a temporary method that was necessary for the switch from the Guzzle client to the Http facade.
          * We _should not_ need this, but it feels safer to keep this fallback code around for now.
          */
-        if ( count($options) === 1 && array_key_exists('body', $options) ) {
+        if (count($options) === 1 && array_key_exists('body', $options)) {
             $options = is_string($options['body']) ? json_decode($options['body']) : $options['body'];
         }
 

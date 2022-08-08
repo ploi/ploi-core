@@ -20,7 +20,7 @@
                    ]"
                :type="type"
                :required="required"
-               :value="value"
+               :value="modelValue"
                @input="updateValue($event.target.value)"
                :disabled="loading || disabled"
                :autofocus="autofocus"
@@ -69,7 +69,7 @@ export default {
         placeholder: {
             type: String,
         },
-        value: {
+        modelValue: {
             required: false,
             default: '',
         },
@@ -130,7 +130,7 @@ export default {
 
     methods: {
         updateValue(value) {
-            this.$emit('input', value);
+            this.$emit('update:modelValue', value);
         },
         copy() {
             this.copied = true;
