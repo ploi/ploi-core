@@ -104,6 +104,10 @@ class SiteResource extends Resource
     {
         return [
             RelationManagers\UsersRelationManager::class,
+            RelationManagers\CertificatesRelationManager::class,
+            RelationManagers\CronjobsRelationManager::class,
+            RelationManagers\RedirectsRelationManager::class,
+            RelationManagers\SystemUsersRelationManager::class,
         ];
     }
 
