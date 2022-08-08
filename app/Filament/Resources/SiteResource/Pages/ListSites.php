@@ -3,10 +3,7 @@
 namespace App\Filament\Resources\SiteResource\Pages;
 
 use App\Filament\Resources\SiteResource;
-use App\Models\Server;
-use App\Models\Site;
 use App\Traits\HasPloi;
-use Filament\Notifications\Notification;
 use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,30 +20,7 @@ class ListSites extends ListRecords
             Action::make('synchronize_sites')
                 ->label(__('Synchronize sites'))
                 ->icon('heroicon-o-refresh')
-                ->action(function () {
-                    $availableSites = $this->getPloi()->synchronize()->sites()->getData();
-
-                    foreach ($availableSites as $availableSite) {
-                        $server = Server::query()->where('ploi_id', $availableSite->server_id)->firstOrFail();
-
-                        $site = Site::query()
-                            ->updateOrCreate([
-                                'ploi_id' => $availableSite->id,
-                            ], [
-                                'domain' => $availableSite->domain,
-                                'php_version' => $availableSite->php_version,
-                            ]);
-
-                        $site->status = $availableSite->status;
-                        $site->server_id = $server->id;
-                        $site->save();
-                    }
-
-                    Notification::make()
-                        ->body(__('Sites synchronized successfully.'))
-                        ->success()
-                        ->send();
-                }),
+                ->url(route('filament.resources.sites.synchronize')),
         ];
     }
 

@@ -2,14 +2,12 @@
 
 namespace App\Filament\Resources;
 
+use App\Actions\Site\SynchronizeSiteAction;
 use App\Filament\Resources\SiteResource\Pages;
 use App\Filament\Resources\SiteResource\RelationManagers;
-use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
-use App\Services\Ploi\Ploi;
 use Filament\Forms;
-use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -85,46 +83,10 @@ class SiteResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('synchronize_site')
                     ->label(__('Synchronize'))
+                    ->tooltip(__('This will synchronize the latest data from this provider to your Ploi Core installation'))
                     ->icon('heroicon-o-refresh')
                     ->action(function (Site $record) {
-                        $siteData = Ploi::make()->server($record->server->ploi_id)->sites()->get($record->ploi_id)->getData();
-
-                        $server = Server::query()
-                            ->where('ploi_id', $siteData->server_id)
-                            ->firstOrFail();
-
-                        $site = Site::query()
-                            ->updateOrCreate([
-                                'ploi_id' => $siteData->id,
-                            ], [
-                                'domain' => $siteData->domain,
-                                'php_version' => $siteData->php_version,
-                                'project' => $siteData->project_type,
-                            ]);
-
-                        $site->status = $siteData->status;
-                        $site->server_id = $server->id;
-                        $site->save();
-
-                        $certificates = Ploi::make()->server($siteData->server_id)->sites($siteData->id)->certificates()->get()->getData();
-
-                        if ( $certificates ) {
-                            foreach ($certificates as $certificate) {
-                                $site->certificates()->updateOrCreate([
-                                    'ploi_id' => $certificate->id,
-                                ], [
-                                    'status' => $certificate->status,
-                                    'ploi_id' => $certificate->id,
-                                    'domain' => $certificate->domain,
-                                    'type' => $certificate->type,
-                                ]);
-                            }
-                        }
-
-                        Notification::make()
-                            ->body(__('Site :site synchronized successfully.', ['site' => $site->domain]))
-                            ->success()
-                            ->send();
+                        app(SynchronizeSiteAction::class)->execute($record->ploi_id);
                     }),
             ])
             ->bulkActions([
@@ -155,6 +117,7 @@ class SiteResource extends Resource
         return [
             'index' => Pages\ListSites::route('/'),
             'edit' => Pages\EditSite::route('/{record}/edit'),
+            'synchronize' => Pages\SynchronizeSites::route('/synchronize'),
         ];
     }
 }

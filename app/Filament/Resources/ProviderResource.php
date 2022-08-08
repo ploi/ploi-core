@@ -7,6 +7,7 @@ use App\Filament\Resources\ProviderResource\Pages;
 use App\Filament\Resources\ProviderResource\RelationManagers;
 use App\Filament\Resources\ProviderResource\Widgets\AvailableProvidersOverview;
 use App\Models\Provider;
+use App\Models\ProviderPlan;
 use Filament\Forms;
 use Filament\Notifications\Notification;
 use Filament\Resources\Form;
@@ -29,13 +30,18 @@ class ProviderResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('ploi_id'),
-                Forms\Components\TextInput::make('label')
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('allowed_plans'),
-                Forms\Components\TextInput::make('allowed_regions'),
+                    ->label(__('Name'))
+                    ->required()
+                    ->columnSpan(2),
+                Forms\Components\CheckboxList::make('allowed_plans')
+                    ->options(function (Provider $record) {
+                        return $record->plans->mapWithKeys(fn (ProviderPlan $plan) => [$plan->id => $plan->label ?? $plan->plan_id]);
+                    })
+                    ->label(__('Allowed Plans')),
+                Forms\Components\CheckboxList::make('allowed_regions')
+                    ->options(fn (Provider $record) => $record->regions->pluck('label', 'id'))
+                    ->label(__('Allowed Regions')),
             ]);
     }
 
@@ -55,8 +61,10 @@ class ProviderResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('synchronize_provider')
                     ->label(__('Synchronize'))
+                    ->tooltip(__('This will synchronize the latest data from this provider to your Ploi Core installation'))
                     ->icon('heroicon-o-refresh')
                     ->action(function (Provider $record) {
                         $provider = app(SynchronizeProviderAction::class)->execute($record->ploi_id);
@@ -96,6 +104,8 @@ class ProviderResource extends Resource
     {
         return [
             'index' => Pages\ListProviders::route('/'),
+            'synchronize' => Pages\SynchronizeProviders::route('/synchronize'),
+            'edit' => Pages\EditProvider::route('/{record}'),
         ];
     }
 }

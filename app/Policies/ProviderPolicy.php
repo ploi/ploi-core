@@ -54,7 +54,7 @@ class ProviderPolicy
      */
     public function update(User $user, Provider $provider)
     {
-        return false;
+        return true;
     }
 
     /**

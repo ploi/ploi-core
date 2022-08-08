@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class AvailableProvidersOverview extends TableWidget
 {
     protected $listeners = [
-        '$refresh'
+        '$refresh',
     ];
 
     protected int|string|array $columnSpan = 'full';
@@ -53,10 +53,5 @@ class AvailableProvidersOverview extends TableWidget
                         ->send();
                 }),
         ];
-    }
-
-    public static function canView(): bool
-    {
-        return AvailableProvider::exists();
     }
 }

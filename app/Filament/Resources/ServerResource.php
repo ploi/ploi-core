@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources;
 
+use App\Actions\Server\SynchronizeServerAction;
 use App\Filament\Resources\ServerResource\Pages;
 use App\Filament\Resources\ServerResource\RelationManagers;
 use App\Models\Server;
 use App\Models\User;
-use App\Services\Ploi\Ploi;
 use Filament\Forms;
-use Filament\Notifications\Notification;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -88,27 +87,9 @@ class ServerResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('synchronize_server')
                     ->label(__('Synchronize'))
+                    ->tooltip(__('This will synchronize the latest data from this provider to your Ploi Core installation'))
                     ->icon('heroicon-o-refresh')
-                    ->action(function (Server $record) {
-                        $serverData = Ploi::make()->server()->get($record->ploi_id)->getData();
-
-                        $server = Server::query()
-                            ->updateOrCreate([
-                                'ploi_id' => $serverData->id,
-                            ], [
-                                'status' => $serverData->status,
-                                'name' => $serverData->name,
-                                'ip' => $serverData->ip_address,
-                                'ssh_port' => $serverData->ssh_port,
-                                'internal_ip' => $serverData->internal_ip,
-                                'available_php_versions' => $serverData->installed_php_versions,
-                            ]);
-
-                        Notification::make()
-                            ->body(__('Server :server synchronized successfully.', ['server' => $server->name]))
-                            ->success()
-                            ->send();
-                    }),
+                    ->action(fn (Server $record) => app(SynchronizeServerAction::class)->execute($record->ploi_id)),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -134,6 +115,7 @@ class ServerResource extends Resource
         return [
             'index' => Pages\ListServers::route('/'),
             'edit' => Pages\EditServer::route('/{record}/edit'),
+            'synchronize' => Pages\SynchronizeServers::route('/synchronize'),
         ];
     }
 

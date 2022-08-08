@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ProviderResource\Pages;
 
 use App\Filament\Resources\ProviderResource;
+use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
 
 class ListProviders extends ListRecords
@@ -16,14 +17,10 @@ class ListProviders extends ListRecords
     protected function getActions(): array
     {
         return [
-            //
-        ];
-    }
-
-    protected function getHeaderWidgets(): array
-    {
-        return [
-            ProviderResource\Widgets\AvailableProvidersOverview::class,
+            Action::make('synchronize_providers')
+                ->label(__('Synchronize providers'))
+                ->icon('heroicon-o-refresh')
+                ->url(route('filament.resources.providers.synchronize')),
         ];
     }
 }
