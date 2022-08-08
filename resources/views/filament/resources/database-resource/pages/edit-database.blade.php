@@ -12,7 +12,7 @@
             </div>
         @else
             <div>
-                <p>{{ __('The new database password is: ') }} {{ $this->recentlyUpdatedPassword }}</p>
+                <p class="mt-4">{{ __('The new database password is: :newPassword.', ['newPassword' => $this->recentlyUpdatedPassword ]) }}</p>
             </div>
         @endunless
     </div>

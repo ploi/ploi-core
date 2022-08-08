@@ -46,18 +46,14 @@ class EditDatabase extends Page
     {
         $state = $this->resetDatabasePasswordForm->getState();
 
-        if ( false ) {
-            $data = Ploi::make()
-                ->server($this->record->server->ploi_id)
-                ->databases($this->record->ploi_id)
-                ->users($this->record->users->first()->ploi_id)
-                ->resetPassword()
-                ->getData();
+        $data = Ploi::make()
+            ->server($this->record->server->ploi_id)
+            ->databases($this->record->ploi_id)
+            ->users($this->record->users->first()->ploi_id)
+            ->resetPassword()
+            ->getData();
 
-            $this->recentlyUpdatedPassword = $data->new_password;
-        } else {
-            $this->recentlyUpdatedPassword = 'password';
-        }
+        $this->recentlyUpdatedPassword = $data->new_password;
 
         Notification::make()
             ->body(__('Successfully reset database password.'))
@@ -67,7 +63,5 @@ class EditDatabase extends Page
         if ( $state['send_new_password_to_user'] ) {
             Mail::to($this->record->site->users)->send(new PasswordReset($this->record, $this->recentlyUpdatedPassword));
         }
-
-        $this->emit('$refresh');
     }
 }
