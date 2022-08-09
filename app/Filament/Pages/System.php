@@ -39,7 +39,7 @@ class System extends Page
 
     public function getHorizonWorkerStatus(): bool
     {
-        return (bool) app(MasterSupervisorRepository::class)->all();
+        return rescue(fn () => (bool) app(MasterSupervisorRepository::class)->all(), false, false);
     }
 
     public function hasAvailableUpdate(): bool
