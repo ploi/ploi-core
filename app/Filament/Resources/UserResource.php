@@ -37,6 +37,7 @@ class UserResource extends Resource
                         User::ADMIN => __('Administrator'),
                         User::USER => __('User'),
                     ])
+                    ->default(User::USER)
                     ->columnSpan(2)
                     ->required(),
                 Forms\Components\Select::make('package_id')
@@ -45,16 +46,13 @@ class UserResource extends Resource
                 Forms\Components\Select::make('language')
                     ->label(__('Language'))
                     ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language])),
-                Forms\Components\TextInput::make('stripe_id')
-                    ->label(__('Customer payment ID'))
-                    ->disabled()
-                    ->columnSpan(2),
                 Forms\Components\Textarea::make('notes')
                     ->label(__('Notes'))
                     ->maxLength(65535),
                 Forms\Components\Textarea::make('blocked')
                     ->label(__('Blocked')),
                 Forms\Components\Checkbox::make('requires_password_for_ftp')
+                    ->default(true)
                     ->label(__('Require password to show FTP password'))
                     ->helperText(__('Disabling this will allow this user to get the FTP password right away.')),
             ]);
