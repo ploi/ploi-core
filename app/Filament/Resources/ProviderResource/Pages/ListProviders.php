@@ -20,6 +20,7 @@ class ListProviders extends ListRecords
             Action::make('synchronize_providers')
                 ->label(__('Synchronize providers'))
                 ->icon('heroicon-o-refresh')
+                ->color('secondary')
                 ->url(route('filament.resources.providers.synchronize')),
         ];
     }

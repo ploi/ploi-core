@@ -20,7 +20,7 @@ class AvailableServer extends Model
             ->getData();
 
         return collect($availableServers)
-            ->map(fn (stdClass $provider): array => Arr::only((array) $provider, ['id', 'name']))
+            ->map(fn (stdClass $server): array => Arr::only((array) $server, ['id', 'name', 'ip_address', 'sites_count']))
             ->all();
     }
 }

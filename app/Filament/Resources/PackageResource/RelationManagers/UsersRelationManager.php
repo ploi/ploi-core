@@ -29,6 +29,7 @@ class UsersRelationManager extends RelationManager
                     ->label(__('Add user'))
                     ->form(fn (self $livewire) => [
                         Select::make('user_id')
+                            ->label('User')
                             ->options(User::orderBy('name')->get()->mapWithKeys(fn (User $user) => [$user->id => $user->name]))
                             ->required(),
                     ])

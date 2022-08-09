@@ -20,6 +20,11 @@ class AvailableSitesOverview extends TableWidget
 
     protected static ?string $heading = 'Available sites';
 
+    protected function getTableDescription(): ?string
+    {
+        return 'These are all the sites available from your ploi.io account which you can synchronize to your Ploi Core installation.';
+    }
+
     protected function getTableQuery(): Builder|Relation
     {
         return AvailableSite::query();
@@ -28,8 +33,8 @@ class AvailableSitesOverview extends TableWidget
     protected function getTableColumns(): array
     {
         return [
-            TextColumn::make('domain')
-                ->label(__('Site')),
+            TextColumn::make('domain')->label(__('Site')),
+            TextColumn::make('system_user')->label(__('System user')),
         ];
     }
 

@@ -20,6 +20,7 @@ class ListSites extends ListRecords
             Action::make('synchronize_sites')
                 ->label(__('Synchronize sites'))
                 ->icon('heroicon-o-refresh')
+                ->color('secondary')
                 ->url(route('filament.resources.sites.synchronize')),
         ];
     }

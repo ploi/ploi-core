@@ -4,7 +4,7 @@
 
         <ul class="mt-4">
             <li>{{ __("Current version") }}: {{ $this->getCurrentVersion() }}</li>
-            <li>{{ __("Remote version") }}: {{ $this->getRemoteVersion() }} <span class="text-primary-500" wire:click="refreshRemoteVersion">{{ __('Refresh') }}</span></li>
+            <li>{{ __("Remote version") }}: {{ $this->getRemoteVersion() }} <button class="text-primary-500" wire:click="refreshRemoteVersion">{{ __('Refresh') }}</button></li>
             <li>{{ __('Horizon worker status') }}: <span @class(['text-red-600' => ! $this->getHorizonWorkerStatus(), 'text-green-600' => $this->getHorizonWorkerStatus()])> {{ $this->getHorizonWorkerStatus() ? __('Active') : __('Inactive') }}</span></li>
         </ul>
 
@@ -20,10 +20,10 @@
 
     <div class="mt-8 pl-4 px-4 py-4 rounded-lg border border-gray-400">
         <ul class="list-disc ml-6 text-gray-600">
-            <li><a class="text-primary-600 font-bold" href="https://docs.ploi-core.io/">Ploi Core Docs</a></li>
-            <li><a class="text-primary-600 font-bold" href="https://ploi.io/">Ploi Website</a></li>
-            <li><a class="text-primary-600 font-bold" href="https://ploi.io/login">Ploi Panel</a></li>
-            <li><a class="text-primary-600 font-bold" href="https://github.com/ploi-deploy/ploi-core">Ploi GitHub repository </a></li>
+            <li><a class="text-primary-600 font-bold" target="_blank" href="https://docs.ploi-core.io/">Ploi Core Docs</a></li>
+            <li><a class="text-primary-600 font-bold" target="_blank" href="https://ploi.io/">Ploi Website</a></li>
+            <li><a class="text-primary-600 font-bold" target="_blank" href="https://ploi.io/login">Ploi Panel</a></li>
+            <li><a class="text-primary-600 font-bold" target="_blank" href="https://github.com/ploi-deploy/ploi-core">Ploi GitHub repository </a></li>
         </ul>
     </div>
 </x-filament::page>

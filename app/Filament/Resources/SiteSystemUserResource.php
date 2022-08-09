@@ -32,13 +32,16 @@ class SiteSystemUserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('site.domain')
-                    ->label(__('Site')),
                 Tables\Columns\TextColumn::make('user_name')
-                    ->label(__('Username')),
+                    ->label(__('Username'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('site.domain')
+                    ->label(__('Site'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Date'))
-                    ->dateTime(),
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -48,7 +51,8 @@ class SiteSystemUserResource extends Resource
             ])
             ->bulkActions([
                 //
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

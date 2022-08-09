@@ -21,6 +21,11 @@ class AvailableProvidersOverview extends TableWidget
 
     protected static ?string $heading = 'Available Providers';
 
+    protected function getTableDescription(): ?string
+    {
+        return 'These are all the providers available from your ploi.io account which you can synchronize to your Ploi Core installation.';
+    }
+
     protected function getTableQuery(): Builder|Relation
     {
         return AvailableProvider::query();

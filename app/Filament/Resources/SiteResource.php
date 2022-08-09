@@ -50,7 +50,8 @@ class SiteResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('server.name')
-                    ->label(__('Server')),
+                    ->label(__('Server'))
+                    ->searchable(),
                 Tables\Columns\BadgeColumn::make('status')
                     ->enum([
                         Site::STATUS_BUSY => __('Busy'),
@@ -75,7 +76,8 @@ class SiteResource extends Resource
                     }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Date'))
-                    ->dateTime(),
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -93,7 +95,8 @@ class SiteResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder

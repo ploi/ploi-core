@@ -20,6 +20,7 @@ class ListServers extends ListRecords
             Action::make('synchronize_servers')
                 ->label(__('Synchronize servers'))
                 ->icon('heroicon-o-refresh')
+                ->color('secondary')
                 ->url(route('filament.resources.servers.synchronize')),
         ];
     }

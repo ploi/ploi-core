@@ -25,11 +25,17 @@ class AvailableServersOverview extends TableWidget
         return AvailableServer::query();
     }
 
+    protected function getTableDescription(): ?string
+    {
+        return 'These are all the servers available from your ploi.io account which you can synchronize to your Ploi Core installation.';
+    }
+
     protected function getTableColumns(): array
     {
         return [
-            TextColumn::make('name')
-                ->label(__('Name')),
+            TextColumn::make('name')->label(__('Name')),
+            TextColumn::make('ip_address')->label(__('IP address')),
+            TextColumn::make('sites_count')->label(__('Sites')),
         ];
     }
 

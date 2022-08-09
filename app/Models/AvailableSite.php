@@ -20,7 +20,7 @@ class AvailableSite extends Model
             ->getData();
 
         return collect($availableSites)
-            ->map(fn (stdClass $provider): array => Arr::only((array) $provider, ['id', 'domain', 'server_id']))
+            ->map(fn (stdClass $site): array => Arr::only((array) $site, ['id', 'domain', 'server_id', 'system_user', 'status']))
             ->all();
     }
 }

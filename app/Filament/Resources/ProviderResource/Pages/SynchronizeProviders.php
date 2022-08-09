@@ -13,11 +13,6 @@ class SynchronizeProviders extends Page
 
     protected static ?string $title = 'Synchronize providers';
 
-    public function mount()
-    {
-        //
-    }
-
     protected function getHeaderWidgets(): array
     {
         return [
