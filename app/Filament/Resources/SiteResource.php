@@ -96,7 +96,7 @@ class SiteResource extends Resource
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ])
-            ->defaultSort('created_at', 'desc');
+            ->defaultSort('sites.created_at', 'desc');
     }
 
     public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
