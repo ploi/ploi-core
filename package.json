@@ -9,7 +9,8 @@
         "dev:filament": "TAILWIND_CONFIG=filament vite",
         "prod": "npm run production",
         "production": "vite build",
-        "prod:filament": "TAILWIND_CONFIG=filament vite build"
+        "prod:filament": "TAILWIND_CONFIG=filament vite build",
+        "production:filament": "TAILWIND_CONFIG=filament vite build"
     },
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
