@@ -1,4 +1,5 @@
 <template>
+    <Head><title>{{ __('Reset password') }}</title></Head>
     <div class="flex items-center justify-center w-full min-h-screen">
         <Container size="small">
             <form class="space-y-4" @submit.prevent="submit">
@@ -31,55 +32,49 @@ import Container from '@/components/Container.vue'
 import {useNotification} from '@/hooks/notification'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Reset password')}`,
-            }
-        },
+    components: {
+        TextDivider,
+        FormInput,
+        Button,
+        Container,
+    },
 
-        components: {
-            TextDivider,
-            FormInput,
-            Button,
-            Container,
-        },
-
-        props: {
-            errors: Object,
-        },
-        data() {
-            return {
-                sending: false,
-                form: {
-                    email: null,
-                },
-            }
-        },
-
-        methods: {
-            useNotification,
-
-            submit() {
-                this.sending = true
-
-                this.$inertia.post(this.route('password.email'), {
-                    email: this.form.email,
-                }, {
-                    onFinish: () => {
-                        this.sending = false
-
-                        if (!Object.keys(this.$page.props.errors).length) {
-                            this.form.email = null;
-
-                            useNotification({
-                                variant: 'success',
-                                title: this.__('Reset password'),
-                                message: this.$page.props.flash.success,
-                            })
-                        }
-                    }
-                });
+    props: {
+        errors: Object,
+    },
+    data() {
+        return {
+            sending: false,
+            form: {
+                email: null,
             },
+        }
+    },
+
+    methods: {
+        useNotification,
+
+        submit() {
+            this.sending = true
+
+            this.$inertia.post(this.route('password.email'), {
+                email: this.form.email,
+            }, {
+                onFinish: () => {
+                    this.sending = false
+
+                    if (!Object.keys(this.$page.props.errors).length) {
+                        this.form.email = null;
+
+                        useNotification({
+                            variant: 'success',
+                            title: this.__('Reset password'),
+                            message: this.$page.props.flash.success,
+                        })
+                    }
+                }
+            });
         },
-    }
+    },
+}
 </script>

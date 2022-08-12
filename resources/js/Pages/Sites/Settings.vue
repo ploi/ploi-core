@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head :title="site.domain"></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -21,7 +22,7 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Domain')" :errors="$page.props.errors.domain"
-                                                   v-model="form.domain"/>
+                                                   v-model="form.domain" />
 
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -70,7 +71,7 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput label="Cloudflare zone ID" :errors="$page.props.errors.dns_id"
-                                                   v-model="form.dns_id"/>
+                                                   v-model="form.dns_id" />
 
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -116,12 +117,6 @@ import {useConfirm} from '@/hooks/confirm'
 import Tabs from './Tabs.vue'
 
 export default {
-    metaInfo() {
-        return {
-            title: this.site.domain,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ setting('name') }}</title>
-
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
 
     @vite('resources/js/app.js')
@@ -26,6 +24,7 @@
         {!! view('header')->render() !!}
     @endif
 
+    @inertiaHead
     @routes
 </head>
 <body>

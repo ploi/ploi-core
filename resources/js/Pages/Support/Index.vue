@@ -1,13 +1,14 @@
 <template>
     <Page>
+        <Head><title>{{ __('Support') }}</title></Head>
         <Portal to="modals">
             <ModalContainer>
                 <Modal @close="modalIsOpen = false" v-if="modalIsOpen" @submit="submit">
                     <template #title>{{ __('Create support request') }}</template>
 
                     <template #form>
-                        <FormInput :label="__('Title')" :errors="$page.props.errors.title" v-model="form.title"/>
-                        <FormTextarea :label="__('Content')" :errors="$page.props.errors.content" v-model="form.content"/>
+                        <FormInput :label="__('Title')" :errors="$page.props.errors.title" v-model="form.title" />
+                        <FormTextarea :label="__('Content')" :errors="$page.props.errors.content" v-model="form.content" />
                     </template>
 
                     <template #form-actions>
@@ -17,7 +18,7 @@
             </ModalContainer>
         </Portal>
 
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -72,80 +73,74 @@ import FormActions from '@/components/FormActions.vue'
 import EmptyImage from '@/components/EmptyImage.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Support')}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        IconBox,
+        IconGlobe,
+        IconStorage,
+        Modal,
+        ModalContainer,
+        FormInput,
+        FormTextarea,
+        FormActions,
+        EmptyImage
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            IconBox,
-            IconGlobe,
-            IconStorage,
-            Modal,
-            ModalContainer,
-            FormInput,
-            FormTextarea,
-            FormActions,
-            EmptyImage
-        },
+    props: {
+        tickets: Object,
+    },
 
-        props: {
-            tickets: Object,
-        },
+    data() {
+        return {
+            loading: false,
+            modalIsOpen: false,
 
-        data() {
-            return {
-                loading: false,
-                modalIsOpen: false,
+            form: {
+                title: null,
+                content: null
+            },
 
-                form: {
-                    title: null,
-                    content: null
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
                 },
+                {
+                    title: this.__('Support'),
+                    to: this.route('support.index'),
+                },
+            ],
+        }
+    },
 
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Support'),
-                        to: this.route('support.index'),
-                    },
-                ],
-            }
-        },
+    methods: {
+        submit() {
+            this.loading = true;
 
-        methods: {
-            submit() {
-                this.loading = true;
-
-                this.$inertia.post(this.route('support.store'), this.form, {
-                    onFinish: () => {
-                        if (!Object.keys(this.$page.props.errors).length) {
-                            this.form.title = null;
-                            this.form.content = null;
-                            this.loading = false;
-                            this.modalIsOpen = false;
-                        }
+            this.$inertia.post(this.route('support.store'), this.form, {
+                onFinish: () => {
+                    if (!Object.keys(this.$page.props.errors).length) {
+                        this.form.title = null;
+                        this.form.content = null;
+                        this.loading = false;
+                        this.modalIsOpen = false;
                     }
-                })
-            }
-        },
-    }
+                }
+            })
+        }
+    },
+}
 </script>

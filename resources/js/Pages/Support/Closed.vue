@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Closed support requests') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -49,61 +50,53 @@ import FormInput from '@/components/forms/FormInput.vue'
 import FormActions from '@/components/FormActions.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Closed support requests')}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        IconBox,
+        IconGlobe,
+        IconStorage,
+        Modal,
+        ModalContainer,
+        FormInput,
+        FormActions
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            IconBox,
-            IconGlobe,
-            IconStorage,
-            Modal,
-            ModalContainer,
-            FormInput,
-            FormActions
-        },
+    props: {
+        tickets: Object,
+    },
 
-        props: {
-            tickets: Object,
-        },
+    data() {
+        return {
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
+                },
+                {
+                    title: this.__('Support'),
+                    to: this.route('support.index'),
+                },
+                {
+                    title: this.__('Closed support requests'),
+                    to: this.route('support.index.closed'),
+                },
+            ],
+        }
+    },
 
-        data() {
-            return {
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Support'),
-                        to: this.route('support.index'),
-                    },
-                    {
-                        title: this.__('Closed support requests'),
-                        to: this.route('support.index.closed'),
-                    },
-                ],
-            }
-        },
-
-        methods: {
-
-        },
-    }
+    methods: {},
+}
 </script>

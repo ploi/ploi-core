@@ -1,5 +1,6 @@
 <template>
     <Page>
+        <Head><title>{{ __('You tried to do something that is not allowed.') }}</title></Head>
         <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
@@ -34,36 +35,36 @@ import NotificationBadge from '@/components/NotificationBadge.vue'
 import MainLayout from '@/Layouts/MainLayout.vue'
 
 export default {
-        layout: MainLayout,
+    layout: MainLayout,
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-        },
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+    },
 
-        data() {
-            return {
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: '403 not found',
-                        to: '/'
-                    }
-                ]
-            }
+    data() {
+        return {
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
+                },
+                {
+                    title: '403 not found',
+                    to: '/'
+                }
+            ]
         }
     }
+}
 </script>

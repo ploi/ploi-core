@@ -1,6 +1,8 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Servers') }}</title></Head>
+
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -17,7 +19,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :server="server"/>
+                            <Tabs :server="server" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -47,7 +49,7 @@
                                         </Table>
                                     </div>
 
-                                    <pagination :links="sites"/>
+                                    <pagination :links="sites" />
                                 </template>
                             </SettingsSegment>
                         </template>
@@ -98,73 +100,67 @@ import TableBody from '@/components/TableBody.vue'
 import TableData from '@/components/TableData.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Servers')}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        IconButton,
+        IconMore,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        IconBox,
+        IconGlobe,
+        IconStorage,
+        EmptyImage,
+        Modal,
+        ModalContainer,
+        FormInput,
+        FormActions,
+        Dropdown,
+        DropdownList,
+        DropdownListItem,
+        DropdownListItemButton,
+        SettingsSegment,
+        SettingsLayout,
+        Tabs,
+        Table,
+        TableHead,
+        TableHeader,
+        TableRow,
+        TableBody,
+        TableData,
+        Pagination
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            IconButton,
-            IconMore,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            IconBox,
-            IconGlobe,
-            IconStorage,
-            EmptyImage,
-            Modal,
-            ModalContainer,
-            FormInput,
-            FormActions,
-            Dropdown,
-            DropdownList,
-            DropdownListItem,
-            DropdownListItemButton,
-            SettingsSegment,
-            SettingsLayout,
-            Tabs,
-            Table,
-            TableHead,
-            TableHeader,
-            TableRow,
-            TableBody,
-            TableData,
-            Pagination
-        },
+    props: {
+        server: Object,
+        sites: Object,
+    },
 
-        props: {
-            server: Object,
-            sites: Object,
-        },
+    data() {
+        return {
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
+                },
+                {
+                    title: this.server.name,
+                    to: this.route('servers.show', this.server.id),
+                },
+            ],
+        }
+    },
 
-        data() {
-            return {
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.server.name,
-                        to: this.route('servers.show', this.server.id),
-                    },
-                ],
-            }
-        },
-
-        methods: {},
-    }
+    methods: {},
+}
 </script>

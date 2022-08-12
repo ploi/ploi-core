@@ -1,5 +1,6 @@
 <template>
     <Page>
+        <Head><title>{{ __('Support') }}</title></Head>
         <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
@@ -78,12 +79,6 @@ import FormTextarea from '@/components/forms/FormTextarea.vue'
 import FormActions from '@/components/FormActions.vue'
 
 export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Support')}`,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Billing error') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -44,54 +45,46 @@ import Modal from '@/components/Modal.vue'
 import ModalContainer from '@/components/ModalContainer.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Billing error')}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        IconBox,
+        IconGlobe,
+        IconStorage,
+        IconArrowDown,
+        IconArrowUp,
+        IconClose,
+        Modal,
+        ModalContainer,
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            IconBox,
-            IconGlobe,
-            IconStorage,
-            IconArrowDown,
-            IconArrowUp,
-            IconClose,
-            Modal,
-            ModalContainer,
-        },
+    props: {},
 
-        props: {
-
-        },
-
-        data() {
-            return {
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Billing error'),
-                        to: this.route('profile.billing.index'),
-                    },
-                ],
-            }
-        },
-    }
+    data() {
+        return {
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
+                },
+                {
+                    title: this.__('Billing error'),
+                    to: this.route('profile.billing.index'),
+                },
+            ],
+        }
+    },
+}
 </script>

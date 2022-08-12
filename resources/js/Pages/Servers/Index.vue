@@ -1,5 +1,6 @@
 <template>
     <Page>
+        <Head><title>{{ __('Servers') }}</title></Head>
         <Portal to="modals" v-if="can('servers', 'create')">
             <ModalContainer>
                 <Modal @close="modalIsOpen = false" v-if="modalIsOpen" @submit="submit">
@@ -7,7 +8,7 @@
 
                     <template #form>
                         <FormInput :loading="loading" :label="__('Name')" placeholder="webserver-01"
-                                   :errors="$page.props.errors.name" v-model="form.name"/>
+                                   :errors="$page.props.errors.name" v-model="form.name" />
 
                         <FormSelect :loading="loading" :errors="$page.props.errors.provider_id" :label="__('Select provider')"
                                     v-model="form.provider_id">
@@ -43,7 +44,7 @@
             </ModalContainer>
         </Portal>
 
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -57,11 +58,11 @@
                 </PageHeader>
 
                 <PageBody>
-                    <EmptyImage v-if="!servers.meta.total"/>
+                    <EmptyImage v-if="!servers.meta.total" />
                     <List>
                         <ListItem v-for="server in servers.data" :key="server.id">
                             <template #prefix>
-                                <StatusBubble :variant="server.status === 'busy' ? 'gray' : 'success'"/>
+                                <StatusBubble :variant="server.status === 'busy' ? 'gray' : 'success'" />
                             </template>
                             <template #title>
                                 <inertia-link class="text-primary font-medium" :href="route('servers.show', server.id)">
@@ -74,7 +75,7 @@
                             <template #suffix>
                                 <Dropdown v-slot="{ isOpen, toggle, position }">
                                     <IconButton @click="toggle">
-                                        <IconMore class="w-5 h-5"/>
+                                        <IconMore class="w-5 h-5" />
                                     </IconButton>
 
                                     <DropdownList :position="position" v-if="isOpen">
@@ -126,12 +127,6 @@ import DropdownListItemButton from '@/components/DropdownListItemButton.vue'
 import {useConfirm} from '@/hooks/confirm'
 
 export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Servers')}`,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

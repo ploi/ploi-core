@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head :title="`${this.__('Certificates')} - ${this.site.domain}`"></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -30,7 +31,7 @@
                                         </FormSelect>
 
                                         <div>
-                                            <FormInput v-if="form.type === 'letsencrypt'" :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
+                                            <FormInput v-if="form.type === 'letsencrypt'" :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain" />
                                             <button type="button" @click="setDomainData(true)" class="text-primary text-small border-b border-dotted">Click here to add aliases</button>
                                         </div>
 
@@ -59,7 +60,9 @@
                                             </TableHead>
                                             <TableBody>
                                                 <TableRow v-for="certificate in certificates.data" :key="certificate.id">
-                                                    <TableData><StatusBubble :variant="certificate.status === 'busy' ? 'gray' : 'success'"/></TableData>
+                                                    <TableData>
+                                                        <StatusBubble :variant="certificate.status === 'busy' ? 'gray' : 'success'" />
+                                                    </TableData>
                                                     <TableData>{{ certificate.domain }}</TableData>
                                                     <TableData>
                                                         <Button :disabled="certificate.status === 'busy'" variant="danger" size="sm"
@@ -71,7 +74,7 @@
                                         </Table>
                                     </div>
 
-                                    <pagination :links="certificates"/>
+                                    <pagination :links="certificates" />
                                 </template>
                             </SettingsSegment>
                         </template>
@@ -115,177 +118,171 @@ import TableBody from '@/components/TableBody.vue'
 import TableData from '@/components/TableData.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Certificates')} - ${this.site.domain}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        FormInput,
+        FormSelect,
+        FormTextarea,
+        SettingsLayout,
+        SettingsSegment,
+        Form,
+        FormActions,
+        Pagination,
+        Tabs,
+        Table,
+        TableHead,
+        TableHeader,
+        TableRow,
+        TableBody,
+        TableData,
+        EmptyImage,
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            FormInput,
-            FormSelect,
-            FormTextarea,
-            SettingsLayout,
-            SettingsSegment,
-            Form,
-            FormActions,
-            Pagination,
-            Tabs,
-            Table,
-            TableHead,
-            TableHeader,
-            TableRow,
-            TableBody,
-            TableData,
-            EmptyImage,
-        },
+    data() {
+        return {
+            sending: false,
 
-        data() {
-            return {
-                sending: false,
+            form: {
+                domain: null,
+                type: 'letsencrypt',
+                certificate: null,
+                private: null,
+            },
 
-                form: {
-                    domain: null,
-                    type: 'letsencrypt',
-                    certificate: null,
-                    private: null,
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
                 },
+                {
+                    title: this.__('Sites'),
+                    to: this.route('sites.index'),
+                },
+                {
+                    title: this.site.domain,
+                    to: this.route('sites.show', this.site.id),
+                },
+                {
+                    title: this.__('Certificates'),
+                    to: this.route('sites.certificates.index', this.site.id),
+                },
+            ],
+        }
+    },
 
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Sites'),
-                        to: this.route('sites.index'),
-                    },
-                    {
-                        title: this.site.domain,
-                        to: this.route('sites.show', this.site.id),
-                    },
-                    {
-                        title: this.__('Certificates'),
-                        to: this.route('sites.certificates.index', this.site.id),
-                    },
-                ],
+    mounted() {
+        if (this.shouldBePolling) {
+            this.startPollingInterval();
+        }
+
+        this.setDomainData();
+    },
+
+    watch: {
+        shouldBePolling: function (value) {
+            if (!value) {
+                this.clearPollingInterval();
+
+                return;
             }
-        },
 
-        mounted() {
-            if(this.shouldBePolling){
+            if (!this.pollingInterval) {
                 this.startPollingInterval();
             }
-
-            this.setDomainData();
-        },
-
-        watch: {
-            shouldBePolling: function (value) {
-                if (!value) {
-                    this.clearPollingInterval();
-
-                    return;
-                }
-
-                if(!this.pollingInterval){
-                    this.startPollingInterval();
-                }
-            }
-        },
-
-        computed: {
-            shouldBePolling() {
-                return !!this.certificates.data.filter((certificate) => {
-                    return certificate.status === 'busy';
-                }).length;
-            },
-        },
-
-        props: {
-            site: Object,
-            certificates: Object,
-        },
-
-        methods: {
-            startPollingInterval(){
-                this.pollingInterval = setInterval(function () {
-                    this.poll();
-                }.bind(this), 3000);
-            },
-
-            clearPollingInterval(){
-                clearTimeout(this.pollingInterval);
-                this.pollingInterval = null;
-            },
-
-            poll() {
-                this.$inertia.get(this.route('sites.certificates.index', this.site.id), {
-                    only: ['certificates'],
-                    preserveScroll: true,
-                })
-            },
-
-            submit() {
-                this.sending = true
-
-                this.$inertia.post(this.route('sites.certificates.store', this.site.id), this.form, {
-                    onFinish: () => {
-                        this.sending = false
-
-                        if (!Object.keys(this.$page.props.errors).length) {
-                            this.setDomainData();
-                        }
-                    }
-                });
-            },
-
-            confirmDelete(certificate) {
-                useConfirm({
-                    title: this.__('Are you sure?'),
-                    message: `Your certificate will be deleted permanently, this action cannot be undone.`,
-                    onConfirm: () => this.delete(certificate),
-                })
-            },
-
-            delete(certificate) {
-                this.$inertia.delete(this.route('sites.certificates.delete', [this.site.id, certificate.id]), {
-                    preserveScroll: true
-                })
-            },
-
-            setDomainData(withAliases){
-                this.form.certificate = null;
-                this.form.private = null;
-
-                if (this.site.domain.startsWith('www.')) {
-                    this.form.domain = this.site.domain + ',' + this.site.domain.replace('www.', '');
-                } else {
-                    this.form.domain = this.site.domain + ',www.' + this.site.domain;
-                }
-
-                if(withAliases){
-                    this.form.domain = this.form.domain + ',' + this.site.aliases.join(',');
-                }
-            }
-        },
-
-        beforeUnmount(){
-            this.clearPollingInterval();
         }
+    },
+
+    computed: {
+        shouldBePolling() {
+            return !!this.certificates.data.filter((certificate) => {
+                return certificate.status === 'busy';
+            }).length;
+        },
+    },
+
+    props: {
+        site: Object,
+        certificates: Object,
+    },
+
+    methods: {
+        startPollingInterval() {
+            this.pollingInterval = setInterval(function () {
+                this.poll();
+            }.bind(this), 3000);
+        },
+
+        clearPollingInterval() {
+            clearTimeout(this.pollingInterval);
+            this.pollingInterval = null;
+        },
+
+        poll() {
+            this.$inertia.get(this.route('sites.certificates.index', this.site.id), {
+                only: ['certificates'],
+                preserveScroll: true,
+            })
+        },
+
+        submit() {
+            this.sending = true
+
+            this.$inertia.post(this.route('sites.certificates.store', this.site.id), this.form, {
+                onFinish: () => {
+                    this.sending = false
+
+                    if (!Object.keys(this.$page.props.errors).length) {
+                        this.setDomainData();
+                    }
+                }
+            });
+        },
+
+        confirmDelete(certificate) {
+            useConfirm({
+                title: this.__('Are you sure?'),
+                message: `Your certificate will be deleted permanently, this action cannot be undone.`,
+                onConfirm: () => this.delete(certificate),
+            })
+        },
+
+        delete(certificate) {
+            this.$inertia.delete(this.route('sites.certificates.delete', [this.site.id, certificate.id]), {
+                preserveScroll: true
+            })
+        },
+
+        setDomainData(withAliases) {
+            this.form.certificate = null;
+            this.form.private = null;
+
+            if (this.site.domain.startsWith('www.')) {
+                this.form.domain = this.site.domain + ',' + this.site.domain.replace('www.', '');
+            } else {
+                this.form.domain = this.site.domain + ',www.' + this.site.domain;
+            }
+
+            if (withAliases) {
+                this.form.domain = this.form.domain + ',' + this.site.aliases.join(',');
+            }
+        }
+    },
+
+    beforeUnmount() {
+        this.clearPollingInterval();
     }
+}
 </script>

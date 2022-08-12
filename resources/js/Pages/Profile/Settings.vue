@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Settings') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -73,12 +74,6 @@ import FormActions from '@/components/FormActions.vue'
 import {useConfirm} from '@/hooks/confirm'
 
 export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Settings')}`,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

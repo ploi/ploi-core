@@ -1,5 +1,6 @@
 <template>
     <Page>
+        <Head :title="site.domain"></Head>
         <Portal to="modals">
             <ModalContainer>
                 <Modal @close="() => closeModal()" v-if="modalIsOpen" @submit="requestFtpPassword">
@@ -182,12 +183,6 @@ import ModalContainer from '@/components/ModalContainer.vue'
 import Copy from '@/components/Copy.vue'
 
 export default {
-    metaInfo() {
-        return {
-            title: this.site.domain,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

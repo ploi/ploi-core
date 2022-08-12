@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Documentation') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -53,59 +54,53 @@ import SettingsLayout from '@/components/layouts/SettingsLayout.vue'
 import Tabs from './Tabs.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Documentation')}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        IconBox,
+        IconGlobe,
+        IconStorage,
+        Modal,
+        ModalContainer,
+        FormInput,
+        FormTextarea,
+        FormActions,
+        EmptyImage,
+        Tabs,
+        SettingsLayout,
+        SettingsSegment
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            IconBox,
-            IconGlobe,
-            IconStorage,
-            Modal,
-            ModalContainer,
-            FormInput,
-            FormTextarea,
-            FormActions,
-            EmptyImage,
-            Tabs,
-            SettingsLayout,
-            SettingsSegment
-        },
+    props: {
+        items: Object,
+    },
 
-        props: {
-            items: Object,
-        },
+    data() {
+        return {
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
+                },
+                {
+                    title: this.__('Documentation'),
+                    to: this.route('documentation.index'),
+                },
+            ],
+        }
+    },
 
-        data() {
-            return {
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Documentation'),
-                        to: this.route('documentation.index'),
-                    },
-                ],
-            }
-        },
-
-    }
+}
 </script>

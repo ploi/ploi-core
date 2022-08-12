@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head :title="`${this.__('DNS')} - ${this.site.domain}`"></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -23,8 +24,8 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :disabled="sending" :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name"/>
-                                        <FormInput :disabled="sending" :label="__('IPv4 address')" :errors="$page.props.errors.address" v-model="form.address"/>
+                                        <FormInput :disabled="sending" :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" />
+                                        <FormInput :disabled="sending" :label="__('IPv4 address')" :errors="$page.props.errors.address" v-model="form.address" />
 
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -109,136 +110,130 @@ import TableData from '@/components/TableData.vue'
 import EmptyImage from '@/components/EmptyImage.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('DNS')} - ${this.site.domain}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        FormInput,
+        SettingsLayout,
+        SettingsSegment,
+        Form,
+        FormActions,
+        Pagination,
+        Tabs,
+        Table,
+        TableHead,
+        TableHeader,
+        TableRow,
+        TableBody,
+        TableData,
+        EmptyImage,
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            FormInput,
-            SettingsLayout,
-            SettingsSegment,
-            Form,
-            FormActions,
-            Pagination,
-            Tabs,
-            Table,
-            TableHead,
-            TableHeader,
-            TableRow,
-            TableBody,
-            TableData,
-            EmptyImage,
-        },
+    data() {
+        return {
+            sending: false,
+            loading: true,
 
-        data() {
-            return {
-                sending: false,
-                loading: true,
+            records: [],
 
-                records: [],
+            form: {
+                name: null,
+                address: null,
+            },
 
-                form: {
-                    name: null,
-                    address: null,
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
                 },
+                {
+                    title: this.__('Sites'),
+                    to: this.route('sites.index'),
+                },
+                {
+                    title: this.site.domain,
+                    to: this.route('sites.show', this.site.id),
+                },
+                {
+                    title: this.__('DNS'),
+                    to: this.route('sites.dns.index', this.site.id),
+                },
+            ],
+        }
+    },
 
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Sites'),
-                        to: this.route('sites.index'),
-                    },
-                    {
-                        title: this.site.domain,
-                        to: this.route('sites.show', this.site.id),
-                    },
-                    {
-                        title: this.__('DNS'),
-                        to: this.route('sites.dns.index', this.site.id),
-                    },
-                ],
-            }
+    props: {
+        site: Object,
+    },
+
+    mounted() {
+        this.getRecords();
+    },
+
+    methods: {
+        useNotification,
+
+        submit() {
+            this.$inertia.post(this.route('sites.dns.store', this.site.id), this.form, {
+                onStart: () => this.sending = true,
+                onFinish: () => {
+                    this.sending = false;
+                    this.records = [];
+                    this.getRecords();
+
+                    this.form = {
+                        name: null,
+                        address: null,
+                    };
+                }
+            })
+
         },
 
-        props: {
-            site: Object,
-        },
+        getRecords() {
+            this.loading = true;
 
-        mounted () {
-            this.getRecords();
-        },
-
-        methods: {
-            useNotification,
-
-            submit() {
-                this.$inertia.post(this.route('sites.dns.store', this.site.id), this.form, {
-                    onStart: () => this.sending = true,
-                    onFinish: () => {
-                        this.sending = false;
-                        this.records = [];
-                        this.getRecords();
-
-                        this.form = {
-                            name: null,
-                            address: null,
-                        };
-                    }
+            window.axios.get(this.route('sites.dns.records', this.site.id))
+                .then(response => {
+                    this.loading = false;
+                    this.records = response.data
                 })
-
-            },
-
-            getRecords() {
-                this.loading = true;
-
-                window.axios.get(this.route('sites.dns.records', this.site.id))
-                    .then(response => {
-                        this.loading = false;
-                        this.records = response.data
-                    })
-                    .catch(error => {
-                        this.loading = false;
-                    })
-            },
-
-            confirmDelete(record) {
-                useConfirm({
-                    title: this.__('Are you sure?'),
-                    message: this.__('Your DNS will be completely removed.'),
-                    onConfirm: () => this.delete(record),
+                .catch(error => {
+                    this.loading = false;
                 })
-            },
-
-            delete(record) {
-                this.$inertia.delete(this.route('sites.dns.delete', [this.site.id, record.id]), {
-                    preserveScroll: true,
-                    onStart: () => this.sending = true,
-                    onFinish: () => {
-                        this.sending = false;
-                        this.records = [];
-                        this.getRecords();
-                    }
-                })
-            }
         },
-    }
+
+        confirmDelete(record) {
+            useConfirm({
+                title: this.__('Are you sure?'),
+                message: this.__('Your DNS will be completely removed.'),
+                onConfirm: () => this.delete(record),
+            })
+        },
+
+        delete(record) {
+            this.$inertia.delete(this.route('sites.dns.delete', [this.site.id, record.id]), {
+                preserveScroll: true,
+                onStart: () => this.sending = true,
+                onFinish: () => {
+                    this.sending = false;
+                    this.records = [];
+                    this.getRecords();
+                }
+            })
+        }
+    },
+}
 </script>

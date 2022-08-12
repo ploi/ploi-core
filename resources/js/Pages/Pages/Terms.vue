@@ -1,4 +1,5 @@
 <template>
+    <Head><title>{{ __('Terms of Service') }}</title></Head>
     <div class="flex items-center justify-center w-full min-h-screen py-8 px-8">
         <Container size="medium" class="py-4 space-y-8">
             <div class="flex flex-col items-center space-y-5">
@@ -26,8 +27,6 @@ import Button from '@/components/Button.vue'
 import Container from '@/components/Container.vue'
 
 export default {
-    metaInfo: {title: 'Terms of Service'},
-
     components: {
         TextDivider,
         FormInput,

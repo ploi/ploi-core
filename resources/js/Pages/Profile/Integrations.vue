@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Integrations') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -12,10 +13,10 @@
                         </FormSelect>
 
                         <FormInput v-if="form.provider === 'cloudflare'" :label="__('API key')"
-                                   :errors="$page.props.errors['meta.api_key']" v-model="form.meta.api_key"/>
+                                   :errors="$page.props.errors['meta.api_key']" v-model="form.meta.api_key" />
                         <FormInput v-if="form.provider === 'cloudflare'" :label="__('Cloudflare email')"
                                    :errors="$page.props.errors['meta.cloudflare_email']"
-                                   v-model="form.meta.cloudflare_email"/>
+                                   v-model="form.meta.cloudflare_email" />
 
                         <FormActions>
                             <Button>{{ __('Save') }}</Button>
@@ -81,12 +82,6 @@ import TableData from '@/components/TableData.vue'
 import {useConfirm} from '@/hooks/confirm'
 
 export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Integrations')}`,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

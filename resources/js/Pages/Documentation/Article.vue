@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head :title="article.title"></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -53,12 +54,6 @@ import SettingsLayout from '@/components/layouts/SettingsLayout.vue'
 import Tabs from './Tabs.vue'
 
 export default {
-    metaInfo() {
-        return {
-            title: this.article.title,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

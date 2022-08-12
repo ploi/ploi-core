@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head :title="`${this.__('Databases')} - ${this.site.domain}`"></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -24,11 +25,11 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Name')" :errors="$page.props.errors.name"
-                                                   v-model="form.name"/>
+                                                   v-model="form.name" />
                                         <FormInput :label="__('User')" :errors="$page.props.errors.user_name"
-                                                   v-model="form.user_name"/>
+                                                   v-model="form.user_name" />
                                         <FormInput :label="__('Password')" :errors="$page.props.errors.password"
-                                                   v-model="form.password"/>
+                                                   v-model="form.password" />
 
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -37,7 +38,7 @@
                                 </template>
                             </SettingsSegment>
 
-                            <EmptyImage v-if="!databases.meta.total"/>
+                            <EmptyImage v-if="!databases.meta.total" />
 
                             <SettingsSegment v-if="databases.meta.total">
                                 <template #title>{{ __('Databases') }}</template>
@@ -55,7 +56,7 @@
                                                 <TableRow v-for="database in databases.data" :key="database.id">
                                                     <TableData>
                                                         <StatusBubble
-                                                            :variant="database.status === 'busy' ? 'gray' : 'success'"/>
+                                                            :variant="database.status === 'busy' ? 'gray' : 'success'" />
                                                     </TableData>
                                                     <TableData>{{ database.name }}</TableData>
                                                     <TableData>
@@ -70,7 +71,7 @@
                                         </Table>
                                     </div>
 
-                                    <pagination :links="databases"/>
+                                    <pagination :links="databases" />
                                 </template>
                             </SettingsSegment>
                         </template>

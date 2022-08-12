@@ -1,5 +1,6 @@
 <template>
     <Page>
+        <Head><title>{{ __('We were unable to find this page.') }}</title></Head>
         <Content>
             <Container>
                 <PageHeader>
@@ -37,20 +38,20 @@ import NotificationBadge from '@/components/NotificationBadge.vue'
 import MainLayout from '@/Layouts/MainLayout.vue'
 
 export default {
-        layout: MainLayout,
+    layout: MainLayout,
 
-        components: {
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-        }
+    components: {
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
     }
+}
 </script>

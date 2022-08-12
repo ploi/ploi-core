@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Dashboard') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -16,7 +17,7 @@
                             <li class="p-6 rounded shadow bg-surface-3 transform transition duration-fast ease-in-out hover:scale-95">
                                 <inertia-link :href="route('sites.index')" class="flex space-x-4">
                                     <div>
-                                        <IconGlobe class="w-6 h-6"/>
+                                        <IconGlobe class="w-6 h-6" />
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-body">{{ sites }}</h3>
@@ -27,7 +28,7 @@
                             <li class="p-6 rounded shadow bg-surface-3 transform transition duration-fast ease-in-out hover:scale-95" v-if="hasAccessToServers">
                                 <inertia-link :href="route('servers.index')" class="flex space-x-4">
                                     <div>
-                                        <IconStorage class="w-6 h-6"/>
+                                        <IconStorage class="w-6 h-6" />
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-body">{{ servers }}</h3>
@@ -40,7 +41,7 @@
                                     :href="$page.props.settings.billing ? route('profile.billing.index') : route('profile.index')"
                                     class="flex space-x-4">
                                     <div>
-                                        <IconBox class="w-6 h-6"/>
+                                        <IconBox class="w-6 h-6" />
                                     </div>
                                     <div class="w-full">
                                         <div class="flex justify-between">
@@ -94,13 +95,8 @@ import IconStorage from '@/components/icons/IconStorage.vue'
 
 import {useNotification} from '@/hooks/notification'
 
-export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Dashboard')}`,
-        }
-    },
 
+export default {
     layout: MainLayout,
 
     components: {
@@ -148,7 +144,7 @@ export default {
     },
 
     computed: {
-        hasAccessToServers () {
+        hasAccessToServers() {
             return Object.keys(this.$page.props.auth.can).length && (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete);
         }
     },

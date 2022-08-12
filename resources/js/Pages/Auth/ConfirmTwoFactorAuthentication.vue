@@ -1,15 +1,16 @@
 <template>
+    <Head><title>{{ __('Login') }}</title></Head>
     <div class="flex items-center justify-center w-full min-h-screen">
         <Container size="small">
             <form class="space-y-4" @submit.prevent="submit">
                 <div class="flex flex-col items-center space-y-5">
-                    <img class="h-14" v-if="$page.props.settings.logo" :src="$page.props.settings.logo"/>
+                    <img class="h-14" v-if="$page.props.settings.logo" :src="$page.props.settings.logo" />
                     <h1 class="font-semibold text-center text-title">
                         Confirm access to {{ $page.props.settings.name }}
                     </h1>
                 </div>
 
-                <FormInput :label="__('Code')" :autofocus="true" :errors="$page.props.errors.code" v-model="form.code" id="code" required/>
+                <FormInput :label="__('Code')" :autofocus="true" :errors="$page.props.errors.code" v-model="form.code" id="code" required />
 
                 <Button variant="primary" :disabled="sending" block>{{ __('Confirm') }}</Button>
 
@@ -42,8 +43,6 @@ import Button from '@/components/Button.vue'
 import Container from '@/components/Container.vue'
 
 export default {
-    metaInfo: {title: 'Login'},
-
     components: {
         TextDivider,
         FormInput,

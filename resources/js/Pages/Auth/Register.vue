@@ -1,4 +1,5 @@
 <template>
+    <Head><title>{{ __('Register') }}</title></Head>
     <div class="flex items-center justify-center w-full min-h-screen">
         <Container size="small">
             <form class="space-y-4" @submit.prevent="submit">
@@ -9,16 +10,16 @@
                     </h1>
                 </div>
 
-                <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" id="name" type="text" required/>
-                <FormInput :label="__('Email')" :errors="$page.props.errors.email" v-model="form.email" id="email" type="email" required/>
-                <FormInput :label="__('Password')" :errors="$page.props.errors.password" v-model="form.password" id="password" type="password" required/>
-                <FormInput :label="__('Confirm password')" :errors="$page.props.errors.password_confirmation" v-model="form.password_confirmation" id="password_confirmation" type="password" required/>
+                <FormInput :label="__('Name')" :errors="$page.props.errors.name" v-model="form.name" id="name" type="text" required />
+                <FormInput :label="__('Email')" :errors="$page.props.errors.email" v-model="form.email" id="email" type="email" required />
+                <FormInput :label="__('Password')" :errors="$page.props.errors.password" v-model="form.password" id="password" type="password" required />
+                <FormInput :label="__('Confirm password')" :errors="$page.props.errors.password_confirmation" v-model="form.password_confirmation" id="password_confirmation" type="password" required />
 
                 <div v-if="$page.props.settings.accept_terms_required">
                     <input id="terms_required" class="form-checkbox" type="checkbox"
                            v-model="form.terms">
                     <label for="terms_required" class="ml-2 text-sm">
-                        {{__('Accept terms of service') }}
+                        {{ __('Accept terms of service') }}
                     </label>
                     <ErrorText v-if="$page.props.errors.terms">{{ $page.props.errors.terms[0] }}</ErrorText>
                 </div>
@@ -62,42 +63,36 @@ import Container from '@/components/Container.vue'
 import {useNotification} from '@/hooks/notification'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Register')}`,
-            }
-        },
+    components: {
+        TextDivider,
+        FormInput,
+        Button,
+        Container,
+        ErrorText,
+    },
 
-        components: {
-            TextDivider,
-            FormInput,
-            Button,
-            Container,
-            ErrorText,
-        },
-
-        data() {
-            return {
-                sending: false,
-                form: {
-                    terms: false,
-                    name: null,
-                    email: null,
-                    password: null,
-                    password_confirmation: null,
-                },
-            }
-        },
-
-        methods: {
-            useNotification,
-
-            submit() {
-                this.$inertia.post(this.route('register'), this.form, {
-                    onStart: () => this.sending = true,
-                    onFinish: () => this.sending = false,
-                });
+    data() {
+        return {
+            sending: false,
+            form: {
+                terms: false,
+                name: null,
+                email: null,
+                password: null,
+                password_confirmation: null,
             },
+        }
+    },
+
+    methods: {
+        useNotification,
+
+        submit() {
+            this.$inertia.post(this.route('register'), this.form, {
+                onStart: () => this.sending = true,
+                onFinish: () => this.sending = false,
+            });
         },
-    }
+    },
+}
 </script>

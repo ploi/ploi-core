@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('App') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment v-if="site.project">
@@ -67,7 +68,7 @@
 
                             <SettingsSegment v-if="type === 'nextcloud'">
                                 <template #title>{{ __('Nextcloud') }}</template>
-                                <template #subtitle>{{ __('Nextcloud is a suite of client-server software for creating and using file hosting services, it is comparable to Dropbox.')}}</template>
+                                <template #subtitle>{{ __('Nextcloud is a suite of client-server software for creating and using file hosting services, it is comparable to Dropbox.') }}</template>
                                 <template #content>
                                     <Button @click="install">{{ __('Start installation') }}</Button>
                                     <Button variant="secondary" @click="type = null">{{ __('Cancel') }}</Button>
@@ -118,94 +119,88 @@ import TableBody from '@/components/TableBody.vue'
 import TableData from '@/components/TableData.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: this.__('Apps'),
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        FormInput,
+        SettingsLayout,
+        SettingsSegment,
+        Form,
+        FormActions,
+        Tabs,
+        Table,
+        TableHead,
+        TableHeader,
+        TableRow,
+        TableBody,
+        TableData,
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            FormInput,
-            SettingsLayout,
-            SettingsSegment,
-            Form,
-            FormActions,
-            Tabs,
-            Table,
-            TableHead,
-            TableHeader,
-            TableRow,
-            TableBody,
-            TableData,
-        },
+    data() {
+        return {
+            sending: false,
 
-        data() {
-            return {
-                sending: false,
+            type: null,
+            options: {
+                create_database: false,
+            },
 
-                type: null,
-                options: {
-                    create_database: false,
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
                 },
+                {
+                    title: this.__('Sites'),
+                    to: this.route('sites.index'),
+                },
+                {
+                    title: this.site.domain,
+                    to: this.route('sites.show', this.site.id),
+                },
+                {
+                    title: this.__('Apps'),
+                    to: this.route('sites.apps.index', this.site.id),
+                },
+            ],
+        }
+    },
 
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Sites'),
-                        to: this.route('sites.index'),
-                    },
-                    {
-                        title: this.site.domain,
-                        to: this.route('sites.show', this.site.id),
-                    },
-                    {
-                        title: this.__('Apps'),
-                        to: this.route('sites.apps.index', this.site.id),
-                    },
-                ],
-            }
+    props: {
+        site: Object,
+    },
+
+    methods: {
+        prepareInstall(type) {
+            this.type = type;
         },
 
-        props: {
-            site: Object,
+        install() {
+            this.$inertia.post(this.route('sites.apps.store', this.site.id), {
+                type: this.type,
+                options: this.options
+            }, {
+                onFinish: () => {
+                    this.type = null
+                }
+            });
         },
 
-        methods: {
-            prepareInstall(type) {
-                this.type = type;
-            },
-
-            install() {
-                this.$inertia.post(this.route('sites.apps.store', this.site.id), {
-                    type: this.type,
-                    options: this.options
-                }, {
-                    onFinish: () => {
-                        this.type = null
-                    }
-                });
-            },
-
-            uninstall() {
-                this.$inertia.delete(this.route('sites.apps.delete', this.site.id))
-            }
+        uninstall() {
+            this.$inertia.delete(this.route('sites.apps.delete', this.site.id))
         }
     }
+}
 </script>

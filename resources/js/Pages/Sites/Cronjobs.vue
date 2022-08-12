@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head :title="`${this.__('Cronjobs')} - ${this.site.domain}`"></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -23,7 +24,7 @@
                                 </template>
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
-                                        <FormInput :label="__('Command')" :errors="$page.props.errors.command" v-model="form.command"/>
+                                        <FormInput :label="__('Command')" :errors="$page.props.errors.command" v-model="form.command" />
                                         <div>
                                             <label class="inline-block text-small font-medium">
                                                 Frequency ({{ convertedFrequency }})
@@ -95,7 +96,9 @@
                                             </TableHead>
                                             <TableBody>
                                                 <TableRow v-for="cronjob in cronjobs.data" :key="cronjob.id">
-                                                    <TableData><StatusBubble :variant="cronjob.status === 'busy' ? 'gray' : 'success'"/></TableData>
+                                                    <TableData>
+                                                        <StatusBubble :variant="cronjob.status === 'busy' ? 'gray' : 'success'" />
+                                                    </TableData>
                                                     <TableData>{{ cronjob.command }}</TableData>
                                                     <TableData>{{ cronjob.frequency }}</TableData>
                                                     <TableData>
@@ -109,7 +112,7 @@
                                         </Table>
                                     </div>
 
-                                    <pagination :links="cronjobs"/>
+                                    <pagination :links="cronjobs" />
                                 </template>
                             </SettingsSegment>
                         </template>
@@ -152,178 +155,172 @@ import TableBody from '@/components/TableBody.vue'
 import TableData from '@/components/TableData.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `Cronjobs - ${this.site.domain}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        FormInput,
+        SettingsLayout,
+        SettingsSegment,
+        Form,
+        FormActions,
+        Pagination,
+        Tabs,
+        Table,
+        TableHead,
+        TableHeader,
+        TableRow,
+        TableBody,
+        TableData,
+        EmptyImage
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            FormInput,
-            SettingsLayout,
-            SettingsSegment,
-            Form,
-            FormActions,
-            Pagination,
-            Tabs,
-            Table,
-            TableHead,
-            TableHeader,
-            TableRow,
-            TableBody,
-            TableData,
-            EmptyImage
-        },
+    data() {
+        return {
+            sending: false,
 
-        data() {
-            return {
-                sending: false,
+            form: {
+                command: `php /home/${this.$page.props.auth.user.user_name}/${this.site.domain}/script.php`,
+                interval: 'minutely',
+                frequency: '* * * * *',
+            },
 
-                form: {
-                    command: `php /home/${this.$page.props.auth.user.user_name}/${this.site.domain}/script.php`,
-                    interval: 'minutely',
-                    frequency: '* * * * *',
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
                 },
+                {
+                    title: this.__('Sites'),
+                    to: this.route('sites.index'),
+                },
+                {
+                    title: this.site.domain,
+                    to: this.route('sites.show', this.site.id),
+                },
+                {
+                    title: this.__('Cronjobs'),
+                    to: this.route('sites.cronjobs.index', this.site.id),
+                },
+            ],
+        }
+    },
 
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Sites'),
-                        to: this.route('sites.index'),
-                    },
-                    {
-                        title: this.site.domain,
-                        to: this.route('sites.show', this.site.id),
-                    },
-                    {
-                        title: this.__('Cronjobs'),
-                        to: this.route('sites.cronjobs.index', this.site.id),
-                    },
-                ],
+    mounted() {
+        if (this.shouldBePolling) {
+            this.startPollingInterval();
+        }
+    },
+
+    watch: {
+        shouldBePolling: function (value) {
+            if (!value) {
+                this.clearPollingInterval();
+
+                return;
             }
-        },
 
-        mounted() {
-            if(this.shouldBePolling){
+            if (!this.pollingInterval) {
                 this.startPollingInterval();
             }
+        }
+    },
+
+    computed: {
+        shouldBePolling() {
+            return !!this.cronjobs.data.filter((cronjob) => {
+                return cronjob.status === 'busy';
+            }).length;
         },
-
-        watch: {
-            shouldBePolling: function (value) {
-                if (!value) {
-                    this.clearPollingInterval();
-
-                    return;
-                }
-
-                if(!this.pollingInterval){
-                    this.startPollingInterval();
-                }
+        convertedFrequency: function () {
+            if (this.form.interval === 'minutely') {
+                return this.form.frequency = '* * * * *';
+            } else if (this.form.interval === 'hourly') {
+                return this.form.frequency = '0 * * * *';
+            } else if (this.form.interval === 'nightly') {
+                return this.form.frequency = '0 2 * * *';
+            } else if (this.form.interval === 'weekly') {
+                return this.form.frequency = '0 0 * * 0';
+            } else if (this.form.interval === 'monthly') {
+                return this.form.frequency = '0 0 1 * *';
+            } else {
+                return this.form.frequency;
             }
+        }
+    },
+
+    props: {
+        site: Object,
+        cronjobs: Object,
+    },
+
+    methods: {
+        useNotification,
+
+        startPollingInterval() {
+            this.pollingInterval = setInterval(function () {
+                this.poll();
+            }.bind(this), 3000);
         },
 
-        computed: {
-            shouldBePolling() {
-                return !!this.cronjobs.data.filter((cronjob) => {
-                    return cronjob.status === 'busy';
-                }).length;
-            },
-            convertedFrequency: function () {
-                if (this.form.interval === 'minutely') {
-                    return this.form.frequency = '* * * * *';
-                } else if (this.form.interval === 'hourly') {
-                    return this.form.frequency = '0 * * * *';
-                } else if (this.form.interval === 'nightly') {
-                    return this.form.frequency = '0 2 * * *';
-                } else if (this.form.interval === 'weekly') {
-                    return this.form.frequency = '0 0 * * 0';
-                } else if (this.form.interval === 'monthly') {
-                    return this.form.frequency = '0 0 1 * *';
-                } else {
-                    return this.form.frequency;
-                }
-            }
+        clearPollingInterval() {
+            clearTimeout(this.pollingInterval);
+            this.pollingInterval = null;
         },
 
-        props: {
-            site: Object,
-            cronjobs: Object,
+        poll() {
+            this.$inertia.get(this.route('sites.cronjobs.index', this.site.id), {
+                only: ['cronjobs'],
+                preserveScroll: true,
+            })
         },
 
-        methods: {
-            useNotification,
+        submit() {
+            this.sending = true
 
-            startPollingInterval(){
-                this.pollingInterval = setInterval(function () {
-                    this.poll();
-                }.bind(this), 3000);
-            },
+            this.$inertia.post(this.route('sites.cronjobs.store', this.site.id), this.form, {
+                onFinish: () => {
+                    this.sending = false
 
-            clearPollingInterval(){
-                clearTimeout(this.pollingInterval);
-                this.pollingInterval = null;
-            },
-
-            poll() {
-                this.$inertia.get(this.route('sites.cronjobs.index', this.site.id), {
-                    only: ['cronjobs'],
-                    preserveScroll: true,
-                })
-            },
-
-            submit() {
-                this.sending = true
-
-                this.$inertia.post(this.route('sites.cronjobs.store', this.site.id), this.form, {
-                    onFinish: () => {
-                        this.sending = false
-
-                        if (!Object.keys(this.$page.props.errors).length) {
-                            this.form = {
-                                command: `php /home/${this.$page.props.auth.user.user_name}/${this.site.domain}/script.php`,
-                                interval: 'minutely',
-                                frequency: '* * * * *',
-                            }
+                    if (!Object.keys(this.$page.props.errors).length) {
+                        this.form = {
+                            command: `php /home/${this.$page.props.auth.user.user_name}/${this.site.domain}/script.php`,
+                            interval: 'minutely',
+                            frequency: '* * * * *',
                         }
                     }
-                })
-            },
-
-            confirmDelete(cronjob) {
-                useConfirm({
-                    title: this.__('Are you sure?'),
-                    message: this.__('Your cronjob will be deleted permanently, this action cannot be undone.'),
-                    onConfirm: () => this.delete(cronjob),
-                })
-            },
-
-            delete(cronjob) {
-                this.$inertia.delete(this.route('sites.cronjobs.delete', [this.site.id, cronjob.id]), {
-                    preserveScroll: true
-                })
-            }
+                }
+            })
         },
 
-        beforeUnmount(){
-            this.clearPollingInterval();
+        confirmDelete(cronjob) {
+            useConfirm({
+                title: this.__('Are you sure?'),
+                message: this.__('Your cronjob will be deleted permanently, this action cannot be undone.'),
+                onConfirm: () => this.delete(cronjob),
+            })
+        },
+
+        delete(cronjob) {
+            this.$inertia.delete(this.route('sites.cronjobs.delete', [this.site.id, cronjob.id]), {
+                preserveScroll: true
+            })
         }
+    },
+
+    beforeUnmount() {
+        this.clearPollingInterval();
     }
+}
 </script>

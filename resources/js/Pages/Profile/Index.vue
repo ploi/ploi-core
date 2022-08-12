@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Profile') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -58,75 +59,69 @@ import FormSelect from '@/components/forms/FormSelect.vue'
 import FormActions from '@/components/FormActions.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Profile')}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        IconBox,
+        IconGlobe,
+        IconStorage,
+        Modal,
+        ModalContainer,
+        FormInput,
+        FormSelect,
+        FormActions
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            IconBox,
-            IconGlobe,
-            IconStorage,
-            Modal,
-            ModalContainer,
-            FormInput,
-            FormSelect,
-            FormActions
-        },
+    props: {
+        profile: Object,
+        countries: Object,
+    },
 
-        props: {
-            profile: Object,
-            countries: Object,
-        },
+    data() {
+        return {
+            form: {
+                name: this.profile.name,
+                email: this.profile.email,
+                language: this.profile.language,
 
-        data() {
-            return {
-                form: {
-                    name: this.profile.name,
-                    email: this.profile.email,
-                    language: this.profile.language,
+                address: this.profile.address,
+                country: this.profile.country,
+                zip: this.profile.zip,
+                city: this.profile.city,
+            },
 
-                    address: this.profile.address,
-                    country: this.profile.country,
-                    zip: this.profile.zip,
-                    city: this.profile.city,
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
                 },
+                {
+                    title: this.__('Profile'),
+                    to: this.route('profile.index'),
+                },
+            ],
+        }
+    },
 
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Profile'),
-                        to: this.route('profile.index'),
-                    },
-                ],
-            }
-        },
-
-        methods: {
-            submit(){
-                this.$inertia.patch(this.route('profile.update'), this.form, {
-                    onStart: () => this.sending = true,
-                    onFinish: () => this.sending = false
-                });
-            }
-        },
-    }
+    methods: {
+        submit() {
+            this.$inertia.patch(this.route('profile.update'), this.form, {
+                onStart: () => this.sending = true,
+                onFinish: () => this.sending = false
+            });
+        }
+    },
+}
 </script>

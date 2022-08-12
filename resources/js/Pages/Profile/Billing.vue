@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Billing') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -32,12 +33,12 @@
                                             :errors="$page.props.errors.card_holder_name"
                                             :disabled="sending"
                                             id="card-holder-name"
-                                            :label="__('Card holder name')"/>
+                                            :label="__('Card holder name')" />
 
                                 <form-input v-model="address"
                                             :errors="$page.props.errors.address"
                                             :disabled="sending"
-                                            :label="__('Address')"/>
+                                            :label="__('Address')" />
                                 <form-select :disabled="sending" :label="__('Country')"
                                              :errors="$page.props.errors.country" v-model="country">
                                     <option :value="code" v-for="(country, code) in countries"
@@ -46,11 +47,11 @@
                                 <form-input v-model="zip"
                                             :errors="$page.props.errors.zip"
                                             :disabled="sending"
-                                            :label="__('ZIP (postal code)')"/>
+                                            :label="__('ZIP (postal code)')" />
                                 <form-input v-model="city"
                                             :errors="$page.props.errors.city"
                                             :disabled="sending"
-                                            :label="__('City')"/>
+                                            :label="__('City')" />
 
                                 <div class="w-full pb-4">
                                     <label class="form-label" for="card-element">{{ __('Card details') }}</label>
@@ -85,7 +86,7 @@
                                         :disabled="sending"
                                         :placeholder="__('Enter a coupon code if you have one, before subscribing')"
                                         class="pb-4"
-                                        :label="__('Coupon')"/>
+                                        :label="__('Coupon')" />
                             <Table caption="Package list overview">
                                 <TableHead>
                                     <TableRow>
@@ -96,8 +97,8 @@
                                                @click="requestFilterUrl({sortBy: {'name' : filters.sort.name === 'asc' ? 'desc' : 'asc'}})">
                                                 <span>{{ __('Name') }}</span>
 
-                                                <IconArrowUp v-if="filters.sort.name === 'asc'"/>
-                                                <IconArrowDown v-if="filters.sort.name === 'desc'"/>
+                                                <IconArrowUp v-if="filters.sort.name === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.name === 'desc'" />
                                             </a>
                                         </TableHeader>
                                         <TableHeader>
@@ -107,8 +108,8 @@
                                                @click="requestFilterUrl({sortBy: {'sites' : filters.sort.sites === 'asc' ? 'desc' : 'asc'}})">
                                                 <span>{{ __('Max sites') }}</span>
 
-                                                <IconArrowUp v-if="filters.sort.sites === 'asc'"/>
-                                                <IconArrowDown v-if="filters.sort.sites === 'desc'"/>
+                                                <IconArrowUp v-if="filters.sort.sites === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.sites === 'desc'" />
                                             </a>
                                         </TableHeader>
                                         <TableHeader>
@@ -118,8 +119,8 @@
                                                @click="requestFilterUrl({sortBy: {'servers' : filters.sort.servers === 'asc' ? 'desc' : 'asc'}})">
                                                 <span>{{ __('Max servers') }}</span>
 
-                                                <IconArrowUp v-if="filters.sort.servers === 'asc'"/>
-                                                <IconArrowDown v-if="filters.sort.servers === 'desc'"/>
+                                                <IconArrowUp v-if="filters.sort.servers === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.servers === 'desc'" />
                                             </a>
                                         </TableHeader>
                                         <TableHeader>
@@ -129,14 +130,14 @@
                                                @click="requestFilterUrl({sortBy: {'price' : filters.sort.price === 'asc' ? 'desc' : 'asc'}})">
                                                 <span>{{ __('Price') }}</span>
 
-                                                <IconArrowUp v-if="filters.sort.price === 'asc'"/>
-                                                <IconArrowDown v-if="filters.sort.price === 'desc'"/>
+                                                <IconArrowUp v-if="filters.sort.price === 'asc'" />
+                                                <IconArrowDown v-if="filters.sort.price === 'desc'" />
                                             </a>
                                         </TableHeader>
                                         <TableHeader>
                                             <inertia-link :href="route('profile.billing.index')" data-balloon-blunt
                                                           :aria-label="__('Clear sorting')" data-balloon-pos="up">
-                                                <IconClose/>
+                                                <IconClose />
                                             </inertia-link>
                                         </TableHeader>
                                     </TableRow>
@@ -242,12 +243,6 @@ import {useNotification} from '@/hooks/notification'
 import {useConfirm} from '@/hooks/confirm'
 
 export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Billing')}`,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

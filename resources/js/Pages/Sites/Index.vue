@@ -1,12 +1,13 @@
 <template>
     <Page>
+        <Head><title>{{ __('Sites') }}</title></Head>
         <Portal to="modals" v-if="can('sites', 'create')">
             <ModalContainer>
                 <Modal @close="closeModal" v-if="modalIsOpen" @submit="submit">
                     <template #title>{{ __('Create a site') }}</template>
 
                     <template #form>
-                        <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain"/>
+                        <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain" />
 
                         <FormSelect v-if="Object.keys(availableServers).length" :label="__('Select server')" v-model="form.server_id">
                             <option :value="`${null}`">{{ __('Select random server') }}</option>
@@ -21,7 +22,7 @@
             </ModalContainer>
         </Portal>
 
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -40,7 +41,7 @@
                     <List>
                         <ListItem v-for="site in sites.data" :key="site.id">
                             <template #prefix>
-                                <StatusBubble :variant="site.status === 'busy' ? 'gray' : 'success'"/>
+                                <StatusBubble :variant="site.status === 'busy' ? 'gray' : 'success'" />
                             </template>
                             <template #title>
                                 <inertia-link class="text-primary font-medium" :href="route('sites.show', site.id)">
@@ -77,7 +78,7 @@
                         </ListItem>
                     </List>
 
-                    <pagination :links="sites"/>
+                    <pagination :links="sites" />
                 </PageBody>
             </Container>
         </Content>
@@ -118,165 +119,159 @@ import {useConfirm} from '@/hooks/confirm'
 import Pagination from '@/components/Pagination.vue'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Sites')}`,
+    layout: MainLayout,
+
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        IconButton,
+        IconMore,
+        IconPhp,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        EmptyImage,
+        IconBox,
+        IconGlobe,
+        IconStorage,
+        Modal,
+        ModalContainer,
+        FormInput,
+        FormActions,
+        FormSelect,
+        Dropdown,
+        DropdownList,
+        DropdownListItem,
+        DropdownListItemButton,
+        Pagination
+    },
+
+    props: {
+        sites: Object,
+        availableServers: [Array, Object]
+    },
+
+    computed: {
+        shouldBePolling() {
+            return !!this.sites.data.filter((site) => {
+                return site.status === 'busy';
+            }).length;
+        }
+    },
+
+    mounted() {
+        if (this.shouldBePolling) {
+            this.startPollingInterval();
+        }
+
+        // If it includes a create true parameter, then we open the creation modal
+        if (window.location.search.includes('create=')) {
+            this.modalIsOpen = true;
+        }
+        if (window.location.search.includes('server=')) {
+            let urlParams = new URLSearchParams(window.location.search);
+
+            this.form.server_id = urlParams.get('server');
+        }
+    },
+
+    watch: {
+        shouldBePolling: function (value) {
+            if (!value) {
+                this.clearPollingInterval();
+
+                return;
             }
-        },
 
-        layout: MainLayout,
-
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            IconButton,
-            IconMore,
-            IconPhp,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            EmptyImage,
-            IconBox,
-            IconGlobe,
-            IconStorage,
-            Modal,
-            ModalContainer,
-            FormInput,
-            FormActions,
-            FormSelect,
-            Dropdown,
-            DropdownList,
-            DropdownListItem,
-            DropdownListItemButton,
-            Pagination
-        },
-
-        props: {
-            sites: Object,
-            availableServers: [Array, Object]
-        },
-
-        computed: {
-            shouldBePolling() {
-                return !!this.sites.data.filter((site) => {
-                    return site.status === 'busy';
-                }).length;
-            }
-        },
-
-        mounted(){
-            if(this.shouldBePolling){
+            if (!this.pollingInterval) {
                 this.startPollingInterval();
             }
-
-            // If it includes a create true parameter, then we open the creation modal
-            if(window.location.search.includes('create=')){
-                this.modalIsOpen = true;
-            }
-            if(window.location.search.includes('server=')){
-                let urlParams = new URLSearchParams(window.location.search);
-
-                this.form.server_id = urlParams.get('server');
-            }
-        },
-
-        watch: {
-            shouldBePolling: function (value) {
-                if (!value) {
-                    this.clearPollingInterval();
-
-                    return;
-                }
-
-                if(!this.pollingInterval){
-                    this.startPollingInterval();
-                }
-            }
-        },
-
-        data() {
-            return {
-                form: {
-                    domain: null,
-                    server_id: null,
-                },
-
-                pollingInterval: null,
-
-                modalIsOpen: false,
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Sites'),
-                        to: this.route('sites.index'),
-                    },
-                ],
-            }
-        },
-
-        methods: {
-            startPollingInterval(){
-                this.pollingInterval = setInterval(function () {
-                    this.poll();
-                }.bind(this), 3000);
-            },
-
-            clearPollingInterval(){
-                clearTimeout(this.pollingInterval);
-                this.pollingInterval = null;
-            },
-
-            poll() {
-                this.$inertia.replace(this.route('sites.index'), {
-                    only: ['sites'],
-                    preserveScroll: true,
-                })
-            },
-
-            closeModal() {
-                this.modalIsOpen = false;
-                this.form.domain = null;
-                this.$page.props.errors = [];
-            },
-
-            submit() {
-                this.$inertia.post(this.route('sites.store'), this.form, {
-                    only: ['errors', 'flash', 'sites'],
-                    onFinish: () => {
-                        if (!Object.keys(this.$page.props.errors).length) {
-                            this.form.domain = null;
-                            this.form.server_id = null;
-                            this.modalIsOpen = false;
-                        }
-                    }
-                });
-            },
-
-            confirmDelete(site) {
-                useConfirm({
-                    title: this.__('Are you sure?'),
-                    message: this.__('Your site will be deleted completely, this action is irreversible.'),
-                    onConfirm: () => this.delete(site),
-                })
-            },
-
-            delete(site) {
-                this.$inertia.delete(this.route('sites.delete', site.id))
-            }
-        },
-
-        beforeUnmount(){
-            this.clearPollingInterval();
         }
+    },
+
+    data() {
+        return {
+            form: {
+                domain: null,
+                server_id: null,
+            },
+
+            pollingInterval: null,
+
+            modalIsOpen: false,
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
+                },
+                {
+                    title: this.__('Sites'),
+                    to: this.route('sites.index'),
+                },
+            ],
+        }
+    },
+
+    methods: {
+        startPollingInterval() {
+            this.pollingInterval = setInterval(function () {
+                this.poll();
+            }.bind(this), 3000);
+        },
+
+        clearPollingInterval() {
+            clearTimeout(this.pollingInterval);
+            this.pollingInterval = null;
+        },
+
+        poll() {
+            this.$inertia.replace(this.route('sites.index'), {
+                only: ['sites'],
+                preserveScroll: true,
+            })
+        },
+
+        closeModal() {
+            this.modalIsOpen = false;
+            this.form.domain = null;
+            this.$page.props.errors = [];
+        },
+
+        submit() {
+            this.$inertia.post(this.route('sites.store'), this.form, {
+                only: ['errors', 'flash', 'sites'],
+                onFinish: () => {
+                    if (!Object.keys(this.$page.props.errors).length) {
+                        this.form.domain = null;
+                        this.form.server_id = null;
+                        this.modalIsOpen = false;
+                    }
+                }
+            });
+        },
+
+        confirmDelete(site) {
+            useConfirm({
+                title: this.__('Are you sure?'),
+                message: this.__('Your site will be deleted completely, this action is irreversible.'),
+                onConfirm: () => this.delete(site),
+            })
+        },
+
+        delete(site) {
+            this.$inertia.delete(this.route('sites.delete', site.id))
+        }
+    },
+
+    beforeUnmount() {
+        this.clearPollingInterval();
     }
+}
 </script>

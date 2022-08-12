@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Servers') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :server="server"/>
+                            <Tabs :server="server" />
                         </template>
                         <template #segments>
                             <SettingsSegment v-if="can('servers', 'update')">
@@ -21,7 +22,7 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Name')" :errors="$page.props.errors.name"
-                                                   v-model="form.name"/>
+                                                   v-model="form.name" />
 
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -85,97 +86,91 @@ import TableData from '@/components/TableData.vue'
 import {useConfirm} from '@/hooks/confirm'
 
 export default {
-        metaInfo() {
-            return {
-                title: `${this.__('Servers')}`,
-            }
-        },
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        IconButton,
+        IconMore,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        IconBox,
+        IconGlobe,
+        IconStorage,
+        EmptyImage,
+        Modal,
+        ModalContainer,
+        FormInput,
+        FormActions,
+        Dropdown,
+        DropdownList,
+        DropdownListItem,
+        DropdownListItemButton,
+        SettingsSegment,
+        SettingsLayout,
+        Tabs,
+        Table,
+        TableHead,
+        TableHeader,
+        TableRow,
+        TableBody,
+        TableData,
+        Pagination
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            IconButton,
-            IconMore,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            IconBox,
-            IconGlobe,
-            IconStorage,
-            EmptyImage,
-            Modal,
-            ModalContainer,
-            FormInput,
-            FormActions,
-            Dropdown,
-            DropdownList,
-            DropdownListItem,
-            DropdownListItemButton,
-            SettingsSegment,
-            SettingsLayout,
-            Tabs,
-            Table,
-            TableHead,
-            TableHeader,
-            TableRow,
-            TableBody,
-            TableData,
-            Pagination
-        },
+    props: {
+        server: Object,
+    },
 
-        props: {
-            server: Object,
-        },
+    data() {
+        return {
+            form: {
+                name: this.server.name
+            },
 
-        data() {
-            return {
-                form: {
-                    name: this.server.name
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
                 },
+                {
+                    title: this.server.name,
+                    to: this.route('servers.show', this.server.id),
+                },
+            ],
+        }
+    },
 
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.server.name,
-                        to: this.route('servers.show', this.server.id),
-                    },
-                ],
-            }
+    methods: {
+        useConfirm,
+
+        submit() {
+            this.$inertia.patch(this.route('servers.settings.update', this.server.id), this.form, {
+                onStart: () => this.sending = true,
+                onFinish: () => this.sending = false
+            })
         },
 
-        methods: {
-            useConfirm,
-
-            submit() {
-                this.$inertia.patch(this.route('servers.settings.update', this.server.id), this.form, {
-                    onStart: () => this.sending = true,
-                    onFinish: () => this.sending = false
-                })
-            },
-
-            confirmDelete() {
-                useConfirm({
-                    title: this.__('Are you sure?'),
-                    message: this.__('Your server will be deleted completely, this action is irreversible.'),
-                    onConfirm: () => this.delete(),
-                })
-            },
-
-            delete() {
-                this.$inertia.delete(this.route('servers.delete', this.server.id))
-            },
+        confirmDelete() {
+            useConfirm({
+                title: this.__('Are you sure?'),
+                message: this.__('Your server will be deleted completely, this action is irreversible.'),
+                onConfirm: () => this.delete(),
+            })
         },
-    }
+
+        delete() {
+            this.$inertia.delete(this.route('servers.delete', this.server.id))
+        },
+    },
+}
 </script>
