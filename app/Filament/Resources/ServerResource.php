@@ -27,15 +27,8 @@ class ServerResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label(__('Name'))
-                    ->rules(['alpha_dash'])
-                    ->maxLength(40)
-                    ->columnSpan(2),
-                Forms\Components\TextInput::make('ip')
-                    ->label(__('IP address'))
-                    ->columnSpan(2),
                 Forms\Components\TextInput::make('maximum_sites')
+                    ->label(__('Maximum sites'))
                     ->integer()
                     ->required()
                     ->columnSpan(2),
