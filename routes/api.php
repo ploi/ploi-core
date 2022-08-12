@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PackageController;
 use App\Http\Controllers\Api\ServerController;
 use App\Http\Controllers\Api\SiteController;
 use App\Http\Controllers\Api\UserController;
@@ -16,3 +17,7 @@ Route::resource('sites', SiteController::class)
 Route::resource('servers', ServerController::class)
     ->names('server')
     ->only('store');
+
+Route::resource('packages', PackageController::class)
+    ->names('package')
+    ->only('index');

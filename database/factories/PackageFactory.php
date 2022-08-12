@@ -16,7 +16,7 @@ class PackageFactory extends Factory
             'price_hourly' => 0,
             'price_monthly' => 0,
             'price_yearly' => 0,
-            'plan_id' => null,
+            'stripe_plan_id' => null,
             'currency' => Package::CURRENCY_EURO,
             'site_permissions' => [
                 'create' => true,
@@ -27,16 +27,19 @@ class PackageFactory extends Factory
                 'create' => true,
                 'update' => true,
                 'delete' => true,
-            ]
+            ],
         ];
     }
 
     public function serverPermissions(array $permissions = []): static
     {
-        return $this->set('server_permissions', array_merge([
-            'create' => true,
-            'update' => true,
-            'delete' => true,
-        ], $permissions));
+        return $this->set(
+            'server_permissions',
+            array_merge([
+                'create' => true,
+                'update' => true,
+                'delete' => true,
+            ], $permissions)
+        );
     }
 }

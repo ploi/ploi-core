@@ -162,7 +162,7 @@
                                         </TableData>
                                         <TableData class="text-right">
                                             <Button size="sm"
-                                                    :disabled="sending || (subscription && webPackage.plan_id === subscription.stripe_plan)"
+                                                    :disabled="sending || (subscription && webPackage.stripe_plan_id === subscription.stripe_plan)"
                                                     @click="updatePlan(webPackage.id)">
                                                 {{ __('Subscribe') }}
                                             </Button>

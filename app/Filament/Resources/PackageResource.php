@@ -39,7 +39,7 @@ class PackageResource extends Resource
                     ->helperText(__('Set to 0 for unlimited'))
                     ->integer()
                     ->required(),
-                TextInput::make('plan_id')
+                TextInput::make('stripe_plan_id')
                     ->helperText(__('Enter the pricing ID from Stripe here') . ' - <a href="https://docs.ploi-core.io/digging-deeper/using-stripe" target="ploi-docs-stripe" class="text-primary-500">How does this work?</a>')
                     ->label(__('Stripe ID'))
                     ->columnSpan(2),
@@ -106,17 +106,17 @@ class PackageResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Name'))
                     ->description(function (Package $record) {
-                        if (!$record->plan_id) {
+                        if ( ! $record->stripe_plan_id ) {
                             return __('Not attached to Stripe.');
                         }
 
                         return "Attached to stripe - {$record->price_monthly} {$record->currency}";
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
-                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum sites')),
                 Tables\Columns\TextColumn::make('maximum_servers')
-                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum servers')),
                 Tables\Columns\TextColumn::make('users_count')
                     ->counts('users'),

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Package extends Model
 {
     use HasFactory;
-    
+
     const CURRENCY_EURO = 'eur';
     const CURRENCY_USD = 'usd';
     const CURRENCY_NOK = 'nok';
@@ -22,7 +22,7 @@ class Package extends Model
 
     public $fillable = [
         'name',
-        'plan_id', // This does not reflect a internal database relation, it reflects the plan ID from the PSP
+        'stripe_plan_id', // This does not reflect an internal database relation, it reflects the plan ID from the PSP
         'currency',
         'price_hourly',
         'price_monthly',
@@ -30,7 +30,7 @@ class Package extends Model
         'maximum_sites',
         'maximum_servers',
         'site_permissions',
-        'server_permissions'
+        'server_permissions',
     ];
 
     public $casts = [
