@@ -33,8 +33,10 @@ class ProviderPlanResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')->label('ID')->searchable(),
                 Tables\Columns\TextColumn::make('provider.name')
-                    ->label(__('Provider')),
+                    ->label(__('Provider'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('plan_id')
                     ->label(__('Plan ID'))
                     ->searchable(),

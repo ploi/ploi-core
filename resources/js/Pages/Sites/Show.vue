@@ -102,21 +102,21 @@
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
-                                                           :value="mainDnsRecord" />
+                                                           :model-value="mainDnsRecord" />
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
-                                                           :value="ip_address" />
+                                                           :model-value="ip_address" />
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
-                                                           :value="`www`" />
+                                                           :model-value="`www`" />
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
-                                                           :value="ip_address" />
+                                                           :model-value="ip_address" />
                                             </div>
                                         </div>
                                     </form>

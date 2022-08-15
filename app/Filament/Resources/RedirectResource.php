@@ -43,10 +43,18 @@ class RedirectResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('redirect_from')
+                    ->label(__('Redirect from'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('redirect_to')
+                    ->label(__('Redirect to'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('server.name')
-                    ->label(__('Server')),
+                    ->label(__('Server'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('site.domain')
-                    ->label(__('Site')),
+                    ->label(__('Site'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('type')
                     ->label(__('Type')),
                 Tables\Columns\BadgeColumn::make('status')
@@ -59,10 +67,6 @@ class RedirectResource extends Resource
                         'success' => Redirect::STATUS_ACTIVE,
                     ])
                     ->label(__('Status')),
-                Tables\Columns\TextColumn::make('redirect_from')
-                    ->label(__('Redirect from')),
-                Tables\Columns\TextColumn::make('redirect_to')
-                    ->label(__('Redirect to')),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Date'))
                     ->dateTime(),

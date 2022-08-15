@@ -50,11 +50,12 @@ class UserResource extends Resource
                     ->label(__('Notes'))
                     ->maxLength(65535),
                 Forms\Components\Textarea::make('blocked')
+                    ->helperText('Entering a reason here will block the user from accessing your panel. It will also display the typed message to the user.')
                     ->label(__('Blocked')),
                 Forms\Components\Checkbox::make('requires_password_for_ftp')
                     ->default(true)
                     ->label(__('Require password to show FTP password'))
-                    ->helperText(__('Disabling this will allow this user to get the FTP password right away.')),
+                    ->helperText(__('Disabling this will allow this user to get the FTP password without entering their password.')),
             ]);
     }
 
@@ -87,8 +88,8 @@ class UserResource extends Resource
             ->filters([
                 //
             ])
-            ->appendActions([
-                Impersonate::make('impersonate'),
+            ->actions([
+                Impersonate::make('impersonate')->tooltip('Login as this user (impersonate)'),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

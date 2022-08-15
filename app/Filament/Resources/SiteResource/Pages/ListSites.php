@@ -22,16 +22,18 @@ class ListSites extends ListRecords
                 ->icon('heroicon-o-refresh')
                 ->color('secondary')
                 ->url(route('filament.resources.sites.synchronize')),
+
+            ...parent::getActions()
         ];
     }
 
     protected function applySearchToTableQuery(Builder $query): Builder
     {
-        if ( filled($searchTerm = $this->getTableSearchQuery()) ) {
+        if (filled($searchTerm = $this->getTableSearchQuery())) {
             $query
                 ->where('domain', 'LIKE', "%{$searchTerm}%")
-                ->orWhereHas('users', fn (Builder $query) => $query->where('name', 'LIKE', "%{$searchTerm}%"))
-                ->orWhereHas('users', fn (Builder $query) => $query->where('email', 'LIKE', "%{$searchTerm}%"));
+                ->orWhereHas('users', fn(Builder $query) => $query->where('name', 'LIKE', "%{$searchTerm}%"))
+                ->orWhereHas('users', fn(Builder $query) => $query->where('email', 'LIKE', "%{$searchTerm}%"));
         }
 
         return $query;

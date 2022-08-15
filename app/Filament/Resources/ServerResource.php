@@ -23,6 +23,8 @@ class ServerResource extends Resource
 
     protected static ?string $navigationGroup = 'Server management';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -93,7 +95,7 @@ class ServerResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->with(['users'])
+            ->with(['users:id,name'])
             ->withCount(['sites']);
     }
 
@@ -113,8 +115,4 @@ class ServerResource extends Resource
         ];
     }
 
-    public static function canCreate(): bool
-    {
-        return false;
-    }
 }

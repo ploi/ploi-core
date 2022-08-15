@@ -4,9 +4,9 @@ namespace App\Mail\Database;
 
 use App\Models\Database;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class PasswordReset extends Mailable implements ShouldQueue
 {
@@ -15,7 +15,8 @@ class PasswordReset extends Mailable implements ShouldQueue
     public function __construct(
         public Database $database,
         public string $newPassword,
-    ) {}
+    ) {
+    }
 
     /**
      * Build the message.

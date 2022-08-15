@@ -25,6 +25,8 @@ class SiteResource extends Resource
 
     protected static ?int $navigationSort = 0;
 
+    protected static ?string $recordTitleAttribute = 'domain';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -114,11 +116,6 @@ class SiteResource extends Resource
             RelationManagers\RedirectsRelationManager::class,
             RelationManagers\SystemUsersRelationManager::class,
         ];
-    }
-
-    public static function canCreate(): bool
-    {
-        return false;
     }
 
     public static function getPages(): array

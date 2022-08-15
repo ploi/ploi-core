@@ -60,7 +60,7 @@ class EditDatabase extends Page
             ->success()
             ->send();
 
-        if ( $state['send_new_password_to_user'] ) {
+        if ($state['send_new_password_to_user']) {
             Mail::to($this->record->site->users)->send(new PasswordReset($this->record, $this->recentlyUpdatedPassword));
         }
     }

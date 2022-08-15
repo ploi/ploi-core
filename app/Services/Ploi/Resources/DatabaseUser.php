@@ -30,7 +30,7 @@ class DatabaseUser extends Resource
 
     public function resetPassword(): Response
     {
-        return $this->getPloi()->makeAPICall($this->getEndpoint() . '/reset-password');
+        return $this->getPloi()->makeAPICall($this->getEndpoint() . '/reset-password', 'post');
     }
 
     public function setDatabase(Database $database): static

@@ -31,6 +31,8 @@ class UsersRelationManager extends RelationManager
                         Select::make('user_id')
                             ->label('User')
                             ->options(User::orderBy('name')->get()->mapWithKeys(fn (User $user) => [$user->id => $user->name]))
+                            ->preload()
+                            ->searchable()
                             ->required(),
                     ])
                     ->action(function (array $data, self $livewire) {

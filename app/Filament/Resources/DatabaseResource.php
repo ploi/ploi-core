@@ -32,10 +32,15 @@ class DatabaseResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('Name'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('server.name')
-                    ->label(__('Server')),
+                    ->label(__('Server'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('site.domain')
-                    ->label(__('Site')),
+                    ->label(__('Site'))
+                    ->searchable(),
                 Tables\Columns\BadgeColumn::make('status')
                     ->enum([
                         Database::STATUS_BUSY => __('Busy'),
@@ -46,10 +51,10 @@ class DatabaseResource extends Resource
                         'success' => Database::STATUS_ACTIVE,
                     ])
                     ->label(__('Status')),
-                Tables\Columns\TextColumn::make('name')
-                    ->label(__('Name')),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Date'))
+                    ->sortable()
                     ->dateTime(),
             ])
             ->filters([
@@ -60,7 +65,8 @@ class DatabaseResource extends Resource
             ])
             ->bulkActions([
                 //
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

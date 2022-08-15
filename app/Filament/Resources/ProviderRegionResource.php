@@ -33,8 +33,10 @@ class ProviderRegionResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')->label('ID')->searchable(),
                 Tables\Columns\TextColumn::make('provider.name')
-                    ->label(__('Provider')),
+                    ->label(__('Provider'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('region_id')
                     ->searchable()
                     ->label(__('Region')),

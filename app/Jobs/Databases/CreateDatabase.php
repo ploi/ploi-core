@@ -46,7 +46,10 @@ class CreateDatabase implements ShouldQueue
         $this->database->ploi_id = $ploiDatabase->id;
         $this->database->save();
 
-        // Lets fetch the status after 5 seconds
+        $databaseUser->ploi_id = $ploiDatabase->users[0]->id;
+        $databaseUser->save();
+
+        // Let's fetch the status after 5 seconds
         dispatch(new FetchDatabaseStatus($this->database))->delay(now()->addSeconds(3));
     }
 }

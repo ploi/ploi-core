@@ -22,6 +22,13 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Domain')" :errors="$page.props.errors.domain" v-model="form.domain" />
+                                        <div>
+                                            <input id="request_new_certificate" class="form-checkbox" type="checkbox"
+                                                   v-model="form.request_new_certificate">
+                                            <label for="request_new_certificate" class="ml-2 text-sm">
+                                                {{ __('Request new certificate') }}
+                                            </label>
+                                        </div>
                                         <FormActions>
                                             <Button>{{ __('Save changes') }}</Button>
                                         </FormActions>
@@ -140,6 +147,7 @@ export default {
 
             form: {
                 domain: null,
+                request_new_certificate: false,
             },
 
             breadcrumbs: [

@@ -49,6 +49,7 @@ class ProviderResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')->label('ID')->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->description(function (Provider $record) {
                         return "{$record->plans_count} plan(s) · {$record->regions_count} region(s)";
