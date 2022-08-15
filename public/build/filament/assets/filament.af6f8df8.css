@@ -1625,7 +1625,6 @@ trix-editor .attachment__metadata .attachment__size {
 /* packages/forms/resources/css/components/select.css */
 .choices{
   position: relative;
-  overflow: hidden;
 }
 .choices:focus{
   outline: 2px solid transparent;
@@ -1959,7 +1958,7 @@ trix-editor .attachment__metadata .attachment__size {
 .choices__input{
   display: inline-block;
   max-width: 100%;
-  border-width: 0px;
+  border-style: none;
   border-color: transparent !important;
   background-color: transparent !important;
   padding: 0 !important;
