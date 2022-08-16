@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\SiteResource\Pages;
 
-use App\Filament\Resources\SiteResource;
 use App\Traits\HasPloi;
 use Filament\Pages\Actions\Action;
+use App\Filament\Resources\SiteResource;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -32,8 +32,8 @@ class ListSites extends ListRecords
         if (filled($searchTerm = $this->getTableSearchQuery())) {
             $query
                 ->where('domain', 'LIKE', "%{$searchTerm}%")
-                ->orWhereHas('users', fn(Builder $query) => $query->where('name', 'LIKE', "%{$searchTerm}%"))
-                ->orWhereHas('users', fn(Builder $query) => $query->where('email', 'LIKE', "%{$searchTerm}%"));
+                ->orWhereHas('users', fn (Builder $query) => $query->where('name', 'LIKE', "%{$searchTerm}%"))
+                ->orWhereHas('users', fn (Builder $query) => $query->where('email', 'LIKE', "%{$searchTerm}%"));
         }
 
         return $query;

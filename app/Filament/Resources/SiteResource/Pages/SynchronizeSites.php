@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\SiteResource\Pages;
 
-use App\Filament\Resources\SiteResource;
-use App\Models\Server;
 use App\Models\Site;
+use App\Models\Server;
 use App\Services\Ploi\Ploi;
-use Filament\Notifications\Notification;
 use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\Page;
+use App\Filament\Resources\SiteResource;
+use Filament\Notifications\Notification;
 
 class SynchronizeSites extends Page
 {
@@ -29,6 +29,9 @@ class SynchronizeSites extends Page
             Action::make('synchronize_sites')
                 ->label(__('Synchronize all sites'))
                 ->icon('heroicon-o-refresh')
+                ->requiresConfirmation()
+                ->modalHeading('Synchronize sites')
+                ->modalSubheading('This will synchronize all the sites that are listed in the table, to your Ploi Core installation.')
                 ->action(function () {
                     $availableSites = Ploi::make()->synchronize()->sites()->getData();
 

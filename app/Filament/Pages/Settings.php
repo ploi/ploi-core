@@ -3,17 +3,17 @@
 namespace App\Filament\Pages;
 
 use App\Models\Package;
-use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\FileUpload;
+use Filament\Pages\Page;
+use Illuminate\Support\Str;
+use Illuminate\Support\HtmlString;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Notifications\Notification;
-use Filament\Pages\Page;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Actions\Action;
 
 class Settings extends Page
 {
@@ -155,7 +155,7 @@ class Settings extends Page
         $oldDocumentation = setting('documentation');
         $oldSupport = setting('support');
 
-        if ( $state['logo'] === null && $oldLogo ) {
+        if ($state['logo'] === null && $oldLogo) {
             Storage::disk('logos')->delete($oldLogo);
         }
 
@@ -168,7 +168,7 @@ class Settings extends Page
             ->body(__('Settings saved.'))
             ->send();
 
-        if ( $state['logo'] !== $oldLogo || $state['documentation'] !== $oldDocumentation || $state['support'] !== $oldSupport ) {
+        if ($state['logo'] !== $oldLogo || $state['documentation'] !== $oldDocumentation || $state['support'] !== $oldSupport) {
             $this->redirectRoute('filament.pages.settings');
         }
     }

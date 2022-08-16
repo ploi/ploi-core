@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
+use Filament\Pages\Actions;
 use App\Filament\Resources\UserResource;
 use Filament\Notifications\Notification;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditUser extends EditRecord

@@ -2,8 +2,8 @@
 
 namespace App\Actions\Site;
 
-use App\Models\Server;
 use App\Models\Site;
+use App\Models\Server;
 use App\Services\Ploi\Ploi;
 use Filament\Notifications\Notification;
 
@@ -32,7 +32,7 @@ class SynchronizeSiteAction
 
         $certificates = Ploi::make()->server($siteData->server_id)->sites($siteData->id)->certificates()->get()->getData();
 
-        if ( $certificates ) {
+        if ($certificates) {
             foreach ($certificates as $certificate) {
                 $site->certificates()->updateOrCreate([
                     'ploi_id' => $certificate->id,

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\ProviderRegionResource\Pages;
 
-use App\Filament\Resources\ProviderRegionResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\ProviderRegionResource;
 
 class ListProviderRegions extends ListRecords
 {

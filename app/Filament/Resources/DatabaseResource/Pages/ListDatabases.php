@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\DatabaseResource\Pages;
 
-use App\Filament\Resources\DatabaseResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\DatabaseResource;
 
 class ListDatabases extends ListRecords
 {

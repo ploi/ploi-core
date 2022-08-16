@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Redirect;
 use App\Models\User;
+use App\Models\Redirect;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RedirectPolicy

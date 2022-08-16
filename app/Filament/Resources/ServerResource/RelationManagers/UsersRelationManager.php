@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\ServerResource\RelationManagers;
 
-use App\Filament\Resources\UserResource;
-use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use App\Filament\Resources\UserResource;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class UsersRelationManager extends RelationManager
 {

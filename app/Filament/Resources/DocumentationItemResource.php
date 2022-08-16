@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DocumentationItemResource\Pages;
-use App\Models\DocumentationItem;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
 use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use App\Models\DocumentationItem;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\MarkdownEditor;
+use App\Filament\Resources\DocumentationItemResource\Pages;
 
 class DocumentationItemResource extends Resource
 {

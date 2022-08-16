@@ -2,16 +2,16 @@
 
 namespace App\Jobs\Aliases;
 
-use App\Jobs\Certificates\CreateCertificate;
-use App\Jobs\Certificates\DeleteCertificate;
-use App\Models\Certificate;
 use App\Models\Site;
 use App\Traits\HasPloi;
+use App\Models\Certificate;
 use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use App\Jobs\Certificates\CreateCertificate;
+use App\Jobs\Certificates\DeleteCertificate;
 
 class CreateAlias implements ShouldQueue
 {
@@ -21,7 +21,8 @@ class CreateAlias implements ShouldQueue
         public Site $site,
         public string $alias,
         public bool $requestNewCertificate = false,
-    ) {}
+    ) {
+    }
 
     public function handle()
     {

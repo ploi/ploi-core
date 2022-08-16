@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Cronjob;
 use App\Models\User;
+use App\Models\Cronjob;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CronjobPolicy

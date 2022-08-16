@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\SiteResource\Widgets;
 
-use App\Actions\Site\SynchronizeSiteAction;
 use App\Models\AvailableSite;
+use Filament\Widgets\TableWidget;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Widgets\TableWidget;
 use Illuminate\Database\Eloquent\Builder;
+use App\Actions\Site\SynchronizeSiteAction;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AvailableSitesOverview extends TableWidget

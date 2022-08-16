@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\ServerResource\Pages;
 
-use App\Filament\Resources\ServerResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\ServerResource;
 
 class EditServer extends EditRecord
 {

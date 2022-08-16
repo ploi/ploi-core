@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\AlertResource\Pages;
 
-use App\Filament\Resources\AlertResource;
 use Filament\Pages\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\AlertResource;
 
 class EditAlert extends EditRecord
 {

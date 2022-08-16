@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\ServerResource\Pages;
 
-use App\Filament\Resources\ServerResource;
 use App\Models\Server;
 use App\Services\Ploi\Ploi;
-use Filament\Notifications\Notification;
 use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\Page;
+use Filament\Notifications\Notification;
+use App\Filament\Resources\ServerResource;
 
 class SynchronizeServers extends Page
 {
@@ -30,6 +30,9 @@ class SynchronizeServers extends Page
             Action::make('synchronize_servers')
                 ->label(__('Synchronize all servers'))
                 ->icon('heroicon-o-refresh')
+                ->requiresConfirmation()
+                ->modalHeading('Synchronize servers')
+                ->modalSubheading('This will synchronize all the servers that are listed in the table, to your Ploi Core installation.')
                 ->action(function () {
                     $availableServers = Ploi::make()->synchronize()->servers()->getData();
 

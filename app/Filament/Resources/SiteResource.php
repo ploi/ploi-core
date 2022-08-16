@@ -2,18 +2,17 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use App\Models\Site;
+use App\Models\User;
+use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
 use App\Actions\Site\SynchronizeSiteAction;
 use App\Filament\Resources\SiteResource\Pages;
 use App\Filament\Resources\SiteResource\RelationManagers;
-use App\Models\Site;
-use App\Models\User;
-use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
-use Illuminate\Contracts\Database\Builder;
-use Illuminate\Support\HtmlString;
 
 class SiteResource extends Resource
 {

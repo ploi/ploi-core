@@ -2,11 +2,11 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
+use App\Models\Server;
 use Filament\Widgets\StatsOverviewWidget\Card;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class StatsOverview extends BaseWidget
 {

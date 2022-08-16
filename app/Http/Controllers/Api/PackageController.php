@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\DataTransferObjects\PackageData;
-use App\Http\Controllers\Controller;
 use App\Models\Package;
+use App\Http\Controllers\Controller;
+use App\DataTransferObjects\PackageData;
 
 class PackageController extends Controller
 {

@@ -2,14 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProviderPlanResource\Pages;
-use App\Filament\Resources\ProviderPlanResource\RelationManagers;
+use Filament\Tables;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
 use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Resources\Resource;
+use App\Filament\Resources\ProviderPlanResource\Pages;
 
 class ProviderPlanResource extends Resource
 {

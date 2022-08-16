@@ -2,8 +2,8 @@
 
 namespace App\DataTransferObjects;
 
-use App\DataTransferObjects\Support\Data;
 use Illuminate\Support\Carbon;
+use App\DataTransferObjects\Support\Data;
 
 class PackageData extends Data
 {
@@ -21,5 +21,6 @@ class PackageData extends Data
         public array $server_permissions,
         public array $site_permissions,
         public Carbon $created_at,
-    ) {}
+    ) {
+    }
 }

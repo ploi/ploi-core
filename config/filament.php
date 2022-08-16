@@ -1,18 +1,19 @@
 <?php
 
-use Filament\AvatarProviders\UiAvatarsProvider;
+use Filament\Pages;
+use App\Http\Middleware\SetLocale;
 use Filament\Http\Livewire\Auth\Login;
 use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Http\Middleware\MirrorConfigToSubpackages;
-use Filament\Pages;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Filament\AvatarProviders\UiAvatarsProvider;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
-use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Http\Middleware\MirrorConfigToSubpackages;
+use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 
 return [
 
@@ -284,6 +285,7 @@ return [
             StartSession::class,
             AuthenticateSession::class,
             ShareErrorsFromSession::class,
+            SetLocale::class,
             VerifyCsrfToken::class,
             SubstituteBindings::class,
             DispatchServingFilamentEvent::class,

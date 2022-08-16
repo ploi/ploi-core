@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use Cloudflare\API\Adapter\Guzzle;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Cloudflare\API\Auth\APIKey;
 use Cloudflare\API\Endpoints\DNS;
+use Cloudflare\API\Adapter\Guzzle;
 use Cloudflare\API\Endpoints\User;
 use Cloudflare\API\Endpoints\Zones;
 use GuzzleHttp\Exception\ClientException;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class Cloudflare
 {

@@ -3,10 +3,10 @@
 namespace App\Filament\Resources\DocumentationCategoryResource\RelationManagers;
 
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class DocumentationItemsRelationManager extends RelationManager
 {

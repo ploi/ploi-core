@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Tables;
+use App\Models\Package;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\TextInput;
 use App\Filament\Resources\PackageResource\Pages;
 use App\Filament\Resources\PackageResource\RelationManagers;
-use App\Models\Package;
-use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
 
 class PackageResource extends Resource
 {
@@ -107,7 +107,7 @@ class PackageResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Name'))
                     ->description(function (Package $record) {
-                        if ( ! $record->stripe_plan_id ) {
+                        if (! $record->stripe_plan_id) {
                             return __('Not attached to Stripe.');
                         }
 

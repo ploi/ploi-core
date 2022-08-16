@@ -2,9 +2,9 @@
 
 namespace App\Filament\Pages;
 
+use Filament\Pages\Page;
 use App\Services\VersionChecker;
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
 use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
 class System extends Page

@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources\SupportTicketResource\Pages;
 
-use App\Filament\Resources\SupportTicketResource;
-use App\Mail\Support\TicketRepliedToEmail;
 use App\Models\SupportTicket;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Notifications\Notification;
 use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Filament\Notifications\Notification;
+use App\Mail\Support\TicketRepliedToEmail;
+use Filament\Forms\Components\MarkdownEditor;
+use App\Filament\Resources\SupportTicketResource;
 
 class ViewSupportTicket extends Page
 {
@@ -108,5 +108,7 @@ class ViewSupportTicket extends Page
             ->send();
     }
 
-    public function close(): void {}
+    public function close(): void
+    {
+    }
 }

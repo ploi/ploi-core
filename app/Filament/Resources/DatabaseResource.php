@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DatabaseResource\Pages;
-use App\Filament\Resources\DatabaseResource\RelationManagers;
+use Filament\Tables;
 use App\Models\Database;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
 use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Resources\Resource;
+use App\Filament\Resources\DatabaseResource\Pages;
 
 class DatabaseResource extends Resource
 {

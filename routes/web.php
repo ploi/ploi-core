@@ -1,12 +1,11 @@
 <?php
 
-use App\Events\OrderShipped;
-use App\Http\Controllers\Auth\AuthenticateTwoFactorController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Profile\ProfileSecurityController;
-use App\Http\Controllers\Profile\TwoFactorAuthentication\ConfirmTwoFactorAuthenticationController;
+use App\Http\Controllers\Auth\AuthenticateTwoFactorController;
 use App\Http\Controllers\Profile\TwoFactorAuthentication\RegenerateRecoveryCodesController;
 use App\Http\Controllers\Profile\TwoFactorAuthentication\TwoFactorAuthenticationController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Profile\TwoFactorAuthentication\ConfirmTwoFactorAuthenticationController;
 
 Auth::routes();
 
@@ -138,7 +137,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
                 Route::delete('{provider}', 'ProfileIntegrationController@destroy')->name('destroy');
             });
 
-            if ( config('cashier.key') && config('cashier.secret') ) {
+            if (config('cashier.key') && config('cashier.secret')) {
                 Route::group(['prefix' => 'billing', 'as' => 'billing.'], function () {
                     Route::get('/', 'ProfileBillingController@index')->name('index');
 
@@ -157,7 +156,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
         });
 
         // Support routes
-        if ( setting('support') ) {
+        if (setting('support')) {
             Route::group(['prefix' => 'support', 'as' => 'support.'], function () {
                 Route::get('/', 'SupportController@index')->name('index');
                 Route::get('create', 'SupportController@create')->name('create');
@@ -169,7 +168,7 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
             });
         }
 
-        if ( setting('documentation') ) {
+        if (setting('documentation')) {
             Route::group(['prefix' => 'documentation', 'as' => 'documentation.'], function () {
                 Route::get('/', 'DocumentationController@index')->name('index');
                 Route::get('{documentationCategory}', 'DocumentationController@show')->name('show');

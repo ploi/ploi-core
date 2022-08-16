@@ -2,14 +2,14 @@
 
 namespace App\Jobs\Servers;
 
+use Exception;
 use App\Models\Server;
 use App\Traits\HasPloi;
-use Exception;
 use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
 class CreateServer implements ShouldQueue
 {

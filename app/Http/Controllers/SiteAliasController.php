@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SiteAliasRequest;
-use App\Http\Resources\SiteAliasResource;
 use App\Jobs\Aliases\CreateAlias;
 use App\Jobs\Aliases\DeleteAlias;
+use App\Http\Requests\SiteAliasRequest;
 
 class SiteAliasController extends Controller
 {

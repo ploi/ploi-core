@@ -4,10 +4,10 @@ namespace App\Providers;
 
 use App\Rules\Hostname;
 use Filament\Facades\Filament;
+use Illuminate\Foundation\Vite;
+use Filament\PluginServiceProvider;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\PluginServiceProvider;
-use Illuminate\Foundation\Vite;
 
 class FilamentServiceProvider extends PluginServiceProvider
 {

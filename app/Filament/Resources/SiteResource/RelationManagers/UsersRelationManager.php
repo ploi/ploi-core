@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\SiteResource\RelationManagers;
 
-use App\Filament\Resources\UserResource;
 use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
+use App\Filament\Resources\UserResource;
 use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Actions\DetachAction;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class UsersRelationManager extends RelationManager
 {

@@ -2,10 +2,10 @@
 
 use App\Models\User;
 
-use Illuminate\Support\Facades\Auth;
+use function Pest\Laravel\get;
 
 use function Pest\Laravel\actingAs;
-use function Pest\Laravel\get;
+use Illuminate\Support\Facades\Auth;
 
 it('will not enforce two factor authentication with guests', function () {
     get(route('login'))

@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Package;
 use App\Models\User;
+use App\Models\Package;
 
 use function Pest\Laravel\assertDatabaseCount;
 

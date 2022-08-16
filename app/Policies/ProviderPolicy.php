@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Provider;
 use App\Models\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Models\Provider;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProviderPolicy
 {

@@ -1,16 +1,15 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up()
     {
         $currentLogoPath = setting('logo');
 
-        if ( ! $currentLogoPath ) {
+        if (! $currentLogoPath) {
             return;
         }
 
@@ -26,7 +25,7 @@ return new class extends Migration
     {
         $currentFileName = setting('logo');
 
-        if ( ! $currentFileName ) {
+        if (! $currentFileName) {
             return;
         }
 

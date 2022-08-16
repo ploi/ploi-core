@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\ProviderPlanResource\Pages;
 
-use App\Filament\Resources\ProviderPlanResource;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\ProviderPlanResource;
 
 class ListProviderPlans extends ListRecords
 {

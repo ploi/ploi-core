@@ -1,14 +1,14 @@
 <?php
 
-use App\Mail\Admin\Site\AdminSiteCreatedEmail;
-use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
+use App\Models\Server;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
-
 use function Pest\Laravel\assertDatabaseHas;
+
+use App\Mail\Admin\Site\AdminSiteCreatedEmail;
 
 it('can list sites', function () {
     $server = Server::factory()

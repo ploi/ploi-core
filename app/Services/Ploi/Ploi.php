@@ -2,20 +2,20 @@
 
 namespace App\Services\Ploi;
 
-use App\Services\Ploi\Exceptions\Http\InternalServerError;
+use Exception;
+use App\Services\Ploi\Http\Response;
+use Illuminate\Support\Facades\Http;
+use App\Services\Ploi\Resources\User;
+use App\Services\Ploi\Resources\Server;
+use Psr\Http\Message\ResponseInterface;
+use Illuminate\Http\Client\PendingRequest;
+use App\Services\Ploi\Resources\Synchronize;
 use App\Services\Ploi\Exceptions\Http\NotFound;
 use App\Services\Ploi\Exceptions\Http\NotValid;
-use App\Services\Ploi\Exceptions\Http\PerformingMaintenance;
 use App\Services\Ploi\Exceptions\Http\TooManyAttempts;
 use App\Services\Ploi\Exceptions\Http\Unauthenticated;
-use App\Services\Ploi\Http\Response;
-use App\Services\Ploi\Resources\Server;
-use App\Services\Ploi\Resources\Synchronize;
-use App\Services\Ploi\Resources\User;
-use Exception;
-use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Support\Facades\Http;
-use Psr\Http\Message\ResponseInterface;
+use App\Services\Ploi\Exceptions\Http\InternalServerError;
+use App\Services\Ploi\Exceptions\Http\PerformingMaintenance;
 
 class Ploi
 {

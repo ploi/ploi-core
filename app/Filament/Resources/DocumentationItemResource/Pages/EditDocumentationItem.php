@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\DocumentationItemResource\Pages;
 
-use App\Filament\Resources\DocumentationItemResource;
 use Filament\Pages\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\DocumentationItemResource;
 
 class EditDocumentationItem extends EditRecord
 {

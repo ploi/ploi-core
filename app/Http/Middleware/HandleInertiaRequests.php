@@ -3,13 +3,13 @@
 namespace App\Http\Middleware;
 
 use App\Models\Alert;
+use Inertia\Middleware;
+use Illuminate\Support\Arr;
 use App\Models\UserProvider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -123,7 +123,7 @@ class HandleInertiaRequests extends Middleware
                     })
                     ->first(['message', 'expires_at', 'type']);
 
-                if ( ! $alert ) {
+                if (! $alert) {
                     return null;
                 }
 

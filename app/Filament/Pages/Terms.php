@@ -2,12 +2,12 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Toggle;
-use Filament\Notifications\Notification;
-use Filament\Pages\Actions\Action;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
+use Filament\Pages\Actions\Action;
+use Filament\Forms\Components\Toggle;
+use Filament\Notifications\Notification;
+use Filament\Forms\Components\MarkdownEditor;
 
 class Terms extends Page
 {

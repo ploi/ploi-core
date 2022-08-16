@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SupportTicketResource\Pages;
-use App\Models\SupportTicket;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
+use App\Models\SupportTicket;
 use Filament\Resources\Table;
-use Filament\Tables\Columns\BadgeColumn;
+use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\MultiSelectFilter;
+use Filament\Tables\Columns\BadgeColumn;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\MultiSelectFilter;
+use App\Filament\Resources\SupportTicketResource\Pages;
 
 class SupportTicketResource extends Resource
 {

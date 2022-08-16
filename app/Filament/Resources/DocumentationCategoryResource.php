@@ -2,18 +2,17 @@
 
 namespace App\Filament\Resources;
 
+use Illuminate\Support\Str;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
+use App\Models\DocumentationCategory;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\MarkdownEditor;
 use App\Filament\Resources\DocumentationCategoryResource\Pages;
 use App\Filament\Resources\DocumentationCategoryResource\RelationManagers\DocumentationItemsRelationManager;
-use App\Filament\Resources\DocumentationCategoryResource\RelationManagers\ItemsRelationManager;
-use App\Models\DocumentationCategory;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables\Columns\TextColumn;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
 
 class DocumentationCategoryResource extends Resource
 {

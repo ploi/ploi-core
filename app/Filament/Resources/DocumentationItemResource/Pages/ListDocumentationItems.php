@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\DocumentationItemResource\Pages;
 
-use App\Filament\Resources\DocumentationItemResource;
 use Filament\Pages\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\DocumentationItemResource;
 
 class ListDocumentationItems extends ListRecords
 {

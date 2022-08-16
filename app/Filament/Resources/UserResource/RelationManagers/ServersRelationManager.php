@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
-use App\Filament\Resources\ServerResource;
 use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ServerResource;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class ServersRelationManager extends RelationManager
 {

@@ -3,18 +3,18 @@
 namespace App\Models;
 
 use App\Casts\Encrypted;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Laravel\Cashier\Billable;
 use App\Mail\User\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
-use Illuminate\Contracts\Translation\HasLocalePreference;
+use Laragear\TwoFactor\TwoFactorAuthentication;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Laragear\TwoFactor\Contracts\TwoFactorAuthenticatable;
-use Laragear\TwoFactor\TwoFactorAuthentication;
-use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements HasLocalePreference, TwoFactorAuthenticatable, FilamentUser
 {

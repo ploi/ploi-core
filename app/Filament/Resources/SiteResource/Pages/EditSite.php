@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\SiteResource\Pages;
 
-use App\Filament\Resources\SiteResource;
 use Filament\Pages\Actions;
+use App\Filament\Resources\SiteResource;
 use Filament\Resources\Pages\EditRecord;
 
 class EditSite extends EditRecord

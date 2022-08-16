@@ -1,17 +1,17 @@
 <?php
 
-use App\Mail\Admin\Site\AdminSiteCreatedEmail;
-use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
-use Database\Factories\PackageFactory;
+use App\Models\Server;
+use function Pest\Laravel\post;
+use function Pest\Laravel\actingAs;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
-use function Pest\Laravel\actingAs;
+use Database\Factories\PackageFactory;
 use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\post;
+use App\Mail\Admin\Site\AdminSiteCreatedEmail;
 
 it('can create a new site', function () {
     Mail::fake();
@@ -33,7 +33,7 @@ it('can create a new site', function () {
     App::forgetInstance('settings');
 
     actingAs(
-        $user = User::factory()->withPackage(fn(PackageFactory $factory) => $factory->set('maximum_sites', 20))->create()
+        $user = User::factory()->withPackage(fn (PackageFactory $factory) => $factory->set('maximum_sites', 20))->create()
     );
 
     $server = Server::factory()

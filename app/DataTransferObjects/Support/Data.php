@@ -2,11 +2,11 @@
 
 namespace App\DataTransferObjects\Support;
 
-use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Pagination\AbstractCursorPaginator;
-use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Enumerable;
 use Spatie\LaravelData\DataCollection;
+use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Pagination\AbstractCursorPaginator;
 
 class Data extends \Spatie\LaravelData\Data
 {

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\RedirectResource\Pages;
 
-use App\Filament\Resources\RedirectResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\RedirectResource;
 
 class ListRedirects extends ListRecords
 {

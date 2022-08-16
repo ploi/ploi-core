@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use App\Models\User;
+use Filament\Tables;
+use App\Models\Server;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
+use Illuminate\Database\Eloquent\Builder;
 use App\Actions\Server\SynchronizeServerAction;
 use App\Filament\Resources\ServerResource\Pages;
 use App\Filament\Resources\ServerResource\RelationManagers;
-use App\Models\Server;
-use App\Models\User;
-use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\HtmlString;
 
 class ServerResource extends Resource
 {
@@ -29,6 +29,14 @@ class ServerResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->label(__('Name'))
+                    ->columnSpan(2),
+                Forms\Components\TextInput::make('ip')
+                    ->required()
+                    ->label('IP address')
+                    ->columnSpan(2),
                 Forms\Components\TextInput::make('maximum_sites')
                     ->label(__('Maximum sites'))
                     ->integer()
@@ -114,5 +122,4 @@ class ServerResource extends Resource
             'synchronize' => Pages\SynchronizeServers::route('/synchronize'),
         ];
     }
-
 }

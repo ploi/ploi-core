@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\PackageController;
-use App\Http\Controllers\Api\ServerController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SiteController;
 use App\Http\Controllers\Api\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ServerController;
+use App\Http\Controllers\Api\PackageController;
 
 Route::resource('users', UserController::class)
     ->names('user')

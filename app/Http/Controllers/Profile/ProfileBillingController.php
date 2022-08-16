@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Profile;
 
-use App\Http\Controllers\Controller;
-use App\Models\Package;
-use App\Models\User;
-use Carbon\Carbon;
 use Exception;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Package;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
 use Stripe\Exception\InvalidRequestException;
 
 class ProfileBillingController extends Controller
@@ -32,22 +32,22 @@ class ProfileBillingController extends Controller
                     ->whereNotNull('stripe_plan_id');
             })
             ->when($request->input('sortBy.' . $sortByType), function ($query, $value) use ($sortByType) {
-                if ( $sortByType === 'price' ) {
+                if ($sortByType === 'price') {
                     return $value === 'asc'
                         ? $query->orderBy('price_monthly', 'asc')
                         : $query->orderBy('price_monthly', 'desc');
                 }
-                if ( $sortByType === 'servers' ) {
+                if ($sortByType === 'servers') {
                     return $value === 'asc'
                         ? $query->orderBy('maximum_servers', 'asc')
                         : $query->orderBy('maximum_servers', 'desc');
                 }
-                if ( $sortByType === 'sites' ) {
+                if ($sortByType === 'sites') {
                     return $value === 'asc'
                         ? $query->orderBy('maximum_sites', 'asc')
                         : $query->orderBy('maximum_sites', 'desc');
                 }
-                if ( $sortByType === 'name' ) {
+                if ($sortByType === 'name') {
                     return $value === 'asc'
                         ? $query->orderBy('name', 'asc')
                         : $query->orderBy('name', 'desc');
@@ -63,12 +63,12 @@ class ProfileBillingController extends Controller
 
                 $package->period = 'monthly';
 
-                if ( $package->price_yearly > 0 ) {
+                if ($package->price_yearly > 0) {
                     $package->period = 'yearly';
                 }
 
-                $package->price_monthly = ( $currency ?? '[Unknown currency]' ) . number_format($package->price_monthly, 2, ',', '.');
-                $package->price_yearly = ( $currency ?? '[Unknown currency]' ) . number_format($package->price_yearly, 2, ',', '.');
+                $package->price_monthly = ($currency ?? '[Unknown currency]') . number_format($package->price_monthly, 2, ',', '.');
+                $package->price_yearly = ($currency ?? '[Unknown currency]') . number_format($package->price_yearly, 2, ',', '.');
 
                 return $package;
             });
@@ -142,7 +142,7 @@ class ProfileBillingController extends Controller
         /** @var User $user */
         $user = auth()->user();
 
-        if ( ! $user->hasStripeId() || ! $user->defaultPaymentMethod() ) {
+        if (! $user->hasStripeId() || ! $user->defaultPaymentMethod()) {
             return redirect()->route('profile.billing.index')->with('error', 'You cannot change your plan without a valid creditcard, please update your billing details first');
         }
 
@@ -151,16 +151,16 @@ class ProfileBillingController extends Controller
         $planId = $plan->stripe_plan_id;
 
         // Only do something if the user is not already subscribed to this plan.
-        if ( $user->subscribedToPlan($planId, 'default') ) {
+        if ($user->subscribedToPlan($planId, 'default')) {
             return redirect()->route('profile.billing.index')->with('error', 'You did not select a different plan');
         }
 
         // If the user is already subscribed to the default plan, we have to swap it. Otherwise create a new one.
         try {
-            if ( $user->subscribed('default') ) {
+            if ($user->subscribed('default')) {
                 $user->subscription('default')->swap($planId);
             } else {
-                if ( $coupon = $request->input('coupon') ) {
+                if ($coupon = $request->input('coupon')) {
                     $user->newSubscription('default', $planId)
                         ->withCoupon($coupon)
                         ->create($user->defaultPaymentMethod()->id);

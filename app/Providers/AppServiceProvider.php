@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Setting;
 use Exception;
+use App\Models\Setting;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 

@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\PackageResource\RelationManagers;
 
-use App\Filament\Resources\UserResource;
 use App\Models\User;
-use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\Select;
+use App\Filament\Resources\UserResource;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class UsersRelationManager extends RelationManager
 {

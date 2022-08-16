@@ -1,15 +1,15 @@
 <?php
 
-use App\Jobs\Servers\FetchServerStatus;
+use App\Models\User;
+use App\Models\Server;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
 use App\Models\ProviderRegion;
-use App\Models\Server;
-use App\Models\User;
-use Database\Factories\PackageFactory;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Database\Factories\PackageFactory;
+use App\Jobs\Servers\FetchServerStatus;
 
 use function Pest\Laravel\assertDatabaseHas;
 

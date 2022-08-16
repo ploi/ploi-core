@@ -2,12 +2,12 @@
 
 namespace App\Actions\Server;
 
-use App\DataTransferObjects\ServerData;
-use App\Jobs\Servers\CreateServer;
-use App\Mail\Admin\Server\AdminServerCreatedEmail;
-use App\Models\Server;
 use App\Models\User;
+use App\Models\Server;
+use App\Jobs\Servers\CreateServer;
 use Illuminate\Support\Facades\Mail;
+use App\DataTransferObjects\ServerData;
+use App\Mail\Admin\Server\AdminServerCreatedEmail;
 
 class CreateServerAction
 {

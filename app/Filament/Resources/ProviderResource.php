@@ -2,19 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Actions\Provider\SynchronizeProviderAction;
-use App\Filament\Resources\ProviderResource\Pages;
-use App\Filament\Resources\ProviderResource\RelationManagers;
-use App\Filament\Resources\ProviderResource\Widgets\AvailableProvidersOverview;
+use Filament\Forms;
+use Filament\Tables;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
-use Filament\Forms;
-use Filament\Notifications\Notification;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
 use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Resources\Resource;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ProviderResource\Pages;
+use App\Actions\Provider\SynchronizeProviderAction;
+use App\Filament\Resources\ProviderResource\Widgets\AvailableProvidersOverview;
 
 class ProviderResource extends Resource
 {

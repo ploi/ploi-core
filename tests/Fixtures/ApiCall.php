@@ -2,12 +2,12 @@
 
 namespace Tests\Fixtures;
 
-use Illuminate\Testing\TestResponse;
-
-use function Pest\Laravel\delete;
 use function Pest\Laravel\get;
-use function Pest\Laravel\post;
+
 use function Pest\Laravel\put;
+use function Pest\Laravel\post;
+use function Pest\Laravel\delete;
+use Illuminate\Testing\TestResponse;
 
 class ApiCall
 {

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\CronjobResource\Pages;
 
-use App\Filament\Resources\CronjobResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\CronjobResource;
 
 class EditCronjob extends EditRecord
 {

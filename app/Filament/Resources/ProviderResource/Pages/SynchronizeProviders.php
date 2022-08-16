@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\ProviderResource\Pages;
 
-use App\Filament\Resources\ProviderResource;
 use Filament\Resources\Pages\Page;
+use App\Filament\Resources\ProviderResource;
 
 class SynchronizeProviders extends Page
 {

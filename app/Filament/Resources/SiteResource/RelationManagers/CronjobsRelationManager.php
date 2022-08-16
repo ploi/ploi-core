@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources\SiteResource\RelationManagers;
 
-use App\Filament\Resources\CronjobResource;
 use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
+use App\Filament\Resources\CronjobResource;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class CronjobsRelationManager extends RelationManager
 {

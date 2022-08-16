@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\SiteSystemUser;
 use App\Models\User;
+use App\Models\SiteSystemUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class SiteSystemUserPolicy

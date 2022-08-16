@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Services\Ploi\Ploi;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use stdClass;
 use Sushi\Sushi;
+use App\Services\Ploi\Ploi;
+use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Model;
 
 class AvailableServer extends Model
 {

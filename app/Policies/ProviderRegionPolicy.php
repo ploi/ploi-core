@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\ProviderRegion;
 use App\Models\User;
+use App\Models\ProviderRegion;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProviderRegionPolicy

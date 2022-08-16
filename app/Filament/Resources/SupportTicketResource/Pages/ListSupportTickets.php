@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\SupportTicketResource\Pages;
 
-use App\Filament\Resources\SupportTicketResource;
 use Filament\Pages\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\SupportTicketResource;
 
 class ListSupportTickets extends ListRecords
 {

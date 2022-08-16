@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\ProviderResource\Pages;
 
-use App\Filament\Resources\ProviderResource;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\ProviderResource;
 
 class EditProvider extends EditRecord
 {

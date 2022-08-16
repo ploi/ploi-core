@@ -21,7 +21,7 @@ class DatabaseUser extends Resource
     {
         $this->setEndpoint($this->getDatabase()->getEndpoint() . '/users');
 
-        if ( $this->getId() ) {
+        if ($this->getId()) {
             $this->setEndpoint($this->getEndpoint() . '/' . $this->getId());
         }
 

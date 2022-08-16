@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\Site\CreateSiteAction;
-use App\DataTransferObjects\SiteData;
-use App\Http\Controllers\Controller;
 use App\Models\Site;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\DataTransferObjects\SiteData;
+use App\Actions\Site\CreateSiteAction;
 
 class SiteController extends Controller
 {

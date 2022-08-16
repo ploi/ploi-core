@@ -69,4 +69,3 @@ it('can list packages', function () {
         ],
     ]);
 });
-

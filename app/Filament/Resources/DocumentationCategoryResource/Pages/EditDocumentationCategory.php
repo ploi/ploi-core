@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\DocumentationCategoryResource\Pages;
 
-use App\Filament\Resources\DocumentationCategoryResource;
 use Filament\Pages\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\DocumentationCategoryResource;
 
 class EditDocumentationCategory extends EditRecord
 {

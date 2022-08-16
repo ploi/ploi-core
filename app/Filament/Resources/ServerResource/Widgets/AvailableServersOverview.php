@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\ServerResource\Widgets;
 
-use App\Actions\Server\SynchronizeServerAction;
 use App\Models\AvailableServer;
+use Filament\Widgets\TableWidget;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Widgets\TableWidget;
 use Illuminate\Database\Eloquent\Builder;
+use App\Actions\Server\SynchronizeServerAction;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AvailableServersOverview extends TableWidget

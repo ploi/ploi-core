@@ -4,8 +4,8 @@ namespace App\Filament\Widgets;
 
 use App\Models\SystemLog;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Widgets\TableWidget as BaseWidget;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Widgets\TableWidget as BaseWidget;
 
 class SystemLogs extends BaseWidget
 {
