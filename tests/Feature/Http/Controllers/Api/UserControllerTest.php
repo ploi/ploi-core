@@ -25,6 +25,8 @@ it('can list user account', function () {
                 'email' => $user->email,
                 'package_id' => $user->package_id,
                 'blocked' => $user->blocked,
+                'language' => $user->language,
+                'requires_password_for_ftp' => $user->requires_password_for_ftp,
                 'created_at' => $user->created_at->toISOString(),
             ])
             ->all(),
@@ -78,6 +80,8 @@ it('can create, update and get a user account', function () {
             'email' => 'john@example.com',
             'package_id' => $packageB->id,
             'blocked' => null,
+            'language' => 'es',
+            'requires_password_for_ftp' => true,
         ])
         ->assertCreated()
         ->collect()
@@ -93,6 +97,8 @@ it('can create, update and get a user account', function () {
             'email' => $user->email,
             'package_id' => $packageB->id,
             'blocked' => null,
+            'language' => 'es',
+            'requires_password_for_ftp' => true,
             'created_at' => $user->created_at->toISOString(),
         ],
     ]);
@@ -111,6 +117,8 @@ it('can create, update and get a user account', function () {
             'email' => $user->email,
             'package_id' => $packageB->id,
             'blocked' => null,
+            'language' => 'es',
+            'requires_password_for_ftp' => true,
             'created_at' => $user->created_at->toISOString(),
         ],
     ]);
@@ -120,6 +128,8 @@ it('can create, update and get a user account', function () {
         ->put(route('api.user.update', $user), [
             'name' => 'John Doe II',
             'package_id' => $packageA->id,
+            'language' => 'nl',
+            'requires_password_for_ftp' => false,
         ])
         ->assertOk()
         ->collect()
@@ -136,6 +146,8 @@ it('can create, update and get a user account', function () {
             'email' => 'john@example.com',
             'package_id' => $packageA->id,
             'blocked' => null,
+            'language' => 'nl',
+            'requires_password_for_ftp' => false,
             'created_at' => $user->created_at->toISOString(),
         ],
     ]);
@@ -154,7 +166,7 @@ it('can suspend and unsuspend a user account', function () {
     api()->post(route('api.user.store'), [
         'name' => 'Testaccount',
         'email' => 'test@ploi.io',
-    ]);
+    ])->assertCreated();
 
     $user = User::sole();
 
@@ -173,7 +185,7 @@ it('can suspend and unsuspend a user account', function () {
 
     api()
         ->put(route('api.user.update', $user), [
-            'blocked' => null
+            'blocked' => null,
         ])
         ->assertOk();
 
