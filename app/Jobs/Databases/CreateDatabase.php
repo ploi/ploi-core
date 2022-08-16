@@ -2,19 +2,20 @@
 
 namespace App\Jobs\Databases;
 
-use App\Traits\HasPloi;
 use App\Models\Database;
+use App\Traits\HasPloi;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
 class CreateDatabase implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $database;
+
     public $password;
 
     /**
@@ -43,9 +44,11 @@ class CreateDatabase implements ShouldQueue
             ->databases()
             ->create($this->database->name, $databaseUser->name, $this->password);
 
+        ray($ploiDatabase);
         $this->database->ploi_id = $ploiDatabase->id;
         $this->database->save();
 
+        ray($ploiDatabase);
         $databaseUser->ploi_id = $ploiDatabase->users[0]->id;
         $databaseUser->save();
 

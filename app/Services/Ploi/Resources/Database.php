@@ -2,8 +2,8 @@
 
 namespace App\Services\Ploi\Resources;
 
-use stdClass;
 use App\Services\Ploi\Exceptions\Http\NotValid;
+use stdClass;
 
 class Database extends Resource
 {
@@ -24,7 +24,7 @@ class Database extends Resource
     {
         $this->setEndpoint($this->getServer()->getEndpoint() . '/' . $this->getServer()->getId() . '/databases');
 
-        if ($this->getId()) {
+        if ( $this->getId() ) {
             $this->setEndpoint($this->getEndpoint() . '/' . $this->getId());
         }
 
@@ -33,7 +33,7 @@ class Database extends Resource
 
     public function get(int $id = null)
     {
-        if ($id) {
+        if ( $id ) {
             $this->setId($id);
         }
 
@@ -66,15 +66,15 @@ class Database extends Resource
         }
 
         // Set the id of the site
-        $this->setId($response->getJson()->data->id);
+        $this->setId($response->getData()->id);
 
         // Return the data
-        return $response->getJson()->data;
+        return $response->getData();
     }
 
     public function delete(int $id): bool
     {
-        if ($id) {
+        if ( $id ) {
             $this->setId($id);
         }
 

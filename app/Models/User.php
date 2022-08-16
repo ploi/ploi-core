@@ -39,7 +39,7 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
         'theme',
         'keyboard_shortcuts',
         'requires_password_for_ftp',
-        'package_id'
+        'package_id',
     ];
 
     protected $hidden = [
@@ -57,12 +57,12 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
     ];
 
     protected $appends = [
-        'avatar'
+        'avatar',
     ];
 
     public function setPasswordAttribute($value)
     {
-        if (!$value) {
+        if ( ! $value ) {
             $this->attributes['password'] = null;
         } else {
             $this->attributes['password'] = bcrypt($value);
@@ -86,7 +86,7 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
 
     public function getGravatar($size = 150)
     {
-        return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim(Arr::get($this->attributes, 'email')))) . '?s=' . (int)$size;
+        return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim(Arr::get($this->attributes, 'email')))) . '?s=' . (int) $size;
     }
 
     public function isAdmin()
@@ -144,11 +144,11 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
             $user->user_name = strtolower(Str::random(10));
             $user->ftp_password = Str::random();
 
-            if (!$user->language) {
+            if ( ! $user->language ) {
                 $user->language = setting('default_language', 'en');
             }
 
-            if ($days = setting('trial')) {
+            if ( $days = setting('trial') ) {
                 $user->trial_ends_at = now()->addDays($days);
             }
         });
@@ -156,7 +156,7 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
         static::created(function (self $user) {
             // Usually I don't like using such conditions. However, otherwise when using Mail::fake(),
             // this would fake all emails going out leading to possible unexpected results as well.
-            if (! app()->runningUnitTests()) {
+            if ( ! app()->runningUnitTests() ) {
                 Mail::to($user)->send(new WelcomeEmail($user));
             }
         });
@@ -165,10 +165,13 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
             $user->systemLogs()->delete();
             $user->servers()->detach();
             $user->sites()->detach();
+
             foreach ($user->supportTickets as $supportTicket) {
                 $supportTicket->replies()->delete();
             }
+
             $user->supportTickets()->delete();
+            $user->providers()->delete();
         });
     }
 }
