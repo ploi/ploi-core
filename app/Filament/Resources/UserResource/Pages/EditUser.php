@@ -32,9 +32,9 @@ class EditUser extends EditRecord
             Actions\Action::make('delete')
                 ->form([
                     Toggle::make('remove_all_data')
-                        ->label(__('Delete all sites, databases, etc.'))
+                        ->label(__('Delete all servers, sites, databases, etc.'))
                         ->default(true)
-                        ->helperText(__('This will delete all the sites, databases, etc. associated with this user. Sites that belong to multiple users will not be deleted. This action cannot be undone.')),
+                        ->helperText(__('This will delete all the servers, sites, databases, etc. associated with this user. Servers & sites that belong to multiple users will not be deleted. This action cannot be undone.')),
                 ])
                 ->requiresConfirmation()
                 ->action(function (array $data) {
