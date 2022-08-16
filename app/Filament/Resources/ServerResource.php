@@ -37,6 +37,10 @@ class ServerResource extends Resource
                     ->required()
                     ->label('IP address')
                     ->columnSpan(2),
+                Forms\Components\TextInput::make('internal_ip')
+                    ->required()
+                    ->label('Internal IP address')
+                    ->columnSpan(2),
                 Forms\Components\TextInput::make('maximum_sites')
                     ->label(__('Maximum sites'))
                     ->integer()

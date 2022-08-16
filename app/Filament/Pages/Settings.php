@@ -56,9 +56,7 @@ class Settings extends Page
         return [
             Grid::make(2)
                 ->schema([
-                    FileUpload::make('logo')
-                        ->label(__('Logo'))
-                        ->disk('logos'),
+
                     Grid::make(1)
                         ->schema([
                             TextInput::make('name')
@@ -71,7 +69,7 @@ class Settings extends Page
                                 ->label(__('Support email address'))
                                 ->helperText('Separate by comma to allow more email addresses'),
                         ])
-                        ->columnSpan(1),
+                        ->columnSpan(2),
                     Select::make('default_package')
                         ->options(fn () => Package::orderBy('name')->get()->mapWithKeys(fn (Package $package) => [$package->id => $package->name]))
                         ->label(__('Select default package'))
@@ -80,6 +78,10 @@ class Settings extends Page
                         ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language]))
                         ->label('Select default language')
                         ->helperText('Select the default language a user should get when you create or they register'),
+                    FileUpload::make('logo')
+                        ->label(__('Logo'))
+                        ->disk('logos')
+                        ->columnSpan(2),
                     Select::make('rotate_logs_after')
                         ->label(__('This will rotate any logs older than selected, this helps cleanup your database'))
                         ->options([
