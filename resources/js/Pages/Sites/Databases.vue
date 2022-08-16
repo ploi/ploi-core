@@ -227,10 +227,7 @@ export default {
         },
 
         poll() {
-            this.$inertia.get(this.route('sites.databases.index', this.site.id), {
-                only: ['databases'],
-                preserveScroll: true,
-            })
+            this.$inertia.reload();
         },
 
         submit() {
