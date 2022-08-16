@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Support\Arr;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Arr;
 
-class ServerPolicy
+class ServerPolicy extends FrontendOnlyPolicy
 {
     use HandlesAuthorization;
 
