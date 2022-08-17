@@ -14,11 +14,11 @@ it('will generate a site system user', function () {
         ->systemUsers->toHaveCount(1);
 
     expect($siteA->systemUsers->first())
-        ->user_name->toBe('ploiio');
+        ->user_name->toBe('ploiio-' . $siteA->id);
 
     expect($siteB)
         ->systemUsers->toHaveCount(1);
 
     expect($siteB->systemUsers->first())
-        ->user_name->toBe('examplep');
+        ->user_name->toBe('examplep-' . $siteB->id);
 });
