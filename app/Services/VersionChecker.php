@@ -34,6 +34,8 @@ class VersionChecker
 
     public function isOutOfDate()
     {
+        $this->getVersions();
+
         return $this->currentVersion < $this->remoteVersion || $this->currentVersion != $this->remoteVersion;
     }
 

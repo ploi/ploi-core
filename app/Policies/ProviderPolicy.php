@@ -7,7 +7,7 @@ use App\Models\Provider;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProviderPolicy
+class ProviderPolicy extends FrontendOnlyPolicy
 {
     use HandlesAuthorization;
 

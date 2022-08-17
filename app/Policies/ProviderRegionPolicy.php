@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\ProviderRegion;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProviderRegionPolicy
+class ProviderRegionPolicy extends FrontendOnlyPolicy
 {
     use HandlesAuthorization;
 

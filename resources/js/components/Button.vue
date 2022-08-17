@@ -54,10 +54,10 @@ export default {
             default: 'md'
         },
         loading: {
-            default: false,
+            default: null,
         },
         disabled: {
-            default: false,
+            default: null,
         },
     },
     data() {

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Exception;
 use App\Models\Setting;
+use Filament\Facades\Filament;
+use Filament\Navigation\NavigationItem;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 

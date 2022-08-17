@@ -4,7 +4,7 @@ import Vue, {createApp, h} from 'vue';
 import {InertiaProgress} from '@inertiajs/progress'
 import Store from '@/store';
 import PortalVue from 'portal-vue'
-import vClickOutside from 'v-click-outside'
+import vClickOutside from "click-outside-vue3"
 import VueClipboard from 'vue-clipboard2'
 import mixins from '@/mixins';
 import axios from 'axios';

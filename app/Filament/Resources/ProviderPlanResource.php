@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms\Components\TextInput;
 use Filament\Tables;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
@@ -24,7 +25,7 @@ class ProviderPlanResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('label'),
             ]);
     }
 
@@ -42,6 +43,10 @@ class ProviderPlanResource extends Resource
                 Tables\Columns\TextColumn::make('label')
                     ->label(__('Label'))
                     ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Date'))
+                    ->sortable()
+                    ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('provider_id')
@@ -49,11 +54,12 @@ class ProviderPlanResource extends Resource
                     ->options(fn () => Provider::orderBy('name')->get()->mapWithKeys(fn (Provider $provider) => [$provider->id => $provider->name])),
             ])
             ->actions([
-                //
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 //
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

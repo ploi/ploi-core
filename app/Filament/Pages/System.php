@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Services\SystemChecker;
 use Filament\Pages\Page;
 use App\Services\VersionChecker;
 use Filament\Notifications\Notification;
@@ -45,5 +46,16 @@ class System extends Page
     public function hasAvailableUpdate(): bool
     {
         return app(VersionChecker::class)->getVersions()->isOutOfDate();
+    }
+
+    protected static function getNavigationBadge(): ?string
+    {
+        $systemChecker = app(VersionChecker::class);
+
+        if ($systemChecker->isOutOfDate()) {
+            return 'Update available';
+        }
+
+        return null;
     }
 }

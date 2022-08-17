@@ -1,7 +1,8 @@
 <template>
     <ul class="-ml-4 space-y-1">
-        <li v-for="item in items" v-if="item">
+        <li v-for="item in items">
             <component
+                v-if="item"
                 :is="item.type && item.type === 'a' ? 'a' : 'inertia-link'"
                 :target="item.type && item.type === 'a' ? '_blank' : '_self'"
                 class="flex items-center h-10 px-4 font-medium text-medium-emphasis"

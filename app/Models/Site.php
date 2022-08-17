@@ -38,7 +38,7 @@ class Site extends Model
 
     public function setDnsIdAttribute($value)
     {
-        if (! $value) {
+        if (!$value) {
             return;
         }
 
@@ -139,7 +139,7 @@ class Site extends Model
 
         static::created(function (self $site) {
             $site->systemUsers()->create([
-                'user_name' => Str::of($site->domain)->remove(['.', '-'])->limit(8, '')->lower(),
+                'user_name' => Str::of($site->domain)->remove(['.', '-'])->limit(8, '')->lower()->append('-' . $site->id),
             ]);
         });
 

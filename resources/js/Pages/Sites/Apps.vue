@@ -1,6 +1,6 @@
 <template>
     <Page>
-        <Head><title>{{ __('App') }}</title></Head>
+        <Head :title="`${this.__('Applicaties')} - ${this.site.domain}`"></Head>
         <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>

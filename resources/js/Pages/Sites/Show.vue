@@ -72,7 +72,6 @@
                                                     <TableHeader>{{ __('FTP password') }}</TableHeader>
                                                     <TableData :border="false">
                                                         <div v-if="ftp_password">
-                                                            <span v-text="ftp_password"></span>
                                                             <copy :label="`${ftp_password}`" :value="ftp_password" />
                                                         </div>
 

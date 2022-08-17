@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\ProviderPlan;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProviderPlanPolicy
+class ProviderPlanPolicy extends FrontendOnlyPolicy
 {
     use HandlesAuthorization;
 

@@ -58,6 +58,10 @@ class ProviderResource extends Resource
                 Tables\Columns\TextColumn::make('label')
                     ->label(__('Label'))
                     ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Date'))
+                    ->sortable()
+                    ->dateTime(),
             ])
             ->filters([
                 //
@@ -79,7 +83,8 @@ class ProviderResource extends Resource
             ])
             ->bulkActions([
                 //
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getEloquentQuery(): Builder
