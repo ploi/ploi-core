@@ -39,9 +39,9 @@
                             <h3 class="text-small font-medium">{{ category.label }} ({{ category.total }})</h3>
                         </li>
                         <li v-for="result in category.results">
-                            <inertia-link @click="closeSearch" class="px-4 py-3 block text-small" :href="result.route">
+                            <button @click="closeSearch(result.route)" class="px-4 py-3 block text-small">
                                 {{ result.name }}
-                            </inertia-link>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -158,7 +158,7 @@ export default {
             });
         },
 
-        closeSearch() {
+        closeSearch(url) {
             this.search = '';
             this.searchOpen = false;
 
@@ -166,6 +166,8 @@ export default {
             if (this.$refs.search) {
                 this.$refs.search.blur();
             }
+
+            this.$inertia.get(url);
         },
 
         isNotInputElement(event) {
