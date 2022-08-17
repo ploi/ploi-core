@@ -2,17 +2,17 @@
 
 namespace App\Actions\User;
 
-use App\Jobs\Servers\DeleteServer;
-use App\Jobs\Sites\DeleteSite;
-use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
+use App\Models\Server;
+use App\Jobs\Sites\DeleteSite;
+use App\Jobs\Servers\DeleteServer;
 
 class DeleteUserAction
 {
     public function execute(User $user, bool $removeAllData): void
     {
-        if ( $removeAllData ) {
+        if ($removeAllData) {
             $this->removeAllData($user);
         }
 

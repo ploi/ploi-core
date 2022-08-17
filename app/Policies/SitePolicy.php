@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Arr;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class SitePolicy extends FrontendOnlyPolicy
 {

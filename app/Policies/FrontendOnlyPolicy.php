@@ -8,7 +8,7 @@ class FrontendOnlyPolicy
 {
     public function before(User $user): mixed
     {
-        if ( $user->isAdmin() ) {
+        if ($user->isAdmin()) {
             return true;
         }
     }

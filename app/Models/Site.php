@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use App\Casts\SiteAlias;
-use App\Jobs\Certificates\DeleteCertificate;
+use Illuminate\Support\Str;
 use App\Jobs\Cronjobs\DeleteCronjob;
 use App\Jobs\Databases\DeleteDatabase;
 use App\Jobs\Redirects\DeleteRedirect;
-use DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Jobs\Certificates\DeleteCertificate;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
-use Illuminate\Support\Str;
 
 class Site extends Model
 {
@@ -38,7 +38,7 @@ class Site extends Model
 
     public function setDnsIdAttribute($value)
     {
-        if ( ! $value ) {
+        if (! $value) {
             return;
         }
 
@@ -104,7 +104,7 @@ class Site extends Model
 
     public function getSystemUser($withPassword = true)
     {
-        if ( setting('isolate_per_site_per_user') && $this->systemUsers()->first() ) {
+        if (setting('isolate_per_site_per_user') && $this->systemUsers()->first()) {
             $user = $this->systemUsers()->first();
         } else {
             $user = $this->users()->first();
@@ -112,7 +112,7 @@ class Site extends Model
 
         return [
                 'user_name' => $user->user_name,
-            ] + ( $withPassword ? ['ftp_password' => $user->ftp_password] : [] );
+            ] + ($withPassword ? ['ftp_password' => $user->ftp_password] : []);
     }
 
     public function addAlias($alias)
@@ -161,7 +161,7 @@ class Site extends Model
             foreach ($ids as $id) {
                 $record = SiteSystemUser::find($id);
 
-                if ( $record ) {
+                if ($record) {
                     $record->delete();
                 }
             }

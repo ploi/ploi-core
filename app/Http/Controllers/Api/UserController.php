@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\DataTransferObjects\UserData;
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use App\DataTransferObjects\UserData;
 
 class UserController extends Controller
 {

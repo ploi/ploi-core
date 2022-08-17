@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SiteDatabaseRequest;
-use App\Http\Resources\SiteDatabaseResource;
+use Illuminate\Support\Str;
 use App\Jobs\Databases\CreateDatabase;
 use App\Jobs\Databases\DeleteDatabase;
-use Illuminate\Support\Str;
+use App\Http\Requests\SiteDatabaseRequest;
+use App\Http\Resources\SiteDatabaseResource;
 
 class SiteDatabaseController extends Controller
 {
@@ -29,7 +29,7 @@ class SiteDatabaseController extends Controller
         ]);
 
         $database->users()->create([
-            'name' => $request->input('user_name',),
+            'name' => $request->input('user_name', ),
         ]);
 
         $database->server_id = $site->server_id;

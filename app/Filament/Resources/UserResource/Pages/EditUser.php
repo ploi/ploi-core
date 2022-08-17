@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
+use Filament\Pages\Actions;
+use Filament\Forms\Components\Toggle;
 use App\Actions\User\DeleteUserAction;
 use App\Filament\Resources\UserResource;
-use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditUser extends EditRecord
