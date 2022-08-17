@@ -67,7 +67,7 @@ class Server extends Resource
         $type = 'server',
         $databaseType = 'mysql',
         $webserverType = 'nginx',
-        $phpVersion = '7.4'
+        $phpVersion = '8.1'
     ): stdClass {
 
         // Remove the id
