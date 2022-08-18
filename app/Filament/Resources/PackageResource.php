@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms\Components\CheckboxList;
 use Filament\Tables;
 use App\Models\Package;
 use Filament\Resources\Form;
@@ -72,6 +73,7 @@ class PackageResource extends Resource
                         Section::make(__('Server permissions'))
                             ->schema([
                                 Checkbox::make('server_permissions.create')
+                                    ->reactive()
                                     ->label('Allow server creation')
                                     ->helperText('This will allow users to create servers'),
                                 Checkbox::make('server_permissions.update')
@@ -96,6 +98,20 @@ class PackageResource extends Resource
                             ])
                             ->columnSpan(1),
                     ]),
+
+                Grid::make()
+                    ->schema([
+                        Section::make(__('Available server providers'))
+                            ->description(__('These server providers will be available for users that are attached to this package.'))
+                            ->schema([
+                                CheckboxList::make('providers')
+                                    ->relationship('providers', 'name')
+                            ])
+                            ->columnSpan(1)
+                    ])
+                    ->visible(function ($get) {
+                        return $get('server_permissions')['create'];
+                    })
             ]);
     }
 
@@ -107,17 +123,17 @@ class PackageResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Name'))
                     ->description(function (Package $record) {
-                        if (! $record->stripe_plan_id) {
+                        if (!$record->stripe_plan_id) {
                             return __('Not attached to Stripe.');
                         }
 
                         return "Attached to stripe - {$record->price_monthly} {$record->currency}";
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
-                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum sites')),
                 Tables\Columns\TextColumn::make('maximum_servers')
-                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum servers')),
                 Tables\Columns\TextColumn::make('users_count')
                     ->counts('users'),

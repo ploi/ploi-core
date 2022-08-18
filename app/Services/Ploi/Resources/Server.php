@@ -50,7 +50,7 @@ class Server extends Resource
             $this->setId($id);
         }
 
-        if (! $this->getId()) {
+        if (!$this->getId()) {
             throw new RequiresId('No server ID set');
         }
 
@@ -67,7 +67,8 @@ class Server extends Resource
         $type = 'server',
         $databaseType = 'mysql',
         $webserverType = 'nginx',
-        $phpVersion = '8.1'
+        $phpVersion = '8.1',
+        $os = \App\Models\Server::OS_UBUNTU_22
     ): stdClass {
 
         // Remove the id
@@ -83,6 +84,7 @@ class Server extends Resource
             'database_type' => $databaseType,
             'webserver_type' => $webserverType,
             'php_version' => $phpVersion,
+            'os_type' => $os,
         ];
 
         // Make the request

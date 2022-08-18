@@ -18,6 +18,7 @@ class CreateServerAction
         $server = $serverData->getUser()->servers()->create([
             'name' => $serverData->name,
             'database_type' => $serverData->database_type,
+            'os' => setting('default_os', Server::OS_UBUNTU_22)
         ]);
 
         $server->provider()->associate($provider);

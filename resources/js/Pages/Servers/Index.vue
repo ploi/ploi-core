@@ -12,19 +12,19 @@
 
                         <FormSelect :loading="loading" :errors="$page.props.errors.provider_id" :label="__('Select provider')"
                                     v-model="form.provider_id">
-                            <option :value="`${null}`">{{ __('Select random provider') }}</option>
+                            <option :value="`${null}`">{{ __('Select provider') }}</option>
                             <option v-for="(name, id) in providers" :value="id">{{ name }}</option>
                         </FormSelect>
 
                         <FormSelect :loading="loading" :errors="$page.props.errors.provider_region_id" :label="__('Select region')"
                                     v-model="form.provider_region_id">
-                            <option :value="`${null}`">{{ __('Select random region') }}</option>
+                            <option :value="`${null}`">{{ __('Select region') }}</option>
                             <option v-for="(name, id) in regions" :value="id">{{ name }}</option>
                         </FormSelect>
 
                         <FormSelect :loading="loading" :errors="$page.props.errors.provider_plan_id" :label="__('Select plan')"
                                     v-model="form.provider_plan_id">
-                            <option :value="`${null}`">{{ __('Select random plan') }}</option>
+                            <option :value="`${null}`">{{ __('Select plan') }}</option>
                             <option v-for="(name, id) in plans" :value="id">{{ name }}</option>
                         </FormSelect>
 
@@ -191,7 +191,7 @@ export default {
             }
         },
 
-        'form.provider': function (value) {
+        'form.provider_id': function (value) {
             // Reset values if null
             if (!value) {
                 this.regions = [];

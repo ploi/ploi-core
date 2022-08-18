@@ -48,6 +48,7 @@ class Settings extends Page
             'enable_api' => (bool) setting('enable_api'),
             'api_token' => setting('api_token'),
             'isolate_per_site_per_user' => (bool) setting('isolate_per_site_per_user'),
+            'default_os' => setting('default_os'),
         ]);
     }
 
@@ -95,7 +96,15 @@ class Settings extends Page
                             'years-3' => __('Older than 3 years'),
                             'years-4' => __('Older than 4 years'),
                         ])
-                        ->columnSpan(2),
+                        ->columnSpan(1),
+                    Select::make('default_os')
+                        ->label(__('Select the default OS that should be used when users create a server'))
+                        ->options([
+                            'ubuntu-18-04-lts' => __('Ubuntu 18'),
+                            'ubuntu-20-04-lts' => __('Ubuntu 20'),
+                            'ubuntu-22-04-lts' => __('Ubuntu 22'),
+                        ])
+                        ->columnSpan(1),
                     Toggle::make('trial')
                         ->label(__('Enable trial'))
                         ->helperText(__('This will allow you to have users with trials.')),

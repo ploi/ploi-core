@@ -31,7 +31,10 @@ class CreateServer implements ShouldQueue
             $this->server->providerRegion->region_id,
             $this->server->providerPlan->plan_id,
             'server',
-            $this->server->database_type
+            $this->server->database_type,
+            'nginx',
+            '8.1',
+            $this->server->os,
         );
 
         $this->server->ploi_id = $ploiServer->id;
