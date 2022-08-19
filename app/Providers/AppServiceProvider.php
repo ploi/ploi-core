@@ -41,7 +41,6 @@ class AppServiceProvider extends ServiceProvider
                     ->label('Back to panel')
                     ->url(route('dashboard'))
                     ->icon('heroicon-s-rewind'),
-                // ...
             ]);
 
             Filament::registerNavigationItems([
