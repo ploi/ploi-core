@@ -2,9 +2,9 @@
 
 namespace App\Console;
 
-use App\Console\Commands\Core\Trial;
 use App\Jobs\Core\Ping;
 use App\Console\Commands\Core\Css;
+use App\Console\Commands\Core\Trial;
 use App\Console\Commands\Core\Cleanup;
 use App\Console\Commands\Core\Install;
 use App\Console\Commands\Core\CssBackup;

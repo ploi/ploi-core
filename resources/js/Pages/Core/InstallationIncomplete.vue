@@ -1,4 +1,5 @@
 <template>
+    <Head><title>{{ __('Installation incomplete') }}</title></Head>
     <div class="flex items-center justify-center w-full min-h-screen">
         <Container size="small">
             <div class="space-y-4">
@@ -17,19 +18,17 @@
 </template>
 
 <script>
-    import TextDivider from '@/components/TextDivider'
-    import FormInput from '@/components/forms/FormInput'
-    import Button from '@/components/Button'
-    import Container from '@/components/Container'
+import TextDivider from '@/components/TextDivider.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import Button from '@/components/Button.vue'
+import Container from '@/components/Container.vue'
 
-    export default {
-        metaInfo: { title: 'Installation incomplete' },
-
-        components: {
-            TextDivider,
-            FormInput,
-            Button,
-            Container,
-        },
-    }
+export default {
+    components: {
+        TextDivider,
+        FormInput,
+        Button,
+        Container,
+    },
+}
 </script>

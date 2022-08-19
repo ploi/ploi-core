@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\DataTransferObjects\UserData;
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use App\DataTransferObjects\UserData;
 
 class UserController extends Controller
 {
@@ -27,6 +28,8 @@ class UserController extends Controller
             'name' => ['required'],
             'email' => ['required'],
             'package_id' => ['nullable'],
+            'language' => ['nullable', Rule::in(languages())],
+            'requires_password_for_ftp' => ['nullable'],
         ]);
 
         $userData = UserData::validate($data);
@@ -43,6 +46,8 @@ class UserController extends Controller
             'email' => [],
             'package_id' => [],
             'blocked' => [],
+            'language' => [],
+            'requires_password_for_ftp' => [],
         ]);
 
         $userData = UserData::validate($data);

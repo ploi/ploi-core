@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Server;
+use Closure;
 use App\Models\Site;
 use App\Models\User;
-use Closure;
+use App\Models\Server;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SiteFactory extends Factory
@@ -35,8 +35,8 @@ class SiteFactory extends Factory
 
     public function withUser(User|Closure $user): static
     {
-        return $this->afterCreating(function(Site $site) use ($user): void {
-           $site->users()->attach($user);
+        return $this->afterCreating(function (Site $site) use ($user): void {
+            $site->users()->attach($user);
         });
     }
 }

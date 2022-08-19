@@ -1,5 +1,6 @@
 <template>
     <Page>
+        <Head :title="site.domain"></Head>
         <Portal to="modals">
             <ModalContainer>
                 <Modal @close="() => closeModal()" v-if="modalIsOpen" @submit="requestFtpPassword">
@@ -8,7 +9,7 @@
                     <template #form>
                         <FormInput type="password" :label="__('Enter your account password to reveal FTP password')"
                                    v-model="form.password"
-                                   :errors="$page.props.errors.password"/>
+                                   :errors="$page.props.errors.password" />
                     </template>
 
                     <template #form-actions>
@@ -18,7 +19,7 @@
             </ModalContainer>
         </Portal>
 
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -38,7 +39,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -57,21 +58,21 @@
                                                 <TableRow>
                                                     <TableHeader>{{ __('FTP host') }}</TableHeader>
                                                     <TableData :border="false">
-                                                        <copy :label="`${ip_address}`" :value="ip_address"/>
+                                                        <copy :label="`${ip_address}`" :value="ip_address" />
                                                     </TableData>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableHeader>{{ __('FTP user') }}</TableHeader>
                                                     <TableData :border="false">
                                                         <copy :label="`${system_user.user_name}`"
-                                                              :value="system_user.user_name"/>
+                                                              :value="system_user.user_name" />
                                                     </TableData>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableHeader>{{ __('FTP password') }}</TableHeader>
                                                     <TableData :border="false">
-                                                        <div v-if="ftp_password" v-text="ftp_password">
-                                                            <copy :label="`${ftp_password}`" :value="ftp_password"/>
+                                                        <div v-if="ftp_password">
+                                                            <copy :label="`${ftp_password}`" :value="ftp_password" />
                                                         </div>
 
                                                         <Button variant="secondary" @click="confirmRequestFtpPassword"
@@ -100,21 +101,21 @@
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
-                                                           :value="mainDnsRecord"/>
+                                                           :model-value="mainDnsRecord" />
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
-                                                           :value="ip_address"/>
+                                                           :model-value="ip_address" />
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
-                                                           :value="`www`"/>
+                                                           :model-value="`www`" />
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
-                                                           :value="ip_address"/>
+                                                           :model-value="ip_address" />
                                             </div>
                                         </div>
                                     </form>
@@ -131,11 +132,11 @@
                                         <div class="grid grid-cols-2 gap-4" v-for="alias in site.aliases">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
-                                                           :value="alias"/>
+                                                           :value="alias" />
                                             </div>
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="IP" allow-copy :errors="$page.props.errors.domain"
-                                                           :value="ip_address"/>
+                                                           :value="ip_address" />
                                             </div>
                                         </div>
                                     </form>
@@ -150,43 +151,37 @@
 </template>
 
 <script>
-import TopBar from './components/TopBar'
-import Container from '@/components/Container'
-import Content from '@/components/Content'
-import Page from '@/components/Page'
-import PageHeader from '@/components/PageHeader'
-import PageHeaderTitle from '@/components/PageHeaderTitle'
-import PageBody from '@/components/PageBody'
-import Button from '@/components/Button'
-import List from '@/components/List'
-import ListItem from '@/components/ListItem'
-import StatusBubble from '@/components/StatusBubble'
-import NotificationBadge from '@/components/NotificationBadge'
-import MainLayout from '@/Layouts/MainLayout'
-import SettingsLayout from '@/components/layouts/SettingsLayout'
-import SettingsSegment from '@/components/SettingsSegment'
-import FormInput from '@/components/forms/FormInput'
-import Form from '@/components/Form'
-import FormActions from '@/components/FormActions'
+import TopBar from './components/TopBar.vue'
+import Container from '@/components/Container.vue'
+import Content from '@/components/Content.vue'
+import Page from '@/components/Page.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageHeaderTitle from '@/components/PageHeaderTitle.vue'
+import PageBody from '@/components/PageBody.vue'
+import Button from '@/components/Button.vue'
+import List from '@/components/List.vue'
+import ListItem from '@/components/ListItem.vue'
+import StatusBubble from '@/components/StatusBubble.vue'
+import NotificationBadge from '@/components/NotificationBadge.vue'
+import MainLayout from '@/Layouts/MainLayout.vue'
+import SettingsLayout from '@/components/layouts/SettingsLayout.vue'
+import SettingsSegment from '@/components/SettingsSegment.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import Form from '@/components/Form.vue'
+import FormActions from '@/components/FormActions.vue'
 import {useNotification} from '@/hooks/notification'
-import Tabs from './Tabs'
-import Table from '@/components/Table'
-import TableHead from '@/components/TableHead'
-import TableHeader from '@/components/TableHeader'
-import TableRow from '@/components/TableRow'
-import TableBody from '@/components/TableBody'
-import TableData from '@/components/TableData'
-import Modal from '@/components/Modal'
-import ModalContainer from '@/components/ModalContainer'
-import Copy from '@/components/Copy'
+import Tabs from './Tabs.vue'
+import Table from '@/components/Table.vue'
+import TableHead from '@/components/TableHead.vue'
+import TableHeader from '@/components/TableHeader.vue'
+import TableRow from '@/components/TableRow.vue'
+import TableBody from '@/components/TableBody.vue'
+import TableData from '@/components/TableData.vue'
+import Modal from '@/components/Modal.vue'
+import ModalContainer from '@/components/ModalContainer.vue'
+import Copy from '@/components/Copy.vue'
 
 export default {
-    metaInfo() {
-        return {
-            title: this.site.domain,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

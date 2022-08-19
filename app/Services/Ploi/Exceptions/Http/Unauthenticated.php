@@ -11,7 +11,6 @@ use Exception;
  */
 class Unauthenticated extends Exception
 {
-
     /**
      * InternalServerError constructor.
      *

@@ -1,21 +1,38 @@
-import { InertiaApp, plugin, InertiaLink } from '@inertiajs/inertia-vue'
-import Vue from 'vue';
-import VueMeta from 'vue-meta'
-import store from '@/store'
+import {createInertiaApp, Head, InertiaLink} from '@inertiajs/inertia-vue3'
+import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
+import Vue, {createApp, h} from 'vue';
+import {InertiaProgress} from '@inertiajs/progress'
+import Store from '@/store';
 import PortalVue from 'portal-vue'
-import vClickOutside from 'v-click-outside'
+import vClickOutside from "click-outside-vue3"
 import VueClipboard from 'vue-clipboard2'
-window._forEach = require('lodash/forEach');
+import mixins from '@/mixins';
+import axios from 'axios';
+import forEach from 'lodash/forEach';
+import mitt from 'mitt';
+import '../sass/app.scss';
 
-Vue.use(vClickOutside)
-Vue.use(PortalVue)
-Vue.use(plugin)
-Vue.use(VueMeta)
-Vue.use(VueClipboard)
-Vue.mixin({ methods: { route: window.route } })
-Vue.mixin(require('./mixins'));
-Vue.component('InertiaLink', InertiaLink)
-import { InertiaProgress } from '@inertiajs/progress'
+Vue.configureCompat({RENDER_FUNCTION: false, COMPONENT_V_MODEL: false});
+
+createInertiaApp({
+    title: (title) => `${title}`,
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    setup({el, App, props, plugin}) {
+        createApp({
+            render: () => h(App, props),
+        })
+            .use(plugin)
+            .use(vClickOutside)
+            .use(VueClipboard)
+            .use(Store)
+            .use(PortalVue)
+            .mixin({methods: {route: window.route}})
+            .mixin(mixins)
+            .component('InertiaLink', InertiaLink)
+            .component('Head', Head)
+            .mount(el);
+    },
+});
 
 InertiaProgress.init({
     delay: 250,
@@ -24,25 +41,11 @@ InertiaProgress.init({
     showSpinner: false,
 })
 
-window.eventBus = new Vue();
+window.axios = axios;
+window._forEach = forEach;
 
-window.axios = require('axios');
+const emitter = mitt();
+
+window.eventBus = emitter;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-const app = document.getElementById('app')
-
-let pageData = JSON.parse(app.dataset.page)
-
-new Vue({
-    store,
-    metaInfo: {
-        titleTemplate: (title) => title ? `${title} - ${pageData.props.settings.name}` : pageData.props.settings.name
-    },
-    render: h => h(InertiaApp, {
-        props: {
-            initialPage: pageData,
-            resolveComponent: name => import(`@/Pages/${name}`).then(module => module.default),
-        },
-    }),
-}).$mount(app)

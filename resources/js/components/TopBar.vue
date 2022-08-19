@@ -13,13 +13,13 @@
                     <ul class="flex items-center space-x-4">
                         <li :aria-label="__('Search')" data-balloon-blunt data-balloon-pos="down">
                             <IconButton @click="triggerSearch">
-                                <IconSearch class="text-top-bar"/>
+                                <IconSearch class="text-top-bar" />
                             </IconButton>
                         </li>
                         <li :aria-label="themeMode === 'light' ? __('Enable dark mode') : __('Enable light mode')" data-balloon-blunt data-balloon-pos="down">
                             <IconButton @click="toggleTheme">
-                                <IconMoon class="text-top-bar" v-if="themeMode === 'light'"/>
-                                <IconSun class="text-top-bar" v-if="themeMode === 'dark'"/>
+                                <IconMoon class="text-top-bar" v-if="themeMode === 'light'" />
+                                <IconSun class="text-top-bar" v-if="themeMode === 'dark'" />
                             </IconButton>
                         </li>
                         <li>
@@ -41,8 +41,8 @@
                                     </DropdownListItem>
                                     <DropdownListItem v-if="$page.props.settings.billing" :to="route('profile.billing.index')">{{ __('Billing') }}
                                     </DropdownListItem>
-                                    <DropdownListItem class="!text-danger" v-if="$page.props.auth.user.role === 'admin'"
-                                                      :to="route('admin.dashboard')">{{ __('Administration') }}
+                                    <DropdownListItem class="!text-danger" :component-is-inertia-link="false" component-is="a" v-if="$page.props.auth.user.role === 'admin'"
+                                                      to="/admin">{{ __('Administration') }}
                                     </DropdownListItem>
                                     <DropdownListItem :to="route('logout')" component-is="button" method="post">{{ __('Sign out') }}
                                     </DropdownListItem>
@@ -59,14 +59,14 @@
 </template>
 
 <script>
-import Container from '@/components/Container'
-import Dropdown from '@/components/Dropdown'
-import DropdownList from '@/components/DropdownList'
-import DropdownListItem from '@/components/DropdownListItem'
-import IconMoon from '@/components/icons/IconMoon'
-import IconSun from '@/components/icons/IconSun'
-import IconSearch from '@/components/icons/IconSearch'
-import IconButton from '@/components/IconButton'
+import Container from '@/components/Container.vue'
+import Dropdown from '@/components/Dropdown.vue'
+import DropdownList from '@/components/DropdownList.vue'
+import DropdownListItem from '@/components/DropdownListItem.vue'
+import IconMoon from '@/components/icons/IconMoon.vue'
+import IconSun from '@/components/icons/IconSun.vue'
+import IconSearch from '@/components/icons/IconSearch.vue'
+import IconButton from '@/components/IconButton.vue'
 
 export default {
     components: {
@@ -118,7 +118,7 @@ export default {
         },
 
         triggerSearch() {
-            window.eventBus.$emit('openSearch');
+            window.eventBus.emit('openSearch');
         }
     }
 }

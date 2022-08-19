@@ -2,8 +2,8 @@
 
 use App\Models\User;
 
-use function Pest\Laravel\actingAs;
 use function Pest\Laravel\put;
+use function Pest\Laravel\actingAs;
 
 it('can enable two factor authentication for a user', function () {
     actingAs($user = User::factory()->create());

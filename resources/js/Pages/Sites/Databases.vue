@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head :title="`${this.__('Databases')} - ${this.site.domain}`"></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -24,11 +25,11 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Name')" :errors="$page.props.errors.name"
-                                                   v-model="form.name"/>
+                                                   v-model="form.name" />
                                         <FormInput :label="__('User')" :errors="$page.props.errors.user_name"
-                                                   v-model="form.user_name"/>
+                                                   v-model="form.user_name" />
                                         <FormInput :label="__('Password')" :errors="$page.props.errors.password"
-                                                   v-model="form.password"/>
+                                                   v-model="form.password" />
 
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -37,7 +38,7 @@
                                 </template>
                             </SettingsSegment>
 
-                            <EmptyImage v-if="!databases.meta.total"/>
+                            <EmptyImage v-if="!databases.meta.total" />
 
                             <SettingsSegment v-if="databases.meta.total">
                                 <template #title>{{ __('Databases') }}</template>
@@ -55,7 +56,7 @@
                                                 <TableRow v-for="database in databases.data" :key="database.id">
                                                     <TableData>
                                                         <StatusBubble
-                                                            :variant="database.status === 'busy' ? 'gray' : 'success'"/>
+                                                            :variant="database.status === 'busy' ? 'gray' : 'success'" />
                                                     </TableData>
                                                     <TableData>{{ database.name }}</TableData>
                                                     <TableData>
@@ -70,7 +71,7 @@
                                         </Table>
                                     </div>
 
-                                    <pagination :links="databases"/>
+                                    <pagination :links="databases" />
                                 </template>
                             </SettingsSegment>
                         </template>
@@ -82,34 +83,34 @@
 </template>
 
 <script>
-import TopBar from './components/TopBar'
-import Container from '@/components/Container'
-import Content from '@/components/Content'
-import Page from '@/components/Page'
-import PageHeader from '@/components/PageHeader'
-import PageHeaderTitle from '@/components/PageHeaderTitle'
-import PageBody from '@/components/PageBody'
-import Button from '@/components/Button'
-import List from '@/components/List'
-import ListItem from '@/components/ListItem'
-import StatusBubble from '@/components/StatusBubble'
-import NotificationBadge from '@/components/NotificationBadge'
-import MainLayout from '@/Layouts/MainLayout'
-import SettingsLayout from '@/components/layouts/SettingsLayout'
-import SettingsSegment from '@/components/SettingsSegment'
-import FormInput from '@/components/forms/FormInput'
-import Form from '@/components/Form'
-import Pagination from '@/components/Pagination'
-import EmptyImage from '@/components/EmptyImage'
-import FormActions from '@/components/FormActions'
+import TopBar from './components/TopBar.vue'
+import Container from '@/components/Container.vue'
+import Content from '@/components/Content.vue'
+import Page from '@/components/Page.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageHeaderTitle from '@/components/PageHeaderTitle.vue'
+import PageBody from '@/components/PageBody.vue'
+import Button from '@/components/Button.vue'
+import List from '@/components/List.vue'
+import ListItem from '@/components/ListItem.vue'
+import StatusBubble from '@/components/StatusBubble.vue'
+import NotificationBadge from '@/components/NotificationBadge.vue'
+import MainLayout from '@/Layouts/MainLayout.vue'
+import SettingsLayout from '@/components/layouts/SettingsLayout.vue'
+import SettingsSegment from '@/components/SettingsSegment.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import Form from '@/components/Form.vue'
+import Pagination from '@/components/Pagination.vue'
+import EmptyImage from '@/components/EmptyImage.vue'
+import FormActions from '@/components/FormActions.vue'
 import {useConfirm} from '@/hooks/confirm'
-import Tabs from './Tabs'
-import Table from '@/components/Table'
-import TableHead from '@/components/TableHead'
-import TableHeader from '@/components/TableHeader'
-import TableRow from '@/components/TableRow'
-import TableBody from '@/components/TableBody'
-import TableData from '@/components/TableData'
+import Tabs from './Tabs.vue'
+import Table from '@/components/Table.vue'
+import TableHead from '@/components/TableHead.vue'
+import TableHeader from '@/components/TableHeader.vue'
+import TableRow from '@/components/TableRow.vue'
+import TableBody from '@/components/TableBody.vue'
+import TableData from '@/components/TableData.vue'
 
 export default {
     metaInfo() {
@@ -226,10 +227,7 @@ export default {
         },
 
         poll() {
-            this.$inertia.get(this.route('sites.databases.index', this.site.id), {
-                only: ['databases'],
-                preserveScroll: true,
-            })
+            this.$inertia.reload();
         },
 
         submit() {
@@ -263,7 +261,7 @@ export default {
         }
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
         this.clearPollingInterval();
     }
 }

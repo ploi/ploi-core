@@ -8,6 +8,7 @@ class DatabaseUser extends Model
 {
     public $fillable = [
         'name',
+
     ];
 
     public function database()

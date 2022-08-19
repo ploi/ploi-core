@@ -31,11 +31,11 @@ class Ploi
     {
         $this->url = config('services.ploi-api.url');
 
-        if (! $token) {
+        if (!$token) {
             $token = config('services.ploi.token');
         }
 
-        if (! $coreApiToken) {
+        if (!$coreApiToken) {
             $coreApiToken = config('services.ploi.core-token');
         }
 
@@ -43,6 +43,11 @@ class Ploi
         $this->setCoreApiToken($coreApiToken);
 
         $this->buildClient();
+    }
+
+    public static function make(): static
+    {
+        return new static();
     }
 
     public function setApiToken($token): self
@@ -63,12 +68,17 @@ class Ploi
 
     public function buildClient(): static
     {
-        $this->client = Http::baseUrl($this->url)->withHeaders([
-            'Authorization' => 'Bearer ' . $this->getApiToken(),
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'X-Ploi-Core-Key' => $this->getCoreApiToken(),
-        ]);
+        $this->client = Http::baseUrl($this->url)
+            ->withHeaders([
+                'Authorization' => 'Bearer ' . $this->getApiToken(),
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'X-Ploi-Core-Key' => $this->getCoreApiToken(),
+            ]);
+
+        if (app()->isLocal()) {
+            $this->client->withoutVerifying();
+        }
 
         return $this;
     }
@@ -85,7 +95,7 @@ class Ploi
 
     public function makeAPICall(string $url, string $method = 'get', array $options = []): Response
     {
-        if (! in_array($method, ['get', 'post', 'patch', 'delete'])) {
+        if (!in_array($method, ['get', 'post', 'patch', 'delete'])) {
             throw new Exception('Invalid method type');
         }
 

@@ -1,5 +1,6 @@
 <template>
     <Page>
+        <Head><title>{{ __('Servers') }}</title></Head>
         <Portal to="modals" v-if="can('servers', 'create')">
             <ModalContainer>
                 <Modal @close="modalIsOpen = false" v-if="modalIsOpen" @submit="submit">
@@ -7,23 +8,23 @@
 
                     <template #form>
                         <FormInput :loading="loading" :label="__('Name')" placeholder="webserver-01"
-                                   :errors="$page.props.errors.name" v-model="form.name"/>
+                                   :errors="$page.props.errors.name" v-model="form.name" />
 
                         <FormSelect :loading="loading" :errors="$page.props.errors.provider_id" :label="__('Select provider')"
                                     v-model="form.provider_id">
-                            <option :value="`${null}`">{{ __('Select random provider') }}</option>
+                            <option :value="`${null}`">{{ __('Select provider') }}</option>
                             <option v-for="(name, id) in providers" :value="id">{{ name }}</option>
                         </FormSelect>
 
                         <FormSelect :loading="loading" :errors="$page.props.errors.provider_region_id" :label="__('Select region')"
                                     v-model="form.provider_region_id">
-                            <option :value="`${null}`">{{ __('Select random region') }}</option>
+                            <option :value="`${null}`">{{ __('Select region') }}</option>
                             <option v-for="(name, id) in regions" :value="id">{{ name }}</option>
                         </FormSelect>
 
                         <FormSelect :loading="loading" :errors="$page.props.errors.provider_plan_id" :label="__('Select plan')"
                                     v-model="form.provider_plan_id">
-                            <option :value="`${null}`">{{ __('Select random plan') }}</option>
+                            <option :value="`${null}`">{{ __('Select plan') }}</option>
                             <option v-for="(name, id) in plans" :value="id">{{ name }}</option>
                         </FormSelect>
 
@@ -43,7 +44,7 @@
             </ModalContainer>
         </Portal>
 
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -57,11 +58,11 @@
                 </PageHeader>
 
                 <PageBody>
-                    <EmptyImage v-if="!servers.meta.total"/>
+                    <EmptyImage v-if="!servers.meta.total" />
                     <List>
                         <ListItem v-for="server in servers.data" :key="server.id">
                             <template #prefix>
-                                <StatusBubble :variant="server.status === 'busy' ? 'gray' : 'success'"/>
+                                <StatusBubble :variant="server.status === 'busy' ? 'gray' : 'success'" />
                             </template>
                             <template #title>
                                 <inertia-link class="text-primary font-medium" :href="route('servers.show', server.id)">
@@ -74,7 +75,7 @@
                             <template #suffix>
                                 <Dropdown v-slot="{ isOpen, toggle, position }">
                                     <IconButton @click="toggle">
-                                        <IconMore class="w-5 h-5"/>
+                                        <IconMore class="w-5 h-5" />
                                     </IconButton>
 
                                     <DropdownList :position="position" v-if="isOpen">
@@ -95,43 +96,37 @@
 </template>
 
 <script>
-import TopBar from './components/TopBar'
-import Container from '@/components/Container'
-import Content from '@/components/Content'
-import Page from '@/components/Page'
-import PageHeader from '@/components/PageHeader'
-import PageHeaderTitle from '@/components/PageHeaderTitle'
-import PageBody from '@/components/PageBody'
-import Button from '@/components/Button'
-import List from '@/components/List'
-import ListItem from '@/components/ListItem'
-import StatusBubble from '@/components/StatusBubble'
-import NotificationBadge from '@/components/NotificationBadge'
-import MainLayout from '@/Layouts/MainLayout'
-import IconBox from '@/components/icons/IconBox'
-import IconGlobe from '@/components/icons/IconGlobe'
-import IconStorage from '@/components/icons/IconStorage'
-import IconButton from '@/components/IconButton'
-import IconMore from '@/components/icons/IconMore'
-import EmptyImage from '@/components/EmptyImage'
-import Modal from '@/components/Modal'
-import ModalContainer from '@/components/ModalContainer'
-import FormInput from '@/components/forms/FormInput'
-import FormSelect from '@/components/forms/FormSelect'
-import FormActions from '@/components/FormActions'
-import Dropdown from '@/components/Dropdown'
-import DropdownList from '@/components/DropdownList'
-import DropdownListItem from '@/components/DropdownListItem'
-import DropdownListItemButton from '@/components/DropdownListItemButton'
+import TopBar from './components/TopBar.vue'
+import Container from '@/components/Container.vue'
+import Content from '@/components/Content.vue'
+import Page from '@/components/Page.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageHeaderTitle from '@/components/PageHeaderTitle.vue'
+import PageBody from '@/components/PageBody.vue'
+import Button from '@/components/Button.vue'
+import List from '@/components/List.vue'
+import ListItem from '@/components/ListItem.vue'
+import StatusBubble from '@/components/StatusBubble.vue'
+import NotificationBadge from '@/components/NotificationBadge.vue'
+import MainLayout from '@/Layouts/MainLayout.vue'
+import IconBox from '@/components/icons/IconBox.vue'
+import IconGlobe from '@/components/icons/IconGlobe.vue'
+import IconStorage from '@/components/icons/IconStorage.vue'
+import IconButton from '@/components/IconButton.vue'
+import IconMore from '@/components/icons/IconMore.vue'
+import EmptyImage from '@/components/EmptyImage.vue'
+import Modal from '@/components/Modal.vue'
+import ModalContainer from '@/components/ModalContainer.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import FormSelect from '@/components/forms/FormSelect.vue'
+import FormActions from '@/components/FormActions.vue'
+import Dropdown from '@/components/Dropdown.vue'
+import DropdownList from '@/components/DropdownList.vue'
+import DropdownListItem from '@/components/DropdownListItem.vue'
+import DropdownListItemButton from '@/components/DropdownListItemButton.vue'
 import {useConfirm} from '@/hooks/confirm'
 
 export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Servers')}`,
-        }
-    },
-
     layout: MainLayout,
 
     components: {
@@ -196,7 +191,7 @@ export default {
             }
         },
 
-        'form.provider': function (value) {
+        'form.provider_id': function (value) {
             // Reset values if null
             if (!value) {
                 this.regions = [];
@@ -303,7 +298,7 @@ export default {
         }
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
         this.clearPollingInterval();
     }
 }

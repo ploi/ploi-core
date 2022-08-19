@@ -11,10 +11,10 @@
 |
 */
 
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Tests\Fixtures\ApiCall;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use Tests\Fixtures\ApiCall;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(Tests\TestCase::class, LazilyRefreshDatabase::class)
     ->beforeEach(fn () => Http::preventStrayRequests())

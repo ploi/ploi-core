@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Integrations') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -12,10 +13,10 @@
                         </FormSelect>
 
                         <FormInput v-if="form.provider === 'cloudflare'" :label="__('API key')"
-                                   :errors="$page.props.errors['meta.api_key']" v-model="form.meta.api_key"/>
+                                   :errors="$page.props.errors['meta.api_key']" v-model="form.meta.api_key" />
                         <FormInput v-if="form.provider === 'cloudflare'" :label="__('Cloudflare email')"
                                    :errors="$page.props.errors['meta.cloudflare_email']"
-                                   v-model="form.meta.cloudflare_email"/>
+                                   v-model="form.meta.cloudflare_email" />
 
                         <FormActions>
                             <Button>{{ __('Save') }}</Button>
@@ -51,42 +52,36 @@
 </template>
 
 <script>
-import TopBar from './components/TopBar'
-import Container from '@/components/Container'
-import Content from '@/components/Content'
-import Page from '@/components/Page'
-import PageHeader from '@/components/PageHeader'
-import PageHeaderTitle from '@/components/PageHeaderTitle'
-import PageBody from '@/components/PageBody'
-import Button from '@/components/Button'
-import List from '@/components/List'
-import ListItem from '@/components/ListItem'
-import StatusBubble from '@/components/StatusBubble'
-import NotificationBadge from '@/components/NotificationBadge'
-import MainLayout from '@/Layouts/MainLayout'
-import IconBox from '@/components/icons/IconBox'
-import IconGlobe from '@/components/icons/IconGlobe'
-import IconStorage from '@/components/icons/IconStorage'
-import Modal from '@/components/Modal'
-import ModalContainer from '@/components/ModalContainer'
-import FormInput from '@/components/forms/FormInput'
-import FormSelect from '@/components/forms/FormSelect'
-import FormActions from '@/components/FormActions'
-import Table from '@/components/Table'
-import TableHead from '@/components/TableHead'
-import TableHeader from '@/components/TableHeader'
-import TableRow from '@/components/TableRow'
-import TableBody from '@/components/TableBody'
-import TableData from '@/components/TableData'
+import TopBar from './components/TopBar.vue'
+import Container from '@/components/Container.vue'
+import Content from '@/components/Content.vue'
+import Page from '@/components/Page.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageHeaderTitle from '@/components/PageHeaderTitle.vue'
+import PageBody from '@/components/PageBody.vue'
+import Button from '@/components/Button.vue'
+import List from '@/components/List.vue'
+import ListItem from '@/components/ListItem.vue'
+import StatusBubble from '@/components/StatusBubble.vue'
+import NotificationBadge from '@/components/NotificationBadge.vue'
+import MainLayout from '@/Layouts/MainLayout.vue'
+import IconBox from '@/components/icons/IconBox.vue'
+import IconGlobe from '@/components/icons/IconGlobe.vue'
+import IconStorage from '@/components/icons/IconStorage.vue'
+import Modal from '@/components/Modal.vue'
+import ModalContainer from '@/components/ModalContainer.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import FormSelect from '@/components/forms/FormSelect.vue'
+import FormActions from '@/components/FormActions.vue'
+import Table from '@/components/Table.vue'
+import TableHead from '@/components/TableHead.vue'
+import TableHeader from '@/components/TableHeader.vue'
+import TableRow from '@/components/TableRow.vue'
+import TableBody from '@/components/TableBody.vue'
+import TableData from '@/components/TableData.vue'
 import {useConfirm} from '@/hooks/confirm'
 
 export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Integrations')}`,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

@@ -1,9 +1,9 @@
 <?php
 
-use App\DataTransferObjects\Support\Casts\CarbonCast;
-use App\DataTransferObjects\Support\Transformers\CarbonTransformer;
 use Illuminate\Contracts\Support\Arrayable;
+use App\DataTransferObjects\Support\Casts\CarbonCast;
 use Spatie\LaravelData\Transformers\ArrayableTransformer;
+use App\DataTransferObjects\Support\Transformers\CarbonTransformer;
 
 return [
     /*

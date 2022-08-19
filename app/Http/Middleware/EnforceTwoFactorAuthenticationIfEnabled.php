@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Laragear\TwoFactor\Facades\Auth2FA;
 
 class EnforceTwoFactorAuthenticationIfEnabled
 {

@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head :title="`${this.__('Applicaties')} - ${this.site.domain}`"></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment v-if="site.project">
@@ -67,7 +68,7 @@
 
                             <SettingsSegment v-if="type === 'nextcloud'">
                                 <template #title>{{ __('Nextcloud') }}</template>
-                                <template #subtitle>{{ __('Nextcloud is a suite of client-server software for creating and using file hosting services, it is comparable to Dropbox.')}}</template>
+                                <template #subtitle>{{ __('Nextcloud is a suite of client-server software for creating and using file hosting services, it is comparable to Dropbox.') }}</template>
                                 <template #content>
                                     <Button @click="install">{{ __('Start installation') }}</Button>
                                     <Button variant="secondary" @click="type = null">{{ __('Cancel') }}</Button>
@@ -91,121 +92,115 @@
 </template>
 
 <script>
-    import TopBar from './components/TopBar'
-    import Container from '@/components/Container'
-    import Content from '@/components/Content'
-    import Page from '@/components/Page'
-    import PageHeader from '@/components/PageHeader'
-    import PageHeaderTitle from '@/components/PageHeaderTitle'
-    import PageBody from '@/components/PageBody'
-    import Button from '@/components/Button'
-    import List from '@/components/List'
-    import ListItem from '@/components/ListItem'
-    import StatusBubble from '@/components/StatusBubble'
-    import NotificationBadge from '@/components/NotificationBadge'
-    import MainLayout from '@/Layouts/MainLayout'
-    import SettingsLayout from '@/components/layouts/SettingsLayout'
-    import SettingsSegment from '@/components/SettingsSegment'
-    import FormInput from '@/components/forms/FormInput'
-    import Form from '@/components/Form'
-    import FormActions from '@/components/FormActions'
-    import Tabs from './Tabs'
-    import Table from '@/components/Table'
-    import TableHead from '@/components/TableHead'
-    import TableHeader from '@/components/TableHeader'
-    import TableRow from '@/components/TableRow'
-    import TableBody from '@/components/TableBody'
-    import TableData from '@/components/TableData'
+import TopBar from './components/TopBar.vue'
+import Container from '@/components/Container.vue'
+import Content from '@/components/Content.vue'
+import Page from '@/components/Page.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageHeaderTitle from '@/components/PageHeaderTitle.vue'
+import PageBody from '@/components/PageBody.vue'
+import Button from '@/components/Button.vue'
+import List from '@/components/List.vue'
+import ListItem from '@/components/ListItem.vue'
+import StatusBubble from '@/components/StatusBubble.vue'
+import NotificationBadge from '@/components/NotificationBadge.vue'
+import MainLayout from '@/Layouts/MainLayout.vue'
+import SettingsLayout from '@/components/layouts/SettingsLayout.vue'
+import SettingsSegment from '@/components/SettingsSegment.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import Form from '@/components/Form.vue'
+import FormActions from '@/components/FormActions.vue'
+import Tabs from './Tabs.vue'
+import Table from '@/components/Table.vue'
+import TableHead from '@/components/TableHead.vue'
+import TableHeader from '@/components/TableHeader.vue'
+import TableRow from '@/components/TableRow.vue'
+import TableBody from '@/components/TableBody.vue'
+import TableData from '@/components/TableData.vue'
 
-    export default {
-        metaInfo() {
-            return {
-                title: this.__('Apps'),
-            }
-        },
+export default {
+    layout: MainLayout,
 
-        layout: MainLayout,
+    components: {
+        TopBar,
+        Container,
+        Content,
+        Page,
+        PageHeader,
+        PageHeaderTitle,
+        PageBody,
+        Button,
+        List,
+        ListItem,
+        StatusBubble,
+        NotificationBadge,
+        FormInput,
+        SettingsLayout,
+        SettingsSegment,
+        Form,
+        FormActions,
+        Tabs,
+        Table,
+        TableHead,
+        TableHeader,
+        TableRow,
+        TableBody,
+        TableData,
+    },
 
-        components: {
-            TopBar,
-            Container,
-            Content,
-            Page,
-            PageHeader,
-            PageHeaderTitle,
-            PageBody,
-            Button,
-            List,
-            ListItem,
-            StatusBubble,
-            NotificationBadge,
-            FormInput,
-            SettingsLayout,
-            SettingsSegment,
-            Form,
-            FormActions,
-            Tabs,
-            Table,
-            TableHead,
-            TableHeader,
-            TableRow,
-            TableBody,
-            TableData,
-        },
+    data() {
+        return {
+            sending: false,
 
-        data() {
-            return {
-                sending: false,
+            type: null,
+            options: {
+                create_database: false,
+            },
 
-                type: null,
-                options: {
-                    create_database: false,
+            breadcrumbs: [
+                {
+                    title: this.$page.props.settings.name,
+                    to: '/',
                 },
+                {
+                    title: this.__('Sites'),
+                    to: this.route('sites.index'),
+                },
+                {
+                    title: this.site.domain,
+                    to: this.route('sites.show', this.site.id),
+                },
+                {
+                    title: this.__('Apps'),
+                    to: this.route('sites.apps.index', this.site.id),
+                },
+            ],
+        }
+    },
 
-                breadcrumbs: [
-                    {
-                        title: this.$page.props.settings.name,
-                        to: '/',
-                    },
-                    {
-                        title: this.__('Sites'),
-                        to: this.route('sites.index'),
-                    },
-                    {
-                        title: this.site.domain,
-                        to: this.route('sites.show', this.site.id),
-                    },
-                    {
-                        title: this.__('Apps'),
-                        to: this.route('sites.apps.index', this.site.id),
-                    },
-                ],
-            }
+    props: {
+        site: Object,
+    },
+
+    methods: {
+        prepareInstall(type) {
+            this.type = type;
         },
 
-        props: {
-            site: Object,
+        install() {
+            this.$inertia.post(this.route('sites.apps.store', this.site.id), {
+                type: this.type,
+                options: this.options
+            }, {
+                onFinish: () => {
+                    this.type = null
+                }
+            });
         },
 
-        methods: {
-            prepareInstall(type) {
-                this.type = type;
-            },
-
-            install() {
-                this.$inertia.post(this.route('sites.apps.store', this.site.id), {
-                    type: this.type,
-                    options: this.options
-                }, {
-                    onFinish: () => {
-                        this.type = null
-                    }
-                });
-            },
-
-            uninstall() {
-                this.$inertia.delete(this.route('sites.apps.delete', this.site.id))
-            }
+        uninstall() {
+            this.$inertia.delete(this.route('sites.apps.delete', this.site.id))
         }
     }
+}
 </script>

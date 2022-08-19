@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
+use Livewire\Livewire;
 
 class Demo
 {
@@ -19,6 +21,10 @@ class Demo
 
     public function handle(Request $request, Closure $next)
     {
+        if ($this->isNotAllowedToDoThis($request) && \Str::contains($request->route()->getName(), 'livewire')) {
+            abort(404);
+        }
+
         if ($this->isNotAllowedToDoThis($request)) {
             return redirect('/')->with('info', __('This action is unavailable in the demo mode.'));
         }

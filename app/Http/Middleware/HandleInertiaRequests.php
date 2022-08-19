@@ -3,12 +3,13 @@
 namespace App\Http\Middleware;
 
 use App\Models\Alert;
+use Inertia\Middleware;
+use Illuminate\Support\Arr;
 use App\Models\UserProvider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Inertia\Middleware;
+use Illuminate\Support\Facades\Storage;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -47,7 +48,7 @@ class HandleInertiaRequests extends Middleware
                         'create' => Arr::get($package->site_permissions, 'create', false),
                         'update' => Arr::get($package->site_permissions, 'update', false),
                         'delete' => Arr::get($package->site_permissions, 'delete', false),
-                    ]
+                    ],
                 ] : [];
 
                 return [
@@ -66,17 +67,19 @@ class HandleInertiaRequests extends Middleware
                         'zip' => Auth::user()->zip,
                         'city' => Auth::user()->city,
                     ] : null,
-                    'package' => auth()->user() && auth()->user()->package ? [
-                        'name' => auth()->user()->package->name,
-                        'maximum_sites' => auth()->user()->package->maximum_sites,
-                        'trial' => auth()->user()->onTrial()
-                    ] : [
-                        'name' => __('None')
-                    ],
+                    'package' => auth()->user() && auth()->user()->package
+                        ? [
+                            'name' => auth()->user()->package->name,
+                            'maximum_sites' => auth()->user()->package->maximum_sites,
+                            'trial' => auth()->user()->onTrial(),
+                        ]
+                        : [
+                            'name' => __('None'),
+                        ],
                     'can' => $can,
                     'integrations' => [
                         'cloudflare' => (bool) auth()->user() ? auth()->user()->providers()->where('type', UserProvider::TYPE_CLOUDFLARE)->count() : false,
-                    ]
+                    ],
                 ];
             },
 
@@ -86,12 +89,12 @@ class HandleInertiaRequests extends Middleware
                     'name' => setting('name', 'Company'),
                     'support' => setting('support', false),
                     'documentation' => setting('documentation', false),
-                    'logo' => setting('logo'),
+                    'logo' => setting('logo') ? Storage::disk('logos')->url(setting('logo')) : null,
                     'allow_registration' => setting('allow_registration'),
                     'billing' => config('cashier.key') && config('cashier.secret'),
-                    'has_terms' => (bool)setting('terms'),
-                    'has_privacy' => (bool)setting('privacy'),
-                    'accept_terms_required' => (bool)setting('accept_terms_required')
+                    'has_terms' => (bool) setting('terms'),
+                    'has_privacy' => (bool) setting('privacy'),
+                    'accept_terms_required' => (bool) setting('accept_terms_required'),
                 ];
             },
             'flash' => function () {
@@ -104,7 +107,7 @@ class HandleInertiaRequests extends Middleware
             'errors' => function () {
                 return Session::get('errors')
                     ? Session::get('errors')->getBag('default')->getMessages()
-                    : (object)[];
+                    : (object) [];
             },
             'errors_count' => function () {
                 return Session::get('errors')
@@ -120,15 +123,15 @@ class HandleInertiaRequests extends Middleware
                     })
                     ->first(['message', 'expires_at', 'type']);
 
-                if (!$alert) {
+                if (! $alert) {
                     return null;
                 }
 
                 return [
                     'message_html' => $alert->messageHtml,
-                    'type' => $alert->type
+                    'type' => $alert->type,
                 ];
-            }
+            },
         ]);
     }
 }

@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Site;
+use App\Models\Server;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Jobs\Sites\DeleteSite;
-use App\Http\Resources\SiteResource;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SiteRequest;
-use App\Jobs\Sites\CreateSite;
-use App\Mail\Admin\Site\AdminSiteCreatedEmail;
-use App\Models\Server;
-use App\Models\Site;
-use App\Models\User;
-use Illuminate\Http\JsonResponse;
+use App\Http\Resources\SiteResource;
 use Illuminate\Support\Facades\Hash;
 use App\DataTransferObjects\SiteData;
 use Illuminate\Http\RedirectResponse;

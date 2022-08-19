@@ -5,7 +5,7 @@ namespace App\DataTransferObjects\Support\Rules;
 use Attribute;
 use Spatie\LaravelData\Attributes\Validation\ValidationAttribute;
 
-#[Attribute( Attribute::TARGET_PROPERTY )]
+#[Attribute(Attribute::TARGET_PROPERTY)]
 class CustomRule extends ValidationAttribute
 {
     protected array $rules = [];

@@ -9,6 +9,8 @@ class Database extends Resource
 {
     private $server;
 
+    private $database;
+
     public function __construct(Server $server, int $id = null)
     {
         parent::__construct($server->getPloi(), $id);
@@ -64,10 +66,10 @@ class Database extends Resource
         }
 
         // Set the id of the site
-        $this->setId($response->getJson()->data->id);
+        $this->setId($response->getData()->id);
 
         // Return the data
-        return $response->getJson()->data;
+        return $response->getData();
     }
 
     public function delete(int $id): bool
@@ -81,5 +83,10 @@ class Database extends Resource
         $response = $this->getPloi()->makeAPICall($this->getEndpoint(), 'delete');
 
         return $response->getResponse()->getStatusCode() === 200;
+    }
+
+    public function users(int $id = null): DatabaseUser
+    {
+        return new DatabaseUser($this, $id);
     }
 }

@@ -11,7 +11,6 @@ use Exception;
  */
 class TooManyAttempts extends Exception
 {
-
     /**
      * TooManyAttempts constructor.
      *

@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Throwable;
 use Illuminate\Http\Request;
+use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\HandleInertiaRequests;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -58,6 +59,10 @@ class Handler extends ExceptionHandler
 
         // Only return an Inertia-response when there are special Vue-templates (403 and 404) and when it isn't an API request.
         if (in_array($response->status(), [403, 404]) && ! $request->routeIs('api.*')) {
+            inertia()->share([
+                'translations' => SetLocale::getTranslations()
+            ]);
+
             return app(HandleInertiaRequests::class)
                 ->handle($request, fn () => inertia()->render('Errors/' . $response->status(), ['status' => $response->status()])
                 ->toResponse($request));

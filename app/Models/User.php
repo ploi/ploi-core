@@ -3,19 +3,20 @@
 namespace App\Models;
 
 use App\Casts\Encrypted;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Laravel\Cashier\Billable;
 use App\Mail\User\WelcomeEmail;
-use Illuminate\Contracts\Translation\HasLocalePreference;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Laragear\TwoFactor\TwoFactorAuthentication;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Laragear\TwoFactor\Contracts\TwoFactorAuthenticatable;
-use Laragear\TwoFactor\TwoFactorAuthentication;
-use Laravel\Cashier\Billable;
 
-class User extends Authenticatable implements HasLocalePreference, TwoFactorAuthenticatable
+class User extends Authenticatable implements HasLocalePreference, TwoFactorAuthenticatable, FilamentUser
 {
     use Billable, HasFactory, Notifiable, TwoFactorAuthentication;
 
@@ -38,7 +39,7 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
         'theme',
         'keyboard_shortcuts',
         'requires_password_for_ftp',
-        'package_id'
+        'package_id',
     ];
 
     protected $hidden = [
@@ -56,16 +57,21 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
     ];
 
     protected $appends = [
-        'avatar'
+        'avatar',
     ];
 
     public function setPasswordAttribute($value)
     {
-        if (!$value) {
+        if (! $value) {
             $this->attributes['password'] = null;
         } else {
             $this->attributes['password'] = bcrypt($value);
         }
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->role === self::ADMIN;
     }
 
     public function getAvatarAttribute()
@@ -80,7 +86,7 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
 
     public function getGravatar($size = 150)
     {
-        return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim(Arr::get($this->attributes, 'email')))) . '?s=' . (int)$size;
+        return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim(Arr::get($this->attributes, 'email')))) . '?s=' . (int) $size;
     }
 
     public function isAdmin()
@@ -138,7 +144,7 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
             $user->user_name = strtolower(Str::random(10));
             $user->ftp_password = Str::random();
 
-            if (!$user->language) {
+            if (! $user->language) {
                 $user->language = setting('default_language', 'en');
             }
 
@@ -159,10 +165,13 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
             $user->systemLogs()->delete();
             $user->servers()->detach();
             $user->sites()->detach();
+
             foreach ($user->supportTickets as $supportTicket) {
                 $supportTicket->replies()->delete();
             }
+
             $user->supportTickets()->delete();
+            $user->providers()->delete();
         });
     }
 }

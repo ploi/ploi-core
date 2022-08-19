@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Listeners\ResetTwoFactorAuthenticationSession;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
+use App\Listeners\ResetTwoFactorAuthenticationSession;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

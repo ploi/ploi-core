@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Dashboard') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -16,7 +17,7 @@
                             <li class="p-6 rounded shadow bg-surface-3 transform transition duration-fast ease-in-out hover:scale-95">
                                 <inertia-link :href="route('sites.index')" class="flex space-x-4">
                                     <div>
-                                        <IconGlobe class="w-6 h-6"/>
+                                        <IconGlobe class="w-6 h-6" />
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-body">{{ sites }}</h3>
@@ -27,7 +28,7 @@
                             <li class="p-6 rounded shadow bg-surface-3 transform transition duration-fast ease-in-out hover:scale-95" v-if="hasAccessToServers">
                                 <inertia-link :href="route('servers.index')" class="flex space-x-4">
                                     <div>
-                                        <IconStorage class="w-6 h-6"/>
+                                        <IconStorage class="w-6 h-6" />
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-body">{{ servers }}</h3>
@@ -40,7 +41,7 @@
                                     :href="$page.props.settings.billing ? route('profile.billing.index') : route('profile.index')"
                                     class="flex space-x-4">
                                     <div>
-                                        <IconBox class="w-6 h-6"/>
+                                        <IconBox class="w-6 h-6" />
                                     </div>
                                     <div class="w-full">
                                         <div class="flex justify-between">
@@ -75,32 +76,27 @@
 </template>
 
 <script>
-import TopBar from './components/TopBar'
-import Container from '@/components/Container'
-import Content from '@/components/Content'
-import Page from '@/components/Page'
-import PageHeader from '@/components/PageHeader'
-import PageHeaderTitle from '@/components/PageHeaderTitle'
-import PageBody from '@/components/PageBody'
-import Button from '@/components/Button'
-import List from '@/components/List'
-import ListItem from '@/components/ListItem'
-import StatusBubble from '@/components/StatusBubble'
-import NotificationBadge from '@/components/NotificationBadge'
-import MainLayout from '@/Layouts/MainLayout'
-import IconBox from '@/components/icons/IconBox'
-import IconGlobe from '@/components/icons/IconGlobe'
-import IconStorage from '@/components/icons/IconStorage'
+import TopBar from './components/TopBar.vue'
+import Container from '@/components/Container.vue'
+import Content from '@/components/Content.vue'
+import Page from '@/components/Page.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageHeaderTitle from '@/components/PageHeaderTitle.vue'
+import PageBody from '@/components/PageBody.vue'
+import Button from '@/components/Button.vue'
+import List from '@/components/List.vue'
+import ListItem from '@/components/ListItem.vue'
+import StatusBubble from '@/components/StatusBubble.vue'
+import NotificationBadge from '@/components/NotificationBadge.vue'
+import MainLayout from '@/Layouts/MainLayout.vue'
+import IconBox from '@/components/icons/IconBox.vue'
+import IconGlobe from '@/components/icons/IconGlobe.vue'
+import IconStorage from '@/components/icons/IconStorage.vue'
 
 import {useNotification} from '@/hooks/notification'
 
-export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Dashboard')}`,
-        }
-    },
 
+export default {
     layout: MainLayout,
 
     components: {
@@ -148,7 +144,7 @@ export default {
     },
 
     computed: {
-        hasAccessToServers () {
+        hasAccessToServers() {
             return Object.keys(this.$page.props.auth.can).length && (this.$page.props.auth.can.servers.create || this.$page.props.auth.can.servers.update || this.$page.props.auth.can.servers.delete);
         }
     },

@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
-use App\Casts\SiteAlias;
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use App\Casts\SiteAlias;
 use Illuminate\Support\Str;
+use App\Jobs\Cronjobs\DeleteCronjob;
+use App\Jobs\Databases\DeleteDatabase;
+use App\Jobs\Redirects\DeleteRedirect;
+use Illuminate\Database\Eloquent\Model;
+use App\Jobs\Certificates\DeleteCertificate;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class Site extends Model
 {
@@ -25,7 +29,7 @@ class Site extends Model
         'domain',
         'dns_id',
         'project',
-        'aliases'
+        'aliases',
     ];
 
     public $casts = [
@@ -135,14 +139,19 @@ class Site extends Model
 
         static::created(function (self $site) {
             $site->systemUsers()->create([
-                'user_name' => Str::of($site->domain)->remove(['.', '-'])->limit(8, '')->lower()
+                'user_name' => Str::of($site->domain)->remove(['.', '-'])->limit(8, '')->lower()->append('-' . $site->id),
             ]);
         });
 
         static::deleting(function (self $site) {
-            foreach ($site->databases as $database) {
-                $database->delete();
-            }
+            $site
+                ->databases()
+                ->get()
+                ->each(function (Database $database) {
+                    dispatch(new DeleteDatabase($database->server->ploi_id, $database->ploi_id));
+
+                    $database->delete();
+                });
 
             $ids = $site->systemUsers->pluck('id');
             // Detach all db users
@@ -151,15 +160,42 @@ class Site extends Model
             // Loop through ids an remove old users.
             foreach ($ids as $id) {
                 $record = SiteSystemUser::find($id);
+
                 if ($record) {
                     $record->delete();
                 }
             }
 
-            $site->redirects()->delete();
-            $site->cronjobs()->delete();
-            $site->certificates()->delete();
+            // MOETEN HIER OOK JOBS VOOR WORDEN GEDISPATCHET?
+            $site
+                ->redirects()
+                ->get()
+                ->each(function (Redirect $redirect) {
+                    dispatch(new DeleteRedirect($redirect->server->ploi_id, $redirect->site->ploi_id, $redirect->ploi_id));
+
+                    $redirect->delete();
+                });
+
+            $site
+                ->cronjobs()
+                ->get()
+                ->each(function (Cronjob $cronJob) {
+                    dispatch(new DeleteCronjob($cronJob->server->ploi_id, $cronJob->ploi_id));
+
+                    $cronJob->delete();
+                });
+
+            $site
+                ->certificates()
+                ->get()
+                ->each(function (Certificate $certificate) {
+                    dispatch(new DeleteCertificate($certificate->server->ploi_id, $certificate->site->ploi_id, $certificate->ploi_id));
+
+                    $certificate->delete();
+                });
+
             $site->logs()->delete();
+
             $site->users()->detach();
         });
     }

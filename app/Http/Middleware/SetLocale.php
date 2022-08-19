@@ -35,7 +35,7 @@ class SetLocale
      *
      * @return array
      */
-    private static function getTranslations()
+    public static function getTranslations()
     {
         // Less cache hits if its english, this is default language
         if (app()->getLocale() == 'en') {

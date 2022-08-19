@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head :title="site.domain"></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -13,7 +14,7 @@
                 <PageBody>
                     <SettingsLayout>
                         <template #nav>
-                            <Tabs :site="site"/>
+                            <Tabs :site="site" />
                         </template>
                         <template #segments>
                             <SettingsSegment>
@@ -21,7 +22,7 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput :label="__('Domain')" :errors="$page.props.errors.domain"
-                                                   v-model="form.domain"/>
+                                                   v-model="form.domain" />
 
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -70,7 +71,7 @@
                                 <template #form>
                                     <form class="space-y-4" @submit.prevent="submit">
                                         <FormInput label="Cloudflare zone ID" :errors="$page.props.errors.dns_id"
-                                                   v-model="form.dns_id"/>
+                                                   v-model="form.dns_id" />
 
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
@@ -94,34 +95,28 @@
 </template>
 
 <script>
-import TopBar from './components/TopBar'
-import Container from '@/components/Container'
-import Content from '@/components/Content'
-import Page from '@/components/Page'
-import PageHeader from '@/components/PageHeader'
-import PageHeaderTitle from '@/components/PageHeaderTitle'
-import PageBody from '@/components/PageBody'
-import Button from '@/components/Button'
-import List from '@/components/List'
-import ListItem from '@/components/ListItem'
-import StatusBubble from '@/components/StatusBubble'
-import NotificationBadge from '@/components/NotificationBadge'
-import MainLayout from '@/Layouts/MainLayout'
-import SettingsLayout from '@/components/layouts/SettingsLayout'
-import SettingsSegment from '@/components/SettingsSegment'
-import FormInput from '@/components/forms/FormInput'
-import Form from '@/components/Form'
-import FormActions from '@/components/FormActions'
+import TopBar from './components/TopBar.vue'
+import Container from '@/components/Container.vue'
+import Content from '@/components/Content.vue'
+import Page from '@/components/Page.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageHeaderTitle from '@/components/PageHeaderTitle.vue'
+import PageBody from '@/components/PageBody.vue'
+import Button from '@/components/Button.vue'
+import List from '@/components/List.vue'
+import ListItem from '@/components/ListItem.vue'
+import StatusBubble from '@/components/StatusBubble.vue'
+import NotificationBadge from '@/components/NotificationBadge.vue'
+import MainLayout from '@/Layouts/MainLayout.vue'
+import SettingsLayout from '@/components/layouts/SettingsLayout.vue'
+import SettingsSegment from '@/components/SettingsSegment.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import Form from '@/components/Form.vue'
+import FormActions from '@/components/FormActions.vue'
 import {useConfirm} from '@/hooks/confirm'
-import Tabs from './Tabs'
+import Tabs from './Tabs.vue'
 
 export default {
-    metaInfo() {
-        return {
-            title: this.site.domain,
-        }
-    },
-
     layout: MainLayout,
 
     components: {
@@ -227,7 +222,7 @@ export default {
         },
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
         this.clearTimeoutInterval();
     }
 }

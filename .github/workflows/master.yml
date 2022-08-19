@@ -28,14 +28,15 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '14.x'
       - run: npm install
-      - run: npm run production
+      - run: npm run prod
+      - run: npm run prod:filament
 
       - name: Commit build assets
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
-          git commit -m "Run Laravel Mix en build front-end assets"
+          git commit -m "Updated build assets"
           git push origin

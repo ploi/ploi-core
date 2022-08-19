@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class Server extends Model
@@ -13,11 +13,16 @@ class Server extends Model
     const STATUS_BUSY = 'busy';
     const STATUS_ACTIVE = 'active';
 
+    const OS_UBUNTU_18 = 'ubuntu-18-04-lts';
+    const OS_UBUNTU_20 = 'ubuntu-20-04-lts';
+    const OS_UBUNTU_22 = 'ubuntu-22-04-lts';
+
     public $fillable = [
         'ploi_id',
         'status',
         'name',
         'ip',
+        'os',
         'internal_ip',
         'ssh_port',
         'maximum_sites',

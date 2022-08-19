@@ -1,6 +1,7 @@
 <template>
     <Page>
-        <TopBar :breadcrumbs="breadcrumbs"/>
+        <Head><title>{{ __('Support') }}</title></Head>
+        <TopBar :breadcrumbs="breadcrumbs" />
 
         <Content>
             <Container>
@@ -16,24 +17,22 @@
                             <li class="p-6 rounded shadow bg-surface-3">
                                 <div class="flex space-x-4">
                                     <div>
-                                        <img :src="ticket.user.avatar" class="w-8 h-8 rounded-avatar bg-surface-2"/>
+                                        <img :src="ticket.user.avatar" class="w-8 h-8 rounded-avatar bg-surface-2" />
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-small text-body">{{ ticket.user.name }}</h3>
-                                        <p class="text-medium-emphasis">{{ ticket.content }}</p>
+                                        <p class="text-medium-emphasis" v-html="ticket.content_html"></p>
                                     </div>
                                 </div>
                             </li>
                             <li class="p-6 rounded shadow bg-surface-3" v-for="reply in replies.data">
                                 <div class="flex space-x-4">
                                     <div>
-                                        <img :src="reply.user.avatar" class="w-8 h-8 rounded-avatar bg-surface-2"/>
+                                        <img :src="reply.user.avatar" class="w-8 h-8 rounded-avatar bg-surface-2" />
                                     </div>
                                     <div>
                                         <h3 class="font-semibold text-small text-body">{{ reply.user.name }}</h3>
-                                        <p class="text-medium-emphasis">
-                                            {{ reply.content }}
-                                        </p>
+                                        <p class="text-medium-emphasis" v-html="reply.content_html"></p>
                                     </div>
                                 </div>
                             </li>
@@ -41,7 +40,7 @@
 
                         <form class="space-y-4" @submit.prevent="reply" v-if="ticket.status !== 'closed'">
                             <FormTextarea :label="__('Reply')" :errors="$page.props.errors.reply"
-                                          v-model="form.content"/>
+                                          v-model="form.content" />
 
                             <FormActions>
                                 <Button>{{ __('Save') }}</Button>
@@ -57,35 +56,29 @@
 </template>
 
 <script>
-import TopBar from './components/TopBar'
-import Container from '@/components/Container'
-import Content from '@/components/Content'
-import Page from '@/components/Page'
-import PageHeader from '@/components/PageHeader'
-import PageHeaderTitle from '@/components/PageHeaderTitle'
-import PageBody from '@/components/PageBody'
-import Button from '@/components/Button'
-import List from '@/components/List'
-import ListItem from '@/components/ListItem'
-import StatusBubble from '@/components/StatusBubble'
-import NotificationBadge from '@/components/NotificationBadge'
-import MainLayout from '@/Layouts/MainLayout'
-import IconBox from '@/components/icons/IconBox'
-import IconGlobe from '@/components/icons/IconGlobe'
-import IconStorage from '@/components/icons/IconStorage'
-import Modal from '@/components/Modal'
-import ModalContainer from '@/components/ModalContainer'
-import FormInput from '@/components/forms/FormInput'
-import FormTextarea from '@/components/forms/FormTextarea'
-import FormActions from '@/components/FormActions'
+import TopBar from './components/TopBar.vue'
+import Container from '@/components/Container.vue'
+import Content from '@/components/Content.vue'
+import Page from '@/components/Page.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import PageHeaderTitle from '@/components/PageHeaderTitle.vue'
+import PageBody from '@/components/PageBody.vue'
+import Button from '@/components/Button.vue'
+import List from '@/components/List.vue'
+import ListItem from '@/components/ListItem.vue'
+import StatusBubble from '@/components/StatusBubble.vue'
+import NotificationBadge from '@/components/NotificationBadge.vue'
+import MainLayout from '@/Layouts/MainLayout.vue'
+import IconBox from '@/components/icons/IconBox.vue'
+import IconGlobe from '@/components/icons/IconGlobe.vue'
+import IconStorage from '@/components/icons/IconStorage.vue'
+import Modal from '@/components/Modal.vue'
+import ModalContainer from '@/components/ModalContainer.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import FormTextarea from '@/components/forms/FormTextarea.vue'
+import FormActions from '@/components/FormActions.vue'
 
 export default {
-    metaInfo() {
-        return {
-            title: `${this.__('Support')}`,
-        }
-    },
-
     layout: MainLayout,
 
     components: {

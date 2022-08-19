@@ -1,10 +1,10 @@
 <?php
 
 use App\Models\Setting;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Arr;
+use Illuminate\Contracts\Foundation\Application;
 
-if (!function_exists('setting')) {
+if (! function_exists('setting')) {
     /**
      * @param null $key
      * @param null $default
@@ -12,12 +12,22 @@ if (!function_exists('setting')) {
      */
     function setting($key = null, $default = null)
     {
-        if (is_array($key)) {
-            Setting::updateOrCreate([
-                'key' => key($key)
-            ], [
-                'value' => Arr::first($key)
-            ]);
+        if (is_array($settings = $key)) {
+            foreach ($settings as $key => $value) {
+                if ($value === true) {
+                    $value = '1';
+                }
+
+                if ($value === false) {
+                    $value = '0';
+                }
+
+                Setting::updateOrCreate([
+                    'key' => $key,
+                ], [
+                    'value' => $value,
+                ]);
+            }
 
             try {
                 cache()->forget('core.settings');

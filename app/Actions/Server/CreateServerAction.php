@@ -2,12 +2,12 @@
 
 namespace App\Actions\Server;
 
-use App\DataTransferObjects\ServerData;
-use App\Jobs\Servers\CreateServer;
-use App\Mail\Admin\Server\AdminServerCreatedEmail;
-use App\Models\Server;
 use App\Models\User;
+use App\Models\Server;
+use App\Jobs\Servers\CreateServer;
 use Illuminate\Support\Facades\Mail;
+use App\DataTransferObjects\ServerData;
+use App\Mail\Admin\Server\AdminServerCreatedEmail;
 
 class CreateServerAction
 {
@@ -18,6 +18,7 @@ class CreateServerAction
         $server = $serverData->getUser()->servers()->create([
             'name' => $serverData->name,
             'database_type' => $serverData->database_type,
+            'os' => setting('default_os', Server::OS_UBUNTU_22)
         ]);
 
         $server->provider()->associate($provider);

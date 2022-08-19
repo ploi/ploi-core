@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ServerPolicy
+class ServerPolicy extends FrontendOnlyPolicy
 {
     use HandlesAuthorization;
 

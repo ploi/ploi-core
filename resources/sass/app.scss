@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 @import 'nprogress';
-@import "~balloon-css/src/balloon";
+@import "balloon-css/src/balloon";
 
 .bf-blur {
     backdrop-filter: blur(2px) saturate(125%);

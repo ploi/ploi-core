@@ -1,9 +1,10 @@
 <template>
+    <Head><title>{{ __('Login') }}</title></Head>
     <div class="flex items-center justify-center w-full min-h-screen">
         <Container size="small">
             <form class="space-y-4" @submit.prevent="submit">
                 <div class="flex flex-col items-center space-y-5">
-                    <img class="h-14" v-if="$page.props.settings.logo" :src="$page.props.settings.logo"/>
+                    <img class="h-14" v-if="$page.props.settings.logo" :src="$page.props.settings.logo" />
                     <h1 class="font-semibold text-center text-title">
                         Login to {{ $page.props.settings.name }}
                     </h1>
@@ -11,9 +12,9 @@
 
                 <FormInput :label="__('Email')" :autofocus="true" :errors="$page.props.errors.email"
                            v-model="form.email" id="email"
-                           type="email" required/>
+                           type="email" required />
 
-                <FormInput :label="__('Password')" v-model="form.password" id="password" type="password" required/>
+                <FormInput :label="__('Password')" v-model="form.password" id="password" type="password" required />
 
                 <Button variant="primary" :disabled="sending" block>{{ __('Login') }}</Button>
 
@@ -52,14 +53,12 @@
 </template>
 
 <script>
-import TextDivider from '@/components/TextDivider'
-import FormInput from '@/components/forms/FormInput'
-import Button from '@/components/Button'
-import Container from '@/components/Container'
+import TextDivider from '@/components/TextDivider.vue'
+import FormInput from '@/components/forms/FormInput.vue'
+import Button from '@/components/Button.vue'
+import Container from '@/components/Container.vue'
 
 export default {
-    metaInfo: {title: 'Login'},
-
     components: {
         TextDivider,
         FormInput,

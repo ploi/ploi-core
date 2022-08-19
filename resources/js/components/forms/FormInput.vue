@@ -1,6 +1,6 @@
 <template>
     <FormGroup class="relative">
-        <Label :errors="errors" :forId="id">{{ label }}</Label>
+        <Label :errors="errors" :forId="id" v-if="label">{{ label }}</Label>
 
         <button type="button" @click="copy" v-if="allowCopy" class="flex items-center right-0 absolute text-xs text-medium-emphasis">
             <IconClipboard class="mr-2" />
@@ -20,7 +20,7 @@
                    ]"
                :type="type"
                :required="required"
-               :value="value"
+               :value="modelValue"
                @input="updateValue($event.target.value)"
                :disabled="loading || disabled"
                :autofocus="autofocus"
@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import FormGroup from '@/components/FormGroup'
-import Label from '@/components/Label'
-import ErrorText from '@/components/ErrorText'
-import HelperText from '@/components/HelperText'
-import IconClipboard from '@/components/icons/IconClipboard'
-import IconKey from '@/components/icons/IconKey'
+import FormGroup from '@/components/FormGroup.vue'
+import Label from '@/components/Label.vue'
+import ErrorText from '@/components/ErrorText.vue'
+import HelperText from '@/components/HelperText.vue'
+import IconClipboard from '@/components/icons/IconClipboard.vue'
+import IconKey from '@/components/icons/IconKey.vue'
 
 const defaultClasses =
     'w-full border-medium-emphasis text-body h-10 px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary'
@@ -50,7 +50,7 @@ export default {
         },
         label: {
             type: String,
-            required: true,
+            required: false,
         },
         type: {
             type: String,
@@ -69,7 +69,7 @@ export default {
         placeholder: {
             type: String,
         },
-        value: {
+        modelValue: {
             required: false,
             default: '',
         },
@@ -130,7 +130,7 @@ export default {
 
     methods: {
         updateValue(value) {
-            this.$emit('input', value);
+            this.$emit('update:modelValue', value);
         },
         copy() {
             this.copied = true;

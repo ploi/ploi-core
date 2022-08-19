@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\App;
-
 use function Pest\Laravel\get;
+
+use Illuminate\Support\Facades\App;
 
 it('cannot use the API when a user doesn\'t have the API enabled', function () {
     expect(setting('enable_api'))->toBeNull();

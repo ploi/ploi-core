@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Profile;
 
+use Exception;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Package;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
 use Stripe\Exception\InvalidRequestException;
 
 class ProfileBillingController extends Controller
@@ -20,14 +22,14 @@ class ProfileBillingController extends Controller
         $sortByType = array_key_first($request->input('sortBy', []));
 
         $packages = Package::query()
-            ->where(function ($query) {
+            ->where(function (Builder $query) {
                 return $query
-                    ->where(function ($query) {
+                    ->where(function (Builder $query) {
                         return $query
                             ->where('price_monthly', '>', 0)
                             ->orWhere('price_yearly', '>', 0);
                     })
-                    ->whereNotNull('plan_id');
+                    ->whereNotNull('stripe_plan_id');
             })
             ->when($request->input('sortBy.' . $sortByType), function ($query, $value) use ($sortByType) {
                 if ($sortByType === 'price') {
@@ -52,7 +54,7 @@ class ProfileBillingController extends Controller
                 }
 
                 return $query;
-            }, function ($query) {
+            }, function (Builder $query) {
                 return $query->orderBy('price_monthly', 'asc');
             })
             ->get()
@@ -73,7 +75,7 @@ class ProfileBillingController extends Controller
 
         try {
             $clientSecret = $user->createSetupIntent()->client_secret;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return inertia('Profile/BillingError');
         }
 
@@ -88,13 +90,13 @@ class ProfileBillingController extends Controller
             'data_client_secret' => $clientSecret,
             'card' => [
                 'last_four' => $user->card_last_four,
-                'brand' => $user->card_brand
+                'brand' => $user->card_brand,
             ],
             'filters' => [
                 'sort' => [
                     $sortByType => $request->input('sortBy.' . $sortByType, 'asc'),
-                ]
-            ]
+                ],
+            ],
         ]);
     }
 
@@ -111,7 +113,7 @@ class ProfileBillingController extends Controller
                 'postal_code' => $request->input('billing_details.address.postal_code'),
                 'city' => $request->input('billing_details.address.city'),
                 'country' => $request->input('billing_details.address.country'),
-            ]
+            ],
         ]);
 
         foreach ($user->paymentMethods() as $paymentMethod) {
@@ -140,13 +142,13 @@ class ProfileBillingController extends Controller
         /** @var User $user */
         $user = auth()->user();
 
-        if (!$user->hasStripeId() || !$user->defaultPaymentMethod()) {
+        if (! $user->hasStripeId() || ! $user->defaultPaymentMethod()) {
             return redirect()->route('profile.billing.index')->with('error', 'You cannot change your plan without a valid creditcard, please update your billing details first');
         }
 
         $plan = Package::query()->findOrFail($request->input('plan'));
 
-        $planId = $plan->plan_id;
+        $planId = $plan->stripe_plan_id;
 
         // Only do something if the user is not already subscribed to this plan.
         if ($user->subscribedToPlan($planId, 'default')) {
@@ -180,7 +182,7 @@ class ProfileBillingController extends Controller
 
     public function cancel(Request $request)
     {
-        /* @var $user \App\Models\User */
+        /* @var $user User */
         $user = $request->user();
 
         $subscription = $user->subscription('default')->cancel();
@@ -208,7 +210,7 @@ class ProfileBillingController extends Controller
     {
         return $request->user()->downloadInvoice($id, [
             'vendor' => setting('name'),
-            'product' => 'Webhosting'
+            'product' => 'Webhosting',
         ]);
     }
 
@@ -223,7 +225,7 @@ class ProfileBillingController extends Controller
             Package::CURRENCY_GBP => 'GBP £',
             Package::CURRENCY_INR => 'INR ₹',
             Package::CURRENCY_THB => 'THB ',
-            Package::CURRENCY_BRL=> 'BRL R$ ',
+            Package::CURRENCY_BRL => 'BRL R$ ',
         ];
 
         return $currencies[strtolower($key)] ?? '$';

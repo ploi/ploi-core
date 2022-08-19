@@ -15,6 +15,7 @@ class CreateDatabase implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
     public $database;
+
     public $password;
 
     /**
@@ -43,10 +44,15 @@ class CreateDatabase implements ShouldQueue
             ->databases()
             ->create($this->database->name, $databaseUser->name, $this->password);
 
+        ray($ploiDatabase);
         $this->database->ploi_id = $ploiDatabase->id;
         $this->database->save();
 
-        // Lets fetch the status after 5 seconds
+        ray($ploiDatabase);
+        $databaseUser->ploi_id = $ploiDatabase->users[0]->id;
+        $databaseUser->save();
+
+        // Let's fetch the status after 5 seconds
         dispatch(new FetchDatabaseStatus($this->database))->delay(now()->addSeconds(3));
     }
 }

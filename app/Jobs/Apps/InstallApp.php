@@ -2,15 +2,15 @@
 
 namespace App\Jobs\Apps;
 
-use App\Models\Database;
 use App\Models\Site;
 use App\Traits\HasPloi;
+use App\Models\Database;
+use Illuminate\Support\Arr;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Arr;
 
 class InstallApp implements ShouldQueue
 {

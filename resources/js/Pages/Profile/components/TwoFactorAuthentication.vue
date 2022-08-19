@@ -46,9 +46,9 @@
 
 <script>
 import {Inertia} from "@inertiajs/inertia";
-import Button from "../../../components/Button";
-import Input from "../../../components/Input";
-import FormInput from "../../../components/forms/FormInput";
+import Button from "@/components/Button.vue";
+import Input from "@/components/Input.vue";
+import FormInput from "@/components/forms/FormInput.vue";
 
 export default {
     components: {FormInput, Input, Button},

@@ -2,14 +2,14 @@
 
 namespace App\Actions\Site;
 
-use App\DataTransferObjects\SiteData;
-use App\Jobs\Sites\CreateSite;
-use App\Mail\Admin\Site\AdminSiteCreatedEmail;
-use App\Models\Server;
 use App\Models\Site;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Server;
+use App\Jobs\Sites\CreateSite;
 use Illuminate\Support\Facades\Mail;
+use App\DataTransferObjects\SiteData;
+use Illuminate\Database\Eloquent\Model;
+use App\Mail\Admin\Site\AdminSiteCreatedEmail;
 
 class CreateSiteAction
 {
@@ -17,7 +17,7 @@ class CreateSiteAction
     {
         $server = $this->determineServer($siteData);
 
-        if ( ! $server ) {
+        if (! $server) {
             return null;
         }
 
@@ -39,7 +39,7 @@ class CreateSiteAction
 
     protected function determineServer(SiteData $siteData): ?Server
     {
-        if ( $siteData->server_id ) {
+        if ($siteData->server_id) {
             return $siteData->getUser()->servers()->findOrFail($siteData->server_id);
         }
 
@@ -63,7 +63,7 @@ class CreateSiteAction
 
     protected function sendAdminSiteCreatedEmails(Server $server, Model|Site $site, User $user): void
     {
-        if ( ! setting('receive_email_on_site_creation') ) {
+        if (! setting('receive_email_on_site_creation')) {
             return;
         }
 

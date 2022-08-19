@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Profile\TwoFactorAuthentication;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class ConfirmTwoFactorAuthenticationController extends Controller
 {

@@ -1,13 +1,13 @@
 <template>
     <FormGroup>
-        <Label :errors="errors" :forId="id">{{ label }}</Label>
+        <Label :errors="errors" :forId="id" v-if="label">{{ label }}</Label>
         <select :disabled="loading || disabled" :class="[
             defaultClasses,
             disabled || loading ? 'opacity-50' : '',
             loading ? 'cursor-wait' : '',
             ]" :id="id" :required="required" :placeholder="placeholder"
                 @input="updateValue($event.target.value)"
-                v-model="value">
+                v-model="modelValue">
             <slot></slot>
         </select>
         <ErrorText v-if="errors">{{ errors[0] }}</ErrorText>
@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import FormGroup from '@/components/FormGroup'
-import Label from '@/components/Label'
-import ErrorText from '@/components/ErrorText'
-import HelperText from '@/components/HelperText'
+import FormGroup from '@/components/FormGroup.vue'
+import Label from '@/components/Label.vue'
+import ErrorText from '@/components/ErrorText.vue'
+import HelperText from '@/components/HelperText.vue'
 
 const defaultClasses =
     'w-full border-medium-emphasis text-body h-10 px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary'
@@ -32,7 +32,7 @@ export default {
         },
         label: {
             type: String,
-            required: true,
+            required: false,
         },
         type: {
             type: String,
@@ -51,7 +51,7 @@ export default {
         placeholder: {
             type: String,
         },
-        value: {
+        modelValue: {
             required: false,
             default: '',
         },
@@ -83,7 +83,7 @@ export default {
 
     methods: {
         updateValue(value) {
-            this.$emit('input', value);
+            this.$emit('update:modelValue', value);
         },
     },
 }

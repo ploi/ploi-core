@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\Server\CreateServerAction;
-use App\DataTransferObjects\ServerData;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use App\DataTransferObjects\ServerData;
+use App\Actions\Server\CreateServerAction;
 
 class ServerController extends Controller
 {
