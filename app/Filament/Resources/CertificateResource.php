@@ -10,6 +10,7 @@ use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CertificateResource\Pages;
+use Illuminate\Support\HtmlString;
 
 class CertificateResource extends Resource
 {
@@ -44,8 +45,10 @@ class CertificateResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('server.name')
+                    ->searchable()
                     ->label(__('Server')),
                 Tables\Columns\TextColumn::make('site.domain')
+                    ->searchable()
                     ->label(__('Main domain')),
                 Tables\Columns\TextColumn::make('type')
                     ->label('Type'),
@@ -60,9 +63,17 @@ class CertificateResource extends Resource
                     ])
                     ->label(__('Status')),
                 Tables\Columns\TextColumn::make('domain')
+                    ->searchable()
+                    ->wrap()
+                    ->getStateUsing(function (Certificate $record) {
+                        $state = str($record->domain)->explode(',')->implode(', ');
+
+                        return new HtmlString($state);
+                    })
                     ->label('Domains & aliases'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Date'))
+                    ->sortable()
                     ->dateTime(),
             ])
             ->filters([
@@ -73,7 +84,8 @@ class CertificateResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getEloquentQuery(): Builder

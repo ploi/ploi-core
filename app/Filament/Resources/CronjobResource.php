@@ -54,6 +54,7 @@ class CronjobResource extends Resource
                     ->label(__('Frequency')),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Date'))
+                    ->sortable()
                     ->dateTime(),
             ])
             ->filters([
@@ -64,7 +65,8 @@ class CronjobResource extends Resource
             ])
             ->bulkActions([
                 //
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
