@@ -15,6 +15,16 @@ class UsersRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getLabel(): ?string
+    {
+        return __('User');
+    }
+
+    protected static function getPluralModelLabel(): string
+    {
+        return __('Users');
+    }
+
     public static function form(Form $form): Form
     {
         return UserResource::form($form);

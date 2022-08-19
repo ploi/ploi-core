@@ -58,16 +58,18 @@
                                     <div id="card-element" class="form-input"></div>
                                 </div>
 
-                                <Button :data-secret="clientSecret" id="card-button" :loading="sending"
-                                        type="submit">
-                                    {{ __('Save') }}
-                                </Button>
+                                <div class="space-x-2">
+                                    <Button :data-secret="clientSecret" id="card-button" :loading="sending"
+                                            type="submit">
+                                        {{ __('Save') }}
+                                    </Button>
 
-                                <Button @click="confirmCancel" :loading="sending"
-                                        v-if="subscription"
-                                        variant="danger" type="button">
-                                    {{ __('Cancel') }}
-                                </Button>
+                                    <Button @click="confirmCancel" :loading="sending"
+                                            v-if="subscription"
+                                            variant="danger" type="button">
+                                        {{ __('Cancel') }}
+                                    </Button>
+                                </div>
                             </form>
                         </div>
                         <div class="md:col-span-3 space-y-8" v-if="!packages.length">

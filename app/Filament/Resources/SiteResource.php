@@ -26,6 +26,19 @@ class SiteResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'domain';
 
+    /**
+     * @return string|null
+     */
+    public static function getLabel(): ?string
+    {
+        return __('Site');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('Sites');
+    }
+
     public static function form(Form $form): Form
     {
         return $form

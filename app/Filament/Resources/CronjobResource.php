@@ -32,6 +32,7 @@ class CronjobResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('site.domain')
+                    ->searchable()
                     ->label(__('Site')),
                 Tables\Columns\BadgeColumn::make('status')
                     ->enum([
@@ -44,8 +45,10 @@ class CronjobResource extends Resource
                     ])
                     ->label(__('Status')),
                 Tables\Columns\TextColumn::make('server.name')
+                    ->searchable()
                     ->label(__('Server')),
                 Tables\Columns\TextColumn::make('command')
+                    ->searchable()
                     ->label(__('Command')),
                 Tables\Columns\TextColumn::make('frequency')
                     ->label(__('Frequency')),

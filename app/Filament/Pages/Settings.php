@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Models\Package;
+use App\Models\Server;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
@@ -48,7 +49,7 @@ class Settings extends Page
             'enable_api' => (bool) setting('enable_api'),
             'api_token' => setting('api_token'),
             'isolate_per_site_per_user' => (bool) setting('isolate_per_site_per_user'),
-            'default_os' => setting('default_os'),
+            'default_os' => setting('default_os', Server::OS_UBUNTU_22),
         ]);
     }
 
@@ -99,10 +100,11 @@ class Settings extends Page
                         ->columnSpan(1),
                     Select::make('default_os')
                         ->label(__('Select the default OS that should be used when users create a server'))
+                        ->default(Server::OS_UBUNTU_22)
                         ->options([
-                            'ubuntu-18-04-lts' => __('Ubuntu 18'),
-                            'ubuntu-20-04-lts' => __('Ubuntu 20'),
-                            'ubuntu-22-04-lts' => __('Ubuntu 22'),
+                            Server::OS_UBUNTU_18 => __('Ubuntu 18'),
+                            Server::OS_UBUNTU_20 => __('Ubuntu 20'),
+                            Server::OS_UBUNTU_22 => __('Ubuntu 22'),
                         ])
                         ->columnSpan(1),
                     Toggle::make('trial')

@@ -11,7 +11,7 @@ class SystemLogs extends BaseWidget
 {
     protected int|string|array $columnSpan = 'full';
 
-    protected int $defaultTableRecordsPerPageSelectOption = 5;
+    protected int $defaultTableRecordsPerPageSelectOption = 10;
 
     protected function getTableQuery(): Builder
     {

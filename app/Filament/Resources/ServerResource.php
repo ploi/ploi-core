@@ -25,6 +25,11 @@ class ServerResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'ip', 'internal_ip', 'id'];
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -115,6 +120,7 @@ class ServerResource extends Resource
     {
         return [
             RelationManagers\UsersRelationManager::class,
+            RelationManagers\SitesRelationManager::class,
         ];
     }
 

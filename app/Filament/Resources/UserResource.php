@@ -20,6 +20,23 @@ class UserResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
+    protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['user_name', 'name', 'email'];
+    }
+
+    public static function getLabel(): ?string
+    {
+        return __('User');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('Users');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -45,6 +62,7 @@ class UserResource extends Resource
                     ->relationship('package', 'name'),
                 Forms\Components\Select::make('language')
                     ->label(__('Language'))
+                    ->default('en')
                     ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language])),
                 Forms\Components\Textarea::make('notes')
                     ->label(__('Notes'))

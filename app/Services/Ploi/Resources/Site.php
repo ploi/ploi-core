@@ -68,7 +68,8 @@ class Site extends Resource
         string $projectRoot = '/',
         string $systemUser = 'ploi',
         string $systemUserPassword = null
-    ): stdClass {
+    ): stdClass
+    {
 
         // Remove the id
         $this->setId(null);
@@ -91,7 +92,7 @@ class Site extends Resource
         } catch (NotValid $exception) {
             $errors = json_decode($exception->getMessage())->errors;
 
-            if (! empty($errors->root_domain)
+            if (!empty($errors->root_domain)
                 && $errors->root_domain[0] === 'The root domain has already been taken.') {
                 throw new DomainAlreadyExists($domain . ' already exists!');
             }
@@ -99,10 +100,12 @@ class Site extends Resource
             throw $exception;
         } catch (Exception $exception) {
             info($exception->getMessage());
+
+            throw $exception;
         }
 
         // TODO: Debugging purposes
-        if (! $response->getJson() || ! isset($response->getJson()->data)) {
+        if (!$response->getJson() || !isset($response->getJson()->data)) {
             throw new Exception($response->getJson()->error ?? 'Unknown error has occured');
         }
 
@@ -132,7 +135,7 @@ class Site extends Resource
             $this->setId($id);
         }
 
-        if (! $this->getId()) {
+        if (!$this->getId()) {
             throw new RequiresId('No Site ID set');
         }
 
@@ -141,7 +144,7 @@ class Site extends Resource
         $response = $this->getPloi()->makeAPICall($this->getEndpoint());
 
         // Wrap the logs if they're not already wrapped
-        if (! is_array($response->getJson()->data)) {
+        if (!is_array($response->getJson()->data)) {
             return [$response->getJson()->data];
         }
 

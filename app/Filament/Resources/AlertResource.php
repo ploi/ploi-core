@@ -25,6 +25,8 @@ class AlertResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
+    protected static ?string $recordTitleAttribute = 'message';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -62,7 +64,7 @@ class AlertResource extends Resource
                         Alert::TYPE_DANGER => __('Danger'),
                     ])
                     ->colors([
-                        'success' => Alert::TYPE_INFO,
+                        'primary' => Alert::TYPE_INFO,
                         'warning' => Alert::TYPE_WARNING,
                         'danger' => Alert::TYPE_DANGER,
                     ]),
