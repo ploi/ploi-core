@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Setting;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationItem;
+use Filament\Navigation\UserMenuItem;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -32,6 +33,24 @@ class AppServiceProvider extends ServiceProvider
             return $this->app->isProduction()
                 ? $rule->letters()->numbers()->uncompromised()
                 : $rule;
+        });
+
+        Filament::serving(function () {
+            Filament::registerUserMenuItems([
+                UserMenuItem::make()
+                    ->label('Back to panel')
+                    ->url(route('dashboard'))
+                    ->icon('heroicon-s-rewind'),
+                // ...
+            ]);
+
+            Filament::registerNavigationItems([
+                NavigationItem::make('Panel')
+                    ->url(route('dashboard'))
+                    ->icon('heroicon-o-rewind')
+                    ->group('External')
+                    ->sort(3),
+            ]);
         });
     }
 }
