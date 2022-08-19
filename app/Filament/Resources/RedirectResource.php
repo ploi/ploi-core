@@ -43,9 +43,11 @@ class RedirectResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('redirect_from')
+                    ->wrap()
                     ->label(__('Redirect from'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('redirect_to')
+                    ->wrap()
                     ->label(__('Redirect to'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('server.name')
