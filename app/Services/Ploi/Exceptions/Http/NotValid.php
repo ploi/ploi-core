@@ -11,7 +11,6 @@ use Exception;
  */
 class NotValid extends Exception
 {
-
     /**
      * NotValid constructor.
      *

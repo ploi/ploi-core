@@ -34,7 +34,6 @@ class Ping implements ShouldQueue
             ]);
 
         if (!$response->ok() || !$response->json()) {
-
             // Something went wrong..
 
             return 1;

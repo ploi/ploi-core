@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms\Components\CheckboxList;
 use Filament\Tables;
 use App\Models\Package;
 use Filament\Resources\Form;
@@ -13,6 +12,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\CheckboxList;
 use App\Filament\Resources\PackageResource\Pages;
 use App\Filament\Resources\PackageResource\RelationManagers;
 
@@ -130,10 +130,10 @@ class PackageResource extends Resource
                         return "Attached to stripe - {$record->price_monthly} {$record->currency}";
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
-                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum sites')),
                 Tables\Columns\TextColumn::make('maximum_servers')
-                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum servers')),
                 Tables\Columns\TextColumn::make('users_count')
                     ->counts('users'),

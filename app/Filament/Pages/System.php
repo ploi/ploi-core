@@ -2,7 +2,6 @@
 
 namespace App\Filament\Pages;
 
-use App\Services\SystemChecker;
 use Filament\Pages\Page;
 use App\Services\VersionChecker;
 use Filament\Notifications\Notification;

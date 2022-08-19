@@ -36,7 +36,7 @@ class SubscriptionResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->searchable()
-                    ->url(fn($record) => UserResource::getUrl('edit', ['record' => $record])),
+                    ->url(fn ($record) => UserResource::getUrl('edit', ['record' => $record])),
                 Tables\Columns\TextColumn::make('stripe_id')->searchable(),
                 Tables\Columns\TextColumn::make('stripe_plan')->searchable(),
                 Tables\Columns\BadgeColumn::make('stripe_status')

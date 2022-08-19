@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms\Components\TextInput;
 use Filament\Tables;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\TextInput;
 use App\Filament\Resources\ProviderPlanResource\Pages;
 
 class ProviderPlanResource extends Resource

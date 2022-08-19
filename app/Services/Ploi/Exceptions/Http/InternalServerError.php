@@ -11,7 +11,6 @@ use Exception;
  */
 class InternalServerError extends Exception
 {
-
     /**
      * InternalServerError constructor.
      *

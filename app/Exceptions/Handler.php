@@ -2,10 +2,10 @@
 
 namespace App\Exceptions;
 
-use App\Http\Middleware\SetLocale;
 use Exception;
 use Throwable;
 use Illuminate\Http\Request;
+use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\HandleInertiaRequests;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

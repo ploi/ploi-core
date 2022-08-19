@@ -70,7 +70,6 @@ class Server extends Resource
         $phpVersion = '8.1',
         $os = \App\Models\Server::OS_UBUNTU_22
     ): stdClass {
-
         // Remove the id
         $this->setId(null);
 

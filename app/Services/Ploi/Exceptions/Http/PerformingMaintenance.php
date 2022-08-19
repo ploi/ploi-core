@@ -11,7 +11,6 @@ use Exception;
  */
 class PerformingMaintenance extends Exception
 {
-
     /**
      * PerformingMaintenance constructor.
      *
