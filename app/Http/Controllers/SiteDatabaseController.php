@@ -25,7 +25,7 @@ class SiteDatabaseController extends Controller
         $site = auth()->user()->sites()->findOrFail($id);
 
         $database = $site->databases()->create([
-            'name' => Str::of($site->domain)->limit(8)->remove(['.', '-'])->lower()->append('_')->append($request->input('name')),
+            'name' => Str::of($site->domain)->limit(5)->remove(['.', '-'])->lower()->append('_')->append($request->input('name')),
         ]);
 
         $database->users()->create([
