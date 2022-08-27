@@ -43,9 +43,11 @@ class RedirectResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('redirect_from')
+                    ->wrap()
                     ->label(__('Redirect from'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('redirect_to')
+                    ->wrap()
                     ->label(__('Redirect to'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('server.name')
@@ -68,6 +70,7 @@ class RedirectResource extends Resource
                     ->label(__('Status')),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Date'))
+                    ->sortable()
                     ->dateTime(),
             ])
             ->filters([
@@ -78,7 +81,8 @@ class RedirectResource extends Resource
             ])
             ->bulkActions([
                 //
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

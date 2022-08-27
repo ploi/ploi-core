@@ -73,6 +73,7 @@ class ServerResource extends Resource
                     ]),
                 Tables\Columns\TextColumn::make('users')
                     ->label(__('Users'))
+                    ->wrap()
                     ->getStateUsing(function (Server $record) {
                         $state = $record
                             ->users

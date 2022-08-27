@@ -45,8 +45,7 @@ class SiteDatabaseRequest extends FormRequest
                 new NotContains('-'),
             ],
             'user_name' => [
-                'sometimes',
-                'nullable',
+                'required',
                 'string',
                 'alpha_dash',
                 'min:2',
@@ -58,8 +57,7 @@ class SiteDatabaseRequest extends FormRequest
                 ])
             ],
             'password' => [
-                'sometimes',
-                'nullable',
+                'required',
                 'string',
             ],
         ];
