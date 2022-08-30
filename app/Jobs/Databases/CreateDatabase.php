@@ -44,11 +44,9 @@ class CreateDatabase implements ShouldQueue
             ->databases()
             ->create($this->database->name, $databaseUser->name, $this->password);
 
-        ray($ploiDatabase);
         $this->database->ploi_id = $ploiDatabase->id;
         $this->database->save();
 
-        ray($ploiDatabase);
         $databaseUser->ploi_id = $ploiDatabase->users[0]->id;
         $databaseUser->save();
 
