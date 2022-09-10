@@ -167,7 +167,9 @@ export default {
                 this.$refs.search.blur();
             }
 
-            this.$inertia.get(url);
+            if (url && typeof url === 'string') {
+                this.$inertia.get(url);
+            }
         },
 
         isNotInputElement(event) {
