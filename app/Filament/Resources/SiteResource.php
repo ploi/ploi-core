@@ -65,6 +65,7 @@ class SiteResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('server.name')
                     ->label(__('Server'))
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\BadgeColumn::make('status')
                     ->enum([
