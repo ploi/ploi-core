@@ -33,6 +33,12 @@ class ServerController extends Controller
     {
         $this->authorize('create', Server::class);
 
+        if ($package = $request->user()->package) {
+            if ($package->maximum_servers > 0 && $request->user()->servers()->count() >= $package->maximum_servers) {
+                return redirect()->back()->withErrors(['name' => 'You have received the maximum servers you\'re allowed to create.']);
+            }
+        }
+
         $data = $request->validate([
             'name' => ['required'],
             'provider_id' => ['required'],
