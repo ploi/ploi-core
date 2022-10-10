@@ -148,7 +148,9 @@ class Site extends Model
                 ->databases()
                 ->get()
                 ->each(function (Database $database) {
-                    dispatch(new DeleteDatabase($database->server->ploi_id, $database->ploi_id));
+                    if ($server = $database->server) {
+                        dispatch(new DeleteDatabase($server->ploi_id, $database->ploi_id));
+                    }
 
                     $database->delete();
                 });
