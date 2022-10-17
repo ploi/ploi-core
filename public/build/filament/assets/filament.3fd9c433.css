@@ -3775,15 +3775,6 @@ html {
 .transform{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-@keyframes spin{
-  to{
-    transform: rotate(360deg);
-  }
-}
-.animate-spin{
-  -webkit-animation: spin 1s linear infinite;
-          animation: spin 1s linear infinite;
-}
 @-webkit-keyframes pulse{
   50%{
     opacity: .5;
@@ -3797,6 +3788,15 @@ html {
 .animate-pulse{
   -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
           animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+.animate-spin{
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
 }
 .cursor-wait{
   cursor: wait;
@@ -4433,6 +4433,9 @@ html {
 .pr-1{
   padding-right: 0.25rem;
 }
+.pb-4{
+  padding-bottom: 1rem;
+}
 .pl-9{
   padding-left: 2.25rem;
 }
@@ -4466,6 +4469,10 @@ html {
 .text-sm{
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+.text-base{
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 .text-2xl{
   font-size: 1.5rem;
@@ -6000,14 +6007,14 @@ html {
     -moz-columns: 12;
          columns: 12;
   }
+  .md\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .md\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .md\:grid-cols-1{
     grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-  .md\:grid-cols-2{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .md\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
