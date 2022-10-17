@@ -30,6 +30,7 @@ class Site extends Model
         'dns_id',
         'project',
         'aliases',
+        'php_version'
     ];
 
     public $casts = [
