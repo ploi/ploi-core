@@ -112,7 +112,7 @@ class Settings extends Page
                         ->helperText(__('This will allow you to have users with trials.')),
                     Toggle::make('allow_registration')
                         ->label(__('Allow registration'))
-                        ->helperText(__('This will allow your customers to make support requests to you.')),
+                        ->helperText(__('Allow customer registration')),
                     Toggle::make('support')
                         ->label(__('Enable support platform'))
                         ->helperText(__('This will allow your customers to make support requests to you.')),
