@@ -28,10 +28,9 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: '16.x'
       - run: npm install
-      - run: npm run prod
-      - run: npm run prod:filament
+      - run: npm run production:all
 
       - name: Commit build assets
         run: |
