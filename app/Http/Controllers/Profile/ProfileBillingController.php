@@ -81,6 +81,7 @@ class ProfileBillingController extends Controller
 
         $subscription = $user->subscription();
 
+        ray($subscription);
         return inertia('Profile/Billing', [
             'packages' => $packages,
             'countries' => countries(),
@@ -155,7 +156,7 @@ class ProfileBillingController extends Controller
             return redirect()->route('profile.billing.index')->with('error', 'You did not select a different plan');
         }
 
-        // If the user is already subscribed to the default plan, we have to swap it. Otherwise create a new one.
+        // If the user is already subscribed to the default plan, we have to swap it. Otherwise, create a new one.
         try {
             if ($user->subscribed('default')) {
                 $user->subscription('default')->swap($planId);

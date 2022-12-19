@@ -45,12 +45,10 @@ class PackageResource extends Resource
                     ->label(__('Stripe ID'))
                     ->columnSpan(2),
                 TextInput::make('price_monthly')
-                    ->numeric()
                     ->label(__('Monthly price'))
                     ->helperText(__('Fill this in if you want it to be monthly payments'))
                     ->required(),
                 TextInput::make('price_yearly')
-                    ->numeric()
                     ->label(__('Yearly price'))
                     ->helperText(__('Fill this in if you want it to be yearly payments'))
                     ->required(),
