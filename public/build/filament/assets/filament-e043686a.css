@@ -5179,6 +5179,9 @@ html {
 .focus\:ring-offset-2:focus{
   --tw-ring-offset-width: 2px;
 }
+.focus\:ring-offset-1:focus{
+  --tw-ring-offset-width: 1px;
+}
 .focus\:ring-offset-primary-700:focus{
   --tw-ring-offset-color: #0369a1;
 }
@@ -5329,6 +5332,9 @@ html {
 }
 [dir="rtl"] .rtl\:-ml-6{
   margin-left: -1.5rem;
+}
+[dir="rtl"] .rtl\:mr-4{
+  margin-right: 1rem;
 }
 [dir="rtl"] .rtl\:-translate-x-5{
   --tw-translate-x: -1.25rem;
