@@ -1,12 +1,3 @@
-<<<<<<<< HEAD:public/build/assets/Email.2626d110.js
-import { T as TextDivider } from "./TextDivider.f06d5c66.js";
-import { F as FormInput } from "./FormInput.541a08d4.js";
-import { B as Button } from "./Button.482f5d57.js";
-import { C as Container } from "./Container.44bb93ee.js";
-import { u as useNotification } from "./notification.544829a1.js";
-import { c as createElementBlock, a as createVNode, w as withCtx, b as createBaseVNode, F as Fragment, r as resolveComponent, o as openBlock, t as toDisplayString, d as withModifiers, e as createCommentVNode, f as createTextVNode } from "./app.67ed15d7.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-========
 import { T as TextDivider } from "./TextDivider-8ebb8335.js";
 import { F as FormInput } from "./FormInput-f09111c3.js";
 import { B as Button } from "./Button-938c2a59.js";
@@ -14,7 +5,6 @@ import { C as Container } from "./Container-45f4da93.js";
 import { u as useNotification } from "./notification-c544471b.js";
 import { c as createElementBlock, a as createVNode, w as withCtx, b as createBaseVNode, F as Fragment, r as resolveComponent, o as openBlock, t as toDisplayString, d as withModifiers, e as createCommentVNode, f as createTextVNode } from "./app-9a1c122c.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
->>>>>>>> develop:public/build/assets/Email-79a8d6e5.js
 const _sfc_main = {
   components: {
     TextDivider,

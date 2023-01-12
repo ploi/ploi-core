@@ -1,19 +1,3 @@
-<<<<<<<< HEAD:public/build/assets/Apps.cf8f7e35.js
-import TopBar from "./TopBar.42fc17aa.js";
-import { C as Container } from "./Container.44bb93ee.js";
-import { M as MainLayout, C as Content, P as Page, a as PageHeader, b as PageHeaderTitle, c as PageBody, L as List, d as ListItem, S as StatusBubble, N as NotificationBadge } from "./MainLayout.da88ac2b.js";
-import { B as Button } from "./Button.482f5d57.js";
-import { S as SettingsLayout } from "./SettingsLayout.6029cb54.js";
-import { S as SettingsSegment } from "./SettingsSegment.e4964203.js";
-import { F as FormInput } from "./FormInput.541a08d4.js";
-import { a as Form, F as FormActions } from "./Form.55885a08.js";
-import Tabs from "./Tabs.3e1b5c30.js";
-import { T as Table, a as TableHead, b as TableHeader, c as TableRow, d as TableBody, e as TableData } from "./TableData.764d232d.js";
-import { g as createBlock, w as withCtx, r as resolveComponent, o as openBlock, a as createVNode, f as createTextVNode, t as toDisplayString, e as createCommentVNode, b as createBaseVNode, j as withDirectives, v as vModelCheckbox } from "./app.67ed15d7.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-import "./TabBar.8304c776.js";
-import "./notification.544829a1.js";
-========
 import TopBar from "./TopBar-97b50929.js";
 import { C as Container } from "./Container-45f4da93.js";
 import { M as MainLayout, C as Content, P as Page, a as PageHeader, b as PageHeaderTitle, c as PageBody, L as List, d as ListItem, S as StatusBubble, N as NotificationBadge } from "./MainLayout-8649910c.js";
@@ -28,7 +12,6 @@ import { g as createBlock, w as withCtx, r as resolveComponent, o as openBlock, 
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
 import "./TabBar-ad9b2a96.js";
 import "./notification-c544471b.js";
->>>>>>>> develop:public/build/assets/Apps-9ee57278.js
 const _sfc_main = {
   layout: MainLayout,
   components: {

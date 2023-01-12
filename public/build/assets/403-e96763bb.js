@@ -1,13 +1,3 @@
-<<<<<<<< HEAD:public/build/assets/403.9643c546.js
-import TopBar from "./TopBar.ddabe973.js";
-import { C as Container } from "./Container.44bb93ee.js";
-import { M as MainLayout, C as Content, P as Page, a as PageHeader, b as PageHeaderTitle, c as PageBody, L as List, d as ListItem, S as StatusBubble, N as NotificationBadge } from "./MainLayout.da88ac2b.js";
-import { B as Button } from "./Button.482f5d57.js";
-import { g as createBlock, w as withCtx, r as resolveComponent, o as openBlock, a as createVNode, b as createBaseVNode, t as toDisplayString, f as createTextVNode } from "./app.67ed15d7.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-import "./TabBar.8304c776.js";
-import "./notification.544829a1.js";
-========
 import TopBar from "./TopBar-fdcb98f3.js";
 import { C as Container } from "./Container-45f4da93.js";
 import { M as MainLayout, C as Content, P as Page, a as PageHeader, b as PageHeaderTitle, c as PageBody, L as List, d as ListItem, S as StatusBubble, N as NotificationBadge } from "./MainLayout-8649910c.js";
@@ -16,7 +6,6 @@ import { g as createBlock, w as withCtx, r as resolveComponent, o as openBlock, 
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
 import "./TabBar-ad9b2a96.js";
 import "./notification-c544471b.js";
->>>>>>>> develop:public/build/assets/403-e96763bb.js
 const _sfc_main = {
   layout: MainLayout,
   components: {

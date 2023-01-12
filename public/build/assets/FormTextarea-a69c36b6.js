@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:public/build/assets/FormTextarea.d5ee4b96.js
-import { a as FormGroup, L as Label, E as ErrorText, H as HelperText } from "./FormInput.541a08d4.js";
-import { o as openBlock, g as createBlock, w as withCtx, a as createVNode, f as createTextVNode, t as toDisplayString, b as createBaseVNode, n as normalizeClass, e as createCommentVNode, r as resolveComponent } from "./app.67ed15d7.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-========
 import { a as FormGroup, L as Label, E as ErrorText, H as HelperText } from "./FormInput-f09111c3.js";
 import { o as openBlock, g as createBlock, w as withCtx, a as createVNode, f as createTextVNode, t as toDisplayString, b as createBaseVNode, n as normalizeClass, e as createCommentVNode, r as resolveComponent } from "./app-9a1c122c.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
->>>>>>>> develop:public/build/assets/FormTextarea-a69c36b6.js
 const defaultClasses = "w-full border-medium-emphasis text-body px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary";
 const _sfc_main = {
   props: {

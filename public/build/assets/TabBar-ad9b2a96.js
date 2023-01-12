@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:public/build/assets/TabBar.8304c776.js
-import { C as Container } from "./Container.44bb93ee.js";
-import { o as openBlock, c as createElementBlock, h as renderSlot, q as normalizeProps, u as guardReactiveProps, n as normalizeClass, a as createVNode, w as withCtx, b as createBaseVNode, r as resolveComponent, e as createCommentVNode, g as createBlock, t as toDisplayString, f as createTextVNode, F as Fragment, k as renderList } from "./app.67ed15d7.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-========
 import { C as Container } from "./Container-45f4da93.js";
 import { o as openBlock, c as createElementBlock, h as renderSlot, q as normalizeProps, u as guardReactiveProps, n as normalizeClass, a as createVNode, w as withCtx, b as createBaseVNode, r as resolveComponent, e as createCommentVNode, g as createBlock, t as toDisplayString, f as createTextVNode, F as Fragment, k as renderList } from "./app-9a1c122c.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
->>>>>>>> develop:public/build/assets/TabBar-ad9b2a96.js
 const _sfc_main$c = {
   data: () => ({
     isOpen: false,

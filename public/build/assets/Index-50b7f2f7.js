@@ -1,21 +1,3 @@
-<<<<<<<< HEAD:public/build/assets/Index.6d9c51dd.js
-import TopBar from "./TopBar.aecff8e2.js";
-import { C as Container } from "./Container.44bb93ee.js";
-import { M as MainLayout, C as Content, P as Page, a as PageHeader, b as PageHeaderTitle, c as PageBody, L as List, d as ListItem, S as StatusBubble, N as NotificationBadge } from "./MainLayout.da88ac2b.js";
-import { B as Button } from "./Button.482f5d57.js";
-import { I as IconBox, a as IconGlobe, b as IconStorage } from "./IconStorage.b8642876.js";
-import { I as IconButton, D as Dropdown, c as DropdownList, d as DropdownListItem } from "./TabBar.8304c776.js";
-import { I as IconMore, D as DropdownListItemButton } from "./DropdownListItemButton.573e0a20.js";
-import { E as EmptyImage } from "./EmptyImage.e1281e10.js";
-import { M as Modal, a as ModalContainer } from "./ModalContainer.c73e321c.js";
-import { F as FormInput } from "./FormInput.541a08d4.js";
-import { F as FormSelect } from "./FormSelect.02de001d.js";
-import { F as FormActions } from "./Form.55885a08.js";
-import { u as useConfirm } from "./confirm.91e5714b.js";
-import { g as createBlock, w as withCtx, r as resolveComponent, o as openBlock, a as createVNode, b as createBaseVNode, t as toDisplayString, f as createTextVNode, c as createElementBlock, k as renderList, F as Fragment, e as createCommentVNode, z as createSlots } from "./app.67ed15d7.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-import "./notification.544829a1.js";
-========
 import TopBar from "./TopBar-fa507151.js";
 import { C as Container } from "./Container-45f4da93.js";
 import { M as MainLayout, C as Content, P as Page, a as PageHeader, b as PageHeaderTitle, c as PageBody, L as List, d as ListItem, S as StatusBubble, N as NotificationBadge } from "./MainLayout-8649910c.js";
@@ -32,7 +14,6 @@ import { u as useConfirm } from "./confirm-eb12c83b.js";
 import { g as createBlock, w as withCtx, r as resolveComponent, o as openBlock, a as createVNode, b as createBaseVNode, t as toDisplayString, f as createTextVNode, c as createElementBlock, k as renderList, F as Fragment, e as createCommentVNode, z as createSlots } from "./app-9a1c122c.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
 import "./notification-c544471b.js";
->>>>>>>> develop:public/build/assets/Index-50b7f2f7.js
 const _sfc_main = {
   layout: MainLayout,
   components: {

@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:public/build/assets/TwoFactorAuthentication.bf9d9f46.js
-import { o as openBlock, c as createElementBlock, n as normalizeClass, y as dist, b as createBaseVNode, a as createVNode, w as withCtx, d as withModifiers, t as toDisplayString, F as Fragment, k as renderList, e as createCommentVNode, r as resolveComponent, f as createTextVNode } from "./app.67ed15d7.js";
-import { B as Button } from "./Button.482f5d57.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-import { F as FormInput } from "./FormInput.541a08d4.js";
-========
 import { o as openBlock, c as createElementBlock, n as normalizeClass, y as dist, b as createBaseVNode, a as createVNode, w as withCtx, d as withModifiers, t as toDisplayString, F as Fragment, k as renderList, e as createCommentVNode, r as resolveComponent, f as createTextVNode } from "./app-9a1c122c.js";
 import { B as Button } from "./Button-938c2a59.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
 import { F as FormInput } from "./FormInput-f09111c3.js";
->>>>>>>> develop:public/build/assets/TwoFactorAuthentication-d10b254e.js
 const defaultClasses = "w-full border-medium-emphasis text-body h-10 max-w-lg px-2 border rounded bg-surface-1 focus:outline-none focus:border-primary";
 const _sfc_main$1 = {
   props: {

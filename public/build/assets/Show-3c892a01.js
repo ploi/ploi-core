@@ -1,20 +1,3 @@
-<<<<<<<< HEAD:public/build/assets/Show.931c3baa.js
-import TopBar from "./TopBar.42fc17aa.js";
-import { C as Container } from "./Container.44bb93ee.js";
-import { M as MainLayout, C as Content, P as Page, a as PageHeader, b as PageHeaderTitle, c as PageBody, L as List, d as ListItem, S as StatusBubble, N as NotificationBadge } from "./MainLayout.da88ac2b.js";
-import { B as Button } from "./Button.482f5d57.js";
-import { S as SettingsLayout } from "./SettingsLayout.6029cb54.js";
-import { S as SettingsSegment } from "./SettingsSegment.e4964203.js";
-import { F as FormInput } from "./FormInput.541a08d4.js";
-import { a as Form, F as FormActions } from "./Form.55885a08.js";
-import { u as useNotification } from "./notification.544829a1.js";
-import Tabs from "./Tabs.3e1b5c30.js";
-import { T as Table, a as TableHead, b as TableHeader, c as TableRow, d as TableBody, e as TableData } from "./TableData.764d232d.js";
-import { M as Modal, a as ModalContainer } from "./ModalContainer.c73e321c.js";
-import { o as openBlock, c as createElementBlock, g as createBlock, w as withCtx, r as resolveComponent, a as createVNode, f as createTextVNode, t as toDisplayString, e as createCommentVNode, b as createBaseVNode, k as renderList, F as Fragment } from "./app.67ed15d7.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-import "./TabBar.8304c776.js";
-========
 import TopBar from "./TopBar-97b50929.js";
 import { C as Container } from "./Container-45f4da93.js";
 import { M as MainLayout, C as Content, P as Page, a as PageHeader, b as PageHeaderTitle, c as PageBody, L as List, d as ListItem, S as StatusBubble, N as NotificationBadge } from "./MainLayout-8649910c.js";
@@ -30,7 +13,6 @@ import { M as Modal, a as ModalContainer } from "./ModalContainer-87ab727e.js";
 import { o as openBlock, c as createElementBlock, g as createBlock, w as withCtx, r as resolveComponent, a as createVNode, f as createTextVNode, t as toDisplayString, e as createCommentVNode, b as createBaseVNode, k as renderList, F as Fragment } from "./app-9a1c122c.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
 import "./TabBar-ad9b2a96.js";
->>>>>>>> develop:public/build/assets/Show-3c892a01.js
 const _sfc_main$1 = {
   data() {
     return {

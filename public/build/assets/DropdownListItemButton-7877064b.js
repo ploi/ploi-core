@@ -1,10 +1,5 @@
-<<<<<<<< HEAD:public/build/assets/DropdownListItemButton.573e0a20.js
-import { o as openBlock, c as createElementBlock, b as createBaseVNode, h as renderSlot } from "./app.67ed15d7.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-========
 import { o as openBlock, c as createElementBlock, b as createBaseVNode, h as renderSlot } from "./app-9a1c122c.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
->>>>>>>> develop:public/build/assets/DropdownListItemButton-7877064b.js
 const _sfc_main$1 = {};
 const _hoisted_1 = {
   width: "1em",

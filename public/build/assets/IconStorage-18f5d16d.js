@@ -1,10 +1,5 @@
-<<<<<<<< HEAD:public/build/assets/IconStorage.b8642876.js
-import { o as openBlock, c as createElementBlock, b as createBaseVNode } from "./app.67ed15d7.js";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper.cdc0426e.js";
-========
 import { o as openBlock, c as createElementBlock, b as createBaseVNode } from "./app-9a1c122c.js";
 import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.js";
->>>>>>>> develop:public/build/assets/IconStorage-18f5d16d.js
 const _sfc_main$2 = {};
 const _hoisted_1$2 = {
   width: "1em",
