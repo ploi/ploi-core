@@ -63,7 +63,7 @@ class UserResource extends Resource
                 Forms\Components\Select::make('language')
                     ->label(__('Language'))
                     ->default('en')
-                    ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language])),
+                    ->options(collect(languages())->mapWithKeys(fn(string $language) => [$language => $language])),
                 Forms\Components\Textarea::make('notes')
                     ->label(__('Notes'))
                     ->maxLength(65535),
@@ -79,6 +79,14 @@ class UserResource extends Resource
 
     public static function table(Table $table): Table
     {
+        $actions = [];
+
+        if (config('core.impersonation')) {
+            $actions[] = Impersonate::make('impersonate')->tooltip('Login as this user (impersonate)');
+        }
+
+        $actions[] = Tables\Actions\EditAction::make();
+
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
@@ -106,10 +114,7 @@ class UserResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Impersonate::make('impersonate')->tooltip('Login as this user (impersonate)'),
-                Tables\Actions\EditAction::make(),
-            ])
+            ->actions($actions)
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ])

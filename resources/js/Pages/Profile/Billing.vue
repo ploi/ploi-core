@@ -63,12 +63,6 @@
                                             type="submit">
                                         {{ __('Save') }}
                                     </Button>
-
-                                    <Button @click="confirmCancel" :loading="sending"
-                                            v-if="subscription"
-                                            variant="danger" type="button">
-                                        {{ __('Cancel') }}
-                                    </Button>
                                 </div>
                             </form>
                         </div>
@@ -164,9 +158,17 @@
                                         </TableData>
                                         <TableData class="text-right">
                                             <Button size="sm"
-                                                    :disabled="sending || (subscription && webPackage.stripe_plan_id === subscription.stripe_plan)"
+                                                    v-if="!subscription || webPackage.stripe_plan_id !== subscription.stripe_plan"
+                                                    :disabled="sending"
                                                     @click="updatePlan(webPackage.id)">
                                                 {{ __('Subscribe') }}
+                                            </Button>
+                                            <Button size="sm"
+                                                    variant="danger"
+                                                    v-if="subscription && webPackage.stripe_plan_id === subscription.stripe_plan"
+                                                    :disabled="sending"
+                                                    @click="cancel()">
+                                                {{ __('Cancel') }}
                                             </Button>
                                         </TableData>
                                     </TableRow>

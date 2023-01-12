@@ -8,21 +8,39 @@ use Filament\Notifications\Notification;
 
 class SynchronizeServerAction
 {
-    public function execute(int $ploiServerId): Server
+    public function execute(int $ploiServerId): Server|null
     {
-        $serverData = Ploi::make()->server()->get($ploiServerId)->getData();
+        try {
+            $serverData = Ploi::make()->server()->get($ploiServerId)->getData();
+        } catch (\Throwable $exception) {
+            Notification::make()
+                ->body('An error has occurred: ' . $exception->getMessage())
+                ->danger()
+                ->send();
 
-        $server = Server::query()
-            ->updateOrCreate([
-                'ploi_id' => $serverData->id,
-            ], [
-                'status' => $serverData->status,
-                'name' => $serverData->name,
-                'ip' => $serverData->ip_address,
-                'ssh_port' => $serverData->ssh_port,
-                'internal_ip' => $serverData->internal_ip,
-                'available_php_versions' => $serverData->installed_php_versions,
-            ]);
+            return null;
+        }
+
+        try {
+            $server = Server::query()
+                ->updateOrCreate([
+                    'ploi_id' => $serverData->id,
+                ], [
+                    'status' => $serverData->status,
+                    'name' => $serverData->name,
+                    'ip' => $serverData->ip_address,
+                    'ssh_port' => $serverData->ssh_port,
+                    'internal_ip' => $serverData->internal_ip,
+                    'available_php_versions' => $serverData->installed_php_versions,
+                ]);
+        } catch (\Throwable $exception) {
+            Notification::make()
+                ->body('An error has occurred: ' . $exception->getMessage())
+                ->danger()
+                ->send();
+
+            return null;
+        }
 
         Notification::make()
             ->body(__('Server :server synchronized successfully.', ['server' => $server->name]))

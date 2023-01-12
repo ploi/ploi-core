@@ -108,7 +108,7 @@
                                                            :model-value="ip_address" />
                                             </div>
                                         </div>
-                                        <div class="grid grid-cols-2 gap-4">
+                                        <div class="grid grid-cols-2 gap-4" v-if="(mainDnsRecord.split('.').length -1) < 2">
                                             <div class="col-span-2 md:col-span-1">
                                                 <FormInput label="A" :errors="$page.props.errors.domain"
                                                            :model-value="`www`" />
