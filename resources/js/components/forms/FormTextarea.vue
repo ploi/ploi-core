@@ -5,9 +5,9 @@
         <textarea :id="id"
                   :class="[defaultClasses]"
                   :required="required"
-                  :value="value"
+                  :value="modelValue"
                   :rows="rows"
-                  @input="updateValue($event.target.value)"
+                  @input="$emit('update:modelValue', $event.target.value)"
                   :placeholder="placeholder"></textarea>
         <ErrorText v-if="errors">{{ errors[0] }}</ErrorText>
         <HelperText v-if="helperText && !errors">{{ helperText }}</HelperText>
@@ -43,7 +43,7 @@ const defaultClasses =
             placeholder: {
                 type: String,
             },
-            value: {
+            modelValue: {
                 required: false,
                 default: '',
             },
