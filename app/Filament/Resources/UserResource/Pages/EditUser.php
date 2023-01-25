@@ -8,10 +8,19 @@ use App\Actions\User\DeleteUserAction;
 use App\Filament\Resources\UserResource;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Database\Eloquent\Model;
 
 class EditUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
+
+    protected function handleRecordUpdate(Model $record, array $data): Model
+    {
+        $record->forceFill($data);
+        $record->save();
+
+        return $record;
+    }
 
     protected function getActions(): array
     {
