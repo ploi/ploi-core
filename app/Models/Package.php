@@ -19,6 +19,7 @@ class Package extends Model
     const CURRENCY_INR = 'inr';
     const CURRENCY_THB = 'thb';
     const CURRENCY_BRL = 'brl';
+    const CURRENCY_NZD = 'nz';
 
     public $fillable = [
         'name',
