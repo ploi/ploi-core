@@ -64,6 +64,7 @@ class PackageResource extends Resource
                         'inr' => 'INR (Indian ₹ rupee)',
                         'thb' => 'THB (Thai Baht)',
                         'brl' => 'BRL R$ (Brazilian Real)',
+                        'nz' => 'NZD $ (New Zealand Dollar)',
                     ])
                     ->required(),
                 Grid::make()
