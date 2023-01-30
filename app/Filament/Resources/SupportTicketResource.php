@@ -20,7 +20,7 @@ class SupportTicketResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-support';
 
-    protected static ?string $label = 'Ticker';
+    protected static ?string $label = 'Ticket';
 
     protected static ?string $pluralLabel = 'Tickets';
 
