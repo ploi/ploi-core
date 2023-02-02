@@ -81,7 +81,6 @@ class ProfileBillingController extends Controller
 
         $subscription = $user->subscription();
 
-        ray($subscription);
         return inertia('Profile/Billing', [
             'packages' => $packages,
             'countries' => countries(),
