@@ -8,7 +8,7 @@ use Spatie\LaravelData\Support\DataProperty;
 
 class CarbonCast implements Cast
 {
-    public function cast(DataProperty $property, mixed $value): mixed
+    public function cast(DataProperty $property, mixed $value, array $context): mixed
     {
         return Carbon::parse($value);
     }

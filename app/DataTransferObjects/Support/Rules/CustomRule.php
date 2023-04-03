@@ -21,4 +21,14 @@ class CustomRule extends ValidationAttribute
             ->map(fn (string $rule) => new $rule())
             ->all();
     }
+
+    public static function keyword(): string
+    {
+        // TODO: Implement keyword() method.
+    }
+
+    public static function create(string ...$parameters): static
+    {
+        // TODO: Implement create() method.
+    }
 }
