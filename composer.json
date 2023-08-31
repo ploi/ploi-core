@@ -27,7 +27,7 @@
         "laravel/ui": "^4.2",
         "predis/predis": "^1.1",
         "saade/filament-laravel-log": "^1.1",
-        "spatie/laravel-data": "^3.2",
+        "spatie/laravel-data": "^3.8",
         "spiral/roadrunner": "^2.8.2",
         "stechstudio/filament-impersonate": "^2.10",
         "symfony/http-client": "^6.0",
