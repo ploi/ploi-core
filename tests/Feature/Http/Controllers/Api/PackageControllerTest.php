@@ -31,10 +31,10 @@ it('can list packages', function () {
             ])
             ->all(),
         'links' => [
-	        'first' => route('api.package.index', ['page' => 1]),
-	        'last' => route('api.package.index', ['page' => 2]),
-	        'prev' => null,
-	        'next' => route('api.package.index', ['page' => 2]),
+            'first' => route('api.package.index', ['page' => 1]),
+            'last' => route('api.package.index', ['page' => 2]),
+            'prev' => null,
+            'next' => route('api.package.index', ['page' => 2]),
         ],
         'meta' => [
             'current_page' => 1,

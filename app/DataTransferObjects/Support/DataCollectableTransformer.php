@@ -6,9 +6,9 @@ class DataCollectableTransformer extends \Spatie\LaravelData\Transformers\DataCo
 {
     protected function wrapPaginatedArray(array $paginated): array
     {
-	    $wrapKey = $this->wrap->getKey() ?? 'data';
-		
-	    return [
+        $wrapKey = $this->wrap->getKey() ?? 'data';
+        
+        return [
             $wrapKey => $paginated['data'],
             'links' => [
                 'first' => $paginated['first_page_url'],

@@ -10,7 +10,7 @@ class CarbonTransformer implements Transformer
 {
     public function transform(DataProperty $property, mixed $value): string
     {
-		/** @var Carbon $value */
+        /** @var Carbon $value */
         return $value->toISOString();
     }
 }

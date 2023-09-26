@@ -3,8 +3,8 @@
 namespace App\DataTransferObjects\Support\Rules;
 
 use Attribute;
-use Spatie\LaravelData\Attributes\Validation\CustomValidationAttribute;
 use Spatie\LaravelData\Support\Validation\ValidationPath;
+use Spatie\LaravelData\Attributes\Validation\CustomValidationAttribute;
 
 #[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_PARAMETER)]
 class CustomRule extends CustomValidationAttribute
@@ -22,7 +22,7 @@ class CustomRule extends CustomValidationAttribute
     public function getRules(ValidationPath $path): array|object|string
     {
         return array_map(
-            fn(string $ruleClass) => new $ruleClass(),
+            fn (string $ruleClass) => new $ruleClass(),
             $this->rules
         );
     }
