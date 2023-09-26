@@ -2,14 +2,14 @@
 
 namespace App\DataTransferObjects\Support;
 
-use Illuminate\Support\Arr;
-
-class DataCollectionTransformer extends \Spatie\LaravelData\Transformers\DataCollectionTransformer
+class DataCollectableTransformer extends \Spatie\LaravelData\Transformers\DataCollectableTransformer
 {
     protected function wrapPaginatedArray(array $paginated): array
     {
-        return [
-            'data' => $paginated['data'],
+	    $wrapKey = $this->wrap->getKey() ?? 'data';
+		
+	    return [
+            $wrapKey => $paginated['data'],
             'links' => [
                 'first' => $paginated['first_page_url'],
                 'last' => $paginated['last_page_url'],
@@ -26,15 +26,6 @@ class DataCollectionTransformer extends \Spatie\LaravelData\Transformers\DataCol
                 'to' => $paginated['to'],
                 'total' => $paginated['total'],
             ],
-        ];
-
-        return [
-            'data' => $paginated['data'],
-            'links' => $paginated['links'] ?? [],
-            'meta' => Arr::except($paginated, [
-                'data',
-                'links',
-            ]),
         ];
     }
 }

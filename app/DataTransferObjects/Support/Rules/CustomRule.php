@@ -3,10 +3,11 @@
 namespace App\DataTransferObjects\Support\Rules;
 
 use Attribute;
-use Spatie\LaravelData\Attributes\Validation\ValidationAttribute;
+use Spatie\LaravelData\Attributes\Validation\CustomValidationAttribute;
+use Spatie\LaravelData\Support\Validation\ValidationPath;
 
-#[Attribute(Attribute::TARGET_PROPERTY)]
-class CustomRule extends ValidationAttribute
+#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_PARAMETER)]
+class CustomRule extends CustomValidationAttribute
 {
     protected array $rules = [];
 
@@ -15,20 +16,14 @@ class CustomRule extends ValidationAttribute
         $this->rules = $rules;
     }
 
-    public function getRules(): array
+    /**
+     * @return array<object|string>|object|string
+     */
+    public function getRules(ValidationPath $path): array|object|string
     {
-        return collect($this->rules)
-            ->map(fn (string $rule) => new $rule())
-            ->all();
-    }
-
-    public static function keyword(): string
-    {
-        // TODO: Implement keyword() method.
-    }
-
-    public static function create(string ...$parameters): static
-    {
-        // TODO: Implement create() method.
+        return array_map(
+            fn(string $ruleClass) => new $ruleClass(),
+            $this->rules
+        );
     }
 }
