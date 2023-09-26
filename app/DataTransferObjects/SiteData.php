@@ -27,8 +27,7 @@ class SiteData extends Data
         public ?int $server_id = null,
         #[StringType, CustomRule(Hostname::class, ValidateMaximumSites::class)]
         public ?string $domain = null,
-        #[Exists(User::class, 'id'),
-            IntegerType]
+        #[Exists(User::class, 'id'), IntegerType]
         public ?int $user_id = null,
         public ?Carbon $created_at = null,
     ) {
