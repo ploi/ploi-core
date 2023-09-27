@@ -50,7 +50,7 @@ class ServerController extends Controller
         $data['user_id'] = Auth::id();
 
         app(CreateServerAction::class)->execute(
-            ServerData::validate($data)
+            ServerData::validateAndCreate($data)
         );
 
         return redirect()->route('servers.index');

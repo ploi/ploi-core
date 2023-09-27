@@ -77,7 +77,7 @@ class SiteController extends Controller
         $request->merge(['user_id' => auth()->id()]);
 
         $site = app(CreateSiteAction::class)->execute(
-            SiteData::validate($request)
+            SiteData::validateAndCreate($request)
         );
 
         return $site

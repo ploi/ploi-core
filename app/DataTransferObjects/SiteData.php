@@ -23,14 +23,11 @@ class SiteData extends Data
     public function __construct(
         public ?int $id = null,
         public ?string $status = null,
-        #[Exists(Server::class, 'id'),
-        IntegerType]
+        #[Exists(Server::class, 'id'), IntegerType]
         public ?int $server_id = null,
-        #[StringType,
-        CustomRule(Hostname::class, ValidateMaximumSites::class)]
+        #[StringType, CustomRule(Hostname::class, ValidateMaximumSites::class)]
         public ?string $domain = null,
-        #[Exists(User::class, 'id'),
-        IntegerType]
+        #[Exists(User::class, 'id'), IntegerType]
         public ?int $user_id = null,
         public ?Carbon $created_at = null,
     ) {
