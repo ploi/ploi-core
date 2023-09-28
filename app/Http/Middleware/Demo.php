@@ -3,9 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
-use Livewire\Livewire;
 
 class Demo
 {

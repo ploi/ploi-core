@@ -29,7 +29,7 @@ class SiteController extends Controller
         ]);
 
         $site = app(CreateSiteAction::class)->execute(
-            SiteData::validate($data)
+            SiteData::validateAndCreate($data)
         );
 
         $site->refresh();

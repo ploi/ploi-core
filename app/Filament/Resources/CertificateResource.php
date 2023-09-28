@@ -8,9 +8,9 @@ use App\Models\Certificate;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CertificateResource\Pages;
-use Illuminate\Support\HtmlString;
 
 class CertificateResource extends Resource
 {

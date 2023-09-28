@@ -22,7 +22,7 @@ class ServerController extends Controller
         ]);
 
         $server = app(CreateServerAction::class)->execute(
-            ServerData::validate($data)
+            ServerData::validateAndCreate($data)
         );
 
         return response(content: ['data' => ServerData::from($server->refresh())->toArray()], status: 201);

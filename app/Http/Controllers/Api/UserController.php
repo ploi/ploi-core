@@ -32,7 +32,7 @@ class UserController extends Controller
             'requires_password_for_ftp' => ['nullable'],
         ]);
 
-        $userData = UserData::validate($data);
+        $userData = UserData::validateAndCreate($data);
 
         $user = User::create($userData->toArray());
 
@@ -50,7 +50,7 @@ class UserController extends Controller
             'requires_password_for_ftp' => [],
         ]);
 
-        $userData = UserData::validate($data);
+        $userData = UserData::validateAndCreate($data);
 
         $user->update(
             Arr::only($userData->toArray(), array_keys($data))

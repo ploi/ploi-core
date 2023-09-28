@@ -63,7 +63,7 @@ class UserResource extends Resource
                 Forms\Components\Select::make('language')
                     ->label(__('Language'))
                     ->default('en')
-                    ->options(collect(languages())->mapWithKeys(fn(string $language) => [$language => $language])),
+                    ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language])),
                 Forms\Components\Textarea::make('notes')
                     ->label(__('Notes'))
                     ->maxLength(65535),
