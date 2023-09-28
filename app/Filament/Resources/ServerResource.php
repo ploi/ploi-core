@@ -94,7 +94,8 @@ class ServerResource extends Resource
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
                     ->label(__('Max sites'))
-                    ->formatStateUsing(fn(Server $record) => $record->maximum_sites . " (Current: {$record->sites_count})"),
+                    ->formatStateUsing(fn(Server $record) => $record->maximum_sites . " (Current: {$record->sites_count})")
+                    ->counts('sites'),
                 Tables\Columns\TextColumn::make('ip')
                     ->label(__('IP')),
                 Tables\Columns\TextColumn::make('created_at')

@@ -2,12 +2,10 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ServerResource;
-use Illuminate\Database\Eloquent\Relations\Relation;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Table;
 
 class ServersRelationManager extends RelationManager
 {
@@ -23,11 +21,5 @@ class ServersRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return ServerResource::table($table);
-    }
-
-    protected function getTableQuery(): Builder|Relation
-    {
-        return parent::getTableQuery()
-            ->withCount('sites');
     }
 }
