@@ -16,6 +16,7 @@
                             <option value="da">Danish</option>
                             <option value="nb-no">Norwegian</option>
                             <option value="pt">Portuguese</option>
+                            <option value="zh">Chinese</option>
                         </FormSelect>
 
                         <FormInput :label="__('Address')" type="text" :errors="$page.props.errors.address" v-model="form.address" />
