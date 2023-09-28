@@ -10,6 +10,7 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use App\Filament\Resources\PackageResource\Pages;
 use App\Filament\Resources\PackageResource\RelationManagers;
+use Illuminate\Support\HtmlString;
 
 class PackageResource extends Resource
 {
@@ -36,7 +37,7 @@ class PackageResource extends Resource
                     ->integer()
                     ->required(),
                 Forms\Components\TextInput::make('stripe_plan_id')
-                    ->helperText(__('Enter the pricing ID from Stripe here') . ' - <a href="https://docs.ploi-core.io/digging-deeper/using-stripe" target="ploi-docs-stripe" class="text-primary-500">How does this work?</a>')
+                    ->helperText(new HtmlString(__('Enter the pricing ID from Stripe here') . ' - <a href="https://docs.ploi-core.io/263-digging-deeper/743-using-stripe" target="ploi-docs-stripe" class="text-primary-500">How does this work?</a>'))
                     ->label(__('Stripe ID'))
                     ->columnSpan(2),
                 Forms\Components\TextInput::make('price_monthly')
