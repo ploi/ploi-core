@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PackageResource\Pages;
-use App\Filament\Resources\PackageResource\RelationManagers;
+use Filament\Forms;
+use Filament\Tables;
 use App\Models\Package;
 use App\Models\Provider;
-use App\Models\ProviderPlan;
-use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Notifications\Notification;
-use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use App\Models\ProviderPlan;
+use Filament\Resources\Resource;
 use Illuminate\Support\HtmlString;
+use Filament\Notifications\Notification;
+use App\Filament\Resources\PackageResource\Pages;
+use App\Filament\Resources\PackageResource\RelationManagers;
 
 class PackageResource extends Resource
 {
@@ -134,8 +134,8 @@ class PackageResource extends Resource
                                                                     }),
                                                                 Forms\Components\CheckboxList::make("provider_plans")
                                                                     ->label(__('Select plans'))
-                                                                    ->options(fn() => $provider->plans->mapWithKeys(fn(ProviderPlan $providerPlan) => [$providerPlan->id => $providerPlan->label ?? $providerPlan->plan_id])->all())
-                                                                    ->visible(fn(Forms\Get $get) => $get('select_specific_provider_plans'))
+                                                                    ->options(fn () => $provider->plans->mapWithKeys(fn (ProviderPlan $providerPlan) => [$providerPlan->id => $providerPlan->label ?? $providerPlan->plan_id])->all())
+                                                                    ->visible(fn (Forms\Get $get) => $get('select_specific_provider_plans'))
                                                                     ->reactive()
                                                                     ->bulkToggleable()
                                                                     ->columns(2)
@@ -170,10 +170,10 @@ class PackageResource extends Resource
                                                 ->color('gray')
                                                 ->disabled(function (Package $record, Forms\Get $get) {
                                                     $providers = collect($get('providers'))
-                                                        ->map(fn(string $id): int => (int)$id)
+                                                        ->map(fn (string $id): int => (int)$id)
                                                         ->sort();
 
-                                                    return $record->providers->pluck('id')->map(fn(string $id): int => (int)$id)->sort()->toArray() !== $providers->all();
+                                                    return $record->providers->pluck('id')->map(fn (string $id): int => (int)$id)->sort()->toArray() !== $providers->all();
                                                 })
                                         ]),
                                         Forms\Components\Placeholder::make('save_warning')
@@ -183,10 +183,10 @@ class PackageResource extends Resource
                                                 $package = $livewire->getRecord();
 
                                                 $providers = collect($get('providers'))
-                                                    ->map(fn(string $id): int => (int)$id)
+                                                    ->map(fn (string $id): int => (int)$id)
                                                     ->sort();
 
-                                                return $package->providers->pluck('id')->map(fn(string $id): int => (int)$id)->sort()->toArray() !== $providers->all();
+                                                return $package->providers->pluck('id')->map(fn (string $id): int => (int)$id)->sort()->toArray() !== $providers->all();
                                             })
                                             ->hiddenLabel(),
                                     ])
@@ -217,10 +217,10 @@ class PackageResource extends Resource
                         return "Attached to stripe - {$record->price_monthly} {$record->currency}";
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
-                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum sites')),
                 Tables\Columns\TextColumn::make('maximum_servers')
-                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum servers')),
                 Tables\Columns\TextColumn::make('users_count')
                     ->counts('users'),

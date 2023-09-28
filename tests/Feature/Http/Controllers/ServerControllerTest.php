@@ -1,20 +1,20 @@
 <?php
 
-use App\Mail\Admin\Server\AdminServerCreatedEmail;
+use App\Models\User;
+use App\Models\Server;
 use App\Models\Package;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
 use App\Models\ProviderRegion;
-use App\Models\Server;
-use App\Models\User;
-use Database\Factories\PackageFactory;
+use function Pest\Laravel\get;
+use function Pest\Laravel\post;
+use function Pest\Laravel\actingAs;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
-use function Pest\Laravel\actingAs;
+use Database\Factories\PackageFactory;
 use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\get;
-use function Pest\Laravel\post;
+use App\Mail\Admin\Server\AdminServerCreatedEmail;
 
 it('can create a new server', function () {
     Mail::fake();
@@ -42,7 +42,7 @@ it('can create a new server', function () {
     App::forgetInstance('settings');
 
     actingAs(
-        $user = User::factory()->withPackage(fn(PackageFactory $factory) => $factory->has(Provider::factory()->withRegion()->withPlan()))->create()
+        $user = User::factory()->withPackage(fn (PackageFactory $factory) => $factory->has(Provider::factory()->withRegion()->withPlan()))->create()
     );
 
     $provider = Provider::sole();
@@ -74,13 +74,13 @@ it('can create a new server', function () {
         'database_type' => 'postgresql',
     ]);
 
-    Mail::assertQueued(AdminServerCreatedEmail::class, fn(AdminServerCreatedEmail $mail) => $mail->to[0]['address'] === $adminUsers[0]->email);
-    Mail::assertQueued(AdminServerCreatedEmail::class, fn(AdminServerCreatedEmail $mail) => $mail->to[0]['address'] === $adminUsers[1]->email);
+    Mail::assertQueued(AdminServerCreatedEmail::class, fn (AdminServerCreatedEmail $mail) => $mail->to[0]['address'] === $adminUsers[0]->email);
+    Mail::assertQueued(AdminServerCreatedEmail::class, fn (AdminServerCreatedEmail $mail) => $mail->to[0]['address'] === $adminUsers[1]->email);
 });
 
 it('cannot create a server without permissions', function () {
     actingAs(
-        $user = User::factory()->withPackage(fn(PackageFactory $factory) => $factory->serverPermissions(['create' => false,])->has(Provider::factory()->withRegion()->withPlan()))->create()
+        $user = User::factory()->withPackage(fn (PackageFactory $factory) => $factory->serverPermissions(['create' => false,])->has(Provider::factory()->withRegion()->withPlan()))->create()
     );
 
     expect($user->can('create', Server::class))->toBeFalse();

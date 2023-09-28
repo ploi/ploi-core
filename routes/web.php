@@ -1,32 +1,32 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticateTwoFactorController;
-use App\Http\Controllers\Auth\CreatePasswordController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DocumentationController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\Profile\ProfileBillingController;
-use App\Http\Controllers\Profile\ProfileController;
-use App\Http\Controllers\Profile\ProfileIntegrationController;
-use App\Http\Controllers\Profile\ProfileSecurityController;
-use App\Http\Controllers\Profile\ProfileSettingController;
-use App\Http\Controllers\Profile\TwoFactorAuthentication\ConfirmTwoFactorAuthenticationController;
-use App\Http\Controllers\Profile\TwoFactorAuthentication\RegenerateRecoveryCodesController;
-use App\Http\Controllers\Profile\TwoFactorAuthentication\TwoFactorAuthenticationController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ServerController;
-use App\Http\Controllers\ServerSettingController;
-use App\Http\Controllers\SiteAliasController;
 use App\Http\Controllers\SiteAppController;
-use App\Http\Controllers\SiteCertificateController;
-use App\Http\Controllers\SiteController;
-use App\Http\Controllers\SiteCronjobController;
-use App\Http\Controllers\SiteDatabaseController;
 use App\Http\Controllers\SiteDnsController;
-use App\Http\Controllers\SiteRedirectController;
-use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\SupportController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SiteAliasController;
+use App\Http\Controllers\SiteCronjobController;
+use App\Http\Controllers\SiteSettingController;
+use App\Http\Controllers\SiteDatabaseController;
+use App\Http\Controllers\SiteRedirectController;
+use App\Http\Controllers\DocumentationController;
+use App\Http\Controllers\ServerSettingController;
+use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\SiteCertificateController;
+use App\Http\Controllers\Auth\CreatePasswordController;
+use App\Http\Controllers\Profile\ProfileBillingController;
+use App\Http\Controllers\Profile\ProfileSettingController;
+use App\Http\Controllers\Profile\ProfileSecurityController;
+use App\Http\Controllers\Auth\AuthenticateTwoFactorController;
+use App\Http\Controllers\Profile\ProfileIntegrationController;
+use App\Http\Controllers\Profile\TwoFactorAuthentication\RegenerateRecoveryCodesController;
+use App\Http\Controllers\Profile\TwoFactorAuthentication\TwoFactorAuthenticationController;
+use App\Http\Controllers\Profile\TwoFactorAuthentication\ConfirmTwoFactorAuthenticationController;
 
 Auth::routes();
 

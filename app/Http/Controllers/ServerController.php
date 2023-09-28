@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Server\CreateServerAction;
-use App\DataTransferObjects\ServerData;
-use App\Http\Requests\ServerUpdateRequest;
-use App\Http\Resources\ServerResource;
-use App\Jobs\Servers\DeleteServer;
-use App\Models\ProviderPlan;
 use App\Models\Server;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\RedirectResponse;
+use App\Models\ProviderPlan;
 use Illuminate\Http\Request;
+use App\Jobs\Servers\DeleteServer;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Resources\ServerResource;
+use App\DataTransferObjects\ServerData;
+use Illuminate\Database\Eloquent\Builder;
+use App\Actions\Server\CreateServerAction;
+use App\Http\Requests\ServerUpdateRequest;
 
 class ServerController extends Controller
 {
