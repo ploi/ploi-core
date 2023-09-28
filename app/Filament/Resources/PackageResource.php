@@ -182,15 +182,12 @@ class PackageResource extends Resource
                                         ]),
                                         Forms\Components\Placeholder::make('save_warning')
                                             ->content(__('You\'ve changed the available server providers. Please save your changes before you can manage the provider plans.'))
-                                            ->visible(function (Pages\EditPackage $livewire, Forms\Get $get) {
-                                                /** @var Package $package */
-                                                $package = $livewire->getRecord();
-
+                                            ->visible(function (Package $record, Forms\Get $get) {
                                                 $providers = collect($get('providers'))
                                                     ->map(fn(string $id): int => (int)$id)
                                                     ->sort();
 
-                                                return $package->providers->pluck('id')->map(fn(string $id): int => (int)$id)->sort()->toArray() !== $providers->all();
+                                                return $record->providers->pluck('id')->map(fn(string $id): int => (int)$id)->sort()->toArray() !== $providers->all();
                                             })
                                             ->hiddenLabel(),
                                     ])
