@@ -155,10 +155,14 @@ class PackageResource extends Resource
                                                 })
                                                 ->action(function (Package $record, array $data) {
                                                     $providerPlanIds = collect($data)
+                                                        // If `select_specific_provider_plans`, all provider plans are available. It could be that this
+                                                        // option was deselected, and that we have some left over provider plans in the field that
+                                                        // is now hidden. We will not include theSE IDs so that they ARE detached automatically.
                                                         ->where('select_specific_provider_plans', true)
                                                         ->pluck('provider_plans')
                                                         ->flatten();
 
+                                                    // Detaches provider plans not specifically selected.
                                                     $record->providerPlans()->sync($providerPlanIds);
 
                                                     Notification::make()
