@@ -2,17 +2,14 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
 use App\Models\Alert;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Illuminate\Support\HtmlString;
-use Filament\Forms\Components\Select;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\BadgeColumn;
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\MarkdownEditor;
 use App\Filament\Resources\AlertResource\Pages;
 
 class AlertResource extends Resource
@@ -31,11 +28,11 @@ class AlertResource extends Resource
     {
         return $form
             ->schema([
-                MarkdownEditor::make('message')
+                Forms\Components\MarkdownEditor::make('message')
                     ->label(__('Content'))
                     ->columnSpan(2)
                     ->required(),
-                Select::make('type')
+                Forms\Components\Select::make('type')
                     ->label(__('Type'))
                     ->options([
                         Alert::TYPE_INFO => __('Informational'),
@@ -43,9 +40,9 @@ class AlertResource extends Resource
                         Alert::TYPE_DANGER => __('Danger'),
                     ])
                     ->required(),
-                DateTimePicker::make('expires_at')
+                Forms\Components\DateTimePicker::make('expires_at')
                     ->label(__('Expires at'))
-                    ->withoutSeconds(),
+                    ->seconds(false),
             ]);
     }
 
@@ -53,24 +50,25 @@ class AlertResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('message')
+                Tables\Columns\TextColumn::make('message')
                     ->label(__('Content'))
                     ->formatStateUsing(fn (?string $state) => new HtmlString(Str::markdown($state))),
-                BadgeColumn::make('type')
+                Tables\Columns\TextColumn::make('type')
                     ->label(__('Type'))
-                    ->enum([
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Alert::TYPE_INFO => __('Informational'),
                         Alert::TYPE_WARNING => __('Warning'),
                         Alert::TYPE_DANGER => __('Danger'),
-                    ])
+                    })
                     ->colors([
                         'primary' => Alert::TYPE_INFO,
                         'warning' => Alert::TYPE_WARNING,
                         'danger' => Alert::TYPE_DANGER,
                     ]),
-                TextColumn::make('expires_at')
+                Tables\Columns\TextColumn::make('expires_at')
                     ->label('Expires Date')
-                    ->formatStateUsing(fn (?string $state) => filled($state) ? $state : '-'),
+                    ->default('-'),
             ]);
     }
 

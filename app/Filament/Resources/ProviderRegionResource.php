@@ -4,8 +4,8 @@ namespace App\Filament\Resources;
 
 use Filament\Tables;
 use App\Models\Provider;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\ProviderRegion;
 use Filament\Resources\Resource;
 use App\Filament\Resources\ProviderRegionResource\Pages;
@@ -14,7 +14,7 @@ class ProviderRegionResource extends Resource
 {
     protected static ?string $model = ProviderRegion::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-globe';
+    protected static ?string $navigationIcon = 'heroicon-o-globe-americas';
 
     protected static ?string $navigationGroup = 'Providers';
 
@@ -32,7 +32,9 @@ class ProviderRegionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')->label('ID')->searchable(),
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('provider.name')
                     ->label(__('Provider'))
                     ->searchable(),
@@ -46,7 +48,7 @@ class ProviderRegionResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('provider_id')
                     ->label(__('Provider'))
-                    ->options(fn () => Provider::orderBy('name')->get()->mapWithKeys(fn (Provider $provider) => [$provider->id => $provider->name])),
+                    ->options(fn () => Provider::orderBy('name')->pluck('name', 'id'))
             ])
             ->actions([
                 //

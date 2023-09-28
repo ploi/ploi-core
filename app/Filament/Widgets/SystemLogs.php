@@ -2,8 +2,9 @@
 
 namespace App\Filament\Widgets;
 
+use Filament\Tables;
 use App\Models\SystemLog;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Widgets\TableWidget as BaseWidget;
 
@@ -11,27 +12,28 @@ class SystemLogs extends BaseWidget
 {
     protected int|string|array $columnSpan = 'full';
 
-    protected int $defaultTableRecordsPerPageSelectOption = 10;
-
-    protected function getTableQuery(): Builder
+    public function table(Table $table): Table
     {
-        return SystemLog::query()
-            ->latest()
-            ->with('model');
-    }
-
-    protected function getTableColumns(): array
-    {
-        return [
-            TextColumn::make(__('Title'))
-                ->formatStateUsing(fn (SystemLog $record) => __($record->title, [
-                    'site' => $record->model->domain ?? '-Unknown-',
-                    'database' => $record->model->name ?? '-Unknown-',
-                ]))
-                ->description(fn (SystemLog $record) => __($record->description, [
-                    'site' => $record->model->domain ?? '-Unknown-',
-                    'database' => $record->model->name ?? '-Unknown-',
-                ])),
-        ];
+        return $table
+            ->query(fn (): Builder => SystemLog::query()->with('model'))
+            ->defaultSort(fn (Builder $query) => $query->latest())
+            ->columns([
+                Tables\Columns\TextColumn::make('title')
+                    ->label(__('Title'))
+                    ->formatStateUsing(fn (SystemLog $record) => __($record->title, [
+                        'site' => $record->model->domain ?? '-Unknown-',
+                        'database' => $record->model->name ?? '-Unknown-',
+                    ]))
+                    ->description(fn (SystemLog $record) => __($record->description, [
+                        'site' => $record->model->domain ?? '-Unknown-',
+                        'database' => $record->model->name ?? '-Unknown-',
+                    ]))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Date'))
+                    ->dateTime()
+                    ->sortable()
+            ]);
     }
 }

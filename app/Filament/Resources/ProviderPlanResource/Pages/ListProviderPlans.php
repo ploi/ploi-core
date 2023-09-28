@@ -9,7 +9,7 @@ class ListProviderPlans extends ListRecords
 {
     protected static string $resource = ProviderPlanResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             //

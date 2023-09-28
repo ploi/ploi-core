@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\AlertResource\Pages;
 
-use Filament\Pages\Actions\DeleteAction;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\AlertResource;
 
@@ -10,10 +10,10 @@ class EditAlert extends EditRecord
 {
     protected static string $resource = AlertResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            Actions\DeleteAction::make(),
         ];
     }
 }

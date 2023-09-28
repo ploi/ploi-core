@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\DocumentationCategoryResource\Pages;
 
-use Filament\Pages\Actions\DeleteAction;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\DocumentationCategoryResource;
 
@@ -10,10 +10,10 @@ class EditDocumentationCategory extends EditRecord
 {
     protected static string $resource = DocumentationCategoryResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            Actions\DeleteAction::make(),
         ];
     }
 }

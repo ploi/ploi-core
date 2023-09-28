@@ -56,7 +56,7 @@ class EditDatabase extends Page
         $this->recentlyUpdatedPassword = $data->new_password;
 
         Notification::make()
-            ->body(__('Successfully reset database password.'))
+            ->title(__('Successfully reset database password.'))
             ->success()
             ->send();
 

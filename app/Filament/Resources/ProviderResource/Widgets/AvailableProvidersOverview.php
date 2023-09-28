@@ -46,14 +46,14 @@ class AvailableProvidersOverview extends TableWidget
         return [
             Action::make('synchronize_provider')
                 ->label(__('Synchronize'))
-                ->icon('heroicon-o-refresh')
+                ->icon('heroicon-o-arrow-path')
                 ->action(function (AvailableProvider $record, self $livewire) {
                     $provider = app(SynchronizeProviderAction::class)->execute($record->id);
 
-                    $livewire->emit('$refresh');
+                    $livewire->dispatch('$refresh');
 
                     Notification::make()
-                        ->body(__('Provider :provider synchronized successfully.', ['provider' => $provider->name]))
+                        ->title(__('Provider :provider synchronized successfully.', ['provider' => $provider->name]))
                         ->success()
                         ->send();
                 }),

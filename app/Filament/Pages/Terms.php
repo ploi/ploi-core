@@ -2,12 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use Filament\Forms;
+use Filament\Actions;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
-use Filament\Pages\Actions\Action;
-use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
-use Filament\Forms\Components\MarkdownEditor;
 
 class Terms extends Page
 {
@@ -26,7 +25,7 @@ class Terms extends Page
         cache()->forget('core.settings');
 
         $this->form->fill([
-            'accept_terms_required' => (bool) setting('accept_terms_required'),
+            'accept_terms_required' => (bool)setting('accept_terms_required'),
             'terms' => setting('terms'),
             'privacy' => setting('privacy'),
         ]);
@@ -35,20 +34,20 @@ class Terms extends Page
     protected function getFormSchema(): array
     {
         return [
-            Toggle::make('accept_terms_required')
+            Forms\Components\Toggle::make('accept_terms_required')
                 ->label(__(' Require users to accept terms of service on registration'))
                 ->helperText(__('This will require newly registered users to accept the terms of service.')),
-            MarkdownEditor::make('terms')
+            Forms\Components\MarkdownEditor::make('terms')
                 ->label(__('Content Terms Of Service')),
-            MarkdownEditor::make('privacy')
+            Forms\Components\MarkdownEditor::make('privacy')
                 ->label(__('Content Privacy Policy')),
         ];
     }
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
-            Action::make('load_terms_template')
+            Actions\Action::make('load_terms_template')
                 ->label(__('Load Terms Of Service Template'))
                 ->action(function (self $livewire) {
                     $template = Str::of(file_get_contents(storage_path('templates/terms-of-service.md')))
@@ -67,7 +66,7 @@ class Terms extends Page
 
                     Notification::make()
                         ->success()
-                        ->body(__('Loaded Terms Of Service Template'))
+                        ->title(__('Loaded Terms Of Service Template'))
                         ->send();
                 }),
         ];
@@ -88,7 +87,7 @@ class Terms extends Page
 
         Notification::make()
             ->success()
-            ->body(__('Terms saved.'))
+            ->title(__('Terms saved.'))
             ->send();
     }
 }

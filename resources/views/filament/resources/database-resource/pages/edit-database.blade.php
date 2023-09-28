@@ -5,9 +5,9 @@
             <div>
                 <form wire:submit.prevent="resetDatabasePassword" class="mt-2 flex flex-row justify-between max-w-2xl items-center">
                     {{ $this->resetDatabasePasswordForm }}
-                    <x-filament-support::button type="submit" class="">
+                    <x-filament::button type="submit" class="">
                         {{ __('Reset database password') }}
-                    </x-filament-support::button>
+                    </x-filament::button>
                 </form>
             </div>
         @else

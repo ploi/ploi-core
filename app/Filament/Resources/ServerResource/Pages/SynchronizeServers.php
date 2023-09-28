@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\ServerResource\Pages;
 
+use Filament\Actions;
 use App\Models\Server;
 use App\Services\Ploi\Ploi;
-use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\Page;
 use Filament\Notifications\Notification;
 use App\Filament\Resources\ServerResource;
@@ -24,15 +24,15 @@ class SynchronizeServers extends Page
         ];
     }
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
-            Action::make('synchronize_servers')
+            Actions\Action::make('synchronize_servers')
                 ->label(__('Synchronize all servers'))
-                ->icon('heroicon-o-refresh')
+                ->icon('heroicon-o-arrow-path')
                 ->requiresConfirmation()
                 ->modalHeading('Synchronize servers')
-                ->modalSubheading('This will synchronize all the servers that are listed in the table, to your Ploi Core installation.')
+                ->modalDescription('This will synchronize all the servers that are listed in the table, to your Ploi Core installation.')
                 ->action(function () {
                     $availableServers = Ploi::make()->synchronize()->servers()->getData();
 
@@ -51,7 +51,7 @@ class SynchronizeServers extends Page
                     }
 
                     Notification::make()
-                        ->body(__('Servers synchronized successfully.'))
+                        ->title(__('Servers synchronized successfully.'))
                         ->success()
                         ->send();
                 }),

@@ -9,7 +9,7 @@ use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
 class System extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-adjustments';
+    protected static ?string $navigationIcon = 'heroicon-o-adjustments-vertical';
 
     protected static string $view = 'filament.pages.system';
 
@@ -33,13 +33,13 @@ class System extends Page
 
         Notification::make()
             ->success()
-            ->body(__('Refreshed versions'))
+            ->title(__('Refreshed versions'))
             ->send();
     }
 
     public function getHorizonWorkerStatus(): bool
     {
-        return rescue(fn () => (bool) app(MasterSupervisorRepository::class)->all(), false, false);
+        return rescue(fn () => (bool)app(MasterSupervisorRepository::class)->all(), false, false);
     }
 
     public function hasAvailableUpdate(): bool
@@ -47,7 +47,7 @@ class System extends Page
         return app(VersionChecker::class)->getVersions()->isOutOfDate();
     }
 
-    protected static function getNavigationBadge(): ?string
+    public static function getNavigationBadge(): ?string
     {
         $systemChecker = app(VersionChecker::class);
 

@@ -3,9 +3,9 @@
 namespace App\Filament\Resources\SiteResource\Pages;
 
 use App\Models\Site;
+use Filament\Actions;
 use App\Models\Server;
 use App\Services\Ploi\Ploi;
-use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\Page;
 use App\Filament\Resources\SiteResource;
 use Filament\Notifications\Notification;
@@ -23,15 +23,15 @@ class SynchronizeSites extends Page
         ];
     }
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
-            Action::make('synchronize_sites')
+            Actions\Action::make('synchronize_sites')
                 ->label(__('Synchronize all sites'))
-                ->icon('heroicon-o-refresh')
+                ->icon('heroicon-o-arrow-path')
                 ->requiresConfirmation()
                 ->modalHeading('Synchronize sites')
-                ->modalSubheading('This will synchronize all the sites that are listed in the table, to your Ploi Core installation.')
+                ->modalDescription('This will synchronize all the sites that are listed in the table, to your Ploi Core installation.')
                 ->action(function () {
                     $availableSites = Ploi::make()->synchronize()->sites()->getData();
 
@@ -52,7 +52,7 @@ class SynchronizeSites extends Page
                     }
 
                     Notification::make()
-                        ->body(__('Sites synchronized successfully.'))
+                        ->title(__('Sites synchronized successfully.'))
                         ->success()
                         ->send();
                 }),

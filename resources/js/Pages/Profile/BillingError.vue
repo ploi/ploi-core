@@ -1,7 +1,7 @@
 <template>
     <Page>
         <Head><title>{{ __('Billing error') }}</title></Head>
-        <TopBar :breadcrumbs="breadcrumbs" />
+        <TopBar :breadcrumbs="breadcrumbs"/>
 
         <Content>
             <Container>
@@ -9,11 +9,14 @@
                     <div class="bg-warning text-on-warning px-4 py-3 rounded relative space-y-2" role="alert">
                         <strong class="font-bold">Problem with billing provider.</strong>
                         <p class="block">
-                            There's an issue getting in touch with the payment service provider. Please check your settings and the error log or get in touch
+                            There's an issue getting in touch with the payment service provider. Please check your
+                            settings and the error log or get in touch
                             with the administrator of this software.
                         </p>
 
-                        <a class="block font-bold underline" href="https://docs.ploi-core.io/digging-deeper/using-stripe" target="_blank">How to setup Stripe for billing</a>
+                        <a class="block font-bold underline"
+                           href="https://docs.ploi-core.io/263-digging-deeper/743-using-stripe" target="_blank">How to
+                            setup Stripe for billing</a>
                     </div>
                 </PageBody>
             </Container>

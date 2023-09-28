@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
 use Filament\Tables;
 use App\Models\Provider;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\ProviderPlan;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\TextInput;
 use App\Filament\Resources\ProviderPlanResource\Pages;
 
 class ProviderPlanResource extends Resource
@@ -25,7 +25,7 @@ class ProviderPlanResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('label'),
+                Forms\Components\TextInput::make('label'),
             ]);
     }
 
@@ -33,7 +33,9 @@ class ProviderPlanResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')->label('ID')->searchable(),
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('provider.name')
                     ->label(__('Provider'))
                     ->searchable(),

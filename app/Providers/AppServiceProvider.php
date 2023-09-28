@@ -40,13 +40,13 @@ class AppServiceProvider extends ServiceProvider
                 UserMenuItem::make()
                     ->label('Back to panel')
                     ->url(route('dashboard'))
-                    ->icon('heroicon-s-rewind'),
+                    ->icon('heroicon-m-backward'),
             ]);
 
             Filament::registerNavigationItems([
                 NavigationItem::make('Panel')
                     ->url(route('dashboard'))
-                    ->icon('heroicon-o-rewind')
+                    ->icon('heroicon-o-backward')
                     ->group('External')
                     ->sort(3),
             ]);

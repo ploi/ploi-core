@@ -46,7 +46,7 @@ class SynchronizeSiteAction
         }
 
         Notification::make()
-            ->body(__('Site :site synchronized successfully.', ['site' => $site->domain]))
+            ->title(__('Site :site synchronized successfully.', ['site' => $site->domain]))
             ->success()
             ->send();
 

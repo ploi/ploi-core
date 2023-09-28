@@ -5,8 +5,8 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use STS\FilamentImpersonate\Impersonate;
 use App\Filament\Resources\UserResource\Pages;
@@ -79,14 +79,6 @@ class UserResource extends Resource
 
     public static function table(Table $table): Table
     {
-        $actions = [];
-
-        if (config('core.impersonation')) {
-            $actions[] = Impersonate::make('impersonate')->tooltip('Login as this user (impersonate)');
-        }
-
-        $actions[] = Tables\Actions\EditAction::make();
-
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
@@ -114,7 +106,13 @@ class UserResource extends Resource
             ->filters([
                 //
             ])
-            ->actions($actions)
+            ->actions([
+                Impersonate::make('impersonate')
+                    ->tooltip('Login as this user (impersonate)')
+                    ->visible(fn () => config('core.impersonation')),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ])

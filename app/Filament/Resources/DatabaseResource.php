@@ -4,8 +4,8 @@ namespace App\Filament\Resources;
 
 use Filament\Tables;
 use App\Models\Database;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use App\Filament\Resources\DatabaseResource\Pages;
 
@@ -13,7 +13,7 @@ class DatabaseResource extends Resource
 {
     protected static ?string $model = Database::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-database';
+    protected static ?string $navigationIcon = 'heroicon-o-circle-stack';
 
     protected static ?string $navigationGroup = 'Site management';
 
@@ -40,17 +40,17 @@ class DatabaseResource extends Resource
                 Tables\Columns\TextColumn::make('site.domain')
                     ->label(__('Site'))
                     ->searchable(),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->enum([
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Database::STATUS_BUSY => __('Busy'),
                         Database::STATUS_ACTIVE => __('Active'),
-                    ])
+                    })
                     ->colors([
                         'warning' => Database::STATUS_BUSY,
                         'success' => Database::STATUS_ACTIVE,
                     ])
                     ->label(__('Status')),
-
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Date'))
                     ->sortable()

@@ -6,8 +6,8 @@ use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
 use App\Models\Server;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Builder;
@@ -61,12 +61,13 @@ class ServerResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Name'))
                     ->searchable(),
-                Tables\Columns\BadgeColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
                     ->label(__('Status'))
-                    ->enum([
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Server::STATUS_BUSY => __('Busy'),
                         Server::STATUS_ACTIVE => __('Active'),
-                    ])
+                    })
                     ->colors([
                         'warning' => Server::STATUS_BUSY,
                         'success' => Server::STATUS_ACTIVE,
@@ -74,19 +75,27 @@ class ServerResource extends Resource
                 Tables\Columns\TextColumn::make('users')
                     ->label(__('Users'))
                     ->wrap()
-                    ->getStateUsing(function (Server $record) {
+                    ->formatStateUsing(function (Server $record) {
                         $state = $record
                             ->users
                             ->map(function (User $user) {
-                                return '<a href="' . route('filament.resources.users.edit', ['record' => $user]) . '" class="text-primary-600">' . $user->name . '</a>';
+                                return '<a href="' . UserResource::getUrl('edit', ['record' => $user]) . '" class="text-primary-600" style="white-space: nowrap">' . $user->name . '</a>';
                             })
                             ->implode(', ') ?: '-';
 
                         return new HtmlString($state);
+                    })
+                    ->searchable(query: function (Builder $query, string $search) {
+                        return $query->whereHas('users', function (Builder $query) use ($search) {
+                            return $query
+                                ->where('name', 'LIKE', "%{$search}%")
+                                ->orWhere('email', 'LIKE', "%{$search}%");
+                        });
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
                     ->label(__('Max sites'))
-                    ->formatStateUsing(fn (Server $record) => $record->maximum_sites . " (Current: {$record->sites_count})"),
+                    ->formatStateUsing(fn (Server $record) => $record->maximum_sites . " (Current: {$record->sites_count})")
+                    ->counts('sites'),
                 Tables\Columns\TextColumn::make('ip')
                     ->label(__('IP')),
                 Tables\Columns\TextColumn::make('created_at')
@@ -101,9 +110,10 @@ class ServerResource extends Resource
                 Tables\Actions\Action::make('synchronize_server')
                     ->label(__('Synchronize'))
                     ->tooltip(__('This will synchronize the latest data from this provider to your Ploi Core installation'))
-                    ->icon('heroicon-o-refresh')
+                    ->icon('heroicon-o-arrow-path')
                     ->action(fn (Server $record) => app(SynchronizeServerAction::class)->execute($record->ploi_id))
                     ->visible(fn (Server $record) => $record->status === Server::STATUS_ACTIVE),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

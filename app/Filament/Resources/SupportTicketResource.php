@@ -2,14 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Resources\Form;
+use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\SupportTicket;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\BadgeColumn;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Tables\Filters\MultiSelectFilter;
 use App\Filament\Resources\SupportTicketResource\Pages;
 
 class SupportTicketResource extends Resource
@@ -18,18 +16,18 @@ class SupportTicketResource extends Resource
 
     protected static ?string $navigationGroup = 'Support';
 
-    protected static ?string $navigationIcon = 'heroicon-o-support';
+    protected static ?string $navigationIcon = 'heroicon-o-lifebuoy';
 
     protected static ?string $label = 'Ticket';
 
     protected static ?string $pluralLabel = 'Tickets';
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
-        return (bool) setting('support');
+        return (bool)setting('support');
     }
 
-    protected static function getNavigationBadge(): ?string
+    public static function getNavigationBadge(): ?string
     {
         return static::getEloquentQuery()->count();
     }
@@ -46,32 +44,34 @@ class SupportTicketResource extends Resource
     {
         return $table
             ->columns([
-                BadgeColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
                     ->label(__('Status'))
-                    ->enum([
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         SupportTicket::STATUS_OPEN => __('Open'),
                         SupportTicket::STATUS_CLOSED => __('Closed'),
                         SupportTicket::STATUS_CUSTOMER_REPLY => __('Customer Reply'),
                         SupportTicket::STATUS_SUPPORT_REPLY => __('Support Reply'),
-                    ])
+                    })
                     ->colors([
                         'primary' => [SupportTicket::STATUS_OPEN, SupportTicket::STATUS_SUPPORT_REPLY, SupportTicket::STATUS_CUSTOMER_REPLY],
                         'danger' => SupportTicket::STATUS_CLOSED,
                     ])
                     ->wrap(false),
-                TextColumn::make('title')
+                Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('replies_count')
+                Tables\Columns\TextColumn::make('replies_count')
                     ->label(__('Replies'))
                     ->getStateUsing(fn (SupportTicket $record) => $record->replies->count()),
-                TextColumn::make('user.name')
+                Tables\Columns\TextColumn::make('user.name')
                     ->searchable()
                     ->sortable(),
             ])
             ->filters([
-                MultiSelectFilter::make('status')
+                Tables\Filters\SelectFilter::make('status')
                     ->label(__('Status'))
+                    ->multiple()
                     ->options([
                         SupportTicket::STATUS_OPEN => __('Open'),
                         SupportTicket::STATUS_CLOSED => __('Closed'),

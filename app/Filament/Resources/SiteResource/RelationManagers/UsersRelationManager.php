@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources\SiteResource\RelationManagers;
 
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Filament\Resources\UserResource;
-use Filament\Tables\Actions\AttachAction;
-use Filament\Tables\Actions\DetachAction;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class UsersRelationManager extends RelationManager
@@ -25,20 +24,22 @@ class UsersRelationManager extends RelationManager
         return __('Users');
     }
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return UserResource::form($form);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return UserResource::table($table)
             ->headerActions([
-                AttachAction::make()
+                ...$table->getHeaderActions(),
+                Tables\Actions\AttachAction::make()
                     ->preloadRecordSelect(),
             ])
-            ->appendActions([
-                DetachAction::make(),
+            ->actions([
+                ...$table->getActions(),
+                Tables\Actions\DetachAction::make(),
             ]);
     }
 }

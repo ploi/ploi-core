@@ -4,9 +4,9 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\Certificate;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +16,7 @@ class CertificateResource extends Resource
 {
     protected static ?string $model = Certificate::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-annotation';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
     protected static ?string $navigationGroup = 'Site management';
 
@@ -28,15 +28,12 @@ class CertificateResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('site.name'),
                 Forms\Components\TextInput::make('server_id'),
-                Forms\Components\TextInput::make('status')
-                    ->maxLength(255),
+                Forms\Components\TextInput::make('status'),
                 Forms\Components\TextInput::make('ploi_id'),
-                Forms\Components\TextInput::make('domain')
-                    ->maxLength(255),
+                Forms\Components\TextInput::make('domain'),
                 Forms\Components\Textarea::make('certificate'),
                 Forms\Components\Textarea::make('private'),
-                Forms\Components\TextInput::make('type')
-                    ->maxLength(255),
+                Forms\Components\TextInput::make('type'),
             ]);
     }
 
@@ -52,11 +49,12 @@ class CertificateResource extends Resource
                     ->label(__('Main domain')),
                 Tables\Columns\TextColumn::make('type')
                     ->label('Type'),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->enum([
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Certificate::STATUS_BUSY => __('Busy'),
                         Certificate::STATUS_ACTIVE => __('Active'),
-                    ])
+                    })
                     ->colors([
                         'warning' => Certificate::STATUS_BUSY,
                         'success' => Certificate::STATUS_ACTIVE,
@@ -81,6 +79,7 @@ class CertificateResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

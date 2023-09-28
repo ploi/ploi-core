@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Forms\Components\Toggle;
 use App\Actions\User\DeleteUserAction;
 use Illuminate\Database\Eloquent\Model;
@@ -22,17 +22,17 @@ class EditUser extends EditRecord
         return $record;
     }
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\Action::make('two_factor_authentication')
                 ->label(__('Disable two-factor authentication'))
-                ->color('secondary')
+                ->color('gray')
                 ->action(function () {
                     $this->record->disableTwoFactorAuth();
 
                     Notification::make()
-                        ->body(__('Two-factor authentication disabled'))
+                        ->title(__('Two-factor authentication disabled'))
                         ->success()
                         ->send();
                 })
@@ -50,11 +50,11 @@ class EditUser extends EditRecord
                     app(DeleteUserAction::class)->execute($this->getRecord(), $data['remove_all_data']);
 
                     Notification::make()
-                        ->body(__('User deleted'))
+                        ->title(__('User deleted'))
                         ->success()
                         ->send();
 
-                    $this->redirectRoute('filament.resources.users.index');
+                    $this->redirect(UserResource::getUrl());
                 })
                 ->color('danger'),
         ];

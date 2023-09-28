@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\ServerResource\RelationManagers;
 
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Filament\Resources\UserResource;
 use Filament\Resources\RelationManagers\RelationManager;
 
@@ -24,18 +24,21 @@ class UsersRelationManager extends RelationManager
         return __('Users');
     }
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return UserResource::form($form);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return UserResource::table($table)
-            ->appendHeaderActions([
-                Tables\Actions\AttachAction::make()->preloadRecordSelect(),
+            ->headerActions([
+                ...$table->getHeaderActions(),
+                Tables\Actions\AttachAction::make()
+                    ->preloadRecordSelect(),
             ])
-            ->appendActions([
+            ->actions([
+                ...$table->getActions(),
                 Tables\Actions\DetachAction::make(),
             ]);
     }
