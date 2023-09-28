@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use App\Models\User;
+use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use STS\FilamentImpersonate\Impersonate;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use STS\FilamentImpersonate\Impersonate;
 
 class UserResource extends Resource
 {
@@ -63,7 +63,7 @@ class UserResource extends Resource
                 Forms\Components\Select::make('language')
                     ->label(__('Language'))
                     ->default('en')
-                    ->options(collect(languages())->mapWithKeys(fn(string $language) => [$language => $language])),
+                    ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language])),
                 Forms\Components\Textarea::make('notes')
                     ->label(__('Notes'))
                     ->maxLength(65535),
@@ -109,7 +109,7 @@ class UserResource extends Resource
             ->actions([
                 Impersonate::make('impersonate')
                     ->tooltip('Login as this user (impersonate)')
-                    ->visible(fn() => config('core.impersonation')),
+                    ->visible(fn () => config('core.impersonation')),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

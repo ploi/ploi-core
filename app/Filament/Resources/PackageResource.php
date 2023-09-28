@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use App\Models\Package;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Resources\Resource;
 use App\Filament\Resources\PackageResource\Pages;
 use App\Filament\Resources\PackageResource\RelationManagers;
-use App\Models\Package;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
 
 class PackageResource extends Resource
 {
@@ -126,10 +126,10 @@ class PackageResource extends Resource
                         return "Attached to stripe - {$record->price_monthly} {$record->currency}";
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
-                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum sites')),
                 Tables\Columns\TextColumn::make('maximum_servers')
-                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum servers')),
                 Tables\Columns\TextColumn::make('users_count')
                     ->counts('users'),

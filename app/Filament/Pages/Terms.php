@@ -2,11 +2,11 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Actions;
 use Filament\Forms;
-use Filament\Notifications\Notification;
+use Filament\Actions;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
+use Filament\Notifications\Notification;
 
 class Terms extends Page
 {

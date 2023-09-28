@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\RedirectResource\Pages;
-use App\Models\Redirect;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Redirect;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Filament\Resources\RedirectResource\Pages;
 
 class RedirectResource extends Resource
 {
@@ -56,7 +56,7 @@ class RedirectResource extends Resource
                     ->label(__('Type')),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->formatStateUsing(fn(string $state) => match ($state) {
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Redirect::STATUS_BUSY => __('Busy'),
                         Redirect::STATUS_ACTIVE => __('Active'),
                     })

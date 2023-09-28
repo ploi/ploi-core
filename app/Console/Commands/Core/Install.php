@@ -2,18 +2,18 @@
 
 namespace App\Console\Commands\Core;
 
-use App\Models\Package;
-use App\Models\User;
-use App\Services\Ploi\Ploi;
-use App\Services\VersionChecker;
 use Exception;
-use Illuminate\Console\Command;
+use App\Models\User;
+use RuntimeException;
+use App\Models\Package;
+use App\Services\Ploi\Ploi;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
+use Illuminate\Console\Command;
+use App\Services\VersionChecker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
-use RuntimeException;
+use Illuminate\Support\Facades\Artisan;
 
 class Install extends Command
 {

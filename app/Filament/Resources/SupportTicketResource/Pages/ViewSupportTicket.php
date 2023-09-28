@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources\SupportTicketResource\Pages;
 
-use App\Filament\Resources\SupportTicketResource;
-use App\Mail\Support\TicketRepliedToEmail;
-use App\Models\SupportTicket;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Notifications\Notification;
 use Filament\Actions;
+use App\Models\SupportTicket;
 use Filament\Resources\Pages\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Filament\Notifications\Notification;
+use App\Mail\Support\TicketRepliedToEmail;
+use Filament\Forms\Components\MarkdownEditor;
+use App\Filament\Resources\SupportTicketResource;
 
 class ViewSupportTicket extends Page
 {
@@ -47,7 +47,7 @@ class ViewSupportTicket extends Page
 
                     $livewire->redirect(SupportTicketResource::getUrl('view', ['record' => $livewire->getRecord()]));
                 })
-                ->visible(fn(self $livewire) => $livewire->record->status !== SupportTicket::STATUS_CLOSED)
+                ->visible(fn (self $livewire) => $livewire->record->status !== SupportTicket::STATUS_CLOSED)
                 ->color('danger'),
             Actions\Action::make('reopen')
                 ->label(__('Reopen'))
@@ -62,7 +62,7 @@ class ViewSupportTicket extends Page
 
                     $livewire->redirect(SupportTicketResource::getUrl('view', ['record' => $livewire->getRecord()]));
                 })
-                ->visible(fn(self $livewire) => $livewire->record->status === SupportTicket::STATUS_CLOSED)
+                ->visible(fn (self $livewire) => $livewire->record->status === SupportTicket::STATUS_CLOSED)
                 ->color('primary'),
         ];
     }

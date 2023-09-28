@@ -2,10 +2,10 @@
 
 namespace App\Actions\Server;
 
+use Throwable;
 use App\Models\Server;
 use App\Services\Ploi\Ploi;
 use Filament\Notifications\Notification;
-use Throwable;
 
 class SynchronizeServerAction
 {

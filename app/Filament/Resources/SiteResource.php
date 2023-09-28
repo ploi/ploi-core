@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use App\Models\Site;
+use App\Models\User;
+use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
+use Illuminate\Database\Eloquent\Builder;
 use App\Actions\Site\SynchronizeSiteAction;
 use App\Filament\Resources\SiteResource\Pages;
 use App\Filament\Resources\SiteResource\RelationManagers;
-use App\Models\Site;
-use App\Models\User;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\HtmlString;
 
 class SiteResource extends Resource
 {
@@ -67,7 +67,7 @@ class SiteResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->formatStateUsing(fn(string $state) => match ($state) {
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Site::STATUS_BUSY => __('Busy'),
                         Site::STATUS_ACTIVE => __('Active'),
                     })
@@ -113,7 +113,7 @@ class SiteResource extends Resource
                     ->action(function (Site $record) {
                         app(SynchronizeSiteAction::class)->execute($record->server->ploi_id, $record->ploi_id);
                     })
-                    ->visible(fn(Site $record) => $record->status === Site::STATUS_ACTIVE),
+                    ->visible(fn (Site $record) => $record->status === Site::STATUS_ACTIVE),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

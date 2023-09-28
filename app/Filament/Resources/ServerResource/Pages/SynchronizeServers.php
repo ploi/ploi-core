@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\ServerResource\Pages;
 
-use App\Filament\Resources\ServerResource;
+use Filament\Actions;
 use App\Models\Server;
 use App\Services\Ploi\Ploi;
-use Filament\Notifications\Notification;
-use Filament\Actions;
 use Filament\Resources\Pages\Page;
+use Filament\Notifications\Notification;
+use App\Filament\Resources\ServerResource;
 
 class SynchronizeServers extends Page
 {

@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CertificateResource\Pages;
-use App\Models\Certificate;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Certificate;
+use Filament\Resources\Resource;
 use Illuminate\Support\HtmlString;
+use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\CertificateResource\Pages;
 
 class CertificateResource extends Resource
 {
@@ -51,7 +51,7 @@ class CertificateResource extends Resource
                     ->label('Type'),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->formatStateUsing(fn(string $state) => match ($state) {
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Certificate::STATUS_BUSY => __('Busy'),
                         Certificate::STATUS_ACTIVE => __('Active'),
                     })

@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SupportTicketResource\Pages;
-use App\Models\SupportTicket;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\SupportTicket;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\SupportTicketResource\Pages;
 
 class SupportTicketResource extends Resource
 {
@@ -47,7 +47,7 @@ class SupportTicketResource extends Resource
                 Tables\Columns\TextColumn::make('status')
                     ->label(__('Status'))
                     ->badge()
-                    ->formatStateUsing(fn(string $state) => match ($state) {
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         SupportTicket::STATUS_OPEN => __('Open'),
                         SupportTicket::STATUS_CLOSED => __('Closed'),
                         SupportTicket::STATUS_CUSTOMER_REPLY => __('Customer Reply'),
@@ -63,7 +63,7 @@ class SupportTicketResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('replies_count')
                     ->label(__('Replies'))
-                    ->getStateUsing(fn(SupportTicket $record) => $record->replies->count()),
+                    ->getStateUsing(fn (SupportTicket $record) => $record->replies->count()),
                 Tables\Columns\TextColumn::make('user.name')
                     ->searchable()
                     ->sortable(),

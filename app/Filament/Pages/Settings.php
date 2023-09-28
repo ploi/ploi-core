@@ -2,17 +2,16 @@
 
 namespace App\Filament\Pages;
 
-use App\Models\Package;
-use App\Models\Server;
 use Filament\Forms;
-use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
-use Filament\Notifications\Notification;
+use App\Models\Server;
+use App\Models\Package;
 use Filament\Pages\Page;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Facades\Storage;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
+use Filament\Forms\Components\Actions\Action;
 
 class Settings extends Page
 {
@@ -70,11 +69,11 @@ class Settings extends Page
                         ])
                         ->columnSpan(2),
                     Forms\Components\Select::make('default_package')
-                        ->options(fn() => Package::orderBy('name')->pluck('name', 'id'))
+                        ->options(fn () => Package::orderBy('name')->pluck('name', 'id'))
                         ->label(__('Select default package'))
                         ->helperText(__('Select the default package a user should get when you create or they register')),
                     Forms\Components\Select::make('default_language')
-                        ->options(collect(languages())->mapWithKeys(fn(string $language) => [$language => $language]))
+                        ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language]))
                         ->label('Select default language')
                         ->helperText('Select the default language a user should get when you create or they register'),
                     Forms\Components\FileUpload::make('logo')

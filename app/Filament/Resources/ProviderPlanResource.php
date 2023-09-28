@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProviderPlanResource\Pages;
-use App\Models\Provider;
-use App\Models\ProviderPlan;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Provider;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\ProviderPlan;
+use Filament\Resources\Resource;
+use App\Filament\Resources\ProviderPlanResource\Pages;
 
 class ProviderPlanResource extends Resource
 {
@@ -53,7 +53,7 @@ class ProviderPlanResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('provider_id')
                     ->label(__('Provider'))
-                    ->options(fn() => Provider::orderBy('name')->get()->mapWithKeys(fn(Provider $provider) => [$provider->id => $provider->name])),
+                    ->options(fn () => Provider::orderBy('name')->get()->mapWithKeys(fn (Provider $provider) => [$provider->id => $provider->name])),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

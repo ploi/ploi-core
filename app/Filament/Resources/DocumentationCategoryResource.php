@@ -2,16 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
+use App\Models\DocumentationCategory;
 use App\Filament\Resources\DocumentationCategoryResource\Pages;
 use App\Filament\Resources\DocumentationCategoryResource\RelationManagers;
-use App\Models\DocumentationCategory;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
 
 class DocumentationCategoryResource extends Resource
 {
@@ -58,7 +58,7 @@ class DocumentationCategoryResource extends Resource
                     ->label(__('Title')),
                 Tables\Columns\TextColumn::make('description')
                     ->label(__('Description'))
-                    ->formatStateUsing(fn(string $state) => new HtmlString(Str::markdown($state))),
+                    ->formatStateUsing(fn (string $state) => new HtmlString(Str::markdown($state))),
             ]);
     }
 

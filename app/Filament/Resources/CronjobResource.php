@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CronjobResource\Pages;
+use Filament\Tables;
 use App\Models\Cronjob;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Filament\Resources\CronjobResource\Pages;
 
 class CronjobResource extends Resource
 {
@@ -36,7 +36,7 @@ class CronjobResource extends Resource
                     ->label(__('Site')),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->formatStateUsing(fn(string $state) => match ($state) {
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Cronjob::STATUS_BUSY => __('Busy'),
                         Cronjob::STATUS_ACTIVE => __('Active'),
                     })

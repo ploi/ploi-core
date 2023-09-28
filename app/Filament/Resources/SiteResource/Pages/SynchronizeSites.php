@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\SiteResource\Pages;
 
-use App\Filament\Resources\SiteResource;
-use App\Models\Server;
 use App\Models\Site;
-use App\Services\Ploi\Ploi;
-use Filament\Notifications\Notification;
 use Filament\Actions;
+use App\Models\Server;
+use App\Services\Ploi\Ploi;
 use Filament\Resources\Pages\Page;
+use App\Filament\Resources\SiteResource;
+use Filament\Notifications\Notification;
 
 class SynchronizeSites extends Page
 {

@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AlertResource\Pages;
-use App\Models\Alert;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Alert;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
+use App\Filament\Resources\AlertResource\Pages;
 
 class AlertResource extends Resource
 {
@@ -52,11 +52,11 @@ class AlertResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('message')
                     ->label(__('Content'))
-                    ->formatStateUsing(fn(?string $state) => new HtmlString(Str::markdown($state))),
+                    ->formatStateUsing(fn (?string $state) => new HtmlString(Str::markdown($state))),
                 Tables\Columns\TextColumn::make('type')
                     ->label(__('Type'))
                     ->badge()
-                    ->formatStateUsing(fn(string $state) => match ($state) {
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Alert::TYPE_INFO => __('Informational'),
                         Alert::TYPE_WARNING => __('Warning'),
                         Alert::TYPE_DANGER => __('Danger'),

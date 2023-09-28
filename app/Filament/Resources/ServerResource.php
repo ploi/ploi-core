@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use App\Models\User;
+use Filament\Tables;
+use App\Models\Server;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
+use Illuminate\Database\Eloquent\Builder;
 use App\Actions\Server\SynchronizeServerAction;
 use App\Filament\Resources\ServerResource\Pages;
 use App\Filament\Resources\ServerResource\RelationManagers;
-use App\Models\Server;
-use App\Models\User;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\HtmlString;
 
 class ServerResource extends Resource
 {
@@ -64,7 +64,7 @@ class ServerResource extends Resource
                 Tables\Columns\TextColumn::make('status')
                     ->label(__('Status'))
                     ->badge()
-                    ->formatStateUsing(fn(string $state) => match ($state) {
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Server::STATUS_BUSY => __('Busy'),
                         Server::STATUS_ACTIVE => __('Active'),
                     })
@@ -94,7 +94,7 @@ class ServerResource extends Resource
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
                     ->label(__('Max sites'))
-                    ->formatStateUsing(fn(Server $record) => $record->maximum_sites . " (Current: {$record->sites_count})")
+                    ->formatStateUsing(fn (Server $record) => $record->maximum_sites . " (Current: {$record->sites_count})")
                     ->counts('sites'),
                 Tables\Columns\TextColumn::make('ip')
                     ->label(__('IP')),
@@ -111,8 +111,8 @@ class ServerResource extends Resource
                     ->label(__('Synchronize'))
                     ->tooltip(__('This will synchronize the latest data from this provider to your Ploi Core installation'))
                     ->icon('heroicon-o-arrow-path')
-                    ->action(fn(Server $record) => app(SynchronizeServerAction::class)->execute($record->ploi_id))
-                    ->visible(fn(Server $record) => $record->status === Server::STATUS_ACTIVE),
+                    ->action(fn (Server $record) => app(SynchronizeServerAction::class)->execute($record->ploi_id))
+                    ->visible(fn (Server $record) => $record->status === Server::STATUS_ACTIVE),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

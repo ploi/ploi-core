@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Casts\Encrypted;
 use Filament\Panel;
+use App\Casts\Encrypted;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;

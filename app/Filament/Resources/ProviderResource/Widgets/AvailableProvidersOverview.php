@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\ProviderResource\Widgets;
 
-use App\Actions\Provider\SynchronizeProviderAction;
 use App\Models\AvailableProvider;
-use Filament\Notifications\Notification;
+use Filament\Widgets\TableWidget;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Widgets\TableWidget;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
+use App\Actions\Provider\SynchronizeProviderAction;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AvailableProvidersOverview extends TableWidget

@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
-use App\Actions\User\DeleteUserAction;
-use App\Filament\Resources\UserResource;
-use Filament\Forms\Components\Toggle;
-use Filament\Notifications\Notification;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Forms\Components\Toggle;
+use App\Actions\User\DeleteUserAction;
 use Illuminate\Database\Eloquent\Model;
+use App\Filament\Resources\UserResource;
+use Filament\Notifications\Notification;
+use Filament\Resources\Pages\EditRecord;
 
 class EditUser extends EditRecord
 {
@@ -36,7 +36,7 @@ class EditUser extends EditRecord
                         ->success()
                         ->send();
                 })
-                ->visible(fn() => $this->record->hasTwoFactorEnabled())
+                ->visible(fn () => $this->record->hasTwoFactorEnabled())
                 ->requiresConfirmation(),
             Actions\Action::make('delete')
                 ->form([

@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DatabaseResource\Pages;
+use Filament\Tables;
 use App\Models\Database;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Filament\Resources\DatabaseResource\Pages;
 
 class DatabaseResource extends Resource
 {
@@ -42,7 +42,7 @@ class DatabaseResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->formatStateUsing(fn(string $state) => match ($state) {
+                    ->formatStateUsing(fn (string $state) => match ($state) {
                         Database::STATUS_BUSY => __('Busy'),
                         Database::STATUS_ACTIVE => __('Active'),
                     })

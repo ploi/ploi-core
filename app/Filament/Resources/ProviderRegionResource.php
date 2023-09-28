@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProviderRegionResource\Pages;
-use App\Models\Provider;
-use App\Models\ProviderRegion;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Provider;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\ProviderRegion;
+use Filament\Resources\Resource;
+use App\Filament\Resources\ProviderRegionResource\Pages;
 
 class ProviderRegionResource extends Resource
 {
@@ -48,7 +48,7 @@ class ProviderRegionResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('provider_id')
                     ->label(__('Provider'))
-                    ->options(fn() => Provider::orderBy('name')->pluck('name', 'id'))
+                    ->options(fn () => Provider::orderBy('name')->pluck('name', 'id'))
             ])
             ->actions([
                 //

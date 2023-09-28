@@ -2,9 +2,9 @@
 
 namespace App\Filament\Pages;
 
+use Filament\Pages\Page;
 use App\Services\VersionChecker;
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
 use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
 class System extends Page
@@ -39,7 +39,7 @@ class System extends Page
 
     public function getHorizonWorkerStatus(): bool
     {
-        return rescue(fn() => (bool)app(MasterSupervisorRepository::class)->all(), false, false);
+        return rescue(fn () => (bool)app(MasterSupervisorRepository::class)->all(), false, false);
     }
 
     public function hasAvailableUpdate(): bool

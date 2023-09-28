@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Actions\Provider\SynchronizeProviderAction;
-use App\Filament\Resources\ProviderResource\Pages;
-use App\Filament\Resources\ProviderResource\Widgets\AvailableProvidersOverview;
-use App\Models\Provider;
-use App\Models\ProviderPlan;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Notifications\Notification;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Provider;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\ProviderPlan;
+use Filament\Resources\Resource;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ProviderResource\Pages;
+use App\Actions\Provider\SynchronizeProviderAction;
+use App\Filament\Resources\ProviderResource\Widgets\AvailableProvidersOverview;
 
 class ProviderResource extends Resource
 {
@@ -35,11 +35,11 @@ class ProviderResource extends Resource
                     ->columnSpan(2),
                 Forms\Components\CheckboxList::make('allowed_plans')
                     ->options(function (Provider $record) {
-                        return $record->plans->mapWithKeys(fn(ProviderPlan $plan) => [$plan->id => $plan->label ?? $plan->plan_id]);
+                        return $record->plans->mapWithKeys(fn (ProviderPlan $plan) => [$plan->id => $plan->label ?? $plan->plan_id]);
                     })
                     ->label(__('Allowed Plans')),
                 Forms\Components\CheckboxList::make('allowed_regions')
-                    ->options(fn(Provider $record) => $record->regions->pluck('label', 'id'))
+                    ->options(fn (Provider $record) => $record->regions->pluck('label', 'id'))
                     ->label(__('Allowed Regions')),
             ]);
     }
