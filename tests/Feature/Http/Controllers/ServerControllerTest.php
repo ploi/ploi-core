@@ -1,19 +1,20 @@
 <?php
 
-use App\Models\User;
-use App\Models\Server;
+use App\Mail\Admin\Server\AdminServerCreatedEmail;
+use App\Models\Package;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
 use App\Models\ProviderRegion;
-use function Pest\Laravel\post;
-use function Pest\Laravel\actingAs;
+use App\Models\Server;
+use App\Models\User;
+use Database\Factories\PackageFactory;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
-
-use Database\Factories\PackageFactory;
+use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
-use App\Mail\Admin\Server\AdminServerCreatedEmail;
+use function Pest\Laravel\get;
+use function Pest\Laravel\post;
 
 it('can create a new server', function () {
     Mail::fake();
@@ -41,7 +42,7 @@ it('can create a new server', function () {
     App::forgetInstance('settings');
 
     actingAs(
-        $user = User::factory()->withPackage(fn (PackageFactory $factory) => $factory->has(Provider::factory()->withRegion()->withPlan()))->create()
+        $user = User::factory()->withPackage(fn(PackageFactory $factory) => $factory->has(Provider::factory()->withRegion()->withPlan()))->create()
     );
 
     $provider = Provider::sole();
@@ -73,13 +74,13 @@ it('can create a new server', function () {
         'database_type' => 'postgresql',
     ]);
 
-    Mail::assertQueued(AdminServerCreatedEmail::class, fn (AdminServerCreatedEmail $mail) => $mail->to[0]['address'] === $adminUsers[0]->email);
-    Mail::assertQueued(AdminServerCreatedEmail::class, fn (AdminServerCreatedEmail $mail) => $mail->to[0]['address'] === $adminUsers[1]->email);
+    Mail::assertQueued(AdminServerCreatedEmail::class, fn(AdminServerCreatedEmail $mail) => $mail->to[0]['address'] === $adminUsers[0]->email);
+    Mail::assertQueued(AdminServerCreatedEmail::class, fn(AdminServerCreatedEmail $mail) => $mail->to[0]['address'] === $adminUsers[1]->email);
 });
 
 it('cannot create a server without permissions', function () {
     actingAs(
-        $user = User::factory()->withPackage(fn (PackageFactory $factory) => $factory->serverPermissions(['create' => false,])->has(Provider::factory()->withRegion()->withPlan()))->create()
+        $user = User::factory()->withPackage(fn(PackageFactory $factory) => $factory->serverPermissions(['create' => false,])->has(Provider::factory()->withRegion()->withPlan()))->create()
     );
 
     expect($user->can('create', Server::class))->toBeFalse();
@@ -100,4 +101,50 @@ it('cannot create a server without permissions', function () {
         // exception yet. It only does when we call a method like ->collect() on the test response.
         // However, if the validation fails, we get an HTTP failed assertion for a stray request.
         ->assertOk();
+});
+
+it('can list only server provider plans that are allowed in the package', function () {
+    $provider = Provider::factory()
+        ->withRegion()
+        ->has(ProviderPlan::factory()->set('label', 'Provider Plan A'), 'plans')
+        ->has(ProviderPlan::factory()->set('label', 'Provider Plan B'), 'plans')
+        ->create();
+
+    $providerRegion = $provider->regions->sole();
+
+    [$providerPlanA, $providerPlanB] = $provider->plans;
+
+    $package = Package::factory()
+        ->hasAttached($provider)
+        ->serverPermissions()
+        ->create();
+
+    actingAs($user = User::factory()->set('package_id', $package)->create());
+
+    // No provider plans attached to package for this provider, so all provider plans should be visible.
+    get(route('servers.plans-and-regions', ['provider' => $provider]))
+        ->assertOk()
+        ->assertExactJson([
+            'regions' => [
+                $providerRegion->getKey() => $providerRegion->label,
+            ],
+            'plans' => [
+                $providerPlanA->getKey() => 'Provider Plan A',
+                $providerPlanB->getKey() => 'Provider Plan B',
+            ]
+        ]);
+
+    $package->providerPlans()->attach($providerPlanB);
+
+    // Only provider plan B for this provider attached to package, so only provider plan B should be visible
+    get(route('servers.plans-and-regions', ['provider' => $provider]))
+        ->assertOk()
+        ->assertExactJson([
+            'regions' => [
+                $providerRegion->getKey() => $providerRegion->label,
+            ],
+            'plans' => [
+                $providerPlanB->getKey() => 'Provider Plan B',
+            ]
+        ]);
 });

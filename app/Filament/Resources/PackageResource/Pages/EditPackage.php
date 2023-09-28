@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\PackageResource\Pages;
 
+use App\Filament\Resources\PackageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use App\Filament\Resources\PackageResource;
 
 class EditPackage extends EditRecord
 {
@@ -15,5 +15,12 @@ class EditPackage extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+
+    public function afterSave(): void
+    {
+        // Necessary to refresh, in order to load the updated saved relationships and
+        // correctly show or hide the "manage provider plans" warning placeholder.
+        $this->getRecord()->refresh();
     }
 }

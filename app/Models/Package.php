@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Casts\PermissionCast;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Package extends Model
 {
@@ -39,19 +41,24 @@ class Package extends Model
         'server_permissions' => PermissionCast::class,
     ];
 
-    public function users()
+    public function users(): HasMany
     {
         return $this->hasMany(User::class);
     }
 
-    public function providers()
+    public function providers(): BelongsToMany
     {
-        return $this->belongsToMany(Provider::class);
+        return $this->belongsToMany(Provider::class)->using(PackageProvider::class);
     }
 
-    protected static function booted()
+    public function providerPlans(): BelongsToMany
     {
-        static::deleting(function ($package) {
+        return $this->belongsToMany(ProviderPlan::class);
+    }
+
+    protected static function booted(): void
+    {
+        static::deleting(function (self $package) {
             $package->users()->update(['package_id' => null]);
         });
     }

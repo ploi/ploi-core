@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Server;
-use Illuminate\Http\Request;
-use App\Jobs\Servers\DeleteServer;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
-use App\Http\Resources\ServerResource;
-use App\DataTransferObjects\ServerData;
 use App\Actions\Server\CreateServerAction;
+use App\DataTransferObjects\ServerData;
 use App\Http\Requests\ServerUpdateRequest;
+use App\Http\Resources\ServerResource;
+use App\Jobs\Servers\DeleteServer;
+use App\Models\ProviderPlan;
+use App\Models\Server;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServerController extends Controller
 {
@@ -101,19 +103,29 @@ class ServerController extends Controller
 
     public function plansAndRegions(Request $request, $providerId)
     {
-        $provider = $request->user()->package->providers()->findOrFail($providerId);
+        $package = $request->user()->package;
 
-        $regions = $provider->regions()
+        $provider = $package->providers()->findOrFail($providerId);
+
+        $regions = $provider
+            ->regions()
             ->when($provider->allowed_regions, function ($query) use ($provider) {
                 return $query->whereIn('id', $provider->allowed_regions);
             })
             ->pluck('label', 'id');
 
-        $plans = $provider->plans()
+        $plans = $provider
+            ->plans()
             ->when($provider->allowed_plans, function ($query) use ($provider) {
                 return $query->whereIn('id', $provider->allowed_plans);
             })
-            ->pluck('label', 'id');
+            ->when($package->providerPlans()->whereBelongsTo($provider)->exists(), function (Builder $query) use ($provider, $package) {
+                return $query->whereIn('id', $package->providerPlans()->whereBelongsTo($provider)->pluck('provider_plans.id'));
+            })
+            ->get()
+            ->mapWithKeys(function (ProviderPlan $providerPlan) {
+                return [$providerPlan->id => $providerPlan->label ?? $providerPlan->plan_id];
+            });
 
         return [
             'regions' => $regions,
