@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources\SupportTicketResource\Pages;
 
+use App\Filament\Resources\SupportTicketResource;
+use App\Mail\Support\TicketRepliedToEmail;
 use App\Models\SupportTicket;
-use Filament\Pages\Actions\Action;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Notifications\Notification;
+use Filament\Actions;
 use Filament\Resources\Pages\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Filament\Notifications\Notification;
-use App\Mail\Support\TicketRepliedToEmail;
-use Filament\Forms\Components\MarkdownEditor;
-use App\Filament\Resources\SupportTicketResource;
 
 class ViewSupportTicket extends Page
 {
@@ -31,38 +31,38 @@ class ViewSupportTicket extends Page
         return __('View ticket') . ': ' . $this->record->title;
     }
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
-            Action::make('close')
+            Actions\Action::make('close')
                 ->label(__('Close'))
                 ->action(function (self $livewire) {
                     $livewire->record->status = SupportTicket::STATUS_CLOSED;
                     $livewire->record->save();
 
                     Notification::make()
-                        ->body(__('Ticket closed'))
+                        ->title(__('Ticket closed'))
                         ->success()
                         ->send();
 
-                    $livewire->redirectRoute('filament.resources.support-tickets.view', $livewire->record);
+                    $livewire->redirect(SupportTicketResource::getUrl('view', ['record' => $livewire->getRecord()]));
                 })
-                ->visible(fn (self $livewire) => $livewire->record->status !== SupportTicket::STATUS_CLOSED)
+                ->visible(fn(self $livewire) => $livewire->record->status !== SupportTicket::STATUS_CLOSED)
                 ->color('danger'),
-            Action::make('reopen')
+            Actions\Action::make('reopen')
                 ->label(__('Reopen'))
                 ->action(function (self $livewire) {
                     $livewire->record->status = SupportTicket::STATUS_OPEN;
                     $livewire->record->save();
 
                     Notification::make()
-                        ->body(__('Ticket reopened'))
+                        ->title(__('Ticket reopened'))
                         ->success()
                         ->send();
 
-                    $livewire->redirectRoute('filament.resources.support-tickets.view', $livewire->record);
+                    $livewire->redirect(SupportTicketResource::getUrl('view', ['record' => $livewire->getRecord()]));
                 })
-                ->visible(fn (self $livewire) => $livewire->record->status === SupportTicket::STATUS_CLOSED)
+                ->visible(fn(self $livewire) => $livewire->record->status === SupportTicket::STATUS_CLOSED)
                 ->color('primary'),
         ];
     }
@@ -100,10 +100,10 @@ class ViewSupportTicket extends Page
         Mail::to($this->record->user)->send(new TicketRepliedToEmail($this->record));
 
         $this->form->fill();
-        $this->emit('$refresh');
+        $this->dispatch('$refresh');
 
         Notification::make()
-            ->body(__('Reply sent'))
+            ->title(__('Reply sent'))
             ->success()
             ->send();
     }

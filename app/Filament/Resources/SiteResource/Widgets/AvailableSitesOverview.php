@@ -43,7 +43,7 @@ class AvailableSitesOverview extends TableWidget
         return [
             Action::make('synchronize_site')
                 ->label(__('Synchronize'))
-                ->icon('heroicon-o-refresh')
+                ->icon('heroicon-o-arrow-path')
                 ->action(function (AvailableSite $record) {
                     app(SynchronizeSiteAction::class)->execute(ploiServerId: $record->server_id, ploiSiteId: $record->id);
                 }),

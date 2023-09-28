@@ -2,24 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
+use App\Actions\Provider\SynchronizeProviderAction;
+use App\Filament\Resources\ProviderResource\Pages;
+use App\Filament\Resources\ProviderResource\Widgets\AvailableProvidersOverview;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\ProviderResource\Pages;
-use App\Actions\Provider\SynchronizeProviderAction;
-use App\Filament\Resources\ProviderResource\Widgets\AvailableProvidersOverview;
 
 class ProviderResource extends Resource
 {
     protected static ?string $model = Provider::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cloud-upload';
+    protected static ?string $navigationIcon = 'heroicon-o-cloud-arrow-up';
 
     protected static ?string $navigationGroup = 'Providers';
 
@@ -35,11 +35,11 @@ class ProviderResource extends Resource
                     ->columnSpan(2),
                 Forms\Components\CheckboxList::make('allowed_plans')
                     ->options(function (Provider $record) {
-                        return $record->plans->mapWithKeys(fn (ProviderPlan $plan) => [$plan->id => $plan->label ?? $plan->plan_id]);
+                        return $record->plans->mapWithKeys(fn(ProviderPlan $plan) => [$plan->id => $plan->label ?? $plan->plan_id]);
                     })
                     ->label(__('Allowed Plans')),
                 Forms\Components\CheckboxList::make('allowed_regions')
-                    ->options(fn (Provider $record) => $record->regions->pluck('label', 'id'))
+                    ->options(fn(Provider $record) => $record->regions->pluck('label', 'id'))
                     ->label(__('Allowed Regions')),
             ]);
     }
@@ -48,7 +48,9 @@ class ProviderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')->label('ID')->searchable(),
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->description(function (Provider $record) {
                         return "{$record->plans_count} plan(s) · {$record->regions_count} region(s)";
@@ -71,12 +73,12 @@ class ProviderResource extends Resource
                 Tables\Actions\Action::make('synchronize_provider')
                     ->label(__('Synchronize'))
                     ->tooltip(__('This will synchronize the latest data from this provider to your Ploi Core installation'))
-                    ->icon('heroicon-o-refresh')
+                    ->icon('heroicon-o-arrow-path')
                     ->action(function (Provider $record) {
                         $provider = app(SynchronizeProviderAction::class)->execute($record->ploi_id);
 
                         Notification::make()
-                            ->body(__('Provider :provider synchronized successfully.', ['provider' => $provider->name]))
+                            ->title(__('Provider :provider synchronized successfully.', ['provider' => $provider->name]))
                             ->success()
                             ->send();
                     }),

@@ -2,19 +2,19 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use App\Models\Redirect;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
 use App\Filament\Resources\RedirectResource\Pages;
+use App\Models\Redirect;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class RedirectResource extends Resource
 {
     protected static ?string $model = Redirect::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-external-link';
+    protected static ?string $navigationIcon = 'heroicon-o-arrow-top-right-on-square';
 
     protected static ?string $navigationGroup = 'Site management';
 
@@ -26,15 +26,11 @@ class RedirectResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('site_id'),
                 Forms\Components\TextInput::make('server_id'),
-                Forms\Components\TextInput::make('status')
-                    ->maxLength(255),
+                Forms\Components\TextInput::make('status'),
                 Forms\Components\TextInput::make('ploi_id'),
-                Forms\Components\TextInput::make('redirect_from')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('redirect_to')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('type')
-                    ->maxLength(255),
+                Forms\Components\TextInput::make('redirect_from'),
+                Forms\Components\TextInput::make('redirect_to'),
+                Forms\Components\TextInput::make('type'),
             ]);
     }
 
@@ -58,11 +54,12 @@ class RedirectResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('type')
                     ->label(__('Type')),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->enum([
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->formatStateUsing(fn(string $state) => match ($state) {
                         Redirect::STATUS_BUSY => __('Busy'),
                         Redirect::STATUS_ACTIVE => __('Active'),
-                    ])
+                    })
                     ->colors([
                         'warning' => Redirect::STATUS_BUSY,
                         'success' => Redirect::STATUS_ACTIVE,

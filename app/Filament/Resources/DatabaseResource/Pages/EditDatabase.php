@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources\DatabaseResource\Pages;
 
+use App\Filament\Resources\DatabaseResource;
+use App\Mail\Database\PasswordReset;
 use App\Models\Database;
 use App\Services\Ploi\Ploi;
-use Filament\Resources\Pages\Page;
-use App\Mail\Database\PasswordReset;
-use Illuminate\Support\Facades\Mail;
 use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
-use App\Filament\Resources\DatabaseResource;
+use Filament\Resources\Pages\Page;
+use Illuminate\Support\Facades\Mail;
 
 class EditDatabase extends Page
 {
@@ -56,7 +56,7 @@ class EditDatabase extends Page
         $this->recentlyUpdatedPassword = $data->new_password;
 
         Notification::make()
-            ->body(__('Successfully reset database password.'))
+            ->title(__('Successfully reset database password.'))
             ->success()
             ->send();
 

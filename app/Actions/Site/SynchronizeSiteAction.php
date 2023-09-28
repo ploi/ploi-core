@@ -2,8 +2,8 @@
 
 namespace App\Actions\Site;
 
-use App\Models\Site;
 use App\Models\Server;
+use App\Models\Site;
 use App\Services\Ploi\Ploi;
 use Filament\Notifications\Notification;
 
@@ -46,7 +46,7 @@ class SynchronizeSiteAction
         }
 
         Notification::make()
-            ->body(__('Site :site synchronized successfully.', ['site' => $site->domain]))
+            ->title(__('Site :site synchronized successfully.', ['site' => $site->domain]))
             ->success()
             ->send();
 

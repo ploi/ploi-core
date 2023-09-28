@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Casts\Encrypted;
+use Filament\Panel;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
@@ -69,7 +70,7 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
         }
     }
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(Panel $panel): bool
     {
         return $this->role === self::ADMIN;
     }

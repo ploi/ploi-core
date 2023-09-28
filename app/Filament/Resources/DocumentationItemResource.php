@@ -2,15 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
-use App\Models\DocumentationItem;
-use Filament\Forms\Components\Select;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\MarkdownEditor;
 use App\Filament\Resources\DocumentationItemResource\Pages;
+use App\Models\DocumentationItem;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class DocumentationItemResource extends Resource
 {
@@ -26,23 +24,23 @@ class DocumentationItemResource extends Resource
 
     protected static ?string $label = 'Article';
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
-        return (bool) setting('documentation');
+        return (bool)setting('documentation');
     }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title')
+                Forms\Components\TextInput::make('title')
                     ->label(__('Title'))
                     ->required(),
-                Select::make('documentation_category_id')
+                Forms\Components\Select::make('documentation_category_id')
                     ->relationship('category', 'title')
                     ->searchable()
                     ->preload(),
-                MarkdownEditor::make('content')
+                Forms\Components\MarkdownEditor::make('content')
                     ->label(__('Content'))
                     ->required()
                     ->columnSpan(2),
@@ -53,11 +51,10 @@ class DocumentationItemResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
-
-                TextColumn::make('category.title')
+                Tables\Columns\TextColumn::make('category.title')
                     ->searchable()
                     ->sortable(),
             ]);

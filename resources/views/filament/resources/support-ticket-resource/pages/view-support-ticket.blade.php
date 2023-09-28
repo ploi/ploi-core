@@ -29,9 +29,9 @@
             <form wire:submit.prevent="reply">
                 {{ $this->form }}
 
-                <x-filament-support::button type="submit" class="mt-4">
+                <x-filament::button type="submit" class="mt-4">
                     {{ __('Reply') }}
-                </x-filament-support::button>
+                </x-filament::button>
             </form>
         @endif
     </div>

@@ -44,7 +44,7 @@ class AvailableServersOverview extends TableWidget
         return [
             Action::make('synchronize_server')
                 ->label(__('Synchronize'))
-                ->icon('heroicon-o-refresh')
+                ->icon('heroicon-o-arrow-path')
                 ->action(function (AvailableServer $record) {
                     app(SynchronizeServerAction::class)->execute($record->id);
                 }),

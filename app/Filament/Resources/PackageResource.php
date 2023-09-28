@@ -2,25 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Tables;
-use App\Models\Package;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\CheckboxList;
 use App\Filament\Resources\PackageResource\Pages;
 use App\Filament\Resources\PackageResource\RelationManagers;
+use App\Models\Package;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class PackageResource extends Resource
 {
     protected static ?string $model = Package::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-color-swatch';
+    protected static ?string $navigationIcon = 'heroicon-o-swatch';
 
     protected static ?int $navigationSort = 3;
 
@@ -28,31 +23,31 @@ class PackageResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
+                Forms\Components\TextInput::make('name')
                     ->label(__('Name'))
                     ->required()
                     ->columnSpan(2),
-                TextInput::make('maximum_sites')
+                Forms\Components\TextInput::make('maximum_sites')
                     ->helperText(__('Set to 0 for unlimited'))
                     ->integer()
                     ->required(),
-                TextInput::make('maximum_servers')
+                Forms\Components\TextInput::make('maximum_servers')
                     ->helperText(__('Set to 0 for unlimited'))
                     ->integer()
                     ->required(),
-                TextInput::make('stripe_plan_id')
+                Forms\Components\TextInput::make('stripe_plan_id')
                     ->helperText(__('Enter the pricing ID from Stripe here') . ' - <a href="https://docs.ploi-core.io/digging-deeper/using-stripe" target="ploi-docs-stripe" class="text-primary-500">How does this work?</a>')
                     ->label(__('Stripe ID'))
                     ->columnSpan(2),
-                TextInput::make('price_monthly')
+                Forms\Components\TextInput::make('price_monthly')
                     ->label(__('Monthly price'))
                     ->helperText(__('Fill this in if you want it to be monthly payments'))
                     ->required(),
-                TextInput::make('price_yearly')
+                Forms\Components\TextInput::make('price_yearly')
                     ->label(__('Yearly price'))
                     ->helperText(__('Fill this in if you want it to be yearly payments'))
                     ->required(),
-                Select::make('currency')
+                Forms\Components\Select::make('currency')
                     ->label(__('Currency'))
                     ->options([
                         'usd' => 'USD $',
@@ -67,43 +62,43 @@ class PackageResource extends Resource
                         'nz' => 'NZD $ (New Zealand Dollar)',
                     ])
                     ->required(),
-                Grid::make()
+                Forms\Components\Grid::make()
                     ->schema([
-                        Section::make(__('Server permissions'))
+                        Forms\Components\Section::make(__('Server permissions'))
                             ->schema([
-                                Checkbox::make('server_permissions.create')
+                                Forms\Components\Checkbox::make('server_permissions.create')
                                     ->reactive()
                                     ->label('Allow server creation')
                                     ->helperText('This will allow users to create servers'),
-                                Checkbox::make('server_permissions.update')
+                                Forms\Components\Checkbox::make('server_permissions.update')
                                     ->label('Allow server updates')
                                     ->helperText('This will allow users to update servers'),
-                                Checkbox::make('server_permissions.delete')
+                                Forms\Components\Checkbox::make('server_permissions.delete')
                                     ->label('Allow server deletion')
                                     ->helperText('This will allow users to delete servers'),
                             ])
                             ->columnSpan(1),
-                        Section::make(__('Site permissions'))
+                        Forms\Components\Section::make(__('Site permissions'))
                             ->schema([
-                                Checkbox::make('site_permissions.create')
+                                Forms\Components\Checkbox::make('site_permissions.create')
                                     ->label('Allow site creation')
                                     ->helperText('This will allow users to create sites'),
-                                Checkbox::make('site_permissions.update')
+                                Forms\Components\Checkbox::make('site_permissions.update')
                                     ->label('Allow site updates')
                                     ->helperText('This will allow users to update sites'),
-                                Checkbox::make('site_permissions.delete')
+                                Forms\Components\Checkbox::make('site_permissions.delete')
                                     ->label('Allow site deletion')
                                     ->helperText('This will allow users to delete sites'),
                             ])
                             ->columnSpan(1),
                     ]),
 
-                Grid::make()
+                Forms\Components\Grid::make()
                     ->schema([
-                        Section::make(__('Available server providers'))
+                        Forms\Components\Section::make(__('Available server providers'))
                             ->description(__('These server providers will be available for users that are attached to this package.'))
                             ->schema([
-                                CheckboxList::make('providers')
+                                Forms\Components\CheckboxList::make('providers')
                                     ->relationship('providers', 'name')
                             ])
                             ->columnSpan(1)
@@ -118,7 +113,9 @@ class PackageResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')->label('ID')->searchable(),
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Name'))
                     ->description(function (Package $record) {
@@ -129,10 +126,10 @@ class PackageResource extends Resource
                         return "Attached to stripe - {$record->price_monthly} {$record->currency}";
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
-                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum sites')),
                 Tables\Columns\TextColumn::make('maximum_servers')
-                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum servers')),
                 Tables\Columns\TextColumn::make('users_count')
                     ->counts('users'),
@@ -142,6 +139,7 @@ class PackageResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

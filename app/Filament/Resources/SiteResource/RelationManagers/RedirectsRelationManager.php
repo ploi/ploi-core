@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\SiteResource\RelationManagers;
 
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Filament\Resources\RedirectResource;
 use Filament\Resources\RelationManagers\RelationManager;
 
@@ -13,12 +13,12 @@ class RedirectsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'from';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return RedirectResource::form($form);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return RedirectResource::table($table);
     }

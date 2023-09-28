@@ -5,6 +5,7 @@ namespace App\Actions\Server;
 use App\Models\Server;
 use App\Services\Ploi\Ploi;
 use Filament\Notifications\Notification;
+use Throwable;
 
 class SynchronizeServerAction
 {
@@ -12,9 +13,9 @@ class SynchronizeServerAction
     {
         try {
             $serverData = Ploi::make()->server()->get($ploiServerId)->getData();
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             Notification::make()
-                ->body('An error has occurred: ' . $exception->getMessage())
+                ->title('An error has occurred: ' . $exception->getMessage())
                 ->danger()
                 ->send();
 
@@ -33,9 +34,9 @@ class SynchronizeServerAction
                     'internal_ip' => $serverData->internal_ip,
                     'available_php_versions' => $serverData->installed_php_versions,
                 ]);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             Notification::make()
-                ->body('An error has occurred: ' . $exception->getMessage())
+                ->title('An error has occurred: ' . $exception->getMessage())
                 ->danger()
                 ->send();
 
@@ -43,7 +44,7 @@ class SynchronizeServerAction
         }
 
         Notification::make()
-            ->body(__('Server :server synchronized successfully.', ['server' => $server->name]))
+            ->title(__('Server :server synchronized successfully.', ['server' => $server->name]))
             ->success()
             ->send();
 

@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\PackageResource\RelationManagers;
 
 use App\Models\User;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
 use App\Filament\Resources\UserResource;
@@ -16,12 +16,12 @@ class UsersRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return UserResource::form($form);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return UserResource::table($table)
             ->appendHeaderActions([

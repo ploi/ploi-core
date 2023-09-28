@@ -2,17 +2,16 @@
 
 namespace App\Filament\Resources;
 
-use Illuminate\Support\Str;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
-use Illuminate\Support\HtmlString;
-use App\Models\DocumentationCategory;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\MarkdownEditor;
 use App\Filament\Resources\DocumentationCategoryResource\Pages;
-use App\Filament\Resources\DocumentationCategoryResource\RelationManagers\DocumentationItemsRelationManager;
+use App\Filament\Resources\DocumentationCategoryResource\RelationManagers;
+use App\Models\DocumentationCategory;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 
 class DocumentationCategoryResource extends Resource
 {
@@ -28,21 +27,21 @@ class DocumentationCategoryResource extends Resource
 
     protected static ?string $label = 'Category';
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
-        return (bool) setting('documentation');
+        return (bool)setting('documentation');
     }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title')
+                Forms\Components\TextInput::make('title')
                     ->label(__('Title'))
                     ->unique(table: DocumentationCategory::class, column: 'title', ignoreRecord: true)
                     ->required()
                     ->columnSpan(2),
-                MarkdownEditor::make('description')
+                Forms\Components\MarkdownEditor::make('description')
                     ->label(__('Description'))
                     ->required()
                     ->columnSpan(2),
@@ -53,20 +52,20 @@ class DocumentationCategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable()
                     ->label(__('Title')),
-                TextColumn::make('description')
+                Tables\Columns\TextColumn::make('description')
                     ->label(__('Description'))
-                    ->formatStateUsing(fn (string $state) => new HtmlString(Str::markdown($state))),
+                    ->formatStateUsing(fn(string $state) => new HtmlString(Str::markdown($state))),
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            DocumentationItemsRelationManager::class,
+            RelationManagers\DocumentationItemsRelationManager::class,
         ];
     }
 

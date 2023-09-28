@@ -2,18 +2,18 @@
 
 namespace App\Console\Commands\Core;
 
-use Exception;
-use App\Models\User;
-use RuntimeException;
 use App\Models\Package;
+use App\Models\User;
 use App\Services\Ploi\Ploi;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Console\Command;
 use App\Services\VersionChecker;
+use Exception;
+use Illuminate\Console\Command;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
+use RuntimeException;
 
 class Install extends Command
 {
@@ -43,8 +43,8 @@ class Install extends Command
         $this->writeSeparationLine();
         $this->info('Make sure to also setup emailing, the cronjob and the queue worker.');
         $this->line(' ');
-        $this->info('Setting up emailing: https://docs.ploi-core.io/getting-started/setting-up-email');
-        $this->info('Setting up cronjob & queue worker: https://docs.ploi-core.io/getting-started/installation');
+        $this->info('Setting up emailing: https://docs.ploi-core.io/261-getting-started/918-setting-up-email');
+        $this->info('Setting up cronjob & queue worker: https://docs.ploi-core.io/261-getting-started/638-installation');
         $this->writeSeparationLine();
         $this->line(' ');
         $this->info('Visit your platform at ' . env('APP_URL'));

@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
-use Laravel\Cashier\Subscription;
 use App\Filament\Resources\SubscriptionResource\Pages;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Laravel\Cashier\Subscription;
 
 class SubscriptionResource extends Resource
 {
     protected static ?string $model = Subscription::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cash';
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
     protected static ?int $navigationSort = 4;
 
@@ -36,11 +36,12 @@ class SubscriptionResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->searchable()
-                    ->url(fn ($record) => UserResource::getUrl('edit', ['record' => $record])),
+                    ->url(fn($record) => UserResource::getUrl('edit', ['record' => $record])),
                 Tables\Columns\TextColumn::make('stripe_id')->searchable(),
                 Tables\Columns\TextColumn::make('stripe_plan')->searchable(),
-                Tables\Columns\BadgeColumn::make('stripe_status')
+                Tables\Columns\TextColumn::make('stripe_status')
                     ->label('Status')
+                    ->badge()
                     ->colors([
                         'success' => \Stripe\Subscription::STATUS_ACTIVE,
                         'warning' => \Stripe\Subscription::STATUS_PAST_DUE,
@@ -55,6 +56,7 @@ class SubscriptionResource extends Resource
             ])
             ->actions([
 //                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Tables;
+use App\Filament\Resources\ProviderPlanResource\Pages;
 use App\Models\Provider;
 use App\Models\ProviderPlan;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\TextInput;
-use App\Filament\Resources\ProviderPlanResource\Pages;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class ProviderPlanResource extends Resource
 {
@@ -25,7 +25,7 @@ class ProviderPlanResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('label'),
+                Forms\Components\TextInput::make('label'),
             ]);
     }
 
@@ -33,7 +33,9 @@ class ProviderPlanResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')->label('ID')->searchable(),
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('provider.name')
                     ->label(__('Provider'))
                     ->searchable(),
@@ -51,7 +53,7 @@ class ProviderPlanResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('provider_id')
                     ->label(__('Provider'))
-                    ->options(fn () => Provider::orderBy('name')->get()->mapWithKeys(fn (Provider $provider) => [$provider->id => $provider->name])),
+                    ->options(fn() => Provider::orderBy('name')->get()->mapWithKeys(fn(Provider $provider) => [$provider->id => $provider->name])),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
