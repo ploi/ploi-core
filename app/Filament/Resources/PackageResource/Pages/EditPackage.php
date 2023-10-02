@@ -16,4 +16,11 @@ class EditPackage extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    public function afterSave(): void
+    {
+        // Necessary to refresh, in order to load the updated saved relationships and
+        // correctly show or hide the "manage provider plans" warning placeholder.
+        $this->getRecord()->refresh();
+    }
 }

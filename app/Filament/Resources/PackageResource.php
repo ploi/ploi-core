@@ -2,14 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use App\Models\Package;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
 use App\Filament\Resources\PackageResource\Pages;
 use App\Filament\Resources\PackageResource\RelationManagers;
+use App\Models\Package;
+use App\Models\Provider;
+use App\Models\ProviderPlan;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Support\HtmlString;
 
 class PackageResource extends Resource
@@ -66,6 +69,7 @@ class PackageResource extends Resource
                 Forms\Components\Grid::make()
                     ->schema([
                         Forms\Components\Section::make(__('Server permissions'))
+                            ->icon(ServerResource::getNavigationIcon())
                             ->schema([
                                 Forms\Components\Checkbox::make('server_permissions.create')
                                     ->reactive()
@@ -80,6 +84,7 @@ class PackageResource extends Resource
                             ])
                             ->columnSpan(1),
                         Forms\Components\Section::make(__('Site permissions'))
+                            ->icon(SiteResource::getNavigationIcon())
                             ->schema([
                                 Forms\Components\Checkbox::make('site_permissions.create')
                                     ->label('Allow site creation')
@@ -98,9 +103,95 @@ class PackageResource extends Resource
                     ->schema([
                         Forms\Components\Section::make(__('Available server providers'))
                             ->description(__('These server providers will be available for users that are attached to this package.'))
+                            ->icon(ProviderResource::getNavigationIcon())
                             ->schema([
                                 Forms\Components\CheckboxList::make('providers')
                                     ->relationship('providers', 'name')
+                                    ->reactive(),
+                                Forms\Components\Grid::make(1)
+                                    ->schema([
+                                        Forms\Components\Actions::make([
+                                            Forms\Components\Actions\Action::make('manage_provider_plans')
+                                                ->label(__('Manage provider plans'))
+                                                ->icon('heroicon-o-adjustments-horizontal')
+                                                ->form(function (Package $record) {
+                                                    return $record->providers->sortBy('name')->map(function (Provider $provider) {
+                                                        return Forms\Components\Section::make($provider->label)
+                                                            ->description(__('Select the plans that should be available for this provider on this package.'))
+                                                            ->icon(ProviderResource::getNavigationIcon())
+                                                            ->statePath($provider->id)
+                                                            ->schema([
+                                                                Forms\Components\Toggle::make('select_specific_provider_plans')
+                                                                    ->label(__('Select subset'))
+                                                                    ->helperText(__('Check this box if you want to limit the provider plans available on this package.'))
+                                                                    ->default(false)
+                                                                    ->reactive()
+                                                                    ->afterStateUpdated(function (Forms\Components\Toggle $component, Forms\Set $set) use ($provider) {
+                                                                        $set(
+                                                                            path: "provider_plans",
+                                                                            state: $component->getState() ? $provider->plans->pluck('id') : [],
+                                                                        );
+                                                                    }),
+                                                                Forms\Components\CheckboxList::make("provider_plans")
+                                                                    ->label(__('Select plans'))
+                                                                    ->options(fn() => $provider->plans->mapWithKeys(fn(ProviderPlan $providerPlan) => [$providerPlan->id => $providerPlan->label ?? $providerPlan->plan_id])->all())
+                                                                    ->visible(fn(Forms\Get $get) => $get('select_specific_provider_plans'))
+                                                                    ->reactive()
+                                                                    ->bulkToggleable()
+                                                                    ->columns(2)
+                                                            ])
+                                                            ->collapsible();
+                                                    })->all();
+                                                })
+                                                ->fillForm(function (Package $record) {
+                                                    return $record->providers->mapWithKeys(function (Provider $provider) use ($record) {
+                                                        $providerPlanIds = $record->providerPlans()->whereBelongsTo($provider)->pluck('provider_plans.id');
+
+                                                        return [$provider->id => [
+                                                            'select_specific_provider_plans' => $providerPlanIds->isNotEmpty(),
+                                                            'provider_plans' => $providerPlanIds->all(),
+                                                        ]];
+                                                    })->all();
+                                                })
+                                                ->action(function (Package $record, array $data) {
+                                                    $providerPlanIds = collect($data)
+                                                        // If `select_specific_provider_plans`, all provider plans are available. It could be that this
+                                                        // option was deselected, and that we have some left over provider plans in the field that
+                                                        // is now hidden. We will not include theSE IDs so that they ARE detached automatically.
+                                                        ->where('select_specific_provider_plans', true)
+                                                        ->pluck('provider_plans')
+                                                        ->flatten();
+
+                                                    // Detaches provider plans not specifically selected.
+                                                    $record->providerPlans()->sync($providerPlanIds);
+
+                                                    Notification::make()
+                                                        ->title(__('Provider plans saved'))
+                                                        ->success()
+                                                        ->send();
+                                                })
+                                                ->modalSubmitActionLabel(__('Save'))
+                                                ->color('gray')
+                                                ->disabled(function (Package $record, Forms\Get $get) {
+                                                    $providers = collect($get('providers'))
+                                                        ->map(fn(string $id): int => (int)$id)
+                                                        ->sort();
+
+                                                    return $record->providers->pluck('id')->map(fn(string $id): int => (int)$id)->sort()->toArray() !== $providers->all();
+                                                })
+                                        ]),
+                                        Forms\Components\Placeholder::make('save_warning')
+                                            ->content(__('You\'ve changed the available server providers. Please save your changes before you can manage the provider plans.'))
+                                            ->visible(function (Package $record, Forms\Get $get) {
+                                                $providers = collect($get('providers'))
+                                                    ->map(fn(string $id): int => (int)$id)
+                                                    ->sort();
+
+                                                return $record->providers->pluck('id')->map(fn(string $id): int => (int)$id)->sort()->toArray() !== $providers->all();
+                                            })
+                                            ->hiddenLabel(),
+                                    ])
+                                    ->hiddenOn('create'),
                             ])
                             ->columnSpan(1)
                     ])
@@ -127,10 +218,10 @@ class PackageResource extends Resource
                         return "Attached to stripe - {$record->price_monthly} {$record->currency}";
                     }),
                 Tables\Columns\TextColumn::make('maximum_sites')
-                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum sites')),
                 Tables\Columns\TextColumn::make('maximum_servers')
-                    ->formatStateUsing(fn (int $state) => $state === 0 ? __('Unlimited') : $state)
+                    ->formatStateUsing(fn(int $state) => $state === 0 ? __('Unlimited') : $state)
                     ->label(__('Maximum servers')),
                 Tables\Columns\TextColumn::make('users_count')
                     ->counts('users'),

@@ -28,10 +28,10 @@ class UsersRelationManager extends RelationManager
                 ...$table->getHeaderActions(),
                 Action::make('add_user')
                     ->label(__('Add user'))
-                    ->form(fn(self $livewire) => [
+                    ->form(fn (self $livewire) => [
                         Select::make('user_id')
                             ->label('User')
-                            ->options(User::orderBy('name')->get()->mapWithKeys(fn(User $user) => [$user->id => $user->name]))
+                            ->options(User::orderBy('name')->get()->mapWithKeys(fn (User $user) => [$user->id => $user->name]))
                             ->preload()
                             ->searchable()
                             ->required(),
