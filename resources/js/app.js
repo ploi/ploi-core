@@ -1,7 +1,6 @@
 import {createInertiaApp, Head, InertiaLink} from '@inertiajs/inertia-vue3'
 import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
 import Vue, {createApp, h} from 'vue';
-import {InertiaProgress} from '@inertiajs/progress'
 import Store from '@/store';
 import PortalVue from 'portal-vue'
 import vClickOutside from "click-outside-vue3"
@@ -32,14 +31,13 @@ createInertiaApp({
             .component('Head', Head)
             .mount(el);
     },
+    progress: {
+        delay: 250,
+        color: '#1b8ae8',
+        includeCSS: true,
+        showSpinner: false,
+    },
 });
-
-InertiaProgress.init({
-    delay: 250,
-    color: '#1b8ae8',
-    includeCSS: true,
-    showSpinner: false,
-})
 
 window.axios = axios;
 window._forEach = forEach;

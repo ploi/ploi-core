@@ -149,7 +149,7 @@ class Site extends Resource
         return $response->getJson()->data;
     }
 
-    public function phpVersion($version = '7.4'): stdClass
+    public function phpVersion($version = '8.2'): stdClass
     {
         // Set the options
         $options = [
