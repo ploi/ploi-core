@@ -41,9 +41,6 @@
                                         <Button :variant="type === 'nextcloud' ? 'primary' : 'secondary'"
                                                 @click="prepareInstall('nextcloud')">{{ __('Install Nextcloud') }}
                                         </Button>
-                                        <Button :variant="type === 'october-cms' ? 'primary' : 'secondary'"
-                                                @click="prepareInstall('october-cms')">{{ __('Install October CMS') }}
-                                        </Button>
                                     </div>
                                 </template>
                             </SettingsSegment>

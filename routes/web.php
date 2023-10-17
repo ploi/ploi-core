@@ -177,24 +177,20 @@ Route::group(['middleware' => ['auth', 'auth.blocked']], function () {
         });
 
         // Support routes
-        if (setting('support')) {
-            Route::group(['prefix' => 'support', 'as' => 'support.'], function () {
-                Route::get('/', [SupportController::class, 'index'])->name('index');
-                Route::get('create', [SupportController::class, 'create'])->name('create');
-                Route::get('closed', [SupportController::class, 'indexClosed'])->name('index.closed');
-                Route::post('/', [SupportController::class, 'store'])->name('store');
-                Route::get('{support}', [SupportController::class, 'show'])->name('show');
-                Route::post('{support}/reply', [SupportController::class, 'reply'])->name('reply');
-                Route::post('{support}/close', [SupportController::class, 'close'])->name('close');
-            });
-        }
+        Route::group(['prefix' => 'support', 'as' => 'support.'], function () {
+            Route::get('/', [SupportController::class, 'index'])->name('index');
+            Route::get('create', [SupportController::class, 'create'])->name('create');
+            Route::get('closed', [SupportController::class, 'indexClosed'])->name('index.closed');
+            Route::post('/', [SupportController::class, 'store'])->name('store');
+            Route::get('{support}', [SupportController::class, 'show'])->name('show');
+            Route::post('{support}/reply', [SupportController::class, 'reply'])->name('reply');
+            Route::post('{support}/close', [SupportController::class, 'close'])->name('close');
+        });
 
-        if (setting('documentation')) {
-            Route::group(['prefix' => 'documentation', 'as' => 'documentation.'], function () {
-                Route::get('/', [DocumentationController::class, 'index'])->name('index');
-                Route::get('{documentationCategory}', [DocumentationController::class, 'show'])->name('show');
-                Route::get('{documentationCategory}/article/{documentationItem}', [DocumentationController::class, 'showArticle'])->name('article.show');
-            });
-        }
+        Route::group(['prefix' => 'documentation', 'as' => 'documentation.'], function () {
+            Route::get('/', [DocumentationController::class, 'index'])->name('index');
+            Route::get('{documentationCategory}', [DocumentationController::class, 'show'])->name('show');
+            Route::get('{documentationCategory}/article/{documentationItem}', [DocumentationController::class, 'showArticle'])->name('article.show');
+        });
     });
 });

@@ -16,18 +16,11 @@ class InstallApp implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasPloi;
 
-    public Site $site;
-    public $type;
-    public $options;
-
-    public function __construct(Site $site, string $type = Site::PROJECT_WORDPRESS, array $options = [])
+    public function __construct(public Site $site, public string $type = Site::PROJECT_WORDPRESS, public array $options = [])
     {
-        $this->site = $site;
-        $this->type = $type;
-        $this->options = $options;
     }
 
-    public function handle()
+    public function handle(): void
     {
         $response = $this->getPloi()
             ->server($this->site->server->ploi_id)

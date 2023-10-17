@@ -67,7 +67,7 @@ class AlertResource extends Resource
                         'danger' => Alert::TYPE_DANGER,
                     ]),
                 Tables\Columns\TextColumn::make('expires_at')
-                    ->label('Expires Date')
+                    ->label('Expires')
                     ->default('-'),
             ]);
     }

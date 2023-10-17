@@ -22,8 +22,6 @@ class Site extends Model
 
     const PROJECT_WORDPRESS = 'wordpress';
     const PROJECT_NEXTCLOUD = 'nextcloud';
-    const PROJECT_OCTOBERCMS = 'october-cms';
-
     public $fillable = [
         'ploi_id',
         'domain',

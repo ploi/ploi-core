@@ -55,7 +55,7 @@ class Settings extends Page
         return [
             Forms\Components\Grid::make(2)
                 ->schema([
-                    Forms\Components\Grid::make(1)
+                    Forms\Components\Grid::make(2)
                         ->schema([
                             Forms\Components\TextInput::make('name')
                                 ->label(__('Company name'))
