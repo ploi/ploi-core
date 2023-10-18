@@ -22,6 +22,16 @@ class SynchronizeServerAction
             return null;
         }
 
+        if(!$serverData){
+            Notification::make()
+                ->title('Server synchronization')
+                ->body('It was not possible to synchronize servers, it seems the API key has the wrong scopes. Please make sure the Ploi API key you\'ve entered has all the scopes enabled.')
+                ->danger()
+                ->send();
+
+            return null;
+        }
+
         try {
             $server = Server::query()
                 ->updateOrCreate([
