@@ -34,7 +34,7 @@ class CreateSite implements ShouldQueue
         );
 
         $this->site->ploi_id = $ploiSite->data->id;
-        $this->site->php_version = $ploiSite->data->php_version;
+        $this->site->php_version = $ploiSite->data->php_version ?? 8.2;
         $this->site->save();
 
         // Lets fetch the status after 5 seconds
