@@ -151,7 +151,7 @@ class ProfileBillingController extends Controller
         $planId = $plan->stripe_plan_id;
 
         // Only do something if the user is not already subscribed to this plan.
-        if ($user->subscribedToPlan($planId, 'default')) {
+        if ($user->subscribedToPrice($planId, 'default')) {
             return redirect()->route('profile.billing.index')->with('error', 'You did not select a different plan');
         }
 
