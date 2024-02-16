@@ -68,7 +68,8 @@ class Site extends Resource
         string $projectRoot = '/',
         string $systemUser = 'ploi',
         string $systemUserPassword = null
-    ): stdClass {
+    ): stdClass
+    {
         // Remove the id
         $this->setId(null);
 
@@ -104,6 +105,11 @@ class Site extends Resource
 
         // TODO: Debugging purposes
         if (!$response->getJson() || !isset($response->getJson()->data)) {
+            try {
+                info(json_encode($response));
+            } catch (\Throwable $exception) {
+
+            }
             throw new Exception($response->getJson()->error ?? 'Unknown error has occured');
         }
 
