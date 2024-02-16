@@ -28,14 +28,6 @@ export default defineConfig({
             },
         }),
     ],
-    css: {
-        postcss: {
-            plugins: [
-                require("tailwindcss"),
-                require("autoprefixer"),
-            ]
-        }
-    },
     build: {
         outDir: "./public/build",
         minify: false,
