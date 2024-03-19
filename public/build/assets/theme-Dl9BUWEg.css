@@ -4370,6 +4370,15 @@ select {
     display: none;
   }
 
+  .md\:w-max {
+    width: -moz-max-content;
+    width: max-content;
+  }
+
+  .md\:max-w-60 {
+    max-width: 15rem;
+  }
+
   .md\:columns-\[--cols-md\] {
     -moz-columns: var(--cols-md);
          columns: var(--cols-md);
@@ -4429,6 +4438,10 @@ select {
     border-bottom-width: calc(0px * var(--tw-divide-y-reverse));
   }
 
+  .md\:overflow-x-auto {
+    overflow-x: auto;
+  }
+
   .md\:rounded-xl {
     border-radius: 0.75rem;
   }
@@ -4440,10 +4453,6 @@ select {
   .md\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  }
-
-  .md\:pe-3 {
-    padding-inline-end: 0.75rem;
   }
 
   .md\:pe-6 {
