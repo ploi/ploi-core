@@ -60,6 +60,7 @@ class AlertResource extends Resource
                         Alert::TYPE_INFO => __('Informational'),
                         Alert::TYPE_WARNING => __('Warning'),
                         Alert::TYPE_DANGER => __('Danger'),
+                        default => __('Unknown status')
                     })
                     ->colors([
                         'primary' => Alert::TYPE_INFO,

@@ -54,6 +54,7 @@ class CertificateResource extends Resource
                     ->formatStateUsing(fn (string $state) => match ($state) {
                         Certificate::STATUS_BUSY => __('Busy'),
                         Certificate::STATUS_ACTIVE => __('Active'),
+                        default => __('Unknown status')
                     })
                     ->colors([
                         'warning' => Certificate::STATUS_BUSY,

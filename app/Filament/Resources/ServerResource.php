@@ -67,6 +67,7 @@ class ServerResource extends Resource
                     ->formatStateUsing(fn (string $state) => match ($state) {
                         Server::STATUS_BUSY => __('Busy'),
                         Server::STATUS_ACTIVE => __('Active'),
+                        default => __('Unknown status')
                     })
                     ->colors([
                         'warning' => Server::STATUS_BUSY,

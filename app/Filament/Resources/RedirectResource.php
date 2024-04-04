@@ -59,6 +59,7 @@ class RedirectResource extends Resource
                     ->formatStateUsing(fn (string $state) => match ($state) {
                         Redirect::STATUS_BUSY => __('Busy'),
                         Redirect::STATUS_ACTIVE => __('Active'),
+                        default => __('Unknown status')
                     })
                     ->colors([
                         'warning' => Redirect::STATUS_BUSY,

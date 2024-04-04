@@ -45,6 +45,7 @@ class DatabaseResource extends Resource
                     ->formatStateUsing(fn (string $state) => match ($state) {
                         Database::STATUS_BUSY => __('Busy'),
                         Database::STATUS_ACTIVE => __('Active'),
+                        default => __('Unknown status')
                     })
                     ->colors([
                         'warning' => Database::STATUS_BUSY,

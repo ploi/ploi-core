@@ -70,6 +70,7 @@ class SiteResource extends Resource
                     ->formatStateUsing(fn (string $state) => match ($state) {
                         Site::STATUS_BUSY => __('Busy'),
                         Site::STATUS_ACTIVE => __('Active'),
+                        default => __('Unknown status')
                     })
                     ->colors([
                         'warning' => Site::STATUS_BUSY,

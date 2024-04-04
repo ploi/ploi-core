@@ -52,6 +52,7 @@ class SupportTicketResource extends Resource
                         SupportTicket::STATUS_CLOSED => __('Closed'),
                         SupportTicket::STATUS_CUSTOMER_REPLY => __('Customer Reply'),
                         SupportTicket::STATUS_SUPPORT_REPLY => __('Support Reply'),
+                        default => __('Unknown status')
                     })
                     ->colors([
                         'primary' => [SupportTicket::STATUS_OPEN, SupportTicket::STATUS_SUPPORT_REPLY, SupportTicket::STATUS_CUSTOMER_REPLY],

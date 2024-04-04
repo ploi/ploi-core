@@ -2207,6 +2207,42 @@ select {
 .min-w-\[theme\(spacing\.8\)\] {
   min-width: 2rem;
 }
+.\!max-w-2xl {
+  max-width: 42rem !important;
+}
+.\!max-w-3xl {
+  max-width: 48rem !important;
+}
+.\!max-w-4xl {
+  max-width: 56rem !important;
+}
+.\!max-w-5xl {
+  max-width: 64rem !important;
+}
+.\!max-w-6xl {
+  max-width: 72rem !important;
+}
+.\!max-w-7xl {
+  max-width: 80rem !important;
+}
+.\!max-w-\[14rem\] {
+  max-width: 14rem !important;
+}
+.\!max-w-lg {
+  max-width: 32rem !important;
+}
+.\!max-w-md {
+  max-width: 28rem !important;
+}
+.\!max-w-sm {
+  max-width: 24rem !important;
+}
+.\!max-w-xl {
+  max-width: 36rem !important;
+}
+.\!max-w-xs {
+  max-width: 20rem !important;
+}
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -2224,9 +2260,6 @@ select {
 }
 .max-w-7xl {
   max-width: 80rem;
-}
-.max-w-\[14rem\] {
-  max-width: 14rem;
 }
 .max-w-fit {
   max-width: -moz-fit-content;
@@ -2874,6 +2907,9 @@ select {
 }
 .bg-white\/5 {
   background-color: rgb(255 255 255 / 0.05);
+}
+.\!bg-none {
+  background-image: none !important;
 }
 .bg-cover {
   background-size: cover;

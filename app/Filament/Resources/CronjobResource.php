@@ -39,6 +39,7 @@ class CronjobResource extends Resource
                     ->formatStateUsing(fn (string $state) => match ($state) {
                         Cronjob::STATUS_BUSY => __('Busy'),
                         Cronjob::STATUS_ACTIVE => __('Active'),
+                        default => __('Unknown status')
                     })
                     ->colors([
                         'warning' => Cronjob::STATUS_BUSY,
