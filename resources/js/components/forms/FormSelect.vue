@@ -7,7 +7,7 @@
             loading ? 'cursor-wait' : '',
             ]" :id="id" :required="required" :placeholder="placeholder"
                 @input="updateValue($event.target.value)"
-                v-model="modelValue">
+                :value="modelValue">
             <slot></slot>
         </select>
         <ErrorText v-if="errors">{{ errors[0] }}</ErrorText>

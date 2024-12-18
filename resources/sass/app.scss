@@ -1,11 +1,11 @@
-@import 'variables';
+@use "sass:meta";
+@use 'variables';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import 'nprogress';
-@import "balloon-css/src/balloon";
+@include meta.load-css('nprogress');
 
 .bf-blur {
     backdrop-filter: blur(2px) saturate(125%);
