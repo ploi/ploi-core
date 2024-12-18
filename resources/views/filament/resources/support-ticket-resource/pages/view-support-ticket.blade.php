@@ -8,7 +8,7 @@
     <div class="w-full space-y-4">
         @foreach($messages as $message)
             @if($message->user)
-                <div class="flex flex-row flex-nowrap gap-x-4 bg-white rounded-md px-4 py-4">
+                <div class="flex flex-row flex-nowrap gap-x-4 bg-white dark:bg-gray-800 dark:text-white rounded-md px-4 py-4">
                     <div class="flex-grow-0 flex-shrink-0">
                         <img src="{{ $message->user->avatar }}" alt="{{ $message->user->name }}"
                              class="w-8 h-8 rounded-full">
