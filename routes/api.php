@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AppController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SiteController;
 use App\Http\Controllers\Api\UserController;
@@ -29,9 +30,15 @@ Route::prefix('servers/{server}')->group(function () {
         Route::resource('redirects', RedirectController::class)
             ->names('redirect')
             ->only(['index', 'store', 'show', 'destroy']);
+
+        Route::resource('apps', AppController::class)
+            ->names('app')
+            ->only('store', 'destroy');
+
+        Route::resource('certificates', CertificateController::class)
+            ->names('certificate')
+            ->only('index', 'store', 'show', 'destroy');
+
     });
 });
 
-Route::resource('certificates', CertificateController::class)
-    ->names('certificate')
-    ->only('index', 'store', 'show', 'destroy');
