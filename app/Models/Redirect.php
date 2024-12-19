@@ -15,8 +15,11 @@ class Redirect extends Model
     const STATUS_ACTIVE = 'active';
 
     public $fillable = [
+        'ploi_id',
         'redirect_from',
         'redirect_to',
-        'type'
+        'type',
+        'site_id',
+        'server_id',
     ];
 }

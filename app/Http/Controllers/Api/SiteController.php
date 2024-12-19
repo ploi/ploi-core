@@ -45,4 +45,11 @@ class SiteController extends Controller
     {
         return response(content: ['data' => SiteData::from($site)]);
     }
+
+    public function destroy(Site $site): Response
+    {
+        $site->delete();
+
+        return response(status: 200);
+    }
 }

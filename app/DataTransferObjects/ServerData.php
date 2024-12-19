@@ -23,21 +23,21 @@ class ServerData extends Data
     use BelongsToUser;
 
     public function __construct(
-        public ?int $id = null,
+        public ?int    $id = null,
         #[StringType]
         public ?string $status = null,
         #[StringType, AlphaDash, Max(40)]
-        public string $name,
+        public string  $name,
         #[NotIn(0), Exists(Provider::class, 'id')]
-        public int $provider_id,
+        public ?int    $provider_id = null,
         #[NotIn(0), Exists(ProviderRegion::class, 'id')]
-        public int $provider_region_id,
+        public ?int    $provider_region_id = null,
         #[NotIn(0), Exists(ProviderPlan::class, 'id')]
-        public int $provider_plan_id,
+        public ?int    $provider_plan_id = null,
         #[StringType, In(['mysql', 'mariadb', 'postgresql', 'postgresql13'])]
-        public string $database_type,
+        public string  $database_type,
         #[Exists(User::class, 'id'), IntegerType]
-        public ?int $user_id = null,
+        public ?int    $user_id = null,
         public ?Carbon $created_at = null,
     ) {
     }
