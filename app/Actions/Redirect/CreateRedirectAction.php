@@ -33,7 +33,7 @@ class CreateRedirectAction
 
         // Log the creation event in system logs
         $redirectData->getUser()->systemLogs()->create([
-            'title' => __('New redirect :redirect created'),
+            'title' => __('New redirect created'),
             'description' => __('A new redirect has been created.'),
         ])->model()->associate($redirect)->save();
 

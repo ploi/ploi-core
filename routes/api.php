@@ -28,7 +28,7 @@ Route::prefix('servers/{server}')->group(function () {
     Route::prefix('sites/{site}')->group(function () {
         Route::resource('redirects', RedirectController::class)
             ->names('redirect')
-            ->only(['index', 'store', 'show', 'update', 'destroy']);
+            ->only(['index', 'store', 'show', 'destroy']);
     });
 });
 

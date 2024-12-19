@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Jobs\Redirects\DeleteRedirect;
 use App\Models\Site;
 use App\Models\Server;
 use App\Models\Redirect;
@@ -49,14 +50,22 @@ class RedirectController extends Controller
         return RedirectData::from($redirect);
     }
 
-    public function destroy(Site $site, Redirect $redirect): Response
+    public function destroy(Server $server, Site $site, Redirect $redirect): Response
     {
         if ($redirect->site_id !== $site->id) {
             abort(404);
         }
 
+        dispatch(new DeleteRedirect(
+            $site->server->ploi_id,
+            $site->ploi_id,
+            $redirect->ploi_id
+        ));
+
         $redirect->delete();
+
 
         return response(status: 200);
     }
+
 }
