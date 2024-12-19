@@ -208,9 +208,14 @@ class ProfileBillingController extends Controller
 
     public function pdf(Request $request, $id)
     {
+        $invoice = $request->user()->findInvoice($id);
+        $planId = $invoice->lines->data[0]->plan->id;
+
+        $plan = Package::query()->where('stripe_plan_id', $planId)->first();
+
         return $request->user()->downloadInvoice($id, [
             'vendor' => setting('name'),
-            'product' => 'Webhosting',
+            'product' => $plan->name,
         ]);
     }
 
