@@ -133,15 +133,22 @@ export default {
             this.$emit('update:modelValue', value);
         },
         copy() {
-            this.copied = true;
-
-            this.$copyText(this.value);
+            if (this.modelValue) {
+                navigator.clipboard.writeText(this.modelValue)
+                    .then(() => {
+                        this.copied = true;
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+            } else {
+                console.error('No value to copy');
+            }
         },
         generateString() {
             this.$emit('input', this.randomString());
         }
     },
-
     computed: {
         copyText() {
             if (this.copied) {
