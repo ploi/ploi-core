@@ -9,7 +9,6 @@ use Illuminate\Support\Carbon;
 use App\DataTransferObjects\Support\Data;
 use Spatie\LaravelData\Attributes\Validation\Exists;
 use Spatie\LaravelData\Attributes\Validation\IntegerType;
-use Spatie\LaravelData\Attributes\Validation\StringType;
 use App\DataTransferObjects\Support\Concerns\BelongsToUser;
 
 class RedirectData extends Data

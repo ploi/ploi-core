@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Jobs\Redirects\DeleteRedirect;
 use App\Models\Site;
 use App\Models\Server;
 use App\Models\Redirect;
@@ -10,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Jobs\Redirects\DeleteRedirect;
 use App\DataTransferObjects\RedirectData;
 use App\Actions\Redirect\CreateRedirectAction;
 
