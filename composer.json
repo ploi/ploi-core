@@ -90,7 +90,6 @@
             "vendor/bin/php-cs-fixer fix"
         ],
         "post-update-cmd": [
-            "@php artisan horizon:publish",
             "@php artisan filament:upgrade"
         ]
     },
