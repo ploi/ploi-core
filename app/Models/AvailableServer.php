@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Filament\Notifications\Notification;
 use stdClass;
 use Sushi\Sushi;
 use App\Services\Ploi\Ploi;
@@ -14,13 +15,23 @@ class AvailableServer extends Model
 
     public function getRows(): array
     {
-        $availableServers = Ploi::make()
-            ->synchronize()
-            ->servers()
-            ->getData();
+        try {
+            $availableServers = Ploi::make()
+                ->synchronize()
+                ->servers()
+                ->getData();
+        } catch (\Throwable $e) {
+            Notification::make('wrong')
+                ->title('Synchronize')
+                ->body('Something went wrong when gathering the available servers: '. $e->getMessage())
+                ->danger()
+                ->send();
+
+            return [];
+        }
 
         return collect($availableServers)
-            ->map(fn (stdClass $server): array => Arr::only((array) $server, ['id', 'name', 'ip_address', 'sites_count']))
+            ->map(fn(stdClass $server): array => Arr::only((array)$server, ['id', 'name', 'ip_address', 'sites_count']))
             ->all();
     }
 }

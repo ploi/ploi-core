@@ -139,12 +139,12 @@ class Ploi
         return new Server($this, $id);
     }
 
-    public function user()
+    public function user(): User
     {
         return new User($this);
     }
 
-    public function synchronize()
+    public function synchronize(): Synchronize
     {
         return new Synchronize($this);
     }
