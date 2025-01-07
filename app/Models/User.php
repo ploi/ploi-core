@@ -55,20 +55,12 @@ class User extends Authenticatable implements HasLocalePreference, TwoFactorAuth
         'keyboard_shortcuts' => 'boolean',
         'requires_password_for_ftp' => 'boolean',
         'trial_ends_at' => 'datetime',
+        'password' => 'hashed'
     ];
 
     protected $appends = [
         'avatar',
     ];
-
-    public function setPasswordAttribute($value)
-    {
-        if (! $value) {
-            $this->attributes['password'] = null;
-        } else {
-            $this->attributes['password'] = bcrypt($value);
-        }
-    }
 
     public function canAccessPanel(Panel $panel): bool
     {
