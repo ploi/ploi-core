@@ -3732,6 +3732,9 @@ select {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgba(var(--primary-600), var(--tw-ring-opacity, 1));
 }
+.focus-visible\:ring-offset-1:focus-visible {
+  --tw-ring-offset-width: 1px;
+}
 .enabled\:cursor-wait:enabled {
   cursor: wait;
 }
@@ -4110,6 +4113,9 @@ select {
 .dark\:focus-visible\:ring-primary-500:focus-visible:is(.dark *) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgba(var(--primary-500), var(--tw-ring-opacity, 1));
+}
+.dark\:focus-visible\:ring-offset-gray-900:focus-visible:is(.dark *) {
+  --tw-ring-offset-color: rgba(var(--gray-900), 1);
 }
 .dark\:disabled\:bg-transparent:disabled:is(.dark *) {
   background-color: transparent;
