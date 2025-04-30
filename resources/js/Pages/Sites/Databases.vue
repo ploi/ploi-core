@@ -59,12 +59,18 @@
                                                             :variant="database.status === 'busy' ? 'gray' : 'success'" />
                                                     </TableData>
                                                     <TableData>{{ database.name }}</TableData>
-                                                    <TableData>
-                                                        <Button :disabled="database.status === 'busy'" variant="danger"
-                                                                size="sm"
-                                                                @click="confirmDelete(database)">
-                                                            {{ __('Delete') }}
-                                                        </Button>
+                                                    <TableData class="flex justify-end">
+                                                        <div class="flex gap-2">
+                                                            <Button v-if="phpmyadminlink" as="a" :href="phpmyadminlink"
+                                                                    target="_blank" variant="primary" size="sm">
+                                                                PhpMyAdmin
+                                                            </Button>
+                                                            <Button :disabled="database.status === 'busy'" variant="danger"
+                                                                    size="sm"
+                                                                    @click="confirmDelete(database)">
+                                                                {{ __('Delete') }}
+                                                            </Button>
+                                                        </div>
                                                     </TableData>
                                                 </TableRow>
                                             </TableBody>
@@ -212,6 +218,7 @@ export default {
     props: {
         site: Object,
         databases: Object,
+        phpmyadminlink: String,
     },
 
     methods: {

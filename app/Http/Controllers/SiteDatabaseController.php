@@ -13,10 +13,12 @@ class SiteDatabaseController extends Controller
     public function index($id)
     {
         $site = auth()->user()->sites()->findOrFail($id);
+        $phpmyadminLink = $site->server->phpmyadmin_link;
 
         return inertia('Sites/Databases', [
             'site' => $site,
             'databases' => SiteDatabaseResource::collection($site->databases()->latest()->paginate()),
+            'phpmyadminlink' => $phpmyadminLink,
         ]);
     }
 

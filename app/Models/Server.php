@@ -27,7 +27,8 @@ class Server extends Model
         'ssh_port',
         'maximum_sites',
         'available_php_versions',
-        'database_type'
+        'database_type',
+        'phpmyadmin_link'
     ];
 
     protected $casts = [

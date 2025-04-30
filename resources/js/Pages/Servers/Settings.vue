@@ -24,6 +24,9 @@
                                         <FormInput :label="__('Name')" :errors="$page.props.errors.name"
                                                    v-model="form.name" />
 
+                                        <FormInput :label="__('PhpMyAdmin link')" :errors="$page.props.errors.phpmyadmin_link"
+                                                   v-model="form.phpmyadmin_link" />
+
                                         <FormActions>
                                             <Button>{{ __('Save') }}</Button>
                                         </FormActions>
@@ -134,7 +137,8 @@ export default {
     data() {
         return {
             form: {
-                name: this.server.name
+                name: this.server.name,
+                phpmyadmin_link: this.server.phpmyadmin_link,
             },
 
             breadcrumbs: [

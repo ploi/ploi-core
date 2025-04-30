@@ -47,6 +47,7 @@ class ServerController extends Controller
             'provider_region_id' => ['required'],
             'provider_plan_id' => ['required'],
             'database_type' => ['required'],
+            'phpmyadmin_link' => ['nullable'],
         ]);
 
         $data['user_id'] = Auth::id();

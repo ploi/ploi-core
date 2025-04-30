@@ -51,6 +51,9 @@ class ServerResource extends Resource
                     ->integer()
                     ->required()
                     ->columnSpan(2),
+                Forms\Components\TextInput::make('phpmyadmin_link')
+                    ->label(__('PhpMyAdmin link'))
+                    ->columnSpan(2),
             ]);
     }
 
