@@ -39,13 +39,13 @@
                     <div v-if="$page.props.settings.has_terms">
                         <inertia-link :href="route('page.show', 'terms-of-service')"
                                       class="text-small text-medium-emphasis hover:text-high-emphasis border-b border-dotted">
-                            Terms Of Service
+                            {{ __('Terms Of Service') }}
                         </inertia-link>
                     </div>
                     <div v-if="$page.props.settings.has_privacy">
                         <inertia-link :href="route('page.show', 'privacy-policy')"
                                       class="text-small text-medium-emphasis hover:text-high-emphasis border-b border-dotted">
-                            Privacy Policy
+                            {{ __('Privacy Policy') }}
                         </inertia-link>
                     </div>
                 </div>

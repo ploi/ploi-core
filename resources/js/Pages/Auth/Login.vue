@@ -6,7 +6,7 @@
                 <div class="flex flex-col items-center space-y-5">
                     <img class="h-14" v-if="$page.props.settings.logo" :src="$page.props.settings.logo" />
                     <h1 class="font-semibold text-center text-title">
-                        Login to {{ $page.props.settings.name }}
+                        {{ __('Login to') }} {{ $page.props.settings.name }}
                     </h1>
                 </div>
 
@@ -26,7 +26,7 @@
 
                 <div class="space-y-3">
                     <Button as="inertia-link" :href="route('register')" variant="secondary" :disabled="sending"
-                            v-if="$page.props.settings.allow_registration" block>Register
+                            v-if="$page.props.settings.allow_registration" block>{{ __('Register') }}
                     </Button>
                 </div>
 
@@ -37,13 +37,13 @@
                     <div v-if="$page.props.settings.has_terms">
                         <inertia-link :href="route('page.show', 'terms-of-service')"
                                       class="text-small text-medium-emphasis hover:text-high-emphasis border-b border-dotted">
-                            Terms Of Service
+                            {{ __('Terms Of Service') }}
                         </inertia-link>
                     </div>
                     <div v-if="$page.props.settings.has_privacy">
                         <inertia-link :href="route('page.show', 'privacy-policy')"
                                       class="text-small text-medium-emphasis hover:text-high-emphasis border-b border-dotted">
-                            Privacy Policy
+                            {{ __('Privacy Policy') }}
                         </inertia-link>
                     </div>
                 </div>

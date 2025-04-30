@@ -38,12 +38,12 @@ class SetLocale
     public static function getTranslations()
     {
         // Less cache hits if its english, this is default language
-        if (app()->getLocale() == 'en') {
+        if (setting('default_language') == 'en') {
             return [];
         }
 
         $resolver = function () {
-            $translationFile = resource_path('lang/' . app()->getLocale() . '.json');
+            $translationFile = resource_path('lang/' . setting('default_language') . '.json');
 
             if (!is_readable($translationFile)) {
                 return [];
@@ -56,6 +56,6 @@ class SetLocale
             return $resolver();
         }
 
-        return \Cache::remember('translations-' . app()->getLocale(), now()->addDay(), $resolver);
+        return \Cache::remember('translations-' . setting('default_language'), now()->addDay(), $resolver);
     }
 }

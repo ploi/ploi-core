@@ -104,6 +104,9 @@
     "Auto": "Automatico",
     "site|sites": "sitio|sitios",
 
+    "Login to": "Iniciar sesion a",
+    "Register": "Crear cuenta",
+
     "Support requests": "Solicitudes de soporte",
     "Open support requests": "Solicitudes de sporte abiertas",
     "Closed support requests": "Solicitudes de soporte cerradas",
