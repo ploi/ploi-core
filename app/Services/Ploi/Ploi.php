@@ -23,11 +23,9 @@ class Ploi
 
     private $apiToken;
 
-    private $apiCoreToken;
-
     protected PendingRequest $client;
 
-    public function __construct(string $token = null, string $coreApiToken = null)
+    public function __construct(string $token = null)
     {
         $this->url = config('services.ploi-api.url');
 
@@ -35,13 +33,7 @@ class Ploi
             $token = config('services.ploi.token');
         }
 
-        if (!$coreApiToken) {
-            $coreApiToken = config('services.ploi.core-token');
-        }
-
         $this->setApiToken($token);
-        $this->setCoreApiToken($coreApiToken);
-
         $this->buildClient();
     }
 
@@ -58,14 +50,6 @@ class Ploi
         return $this;
     }
 
-    public function setCoreApiToken($coreApiToken): self
-    {
-        // Set the token
-        $this->apiCoreToken = $coreApiToken;
-
-        return $this;
-    }
-
     public function buildClient(): static
     {
         $this->client = Http::baseUrl($this->url)
@@ -73,7 +57,6 @@ class Ploi
                 'Authorization' => 'Bearer ' . $this->getApiToken(),
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'X-Ploi-Core-Key' => $this->getCoreApiToken(),
             ]);
 
         if (app()->isLocal()) {
@@ -86,11 +69,6 @@ class Ploi
     public function getApiToken(): string
     {
         return $this->apiToken;
-    }
-
-    public function getCoreApiToken(): string
-    {
-        return $this->apiCoreToken;
     }
 
     public function makeAPICall(string $url, string $method = 'get', array $options = []): Response
@@ -134,7 +112,7 @@ class Ploi
         return new Response($response);
     }
 
-    public function server(int $id = null)
+    public function server(int $id = null): Server
     {
         return new Server($this, $id);
     }

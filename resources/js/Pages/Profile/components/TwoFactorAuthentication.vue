@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import {Inertia} from "@inertiajs/inertia";
 import Button from "@/components/Button.vue";
 import Input from "@/components/Input.vue";
 import FormInput from "@/components/forms/FormInput.vue";
@@ -71,25 +70,25 @@ export default {
 
     methods: {
         enable2FA() {
-            Inertia.put(this.route('profile.security.two-factor-authentication.create'));
+            this.$inertia.put(this.route('profile.security.two-factor-authentication.create'));
         },
 
         confirm2FA() {
-            Inertia.patch(this.route('profile.security.two-factor-authentication.confirm'), this.form, {
+            this.$inertia.patch(this.route('profile.security.two-factor-authentication.confirm'), this.form, {
                 onStart: () => this.sending = true,
                 onFinish: () => this.sending = false,
             });
         },
 
         regenerateRecoveryCodes() {
-            Inertia.patch(this.route('profile.security.two-factor-authentication.regenerate-recovery-codes'), {}, {
+            this.$inertia.patch(this.route('profile.security.two-factor-authentication.regenerate-recovery-codes'), {}, {
                 onStart: () => this.sending = true,
                 onFinish: () => this.sending = false,
             });
         },
 
         disable2FA() {
-            Inertia.delete(this.route('profile.security.two-factor-authentication.destroy'), {}, {
+            this.$inertia.delete(this.route('profile.security.two-factor-authentication.destroy'), {}, {
                 onStart: () => this.sending = true,
                 onFinish: () => this.sending = false,
             });

@@ -1,13 +1,13 @@
 <?php
 
-namespace Services\Ploi\Exceptions\Resource\Server\Site;
+namespace App\Services\Ploi\Exceptions\Resource\Server\Site;
 
 use Exception;
 
 /**
  * Class DomainAlreadyExists
  *
- * @package Services\Ploi\Exceptions\Resource\Server\Site
+ * @package App\Services\Ploi\Exceptions\Resource\Server\Site
  */
 class DomainAlreadyExists extends Exception
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Services\Ploi\Exceptions\Resource;
+namespace App\Services\Ploi\Exceptions\Resource;
 
 use Exception;
 

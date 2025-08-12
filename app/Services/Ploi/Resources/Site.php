@@ -5,8 +5,8 @@ namespace App\Services\Ploi\Resources;
 use stdClass;
 use Exception;
 use App\Services\Ploi\Exceptions\Http\NotValid;
-use Services\Ploi\Exceptions\Resource\RequiresId;
-use Services\Ploi\Exceptions\Resource\Server\Site\DomainAlreadyExists;
+use App\Services\Ploi\Exceptions\Resource\RequiresId;
+use App\Services\Ploi\Exceptions\Resource\Server\Site\DomainAlreadyExists;
 
 /**
  * Class Site
