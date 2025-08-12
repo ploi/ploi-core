@@ -1,4 +1,4 @@
-import {createInertiaApp, Head, InertiaLink} from '@inertiajs/inertia-vue3'
+import { createInertiaApp, Head, Link } from "@inertiajs/vue3";
 import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
 import Vue, {createApp, h} from 'vue';
 import Store from '@/store';
@@ -27,7 +27,7 @@ createInertiaApp({
             .use(PortalVue)
             .mixin({methods: {route: window.route}})
             .mixin(mixins)
-            .component('InertiaLink', InertiaLink)
+            .component('InertiaLink', Link)
             .component('Head', Head)
             .mount(el);
     },
