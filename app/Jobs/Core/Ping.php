@@ -23,8 +23,7 @@ class Ping implements ShouldQueue
 
         $response = Http::withHeaders([
             'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'X-Ploi-Core-Key' => config('services.ploi.core-token')
+            'Content-Type' => 'application/json'
         ])
             ->withToken(config('services.ploi.token'))
             ->post((new Ploi)->url . 'ping', [

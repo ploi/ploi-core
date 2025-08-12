@@ -20,7 +20,6 @@
     <server name="SESSION_DRIVER" value="array"/>
     <server name="TELESCOPE_ENABLED" value="false"/>
     <server name="PLOI_TOKEN" value="TEST"/>
-    <server name="PLOI_CORE_TOKEN" value="TEST"/>
   </php>
   <source>
     <include>

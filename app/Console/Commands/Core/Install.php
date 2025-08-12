@@ -142,12 +142,11 @@ class Install extends Command
         ]);
     }
 
-    protected function getCompany($ploiCoreKey, $token)
+    protected function getCompany($token)
     {
         $response = Http::withHeaders([
             'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'X-Ploi-Core-Key' => $ploiCoreKey
+            'Content-Type' => 'application/json'
         ])
             ->withToken($token)
             ->get((new Ploi)->url . 'ping');
@@ -279,11 +278,7 @@ class Install extends Command
             $ploiApiToken = $this->ask('Enter the Ploi API token', env('PLOI_TOKEN'));
         } while (empty($ploiApiToken));
 
-        do {
-            $ploiCoreKey = $this->ask('Enter the Ploi Core key', env('PLOI_CORE_TOKEN'));
-        } while (empty($ploiCoreKey));
-
-        $this->company = $this->getCompany($ploiCoreKey, $ploiApiToken);
+        $this->company = $this->getCompany($ploiApiToken);
 
         if (!$this->company) {
             $this->error('Could not authenticate with ploi.io, please retry by running this command again.');
@@ -304,7 +299,6 @@ class Install extends Command
         }
 
         $this->writeToEnvironmentFile('PLOI_TOKEN', $ploiApiToken);
-        $this->writeToEnvironmentFile('PLOI_CORE_TOKEN', $ploiCoreKey);
 
         $name = $this->ask('What is the name of your company? (Press enter to keep the name here)', $this->company['name']);
         $this->writeToEnvironmentFile('APP_NAME', $name);

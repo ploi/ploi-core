@@ -99,7 +99,6 @@ Main entities: Users, Packages, Servers, Sites, Databases, Certificates, Cronjob
 ### Important Environment Variables
 ```
 PLOI_TOKEN=            # Ploi API token
-PLOI_CORE_TOKEN=       # Ploi Core API token
 APP_DEMO=false         # Demo mode toggle
 STRIPE_KEY=            # Stripe public key
 STRIPE_SECRET=         # Stripe secret key

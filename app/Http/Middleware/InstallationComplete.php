@@ -38,7 +38,6 @@ class InstallationComplete
     protected function isInstallationComplete()
     {
         return config('app.key') &&
-            config('services.ploi.token') &&
-            config('services.ploi.core-token');
+            config('services.ploi.token');
     }
 }
