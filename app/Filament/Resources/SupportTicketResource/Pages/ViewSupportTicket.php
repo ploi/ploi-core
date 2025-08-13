@@ -45,7 +45,7 @@ class ViewSupportTicket extends Page
                         ->success()
                         ->send();
 
-                    $livewire->redirect(SupportTicketResource::getUrl('view', ['record' => $livewire->getRecord()]));
+                    $livewire->redirect(SupportTicketResource::getUrl('view', ['record' => $livewire->record]));
                 })
                 ->visible(fn (self $livewire) => $livewire->record->status !== SupportTicket::STATUS_CLOSED)
                 ->color('danger'),
@@ -60,7 +60,7 @@ class ViewSupportTicket extends Page
                         ->success()
                         ->send();
 
-                    $livewire->redirect(SupportTicketResource::getUrl('view', ['record' => $livewire->getRecord()]));
+                    $livewire->redirect(SupportTicketResource::getUrl('view', ['record' => $livewire->record]));
                 })
                 ->visible(fn (self $livewire) => $livewire->record->status === SupportTicket::STATUS_CLOSED)
                 ->color('primary'),
