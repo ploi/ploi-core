@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Filament\Notifications\Notification;
 use stdClass;
 use Sushi\Sushi;
 use App\Services\Ploi\Ploi;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Notifications\Notification;
 
 class AvailableServer extends Model
 {
@@ -31,7 +31,7 @@ class AvailableServer extends Model
         }
 
         return collect($availableServers)
-            ->map(fn(stdClass $server): array => Arr::only((array)$server, ['id', 'name', 'ip_address', 'sites_count']))
+            ->map(fn (stdClass $server): array => Arr::only((array)$server, ['id', 'name', 'ip_address', 'sites_count']))
             ->all();
     }
 }

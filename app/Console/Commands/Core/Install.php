@@ -11,20 +11,19 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use App\Services\VersionChecker;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Artisan;
-use function Laravel\Prompts\text;
-use function Laravel\Prompts\password;
-use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\select;
 use function Laravel\Prompts\info;
-use function Laravel\Prompts\error;
-use function Laravel\Prompts\warning;
 use function Laravel\Prompts\note;
 use function Laravel\Prompts\spin;
+use function Laravel\Prompts\text;
+use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\error;
 use function Laravel\Prompts\intro;
 use function Laravel\Prompts\outro;
+use function Laravel\Prompts\select;
+use Illuminate\Support\Facades\Http;
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\warning;
+use function Laravel\Prompts\password;
 
 class Install extends Command
 {

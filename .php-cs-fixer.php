@@ -15,4 +15,5 @@ return (new PhpCsFixer\Config)
         'ordered_imports' => ['sort_algorithm' => 'length'],
         'no_unused_imports' => true,
     ])
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setFinder($finder);

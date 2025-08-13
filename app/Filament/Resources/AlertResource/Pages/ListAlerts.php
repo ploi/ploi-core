@@ -5,7 +5,6 @@ namespace App\Filament\Resources\AlertResource\Pages;
 use Filament\Actions;
 use App\Filament\Resources\AlertResource;
 use Filament\Resources\Pages\ListRecords;
-use Illuminate\Contracts\Support\Htmlable;
 
 class ListAlerts extends ListRecords
 {

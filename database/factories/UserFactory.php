@@ -6,7 +6,6 @@ use Closure;
 use App\Models\User;
 use App\Models\Package;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
