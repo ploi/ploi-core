@@ -57,6 +57,7 @@ class Ploi
                 'Authorization' => 'Bearer ' . $this->getApiToken(),
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
+                'X-Custom-Ploi-Agent' => 'Ploi-Core',
             ]);
 
         if (app()->isLocal()) {
