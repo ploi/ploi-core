@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use Exception;
 use App\Services\Cloudflare;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -39,7 +40,7 @@ class CloudflareGeneralTest implements Rule
             if ($cloudflare->user()) {
                 return true;
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 

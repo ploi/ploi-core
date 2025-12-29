@@ -1,4 +1,4 @@
-<x-filament::page>
+<x-filament-panels::page>
     <div class="grid md:grid-cols-2 gap-4">
         <x-filament::section>
             <p class="text-sm text-gray-500 dark:text-gray-400">
@@ -70,4 +70,4 @@
             </ul>
         </x-filament::section>
     </div>
-</x-filament::page>
+</x-filament-panels::page>

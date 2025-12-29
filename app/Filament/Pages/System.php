@@ -9,11 +9,11 @@ use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
 class System extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-adjustments-vertical';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-adjustments-vertical';
 
-    protected static string $view = 'filament.pages.system';
+    protected string $view = 'filament.pages.system';
 
-    protected static ?string $navigationGroup = 'Settings';
+    protected static string | \UnitEnum | null $navigationGroup = 'Settings';
 
     protected static ?int $navigationSort = 2;
 

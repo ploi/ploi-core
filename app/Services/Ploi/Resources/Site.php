@@ -2,6 +2,7 @@
 
 namespace App\Services\Ploi\Resources;
 
+use Throwable;
 use stdClass;
 use Exception;
 use App\Services\Ploi\Exceptions\Http\NotValid;
@@ -106,7 +107,7 @@ class Site extends Resource
         if (!$response->getJson() || !isset($response->getJson()->data)) {
             try {
                 info(json_encode($response));
-            } catch (\Throwable $exception) {
+            } catch (Throwable $exception) {
 
             }
             throw new Exception($response->getJson()->error ?? 'Unknown error has occured');

@@ -1,9 +1,9 @@
-<x-filament::page>
+<x-filament-panels::page>
     <div class="px-4 py-4 rounded-lg border border-gray-400">
         <h2 class="font-bold text-lg">{{ __("Reset database password") }}</h2>
         @unless($this->recentlyUpdatedPassword)
             <div>
-                <form wire:submit.prevent="resetDatabasePassword" class="mt-2 flex flex-row justify-between max-w-2xl items-center">
+                <form wire:submit="resetDatabasePassword" class="mt-2 flex flex-row justify-between max-w-2xl items-center">
                     {{ $this->resetDatabasePasswordForm }}
                     <x-filament::button type="submit" class="">
                         {{ __('Reset database password') }}
@@ -16,4 +16,4 @@
             </div>
         @endunless
     </div>
-</x-filament::page>
+</x-filament-panels::page>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use Cache;
+use Illuminate\Http\Request;
 use Closure;
 use Carbon\Carbon;
 
@@ -10,8 +12,8 @@ class SetLocale
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
+     * @param Request $request
+     * @param Closure $next
      *
      * @return mixed
      */
@@ -56,6 +58,6 @@ class SetLocale
             return $resolver();
         }
 
-        return \Cache::remember('translations-' . app()->getLocale(), now()->addDay(), $resolver);
+        return Cache::remember('translations-' . app()->getLocale(), now()->addDay(), $resolver);
     }
 }

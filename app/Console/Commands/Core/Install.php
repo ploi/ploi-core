@@ -59,7 +59,7 @@ class Install extends Command
             );
             
             return Command::SUCCESS;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             error('Installation failed: ' . $e->getMessage());
             return Command::FAILURE;
         }
@@ -265,7 +265,7 @@ class Install extends Command
         try {
             $this->writeToEnvironmentFile('APP_URL', $url);
             info('✓ Application URL configured');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             error('Failed to save application URL: ' . $e->getMessage());
             exit(1);
         }
@@ -283,7 +283,7 @@ class Install extends Command
             }
             
             info('✓ Installation marker created');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             error('Error creating installation file: ' . $e->getMessage());
             exit(1);
         }
@@ -305,7 +305,7 @@ class Install extends Command
             try {
                 symlink($storagePath, $publicPath);
                 info('✓ Storage symlink created');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 warning('Could not create storage symlink (may need manual creation)');
             }
         } else {

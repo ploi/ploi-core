@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Str;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class Demo
 
     public function handle(Request $request, Closure $next)
     {
-        if ($this->isNotAllowedToDoThis($request) && \Str::contains($request->route()->getName(), 'livewire')) {
+        if ($this->isNotAllowedToDoThis($request) && Str::contains($request->route()->getName(), 'livewire')) {
             abort(404);
         }
 
