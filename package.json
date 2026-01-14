@@ -42,6 +42,7 @@
     },
     "type": "module",
     "dependencies": {
-        "@tailwindcss/postcss": "^4.1.18"
+        "@tailwindcss/postcss": "^4.1.18",
+        "@tailwindcss/vite": "^4.1.18"
     }
 }

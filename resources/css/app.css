@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+@source '../js/**/*.vue';
+@source '../views/**/*.blade.php';
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+/* Dark mode variant using class strategy */
+@variant dark (&:where(.theme--dark, .theme--dark *));
+
+/* Tailwind v4 theme extensions - only non-conflicting utilities */
+@theme {
+    --font-family-body: 'Inter', sans-serif;
+
+    --font-size-heading: 1.75rem;
+    --line-height-heading: 2rem;
+    --font-size-title: 1.25rem;
+    --line-height-title: 1.75rem;
+    --font-size-body: 1rem;
+    --line-height-body: 1.5rem;
+    --font-size-small: 0.875rem;
+    --line-height-small: 1.5rem;
+    --font-size-xs: 0.75rem;
+
+    --radius-default: 0.5rem;
+    --radius-circle: 100%;
+    --radius-avatar: 4rem;
+
+    /* Core colors for Tailwind utilities (bg-primary, text-primary, etc.) */
+    --color-primary: #1b8ae8;
+    --color-success: #17b35d;
+    --color-warning: #f5a623;
+    --color-danger: #c90c4c;
+}
+
+/* CSS Variables for dynamic theming */
+:root {
+    --font-body: 'Inter', sans-serif;
+
+    --color-white: #fff;
+    --color-gray-1: #f7f7f7;
+    --color-gray-2: #e6e6e6;
+    --color-gray-3: #cacaca;
+    --color-gray-4: #888;
+    --color-gray-5: #666;
+    --color-gray-6: #2f2f2f;
+    --color-gray-7: #1b1a1a;
+    --color-gray-8: #101010;
+
+    --color-primary-val: #1b8ae8;
+    --color-success-val: #17b35d;
+    --color-warning-val: #f5a623;
+    --color-danger-val: #c90c4c;
+
+    --color-text-high-emphasis: var(--color-gray-8);
+    --color-text-medium-emphasis: var(--color-gray-5);
+    --color-text-low-emphasis: var(--color-gray-3);
+
+    --color-text-on-primary: var(--color-white);
+    --color-text-on-success: var(--color-gray-8);
+    --color-text-on-warning: var(--color-white);
+    --color-text-on-danger: var(--color-white);
+
+    --color-border-high-emphasis-val: var(--color-gray-4);
+    --color-border-medium-emphasis-val: var(--color-gray-3);
+    --color-border-low-emphasis-val: var(--color-gray-2);
+
+    --color-backdrop-val: rgba(0, 0, 0, 0.5);
+    --color-overlay-val: rgba(255, 255, 255, 0.8);
+    --color-surface-1-val: var(--color-white);
+    --color-surface-2-val: var(--color-gray-1);
+    --color-surface-3-val: var(--color-white);
+
+    --border-radius: 0.5rem;
+    --border-radius-avatar: 4rem;
+    --border-radius-circle: 100%;
+
+    --top-bar-container: 64rem;
+    --top-bar-logo-height: 3.5rem;
+    --top-bar-background-color: var(--color-surface-1-val);
+    --top-bar-text-color: var(--color-text-medium-emphasis);
+
+    --tab-bar-background-color: var(--color-surface-2-val);
+    --tab-bar-item-active-background-color: var(--color-surface-1-val);
+    --tab-bar-item-text-color: var(--color-text-medium-emphasis);
+    --tab-bar-item-active-text-color: var(--color-text-high-emphasis);
+
+    --breadcrumbs-text-color: var(--color-text-medium-emphasis);
+}
+
+/* Dark theme overrides */
+.theme--dark {
+    --color-primary-val: #63a6f5;
+    --color-success-val: #50e3c2;
+    --color-warning-val: #f5a623;
+    --color-danger-val: #d4667c;
+
+    --color-text-high-emphasis: var(--color-white);
+    --color-text-medium-emphasis: var(--color-gray-3);
+    --color-text-low-emphasis: var(--color-gray-5);
+
+    --color-text-on-primary: var(--color-gray-7);
+    --color-text-on-success: var(--color-gray-7);
+    --color-text-on-warning: var(--color-gray-7);
+    --color-text-on-danger: var(--color-gray-7);
+
+    --color-border-high-emphasis-val: var(--color-gray-4);
+    --color-border-medium-emphasis-val: var(--color-gray-5);
+    --color-border-low-emphasis-val: var(--color-gray-6);
+
+    --color-surface-1-val: var(--color-gray-7);
+    --color-surface-2-val: var(--color-gray-6);
+    --color-surface-3-val: var(--color-gray-6);
+    --color-overlay-val: rgba(0, 0, 0, 0.8);
+}
+
+/* Custom utility classes that use CSS variables for theming */
+@utility bg-surface-1 {
+    background-color: var(--color-surface-1-val);
+}
+
+@utility bg-surface-2 {
+    background-color: var(--color-surface-2-val);
+}
+
+@utility bg-surface-3 {
+    background-color: var(--color-surface-3-val);
+}
+
+@utility bg-backdrop {
+    background-color: var(--color-backdrop-val);
+}
+
+@utility bg-overlay {
+    background-color: var(--color-overlay-val);
+}
+
+@utility bg-top-bar {
+    background-color: var(--top-bar-background-color);
+}
+
+@utility bg-tab-bar {
+    background-color: var(--tab-bar-background-color);
+}
+
+@utility bg-tab-bar-item {
+    background-color: var(--tab-bar-item-active-background-color);
+}
+
+@utility text-high-emphasis {
+    color: var(--color-text-high-emphasis);
+}
+
+@utility text-medium-emphasis {
+    color: var(--color-text-medium-emphasis);
+}
+
+@utility text-low-emphasis {
+    color: var(--color-text-low-emphasis);
+}
+
+@utility text-on-primary {
+    color: var(--color-text-on-primary);
+}
+
+@utility text-on-success {
+    color: var(--color-text-on-success);
+}
+
+@utility text-on-warning {
+    color: var(--color-text-on-warning);
+}
+
+@utility text-on-danger {
+    color: var(--color-text-on-danger);
+}
+
+@utility text-top-bar {
+    color: var(--top-bar-text-color);
+}
+
+@utility text-tab-bar {
+    color: var(--tab-bar-item-text-color);
+}
+
+@utility text-tab-bar-active {
+    color: var(--tab-bar-item-active-text-color);
+}
+
+@utility text-breadcrumbs {
+    color: var(--breadcrumbs-text-color);
+}
+
+@utility border-high-emphasis {
+    border-color: var(--color-border-high-emphasis-val);
+}
+
+@utility border-medium-emphasis {
+    border-color: var(--color-border-medium-emphasis-val);
+}
+
+@utility border-low-emphasis {
+    border-color: var(--color-border-low-emphasis-val);
+}
+
+@utility max-w-top-bar-container {
+    max-width: var(--top-bar-container);
+}
+
+@utility h-top-bar-logo {
+    height: var(--top-bar-logo-height);
+}
+
+@utility rounded-default {
+    border-radius: var(--border-radius);
+}
+
+@utility rounded-avatar {
+    border-radius: var(--border-radius-avatar);
+}
+
+@utility font-body {
+    font-family: var(--font-body);
+}
+
+@utility duration-fast {
+    transition-duration: 200ms;
+}
+
+@utility duration-slow {
+    transition-duration: 600ms;
+}
+
+/* Font size utilities */
+@utility text-heading {
+    font-size: 1.75rem;
+    line-height: 2rem;
+}
+
+@utility text-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+@utility text-body {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+@utility text-small {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+}
+
+/* NProgress styles */
+#nprogress {
+    pointer-events: none;
+}
+
+#nprogress .bar {
+    background: #29d;
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+}
+
+#nprogress .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+    opacity: 1.0;
+    transform: rotate(3deg) translate(0px, -4px);
+}
+
+#nprogress .spinner {
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: 15px;
+    right: 15px;
+}
+
+#nprogress .spinner-icon {
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+    border: solid 2px transparent;
+    border-top-color: #29d;
+    border-left-color: #29d;
+    border-radius: 50%;
+    animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+    overflow: hidden;
+    position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+    position: absolute;
+}
+
+@keyframes nprogress-spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Custom utilities */
+.bf-blur {
+    backdrop-filter: blur(2px) saturate(125%);
+}
+
+.bf-blur-high {
+    backdrop-filter: blur(15px) saturate(125%);
+}
+
+.text-gradient {
+    background: -webkit-linear-gradient(
+        35deg,
+        var(--color-primary-val),
+        var(--color-success-val),
+        var(--color-warning-val),
+        var(--color-danger-val)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Dark theme specific styles */
+.theme--dark .prose {
+    color: var(--color-text-medium-emphasis);
+}
+
+.theme--dark .vue-simplemde .editor-toolbar {
+    border-left: 1px solid var(--color-surface-3-val);
+    border-top: 1px solid var(--color-surface-3-val);
+    border-right: 1px solid var(--color-surface-3-val);
+}
+
+.theme--dark .vue-simplemde .editor-toolbar .separator {
+    border-left: 1px solid var(--color-surface-3-val);
+    border-right: transparent;
+}
+
+.theme--dark .vue-simplemde .editor-toolbar a {
+    color: var(--color-text-medium-emphasis) !important;
+}
+
+.theme--dark .vue-simplemde .editor-toolbar a:hover {
+    background: var(--color-surface-3-val);
+}
+
+.theme--dark .vue-simplemde .CodeMirror {
+    background: var(--color-surface-1-val);
+    color: var(--color-text-medium-emphasis);
+    border: 1px solid var(--color-surface-3-val);
+}
