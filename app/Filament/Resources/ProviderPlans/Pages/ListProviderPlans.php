@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Filament\Resources\ProviderPlans\Pages;
+
+use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\ProviderPlans\ProviderPlanResource;
+
+class ListProviderPlans extends ListRecords
+{
+    protected static string $resource = ProviderPlanResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            //
+        ];
+    }
+}

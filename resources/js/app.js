@@ -9,7 +9,6 @@ import mixins from '@/mixins';
 import axios from 'axios';
 import forEach from 'lodash/forEach';
 import mitt from 'mitt';
-import '../sass/app.scss';
 
 Vue.configureCompat({RENDER_FUNCTION: false, COMPONENT_V_MODEL: false});
 

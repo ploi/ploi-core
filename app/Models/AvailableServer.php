@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Throwable;
 use stdClass;
 use Sushi\Sushi;
 use App\Services\Ploi\Ploi;
@@ -20,7 +21,7 @@ class AvailableServer extends Model
                 ->synchronize()
                 ->servers()
                 ->getData();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             Notification::make('wrong')
                 ->title('Synchronize')
                 ->body('Something went wrong when gathering the available servers: '. $e->getMessage())

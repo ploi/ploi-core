@@ -2,6 +2,14 @@
 
 namespace App\Filament\Pages;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Grid;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Actions\Action;
 use Filament\Forms;
 use App\Models\Server;
 use App\Models\Package;
@@ -11,15 +19,15 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Support\Facades\Storage;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use Filament\Forms\Components\Actions\Action;
 
-class Settings extends Page
+class Settings extends Page implements HasForms
 {
-    protected static ?string $navigationIcon = 'heroicon-o-cog';
+    use InteractsWithForms;
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-cog';
 
-    protected static string $view = 'filament.pages.settings';
+    protected string $view = 'filament.pages.settings';
 
-    protected static ?string $navigationGroup = 'Settings';
+    protected static string | \UnitEnum | null $navigationGroup = 'Settings';
 
     protected static ?int $navigationSort = 1;
 
@@ -50,37 +58,39 @@ class Settings extends Page
         ]);
     }
 
-    public function getFormSchema(): array
+    public function form(Schema $schema): Schema
     {
-        return [
-            Forms\Components\Grid::make(2)
-                ->schema([
-                    Forms\Components\Grid::make(2)
+        return $schema
+            ->statePath('data')
+            ->components([
+                Grid::make(2)
+                    ->schema([
+                    Grid::make(2)
                         ->schema([
-                            Forms\Components\TextInput::make('name')
+                            TextInput::make('name')
                                 ->label(__('Company name'))
                                 ->required(),
-                            Forms\Components\TextInput::make('email')
+                            TextInput::make('email')
                                 ->label(__('E-mail address'))
                                 ->email(),
-                            Forms\Components\TextInput::make('support_emails')
+                            TextInput::make('support_emails')
                                 ->label(__('Support email address'))
                                 ->helperText('Separate by comma to allow more email addresses'),
                         ])
                         ->columnSpan(2),
-                    Forms\Components\Select::make('default_package')
+                    Select::make('default_package')
                         ->options(fn () => Package::orderBy('name')->pluck('name', 'id'))
                         ->label(__('Select default package'))
                         ->helperText(__('Select the default package a user should get when you create or they register')),
-                    Forms\Components\Select::make('default_language')
+                    Select::make('default_language')
                         ->options(collect(languages())->mapWithKeys(fn (string $language) => [$language => $language]))
                         ->label('Select default language')
                         ->helperText('Select the default language a user should get when you create or they register'),
-                    Forms\Components\FileUpload::make('logo')
+                    FileUpload::make('logo')
                         ->label(__('Logo'))
                         ->disk('logos')
                         ->columnSpan(2),
-                    Forms\Components\Select::make('rotate_logs_after')
+                    Select::make('rotate_logs_after')
                         ->label(__('This will rotate any logs older than selected, this helps cleanup your database'))
                         ->options([
                             null => __("Don't rotate logs"),
@@ -94,7 +104,7 @@ class Settings extends Page
                             'years-4' => __('Older than 4 years'),
                         ])
                         ->columnSpan(1),
-                    Forms\Components\Select::make('default_os')
+                    Select::make('default_os')
                         ->label(__('Select the default OS that should be used when users create a server'))
                         ->default(Server::OS_UBUNTU_22)
                         ->options([
@@ -103,30 +113,30 @@ class Settings extends Page
                             Server::OS_UBUNTU_22 => __('Ubuntu 22'),
                         ])
                         ->columnSpan(1),
-                    Forms\Components\Toggle::make('trial')
+                    Toggle::make('trial')
                         ->label(__('Enable trial'))
                         ->helperText(__('This will allow you to have users with trials.')),
-                    Forms\Components\Toggle::make('allow_registration')
+                    Toggle::make('allow_registration')
                         ->label(__('Allow registration'))
                         ->helperText(__('Allow customer registration')),
-                    Forms\Components\Toggle::make('support')
+                    Toggle::make('support')
                         ->label(__('Enable support platform'))
                         ->helperText(__('This will allow your customers to make support requests to you.')),
-                    Forms\Components\Toggle::make('documentation')
+                    Toggle::make('documentation')
                         ->label(__('Enable documentation platform'))
                         ->helperText(__('This will allow you to create articles for your users to look at.')),
-                    Forms\Components\Toggle::make('receive_email_on_server_creation')
+                    Toggle::make('receive_email_on_server_creation')
                         ->label(__('Receive email when customers create server'))
                         ->helperText(__('This will send an email to all admins notifying them about a new server installation.')),
-                    Forms\Components\Toggle::make('receive_email_on_site_creation')
+                    Toggle::make('receive_email_on_site_creation')
                         ->label(__('Receive email when customers create site'))
                         ->helperText(__('This will send an email to all admins notifying them about a new site installation.')),
-                    Forms\Components\Toggle::make('enable_api')
+                    Toggle::make('enable_api')
                         ->label(__('Enable API'))
                         ->helperText(new HtmlString(__('This will allow you to interact with your system via the API. ') . '<a href="https://docs.ploi-core.io/304-core-api/737-introduction" target="_blank" class="text-primary-600">' . __('More information') . '</a>')),
-                    Forms\Components\TextInput::make('api_token')
+                    TextInput::make('api_token')
                         ->label(__('API token'))
-                        ->afterStateHydrated(function (?string $state, Forms\Components\TextInput $component) {
+                        ->afterStateHydrated(function (?string $state, TextInput $component) {
                             $state = filled($state) ? decrypt($state) : null;
 
                             $component->state($state);
@@ -144,16 +154,11 @@ class Settings extends Page
                                 ->tooltip('Generate'),
                         ])
                         ->suffixAction($generateAction),
-                    Forms\Components\Toggle::make('isolate_per_site_per_user')
+                    Toggle::make('isolate_per_site_per_user')
                         ->label(__('Enable site isolation per site & user'))
                         ->helperText(__('This will make sure each site created by one user is always isolated from another.')),
                 ]),
-        ];
-    }
-
-    public function getFormStatePath(): ?string
-    {
-        return 'data';
+            ]);
     }
 
     public function save(): void

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables;
 use App\Models\SystemLog;
 use Filament\Tables\Table;
@@ -18,7 +19,7 @@ class SystemLogs extends BaseWidget
             ->query(fn (): Builder => SystemLog::query()->with('model'))
             ->defaultSort(fn (Builder $query) => $query->latest())
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->label(__('Title'))
                     ->formatStateUsing(fn (SystemLog $record) => __($record->title, [
                         'site' => $record->model->domain ?? '-Unknown-',
@@ -30,7 +31,7 @@ class SystemLogs extends BaseWidget
                     ]))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label(__('Date'))
                     ->dateTime()
                     ->sortable()

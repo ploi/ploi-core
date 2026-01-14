@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use Filament\Navigation\MenuItem;
 use Exception;
 use App\Models\Setting;
 use Filament\Facades\Filament;
-use Filament\Navigation\UserMenuItem;
 use Filament\Navigation\NavigationItem;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
         Filament::serving(function () {
             Filament::registerUserMenuItems([
-                UserMenuItem::make()
+                MenuItem::make()
                     ->label('Back to panel')
                     ->url(route('dashboard'))
                     ->icon('heroicon-m-backward'),

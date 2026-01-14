@@ -5,9 +5,9 @@ namespace App\Filament\Widgets;
 use App\Models\Site;
 use App\Models\User;
 use App\Models\Server;
-use App\Filament\Resources\SiteResource;
-use App\Filament\Resources\UserResource;
-use App\Filament\Resources\ServerResource;
+use App\Filament\Resources\Sites\SiteResource;
+use App\Filament\Resources\Users\UserResource;
+use App\Filament\Resources\Servers\ServerResource;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class StatsOverview extends BaseWidget

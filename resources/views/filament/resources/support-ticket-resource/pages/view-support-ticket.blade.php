@@ -4,7 +4,7 @@
     $messages = $record->replies->collect()->prepend($record);
 @endphp
 
-<x-filament::page>
+<x-filament-panels::page>
     <div class="w-full space-y-4">
         @foreach($messages as $message)
             @if($message->user)
@@ -29,7 +29,7 @@
         @if($record->status === SupportTicket::STATUS_CLOSED)
             <p>{{ __('Ticket closed.') }}</p>
         @else
-            <form wire:submit.prevent="reply">
+            <form wire:submit="reply">
                 {{ $this->form }}
 
                 <x-filament::button type="submit" class="mt-4">
@@ -38,4 +38,4 @@
             </form>
         @endif
     </div>
-</x-filament::page>
+</x-filament-panels::page>

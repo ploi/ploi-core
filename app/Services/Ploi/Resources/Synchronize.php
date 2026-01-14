@@ -2,6 +2,8 @@
 
 namespace App\Services\Ploi\Resources;
 
+use App\Models\Server;
+use App\Models\Site;
 use App\Services\Ploi\Ploi;
 
 class Synchronize extends Resource
@@ -20,7 +22,7 @@ class Synchronize extends Resource
         return $this->getPloi()->makeAPICall($this->getEndpoint() . '/servers');
     }
 
-    public function server(\App\Models\Server $server)
+    public function server(Server $server)
     {
         return $this->getPloi()->makeAPICall($this->getEndpoint() . '/servers/' . $server->ploi_id);
     }
@@ -30,7 +32,7 @@ class Synchronize extends Resource
         return $this->getPloi()->makeAPICall($this->getEndpoint() . '/sites');
     }
 
-    public function site(\App\Models\Site $site)
+    public function site(Site $site)
     {
         return $this->getPloi()->makeAPICall($this->getEndpoint() . '/sites/' . $site->ploi_id);
     }

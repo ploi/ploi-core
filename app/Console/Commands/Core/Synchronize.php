@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Core;
 
+use App\Models\Provider;
 use App\Services\Ploi\Ploi;
 use Illuminate\Console\Command;
 
@@ -18,10 +19,10 @@ class Synchronize extends Command
         $data = collect($ploi->user()->serverProviders()->getData());
 
         foreach ($data as $apiProvider) {
-            $provider = \App\Models\Provider::where('ploi_id', $apiProvider->id)->first();
+            $provider = Provider::where('ploi_id', $apiProvider->id)->first();
 
             if (!$provider) {
-                $provider = \App\Models\Provider::create([
+                $provider = Provider::create([
                     'ploi_id' => $apiProvider->id,
                     'label' => $apiProvider->label,
                     'name' => $apiProvider->label
