@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Laravel\Cashier\Subscription;
+use App\Filament\Resources\Users\UserResource;
 use App\Filament\Resources\SubscriptionResource\Pages;
 
 class SubscriptionResource extends Resource

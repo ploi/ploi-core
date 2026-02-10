@@ -24,6 +24,7 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Builder;
 use App\Actions\Server\SynchronizeServerAction;
 use App\Filament\Resources\ServerResource\Pages;
+use App\Filament\Resources\Users\UserResource;
 use App\Filament\Resources\ServerResource\RelationManagers;
 
 class ServerResource extends Resource

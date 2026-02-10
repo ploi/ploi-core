@@ -27,6 +27,7 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Builder;
 use App\Actions\Site\SynchronizeSiteAction;
 use App\Filament\Resources\SiteResource\Pages;
+use App\Filament\Resources\Users\UserResource;
 use App\Filament\Resources\SiteResource\RelationManagers;
 
 class SiteResource extends Resource
