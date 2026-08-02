@@ -110,7 +110,7 @@ class Site extends Resource
             } catch (Throwable $exception) {
 
             }
-            throw new Exception($response->getJson()->error ?? 'Unknown error has occured');
+            throw new Exception($response->getJson()->error ?? 'Unknown error has occurred');
         }
 
         // Set the id of the site
