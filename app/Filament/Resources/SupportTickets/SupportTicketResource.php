@@ -33,7 +33,7 @@ class SupportTicketResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getEloquentQuery()->count();
+        return (string) static::getEloquentQuery()->count();
     }
 
     public static function form(Schema $schema): Schema
